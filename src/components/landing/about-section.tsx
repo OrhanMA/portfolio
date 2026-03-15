@@ -78,7 +78,7 @@ export function AboutSection() {
   );
 
   return (
-    <section ref={container} className="py-24 px-6">
+    <section ref={container} id="a-propos" className="py-24 px-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-12">
           <h2 className="about-heading text-3xl font-bold tracking-tight sm:text-4xl">

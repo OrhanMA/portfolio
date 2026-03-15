@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useDictionary } from "@/components/dictionary-provider";
@@ -45,9 +46,12 @@ export function Navbar({ locale }: { locale: string }) {
         {/* Logo */}
         <Link
           href={`/${locale}`}
-          className="text-lg font-bold tracking-tight hover:text-primary transition-colors"
+          className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          Portfolio
+          <Avatar size="sm">
+            <AvatarImage src="/images/coporate-headshot.webp" alt="Orhan Madi Assani" />
+            <AvatarFallback>OM</AvatarFallback>
+          </Avatar>
         </Link>
 
         {/* Desktop nav */}

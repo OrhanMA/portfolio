@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { HeroSection } from "@/components/landing/hero-section";
 import { AboutSection } from "@/components/landing/about-section";
 import { SkillsSection } from "@/components/landing/skills-section";
@@ -13,7 +14,19 @@ export default async function Home({
 
   return (
     <>
-      <HeroSection locale={locale} />
+      <HeroSection
+        locale={locale}
+        headshot={
+          <Image
+            src="/images/coporate-headshot.webp"
+            alt="Orhan Madi Assani"
+            width={128}
+            height={128}
+            className="h-full w-full object-cover"
+            priority
+          />
+        }
+      />
       <AboutSection />
       <SkillsSection />
       <ExperienceSection />

@@ -8,7 +8,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { useDictionary } from "@/components/dictionary-provider";
 import { cn } from "@/lib/utils";
 
-export function HeroSection({ locale }: { locale: string }) {
+export function HeroSection({
+  locale,
+  headshot,
+}: {
+  locale: string;
+  headshot: React.ReactNode;
+}) {
   const container = useRef<HTMLDivElement>(null);
   const dict = useDictionary();
 
@@ -18,7 +24,8 @@ export function HeroSection({ locale }: { locale: string }) {
 
       // Use autoAlpha instead of opacity to prevent FOUC
       // autoAlpha manages both opacity AND visibility
-      tl.from(".hero-greeting", { y: 40, autoAlpha: 0, duration: 0.8 })
+      tl.from(".hero-headshot", { scale: 0.8, autoAlpha: 0, duration: 0.8 })
+        .from(".hero-greeting", { y: 40, autoAlpha: 0, duration: 0.8 }, "-=0.4")
         .from(
           ".hero-title .word",
           { y: 60, autoAlpha: 0, duration: 0.8, stagger: 0.12 },
@@ -81,6 +88,12 @@ export function HeroSection({ locale }: { locale: string }) {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6 text-center">
+        <div className="hero-headshot invisible mb-4 flex justify-center">
+          <div className="relative h-24 w-24 overflow-hidden rounded-full ring-2 ring-primary/20 ring-offset-2 ring-offset-background sm:h-28 sm:w-28">
+            {headshot}
+          </div>
+        </div>
+
         <p className="hero-greeting invisible mb-4 text-lg text-muted-foreground md:text-xl">
           {dict.hero.greeting}
         </p>
@@ -135,14 +148,17 @@ export function HeroSection({ locale }: { locale: string }) {
       </div>
 
       {/* Scroll hint */}
-      <div className="hero-scroll-hint invisible absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-muted-foreground">
+      <a
+        href="#a-propos"
+        className="hero-scroll-hint invisible absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
+      >
+        <div className="flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
           <span className="text-xs uppercase tracking-widest">
             {dict.hero.scroll}
           </span>
           <ArrowDown className="h-4 w-4" />
         </div>
-      </div>
+      </a>
     </section>
   );
 }

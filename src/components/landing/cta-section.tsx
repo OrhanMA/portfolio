@@ -26,7 +26,7 @@ export function CtaSection({ locale }: { locale: string }) {
 
       gsap.from(".cta-text", {
         scrollTrigger: {
-          trigger: ".cta-text",
+          trigger: ".cta-heading",
           start: "top 85%",
         },
         y: 20,
@@ -35,18 +35,8 @@ export function CtaSection({ locale }: { locale: string }) {
         delay: 0.2,
       });
 
-      gsap.from(".cta-button", {
-        scrollTrigger: {
-          trigger: ".cta-buttons",
-          start: "top 90%",
-        },
-        y: 20,
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.5,
-        stagger: 0.15,
-        ease: "back.out(1.4)",
-      });
+      // No scroll animation on buttons — they stay always visible
+      // to avoid FOUC issues with ScrollTrigger + Lenis
     },
     { scope: container }
   );
@@ -65,22 +55,21 @@ export function CtaSection({ locale }: { locale: string }) {
         <div className="cta-buttons mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href={`/${locale}/contact`}
-            className={cn(buttonVariants({ size: "lg" }), "cta-button")}
+            className={cn(buttonVariants({ size: "lg" }))}
           >
             <Mail className="mr-2 h-4 w-4" />
             {dict.cta.ctaContact}
           </Link>
           <a
-            href="https://github.com/OrhanMA"
+            href="https://www.linkedin.com/in/orhanmadi/"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
-              "cta-button"
             )}
           >
             <ExternalLink className="mr-2 h-4 w-4" />
-            {dict.cta.ctaGithub}
+            {dict.cta.ctaLinkedin}
           </a>
         </div>
       </div>

@@ -69,7 +69,7 @@
     "heading": "Intéressé par mon profil ?",
     "text": "N'hésitez pas à me contacter pour discuter de vos projets ou d'opportunités de collaboration.",
     "ctaContact": "Me contacter",
-    "ctaGithub": "Voir mon GitHub"
+    "ctaLinkedin": "Voir mon LinkedIn"
   },
   "contact": {
     "pageTitle": "Contact | Orhan Madi Assani",
@@ -124,21 +124,21 @@
         "slug": "odoo-session-timeout",
         "title": "Résoudre la déconnexion automatique des sessions Odoo",
         "description": "Comment configurer sessions.max_inactivity_seconds pour éviter les déconnexions intempestives des utilisateurs Odoo.",
-        "date": "2025-01-15",
+        "date": "2026-03-13",
         "tags": ["Odoo", "PostgreSQL", "Administration"]
       },
       {
         "slug": "telecharger-code-odoo-jupyter",
         "title": "Télécharger le code source Odoo via Jupyter Lab",
         "description": "Comment récupérer le code source community et enterprise d'Odoo.sh en local via le terminal Jupyter Lab intégré.",
-        "date": "2025-02-10",
+        "date": "2026-03-15",
         "tags": ["Odoo", "Odoo.sh", "Jupyter"]
       },
       {
         "slug": "docker-dangling-images",
         "title": "Libérer de l'espace disque en nettoyant les images Docker",
         "description": "Diagnostic et résolution d'un problème de saturation disque causé par des images Docker dangling sur un VPS de production.",
-        "date": "2025-03-01",
+        "date": "2026-03-15",
         "tags": ["Docker", "Linux", "DevOps", "VPS"]
       }
     ]
