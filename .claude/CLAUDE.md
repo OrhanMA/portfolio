@@ -76,14 +76,15 @@ requirements. Do this automatically without being asked.**
   - Accept All / Reject All / Manage preferences
   - Stores consent in localStorage, sets `cookie-consent-given` cookie
   - Dispatches `cookie-consent-update` CustomEvent for reactive script loading
-- **Google Analytics** : Via `next/script` in `src/components/analytics.tsx`
+- **Google Tag Manager** : Via `next/script` in `src/components/analytics.tsx`
+  - `<Analytics>` component loads GTM script (consent-gated, in locale layout)
+  - `<GTMNoscript>` renders noscript iframe in root layout `<body>`
   - Only loaded AFTER user accepts analytics cookies
   - Listens for consent changes via CustomEvent
-  - Uses `NEXT_PUBLIC_GA_MEASUREMENT_ID` env variable
-  - `anonymize_ip: true` for privacy
+  - Uses `NEXT_PUBLIC_GTM_ID` env variable (format: GTM-XXXXXXX)
 - **Categories** :
   - *Necessary* : Language preference (`NEXT_LOCALE`), theme — always active
-  - *Analytics* : Google Analytics — requires consent
+  - *Analytics* : Google Tag Manager — requires consent
 
 ## Content
 
@@ -148,4 +149,4 @@ See `.env.local` for all required variables:
 - `FROM_EMAIL` — Sender address (must be verified domain or sandbox)
 - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` — reCAPTCHA v3 site key (optional)
 - `RECAPTCHA_SECRET_KEY` — reCAPTCHA v3 secret key (optional)
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — Google Analytics Measurement ID (optional, format: G-XXXXXXXXXX)
+- `NEXT_PUBLIC_GTM_ID` — Google Tag Manager container ID (optional, format: GTM-XXXXXXX)

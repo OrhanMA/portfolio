@@ -14,7 +14,7 @@ Bilingual personal portfolio built with Next.js 16, GSAP animations, shadcn/ui c
 - **Email** : Resend SDK (Server Action)
 - **Anti-spam** : Honeypot + time check + rate limiting + reCAPTCHA v3
 - **Cookie consent** : Custom GDPR-compliant banner with analytics opt-in
-- **Analytics** : Google Analytics (consent-gated)
+- **Analytics** : Google Tag Manager (consent-gated)
 - **Language** : TypeScript (strict mode)
 - **Fonts** : Roboto Flex (sans) + Geist Mono (mono) via `next/font/google`
 - **Package manager** : pnpm
@@ -141,7 +141,7 @@ GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to `main`:
 | `FROM_EMAIL` | Sender address (verified domain) |
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA v3 site key (optional) |
 | `RECAPTCHA_SECRET_KEY` | reCAPTCHA v3 secret key (optional) |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics ID (optional) |
+| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container ID (optional) |
 
 ## Architecture Highlights
 
