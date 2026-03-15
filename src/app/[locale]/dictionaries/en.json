@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "title": "Orhan Madi Assani | Fullstack Developer",
+    "description": "Fullstack developer portfolio — Odoo, Symfony, Next.js. Based in Chambery, France."
+  },
+  "nav": {
+    "home": "Home",
+    "articles": "Articles",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "title1": "Fullstack",
+    "title2": "Developer",
+    "subtitle": "Odoo · Symfony · Next.js",
+    "location": "Chambery, France",
+    "status": "Work-study at 1UP",
+    "ctaParcours": "View my experience",
+    "ctaArticles": "Read my articles",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "heading": "About",
+    "text": "Fullstack developer in a work-study program at 1UP, I started coding self-taught through The Odin Project before completing certified training at Simplon in web development and then application design. Currently pursuing a Master's in Software Engineering at ISCOD, I work daily on Odoo and Symfony projects. What I love about this field is the continuous problem-solving and the richness of the web — there's always something new to learn.",
+    "card1Title": "Work-Study",
+    "card1Desc": "Two years of work-study experience at 1UP as a fullstack developer, working on Odoo and Symfony projects in real business conditions.",
+    "card2Title": "LIG Internship",
+    "card2Desc": "6-month internship at the Grenoble Computer Science Laboratory, developing features for users in a research context.",
+    "card3Title": "Self-Taught",
+    "card3Desc": "Started self-taught through The Odin Project. The web is a rich and complex field where problem-solving never stops."
+  },
+  "skills": {
+    "heading": "Skills",
+    "backend": "Backend",
+    "frontend": "Frontend",
+    "odoo": "Odoo",
+    "devops": "DevOps & Tools",
+    "methods": "Methods",
+    "education": "Education"
+  },
+  "experience": {
+    "heading": "Experience",
+    "entries": [
+      {
+        "period": "Dec. 2024 — Present",
+        "title": "Fullstack Developer — Work-Study",
+        "company": "1UP",
+        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Version migration and upgrade management. Database administration and CI/CD.",
+        "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
+      },
+      {
+        "period": "May — Oct. 2024",
+        "title": "CDA Intern — LIG Lab",
+        "company": "Grenoble Computer Science Laboratory",
+        "description": "Development of a Vue.js application for a sociological study questionnaire on life trajectories. UI design, API integration and collaboration with researchers.",
+        "tags": ["Vue.js", "JavaScript", "REST API", "Research"]
+      },
+      {
+        "period": "2022 — Present",
+        "title": "Computer Science Education",
+        "company": "ISCOD (current) — Simplon",
+        "description": "Self-taught through The Odin Project, then certified training at Simplon: Web Developer (RNCP bac+2, 2023), Application Designer & Developer (RNCP bac+3, 2024). Currently pursuing a Master's in Software Engineering (RNCP bac+5) at ISCOD.",
+        "tags": ["Algorithms", "Databases", "UML", "Project Management"]
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Interested in my profile?",
+    "text": "Feel free to reach out to discuss your projects or collaboration opportunities.",
+    "ctaContact": "Contact me",
+    "ctaGithub": "View my GitHub"
+  },
+  "contact": {
+    "pageTitle": "Contact | Orhan Madi Assani",
+    "pageDescription": "Contact me to discuss projects, collaborations or opportunities.",
+    "heading": "Contact me",
+    "subtext": "A question, a project or a proposal? Fill out the form below and I'll get back to you as soon as possible.",
+    "altEmail": "You can also reach me directly by email at",
+    "recaptchaDisclosure": "This site is protected by reCAPTCHA and the Google {privacy} and {terms} apply.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "contactForm": {
+    "nameLabel": "Full name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "john@example.com",
+    "reasonLabel": "Contact reason",
+    "reasonPlaceholder": "Select a reason...",
+    "customSubjectLabel": "Specify the subject",
+    "customSubjectPlaceholder": "What would you like to discuss?",
+    "customSubjectDescription": "Give a short title to your request.",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Describe your project, question or proposal...",
+    "characters": "characters",
+    "submitLabel": "Send message",
+    "submittingLabel": "Sending...",
+    "successHeading": "Message sent!",
+    "sendAnother": "Send another message"
+  },
+  "contactReasons": [
+    { "value": "offer", "label": "Job offer" },
+    { "value": "freelance", "label": "Freelance mission" },
+    { "value": "collaboration", "label": "Technical collaboration" },
+    { "value": "question", "label": "Technical question" },
+    { "value": "feedback", "label": "Article feedback" },
+    { "value": "other", "label": "Other" }
+  ],
+  "contactErrors": {
+    "invalidData": "Invalid data. Please check the form.",
+    "tooFast": "Please wait a few seconds before submitting.",
+    "rateLimit": "Too many messages sent. Please try again in an hour.",
+    "recaptchaFailed": "Security verification failed. Please try again.",
+    "sendError": "An error occurred while sending. Please try again later.",
+    "unexpectedError": "An unexpected error occurred. Please try again later.",
+    "success": "Message sent successfully! I'll get back to you shortly."
+  },
+  "articles": {
+    "heading": "Articles",
+    "subtext": "Tutorials and experience reports on rarely documented topics.",
+    "articlesData": [
+      {
+        "slug": "odoo-session-timeout",
+        "title": "Solving automatic session disconnection in Odoo",
+        "description": "How to configure sessions.max_inactivity_seconds to prevent unwanted user disconnections in Odoo.",
+        "date": "2025-01-15",
+        "tags": ["Odoo", "PostgreSQL", "Administration"]
+      }
+    ]
+  },
+  "footer": {
+    "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambery, France.",
+    "navTitle": "Navigation",
+    "linksTitle": "Links",
+    "legalTitle": "Legal",
+    "legalNotice": "Legal notice",
+    "privacyPolicy": "Privacy policy",
+    "copyright": "All rights reserved.",
+    "builtWith": "Built with Next.js, GSAP & shadcn/ui"
+  },
+  "notFound": {
+    "heading": "Page not found",
+    "text": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "description": "This site uses cookies to measure traffic and improve your experience. No personal data is sold to third parties.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "manage": "Manage cookies",
+    "necessary": "Necessary",
+    "necessaryDesc": "Essential cookies for the site to function (language, theme). Always active.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Google Analytics cookies to understand how the site is used.",
+    "save": "Save",
+    "close": "Close"
+  },
+  "legal": {
+    "pageTitle": "Legal Notice | Orhan Madi Assani",
+    "heading": "Legal Notice",
+    "editor": "Site editor",
+    "editorName": "Orhan Madi Assani",
+    "editorLocation": "Chambery, France",
+    "editorEmail": "orhan.madi.assani@gmail.com",
+    "hosting": "Hosting",
+    "hostingProvider": "Vercel Inc.",
+    "hostingAddress": "340 S Lemon Ave #4133, Walnut, CA 91789, USA",
+    "hostingWebsite": "https://vercel.com",
+    "intellectualProperty": "Intellectual Property",
+    "intellectualPropertyText": "All content on this site (text, images, source code) is protected by copyright. Any reproduction or representation, in whole or in part, is prohibited without prior authorization.",
+    "contact": "Contact",
+    "contactText": "For any questions regarding this legal notice, you can contact me by email."
+  },
+  "privacy": {
+    "pageTitle": "Privacy Policy | Orhan Madi Assani",
+    "heading": "Privacy Policy",
+    "intro": "This privacy policy explains how your personal data is collected and used on this site.",
+    "dataCollected": "Data Collected",
+    "dataCollectedText": "This site may collect the following data:",
+    "dataItems": [
+      "Contact form: name, email address, message",
+      "Preference cookies: language, theme",
+      "Analytics cookies: anonymized browsing data (Google Analytics, if consented)"
+    ],
+    "purpose": "Use of Data",
+    "purposeText": "Data collected through the contact form is only used to respond to your request. It is neither sold nor shared with third parties.",
+    "cookiesSection": "Cookies",
+    "cookiesText": "This site uses cookies to function properly. Analytics cookies are only loaded after your explicit consent via the cookie banner.",
+    "rights": "Your Rights",
+    "rightsText": "In accordance with the GDPR, you have the right to access, rectify, delete and transfer your personal data. To exercise these rights, contact me by email.",
+    "updates": "Changes",
+    "updatesText": "This policy may be updated at any time. The date of the last modification will be indicated at the bottom of this page.",
+    "lastUpdated": "Last updated"
+  }
+}

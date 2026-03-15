@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "title": "Orhan Madi Assani | Developpeur Fullstack",
+    "description": "Portfolio de developpeur fullstack en alternance — Odoo, Symfony, Next.js. Base a Chambery, France."
+  },
+  "nav": {
+    "home": "Accueil",
+    "articles": "Articles",
+    "skills": "Competences",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "title1": "Developpeur",
+    "title2": "Fullstack",
+    "subtitle": "Odoo · Symfony · Next.js",
+    "location": "Chambery, France",
+    "status": "En alternance chez 1UP",
+    "ctaParcours": "Voir mon parcours",
+    "ctaArticles": "Lire mes articles",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "heading": "A propos",
+    "text": "Developpeur fullstack en alternance chez 1UP, j'ai commence le developpement en autodidacte via The Odin Project avant de suivre des formations certifiantes chez Simplon en developpement web puis en conception d'applications. Aujourd'hui en mastere Ingenierie du Logiciel a l'ISCOD, je travaille au quotidien sur des projets Odoo et Symfony. Ce qui me passionne dans ce metier, c'est la resolution de problemes en continu et la richesse du web — il y a toujours quelque chose a apprendre.",
+    "card1Title": "Alternance",
+    "card1Desc": "Deux ans d'experience en alternance chez 1UP en tant que developpeur fullstack, travaillant sur des projets Odoo et Symfony en conditions reelles d'entreprise.",
+    "card2Title": "Stage LIG",
+    "card2Desc": "Stage de 6 mois au Laboratoire d'Informatique de Grenoble, developpant des fonctionnalites pour des utilisateurs dans un contexte de recherche.",
+    "card3Title": "Autodidacte",
+    "card3Desc": "Parcours debute en autodidacte via The Odin Project. Le web est un domaine riche et complexe ou la resolution de problemes est continue."
+  },
+  "skills": {
+    "heading": "Competences",
+    "backend": "Backend",
+    "frontend": "Frontend",
+    "odoo": "Odoo",
+    "devops": "DevOps & Outils",
+    "methods": "Methodes",
+    "education": "Formation"
+  },
+  "experience": {
+    "heading": "Parcours",
+    "entries": [
+      {
+        "period": "Dec. 2024 — Present",
+        "title": "Developpeur Fullstack — Alternance",
+        "company": "1UP",
+        "description": "Developpement et maintenance de modules Odoo (Python, PostgreSQL). Conception et developpement d'un site B2B e-commerce avec Symfony. Gestion des migrations et upgrades de versions Odoo. Administration de bases de donnees et CI/CD.",
+        "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
+      },
+      {
+        "period": "Mai — Oct. 2024",
+        "title": "Stagiaire CDA — Laboratoire LIG",
+        "company": "Laboratoire d'Informatique de Grenoble",
+        "description": "Developpement d'une application Vue.js pour un questionnaire d'etude sociologique sur les trajectoires de vie. Conception d'interfaces utilisateur, integration d'API et collaboration avec des chercheurs.",
+        "tags": ["Vue.js", "JavaScript", "API REST", "Recherche"]
+      },
+      {
+        "period": "2022 — Present",
+        "title": "Parcours en informatique",
+        "company": "ISCOD (actuel) — Simplon",
+        "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Developpeur Web (RNCP bac+2, 2023), Concepteur et Developpeur d'Application (RNCP bac+3, 2024). Actuellement en mastere Ingenierie du Logiciel (RNCP bac+5) a l'ISCOD.",
+        "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet"]
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Interesse par mon profil ?",
+    "text": "N'hesitez pas a me contacter pour discuter de vos projets ou d'opportunites de collaboration.",
+    "ctaContact": "Me contacter",
+    "ctaGithub": "Voir mon GitHub"
+  },
+  "contact": {
+    "pageTitle": "Contact | Orhan Madi Assani",
+    "pageDescription": "Contactez-moi pour discuter de projets, collaborations ou opportunites.",
+    "heading": "Me contacter",
+    "subtext": "Une question, un projet ou une proposition ? Remplissez le formulaire ci-dessous et je vous repondrai dans les plus brefs delais.",
+    "altEmail": "Vous pouvez aussi me contacter directement par email a",
+    "recaptchaDisclosure": "Ce site est protege par reCAPTCHA et les {privacy} et {terms} de Google s'appliquent.",
+    "privacyPolicy": "regles de confidentialite",
+    "termsOfService": "conditions d'utilisation"
+  },
+  "contactForm": {
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Jean Dupont",
+    "emailLabel": "Adresse email",
+    "emailPlaceholder": "jean@exemple.fr",
+    "reasonLabel": "Raison du contact",
+    "reasonPlaceholder": "Selectionnez une raison...",
+    "customSubjectLabel": "Preciser le sujet",
+    "customSubjectPlaceholder": "De quoi souhaitez-vous discuter ?",
+    "customSubjectDescription": "Donnez un court titre a votre demande.",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Decrivez votre projet, question ou proposition...",
+    "characters": "caracteres",
+    "submitLabel": "Envoyer le message",
+    "submittingLabel": "Envoi en cours...",
+    "successHeading": "Message envoye !",
+    "sendAnother": "Envoyer un autre message"
+  },
+  "contactReasons": [
+    { "value": "offer", "label": "Offre" },
+    { "value": "freelance", "label": "Mission freelance" },
+    { "value": "collaboration", "label": "Collaboration technique" },
+    { "value": "question", "label": "Question technique" },
+    { "value": "feedback", "label": "Retour sur un article" },
+    { "value": "other", "label": "Autre" }
+  ],
+  "contactErrors": {
+    "invalidData": "Donnees invalides. Veuillez verifier le formulaire.",
+    "tooFast": "Veuillez patienter quelques secondes avant d'envoyer.",
+    "rateLimit": "Trop de messages envoyes. Veuillez reessayer dans une heure.",
+    "recaptchaFailed": "La verification de securite a echoue. Veuillez reessayer.",
+    "sendError": "Une erreur est survenue lors de l'envoi. Veuillez reessayer plus tard.",
+    "unexpectedError": "Une erreur inattendue est survenue. Veuillez reessayer plus tard.",
+    "success": "Message envoye avec succes ! Je vous repondrai rapidement."
+  },
+  "articles": {
+    "heading": "Articles",
+    "subtext": "Tutoriels et retours d'experience sur des sujets peu documentes.",
+    "articlesData": [
+      {
+        "slug": "odoo-session-timeout",
+        "title": "Resoudre la deconnexion automatique des sessions Odoo",
+        "description": "Comment configurer sessions.max_inactivity_seconds pour eviter les deconnexions intempestives des utilisateurs Odoo.",
+        "date": "2025-01-15",
+        "tags": ["Odoo", "PostgreSQL", "Administration"]
+      }
+    ]
+  },
+  "footer": {
+    "about": "Developpeur Fullstack en alternance chez 1UP, specialise en Odoo, Symfony et Next.js. Base a Chambery, France.",
+    "navTitle": "Navigation",
+    "linksTitle": "Liens",
+    "legalTitle": "Legal",
+    "legalNotice": "Mentions legales",
+    "privacyPolicy": "Politique de confidentialite",
+    "copyright": "Tous droits reserves.",
+    "builtWith": "Construit avec Next.js, GSAP & shadcn/ui"
+  },
+  "notFound": {
+    "heading": "Page introuvable",
+    "text": "La page que vous recherchez n'existe pas ou a ete deplacee.",
+    "backHome": "Retour a l'accueil"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "description": "Ce site utilise des cookies pour mesurer l'audience et ameliorer votre experience. Aucune donnee personnelle n'est vendue a des tiers.",
+    "accept": "Accepter",
+    "reject": "Refuser",
+    "manage": "Gerer les cookies",
+    "necessary": "Necessaires",
+    "necessaryDesc": "Cookies essentiels au fonctionnement du site (langue, theme). Toujours actifs.",
+    "analytics": "Analytiques",
+    "analyticsDesc": "Cookies Google Analytics pour comprendre comment le site est utilise.",
+    "save": "Enregistrer",
+    "close": "Fermer"
+  },
+  "legal": {
+    "pageTitle": "Mentions legales | Orhan Madi Assani",
+    "heading": "Mentions legales",
+    "editor": "Editeur du site",
+    "editorName": "Orhan Madi Assani",
+    "editorLocation": "Chambery, France",
+    "editorEmail": "orhan.madi.assani@gmail.com",
+    "hosting": "Hebergement",
+    "hostingProvider": "Vercel Inc.",
+    "hostingAddress": "340 S Lemon Ave #4133, Walnut, CA 91789, USA",
+    "hostingWebsite": "https://vercel.com",
+    "intellectualProperty": "Propriete intellectuelle",
+    "intellectualPropertyText": "L'ensemble du contenu de ce site (textes, images, code source) est protege par le droit d'auteur. Toute reproduction ou representation, en tout ou partie, est interdite sans autorisation prealable.",
+    "contact": "Contact",
+    "contactText": "Pour toute question relative aux mentions legales, vous pouvez me contacter par email."
+  },
+  "privacy": {
+    "pageTitle": "Politique de confidentialite | Orhan Madi Assani",
+    "heading": "Politique de confidentialite",
+    "intro": "Cette politique de confidentialite explique comment vos donnees personnelles sont collectees et utilisees sur ce site.",
+    "dataCollected": "Donnees collectees",
+    "dataCollectedText": "Ce site peut collecter les donnees suivantes :",
+    "dataItems": [
+      "Formulaire de contact : nom, adresse email, message",
+      "Cookies de preference : langue, theme",
+      "Cookies analytiques : donnees de navigation anonymisees (Google Analytics, si consenti)"
+    ],
+    "purpose": "Utilisation des donnees",
+    "purposeText": "Les donnees collectees via le formulaire de contact sont uniquement utilisees pour repondre a votre demande. Elles ne sont ni vendues ni partagees avec des tiers.",
+    "cookiesSection": "Cookies",
+    "cookiesText": "Ce site utilise des cookies pour fonctionner correctement. Les cookies analytiques ne sont charges qu'apres votre consentement explicite via la banniere de cookies.",
+    "rights": "Vos droits",
+    "rightsText": "Conformement au RGPD, vous disposez d'un droit d'acces, de rectification, de suppression et de portabilite de vos donnees personnelles. Pour exercer ces droits, contactez-moi par email.",
+    "updates": "Modifications",
+    "updatesText": "Cette politique peut etre mise a jour a tout moment. La date de derniere modification sera indiquee en bas de cette page.",
+    "lastUpdated": "Derniere mise a jour"
+  }
+}
