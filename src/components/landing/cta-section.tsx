@@ -42,7 +42,7 @@ export function CtaSection({ locale }: { locale: string }) {
   );
 
   return (
-    <section ref={container} id="contact" className="bg-muted/30 py-24 px-6">
+    <section ref={container} id="contact" className="py-24 px-6">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="cta-heading text-3xl font-bold tracking-tight sm:text-4xl">
           {dict.cta.heading}

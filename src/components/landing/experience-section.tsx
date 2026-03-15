@@ -144,7 +144,7 @@ export function ExperienceSection() {
   );
 
   return (
-    <section ref={container} id="parcours" className="relative py-24 px-6">
+    <section ref={container} id="parcours" className="section-tinted relative py-24 px-6">
       {/* Cursor-following image */}
       <div
         ref={cursorImageRef}
@@ -203,7 +203,7 @@ export function ExperienceSection() {
                         : "md:col-start-2 md:pl-12"
                     }`}
                   >
-                    <Card className="border-border/50 bg-card/50">
+                    <Card className="border-border/50 bg-card">
                       <CardHeader className="pb-2">
                         <Badge
                           variant="outline"

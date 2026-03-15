@@ -38,7 +38,7 @@ export default async function ArticlesPage({
               href={`/${locale}/articles/${article.slug}`}
               className="no-underline"
             >
-              <Card className="border-border/50 bg-card/50 transition-colors hover:bg-muted/50">
+              <Card className="border-border/50 bg-card transition-colors hover:bg-muted my-8">
                 <CardHeader>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs text-muted-foreground">

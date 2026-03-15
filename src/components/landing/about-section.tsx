@@ -78,7 +78,7 @@ export function AboutSection() {
   );
 
   return (
-    <section ref={container} id="a-propos" className="py-24 px-6">
+    <section ref={container} id="a-propos" className="section-tinted py-24 px-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-12">
           <h2 className="about-heading text-3xl font-bold tracking-tight sm:text-4xl">
@@ -95,7 +95,7 @@ export function AboutSection() {
           {highlights.map((item) => (
             <Card
               key={item.title}
-              className="about-card border-border/50 bg-card/50"
+              className="about-card border-border/50 bg-card"
             >
               <CardContent className="pt-6">
                 <item.icon className="mb-4 h-8 w-8 text-primary" />

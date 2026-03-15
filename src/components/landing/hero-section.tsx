@@ -78,7 +78,7 @@ export function HeroSection({
   return (
     <section
       ref={container}
-      className="relative flex h-screen items-center justify-center overflow-hidden"
+      className="hero-gradient relative flex h-screen items-center justify-center overflow-hidden"
     >
       {/* Background orbs */}
       <div className="absolute inset-0 flex items-center justify-center">

@@ -94,7 +94,7 @@ export function SkillsSection() {
     <section
       ref={container}
       id="competences"
-      className="bg-muted/30 py-24 px-6"
+      className="py-24 px-6"
     >
       <div className="mx-auto max-w-5xl">
         <div className="mb-12">
@@ -108,7 +108,7 @@ export function SkillsSection() {
           {skillCategories.map((category) => (
             <Card
               key={category.title}
-              className="skill-card border-border/50 bg-card/50 backdrop-blur-sm"
+              className="skill-card border-border/50 bg-card"
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3">
