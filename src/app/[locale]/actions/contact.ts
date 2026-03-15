@@ -33,7 +33,7 @@ export async function sendContactEmail(
   if (!parsed.success) {
     return {
       success: false,
-      message: "Donnees invalides. Veuillez verifier le formulaire.",
+      message: "Données invalides. Veuillez vérifier le formulaire.",
     };
   }
 
@@ -53,7 +53,7 @@ export async function sendContactEmail(
     // Silently succeed — never reveal to bots that they were caught
     return {
       success: true,
-      message: "Message envoye avec succes ! Je vous repondrai rapidement.",
+      message: "Message envoyé avec succès ! Je vous répondrai rapidement.",
     };
   }
 
@@ -78,7 +78,7 @@ export async function sendContactEmail(
     return {
       success: false,
       message:
-        "Trop de messages envoyes. Veuillez reessayer dans une heure.",
+        "Trop de messages envoyés. Veuillez réessayer dans une heure.",
     };
   }
 
@@ -89,7 +89,7 @@ export async function sendContactEmail(
       return {
         success: false,
         message:
-          "La verification de securite a echoue. Veuillez reessayer.",
+          "La vérification de sécurité a échoué. Veuillez réessayer.",
       };
     }
   }
@@ -147,20 +147,20 @@ export async function sendContactEmail(
       return {
         success: false,
         message:
-          "Une erreur est survenue lors de l'envoi. Veuillez reessayer plus tard.",
+          "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
       };
     }
 
     return {
       success: true,
-      message: "Message envoye avec succes ! Je vous repondrai rapidement.",
+      message: "Message envoyé avec succès ! Je vous répondrai rapidement.",
     };
   } catch (error) {
     console.error("Contact form error:", error);
     return {
       success: false,
       message:
-        "Une erreur inattendue est survenue. Veuillez reessayer plus tard.",
+        "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
     };
   }
 }

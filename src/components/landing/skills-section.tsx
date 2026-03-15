@@ -37,7 +37,7 @@ export function SkillsSection() {
     {
       icon: Container,
       title: dict.skills.devops,
-      skills: ["Git", "Docker", "PostgreSQL", "Shell", "Linux", "CI/CD"],
+      skills: ["Git", "Docker", "PostgreSQL", "Shell", "Linux", "CI/CD", "VPS (OVH, DO)"],
     },
     {
       icon: Users,

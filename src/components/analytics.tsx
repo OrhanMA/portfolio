@@ -1,33 +1,31 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import Script from "next/script";
 import { getStoredConsent } from "@/lib/cookie-consent";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
+function subscribeToConsent(callback: () => void) {
+  window.addEventListener("cookie-consent-update", callback);
+  return () => window.removeEventListener("cookie-consent-update", callback);
+}
+
+function getConsentSnapshot() {
+  return getStoredConsent()?.analytics ?? false;
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export function Analytics() {
-  const [consentGiven, setConsentGiven] = useState(false);
-
-  useEffect(() => {
-    // Check initial consent
-    const consent = getStoredConsent();
-    if (consent?.analytics) {
-      setConsentGiven(true);
-    }
-
-    // Listen for consent updates
-    function handleConsentUpdate(e: Event) {
-      const detail = (e as CustomEvent).detail;
-      setConsentGiven(detail?.analytics ?? false);
-    }
-
-    window.addEventListener("cookie-consent-update", handleConsentUpdate);
-    return () => {
-      window.removeEventListener("cookie-consent-update", handleConsentUpdate);
-    };
-  }, []);
+  const consentGiven = useSyncExternalStore(
+    subscribeToConsent,
+    getConsentSnapshot,
+    getServerSnapshot,
+  );
 
   if (!consentGiven) return null;
 

@@ -5,7 +5,6 @@ import { X, Cookie, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDictionary } from "@/components/dictionary-provider";
 import {
-  getStoredConsent,
   setStoredConsent,
   hasConsentBeenGiven,
   type CookieConsent as CookieConsentType,

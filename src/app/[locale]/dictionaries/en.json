@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Orhan Madi Assani | Fullstack Developer",
-    "description": "Fullstack developer portfolio — Odoo, Symfony, Next.js. Based in Chambery, France."
+    "description": "Fullstack developer portfolio — Odoo, Symfony, Next.js. Based in Chambéry, France."
   },
   "nav": {
     "home": "Home",
@@ -14,7 +14,7 @@
     "title1": "Fullstack",
     "title2": "Developer",
     "subtitle": "Odoo · Symfony · Next.js",
-    "location": "Chambery, France",
+    "location": "Chambéry, France",
     "status": "Work-study at 1UP",
     "ctaParcours": "View my experience",
     "ctaArticles": "Read my articles",
@@ -46,7 +46,7 @@
         "period": "Dec. 2024 — Present",
         "title": "Fullstack Developer — Work-Study",
         "company": "1UP",
-        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Version migration and upgrade management. Database administration and CI/CD.",
+        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Version migration and upgrade management. Database administration, CI/CD and VPS server management (OVH, Digital Ocean).",
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
@@ -126,11 +126,25 @@
         "description": "How to configure sessions.max_inactivity_seconds to prevent unwanted user disconnections in Odoo.",
         "date": "2025-01-15",
         "tags": ["Odoo", "PostgreSQL", "Administration"]
+      },
+      {
+        "slug": "telecharger-code-odoo-jupyter",
+        "title": "Download Odoo source code via Jupyter Lab",
+        "description": "How to retrieve the community and enterprise Odoo source code from Odoo.sh locally using the built-in Jupyter Lab terminal.",
+        "date": "2025-02-10",
+        "tags": ["Odoo", "Odoo.sh", "Jupyter"]
+      },
+      {
+        "slug": "docker-dangling-images",
+        "title": "Free disk space by cleaning Docker dangling images",
+        "description": "Diagnosing and resolving disk saturation caused by dangling Docker images on a production VPS.",
+        "date": "2025-03-01",
+        "tags": ["Docker", "Linux", "DevOps", "VPS"]
       }
     ]
   },
   "footer": {
-    "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambery, France.",
+    "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambéry, France.",
     "navTitle": "Navigation",
     "linksTitle": "Links",
     "legalTitle": "Legal",
@@ -162,7 +176,7 @@
     "heading": "Legal Notice",
     "editor": "Site editor",
     "editorName": "Orhan Madi Assani",
-    "editorLocation": "Chambery, France",
+    "editorLocation": "Chambéry, France",
     "editorEmail": "orhan.madi.assani@gmail.com",
     "hosting": "Hosting",
     "hostingProvider": "Vercel Inc.",

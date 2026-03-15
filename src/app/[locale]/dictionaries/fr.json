@@ -1,84 +1,84 @@
 {
   "metadata": {
-    "title": "Orhan Madi Assani | Developpeur Fullstack",
-    "description": "Portfolio de developpeur fullstack en alternance — Odoo, Symfony, Next.js. Base a Chambery, France."
+    "title": "Orhan Madi Assani | Développeur Fullstack",
+    "description": "Portfolio de développeur fullstack en alternance — Odoo, Symfony, Next.js. Basé à Chambéry, France."
   },
   "nav": {
     "home": "Accueil",
     "articles": "Articles",
-    "skills": "Competences",
+    "skills": "Compétences",
     "contact": "Contact"
   },
   "hero": {
     "greeting": "Bonjour, je suis",
-    "title1": "Developpeur",
+    "title1": "Développeur",
     "title2": "Fullstack",
     "subtitle": "Odoo · Symfony · Next.js",
-    "location": "Chambery, France",
+    "location": "Chambéry, France",
     "status": "En alternance chez 1UP",
     "ctaParcours": "Voir mon parcours",
     "ctaArticles": "Lire mes articles",
     "scroll": "Scroll"
   },
   "about": {
-    "heading": "A propos",
-    "text": "Developpeur fullstack en alternance chez 1UP, j'ai commence le developpement en autodidacte via The Odin Project avant de suivre des formations certifiantes chez Simplon en developpement web puis en conception d'applications. Aujourd'hui en mastere Ingenierie du Logiciel a l'ISCOD, je travaille au quotidien sur des projets Odoo et Symfony. Ce qui me passionne dans ce metier, c'est la resolution de problemes en continu et la richesse du web — il y a toujours quelque chose a apprendre.",
+    "heading": "À propos",
+    "text": "Développeur fullstack en alternance chez 1UP, j'ai commencé le développement en autodidacte via The Odin Project avant de suivre des formations certifiantes chez Simplon en développement web puis en conception d'applications. Aujourd'hui en mastère Ingénierie du Logiciel à l'ISCOD, je travaille au quotidien sur des projets Odoo et Symfony. Ce qui me passionne dans ce métier, c'est la résolution de problèmes en continu et la richesse du web — il y a toujours quelque chose à apprendre.",
     "card1Title": "Alternance",
-    "card1Desc": "Deux ans d'experience en alternance chez 1UP en tant que developpeur fullstack, travaillant sur des projets Odoo et Symfony en conditions reelles d'entreprise.",
+    "card1Desc": "Deux ans d'expérience en alternance chez 1UP en tant que développeur fullstack, travaillant sur des projets Odoo et Symfony en conditions réelles d'entreprise.",
     "card2Title": "Stage LIG",
-    "card2Desc": "Stage de 6 mois au Laboratoire d'Informatique de Grenoble, developpant des fonctionnalites pour des utilisateurs dans un contexte de recherche.",
+    "card2Desc": "Stage de 6 mois au Laboratoire d'Informatique de Grenoble, développant des fonctionnalités pour des utilisateurs dans un contexte de recherche.",
     "card3Title": "Autodidacte",
-    "card3Desc": "Parcours debute en autodidacte via The Odin Project. Le web est un domaine riche et complexe ou la resolution de problemes est continue."
+    "card3Desc": "Parcours débuté en autodidacte via The Odin Project. Le web est un domaine riche et complexe où la résolution de problèmes est continue."
   },
   "skills": {
-    "heading": "Competences",
+    "heading": "Compétences",
     "backend": "Backend",
     "frontend": "Frontend",
     "odoo": "Odoo",
     "devops": "DevOps & Outils",
-    "methods": "Methodes",
+    "methods": "Méthodes",
     "education": "Formation"
   },
   "experience": {
     "heading": "Parcours",
     "entries": [
       {
-        "period": "Dec. 2024 — Present",
-        "title": "Developpeur Fullstack — Alternance",
+        "period": "Déc. 2024 — Présent",
+        "title": "Développeur Fullstack — Alternance",
         "company": "1UP",
-        "description": "Developpement et maintenance de modules Odoo (Python, PostgreSQL). Conception et developpement d'un site B2B e-commerce avec Symfony. Gestion des migrations et upgrades de versions Odoo. Administration de bases de donnees et CI/CD.",
+        "description": "Développement et maintenance de modules Odoo (Python, PostgreSQL). Conception et développement d'un site B2B e-commerce avec Symfony. Gestion des migrations et upgrades de versions Odoo. Administration de bases de données, CI/CD et gestion de serveurs VPS (OVH, Digital Ocean).",
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
         "period": "Mai — Oct. 2024",
         "title": "Stagiaire CDA — Laboratoire LIG",
         "company": "Laboratoire d'Informatique de Grenoble",
-        "description": "Developpement d'une application Vue.js pour un questionnaire d'etude sociologique sur les trajectoires de vie. Conception d'interfaces utilisateur, integration d'API et collaboration avec des chercheurs.",
+        "description": "Développement d'une application Vue.js pour un questionnaire d'étude sociologique sur les trajectoires de vie. Conception d'interfaces utilisateur, intégration d'API et collaboration avec des chercheurs.",
         "tags": ["Vue.js", "JavaScript", "API REST", "Recherche"]
       },
       {
-        "period": "2022 — Present",
+        "period": "2022 — Présent",
         "title": "Parcours en informatique",
         "company": "ISCOD (actuel) — Simplon",
-        "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Developpeur Web (RNCP bac+2, 2023), Concepteur et Developpeur d'Application (RNCP bac+3, 2024). Actuellement en mastere Ingenierie du Logiciel (RNCP bac+5) a l'ISCOD.",
+        "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Développeur Web (RNCP bac+2, 2023), Concepteur et Développeur d'Application (RNCP bac+3, 2024). Actuellement en mastère Ingénierie du Logiciel (RNCP bac+5) à l'ISCOD.",
         "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet"]
       }
     ]
   },
   "cta": {
-    "heading": "Interesse par mon profil ?",
-    "text": "N'hesitez pas a me contacter pour discuter de vos projets ou d'opportunites de collaboration.",
+    "heading": "Intéressé par mon profil ?",
+    "text": "N'hésitez pas à me contacter pour discuter de vos projets ou d'opportunités de collaboration.",
     "ctaContact": "Me contacter",
     "ctaGithub": "Voir mon GitHub"
   },
   "contact": {
     "pageTitle": "Contact | Orhan Madi Assani",
-    "pageDescription": "Contactez-moi pour discuter de projets, collaborations ou opportunites.",
+    "pageDescription": "Contactez-moi pour discuter de projets, collaborations ou opportunités.",
     "heading": "Me contacter",
-    "subtext": "Une question, un projet ou une proposition ? Remplissez le formulaire ci-dessous et je vous repondrai dans les plus brefs delais.",
-    "altEmail": "Vous pouvez aussi me contacter directement par email a",
-    "recaptchaDisclosure": "Ce site est protege par reCAPTCHA et les {privacy} et {terms} de Google s'appliquent.",
-    "privacyPolicy": "regles de confidentialite",
+    "subtext": "Une question, un projet ou une proposition ? Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.",
+    "altEmail": "Vous pouvez aussi me contacter directement par email à",
+    "recaptchaDisclosure": "Ce site est protégé par reCAPTCHA et les {privacy} et {terms} de Google s'appliquent.",
+    "privacyPolicy": "règles de confidentialité",
     "termsOfService": "conditions d'utilisation"
   },
   "contactForm": {
@@ -87,16 +87,16 @@
     "emailLabel": "Adresse email",
     "emailPlaceholder": "jean@exemple.fr",
     "reasonLabel": "Raison du contact",
-    "reasonPlaceholder": "Selectionnez une raison...",
-    "customSubjectLabel": "Preciser le sujet",
+    "reasonPlaceholder": "Sélectionnez une raison...",
+    "customSubjectLabel": "Préciser le sujet",
     "customSubjectPlaceholder": "De quoi souhaitez-vous discuter ?",
-    "customSubjectDescription": "Donnez un court titre a votre demande.",
+    "customSubjectDescription": "Donnez un court titre à votre demande.",
     "messageLabel": "Message",
-    "messagePlaceholder": "Decrivez votre projet, question ou proposition...",
-    "characters": "caracteres",
+    "messagePlaceholder": "Décrivez votre projet, question ou proposition...",
+    "characters": "caractères",
     "submitLabel": "Envoyer le message",
     "submittingLabel": "Envoi en cours...",
-    "successHeading": "Message envoye !",
+    "successHeading": "Message envoyé !",
     "sendAnother": "Envoyer un autre message"
   },
   "contactReasons": [
@@ -108,90 +108,104 @@
     { "value": "other", "label": "Autre" }
   ],
   "contactErrors": {
-    "invalidData": "Donnees invalides. Veuillez verifier le formulaire.",
+    "invalidData": "Données invalides. Veuillez vérifier le formulaire.",
     "tooFast": "Veuillez patienter quelques secondes avant d'envoyer.",
-    "rateLimit": "Trop de messages envoyes. Veuillez reessayer dans une heure.",
-    "recaptchaFailed": "La verification de securite a echoue. Veuillez reessayer.",
-    "sendError": "Une erreur est survenue lors de l'envoi. Veuillez reessayer plus tard.",
-    "unexpectedError": "Une erreur inattendue est survenue. Veuillez reessayer plus tard.",
-    "success": "Message envoye avec succes ! Je vous repondrai rapidement."
+    "rateLimit": "Trop de messages envoyés. Veuillez réessayer dans une heure.",
+    "recaptchaFailed": "La vérification de sécurité a échoué. Veuillez réessayer.",
+    "sendError": "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
+    "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+    "success": "Message envoyé avec succès ! Je vous répondrai rapidement."
   },
   "articles": {
     "heading": "Articles",
-    "subtext": "Tutoriels et retours d'experience sur des sujets peu documentes.",
+    "subtext": "Tutoriels et retours d'expérience sur des sujets peu documentés.",
     "articlesData": [
       {
         "slug": "odoo-session-timeout",
-        "title": "Resoudre la deconnexion automatique des sessions Odoo",
-        "description": "Comment configurer sessions.max_inactivity_seconds pour eviter les deconnexions intempestives des utilisateurs Odoo.",
+        "title": "Résoudre la déconnexion automatique des sessions Odoo",
+        "description": "Comment configurer sessions.max_inactivity_seconds pour éviter les déconnexions intempestives des utilisateurs Odoo.",
         "date": "2025-01-15",
         "tags": ["Odoo", "PostgreSQL", "Administration"]
+      },
+      {
+        "slug": "telecharger-code-odoo-jupyter",
+        "title": "Télécharger le code source Odoo via Jupyter Lab",
+        "description": "Comment récupérer le code source community et enterprise d'Odoo.sh en local via le terminal Jupyter Lab intégré.",
+        "date": "2025-02-10",
+        "tags": ["Odoo", "Odoo.sh", "Jupyter"]
+      },
+      {
+        "slug": "docker-dangling-images",
+        "title": "Libérer de l'espace disque en nettoyant les images Docker",
+        "description": "Diagnostic et résolution d'un problème de saturation disque causé par des images Docker dangling sur un VPS de production.",
+        "date": "2025-03-01",
+        "tags": ["Docker", "Linux", "DevOps", "VPS"]
       }
     ]
   },
   "footer": {
-    "about": "Developpeur Fullstack en alternance chez 1UP, specialise en Odoo, Symfony et Next.js. Base a Chambery, France.",
+    "about": "Développeur Fullstack en alternance chez 1UP, spécialisé en Odoo, Symfony et Next.js. Basé à Chambéry, France.",
     "navTitle": "Navigation",
     "linksTitle": "Liens",
-    "legalTitle": "Legal",
-    "legalNotice": "Mentions legales",
-    "privacyPolicy": "Politique de confidentialite",
-    "copyright": "Tous droits reserves.",
+    "legalTitle": "Légal",
+    "legalNotice": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "copyright": "Tous droits réservés.",
     "builtWith": "Construit avec Next.js, GSAP & shadcn/ui"
   },
   "notFound": {
     "heading": "Page introuvable",
-    "text": "La page que vous recherchez n'existe pas ou a ete deplacee.",
-    "backHome": "Retour a l'accueil"
+    "text": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
   },
   "cookies": {
     "title": "Cookies",
-    "description": "Ce site utilise des cookies pour mesurer l'audience et ameliorer votre experience. Aucune donnee personnelle n'est vendue a des tiers.",
+    "description": "Ce site utilise des cookies pour mesurer l'audience et améliorer votre expérience. Aucune donnée personnelle n'est vendue à des tiers.",
     "accept": "Accepter",
     "reject": "Refuser",
-    "manage": "Gerer les cookies",
-    "necessary": "Necessaires",
-    "necessaryDesc": "Cookies essentiels au fonctionnement du site (langue, theme). Toujours actifs.",
+    "manage": "Gérer les cookies",
+    "necessary": "Nécessaires",
+    "necessaryDesc": "Cookies essentiels au fonctionnement du site (langue, thème). Toujours actifs.",
     "analytics": "Analytiques",
-    "analyticsDesc": "Cookies Google Analytics pour comprendre comment le site est utilise.",
+    "analyticsDesc": "Cookies Google Analytics pour comprendre comment le site est utilisé.",
     "save": "Enregistrer",
     "close": "Fermer"
   },
   "legal": {
-    "pageTitle": "Mentions legales | Orhan Madi Assani",
-    "heading": "Mentions legales",
-    "editor": "Editeur du site",
+    "pageTitle": "Mentions légales | Orhan Madi Assani",
+    "heading": "Mentions légales",
+    "editor": "Éditeur du site",
     "editorName": "Orhan Madi Assani",
-    "editorLocation": "Chambery, France",
+    "editorLocation": "Chambéry, France",
     "editorEmail": "orhan.madi.assani@gmail.com",
-    "hosting": "Hebergement",
+    "hosting": "Hébergement",
     "hostingProvider": "Vercel Inc.",
     "hostingAddress": "340 S Lemon Ave #4133, Walnut, CA 91789, USA",
     "hostingWebsite": "https://vercel.com",
-    "intellectualProperty": "Propriete intellectuelle",
-    "intellectualPropertyText": "L'ensemble du contenu de ce site (textes, images, code source) est protege par le droit d'auteur. Toute reproduction ou representation, en tout ou partie, est interdite sans autorisation prealable.",
+    "intellectualProperty": "Propriété intellectuelle",
+    "intellectualPropertyText": "L'ensemble du contenu de ce site (textes, images, code source) est protégé par le droit d'auteur. Toute reproduction ou représentation, en tout ou partie, est interdite sans autorisation préalable.",
     "contact": "Contact",
-    "contactText": "Pour toute question relative aux mentions legales, vous pouvez me contacter par email."
+    "contactText": "Pour toute question relative aux mentions légales, vous pouvez me contacter par email."
   },
   "privacy": {
-    "pageTitle": "Politique de confidentialite | Orhan Madi Assani",
-    "heading": "Politique de confidentialite",
-    "intro": "Cette politique de confidentialite explique comment vos donnees personnelles sont collectees et utilisees sur ce site.",
-    "dataCollected": "Donnees collectees",
-    "dataCollectedText": "Ce site peut collecter les donnees suivantes :",
+    "pageTitle": "Politique de confidentialité | Orhan Madi Assani",
+    "heading": "Politique de confidentialité",
+    "intro": "Cette politique de confidentialité explique comment vos données personnelles sont collectées et utilisées sur ce site.",
+    "dataCollected": "Données collectées",
+    "dataCollectedText": "Ce site peut collecter les données suivantes :",
     "dataItems": [
       "Formulaire de contact : nom, adresse email, message",
-      "Cookies de preference : langue, theme",
-      "Cookies analytiques : donnees de navigation anonymisees (Google Analytics, si consenti)"
+      "Cookies de préférence : langue, thème",
+      "Cookies analytiques : données de navigation anonymisées (Google Analytics, si consenti)"
     ],
-    "purpose": "Utilisation des donnees",
-    "purposeText": "Les donnees collectees via le formulaire de contact sont uniquement utilisees pour repondre a votre demande. Elles ne sont ni vendues ni partagees avec des tiers.",
+    "purpose": "Utilisation des données",
+    "purposeText": "Les données collectées via le formulaire de contact sont uniquement utilisées pour répondre à votre demande. Elles ne sont ni vendues ni partagées avec des tiers.",
     "cookiesSection": "Cookies",
-    "cookiesText": "Ce site utilise des cookies pour fonctionner correctement. Les cookies analytiques ne sont charges qu'apres votre consentement explicite via la banniere de cookies.",
+    "cookiesText": "Ce site utilise des cookies pour fonctionner correctement. Les cookies analytiques ne sont chargés qu'après votre consentement explicite via la bannière de cookies.",
     "rights": "Vos droits",
-    "rightsText": "Conformement au RGPD, vous disposez d'un droit d'acces, de rectification, de suppression et de portabilite de vos donnees personnelles. Pour exercer ces droits, contactez-moi par email.",
+    "rightsText": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles. Pour exercer ces droits, contactez-moi par email.",
     "updates": "Modifications",
-    "updatesText": "Cette politique peut etre mise a jour a tout moment. La date de derniere modification sera indiquee en bas de cette page.",
-    "lastUpdated": "Derniere mise a jour"
+    "updatesText": "Cette politique peut être mise à jour à tout moment. La date de dernière modification sera indiquée en bas de cette page.",
+    "lastUpdated": "Dernière mise à jour"
   }
 }

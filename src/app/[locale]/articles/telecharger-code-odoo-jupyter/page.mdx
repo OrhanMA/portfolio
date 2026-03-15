@@ -1,0 +1,47 @@
+# Télécharger le code source Odoo via Jupyter Lab
+
+## Contexte
+
+Lorsqu'on travaille avec **Odoo.sh** (la plateforme PaaS officielle d'Odoo), le code source est hébergé sur les serveurs de la plateforme. Odoo est divisé en deux bases de code distinctes :
+
+- **Community** : le code open-source du framework Odoo
+- **Enterprise** : les modules propriétaires sous licence commerciale
+
+Avoir le code source **en local** est essentiel quand on développe sur Odoo : cela permet de comprendre les mécanismes internes du framework, de déboguer efficacement, et de s'inspirer des patterns utilisés dans les modules officiels.
+
+Le problème, c'est qu'Odoo.sh ne propose pas de téléchargement direct du code source. Heureusement, la plateforme intègre **Jupyter Lab**, qui offre un accès terminal au serveur.
+
+## Étapes
+
+### 1. Activer une session terminal
+
+Depuis l'interface Odoo.sh, accédez à l'éditeur Jupyter Lab de votre instance. Ouvrez un **terminal** depuis l'interface de Jupyter Lab.
+
+### 2. Localiser les dossiers du code source
+
+Le code source Odoo se trouve généralement dans le répertoire de l'instance. Identifiez les dossiers **community** et **enterprise** que vous souhaitez récupérer.
+
+### 3. Créer les archives ZIP
+
+Pour chaque dossier, créez une archive ZIP :
+
+```bash
+zip -r community.zip community/
+```
+
+```bash
+zip -r enterprise.zip enterprise/
+```
+
+Les archives seront créées dans le répertoire courant du notebook Jupyter.
+
+### 4. Télécharger les archives
+
+Depuis l'explorateur de fichiers de Jupyter Lab (panneau latéral gauche), faites un **clic droit** sur le fichier `.zip` créé, puis sélectionnez **Download** pour le télécharger sur votre machine locale.
+
+## Pourquoi avoir le code source en local ?
+
+- **Compréhension du framework** : naviguer dans le code source permet de comprendre comment Odoo gère les vues, les modèles, les droits d'accès, l'ORM, etc.
+- **Débogage** : quand un comportement inattendu survient, pouvoir lire le code source d'Odoo est souvent la seule façon de comprendre ce qui se passe
+- **Patterns et bonnes pratiques** : les modules officiels sont une référence pour les conventions de code et l'architecture des modules
+- **Recherche rapide** : avec le code en local, on peut utiliser son éditeur favori (VS Code, etc.) pour faire des recherches globales instantanées dans tout le code source

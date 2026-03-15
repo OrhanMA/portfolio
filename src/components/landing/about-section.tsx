@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { GraduationCap, Code, Briefcase } from "lucide-react";
-import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDictionary } from "@/components/dictionary-provider";
 

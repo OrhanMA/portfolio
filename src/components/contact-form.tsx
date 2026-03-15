@@ -61,6 +61,7 @@ export function ContactForm() {
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- watch() is inherently incompatible with React Compiler (react-hook-form subscription model)
   const selectedReason = watch("reason");
 
   function onSubmit(data: ContactFormData) {

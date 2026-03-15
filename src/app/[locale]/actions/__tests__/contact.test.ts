@@ -75,7 +75,7 @@ describe("sendContactEmail()", () => {
       email: "bad",
       reason: "",
       message: "",
-    } as any);
+    } as unknown as Parameters<typeof sendContactEmail>[0]);
 
     expect(result?.success).toBe(false);
     expect(result?.message).toContain("invalides");
@@ -130,7 +130,7 @@ describe("sendContactEmail()", () => {
     });
 
     expect(result?.success).toBe(false);
-    expect(result?.message).toContain("securite");
+    expect(result?.message).toContain("sécurité");
   });
 
   it("sends email via Resend on success", async () => {

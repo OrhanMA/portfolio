@@ -26,15 +26,24 @@ export async function generateMetadata({
   return {
     title: dict.metadata.title,
     description: dict.metadata.description,
+    metadataBase: new URL("https://orhanmadiassani.com"),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        fr: "/fr",
+        en: "/en",
+      },
+    },
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
       type: "website",
       locale: locale === "fr" ? "fr_FR" : "en_US",
       siteName: "Orhan Madi Assani",
+      url: `https://orhanmadiassani.com/${locale}`,
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: dict.metadata.title,
       description: dict.metadata.description,
     },

@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeEach } from "vitest";
+import { describe, test, expect, beforeEach } from "vitest";
 import { page } from "vitest/browser";
 import { renderWithProviders } from "@/test/browser-utils";
 import { CookieConsent } from "@/components/cookie-consent";
@@ -78,12 +78,12 @@ describe("CookieConsent (browser)", () => {
   test("Manage button expands preferences panel", async () => {
     await renderWithProviders(<CookieConsent />);
 
-    const manageBtn = page.getByRole("button", { name: /gerer/i });
+    const manageBtn = page.getByRole("button", { name: /g[eé]rer/i });
     await expect.element(manageBtn, { timeout: 3000 }).toBeVisible();
 
     await manageBtn.click();
 
     await expect.element(page.getByText("Analytiques")).toBeVisible();
-    await expect.element(page.getByText("Necessaires")).toBeVisible();
+    await expect.element(page.getByText("Nécessaires")).toBeVisible();
   });
 });

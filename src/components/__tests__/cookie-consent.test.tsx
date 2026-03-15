@@ -100,11 +100,11 @@ describe("CookieConsent", () => {
 
     vi.useRealTimers();
     const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: /gerer/i }));
+    await user.click(screen.getByRole("button", { name: /g[eé]rer/i }));
 
     // Should show the preferences panel with analytics toggle
     expect(screen.getByText("Analytiques")).toBeInTheDocument();
-    expect(screen.getByText("Necessaires")).toBeInTheDocument();
+    expect(screen.getByText("Nécessaires")).toBeInTheDocument();
   });
 
   it("banner disappears after accepting", async () => {

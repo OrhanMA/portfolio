@@ -34,7 +34,7 @@ export default async function ContactPage({
       {recaptchaSiteKey && (
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       )}
 

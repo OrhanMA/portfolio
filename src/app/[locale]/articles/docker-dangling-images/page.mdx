@@ -1,0 +1,126 @@
+# Libérer de l'espace disque en nettoyant les images Docker
+
+## Contexte
+
+Sur un VPS de production hébergeant plusieurs services Docker, le disque principal s'est retrouvé saturé à **99%** d'utilisation, causant des erreurs et des ralentissements sur l'ensemble des services.
+
+Cet article retrace le diagnostic complet et la résolution du problème.
+
+## Qu'est-ce qu'une image Docker « dangling » ?
+
+Avant de plonger dans le diagnostic, il est important de comprendre la terminologie :
+
+- **Image dangling** (pendante) : une image qui n'est plus taguée, c'est-à-dire dont le tag apparaît comme `<none>`. Cela arrive typiquement quand on rebuild une image avec le même tag — l'ancienne version perd son tag et devient dangling.
+- **Image unused** (inutilisée) : une image qui n'est référencée par aucun container (ni running, ni stopped). Une image dangling est toujours unused, mais une image unused n'est pas forcément dangling.
+
+## Diagnostic pas à pas
+
+### 1. Analyse de l'espace disque global
+
+```bash
+df -h
+```
+
+Résultat : le disque principal est à **99%** d'utilisation sur 155 Go.
+
+### 2. Identification du dossier le plus volumineux
+
+```bash
+sudo du -h --max-depth=1 / | sort -hr | head -n 20
+```
+
+Résultat : `/var` pèse **137 Go**, bien plus que les autres dossiers.
+
+### 3. Investigation dans `/var`
+
+```bash
+sudo du -h --max-depth=1 /var | sort -hr
+```
+
+Résultat : `/var/lib` occupe **136 Go**.
+
+### 4. Exploration de `/var/lib`
+
+```bash
+sudo du -h --max-depth=1 /var/lib | sort -hr
+```
+
+Résultat : `/var/lib/docker` utilise **135 Go**. Le coupable est identifié.
+
+### 5. Vérification des containers actifs
+
+```bash
+docker ps -a
+```
+
+Plusieurs containers en production, tous actifs — on ne peut pas simplement tout supprimer.
+
+### 6. Lister les images Docker
+
+Différentes commandes utiles pour analyser les images :
+
+```bash
+# Lister toutes les images
+docker images
+
+# Lister les images par nom/tag
+docker images <nom_image>
+
+# Lister uniquement les images dangling
+docker images --filter "dangling=true"
+
+# Lister les images dangling d'un service spécifique
+docker images nginx --filter "dangling=true"
+```
+
+Résultat : de nombreuses images anciennes, obsolètes et dangling (tag `<none>`).
+
+## Résolution
+
+### Nettoyer les images dangling par service
+
+Pour chaque service, on supprime les images dangling :
+
+```bash
+# Exemple pour un service de cache
+docker rmi $(docker images redis -f "dangling=true" -q)
+
+# Exemple pour un service web (nginx)
+docker rmi $(docker images nginx -f "dangling=true" -q)
+
+# Exemple pour un service applicatif (PHP)
+docker rmi $(docker images php -f "dangling=true" -q)
+```
+
+Cette commande supprime uniquement les images **dangling** du service ciblé. Les images utilisées par des containers existants (même arrêtés) ne seront pas supprimées.
+
+On répète l'opération pour chaque service (PHP, Nginx, Redis, MySQL, etc.), en distinguant les variantes si nécessaire (par exemple `php` et `php_prod`).
+
+### Alternative : nettoyage global
+
+Docker propose aussi une commande de nettoyage global des images dangling :
+
+```bash
+docker image prune
+```
+
+Pour supprimer également les images non utilisées par aucun container :
+
+```bash
+docker image prune -a
+```
+
+**Attention** : `prune -a` supprime toutes les images non utilisées, pas seulement les dangling. À utiliser avec précaution sur un serveur de production.
+
+## Résultat
+
+- **Dizaines de Go libérés** sur la partition racine
+- Disque redevenu stable et disponible pour les opérations courantes
+- Meilleure visibilité sur les images Docker présentes sur le serveur
+
+## Bonnes pratiques pour éviter la récurrence
+
+- Mettre en place un **cron job** de nettoyage périodique : `docker image prune -f`
+- Utiliser des **tags explicites** plutôt que `latest` pour mieux identifier les versions
+- Intégrer le nettoyage dans les **pipelines CI/CD** après chaque déploiement
+- Monitorer l'espace disque avec des alertes (par exemple via le monitoring du provider VPS)

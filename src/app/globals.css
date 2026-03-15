@@ -130,6 +130,11 @@
     font-family: var(--font-geist-mono), ui-monospace, monospace;
   }
 
+  /* Hide reCAPTCHA v3 badge — disclosure is shown on the contact page per Google's ToS */
+  .grecaptcha-badge {
+    visibility: hidden !important;
+  }
+
   /* Lenis smooth scroll */
   html.lenis,
   html.lenis body {
