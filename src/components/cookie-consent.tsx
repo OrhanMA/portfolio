@@ -66,7 +66,7 @@ export function CookieConsent() {
             </div>
             <button
               onClick={handleRejectAll}
-              className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+              className="text-muted-foreground hover:text-foreground transition-colors shrink-0 cursor-pointer"
               aria-label={dict.cookies.close}
             >
               <X className="h-4 w-4" />
@@ -110,7 +110,7 @@ export function CookieConsent() {
                 </div>
                 <button
                   onClick={() => setAnalyticsChecked(!analyticsChecked)}
-                  className="shrink-0 pt-0.5"
+                  className="shrink-0 pt-0.5 cursor-pointer"
                   aria-label={`Toggle ${dict.cookies.analytics}`}
                 >
                   <div

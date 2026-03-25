@@ -21,6 +21,7 @@ export function Navbar({ locale }: { locale: string }) {
   const links = [
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/articles`, label: dict.nav.articles },
+    { href: `/${locale}/projects`, label: dict.nav.projects },
     { href: `/${locale}/#competences`, label: dict.nav.skills },
     { href: `/${locale}/contact`, label: dict.nav.contact },
   ];

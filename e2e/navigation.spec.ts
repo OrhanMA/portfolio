@@ -16,6 +16,16 @@ test.describe("Navigation", () => {
     await expect(page.locator("h1")).toHaveText("Me contacter");
   });
 
+  test("projects page loads", async ({ page }) => {
+    await page.goto("/fr/projects");
+    await expect(page.locator("h1")).toHaveText("Projets Odoo");
+  });
+
+  test("project detail page loads", async ({ page }) => {
+    await page.goto("/fr/projects/packing_list");
+    await expect(page.locator("h1")).toHaveText("Packing List");
+  });
+
   test("404 page renders for unknown routes", async ({ page }) => {
     await page.goto("/fr/nonexistent-page");
     await expect(page.locator("text=Page introuvable")).toBeVisible();
@@ -31,5 +41,11 @@ test.describe("Navigation", () => {
     // Click contact link in nav
     await page.click('nav a[href="/fr/contact"]');
     await expect(page).toHaveURL(/\/fr\/contact/);
+
+    await page.goto("/fr");
+
+    // Click projects link in nav
+    await page.click('nav a[href="/fr/projects"]');
+    await expect(page).toHaveURL(/\/fr\/projects/);
   });
 });

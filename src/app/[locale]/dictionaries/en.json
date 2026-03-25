@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "articles": "Articles",
+    "projects": "Projects",
     "skills": "Skills",
     "contact": "Contact"
   },
@@ -142,6 +143,21 @@
         "tags": ["Docker", "Linux", "DevOps", "VPS"]
       }
     ]
+  },
+  "projects": {
+    "pageTitle": "Projects | Orhan Madi Assani",
+    "pageDescription": "Standalone Odoo modules extracted from business features and published as open-source repositories on GitHub.",
+    "eyebrow": "Open-source modules",
+    "heading": "Odoo Projects",
+    "subtext": "A curated list of standalone Odoo modules extracted from real business features, cleaned up for generic installations and published on GitHub.",
+    "summaryLabel": "Published repositories",
+    "summaryValue": "{count} modules",
+    "stackLabel": "Categories",
+    "viewProject": "View on GitHub",
+    "viewDetails": "View details",
+    "backToProjects": "Back to projects",
+    "detailHeading": "What the module does",
+    "detailSubtext": "Functional summary of the need covered and the value added inside Odoo."
   },
   "footer": {
     "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambéry, France.",

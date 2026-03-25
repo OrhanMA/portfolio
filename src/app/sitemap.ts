@@ -1,10 +1,18 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
+import { odooProjects } from "@/lib/odoo-projects";
 
 const BASE_URL = "https://orhanmadiassani.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/articles", "/contact", "/mentions-legales", "/politique-confidentialite"];
+  const staticPages = [
+    "",
+    "/articles",
+    "/projects",
+    "/contact",
+    "/mentions-legales",
+    "/politique-confidentialite",
+  ];
   const articles = ["odoo-session-timeout", "telecharger-code-odoo-jupyter", "docker-dangling-images"];
 
   const entries: MetadataRoute.Sitemap = [];
@@ -25,6 +33,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.6,
+      });
+    }
+
+    for (const project of odooProjects) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/projects/${project.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
       });
     }
   }
