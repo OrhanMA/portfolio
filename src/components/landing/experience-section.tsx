@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import { useDictionary } from "@/components/dictionary-provider";
 
-// Map each card index to an image path
 const CARD_IMAGES: Record<number, string> = {
   0: "/images/1up-building-drone-photo.webp",
   1: "/images/lig-grenoble-building.webp",
@@ -15,69 +15,7 @@ const CARD_IMAGES: Record<number, string> = {
 
 export function ExperienceSection() {
   const container = useRef<HTMLDivElement>(null);
-  const cursorImageRef = useRef<HTMLDivElement>(null);
   const dict = useDictionary();
-
-  const handleCardMouseEnter = useCallback(
-    (index: number, e: React.MouseEvent) => {
-      const el = cursorImageRef.current;
-      if (!el) return;
-
-      const src = CARD_IMAGES[index];
-      if (!src) return;
-
-      const img = el.querySelector("img") as HTMLImageElement;
-      if (img) img.src = src;
-
-      const containerEl = container.current;
-      if (!containerEl) return;
-
-      const rect = containerEl.getBoundingClientRect();
-      gsap.set(el, {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-
-      gsap.to(el, {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        overwrite: true,
-      });
-    },
-    []
-  );
-
-  const handleCardMouseLeave = useCallback(() => {
-    const el = cursorImageRef.current;
-    if (!el) return;
-
-    gsap.to(el, {
-      autoAlpha: 0,
-      scale: 0.8,
-      duration: 0.25,
-      ease: "power2.in",
-      overwrite: true,
-    });
-  }, []);
-
-  const handleCardMouseMove = useCallback((e: React.MouseEvent) => {
-    const el = cursorImageRef.current;
-    if (!el) return;
-
-    const containerEl = container.current;
-    if (!containerEl) return;
-
-    const rect = containerEl.getBoundingClientRect();
-    gsap.to(el, {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-      duration: 0.4,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-  }, []);
 
   useGSAP(
     () => {
@@ -145,22 +83,6 @@ export function ExperienceSection() {
 
   return (
     <section ref={container} id="parcours" className="section-tinted relative py-24 px-6">
-      {/* Cursor-following image */}
-      <div
-        ref={cursorImageRef}
-        className="pointer-events-none absolute top-0 left-0 z-30 -translate-x-1/2 -translate-y-1/2 invisible"
-        style={{ willChange: "transform, opacity" }}
-      >
-        <div className="h-36 w-56 overflow-hidden rounded-lg shadow-2xl ring-1 ring-white/10 sm:h-44 sm:w-72">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={CARD_IMAGES[0]}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
-
       <div className="mx-auto max-w-4xl">
         <div className="mb-12">
           <h2 className="experience-heading text-3xl font-bold tracking-tight sm:text-4xl">
@@ -180,60 +102,122 @@ export function ExperienceSection() {
                   period: string;
                   title: string;
                   company: string;
+                  logo: string;
+                  url: string;
+                  companies?: { name: string; logo: string; url: string }[];
                   description: string;
                   tags: string[];
                 },
                 index: number
-              ) => (
-                <div
-                  key={index}
-                  className="timeline-card relative grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8"
-                  onMouseEnter={(e) => handleCardMouseEnter(index, e)}
-                  onMouseLeave={handleCardMouseLeave}
-                  onMouseMove={handleCardMouseMove}
-                >
-                  {/* Dot */}
-                  <div className="timeline-dot absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-primary ring-4 ring-background md:left-1/2" />
+              ) => {
+                const imageSrc = CARD_IMAGES[index];
 
-                  {/* Content positioning: alternate sides on desktop */}
+                return (
                   <div
-                    className={`pl-10 md:pl-0 ${
-                      index % 2 === 0
-                        ? "md:text-right md:pr-12"
-                        : "md:col-start-2 md:pl-12"
-                    }`}
+                    key={index}
+                    className="timeline-card relative grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8"
                   >
-                    <Card className="border-border/50 bg-card">
-                      <CardHeader className="pb-2">
-                        <Badge
-                          variant="outline"
-                          className="mb-2 w-fit text-xs text-muted-foreground"
-                        >
-                          {exp.period}
-                        </Badge>
-                        <CardTitle className="text-lg">{exp.title}</CardTitle>
-                        <p className="text-sm text-primary">{exp.company}</p>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                          {exp.description}
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {exp.tags.map((tag: string) => (
-                            <Badge
-                              key={tag}
-                              variant="secondary"
-                              className="text-xs"
+                    {/* Dot */}
+                    <div className="timeline-dot absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-primary ring-4 ring-background md:left-1/2" />
+
+                    {/* Card side */}
+                    <div
+                      className={`pl-10 md:pl-0 ${
+                        index % 2 === 0
+                          ? "md:text-right md:pr-12"
+                          : "md:col-start-2 md:pl-12"
+                      }`}
+                    >
+                      <Card className="border-border/50 bg-card">
+                        <CardHeader className="pb-2">
+                          <Badge
+                            variant="outline"
+                            className="mb-2 w-fit text-xs text-muted-foreground"
+                          >
+                            {exp.period}
+                          </Badge>
+                          <CardTitle className="text-lg">{exp.title}</CardTitle>
+                          {exp.companies ? (
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                              {exp.companies.map((c, i) => (
+                                <a
+                                  key={i}
+                                  href={c.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+                                >
+                                  <Image
+                                    src={c.logo}
+                                    alt=""
+                                    width={18}
+                                    height={18}
+                                    className="rounded-sm"
+                                  />
+                                  {c.name}
+                                </a>
+                              ))}
+                            </div>
+                          ) : (
+                            <a
+                              href={exp.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-1 inline-flex items-center gap-2 text-sm text-primary hover:underline"
                             >
-                              {tag}
-                            </Badge>
-                          ))}
+                              <Image
+                                src={exp.logo}
+                                alt=""
+                                width={20}
+                                height={20}
+                                className="rounded-sm"
+                              />
+                              {exp.company}
+                            </a>
+                          )}
+                        </CardHeader>
+                        <CardContent>
+                          <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
+                            {exp.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {exp.tags.map((tag: string) => (
+                              <Badge
+                                key={tag}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    {/* Image on the opposite side — hidden on mobile, shown on md+ */}
+                    {imageSrc && (
+                      <div
+                        className={`hidden md:flex items-center ${
+                          index % 2 === 0
+                            ? "md:col-start-2 md:pl-12"
+                            : "md:col-start-1 md:row-start-1 md:pr-12 md:justify-end"
+                        }`}
+                      >
+                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-border/30">
+                          <Image
+                            src={imageSrc}
+                            alt=""
+                            width={320}
+                            height={200}
+                            className="h-auto w-full max-w-[280px] object-cover"
+                          />
                         </div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )
+                );
+              }
             )}
           </div>
         </div>

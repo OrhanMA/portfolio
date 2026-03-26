@@ -8,7 +8,10 @@
     "articles": "Articles",
     "projects": "Projects",
     "skills": "Skills",
-    "contact": "Contact"
+    "contact": "Contact",
+    "about": "About",
+    "competences": "Skills",
+    "realisations": "Achievements"
   },
   "hero": {
     "greeting": "Hi, I'm",
@@ -27,7 +30,7 @@
     "card1Title": "Work-Study",
     "card1Desc": "Two years of work-study experience at 1UP as a fullstack developer, working on Odoo and Symfony projects in real business conditions.",
     "card2Title": "LIG Internship",
-    "card2Desc": "6-month internship at the Grenoble Computer Science Laboratory, developing features for users in a research context.",
+    "card2Desc": "5-month internship at the Grenoble Computer Science Laboratory, developing features for users in a research context.",
     "card3Title": "Self-Taught",
     "card3Desc": "Started self-taught through The Odin Project. The web is a rich and complex field where problem-solving never stops."
   },
@@ -44,25 +47,36 @@
     "heading": "Experience",
     "entries": [
       {
-        "period": "Dec. 2024 — Present",
+        "period": "Dec. 2025 — Present",
         "title": "Fullstack Developer — Work-Study",
-        "company": "1UP",
-        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Version migration and upgrade management. Database administration, CI/CD and VPS server management (OVH, Digital Ocean).",
+        "company": "1UP Distribution",
+        "logo": "/logo-1up.svg",
+        "url": "https://www.1updistribution.com/",
+        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Corporate website redesign with Next.js. Solo management of Odoo v16 → v19 migration. Database administration, CI/CD and VPS server management (OVH, Digital Ocean).",
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
-        "period": "May — Oct. 2024",
-        "title": "CDA Intern — LIG Lab",
+        "period": "May — Oct. 2025",
+        "title": "Web Developer Intern — LIG Lab",
         "company": "Grenoble Computer Science Laboratory",
-        "description": "Development of a Vue.js application for a sociological study questionnaire on life trajectories. UI design, API integration and collaboration with researchers.",
-        "tags": ["Vue.js", "JavaScript", "REST API", "Research"]
+        "logo": "/logo-lig.svg",
+        "url": "https://www.liglab.fr/fr",
+        "description": "Development of a Vue.js and D3.js application for a sociological study questionnaire on life trajectories. Custom data visualization creation. Collaboration with university researchers.",
+        "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Research"]
       },
       {
-        "period": "2022 — Present",
+        "period": "2024 — Present",
         "title": "Computer Science Education",
-        "company": "ISCOD (current) — Simplon",
-        "description": "Self-taught through The Odin Project, then certified training at Simplon: Web Developer (RNCP bac+2, 2023), Application Designer & Developer (RNCP bac+3, 2024). Currently pursuing a Master's in Software Engineering (RNCP bac+5) at ISCOD.",
-        "tags": ["Algorithms", "Databases", "UML", "Project Management"]
+        "company": "ISCOD · Simplon · Université Savoie Mont Blanc",
+        "logo": "/logo-iscod.jpeg",
+        "url": "https://www.iscod.fr/",
+        "companies": [
+          { "name": "ISCOD", "logo": "/logo-iscod.jpeg", "url": "https://www.iscod.fr/" },
+          { "name": "Simplon", "logo": "/logo-simplon.webp", "url": "https://www.simplon.co/" },
+          { "name": "USMB", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
+        ],
+        "description": "Self-taught through The Odin Project, then certified training at Simplon: Web and Mobile Web Developer (RNCP level 5, 2024), Application Designer & Developer (RNCP level 6, 2025). Currently pursuing a Master's in Software Engineering (RNCP level 7) at ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
+        "tags": ["Algorithms", "Databases", "UML", "Project Management", "TOEIC 920"]
       }
     ]
   },
@@ -158,6 +172,58 @@
     "backToProjects": "Back to projects",
     "detailHeading": "What the module does",
     "detailSubtext": "Functional summary of the need covered and the value added inside Odoo."
+  },
+  "aboutPage": {
+    "pageTitle": "About | Orhan Madi Assani",
+    "pageDescription": "Fullstack developer in a work-study program — my journey, my values, my interests.",
+    "heading": "About me",
+    "subtext": "Fullstack developer, self-taught turned professional — discover my journey, my values, and what drives me.",
+    "journeyHeading": "My journey",
+    "valuesHeading": "My values",
+    "projectHeading": "My professional project",
+    "qualitiesHeading": "My human qualities",
+    "interestsHeading": "My interests"
+  },
+  "competencesPage": {
+    "pageTitle": "Skills | Orhan Madi Assani",
+    "pageDescription": "My technical and human skills in software engineering — Odoo, Python, Symfony, React, and more.",
+    "heading": "My skills",
+    "subtext": "A synthetic overview of my technical and human skills, with their relative level.",
+    "humanSkills": "Human skills",
+    "technicalSkills": "Technical skills",
+    "viewDetail": "Read article",
+    "level": "Level",
+    "radarHeading": "Overview",
+    "backToCompetences": "Back to skills",
+    "definitionHeading": "Definition",
+    "proofsHeading": "Evidence",
+    "selfCritiqueHeading": "Self-assessment",
+    "evolutionHeading": "Growth",
+    "linkedRealisationsHeading": "Related achievements",
+    "levelLabel": "Proficiency level",
+    "importanceLabel": "Importance in my profile",
+    "acquisitionLabel": "Acquisition speed",
+    "adviceLabel": "Hindsight and advice",
+    "goalLabel": "Medium-term goal",
+    "trainingLabel": "Current or upcoming training",
+    "resultLabel": "Result"
+  },
+  "realisationsPage": {
+    "pageTitle": "Achievements | Orhan Madi Assani",
+    "pageDescription": "My major achievements in software engineering — ERP migration, business modules, website redesign, and more.",
+    "heading": "My achievements",
+    "subtext": "The major projects I've led, from design to production deployment.",
+    "viewDetail": "Read article",
+    "backToRealisations": "Back to achievements",
+    "presentationHeading": "Presentation",
+    "objectivesHeading": "Objectives, context and stakes",
+    "stepsHeading": "The steps — what I did",
+    "actorsHeading": "The actors — interactions",
+    "resultsHeading": "The results",
+    "aftermathHeading": "After the project",
+    "critiqueHeading": "My critical review",
+    "linkedCompetencesHeading": "Related skills",
+    "context": "Context"
   },
   "footer": {
     "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambéry, France.",

@@ -42,7 +42,7 @@ export default async function ProjectsPage({
     <div className="pt-24">
       <section className="px-6 pb-8">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-[2rem] border border-border/60 bg-card/80 p-8 shadow-sm backdrop-blur-sm sm:p-10">
+          <div>
             <div className="mb-4 flex flex-wrap gap-2">
               <Badge variant="outline">{dict.projects.eyebrow}</Badge>
               <Badge variant="secondary">Odoo</Badge>

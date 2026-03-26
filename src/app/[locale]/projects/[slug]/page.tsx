@@ -64,7 +64,7 @@ export default async function ProjectDetailPage({
           {dict.projects.backToProjects}
         </Link>
 
-        <div className="rounded-[2rem] border border-border/60 bg-card/85 p-8 shadow-sm backdrop-blur-sm sm:p-10">
+        <div>
           <div className="mb-4 flex flex-wrap gap-2">
             <Badge variant="outline" className="font-mono text-[11px] tracking-wide">
               {project.slug}

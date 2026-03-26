@@ -8,7 +8,10 @@
     "articles": "Articles",
     "projects": "Projets",
     "skills": "Compétences",
-    "contact": "Contact"
+    "contact": "Contact",
+    "about": "À propos",
+    "competences": "Compétences",
+    "realisations": "Réalisations"
   },
   "hero": {
     "greeting": "Bonjour, je suis",
@@ -27,7 +30,7 @@
     "card1Title": "Alternance",
     "card1Desc": "Deux ans d'expérience en alternance chez 1UP en tant que développeur fullstack, travaillant sur des projets Odoo et Symfony en conditions réelles d'entreprise.",
     "card2Title": "Stage LIG",
-    "card2Desc": "Stage de 6 mois au Laboratoire d'Informatique de Grenoble, développant des fonctionnalités pour des utilisateurs dans un contexte de recherche.",
+    "card2Desc": "Stage de 5 mois au Laboratoire d'Informatique de Grenoble, développant des fonctionnalités pour des utilisateurs dans un contexte de recherche.",
     "card3Title": "Autodidacte",
     "card3Desc": "Parcours débuté en autodidacte via The Odin Project. Le web est un domaine riche et complexe où la résolution de problèmes est continue."
   },
@@ -44,25 +47,36 @@
     "heading": "Parcours",
     "entries": [
       {
-        "period": "Déc. 2024 — Présent",
+        "period": "Déc. 2025 — Présent",
         "title": "Développeur Fullstack — Alternance",
-        "company": "1UP",
-        "description": "Développement et maintenance de modules Odoo (Python, PostgreSQL). Conception et développement d'un site B2B e-commerce avec Symfony. Gestion des migrations et upgrades de versions Odoo. Administration de bases de données, CI/CD et gestion de serveurs VPS (OVH, Digital Ocean).",
+        "company": "1UP Distribution",
+        "logo": "/logo-1up.svg",
+        "url": "https://www.1updistribution.com/",
+        "description": "Développement et maintenance de modules Odoo (Python, PostgreSQL). Conception et développement d'un site B2B e-commerce avec Symfony. Refonte du site corporate avec Next.js. Gestion de la migration Odoo v16 → v19 en solo. Administration de bases de données, CI/CD et gestion de serveurs VPS (OVH, Digital Ocean).",
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
-        "period": "Mai — Oct. 2024",
-        "title": "Stagiaire CDA — Laboratoire LIG",
+        "period": "Mai — Oct. 2025",
+        "title": "Stagiaire Développeur Web — Laboratoire LIG",
         "company": "Laboratoire d'Informatique de Grenoble",
-        "description": "Développement d'une application Vue.js pour un questionnaire d'étude sociologique sur les trajectoires de vie. Conception d'interfaces utilisateur, intégration d'API et collaboration avec des chercheurs.",
-        "tags": ["Vue.js", "JavaScript", "API REST", "Recherche"]
+        "logo": "/logo-lig.svg",
+        "url": "https://www.liglab.fr/fr",
+        "description": "Développement d'une application Vue.js et D3.js pour un questionnaire d'étude sociologique sur les trajectoires de vie. Création de visualisations de données sur mesure. Collaboration avec des chercheurs universitaires.",
+        "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Recherche"]
       },
       {
-        "period": "2022 — Présent",
+        "period": "2024 — Présent",
         "title": "Parcours en informatique",
-        "company": "ISCOD (actuel) — Simplon",
-        "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Développeur Web (RNCP bac+2, 2023), Concepteur et Développeur d'Application (RNCP bac+3, 2024). Actuellement en mastère Ingénierie du Logiciel (RNCP bac+5) à l'ISCOD.",
-        "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet"]
+        "company": "ISCOD · Simplon · Université Savoie Mont Blanc",
+        "logo": "/logo-iscod.jpeg",
+        "url": "https://www.iscod.fr/",
+        "companies": [
+          { "name": "ISCOD", "logo": "/logo-iscod.jpeg", "url": "https://www.iscod.fr/" },
+          { "name": "Simplon", "logo": "/logo-simplon.webp", "url": "https://www.simplon.co/" },
+          { "name": "USMB", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
+        ],
+        "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Développeur Web et Web Mobile (RNCP bac+2, 2024), Concepteur et Développeur d'Application (RNCP bac+3, 2025). Actuellement en mastère Expert en Ingénierie du Logiciel (RNCP 7 bac+5) à l'ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
+        "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet", "TOEIC 920"]
       }
     ]
   },
@@ -158,6 +172,58 @@
     "backToProjects": "Retour aux projets",
     "detailHeading": "Ce que fait le module",
     "detailSubtext": "Résumé fonctionnel du besoin couvert et de la valeur apportée dans Odoo."
+  },
+  "aboutPage": {
+    "pageTitle": "À propos | Orhan Madi Assani",
+    "pageDescription": "Développeur fullstack en alternance — mon parcours, mes valeurs, mes centres d'intérêt.",
+    "heading": "À propos de moi",
+    "subtext": "Développeur fullstack, autodidacte devenu professionnel — découvrez mon parcours, mes valeurs et ce qui me motive.",
+    "journeyHeading": "Mon parcours",
+    "valuesHeading": "Mes valeurs",
+    "projectHeading": "Mon projet professionnel",
+    "qualitiesHeading": "Mes qualités humaines",
+    "interestsHeading": "Mes centres d'intérêt"
+  },
+  "competencesPage": {
+    "pageTitle": "Compétences | Orhan Madi Assani",
+    "pageDescription": "Mes compétences techniques et humaines en ingénierie logicielle — Odoo, Python, Symfony, React, et bien plus.",
+    "heading": "Mes compétences",
+    "subtext": "Un aperçu synthétique de mes compétences techniques et humaines, avec leur niveau relatif.",
+    "humanSkills": "Compétences humaines",
+    "technicalSkills": "Compétences techniques",
+    "viewDetail": "Lire l'article",
+    "level": "Niveau",
+    "radarHeading": "Vue d'ensemble",
+    "backToCompetences": "Retour aux compétences",
+    "definitionHeading": "Définition",
+    "proofsHeading": "Éléments de preuve",
+    "selfCritiqueHeading": "Autocritique",
+    "evolutionHeading": "Évolution",
+    "linkedRealisationsHeading": "Réalisations rattachées",
+    "levelLabel": "Niveau de maîtrise",
+    "importanceLabel": "Importance dans mon profil",
+    "acquisitionLabel": "Vitesse d'acquisition",
+    "adviceLabel": "Recul et conseils",
+    "goalLabel": "Objectif à moyen terme",
+    "trainingLabel": "Formations en cours ou à venir",
+    "resultLabel": "Résultat"
+  },
+  "realisationsPage": {
+    "pageTitle": "Réalisations | Orhan Madi Assani",
+    "pageDescription": "Mes réalisations majeures en ingénierie logicielle — migration ERP, modules métier, refonte de site, et plus.",
+    "heading": "Mes réalisations",
+    "subtext": "Les projets majeurs que j'ai menés, de la conception à la mise en production.",
+    "viewDetail": "Lire l'article",
+    "backToRealisations": "Retour aux réalisations",
+    "presentationHeading": "Présentation",
+    "objectivesHeading": "Objectifs, contexte et enjeux",
+    "stepsHeading": "Les étapes — ce que j'ai fait",
+    "actorsHeading": "Les acteurs — les interactions",
+    "resultsHeading": "Les résultats",
+    "aftermathHeading": "Les lendemains du projet",
+    "critiqueHeading": "Mon regard critique",
+    "linkedCompetencesHeading": "Compétences rattachées",
+    "context": "Contexte"
   },
   "footer": {
     "about": "Développeur Fullstack en alternance chez 1UP, spécialisé en Odoo, Symfony et Next.js. Basé à Chambéry, France.",

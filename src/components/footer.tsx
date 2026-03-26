@@ -36,26 +36,34 @@ export function Footer({
               </li>
               <li>
                 <Link
+                  href={`/${locale}/a-propos`}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {dict.nav.about}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/competences`}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {dict.nav.competences}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/realisations`}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {dict.nav.realisations}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${locale}/articles`}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {dict.nav.articles}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/projects`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.projects}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/#competences`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.skills}
                 </Link>
               </li>
               <li>

@@ -1,12 +1,17 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { odooProjects } from "@/lib/odoo-projects";
+import { competences } from "@/lib/competences";
+import { realisations } from "@/lib/realisations";
 
 const BASE_URL = "https://orhanmadiassani.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
+    "/a-propos",
+    "/competences",
+    "/realisations",
     "/articles",
     "/projects",
     "/contact",
@@ -39,6 +44,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const project of odooProjects) {
       entries.push({
         url: `${BASE_URL}/${locale}/projects/${project.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+
+    for (const competence of competences) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/competences/${competence.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+
+    for (const realisation of realisations) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/realisations/${realisation.slug}`,
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.7,
