@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
 export function Footer({
@@ -10,125 +9,115 @@ export function Footer({
   dict: Dictionary;
   locale: string;
 }) {
+  const navLinks = [
+    { href: `/${locale}`, label: dict.nav.home },
+    { href: `/${locale}/a-propos`, label: dict.nav.about },
+    { href: `/${locale}/competences`, label: dict.nav.competences },
+    { href: `/${locale}/realisations`, label: dict.nav.realisations },
+    { href: `/${locale}/projects`, label: dict.nav.projects },
+    { href: `/${locale}/articles`, label: dict.nav.articles },
+    { href: `/${locale}/contact`, label: dict.nav.contact },
+  ];
+
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* About */}
+    <footer className="border-t border-border/70 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
           <div>
-            <h3 className="text-lg font-semibold">Orhan Madi Assani</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+              Orhan Madi Assani
+            </p>
+            <h2 className="mt-4 max-w-3xl text-balance text-5xl font-semibold leading-[0.92] tracking-normal sm:text-6xl lg:text-7xl">
+              {dict.footer.pitch}
+            </h2>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-muted-foreground">
               {dict.footer.about}
             </p>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h3 className="text-lg font-semibold">{dict.footer.navTitle}</h3>
-            <ul className="mt-2 space-y-2 text-sm">
-              <li>
-                <Link
-                  href={`/${locale}`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.home}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/a-propos`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.about}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/competences`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.competences}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/realisations`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.realisations}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/articles`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.articles}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/contact`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.nav.contact}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h3 className="text-lg font-semibold">{dict.footer.linksTitle}</h3>
-            <div className="mt-2 flex gap-4">
-              <a
-                href="https://github.com/OrhanMA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/orhanmadi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-[0.22em] text-foreground">
+                {dict.footer.navTitle}
+              </h3>
+              <ul className="mt-4 grid gap-2 text-sm">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
 
-          {/* Legal */}
-          <div>
-            <h3 className="text-lg font-semibold">{dict.footer.legalTitle}</h3>
-            <ul className="mt-2 space-y-2 text-sm">
-              <li>
-                <Link
-                  href={`/${locale}/mentions-legales`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.footer.legalNotice}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/politique-confidentialite`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {dict.footer.privacyPolicy}
-                </Link>
-              </li>
-            </ul>
+            <div className="grid gap-8">
+              <div>
+                <h3 className="font-mono text-xs uppercase tracking-[0.22em] text-foreground">
+                  {dict.footer.linksTitle}
+                </h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href="mailto:orhan.madi.assani@gmail.com"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/70 text-muted-foreground transition-colors hover:border-primary/70 hover:text-foreground"
+                    aria-label="Email"
+                  >
+                    <Mail className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://github.com/OrhanMA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/70 text-muted-foreground transition-colors hover:border-primary/70 hover:text-foreground"
+                    aria-label="GitHub"
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/orhanmadi/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/70 text-muted-foreground transition-colors hover:border-primary/70 hover:text-foreground"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-mono text-xs uppercase tracking-[0.22em] text-foreground">
+                  {dict.footer.legalTitle}
+                </h3>
+                <ul className="mt-4 grid gap-2 text-sm">
+                  <li>
+                    <Link
+                      href={`/${locale}/mentions-legales`}
+                      className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {dict.footer.legalNotice}
+                      <ArrowUpRight className="h-3 w-3" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`/${locale}/politique-confidentialite`}
+                      className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {dict.footer.privacyPolicy}
+                      <ArrowUpRight className="h-3 w-3" />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <Separator className="my-8" />
-
-        <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
+        <div className="mt-12 flex flex-col justify-between gap-3 border-t border-border/70 pt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:flex-row">
           <p>
             &copy; {new Date().getFullYear()} Orhan Madi Assani.{" "}
             {dict.footer.copyright}

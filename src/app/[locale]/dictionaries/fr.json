@@ -14,18 +14,32 @@
     "realisations": "Réalisations"
   },
   "hero": {
+    "eyebrow": "Portfolio créatif · Ingénierie logicielle",
     "greeting": "Bonjour, je suis",
     "title1": "Développeur",
     "title2": "Fullstack",
     "subtitle": "Odoo · Symfony · Next.js",
+    "statement": "Je conçois des interfaces web premium et des systèmes métier robustes, avec une attention égale portée au produit, à la performance et à l'usage réel.",
     "location": "Chambéry, France",
     "status": "En alternance chez 1UP",
+    "availabilityLabel": "Position actuelle",
+    "availability": "Fullstack developer en alternance, disponible pour opportunités créatives et techniques.",
     "ctaParcours": "Voir mon parcours",
     "ctaArticles": "Lire mes articles",
+    "ctaWork": "Voir les réalisations",
+    "ctaContact": "Discuter d'un projet",
+    "proofs": [
+      { "value": "Odoo v16→v19", "label": "Migration ERP menée en solo sur un système utilisé au quotidien." },
+      { "value": "20+ modules", "label": "Solutions métier Odoo développées, maintenues et publiées open source." },
+      { "value": "Next + GSAP", "label": "Sites vitrines rapides, animés et pensés pour convertir." }
+    ],
     "scroll": "Scroll"
   },
   "about": {
+    "eyebrow": "Profil",
     "heading": "À propos",
+    "lead": "Un profil full-stack orienté produit, capable de passer du besoin métier à l'expérience finale.",
+    "statement": "Je construis des produits web qui doivent autant convaincre les utilisateurs que tenir en production.",
     "text": "Développeur fullstack en alternance chez 1UP, j'ai commencé le développement en autodidacte via The Odin Project avant de suivre des formations certifiantes chez Simplon en développement web puis en conception d'applications. Aujourd'hui en mastère Ingénierie du Logiciel à l'ISCOD, je travaille au quotidien sur des projets Odoo et Symfony. Ce qui me passionne dans ce métier, c'est la résolution de problèmes en continu et la richesse du web — il y a toujours quelque chose à apprendre.",
     "card1Title": "Alternance",
     "card1Desc": "Deux ans d'expérience en alternance chez 1UP en tant que développeur fullstack, travaillant sur des projets Odoo et Symfony en conditions réelles d'entreprise.",
@@ -35,16 +49,40 @@
     "card3Desc": "Parcours débuté en autodidacte via The Odin Project. Le web est un domaine riche et complexe où la résolution de problèmes est continue."
   },
   "skills": {
+    "eyebrow": "Stack & méthode",
     "heading": "Compétences",
+    "subtext": "Une matrice compacte des capacités que j'utilise pour livrer des interfaces, des modules métier et des systèmes maintenables.",
     "backend": "Backend",
+    "backendDesc": "Architecture applicative, logique métier, API et données avec une priorité donnée à la fiabilité.",
     "frontend": "Frontend",
+    "frontendDesc": "Interfaces Next.js/React avec typographie, responsive, animations et attention aux détails.",
     "odoo": "Odoo",
+    "odooDesc": "Modules custom, migrations, vues, modèles, intégrations et compréhension des workflows ERP.",
     "devops": "DevOps & Outils",
+    "devopsDesc": "Déploiement, bases de données, conteneurs, VPS et outillage pour garder les livraisons propres.",
     "methods": "Méthodes",
-    "education": "Formation"
+    "methodsDesc": "Recueil du besoin, itération, documentation, code review et communication avec profils métier.",
+    "education": "Formation",
+    "educationDesc": "Socle algorithmique, conception, projet et progression continue en ingénierie logicielle."
+  },
+  "featuredProjects": {
+    "eyebrow": "Études de cas",
+    "heading": "Des projets qui prouvent autant le goût que l'exécution.",
+    "text": "Une sélection courte de réalisations pensées comme des preuves concrètes : migration critique, modules métier, refonte vitrine et impact utilisateur.",
+    "featuredLabel": "Case study",
+    "resultLabel": "Résultat",
+    "readCase": "Lire l'étude",
+    "ctaAll": "Voir toutes les réalisations",
+    "results": [
+      { "slug": "migration-odoo-v16-v19", "result": "ERP modernisé sans perte de données et avec une transition contrôlée pour 30 collaborateurs." },
+      { "slug": "modules-metier-odoo", "result": "Plus de 20 modules adaptés aux usages terrain, nettoyés puis publiés en open source." },
+      { "slug": "refonte-site-corporate", "result": "Une image corporate plus premium, rapide et alignée avec une stack moderne." }
+    ]
   },
   "experience": {
+    "eyebrow": "Chronologie",
     "heading": "Parcours",
+    "subtext": "Une trajectoire construite par la pratique : autodidaxie, recherche universitaire, entreprise, ERP, e-commerce et sites vitrines.",
     "entries": [
       {
         "period": "Déc. 2025 — Présent",
@@ -76,11 +114,13 @@
           { "name": "USMB", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
         ],
         "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Développeur Web et Web Mobile (RNCP bac+2, 2024), Concepteur et Développeur d'Application (RNCP bac+3, 2025). Actuellement en mastère Expert en Ingénierie du Logiciel (RNCP 7 bac+5) à l'ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
+        "institutions": "Simplon emploie une pédagogie active centrée sur l'apprentissage par la pratique via des projets inspirés de situations professionnelles réelles, en petits groupes de 15 à 25 apprenants. Fondée en 2013, l'organisation a formé plus de 30 000 apprenants avec 75 % d'insertion professionnelle et 95 % de réussite aux certifications. L'ISCOD propose des formations en alternance à distance reconnues par l'État, permettant de concilier expérience en entreprise et montée en compétences académique.",
         "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet", "TOEIC 920"]
       }
     ]
   },
   "cta": {
+    "eyebrow": "Contact",
     "heading": "Intéressé par mon profil ?",
     "text": "N'hésitez pas à me contacter pour discuter de vos projets ou d'opportunités de collaboration.",
     "ctaContact": "Me contacter",
@@ -226,6 +266,7 @@
     "context": "Contexte"
   },
   "footer": {
+    "pitch": "Full-stack, produit, interfaces premium.",
     "about": "Développeur Fullstack en alternance chez 1UP, spécialisé en Odoo, Symfony et Next.js. Basé à Chambéry, France.",
     "navTitle": "Navigation",
     "linksTitle": "Liens",

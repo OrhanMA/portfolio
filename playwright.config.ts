@@ -9,6 +9,10 @@ export default defineConfig({
   reporter: "html",
   use: {
     baseURL: "http://localhost:3000",
+    locale: "fr-FR",
+    extraHTTPHeaders: {
+      "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
+    },
     trace: "on-first-retry",
   },
   projects: [

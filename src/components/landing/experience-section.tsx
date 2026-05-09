@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { useDictionary } from "@/components/dictionary-provider";
+import { Reveal } from "@/components/landing/reveal";
+import { SectionHeading } from "@/components/landing/section-heading";
 
 const CARD_IMAGES: Record<number, string> = {
   0: "/images/1up-building-drone-photo.webp",
@@ -19,28 +21,20 @@ export function ExperienceSection() {
 
   useGSAP(
     () => {
-      gsap.from(".experience-heading", {
-        scrollTrigger: {
-          trigger: ".experience-heading",
-          start: "top 85%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-      });
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
-      gsap.from(".experience-underline", {
-        scrollTrigger: {
-          trigger: ".experience-heading",
-          start: "top 85%",
-        },
-        scaleX: 0,
-        transformOrigin: "left",
-        duration: 0.8,
-        delay: 0.3,
-      });
+      if (prefersReducedMotion) {
+        gsap.set([".timeline-line", ".timeline-card", ".timeline-dot"], {
+          autoAlpha: 1,
+          scaleY: 1,
+          scale: 1,
+          y: 0,
+        });
+        return;
+      }
 
-      // Timeline line draws down
       gsap.from(".timeline-line", {
         scrollTrigger: {
           trigger: ".timeline-container",
@@ -52,50 +46,51 @@ export function ExperienceSection() {
         transformOrigin: "top",
       });
 
-      // Cards stagger in
       gsap.from(".timeline-card", {
         scrollTrigger: {
           trigger: ".timeline-container",
-          start: "top 70%",
+          start: "top 72%",
         },
-        y: 40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.2,
-        ease: "power2.out",
+        y: 42,
+        autoAlpha: 0,
+        duration: 0.75,
+        stagger: 0.18,
+        ease: "power3.out",
       });
 
-      // Dots scale up
       gsap.from(".timeline-dot", {
         scrollTrigger: {
           trigger: ".timeline-container",
-          start: "top 70%",
+          start: "top 72%",
         },
         scale: 0,
         duration: 0.4,
-        stagger: 0.2,
+        stagger: 0.18,
         ease: "back.out(1.7)",
-        delay: 0.3,
       });
     },
-    { scope: container }
+    { scope: container },
   );
 
   return (
-    <section ref={container} id="parcours" className="section-tinted relative py-24 px-6">
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-12">
-          <h2 className="experience-heading text-3xl font-bold tracking-tight sm:text-4xl">
-            {dict.experience.heading}
-          </h2>
-          <div className="experience-underline mt-2 h-1 w-16 rounded-full bg-primary" />
-        </div>
+    <section
+      ref={container}
+      id="parcours"
+      className="relative px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+    >
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <SectionHeading
+            eyebrow={dict.experience.eyebrow}
+            title={dict.experience.heading}
+            description={dict.experience.subtext}
+          />
+        </Reveal>
 
-        <div className="timeline-container relative">
-          {/* Timeline line */}
-          <div className="timeline-line absolute left-4 top-0 bottom-0 w-px bg-border md:left-1/2 md:-translate-x-px" />
+        <div className="timeline-container relative mt-16">
+          <div className="timeline-line absolute left-0 top-0 hidden h-full w-px origin-top bg-border lg:block" />
 
-          <div className="space-y-12">
+          <div className="grid gap-5">
             {dict.experience.entries.map(
               (
                 exp: {
@@ -106,55 +101,51 @@ export function ExperienceSection() {
                   url: string;
                   companies?: { name: string; logo: string; url: string }[];
                   description: string;
+                  institutions?: string;
                   tags: string[];
                 },
-                index: number
+                index: number,
               ) => {
                 const imageSrc = CARD_IMAGES[index];
 
                 return (
-                  <div
-                    key={index}
-                    className="timeline-card relative grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8"
+                  <article
+                    key={`${exp.period}-${exp.title}`}
+                    className="timeline-card invisible relative grid gap-5 border-t border-border/70 pt-5 lg:grid-cols-[180px_minmax(0,1fr)_320px] lg:gap-8"
                   >
-                    {/* Dot */}
-                    <div className="timeline-dot absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-primary ring-4 ring-background md:left-1/2" />
+                    <div className="timeline-dot absolute -left-[5px] top-5 hidden h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background lg:block" />
 
-                    {/* Card side */}
-                    <div
-                      className={`pl-10 md:pl-0 ${
-                        index % 2 === 0
-                          ? "md:text-right md:pr-12"
-                          : "md:col-start-2 md:pl-12"
-                      }`}
-                    >
-                      <Card className="border-border/50 bg-card">
-                        <CardHeader className="pb-2">
-                          <Badge
-                            variant="outline"
-                            className="mb-2 w-fit text-xs text-muted-foreground"
-                          >
-                            {exp.period}
-                          </Badge>
-                          <CardTitle className="text-lg">{exp.title}</CardTitle>
+                    <div className="lg:pl-8">
+                      <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+                        {exp.period}
+                      </p>
+                    </div>
+
+                    <div className="premium-card rounded-lg p-5 sm:p-7">
+                      <div className="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                          <h3 className="text-2xl font-semibold tracking-normal">
+                            {exp.title}
+                          </h3>
                           {exp.companies ? (
-                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-                              {exp.companies.map((c, i) => (
+                            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                              {exp.companies.map((company) => (
                                 <a
-                                  key={i}
-                                  href={c.url}
+                                  key={company.name}
+                                  href={company.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+                                  className="group/company inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                                 >
                                   <Image
-                                    src={c.logo}
+                                    src={company.logo}
                                     alt=""
-                                    width={18}
-                                    height={18}
+                                    width={20}
+                                    height={20}
                                     className="rounded-sm"
                                   />
-                                  {c.name}
+                                  {company.name}
+                                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover/company:opacity-100" />
                                 </a>
                               ))}
                             </div>
@@ -163,61 +154,59 @@ export function ExperienceSection() {
                               href={exp.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="mt-1 inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                              className="group/company mt-3 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                             >
                               <Image
                                 src={exp.logo}
                                 alt=""
-                                width={20}
-                                height={20}
+                                width={22}
+                                height={22}
                                 className="rounded-sm"
                               />
                               {exp.company}
+                              <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover/company:opacity-100" />
                             </a>
                           )}
-                        </CardHeader>
-                        <CardContent>
-                          <p className="mb-3 text-sm text-muted-foreground leading-relaxed">
-                            {exp.description}
-                          </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {exp.tags.map((tag: string) => (
-                              <Badge
-                                key={tag}
-                                variant="secondary"
-                                className="text-xs"
-                              >
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-
-                    {/* Image on the opposite side — hidden on mobile, shown on md+ */}
-                    {imageSrc && (
-                      <div
-                        className={`hidden md:flex items-center ${
-                          index % 2 === 0
-                            ? "md:col-start-2 md:pl-12"
-                            : "md:col-start-1 md:row-start-1 md:pr-12 md:justify-end"
-                        }`}
-                      >
-                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-border/30">
-                          <Image
-                            src={imageSrc}
-                            alt=""
-                            width={320}
-                            height={200}
-                            className="h-auto w-full max-w-[280px] object-cover"
-                          />
                         </div>
                       </div>
+
+                      <p className="mt-6 text-sm leading-7 text-muted-foreground">
+                        {exp.description}
+                      </p>
+                      {exp.institutions && (
+                        <p className="mt-4 border-l border-border pl-4 text-sm italic leading-7 text-muted-foreground/85">
+                          {exp.institutions}
+                        </p>
+                      )}
+
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {exp.tags.map((tag: string) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="border border-border/50 bg-background/70 font-mono text-[11px]"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {imageSrc && (
+                      <div className="relative hidden overflow-hidden rounded-lg border border-border/70 bg-muted lg:block">
+                        <Image
+                          src={imageSrc}
+                          alt=""
+                          fill
+                          sizes="320px"
+                          className="pointer-events-none object-cover saturate-[0.85]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/45 to-transparent" />
+                      </div>
                     )}
-                  </div>
+                  </article>
                 );
-              }
+              },
             )}
           </div>
         </div>

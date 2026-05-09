@@ -51,8 +51,8 @@ export default async function CompetenceDetailPage({
   const loc = locale as Locale;
 
   return (
-    <div className="px-6 pt-24 pb-16">
-      <div className="mx-auto max-w-4xl">
+    <div className="px-4 pb-16 pt-28 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         {/* Back link */}
         <Link
           href={`/${locale}/competences`}
@@ -62,8 +62,8 @@ export default async function CompetenceDetailPage({
           {dict.competencesPage.backToCompetences}
         </Link>
 
-        {/* Header card */}
-        <div>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+          <div>
           <div className="mb-4 flex flex-wrap gap-2">
             <Badge variant="outline" className="font-mono text-[11px] tracking-wide">
               {competence.type === "human"
@@ -75,17 +75,68 @@ export default async function CompetenceDetailPage({
             </Badge>
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h1 className="text-balance text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
             {competence.title[loc]}
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
             {competence.definition[loc].split(".")[0]}.
           </p>
+          </div>
+
+          <aside className="premium-card rounded-lg p-5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
+              Skill dossier
+            </p>
+            <div className="mt-5">
+              <div className="flex items-end justify-between gap-4">
+                <span className="text-5xl font-semibold leading-none">
+                  {competence.radarValue}
+                </span>
+                <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                  /100
+                </span>
+              </div>
+              <div className="mt-4 h-2 rounded-full bg-muted">
+                <div
+                  className="h-full rounded-full bg-primary"
+                  style={{ width: `${competence.radarValue}%` }}
+                />
+              </div>
+              <p className="mt-4 text-sm text-muted-foreground">
+                {competenceLevelLabels[competence.level][loc]}
+              </p>
+            </div>
+          </aside>
         </div>
 
-        <div className="mt-8 grid gap-6">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[240px_1fr]">
+          <aside className="hidden lg:block">
+            <div className="sticky top-28 border-t border-border/70 pt-5">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Framework
+              </p>
+              <ol className="mt-5 grid gap-2 text-sm text-muted-foreground">
+                {[
+                  dict.competencesPage.definitionHeading,
+                  dict.competencesPage.proofsHeading,
+                  dict.competencesPage.selfCritiqueHeading,
+                  dict.competencesPage.evolutionHeading,
+                  dict.competencesPage.linkedRealisationsHeading,
+                ].map((item, index) => (
+                  <li key={item}>
+                    <span className="font-mono text-primary">
+                      0{index + 1}
+                    </span>{" "}
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
+
+          <div className="grid gap-6">
           {/* Définition */}
-          <Card className="border-border/50 bg-card/95">
+          <Card className="premium-card border-border/50">
             <CardHeader>
               <CardTitle>{dict.competencesPage.definitionHeading}</CardTitle>
             </CardHeader>
@@ -99,7 +150,7 @@ export default async function CompetenceDetailPage({
           </Card>
 
           {/* Éléments de preuve */}
-          <Card className="border-border/50 bg-card/95">
+          <Card className="premium-card border-border/50">
             <CardHeader>
               <CardTitle>{dict.competencesPage.proofsHeading}</CardTitle>
             </CardHeader>
@@ -135,7 +186,7 @@ export default async function CompetenceDetailPage({
           </Card>
 
           {/* Autocritique */}
-          <Card className="border-border/50 bg-card/95">
+          <Card className="premium-card border-border/50">
             <CardHeader>
               <CardTitle>{dict.competencesPage.selfCritiqueHeading}</CardTitle>
             </CardHeader>
@@ -177,7 +228,7 @@ export default async function CompetenceDetailPage({
           </Card>
 
           {/* Évolution */}
-          <Card className="border-border/50 bg-card/95">
+          <Card className="premium-card border-border/50">
             <CardHeader>
               <CardTitle>{dict.competencesPage.evolutionHeading}</CardTitle>
             </CardHeader>
@@ -202,7 +253,7 @@ export default async function CompetenceDetailPage({
 
           {/* Réalisations rattachées */}
           {competence.linkedRealisations.length > 0 && (
-            <Card className="border-border/50 bg-card/95">
+            <Card className="premium-card border-border/50">
               <CardHeader>
                 <CardTitle>
                   {dict.competencesPage.linkedRealisationsHeading}
@@ -229,6 +280,7 @@ export default async function CompetenceDetailPage({
               </CardContent>
             </Card>
           )}
+          </div>
         </div>
       </div>
     </div>

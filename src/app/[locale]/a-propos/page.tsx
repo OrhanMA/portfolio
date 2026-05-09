@@ -26,11 +26,11 @@ export default async function AboutPage({
   const isFr = locale === "fr";
 
   return (
-    <div className="pt-24">
+    <div className="pt-28">
       {/* Hero / Header */}
-      <section className="px-6 pb-8">
+      <section className="px-4 pb-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h1 className="text-balance text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl md:text-7xl">
             {dict.aboutPage.heading}
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
@@ -40,10 +40,14 @@ export default async function AboutPage({
       </section>
 
       {/* Section 1: Mon parcours */}
-      <section className="section-tinted px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight mb-4">
+      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+              01
+            </p>
+            <div>
+            <h2 className="text-2xl font-semibold tracking-normal mb-4">
                 {dict.aboutPage.journeyHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -110,15 +114,20 @@ export default async function AboutPage({
                 </>
               )}
             </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Section 2: Mes valeurs */}
-      <section className="px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight mb-4">
+      <section className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+              02
+            </p>
+            <div>
+            <h2 className="text-2xl font-semibold tracking-normal mb-4">
                 {dict.aboutPage.valuesHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -174,15 +183,20 @@ export default async function AboutPage({
                 </>
               )}
             </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Section 3: Mes qualités humaines */}
-      <section className="section-tinted px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight mb-4">
+      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+              03
+            </p>
+            <div>
+            <h2 className="text-2xl font-semibold tracking-normal mb-4">
                 {dict.aboutPage.qualitiesHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -234,15 +248,20 @@ export default async function AboutPage({
                 </>
               )}
             </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Section 4: Mes centres d'intérêt */}
-      <section className="px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight mb-4">
+      <section className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+              04
+            </p>
+            <div>
+            <h2 className="text-2xl font-semibold tracking-normal mb-4">
                 {dict.aboutPage.interestsHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -269,6 +288,7 @@ export default async function AboutPage({
                   clubs from around the world.
                 </p>
               )}
+            </div>
             </div>
           </div>
         </div>

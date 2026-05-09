@@ -2,6 +2,7 @@ import Image from "next/image";
 import { HeroSection } from "@/components/landing/hero-section";
 import { AboutSection } from "@/components/landing/about-section";
 import { SkillsSection } from "@/components/landing/skills-section";
+import { ProjectsSection } from "@/components/landing/projects-section";
 import { ExperienceSection } from "@/components/landing/experience-section";
 import { CtaSection } from "@/components/landing/cta-section";
 
@@ -20,15 +21,16 @@ export default async function Home({
           <Image
             src="/images/coporate-headshot.webp"
             alt="Orhan Madi Assani"
-            width={128}
-            height={128}
-            className="h-full w-full object-cover"
+            width={720}
+            height={920}
+            className="pointer-events-none h-full w-full object-cover"
             priority
           />
         }
       />
       <AboutSection />
       <SkillsSection />
+      <ProjectsSection locale={locale} />
       <ExperienceSection />
       <CtaSection locale={locale} />
     </>

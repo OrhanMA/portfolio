@@ -14,18 +14,32 @@
     "realisations": "Achievements"
   },
   "hero": {
+    "eyebrow": "Creative portfolio · Software engineering",
     "greeting": "Hi, I'm",
     "title1": "Fullstack",
     "title2": "Developer",
     "subtitle": "Odoo · Symfony · Next.js",
+    "statement": "I design premium web interfaces and robust business systems, with equal attention to product thinking, performance, and real-world usage.",
     "location": "Chambéry, France",
     "status": "Work-study at 1UP",
+    "availabilityLabel": "Current position",
+    "availability": "Fullstack developer in a work-study program, open to creative and technical opportunities.",
     "ctaParcours": "View my experience",
     "ctaArticles": "Read my articles",
+    "ctaWork": "View achievements",
+    "ctaContact": "Discuss a project",
+    "proofs": [
+      { "value": "Odoo v16→v19", "label": "ERP migration led solo on a system used daily by the company." },
+      { "value": "20+ modules", "label": "Business Odoo solutions developed, maintained, and published open source." },
+      { "value": "Next + GSAP", "label": "Fast showcase websites with polished motion and conversion-minded UX." }
+    ],
     "scroll": "Scroll"
   },
   "about": {
+    "eyebrow": "Profile",
     "heading": "About",
+    "lead": "A product-minded full-stack profile able to move from business need to final experience.",
+    "statement": "I build web products that must convince users and hold up in production.",
     "text": "Fullstack developer in a work-study program at 1UP, I started coding self-taught through The Odin Project before completing certified training at Simplon in web development and then application design. Currently pursuing a Master's in Software Engineering at ISCOD, I work daily on Odoo and Symfony projects. What I love about this field is the continuous problem-solving and the richness of the web — there's always something new to learn.",
     "card1Title": "Work-Study",
     "card1Desc": "Two years of work-study experience at 1UP as a fullstack developer, working on Odoo and Symfony projects in real business conditions.",
@@ -35,16 +49,40 @@
     "card3Desc": "Started self-taught through The Odin Project. The web is a rich and complex field where problem-solving never stops."
   },
   "skills": {
+    "eyebrow": "Stack & method",
     "heading": "Skills",
+    "subtext": "A compact matrix of the capabilities I use to ship interfaces, business modules, and maintainable systems.",
     "backend": "Backend",
+    "backendDesc": "Application architecture, business logic, APIs, and data with reliability as the baseline.",
     "frontend": "Frontend",
+    "frontendDesc": "Next.js/React interfaces with typography, responsiveness, motion, and sharp details.",
     "odoo": "Odoo",
+    "odooDesc": "Custom modules, migrations, views, models, integrations, and ERP workflow understanding.",
     "devops": "DevOps & Tools",
+    "devopsDesc": "Deployment, databases, containers, VPS operations, and tooling to keep releases clean.",
     "methods": "Methods",
-    "education": "Education"
+    "methodsDesc": "Requirement discovery, iteration, documentation, code review, and communication with business profiles.",
+    "education": "Education",
+    "educationDesc": "Algorithmic foundations, design, project practice, and continuous growth in software engineering."
+  },
+  "featuredProjects": {
+    "eyebrow": "Case studies",
+    "heading": "Projects that prove taste and execution.",
+    "text": "A short selection of achievements framed as concrete proof: critical migration, business modules, showcase redesign, and user impact.",
+    "featuredLabel": "Case study",
+    "resultLabel": "Result",
+    "readCase": "Read case",
+    "ctaAll": "View all achievements",
+    "results": [
+      { "slug": "migration-odoo-v16-v19", "result": "ERP modernized without data loss and with a controlled transition for 30 collaborators." },
+      { "slug": "modules-metier-odoo", "result": "Over 20 field-tested modules, cleaned up and published as open source." },
+      { "slug": "refonte-site-corporate", "result": "A more premium, faster corporate presence aligned with a modern stack." }
+    ]
   },
   "experience": {
+    "eyebrow": "Timeline",
     "heading": "Experience",
+    "subtext": "A practice-built trajectory: self-learning, university research, business software, ERP, e-commerce, and showcase websites.",
     "entries": [
       {
         "period": "Dec. 2025 — Present",
@@ -76,11 +114,13 @@
           { "name": "USMB", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
         ],
         "description": "Self-taught through The Odin Project, then certified training at Simplon: Web and Mobile Web Developer (RNCP level 5, 2024), Application Designer & Developer (RNCP level 6, 2025). Currently pursuing a Master's in Software Engineering (RNCP level 7) at ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
+        "institutions": "Simplon uses active pedagogy centered on learning by doing through projects inspired by real professional situations, in small groups of 15 to 25 learners. Founded in 2013, the organization has trained over 30,000 learners with 75% employment rate and 95% certification success. ISCOD offers state-recognized distance work-study programs, combining hands-on company experience with academic skill development.",
         "tags": ["Algorithms", "Databases", "UML", "Project Management", "TOEIC 920"]
       }
     ]
   },
   "cta": {
+    "eyebrow": "Contact",
     "heading": "Interested in my profile?",
     "text": "Feel free to reach out to discuss your projects or collaboration opportunities.",
     "ctaContact": "Contact me",
@@ -226,6 +266,7 @@
     "context": "Context"
   },
   "footer": {
+    "pitch": "Full-stack, product, premium interfaces.",
     "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambéry, France.",
     "navTitle": "Navigation",
     "linksTitle": "Links",

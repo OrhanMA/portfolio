@@ -4,8 +4,10 @@ export default function ArticlesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-3xl px-6 pt-24 pb-16 prose dark:prose-invert">
-      {children}
-    </div>
+    <main className="px-4 pb-20 pt-28 sm:px-6 lg:px-8">
+      <article className="prose prose-neutral mx-auto max-w-3xl dark:prose-invert prose-headings:tracking-normal prose-a:text-primary prose-pre:rounded-lg prose-pre:border prose-pre:border-border">
+        {children}
+      </article>
+    </main>
   );
 }

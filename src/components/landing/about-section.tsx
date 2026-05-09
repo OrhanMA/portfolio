@@ -1,13 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import { GraduationCap, Code, Briefcase } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { Card, CardContent } from "@/components/ui/card";
+import { Code, GraduationCap, Briefcase } from "lucide-react";
 import { useDictionary } from "@/components/dictionary-provider";
+import { Reveal } from "@/components/landing/reveal";
+import { SectionHeading } from "@/components/landing/section-heading";
 
 export function AboutSection() {
-  const container = useRef<HTMLDivElement>(null);
   const dict = useDictionary();
 
   const highlights = [
@@ -28,84 +26,47 @@ export function AboutSection() {
     },
   ];
 
-  useGSAP(
-    () => {
-      gsap.from(".about-heading", {
-        scrollTrigger: {
-          trigger: ".about-heading",
-          start: "top 85%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-      });
-
-      gsap.from(".about-underline", {
-        scrollTrigger: {
-          trigger: ".about-heading",
-          start: "top 85%",
-        },
-        scaleX: 0,
-        transformOrigin: "left",
-        duration: 0.8,
-        delay: 0.3,
-      });
-
-      gsap.from(".about-text", {
-        scrollTrigger: {
-          trigger: ".about-text",
-          start: "top 85%",
-        },
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        delay: 0.2,
-      });
-
-      gsap.from(".about-card", {
-        scrollTrigger: {
-          trigger: ".about-grid",
-          start: "top 80%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "power2.out",
-      });
-    },
-    { scope: container }
-  );
-
   return (
-    <section ref={container} id="a-propos" className="section-tinted py-24 px-6">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-12">
-          <h2 className="about-heading text-3xl font-bold tracking-tight sm:text-4xl">
-            {dict.about.heading}
-          </h2>
-          <div className="about-underline mt-2 h-1 w-16 rounded-full bg-primary" />
-        </div>
+    <section id="a-propos" className="section-tinted px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <SectionHeading
+            eyebrow={dict.about.eyebrow}
+            title={dict.about.heading}
+            description={dict.about.lead}
+          />
+        </Reveal>
 
-        <p className="about-text mb-12 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-          {dict.about.text}
-        </p>
+        <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.65fr)] lg:items-start">
+          <Reveal className="lg:pt-12">
+            <p className="text-balance text-3xl font-medium leading-tight tracking-normal sm:text-4xl lg:text-5xl">
+              {dict.about.statement}
+            </p>
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-muted-foreground">
+              {dict.about.text}
+            </p>
+          </Reveal>
 
-        <div className="about-grid grid grid-cols-1 gap-6 md:grid-cols-3">
-          {highlights.map((item) => (
-            <Card
-              key={item.title}
-              className="about-card border-border/50 bg-card"
-            >
-              <CardContent className="pt-6">
-                <item.icon className="mb-4 h-8 w-8 text-primary" />
-                <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+          <Reveal stagger=".about-highlight">
+            <div className="grid gap-3">
+              {highlights.map((item) => (
+                <article
+                  key={item.title}
+                  className="about-highlight invisible group grid gap-5 rounded-lg border border-border/70 bg-background/55 p-5 transition-colors hover:border-primary/60 hover:bg-background/80 sm:grid-cols-[48px_1fr]"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-border/70 bg-card text-primary transition-transform group-hover:-translate-y-1">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

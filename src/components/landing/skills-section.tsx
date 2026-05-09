@@ -1,133 +1,113 @@
 "use client";
 
-import { useRef } from "react";
 import {
-  Server,
+  Container,
   Monitor,
   Puzzle,
-  Container,
-  Users,
+  Server,
   GraduationCap,
+  Users,
 } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useDictionary } from "@/components/dictionary-provider";
+import { Reveal } from "@/components/landing/reveal";
+import { SectionHeading } from "@/components/landing/section-heading";
 
 export function SkillsSection() {
-  const container = useRef<HTMLDivElement>(null);
   const dict = useDictionary();
 
   const skillCategories = [
     {
       icon: Server,
       title: dict.skills.backend,
+      description: dict.skills.backendDesc,
       skills: ["Symfony 6.3+", "PHP", "Python", "Redis", "API Platform"],
     },
     {
       icon: Monitor,
       title: dict.skills.frontend,
+      description: dict.skills.frontendDesc,
       skills: ["Next.js", "React", "Vue.js", "TypeScript", "Tailwind CSS"],
     },
     {
       icon: Puzzle,
       title: dict.skills.odoo,
+      description: dict.skills.odooDesc,
       skills: ["Odoo 16+", "Module dev", "Upgrade/Migration", "OWL", "Python"],
     },
     {
       icon: Container,
       title: dict.skills.devops,
+      description: dict.skills.devopsDesc,
       skills: ["Git", "Docker", "PostgreSQL", "Shell", "Linux", "CI/CD", "VPS (OVH, DO)"],
     },
     {
       icon: Users,
       title: dict.skills.methods,
+      description: dict.skills.methodsDesc,
       skills: ["Agile/Scrum", "Code Review", "Tests", "REST API"],
     },
     {
       icon: GraduationCap,
       title: dict.skills.education,
+      description: dict.skills.educationDesc,
       skills: ["Algorithms", "DB Design", "UML", "Project Management"],
     },
   ];
 
-  useGSAP(
-    () => {
-      gsap.from(".skills-heading", {
-        scrollTrigger: {
-          trigger: ".skills-heading",
-          start: "top 85%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-      });
-
-      gsap.from(".skills-underline", {
-        scrollTrigger: {
-          trigger: ".skills-heading",
-          start: "top 85%",
-        },
-        scaleX: 0,
-        transformOrigin: "left",
-        duration: 0.8,
-        delay: 0.3,
-      });
-
-      gsap.from(".skill-card", {
-        scrollTrigger: {
-          trigger: ".skills-grid",
-          start: "top 75%",
-        },
-        y: 50,
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out",
-      });
-    },
-    { scope: container }
-  );
-
   return (
     <section
-      ref={container}
       id="competences"
-      className="py-24 px-6"
+      className="px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
     >
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-12">
-          <h2 className="skills-heading text-3xl font-bold tracking-tight sm:text-4xl">
-            {dict.skills.heading}
-          </h2>
-          <div className="skills-underline mt-2 h-1 w-16 rounded-full bg-primary" />
-        </div>
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <SectionHeading
+            eyebrow={dict.skills.eyebrow}
+            title={dict.skills.heading}
+            description={dict.skills.subtext}
+          />
+        </Reveal>
 
-        <div className="skills-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="mt-16" stagger=".skill-card">
+          <div className="grid grid-cols-1 border-y border-border/70 md:grid-cols-2 xl:grid-cols-3">
           {skillCategories.map((category) => (
-            <Card
+            <article
               key={category.title}
-              className="skill-card border-border/50 bg-card"
+              className="skill-card invisible group min-h-72 border-b border-border/70 p-5 transition-colors hover:bg-muted/35 md:odd:border-r xl:border-r xl:[&:nth-child(3n)]:border-r-0 xl:[&:nth-last-child(-n+3)]:border-b-0"
             >
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-3">
-                  <category.icon className="h-5 w-5 text-primary" />
-                  <CardTitle className="text-base">{category.title}</CardTitle>
+              <div className="flex h-full flex-col justify-between gap-10">
+                <div>
+                  <div className="mb-8 flex items-center justify-between">
+                    <category.icon className="h-5 w-5 text-primary transition-transform group-hover:-translate-y-1" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                      Stack
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-semibold tracking-normal">
+                    {category.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {category.description}
+                  </p>
                 </div>
-              </CardHeader>
-              <CardContent>
+
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <Badge key={skill} variant="secondary" className="text-xs">
+                    <Badge
+                      key={skill}
+                      variant="secondary"
+                      className="border border-border/50 bg-background/70 font-mono text-[11px]"
+                    >
                       {skill}
                     </Badge>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </article>
           ))}
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
