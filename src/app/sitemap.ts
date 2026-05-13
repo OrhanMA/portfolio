@@ -18,7 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/mentions-legales",
     "/politique-confidentialite",
   ];
-  const articles = ["odoo-session-timeout", "telecharger-code-odoo-jupyter", "docker-dangling-images"];
+  const articles = [
+    "odoo-session-timeout",
+    "telecharger-code-odoo-jupyter",
+    "docker-dangling-images",
+    "migration-odoo-v16-v19",
+    "refonte-site-corporate-1up",
+    "application-cap2vie-lig",
+  ];
 
   const entries: MetadataRoute.Sitemap = [];
 

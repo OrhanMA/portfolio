@@ -2,12 +2,16 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useDictionary } from "@/components/dictionary-provider";
 import { Reveal } from "@/components/landing/reveal";
 import { SectionHeading } from "@/components/landing/section-heading";
+import { competences } from "@/lib/competences";
+import { realisations } from "@/lib/realisations";
+import type { Locale } from "@/lib/i18n";
 
 const CARD_IMAGES: Record<number, string> = {
   0: "/images/1up-building-drone-photo.webp",
@@ -15,9 +19,10 @@ const CARD_IMAGES: Record<number, string> = {
   2: "/images/dynamo-chambery-simplon.webp",
 };
 
-export function ExperienceSection() {
+export function ExperienceSection({ locale }: { locale: string }) {
   const container = useRef<HTMLDivElement>(null);
   const dict = useDictionary();
+  const loc = locale as Locale;
 
   useGSAP(
     () => {
@@ -102,11 +107,20 @@ export function ExperienceSection() {
                   companies?: { name: string; logo: string; url: string }[];
                   description: string;
                   institutions?: string;
+                  responsibilities?: string[];
+                  linkedRealisations?: string[];
+                  linkedCompetences?: string[];
                   tags: string[];
                 },
                 index: number,
               ) => {
                 const imageSrc = CARD_IMAGES[index];
+                const linkedRealisations = exp.linkedRealisations
+                  ?.map((slug) => realisations.find((item) => item.slug === slug))
+                  .filter(Boolean);
+                const linkedCompetences = exp.linkedCompetences
+                  ?.map((slug) => competences.find((item) => item.slug === slug))
+                  .filter(Boolean);
 
                 return (
                   <article
@@ -179,6 +193,73 @@ export function ExperienceSection() {
                         </p>
                       )}
 
+                      {exp.responsibilities && exp.responsibilities.length > 0 && (
+                        <div className="mt-6 border-t border-border/70 pt-5">
+                          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
+                            {dict.experience.responsibilitiesLabel}
+                          </p>
+                          <ul className="mt-3 grid gap-2 text-sm leading-6 text-muted-foreground">
+                            {exp.responsibilities.map((responsibility) => (
+                              <li key={responsibility} className="flex gap-2">
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/80" />
+                                <span>{responsibility}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {((linkedRealisations && linkedRealisations.length > 0) ||
+                        (linkedCompetences && linkedCompetences.length > 0)) && (
+                        <div className="mt-6 grid gap-4 border-t border-border/70 pt-5 sm:grid-cols-2">
+                          {linkedRealisations && linkedRealisations.length > 0 && (
+                            <div>
+                              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                                {dict.experience.linkedRealisationsLabel}
+                              </p>
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {linkedRealisations.map((realisation) => {
+                                  if (!realisation) return null;
+
+                                  return (
+                                    <Link
+                                      key={realisation.slug}
+                                      href={`/${locale}/realisations/${realisation.slug}`}
+                                      className="inline-flex min-h-7 items-center rounded-md border border-border/70 bg-background/70 px-2.5 py-1 text-xs font-medium leading-5 text-foreground transition-colors hover:border-primary/70 hover:bg-muted"
+                                    >
+                                      {realisation.title[loc]}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+
+                          {linkedCompetences && linkedCompetences.length > 0 && (
+                            <div>
+                              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                                {dict.experience.linkedCompetencesLabel}
+                              </p>
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {linkedCompetences.map((competence) => {
+                                  if (!competence) return null;
+
+                                  return (
+                                    <Link
+                                      key={competence.slug}
+                                      href={`/${locale}/competences/${competence.slug}`}
+                                      className="inline-flex min-h-7 items-center rounded-md border border-border/70 bg-background/70 px-2.5 py-1 text-xs font-medium leading-5 text-foreground transition-colors hover:border-primary/70 hover:bg-muted"
+                                    >
+                                      {competence.title[loc]}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
                       <div className="mt-6 flex flex-wrap gap-2">
                         {exp.tags.map((tag: string) => (
                           <Badge
@@ -193,15 +274,16 @@ export function ExperienceSection() {
                     </div>
 
                     {imageSrc && (
-                      <div className="relative hidden overflow-hidden rounded-lg border border-border/70 bg-muted lg:block">
+                      <div className="relative hidden overflow-hidden rounded-lg border border-border/70 bg-muted lg:block lg:aspect-[4/3] lg:self-start">
                         <Image
                           src={imageSrc}
                           alt=""
                           fill
-                          sizes="320px"
-                          className="pointer-events-none object-cover saturate-[0.85]"
+                          sizes="(min-width: 1024px) 640px, 100vw"
+                          quality={95}
+                          className="pointer-events-none object-cover saturate-[0.95]"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/45 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
                       </div>
                     )}
                   </article>

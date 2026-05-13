@@ -6,7 +6,7 @@
   "nav": {
     "home": "Home",
     "articles": "Articles",
-    "projects": "Projects",
+    "projects": "Odoo Projects",
     "skills": "Skills",
     "contact": "Contact",
     "about": "About",
@@ -22,16 +22,16 @@
     "statement": "I design premium web interfaces and robust business systems, with equal attention to product thinking, performance, and real-world usage.",
     "location": "Chambéry, France",
     "status": "Work-study at 1UP",
-    "availabilityLabel": "Current position",
-    "availability": "Fullstack developer in a work-study program, open to creative and technical opportunities.",
+    "availabilityLabel": "Professional markers",
+    "availability": "Fullstack developer in a work-study program, working daily across business systems, web products, and infrastructure.",
     "ctaParcours": "View my experience",
     "ctaArticles": "Read my articles",
     "ctaWork": "View achievements",
-    "ctaContact": "Discuss a project",
+    "ctaContact": "Contact me",
     "proofs": [
-      { "value": "Odoo v16→v19", "label": "ERP migration led solo on a system used daily by the company." },
-      { "value": "20+ modules", "label": "Business Odoo solutions developed, maintained, and published open source." },
-      { "value": "Next + GSAP", "label": "Fast showcase websites with polished motion and conversion-minded UX." }
+      { "value": "ERP", "label": "Business systems, automation, and migrations in real environments." },
+      { "value": "Web", "label": "Modern interfaces, multilingual websites, and usage-focused experiences." },
+      { "value": "Product", "label": "Requirement understanding, progressive delivery, and attention to detail." }
     ],
     "scroll": "Scroll"
   },
@@ -67,7 +67,7 @@
   },
   "featuredProjects": {
     "eyebrow": "Case studies",
-    "heading": "Projects that prove taste and execution.",
+    "heading": "Achievements connecting product standards and technical execution.",
     "text": "A short selection of achievements framed as concrete proof: critical migration, business modules, showcase redesign, and user impact.",
     "featuredLabel": "Case study",
     "resultLabel": "Result",
@@ -83,6 +83,9 @@
     "eyebrow": "Timeline",
     "heading": "Experience",
     "subtext": "A practice-built trajectory: self-learning, university research, business software, ERP, e-commerce, and showcase websites.",
+    "responsibilitiesLabel": "Responsibilities",
+    "linkedRealisationsLabel": "Related case studies",
+    "linkedCompetencesLabel": "Related skills",
     "entries": [
       {
         "period": "Dec. 2025 — Present",
@@ -91,6 +94,13 @@
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
         "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Corporate website redesign with Next.js. Solo management of Odoo v16 → v19 migration. Database administration, CI/CD and VPS server management (OVH, Digital Ocean).",
+        "responsibilities": [
+          "Technical owner for internal Odoo business developments.",
+          "Autonomous management of the Odoo v16 → v19 ERP migration.",
+          "Fullstack development across ERP, B2B e-commerce, corporate website and infrastructure."
+        ],
+        "linkedRealisations": ["migration-odoo-v16-v19", "modules-metier-odoo", "refonte-site-corporate"],
+        "linkedCompetences": ["developpement-odoo", "python", "developpement-frontend", "devops", "autonomie"],
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
@@ -100,6 +110,13 @@
         "logo": "/logo-lig.svg",
         "url": "https://www.liglab.fr/fr",
         "description": "Development of a Vue.js and D3.js application for a sociological study questionnaire on life trajectories. Custom data visualization creation. Collaboration with university researchers.",
+        "responsibilities": [
+          "Design and development of a first functional version of the application.",
+          "Implementation of D3.js visualizations tailored to research needs.",
+          "Translation of sociological needs into usable interfaces and data models."
+        ],
+        "linkedRealisations": ["app-trajectoires-de-vie"],
+        "linkedCompetences": ["developpement-frontend", "communication", "autonomie", "perseverance"],
         "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Research"]
       },
       {
@@ -115,22 +132,53 @@
         ],
         "description": "Self-taught through The Odin Project, then certified training at Simplon: Web and Mobile Web Developer (RNCP level 5, 2024), Application Designer & Developer (RNCP level 6, 2025). Currently pursuing a Master's in Software Engineering (RNCP level 7) at ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
         "institutions": "Simplon uses active pedagogy centered on learning by doing through projects inspired by real professional situations, in small groups of 15 to 25 learners. Founded in 2013, the organization has trained over 30,000 learners with 75% employment rate and 95% certification success. ISCOD offers state-recognized distance work-study programs, combining hands-on company experience with academic skill development.",
+        "responsibilities": [
+          "Progressive construction of a fullstack web foundation, from self-learning to work-study.",
+          "Validation of professional skills through RNCP certifications and practical projects.",
+          "Consolidation of fundamentals in algorithms, design, databases and project management."
+        ],
+        "linkedRealisations": ["portfolio-professionnel"],
+        "linkedCompetences": ["adaptabilite", "amelioration-continue", "communication"],
         "tags": ["Algorithms", "Databases", "UML", "Project Management", "TOEIC 920"]
       }
     ]
   },
+  "proofs": {
+    "eyebrow": "Documents",
+    "heading": "A few verifiable proofs of the journey.",
+    "text": "CV, certifications, and titles are grouped here to complement the detailed portfolio case studies.",
+    "cta": "Contact me",
+    "items": {
+      "cv": {
+        "title": "Professional CV",
+        "description": "PDF summary of the journey, stack, and key projects."
+      },
+      "toeic": {
+        "title": "TOEIC certificate",
+        "description": "TOEIC Listening & Reading score: 920/990."
+      },
+      "cda": {
+        "title": "CDA title",
+        "description": "Application Designer & Developer, RNCP level 6."
+      },
+      "dwwm": {
+        "title": "DWWM title",
+        "description": "Web and Mobile Web Developer, RNCP level 5."
+      }
+    }
+  },
   "cta": {
     "eyebrow": "Contact",
-    "heading": "Interested in my profile?",
-    "text": "Feel free to reach out to discuss your projects or collaboration opportunities.",
+    "heading": "Get in touch",
+    "text": "The form is the simplest contact point for a question, a project, or a professional conversation.",
     "ctaContact": "Contact me",
     "ctaLinkedin": "View my LinkedIn"
   },
   "contact": {
     "pageTitle": "Contact | Orhan Madi Assani",
-    "pageDescription": "Contact me to discuss projects, collaborations or opportunities.",
+    "pageDescription": "Contact me for a question, a project, or a professional conversation.",
     "heading": "Contact me",
-    "subtext": "A question, a project or a proposal? Fill out the form below and I'll get back to you as soon as possible.",
+    "subtext": "A question, a project, or a professional message? Fill out the form below and I'll get back to you as soon as possible.",
     "altEmail": "You can also reach me directly by email at",
     "recaptchaDisclosure": "This site is protected by reCAPTCHA and the Google {privacy} and {terms} apply.",
     "privacyPolicy": "Privacy Policy",
@@ -174,6 +222,17 @@
   "articles": {
     "heading": "Articles",
     "subtext": "Tutorials and experience reports on rarely documented topics.",
+    "allTopics": "All",
+    "searchPlaceholder": "Search by title, content or tag...",
+    "clearSearch": "Clear search",
+    "noResults": "No article matches these filters.",
+    "readingTime": "Reading time",
+    "minuteShort": "min",
+    "tableOfContents": "Table of contents",
+    "relatedArticles": "Related articles",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "frenchOnlyNotice": "Articles are written in French; browser translation works well.",
     "articlesData": [
       {
         "slug": "odoo-session-timeout",
@@ -195,6 +254,27 @@
         "description": "Diagnosing and resolving disk saturation caused by dangling Docker images on a production VPS.",
         "date": "2025-03-01",
         "tags": ["Docker", "Linux", "DevOps", "VPS"]
+      },
+      {
+        "slug": "migration-odoo-v16-v19",
+        "title": "Odoo v16 to v19 migration: ERP upgrade case study",
+        "description": "Analysis of the Odoo migration led at 1UP, from the v19 switch to post-migration business fixes.",
+        "date": "2026-05-13",
+        "tags": ["Odoo", "Migration", "ERP", "Python"]
+      },
+      {
+        "slug": "refonte-site-corporate-1up",
+        "title": "1UP corporate website redesign with Next.js, Sanity and GSAP",
+        "description": "A look at building an internationalized, animated, editable corporate site designed as a marketing surface.",
+        "date": "2026-05-13",
+        "tags": ["Next.js", "Sanity", "GSAP", "i18n"]
+      },
+      {
+        "slug": "application-cap2vie-lig",
+        "title": "CAP2vie at LIG: sociological survey tool and D3.js visualization",
+        "description": "Architecture, visualization, conflict handling, and multi-screen synchronization for a life trajectories app.",
+        "date": "2026-05-13",
+        "tags": ["Vue.js", "Nuxt", "D3.js", "Research"]
       }
     ]
   },
@@ -211,7 +291,11 @@
     "viewDetails": "View details",
     "backToProjects": "Back to projects",
     "detailHeading": "What the module does",
-    "detailSubtext": "Functional summary of the need covered and the value added inside Odoo."
+    "detailSubtext": "Functional summary of the need covered and the value added inside Odoo.",
+    "businessProblem": "Business problem",
+    "solution": "Solution",
+    "technicalHighlights": "Technical highlights",
+    "impact": "Concrete impact"
   },
   "aboutPage": {
     "pageTitle": "About | Orhan Madi Assani",
@@ -262,6 +346,8 @@
     "resultsHeading": "The results",
     "aftermathHeading": "After the project",
     "critiqueHeading": "My critical review",
+    "mediaHeading": "Visual proof",
+    "mediaSubtext": "Screenshots and demos from real projects.",
     "linkedCompetencesHeading": "Related skills",
     "context": "Context"
   },

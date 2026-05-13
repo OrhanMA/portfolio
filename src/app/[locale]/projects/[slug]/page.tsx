@@ -129,6 +129,58 @@ export default async function ProjectDetailPage({
               <CardDescription>{dict.projects.detailSubtext}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              {project.businessProblem &&
+                project.solution &&
+                project.impact && (
+                  <div className="grid gap-4 border-b border-border/70 pb-6 md:grid-cols-3">
+                    {[
+                      {
+                        label: dict.projects.businessProblem,
+                        value: project.businessProblem,
+                      },
+                      {
+                        label: dict.projects.solution,
+                        value: project.solution,
+                      },
+                      {
+                        label: dict.projects.impact,
+                        value: project.impact,
+                      },
+                    ].map((item) => (
+                      <div
+                        key={item.label}
+                        className="rounded-lg border border-border/60 bg-background/55 p-4"
+                      >
+                        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">
+                          {item.label}
+                        </p>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          {item.value[locale as Locale]}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+              {project.technicalHighlights &&
+                project.technicalHighlights.length > 0 && (
+                  <div className="border-b border-border/70 pb-6">
+                    <p className="font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                      {dict.projects.technicalHighlights}
+                    </p>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {project.technicalHighlights.map((highlight) => (
+                        <div
+                          key={highlight[locale as Locale]}
+                          className="rounded-lg border border-border/60 bg-muted/30 p-4 text-sm leading-6 text-muted-foreground"
+                        >
+                          {highlight[locale as Locale]}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
               {project.details.map((paragraph, index) => (
                 <div
                   key={paragraph[locale as Locale]}

@@ -1,0 +1,72 @@
+# Migration Odoo v16 vers v19 : retour d'expérience sur une montée de version ERP
+
+## Contexte
+
+Chez 1UP Distribution, Odoo est l'ERP central : ventes, facturation, comptabilité, logistique, catalogue produit, intégrations B2B et reporting métier. La migration de la version 16 vers la version 19 ne consistait donc pas à mettre à jour une application isolée, mais à sécuriser un outil utilisé directement par 19 utilisateurs internes et indirectement par une trentaine de collaborateurs.
+
+Le périmètre était large : 16 modules développés from scratch, environ 10 modules tiers à corriger/améliorer/migrer, personnalisations Odoo Studio stockées en base de données, rapports PDF QWeb, scripts de migration et routes API consommées par d'autres outils.
+
+## Point de bascule
+
+Le jalon principal a été la bascule de la branche de migration vers la branche principale le **6 février 2026**.
+
+Cette bascule a intégré la base de migration Odoo 19 : nouveaux modules, adaptations de manifests, scripts de migration, corrections de vues XML, rapports QWeb, modules comptables, modules commerciaux, modules logistiques et intégrations spécifiques.
+
+## Travail préparatoire
+
+Avant la bascule, le travail a surtout consisté à rendre le code compatible avec les versions intermédiaires et à corriger les incompatibilités progressivement.
+
+Parmi les sujets traités :
+
+- mise à jour des versions de modules ;
+- correction de vues XML devenues incompatibles ;
+- adaptation des rapports PDF QWeb ;
+- migration de champs personnalisés ;
+- ajout de scripts de migration pour retrouver des données issues de Studio ;
+- correction des traductions ;
+- adaptation de modules tiers comme Amazon ;
+- reprise de comportements supprimés ou modifiés par Odoo, comme certains champs de contact.
+
+Cette phase a permis de réduire le risque avant le passage final en v19.
+
+## Après la bascule
+
+Les deux mois suivants ont servi à stabiliser l'ERP en conditions proches du réel.
+
+L'historique de développement montre plusieurs familles de corrections :
+
+- **comptabilité** : fiabilisation des marges, calculs sur avoirs, coût unitaire figé, crons de recalcul, droits d'accès ;
+- **commercial** : alertes sur commandes, limites de crédit, visibilité des factures, blocages de confirmation ;
+- **B2B** : routes API de stock, stock prévisionnel, stock par emplacement, champs `_last_update` et index pour les synchronisations ;
+- **logistique** : packing lists, bons de préparation, libellés produits longs, rapports de livraison ;
+- **contacts/CRM** : qualification lead, adresses de livraison, champs de civilité/adresse, restauration de téléphones mobiles ;
+- **qualité technique** : corrections Ruff, documentation staging, nettoyage de modules obsolètes, suppression d'intégrations devenues trop coûteuses à maintenir.
+
+Deux incidents de données ont été particulièrement importants :
+
+- la perte de numéros mobiles liée à la suppression d'un champ par Odoo, résolue via scripts de migration et cron jobs ;
+- la perte ou l'instabilité des données de marge sur factures, résolue par récupération de données et amélioration du module métier dédié.
+
+Dans les deux cas, le but n'était pas seulement de revenir à l'état précédent : la marge est devenue plus fiable qu'avant et complètement automatisée.
+
+## Difficulté principale
+
+Le plus difficile n'était pas seulement de faire passer le code. Le vrai sujet était de préserver les usages métier.
+
+Une vue qui se charge, ce n'est pas forcément une fonctionnalité validée. Il fallait vérifier que les règles métier continuaient à produire le bon résultat : marge, échéance de paiement, stock disponible, document PDF, droit utilisateur, notification, route API.
+
+## Ce que j'en retiens
+
+Une migration ERP réussie demande trois qualités :
+
+- **cartographier** ce qui existe avant de toucher au code ;
+- **isoler** les régressions par module et par usage métier ;
+- **stabiliser** après le merge, car certaines anomalies n'apparaissent qu'en testant les vrais workflows.
+
+Cette migration m'a aussi appris qu'un ERP est autant un système technique qu'une mémoire opérationnelle. Le code porte des règles, mais aussi des habitudes, des exceptions et des décisions prises au fil du temps.
+
+## Résultat
+
+La version Odoo 19 a été intégrée le 6 février 2026. Après cette bascule, la version stable a été atteinte en environ 1 mois. Le projet a permis de sécuriser les usages de 19 utilisateurs internes directs, tout en limitant les impacts sur les équipes logistique, B2B, corporate et les clients connectés aux outils de l'entreprise.
+
+Le projet a posé une base plus saine pour les futures montées de version : modules mieux documentés, scripts de migration plus explicites, meilleure compréhension des points sensibles et des dépendances métier.

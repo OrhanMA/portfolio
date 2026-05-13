@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -160,6 +161,55 @@ export default async function RealisationDetailPage({
             </div>
           </aside>
         </div>
+
+        {realisation.media && realisation.media.length > 0 && (
+          <section className="mt-12">
+            <div className="mb-5 grid gap-2 lg:grid-cols-[240px_1fr]">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-primary">
+                {dict.realisationsPage.mediaHeading}
+              </p>
+              <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+                {dict.realisationsPage.mediaSubtext}
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {realisation.media.map((item) => (
+                <figure
+                  key={item.src}
+                  className="premium-card overflow-hidden rounded-lg border border-border/50"
+                >
+                  <div className="relative aspect-video bg-muted">
+                    {item.type === "image" ? (
+                      <Image
+                        src={item.src}
+                        alt={item.title[loc]}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <iframe
+                        src={item.src}
+                        title={item.title[loc]}
+                        className="h-full w-full"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    )}
+                  </div>
+                  <figcaption className="p-4">
+                    <p className="font-medium">{item.title[loc]}</p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      {item.description[loc]}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[240px_1fr]">
           <aside className="hidden lg:block">

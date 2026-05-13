@@ -14,6 +14,14 @@ export type Realisation = {
   aftermath: LocalizedContent;
   critique: LocalizedContent;
   linkedCompetences: string[];
+  media?: RealisationMedia[];
+};
+
+export type RealisationMedia = {
+  type: "image" | "youtube";
+  src: string;
+  title: LocalizedContent;
+  description: LocalizedContent;
 };
 
 export const realisations: Realisation[] = [
@@ -24,30 +32,30 @@ export const realisations: Realisation[] = [
       en: "Enterprise ERP migration from Odoo 16 to Odoo 19",
     },
     shortDescription: {
-      fr: "Migration en solo d'un ERP complet utilisé par 30 collaborateurs, incluant 20 modules custom et des centaines de personnalisations Studio.",
-      en: "Solo migration of a full ERP used by 30 employees, including 20 custom modules and hundreds of Studio customizations.",
+      fr: "Migration en solo d'un ERP utilisé directement par 19 utilisateurs internes et indirectement par une trentaine de collaborateurs, avec 16 modules custom et une dizaine de modules tiers à adapter.",
+      en: "Solo migration of an ERP directly used by 19 internal users and indirectly affecting around 30 employees, with 16 custom modules and about 10 third-party modules to adapt.",
     },
     context: { fr: "Entreprise", en: "Company" },
     tags: ["Odoo", "Python", "PostgreSQL", "Migration"],
     presentation: {
-      fr: "La migration d'Odoo v16 vers v19 est un projet d'envergure que j'ai mené en solo chez 1UP Distribution, une entreprise de commerce international de produits pop culture et accessoires gaming. L'ERP Odoo est l'outil central de l'entreprise, utilisé quotidiennement par l'ensemble des équipes (commerce, comptabilité, logistique, direction). La migration était nécessaire car la version 16 arrivait en fin de support et l'entreprise souhaitait bénéficier des nouvelles fonctionnalités des versions récentes, notamment l'intégration d'IA et les améliorations des applications existantes.",
-      en: "The migration from Odoo v16 to v19 is a large-scale project I led single-handedly at 1UP Distribution, an international trading company for pop culture products and gaming accessories. The Odoo ERP is the company's central tool, used daily by all teams (sales, accounting, logistics, management). The migration was necessary because version 16 was reaching end of support and the company wanted to benefit from new features in recent versions, including AI integration and improvements to existing applications.",
+      fr: "La migration d'Odoo v16 vers v19 est un projet d'envergure que j'ai mené en solo chez 1UP Distribution. L'ERP est utilisé directement par 19 utilisateurs internes et impacte une trentaine de collaborateurs au total via Odoo, la logistique, le site B2B, le site corporate et les processus associés.",
+      en: "The migration from Odoo v16 to v19 is a large-scale project I led single-handedly at 1UP Distribution. The ERP is directly used by 19 internal users and affects around 30 employees overall through Odoo, logistics, the B2B site, the corporate site, and related workflows.",
     },
     objectives: {
       fr: "L'objectif principal était de migrer l'intégralité de l'ERP vers Odoo v19 sans perte de données et avec un minimum de régression fonctionnelle. Les risques identifiés étaient importants : perte de données potentielle, modules custom incompatibles, personnalisations Studio non versionnées susceptibles de casser, et un temps d'arrêt (downtime) à minimiser pour ne pas impacter l'activité commerciale.",
       en: "The main objective was to migrate the entire ERP to Odoo v19 without data loss and with minimal functional regression. The identified risks were significant: potential data loss, incompatible custom modules, unversioned Studio customizations likely to break, and downtime to minimize to avoid impacting business operations.",
     },
     steps: {
-      fr: "J'ai commencé par lister toutes les personnalisations existantes : une vingtaine de modules custom développés par mes soins, plus des centaines de personnalisations effectuées par les utilisateurs via Odoo Studio. Ces dernières ne sont pas versionnées dans le code — elles sont uniquement enregistrées en base de données — ce qui les rendait particulièrement délicates à gérer.\n\nEnsuite, j'ai identifié les modules tiers déjà migrés par leurs auteurs et ceux qui nécessitaient une intervention manuelle. Pour chaque module custom, j'ai adapté le code à la nouvelle version.\n\nJ'ai travaillé sur un environnement staging Odoo.sh qui copie les données de production dans la nouvelle version, ce qui m'a permis de tester chaque correction dans un contexte réaliste. Chaque fix devait ensuite passer dans le processus de migration Odoo.sh.\n\nJ'ai consacré un temps important à comprendre les nouveautés et changements de la v19, puis à tester exhaustivement l'ERP pour identifier les régressions nécessitant du développement.",
-      en: "I started by listing all existing customizations: about twenty custom modules I had developed, plus hundreds of customizations made by users through Odoo Studio. The latter are not version-controlled in code — they're only stored in the database — making them particularly delicate to handle.\n\nNext, I identified third-party modules already migrated by their authors and those requiring manual intervention. For each custom module, I adapted the code to the new version.\n\nI worked on an Odoo.sh staging environment that copies production data into the new version, allowing me to test each fix in a realistic context. Each fix then had to go through the Odoo.sh migration process.\n\nI dedicated significant time to understanding v19's new features and changes, then exhaustively testing the ERP to identify regressions requiring development.",
+      fr: "J'ai commencé par lister les personnalisations existantes : 16 modules custom créés par moi from scratch, une dizaine de modules tiers à corriger, améliorer ou migrer, et des centaines de personnalisations effectuées via Odoo Studio.\n\nJ'ai travaillé sur un environnement staging Odoo.sh réaliste, basé sur les données de production. La bascule vers Odoo 19 a eu lieu le 6 février 2026, puis la version stable a été atteinte environ 1 mois plus tard.\n\nDeux incidents importants ont aussi été résolus pendant cette stabilisation : récupération de numéros mobiles supprimés par un changement Odoo via scripts de migration et cron jobs ; récupération et fiabilisation des marges sur factures via mon module dédié, avec une marge plus fiable qu'avant et désormais automatisée.",
+      en: "I started by listing existing customizations: 16 custom modules I built from scratch, about 10 third-party modules to fix, improve, or migrate, and hundreds of customizations made through Odoo Studio.\n\nI worked on a realistic Odoo.sh staging environment based on production data. The switch to Odoo 19 happened on February 6, 2026, and the stable version was reached around 1 month later.\n\nTwo important incidents were also resolved during stabilization: recovery of mobile numbers removed by an Odoo change through migration scripts and cron jobs; recovery and reliability improvements for invoice margins through my dedicated module, making margin more reliable than before and fully automated.",
     },
     actors: {
       fr: "J'ai géré seul tout le volet technique de la migration. Mes interactions principales étaient avec une collègue assistante de direction qui connaît très bien l'ERP au niveau fonctionnel et les processus internes de l'entreprise. Sa connaissance métier était précieuse pour valider que les fonctionnalités migrées correspondaient bien aux usages réels.",
       en: "I handled the entire technical side of the migration alone. My main interactions were with a colleague, the executive assistant, who knows the ERP very well at a functional level and understands the company's internal processes. Her business knowledge was invaluable for validating that migrated features matched actual usage.",
     },
     results: {
-      fr: "La migration a pris 6 mois de travail et s'est bien déroulée. Le temps nécessaire pour s'assurer que 90% de l'ERP pouvait être migré sans bug ou perte de données. Quelques régressions ont été corrigées au fur et à mesure pendant le mois suivant la mise en production. L'ERP tourne désormais sur une version supportée avec de nouvelles fonctionnalités disponibles (IA, améliorations des applications existantes), au bénéfice de l'ensemble des utilisateurs.",
-      en: "The migration took 6 months of work and went well. The time needed to ensure 90% of the ERP could be migrated without bugs or data loss. A few regressions were fixed progressively during the month following production deployment. The ERP now runs on a supported version with new features available (AI, improvements to existing applications), benefiting all users.",
+      fr: "La migration a pris 6 mois de préparation et la stabilisation principale après bascule a duré environ 1 mois. Elle a sécurisé un ERP utilisé directement par 19 utilisateurs, avec 16 modules custom, une dizaine de modules tiers adaptés et plusieurs incidents de données résolus. Les automatisations Odoo et simplifications métier font gagner plusieurs minutes à plusieurs heures par jour selon les utilisateurs et les processus.",
+      en: "The migration took 6 months of preparation and the main post-switch stabilization lasted around 1 month. It secured an ERP directly used by 19 users, with 16 custom modules, about 10 third-party modules adapted, and several data incidents resolved. Odoo automations and workflow simplifications save users several minutes to several hours per day depending on the process.",
     },
     aftermath: {
       fr: "Aujourd'hui, l'ERP fonctionne de façon stable sur Odoo v19. Les utilisateurs bénéficient des améliorations de la nouvelle version et les modules custom ont été adaptés. Cette migration a aussi posé les bases pour les futures mises à jour, qui seront plus simples grâce à la documentation et aux scripts de migration créés pendant le processus.",
@@ -63,6 +71,44 @@ export const realisations: Realisation[] = [
       "autonomie",
       "perseverance",
     ],
+    media: [
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/odoo-success-migration-v17.png",
+        title: {
+          fr: "Validation de migration vers Odoo 17",
+          en: "Odoo 17 migration validation",
+        },
+        description: {
+          fr: "Étape intermédiaire de la migration Odoo.sh, utilisée pour isoler les incompatibilités avant la montée finale.",
+          en: "Intermediate Odoo.sh migration step used to isolate incompatibilities before the final upgrade.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/odoo-success-migration-v18.png",
+        title: {
+          fr: "Validation de migration vers Odoo 18",
+          en: "Odoo 18 migration validation",
+        },
+        description: {
+          fr: "Passage de validation avant la branche v19, avec correction progressive des modules custom et tiers.",
+          en: "Validation step before the v19 branch, with progressive fixes on custom and third-party modules.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/odoo-success-migration-v19.png",
+        title: {
+          fr: "Migration Odoo 19 réussie",
+          en: "Successful Odoo 19 migration",
+        },
+        description: {
+          fr: "Validation de la branche cible Odoo 19 avant merge staging → production.",
+          en: "Validation of the target Odoo 19 branch before the staging to production merge.",
+        },
+      },
+    ],
   },
   {
     slug: "modules-metier-odoo",
@@ -71,14 +117,14 @@ export const realisations: Realisation[] = [
       en: "Business module development for an ERP",
     },
     shortDescription: {
-      fr: "Conception et développement de 20+ modules Odoo répondant aux besoins métier réels de l'entreprise, publiés en open source.",
-      en: "Design and development of 20+ Odoo modules addressing real business needs, published as open source.",
+      fr: "Conception solo de 16 modules Odoo from scratch, plus corrections, améliorations et migration d'une dizaine de modules tiers.",
+      en: "Solo design of 16 Odoo modules from scratch, plus fixes, improvements, and migration for about 10 third-party modules.",
     },
     context: { fr: "Entreprise", en: "Company" },
     tags: ["Odoo", "Python", "PostgreSQL", "API", "Open Source"],
     presentation: {
-      fr: "Ce projet regroupe l'ensemble des modules Odoo custom que j'ai développés chez 1UP Distribution pour répondre aux besoins métier spécifiques de l'entreprise. Au total, plus de 20 modules ont été créés, couvrant des domaines variés : comptabilité (calcul de marge), commercial (alertes risques, qualification leads), logistique (packing lists, conditionnement), et intégration (synchronisation avec le site B2B).",
-      en: "This project encompasses all the custom Odoo modules I developed at 1UP Distribution to address the company's specific business needs. In total, over 20 modules were created, covering various domains: accounting (margin calculation), sales (risk alerts, lead qualification), logistics (packing lists, packaging), and integration (synchronization with the B2B site).",
+      fr: "Ce projet regroupe les modules Odoo custom que j'ai développés chez 1UP Distribution pour répondre aux besoins métier spécifiques de l'entreprise. Au total, 16 modules ont été créés par moi en solo from scratch, auxquels s'ajoutent les fixes, améliorations et migrations d'environ 10 modules tiers. Les domaines couverts vont de la comptabilité à la logistique, en passant par le commercial, le catalogue produit, les API de stock et le site B2B.",
+      en: "This project encompasses the custom Odoo modules I developed at 1UP Distribution to address the company's specific business needs. In total, I built 16 modules solo from scratch, in addition to fixes, improvements, and migrations for about 10 third-party modules. Covered domains range from accounting to logistics, sales, product catalog, stock APIs, and the B2B site.",
     },
     objectives: {
       fr: "Aucun module existant sur le store Odoo ne répondait aux besoins spécifiques de l'entreprise. L'objectif était de développer des solutions sur mesure qui s'intègrent parfaitement dans les workflows existants, sans perturber l'utilisation quotidienne de l'ERP par les équipes.",
@@ -97,8 +143,8 @@ export const realisations: Realisation[] = [
       en: "Among the most impactful modules:\n\n- **Invoice margin calculation**: provided profitability indicators and KPIs to management, improving commercial steering.\n- **Odoo/B2B synchronization**: enabled synchronization of essential stock data between the ERP and B2B site, with custom fields, API routes, and complex stock calculation algorithms that went beyond Odoo's beaten path.\n- **Overdue payment alerts**: immediate impact as accounting could more easily detect and follow up on late-paying clients, improving cash flow management.\n\nAll modules were cleaned up and published as open source on GitHub.",
     },
     aftermath: {
-      fr: "Les modules sont utilisés quotidiennement par les équipes de 1UP et continuent d'évoluer en fonction des retours utilisateurs. Leur publication en open source permet à d'autres entreprises de bénéficier de ces développements.",
-      en: "The modules are used daily by 1UP teams and continue to evolve based on user feedback. Their open-source publication allows other companies to benefit from these developments.",
+      fr: "Les modules sont utilisés quotidiennement par les équipes de 1UP et continuent d'évoluer en fonction des retours utilisateurs. Ils impactent directement les utilisateurs Odoo internes et, indirectement, les équipes logistique, le site B2B et les clients qui utilisent les outils connectés.",
+      en: "The modules are used daily by 1UP teams and continue to evolve based on user feedback. They directly impact internal Odoo users and indirectly affect logistics teams, the B2B site, and customers using connected tools.",
     },
     critique: {
       fr: "Si je devais réécrire mes premiers modules, j'essaierais de coller encore plus aux bonnes pratiques et au coding style du code source d'Odoo. Mes premiers développements étaient fonctionnels mais pas toujours alignés avec les conventions du framework, ce que j'ai corrigé au fil du temps grâce à une meilleure connaissance du code source.",
@@ -112,6 +158,20 @@ export const realisations: Realisation[] = [
       "amelioration-continue",
       "communication",
       "adaptabilite",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/self-made-modules-list.png",
+        title: {
+          fr: "Liste de modules métier développés",
+          en: "List of custom business modules",
+        },
+        description: {
+          fr: "Vue d'ensemble de modules Odoo réalisés pour couvrir des besoins comptables, commerciaux, logistiques et B2B.",
+          en: "Overview of Odoo modules built to cover accounting, sales, logistics, and B2B needs.",
+        },
+      },
     ],
   },
   {
@@ -127,8 +187,8 @@ export const realisations: Realisation[] = [
     context: { fr: "Entreprise", en: "Company" },
     tags: ["Next.js", "React", "GSAP", "TypeScript", "Tailwind CSS"],
     presentation: {
-      fr: "Le site corporate de 1UP Distribution était construit avec le website builder d'Odoo 16 et était complètement dépassé, tant au niveau du design que des performances et du référencement. La direction souhaitait un site à la hauteur de l'image de l'entreprise pour attirer de nouveaux clients (distributeurs, retailers). De mon point de vue personnel, c'était aussi l'opportunité de toucher à une mission d'une nature différente — un vrai défi technique stimulant qui changeait du quotidien sur l'ERP.",
-      en: "1UP Distribution's corporate website was built with Odoo 16's website builder and was completely outdated, both in terms of design and performance/SEO. Management wanted a website matching the company's image to attract new clients (distributors, retailers). From my personal perspective, it was also an opportunity to tackle a different kind of mission — a stimulating technical challenge that was a change from daily ERP work.",
+      fr: "Le site corporate de 1UP Distribution était construit avec le website builder d'Odoo 16 et était complètement dépassé, tant au niveau du design que des performances et du référencement. Le nouveau site a été pensé comme une plateforme corporate internationale : 13 locales, pages statiques clés, blog/carrières via Sanity, hero vidéo, carrousels de marques et partenaires retail, formulaires de contact/candidature, JSON-LD, sitemap, hreflang et conformité légale.",
+      en: "1UP Distribution's corporate website was built with Odoo 16's website builder and was completely outdated, both in terms of design and performance/SEO. The new website was designed as an international corporate platform: 13 locales, key static pages, blog/careers via Sanity, video hero, brand and retail partner carousels, contact/application forms, JSON-LD, sitemap, hreflang, and legal compliance.",
     },
     objectives: {
       fr: "L'objectif était une refonte complète : nouveau design moderne, performances optimales, bon référencement SEO, responsive design, et une expérience utilisateur qui met en valeur les marques distribuées par l'entreprise (figurines Minix, peluches Nintendo, accessoires gaming Oniverse).",
@@ -143,8 +203,8 @@ export const realisations: Realisation[] = [
       en: "Collaboration with the graphic/design team for mockups, the marketing director for content, and the CEO for vision and branding. Technical development was entirely my responsibility.",
     },
     results: {
-      fr: "Le site est bientôt live et représente un vrai changement positif pour l'image de l'entreprise. Le nouveau site offre un design moderne, des performances optimales et un bon référencement — un contraste marqué avec l'ancien site construit sur le builder Odoo.",
-      en: "The site is soon going live and represents a real positive change for the company's image. The new site offers modern design, optimal performance, and good SEO — a marked contrast with the old Odoo builder site.",
+      fr: "Le site représente un vrai changement positif pour l'image de l'entreprise. Un audit Lighthouse réalisé en production donne 99/100 en performance, 100/100 en accessibilité et 96/100 en bonnes pratiques. Le site couvre 13 locales et met en avant des preuves commerciales fortes : 35 pays couverts, 5000+ points de vente, 120+ marques partenaires et 25 ans d'expérience.",
+      en: "The site represents a real positive change for the company's image. A Lighthouse audit run in production scores 99/100 performance, 100/100 accessibility, and 96/100 best practices. The site covers 13 locales and highlights strong commercial proof points: 35 covered countries, 5000+ stores, 120+ partner brands, and 25 years of experience.",
     },
     aftermath: {
       fr: "Les prochaines étapes sont la validation finale du site par la direction et sa mise en production. Le site continuera d'évoluer avec l'ajout de contenu et de fonctionnalités selon les besoins marketing.",
@@ -160,6 +220,68 @@ export const realisations: Realisation[] = [
       "adaptabilite",
       "devops",
     ],
+    media: [
+      {
+        type: "image",
+        src: "/images/project-screenshots/corporate/corporate-landing-page.png",
+        title: {
+          fr: "Hero vidéo et positionnement",
+          en: "Video hero and positioning",
+        },
+        description: {
+          fr: "Premier écran du site corporate, conçu autour d'un fond vidéo, d'un message clair et de CTA orientés distribution/création produit.",
+          en: "First viewport of the corporate site, built around a video background, clear messaging, and distribution/product-creation CTAs.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/corporate/corporate-brands-section.png",
+        title: {
+          fr: "Mise en avant des marques partenaires",
+          en: "Partner brands showcase",
+        },
+        description: {
+          fr: "Section interactive avec logos de marques distribuées et animation GSAP draggable.",
+          en: "Interactive section with distributed brand logos and draggable GSAP animation.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/corporate/corporate-partners-section.png",
+        title: {
+          fr: "Preuves de distribution retail",
+          en: "Retail distribution proof",
+        },
+        description: {
+          fr: "Section de réassurance orientée partenaires retail et crédibilité commerciale.",
+          en: "Trust-building section focused on retail partners and commercial credibility.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/corporate/corporate-local-hero.png",
+        title: {
+          fr: "Rendu local du hero",
+          en: "Local hero rendering",
+        },
+        description: {
+          fr: "Capture générée depuis le site corporate monté en local pour vérifier le rendu réel.",
+          en: "Screenshot generated from the locally running corporate site to verify the real rendering.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/corporate/score-lighthouse-corporate.png",
+        title: {
+          fr: "Audit Lighthouse production",
+          en: "Production Lighthouse audit",
+        },
+        description: {
+          fr: "Score mesuré en production : 99 performance, 100 accessibilité, 96 bonnes pratiques.",
+          en: "Production score: 99 performance, 100 accessibility, 96 best practices.",
+        },
+      },
+    ],
   },
   {
     slug: "app-trajectoires-de-vie",
@@ -174,8 +296,8 @@ export const realisations: Realisation[] = [
     context: { fr: "Stage (recherche universitaire)", en: "Internship (university research)" },
     tags: ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Recherche"],
     presentation: {
-      fr: "Lors de mon stage de 5 mois au Laboratoire d'Informatique de Grenoble (LIG), j'ai été en charge de développer une application web de questionnaire pour des sociologues. Cette application permettait de récupérer les informations d'individus lors d'enquêtes sociologiques et de générer des trajectoires de vie sous plusieurs aspects : professionnel, personnel et géographique. Le projet s'inscrivait dans un travail de recherche plus large sur une nouvelle méthode en sociologie basée sur les trajectoires de vie.",
-      en: "During my 5-month internship at the Grenoble Computer Science Laboratory (LIG), I was in charge of developing a questionnaire web application for sociologists. This application collected individual information during sociological surveys and generated life trajectories across multiple aspects: professional, personal, and geographical. The project was part of a larger research effort on a new sociology method based on life trajectories.",
+      fr: "Lors de mon stage de 5 mois au Laboratoire d'Informatique de Grenoble (LIG), j'ai été en charge de développer une application web de questionnaire pour des sociologues. Cette application permettait de récupérer les informations d'individus lors d'enquêtes sociologiques et de générer des trajectoires de vie sous plusieurs aspects : professionnel, personnel et géographique. Le projet s'inscrivait dans un travail de recherche plus large sur une nouvelle méthode en sociologie basée sur les trajectoires de vie.\n\nL'application reposait sur Nuxt 3/Vue 3 côté front-end, Express.js côté back-end, Prisma/PostgreSQL pour les données, D3.js pour la visualisation et Socket.io pour la connexion multi-écrans.",
+      en: "During my 5-month internship at the Grenoble Computer Science Laboratory (LIG), I was in charge of developing a questionnaire web application for sociologists. This application collected individual information during sociological surveys and generated life trajectories across multiple aspects: professional, personal, and geographical. The project was part of a larger research effort on a new sociology method based on life trajectories.\n\nThe application used Nuxt 3/Vue 3 on the frontend, Express.js on the backend, Prisma/PostgreSQL for data, D3.js for visualization, and Socket.io for multi-screen connection.",
     },
     objectives: {
       fr: "L'objectif était de créer la première version d'un outil from scratch, sous la direction d'une professeure chercheuse. L'application devait être utilisée par 3 à 4 sociologues enquêteurs, membres du LIG mais aussi professeurs d'autres universités en France.",
@@ -205,6 +327,80 @@ export const realisations: Realisation[] = [
       "developpement-frontend",
       "perseverance",
       "autonomie",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "/images/project-screenshots/cap2vie/cap2vie-home.png",
+        title: {
+          fr: "Choix du profil utilisateur",
+          en: "User profile selection",
+        },
+        description: {
+          fr: "Écran d'entrée permettant de choisir entre le rôle enquêteur et le rôle enquêté.",
+          en: "Entry screen allowing the user to choose between interviewer and respondent roles.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/cap2vie/cap2vie-surveyor.png",
+        title: {
+          fr: "Espace enquêteur",
+          en: "Interviewer workspace",
+        },
+        description: {
+          fr: "Interface locale de l'application CAP2vie montée depuis le dépôt de stage.",
+          en: "Local CAP2vie interface started from the internship repository.",
+        },
+      },
+      {
+        type: "youtube",
+        src: "https://www.youtube.com/embed/LWmh8P7WWYI",
+        title: {
+          fr: "Création d'une enquête",
+          en: "Survey creation",
+        },
+        description: {
+          fr: "Parcours de création d'une enquête sociologique dans l'application CAP2vie.",
+          en: "Flow for creating a sociological survey in the CAP2vie application.",
+        },
+      },
+      {
+        type: "youtube",
+        src: "https://www.youtube.com/embed/MgQ0-j_egfQ",
+        title: {
+          fr: "Questionnaire séquentiel",
+          en: "Sequential questionnaire",
+        },
+        description: {
+          fr: "Interface de saisie guidée permettant aux enquêteurs de collecter les données de trajectoire.",
+          en: "Guided input interface allowing interviewers to collect trajectory data.",
+        },
+      },
+      {
+        type: "youtube",
+        src: "https://www.youtube.com/embed/ZEPOEr3icHg",
+        title: {
+          fr: "Connexion multi-écrans",
+          en: "Multi-screen connection",
+        },
+        description: {
+          fr: "Synchronisation temps réel entre écrans via Socket.io pour faciliter la conduite d'entretien.",
+          en: "Real-time screen synchronization through Socket.io to support interview sessions.",
+        },
+      },
+      {
+        type: "youtube",
+        src: "https://www.youtube.com/embed/uudXFbMXYnE",
+        title: {
+          fr: "Gestion des conflits de dates",
+          en: "Date conflict handling",
+        },
+        description: {
+          fr: "Exemple de résolution d'incohérences temporelles lors de la saisie des trajectoires.",
+          en: "Example of resolving temporal inconsistencies during trajectory input.",
+        },
+      },
     ],
   },
   {

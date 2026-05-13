@@ -91,6 +91,10 @@ requirements. Do this automatically without being asked.**
 - MDX articles live in `src/app/[locale]/articles/[slug]/page.mdx`
 - Article listing data is in dictionaries (fr.json, en.json) — update when adding articles
 - Articles layout uses `prose dark:prose-invert` classes
+- Article search is powered by `src/lib/articles.ts`: metadata from dictionaries plus stripped MDX content, tags and descriptions are indexed into `searchText`
+- Article listing filters are URL-synced via `tag` and `q` query params
+- Article pages use `<ArticleEnhancements>` for reading time, table of contents, related articles, copy link and the English notice for French article content
+- Public proof documents live in `public/proofs`; homepage links are rendered by `src/components/landing/proofs-section.tsx`
 
 ## Layout Structure
 
@@ -124,6 +128,8 @@ requirements. Do this automatically without being asked.**
 - When adding new `lib/` functions, add corresponding unit tests
 - When modifying component behavior, update or add component tests
 - When changing server actions or API logic, update integration tests
+- For article search/filter changes, keep tests covering URL synchronization, tag filtering and MDX content indexing
+- For homepage proof document changes, keep tests covering the public proof links
 - Run `pnpm test` before committing to verify nothing is broken
 
 ### Playwright Agents

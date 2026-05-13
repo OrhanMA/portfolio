@@ -46,7 +46,7 @@ src/
         fr.json                       # French translations
         en.json                       # English translations
       articles/
-        page.tsx                      # Article listing
+        page.tsx                      # Filterable article listing
         [slug]/page.mdx               # MDX articles
       contact/
         page.tsx                      # Contact page (form + reCAPTCHA)
@@ -59,6 +59,8 @@ src/
     navbar.tsx                        # Fixed nav with theme toggle + language switcher
     footer.tsx                        # Footer (server component)
     contact-form.tsx                  # Contact form (RHF + Zod + honeypot)
+    articles-filterable-list.tsx      # Tag + text search with URL-synced filters
+    article-enhancements.tsx          # Reading time, TOC, related articles, copy link
     cookie-consent.tsx                # GDPR cookie consent banner
     analytics.tsx                     # Consent-gated Google Analytics
     language-switcher.tsx             # FR/EN language switcher
@@ -68,7 +70,7 @@ src/
     smooth-scroll.tsx                 # Lenis provider (GSAP ticker sync)
     page-transition.tsx               # GSAP page transitions
     set-lang.tsx                      # Dynamic <html lang> setter
-    landing/                          # Landing page sections (hero, about, skills, etc.)
+    landing/                          # Landing page sections (hero, about, skills, proofs, etc.)
     ui/                               # shadcn/ui components
   lib/
     gsap.ts                           # Centralized GSAP plugin registration
@@ -77,6 +79,7 @@ src/
     recaptcha.ts                      # reCAPTCHA v3 helpers
     rate-limit.ts                     # In-memory IP rate limiter
     cookie-consent.ts                 # Cookie consent utilities
+    articles.ts                       # MDX indexing helpers for reading time + search
     schemas/
       contact.ts                      # Zod schema for contact form
   proxy.ts                            # Locale detection proxy (Next.js 16)
@@ -91,6 +94,8 @@ src/
 pnpm test:unit       # Watch mode
 pnpm test:unit run   # Single run
 ```
+
+Current unit coverage includes article filtering/search, MDX content indexing, article enhancement controls, proof document links, dictionaries, i18n proxy behavior, contact validation, anti-spam helpers, and cookie consent helpers.
 
 ### Browser Component Tests (Vitest + Playwright)
 
@@ -148,6 +153,8 @@ GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to `main`:
 - **GSAP** — All imports from `@/lib/gsap`; `autoAlpha` for FOUC prevention; `useGSAP({ scope })` pattern
 - **Lenis** — Driven by `gsap.ticker` for frame-perfect ScrollTrigger sync
 - **i18n** — Cookie → Accept-Language → default locale; `src/proxy.ts` handles redirects
+- **Articles** — MDX content is indexed server-side for search; filters are synced in the URL
+- **Proof documents** — CV and certifications are exposed from `public/proofs` via the homepage documents section
 - **Anti-spam** — 4-layer defense: honeypot, time check, IP rate limiting, reCAPTCHA v3
 - **Server Components** — Used where no interactivity/animation is needed
 - **Cookie Consent** — Custom GDPR banner; analytics scripts load only after consent

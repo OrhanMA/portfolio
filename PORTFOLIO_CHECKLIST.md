@@ -4,9 +4,17 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-03-26
+Last reviewed: 2026-05-13
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
+
+---
+
+## État des lieux actuel — 2026-05-13
+
+L'application est un portfolio Next.js 16 bilingue FR/EN bien avancé : page d'accueil animée, pages dédiées pour l'à-propos, les compétences, les réalisations, les projets open source Odoo, les articles MDX, le contact, les mentions légales et la politique de confidentialité. Le socle technique est solide : App Router avec segment `[locale]`, dictionnaires JSON, navbar/footer persistants, GSAP centralisé, Lenis, thème dark/light, cookie consent, GTM consent-gated, formulaire de contact avec validations et anti-spam, sitemap, robots, tests unitaires/browser/e2e et CI GitHub Actions. La homepage expose désormais une section Documents qui pointe vers le CV, le TOEIC et les titres RNCP.
+
+Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 réalisations détaillées, navigation circulaire compétences ↔ réalisations, frise chronologique, expérience/formation avec logos, responsabilités explicites, page contact et sous-menus dédiés pour les compétences et réalisations. Les pages réalisations ont maintenant des preuves visuelles : captures Odoo, captures corporate, captures CAP2vie et vidéos de démonstration CAP2vie. Les derniers écarts concernent surtout les métriques d'impact quand elles ne peuvent pas être déduites du code.
 
 ---
 
@@ -16,7 +24,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Prénom + Nom sur toutes les pages | ✅ | Avatar + "Orhan" dans la navbar persistante |
+| Prénom + Nom sur toutes les pages | ✅ | Nom complet visible dans le hero, le footer et la navbar desktop persistante |
 | Photo sur toutes les pages | ✅ | Avatar headshot dans la navbar |
 
 ---
@@ -27,7 +35,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 |---------|--------|-------|
 | Attrayante | ✅ | GSAP animations, gradient hero, dark/light mode |
 | Convaincante | ✅ | CTAs clairs, parcours autodidacte → professionnel |
-| Correctement structurée | ✅ | Hero → About → Skills → Experience → CTA |
+| Correctement structurée | ✅ | Hero → About → Skills → Réalisations mises en avant → Experience → Documents → CTA |
 
 ---
 
@@ -70,7 +78,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 ---
 
-### Chacune de mes compétences — articles individuels — 30 pts (estimé : ~27/30)
+### Chacune de mes compétences — articles individuels — 30 pts (estimé : ~30/30)
 
 | Critère | Status | Notes |
 |---------|--------|-------|
@@ -88,7 +96,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 | Évolution : formations/autoformations en cours ou à venir | ✅ | "Formations en cours ou à venir" |
 | En fin d'article : liste des réalisations rattachées + liens | ✅ | Section "Réalisations rattachées" avec liens |
 | Accessibles depuis la page commune des compétences | ✅ | Liens "Lire l'article" sur chaque card |
-| Accessibles par un sous-menu | ⚠️ | Navigation via page commune, pas de sous-menu dédié dans la navbar |
+| Accessibles par un sous-menu | ✅ | Dropdown desktop + accordéon mobile dans la navbar |
 
 ---
 
@@ -103,12 +111,12 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 ---
 
-### Chacune de mes réalisations — articles individuels — 20 pts (estimé : ~18/20)
+### Chacune de mes réalisations — articles individuels — 20 pts (estimé : ~20/20)
 
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Accessible depuis la page commune des réalisations | ✅ | Liens depuis `/realisations` |
-| Accessible par un sous-menu | ⚠️ | Navigation via page commune, pas de sous-menu dédié |
+| Accessible par un sous-menu | ✅ | Dropdown desktop + accordéon mobile dans la navbar |
 | Nom évocateur (indépendant du contexte école/entreprise) | ✅ | Noms descriptifs (ex: "Migration Odoo v16 → v19") |
 | Article spécifique, structuré, détaillé | ✅ | 7 sections par article |
 | **Présentation/définition** du projet ou de la réalisation | ✅ | Section "Présentation" |
@@ -132,7 +140,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 ---
 
-### Pour chacune de mes expériences — 5 pts (estimé : ~4/5)
+### Pour chacune de mes expériences — 5 pts (estimé : 5/5)
 
 #### Expérience en entreprise — 1er niveau de lecture
 
@@ -146,10 +154,10 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Responsabilité (chef de projet, etc.) | ⚠️ | Missions détaillées, rôle de gestionnaire solo mentionné |
+| Responsabilité (chef de projet, etc.) | ✅ | Responsabilités listées explicitement dans chaque carte |
 | Statut (stagiaire, alternant) | ✅ | "Alternance", "Stagiaire" mentionnés |
 | Détail des missions | ✅ | Descriptions enrichies dans les cards |
-| Liens vers réalisations et compétences rattachées | ❌ | Pas de liens croisés depuis la timeline |
+| Liens vers réalisations et compétences rattachées | ✅ | Liens croisés ajoutés depuis la timeline |
 
 #### Formation — 1er niveau de lecture
 
@@ -163,7 +171,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Présentation de l'établissement / vision de la pédagogie | ❌ | Absent — serait un "nice to have" en popup/détail |
+| Présentation de l'établissement / vision de la pédagogie | ✅ | Description Simplon + ISCOD ajoutée dans le 2ème niveau de lecture de la timeline |
 
 #### Test ou certification
 
@@ -207,29 +215,27 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 | Menu | 3 | 3 | ✅ |
 | Article de présentation générale | 15 | ~14 | ✅ |
 | Mes compétences (page commune) | 10 | ~9 | ✅ |
-| Chacune de mes compétences (articles) | 30 | ~27 | ✅ |
+| Chacune de mes compétences (articles) | 30 | ~30 | ✅ |
 | Mes réalisations (page commune) | 5 | 5 | ✅ |
-| Chacune de mes réalisations (articles) | 20 | ~18 | ✅ |
+| Chacune de mes réalisations (articles) | 20 | ~20 | ✅ |
 | Mon parcours (frise) | 5 | 5 | ✅ |
-| Détail expériences | 5 | ~4 | ⚠️ |
+| Détail expériences | 5 | 5 | ✅ |
 | Navigation circulaire | — | ✅ | ✅ |
 | Espace contact | 2 | 2 | ✅ |
 | Orthographe | -1%/5 fautes | 0 retrait | ✅ |
-| **TOTAL** | **100** | **~92/100** | ✅ |
+| **TOTAL** | **100** | **~99/100** | ✅ |
 
 ---
 
-## Améliorations restantes (pour atteindre ~100)
+## Améliorations restantes
 
-### Détail expériences (+1 pt)
-- Ajouter liens vers réalisations/compétences rattachées depuis les cards de la timeline
-- Ajouter une courte présentation de l'établissement de formation (popup ou 2ème niveau de lecture)
+### Grille ISCOD
+- Aucun manque bloquant identifié après les dernières corrections.
+- Points à relire humainement avant rendu : orthographe fine, cohérence du ton, et validation que les formulations correspondent bien à ton vécu exact.
 
-### Compétences articles (+3 pts)
-- Ajouter un sous-menu ou navigation latérale entre les compétences individuelles
-
-### Réalisations articles (+2 pts)
-- Ajouter un sous-menu ou navigation latérale entre les réalisations individuelles
+### Best practices hors grille
+- Ajouter des preuves humaines si disponibles : attestations, recommandations, retours de collègues ou encadrants.
+- Continuer à affiner les métriques d'impact lorsqu'elles deviennent plus précises : temps gagné réel, fréquence d'usage, réduction d'erreurs mesurée.
 
 ---
 
@@ -242,21 +248,21 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 | Professional headline describing your role | ✅ | "Développeur Fullstack" via i18n |
 | Brief personal summary / elevator pitch | ✅ | About section with autodidact → Simplon → ISCOD journey |
 | Professional headshot or avatar | ✅ | Headshot in navbar + hero |
-| Clear call-to-action for employers | ✅ | "Voir mon parcours" + "Lire mes articles" CTAs |
-| Social proof (awards, certifications, recognition) | ⚠️ | RNCP certifications mentioned; no dedicated section |
+| Clear call-to-action for employers | ✅ | Réalisations + contact en CTA principal dans le hero |
+| Social proof (awards, certifications, recognition) | ✅ | Section Documents sur la homepage + RNCP, TOEIC, CV PDF et chiffres clés disponibles dans `public/proofs` / contenus projet |
 
 ### Projects Section
 
 | Item | Status | Notes |
 |------|--------|-------|
-| 4-6 highlighted projects | ✅ | 24 Odoo modules on `/projects` page |
+| 4-6 highlighted projects | ✅ | 5 réalisations détaillées + 22 modules Odoo open source sur `/projects` |
 | Clear descriptions and objectives | ✅ | Bilingual summary + details per project |
 | Technologies used listed | ✅ | Odoo + Python badges on each card |
 | GitHub repository links | ✅ | Each project links to GitHub |
-| Screenshots or video demos | ❌ | No screenshots — text-only descriptions |
-| Your specific role and contributions | ⚠️ | Implied (solo developer) but not explicit |
-| Challenges solved and solutions | ❌ | Not detailed |
-| Measurable results and impact | ❌ | Not detailed |
+| Screenshots or video demos | ✅ | Captures Odoo/corporate/CAP2vie + vidéos CAP2vie intégrées aux pages réalisations |
+| Your specific role and contributions | ✅ | Explicit in `/realisations` and strengthened on Odoo module detail pages |
+| Challenges solved and solutions | ✅ | Odoo module pages now include business problem, solution, technical highlight and impact |
+| Measurable results and impact | ✅ | Added available metrics: 16 modules, ~10 third-party modules, 19 direct Odoo users, ~30 employees impacted, 1-month stabilization, Lighthouse score |
 
 ### Technical Skills
 
@@ -275,7 +281,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 |------|--------|-------|
 | Relevant work history | ✅ | 1UP fullstack dev (Dec 2025–Present) |
 | Internships and apprenticeships | ✅ | LIG Lab internship (May–Oct 2025) |
-| Open source contributions | ✅ | 24 Odoo modules on GitHub |
+| Open source contributions | ✅ | 22 Odoo modules on GitHub |
 
 ### Performance & Responsive Design
 
@@ -292,12 +298,13 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 |------|--------|-------|
 | Meta titles and descriptions | ✅ | Per-page via `generateMetadata()` |
 | Open Graph tags | ✅ | OG title, description, locale, dynamic OG image |
-| Schema markup / JSON-LD | ❌ | No structured data |
+| Schema markup / JSON-LD | ✅ | Person + WebSite + ProfilePage JSON-LD in locale layout |
 | XML sitemap | ✅ | `src/app/sitemap.ts` — includes all new pages |
 | Robots.txt | ✅ | `src/app/robots.ts` |
 | Canonical URLs | ✅ | `metadataBase` + `alternates.canonical` |
 | Semantic HTML | ✅ | `<nav>`, `<main>`, `<footer>`, `<section>` |
 | Clean URL structure | ✅ | Locale-prefixed (`/fr/contact`, `/en/articles`) |
+| Discoverable article topics | ✅ | Tags cliquables et recherche texte sur titre, contenu MDX indexé et tags, avec filtres synchronisés dans l'URL |
 
 ### Security
 
@@ -309,14 +316,14 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 | Anti-spam (honeypot, time check, rate limit, reCAPTCHA) | ✅ | Multi-layered |
 | GDPR cookie consent | ✅ | Custom banner with Accept/Reject/Manage |
 | Privacy policy | ✅ | `/politique-confidentialite` |
-| Security headers | ❌ | No CSP, X-Frame-Options in `next.config.mjs` |
+| Security headers | ✅ | CSP, Referrer-Policy, X-Content-Type-Options, X-Frame-Options, Permissions-Policy in `next.config.mjs` |
 
 ### Testing
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Unit tests | ✅ | 93 tests (Vitest + jsdom + React Testing Library) |
-| Browser component tests | ✅ | 20 tests (Vitest Browser Mode + Playwright) |
+| Unit tests | ✅ | Vitest + jsdom + React Testing Library configured, 17 unit test files, 107 tests passing |
+| Browser component tests | ✅ | Vitest Browser Mode + Playwright configured with visual baselines |
 | Visual regression tests | ✅ | `toMatchScreenshot()` |
 | E2E tests | ✅ | Playwright infrastructure |
 | CI/CD pipeline | ✅ | GitHub Actions: lint → tests → build → e2e |

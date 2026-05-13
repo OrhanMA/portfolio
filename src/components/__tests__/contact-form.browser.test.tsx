@@ -122,7 +122,7 @@ describe("ContactForm (browser)", () => {
 
     // Should show success state
     await expect
-      .element(page.getByText("Message envoye !"), { timeout: 5000 })
+      .element(page.getByText("Message envoyé !"), { timeout: 5000 })
       .toBeVisible();
   });
 
