@@ -32,7 +32,7 @@ vi.mock("@/lib/recaptcha", () => ({
 // Visual regression tests are skipped in CI because screenshot baselines
 // are platform-specific (font rendering differs between macOS and Linux).
 // Run locally to catch visual regressions: pnpm test:browser
-const isCI = !!process.env.CI;
+const isCI = typeof process !== "undefined" && !!process.env.CI;
 
 describe("Visual Regression", () => {
   beforeEach(() => {
