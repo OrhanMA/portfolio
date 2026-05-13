@@ -1,0 +1,87 @@
+# CAP2vie au LIG : construire un outil d'enquête sociologique autour des trajectoires de vie
+
+## Contexte
+
+Pendant mon stage au Laboratoire d'Informatique de Grenoble, j'ai travaillé sur CAP2vie, une application web destinée à accompagner des enquêtes sociologiques sur les trajectoires de vie.
+
+L'objectif était de permettre à des enquêteurs de collecter des événements et épisodes de vie, puis de les visualiser sous forme de trajectoires. Le sujet demandait de relier interface de saisie, modèle de données, visualisation temporelle et contraintes réelles d'entretien.
+
+## Architecture
+
+L'application reposait sur deux parties principales :
+
+- un front-end **Nuxt 3 / Vue 3** avec PrimeVue, Tailwind, Pinia et D3.js ;
+- un back-end **Express.js** avec Prisma, PostgreSQL et Socket.io.
+
+Une documentation Docusaurus accompagnait le projet pour expliquer l'architecture, les dossiers, le lancement, les routes et les responsabilités des différentes briques.
+
+## Modèle métier
+
+Le coeur du projet était la notion de trajectoire.
+
+Une personne peut avoir des trajectoires résidentielles, professionnelles ou personnelles. Chaque trajectoire est composée d'épisodes, d'événements, de dates, de niveaux de précision et parfois d'incertitudes.
+
+Le modèle PostgreSQL contenait notamment :
+
+- des personnes ;
+- des questions d'enquête ;
+- des épisodes résidentiels/professionnels ;
+- des événements ;
+- des trajectoires reliant événements, épisodes et personne.
+
+Le back-end utilisait une classe `DataAdapter` pour transformer les données de la base avant de les envoyer au front-end.
+
+## Visualisation D3.js
+
+La partie la plus technique était la visualisation des trajectoires.
+
+D3.js était utilisé pour construire un graphique sur mesure : axes temporels, lignes thématiques, rectangles d'épisodes, événements, tooltips, zoom, brush, couleurs par ligne, couples indéterminés et interactions avec l'interface.
+
+Contrairement à une librairie de graphiques prête à l'emploi, D3 demandait de gérer directement les échelles, les positions, les dimensions SVG, les mises à jour et les comportements utilisateurs.
+
+## Gestion des conflits
+
+Une difficulté importante venait des conflits temporels.
+
+Lorsqu'un nouvel épisode se chevauchait avec un épisode existant, l'application devait aider l'enquêteur à comprendre le problème et à choisir une action : modifier, raccourcir, remplacer, fusionner ou supprimer.
+
+Plusieurs composants étaient dédiés à ce sujet : `Conflict`, `ConflictEditor`, `ManualConflict`, `MultipleConflict`, `AutoResolveOption`, `MergeEditor`.
+
+Cette logique était essentielle, parce que la qualité scientifique des données dépendait de la cohérence des trajectoires.
+
+## Mode séquentiel et phase complémentaire
+
+L'application distinguait deux moments :
+
+- une phase de questionnaire séquentiel, guidée par les questions ;
+- une phase complémentaire, plus libre, où l'enquêteur pouvait corriger, compléter et manipuler directement les couples événement/épisode.
+
+Cette séparation permettait de garder une saisie structurée au départ, puis de laisser de la flexibilité pour traiter les cas complexes.
+
+## Multi-écrans
+
+Socket.io permettait de connecter plusieurs écrans dans une même room.
+
+Cette fonctionnalité servait à synchroniser les données entre l'écran de l'enquêteur et l'écran du répondant. Elle rendait l'outil plus adapté à un entretien réel, où l'enquêteur pilote la saisie tout en pouvant partager une visualisation.
+
+## Stabilisation
+
+L'historique de développement montre un gros travail de finition :
+
+- sauvegarde de progression ;
+- reprise d'enquête ;
+- parsing des dates françaises ;
+- correction de conflits ;
+- routes de création, modification et suppression ;
+- toasts de confirmation/erreur ;
+- nettoyage de logs ;
+- documentation du front-end ;
+- ajout des vidéos de présentation.
+
+## Résultat
+
+Le projet a abouti à une version fonctionnelle avec questionnaire, visualisation D3, édition complémentaire, gestion des conflits, synchronisation multi-écrans et documentation technique.
+
+Les vidéos intégrées dans le portfolio montrent les parcours les plus importants : création d'enquête, questionnaire séquentiel, connexion multi-écrans et résolution de conflits temporels.
+
+Ce stage m'a appris à transformer un besoin de recherche en interface utilisable, tout en gardant une base technique lisible pour les personnes qui reprendraient le projet ensuite.

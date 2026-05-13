@@ -11,10 +11,12 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   const animateIn = useCallback(() => {
     if (!containerRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     gsap.fromTo(
       containerRef.current,
-      { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+      { autoAlpha: 0, y: 12 },
+      { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }
     );
   }, []);
 

@@ -4,6 +4,7 @@ import { AboutSection } from "@/components/landing/about-section";
 import { SkillsSection } from "@/components/landing/skills-section";
 import { ProjectsSection } from "@/components/landing/projects-section";
 import { ExperienceSection } from "@/components/landing/experience-section";
+import { ProofsSection } from "@/components/landing/proofs-section";
 import { CtaSection } from "@/components/landing/cta-section";
 
 export default async function Home({
@@ -31,7 +32,8 @@ export default async function Home({
       <AboutSection />
       <SkillsSection />
       <ProjectsSection locale={locale} />
-      <ExperienceSection />
+      <ExperienceSection locale={locale} />
+      <ProofsSection locale={locale} />
       <CtaSection locale={locale} />
     </>
   );

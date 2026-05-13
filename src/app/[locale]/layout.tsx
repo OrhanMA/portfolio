@@ -10,6 +10,7 @@ import { Footer } from "@/components/footer";
 import { SetLang } from "@/components/set-lang";
 import { CookieConsent } from "@/components/cookie-consent";
 import { Analytics } from "@/components/analytics";
+import { StructuredData } from "@/components/structured-data";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export async function generateStaticParams() {
@@ -72,6 +73,7 @@ export default async function LocaleLayout({
       disableTransitionOnChange
     >
       <DictionaryProvider dictionary={dict}>
+        <StructuredData locale={locale as Locale} />
         <SetLang locale={locale} />
         <SmoothScroll>
           <Navbar locale={locale} />

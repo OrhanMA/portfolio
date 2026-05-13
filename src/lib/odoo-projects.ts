@@ -9,6 +9,10 @@ export type OdooProject = {
   href: string;
   summary: LocalizedContent;
   details: LocalizedContent[];
+  businessProblem?: LocalizedContent;
+  solution?: LocalizedContent;
+  technicalHighlights?: LocalizedContent[];
+  impact?: LocalizedContent;
 };
 
 export const odooProjects: OdooProject[] = [
@@ -393,6 +397,419 @@ export const odooProjects: OdooProject[] = [
     ],
   },
 ];
+
+const odooProjectCaseStudies: Record<
+  string,
+  Pick<
+    OdooProject,
+    "businessProblem" | "solution" | "technicalHighlights" | "impact"
+  >
+> = {
+  account_invoice_context: {
+    businessProblem: {
+      fr: "Les équipes finance, ADV et logistique avaient besoin de retrouver l'origine commerciale et logistique d'une facture sans ouvrir plusieurs écrans.",
+      en: "Finance, sales admin, and logistics teams needed to understand an invoice's commercial and logistics origin without opening several screens.",
+    },
+    solution: {
+      fr: "Le module remonte les références utiles directement sur les factures pour rendre les documents comptables plus lisibles.",
+      en: "The module surfaces useful references directly on invoices to make accounting documents easier to read.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Extensions de modèles comptables Odoo avec champs calculés et intégration dans les vues facture.",
+        en: "Odoo accounting model extensions with computed fields and invoice view integration.",
+      },
+    ],
+    impact: {
+      fr: "Moins d'allers-retours entre ventes, livraisons et factures, donc un suivi plus rapide au quotidien.",
+      en: "Fewer jumps between sales, deliveries, and invoices, making daily follow-up faster.",
+    },
+  },
+  account_invoice_margin: {
+    businessProblem: {
+      fr: "La marge sur facture était difficile à fiabiliser et demandait des contrôles manuels ou des exports.",
+      en: "Invoice margin was hard to make reliable and required manual checks or exports.",
+    },
+    solution: {
+      fr: "Le module calcule la marge au niveau facture et ligne, avec une logique adaptée aux besoins de pilotage.",
+      en: "The module calculates margin at invoice and line level with logic adapted to steering needs.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Calculs comptables, champs monétaires, vues liste/formulaire et logique de recalcul historique.",
+        en: "Accounting calculations, monetary fields, list/form views, and historical recomputation logic.",
+      },
+    ],
+    impact: {
+      fr: "Marge plus fiable, disponible directement dans Odoo, et base plus solide pour les KPI de direction.",
+      en: "More reliable margin, available directly in Odoo, and a stronger base for management KPIs.",
+    },
+  },
+  bom_component_totals: {
+    businessProblem: {
+      fr: "Les nomenclatures étaient difficiles à contrôler rapidement lorsque plusieurs lignes répétaient des composants.",
+      en: "Bills of materials were hard to check quickly when several lines repeated components.",
+    },
+    solution: {
+      fr: "Le module agrège les quantités de composants pour donner une lecture synthétique de la nomenclature.",
+      en: "The module aggregates component quantities to provide a compact BoM reading.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Calculs sur lignes de nomenclature et ajout d'informations opérationnelles dans l'interface produit.",
+        en: "Calculations on BoM lines and operational information added to the product interface.",
+      },
+    ],
+    impact: {
+      fr: "Contrôle plus rapide des assemblages et réduction des erreurs de lecture côté produit/production.",
+      en: "Faster assembly checks and fewer reading errors for product/production users.",
+    },
+  },
+  contact_roles: {
+    businessProblem: {
+      fr: "Les fiches clients et fournisseurs ne distinguaient pas assez clairement les rôles des interlocuteurs.",
+      en: "Customer and supplier records did not clearly distinguish contact responsibilities.",
+    },
+    solution: {
+      fr: "Le module structure les fonctions et rôles des contacts pour clarifier qui contacter selon le sujet.",
+      en: "The module structures contact functions and roles to clarify who to contact depending on the topic.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Modèles relationnels Odoo, vues partenaires et valeurs métier réutilisables.",
+        en: "Odoo relational models, partner views, and reusable business values.",
+      },
+    ],
+    impact: {
+      fr: "Donnée CRM plus propre et communication quotidienne moins ambiguë.",
+      en: "Cleaner CRM data and less ambiguity in daily communication.",
+    },
+  },
+  crm_lead_partner_context: {
+    businessProblem: {
+      fr: "La qualification d'un lead demandait de naviguer entre l'opportunité et la fiche partenaire.",
+      en: "Qualifying a lead required moving between the opportunity and partner record.",
+    },
+    solution: {
+      fr: "Le module rapproche le contexte partenaire des leads pour accélérer la qualification.",
+      en: "The module brings partner context closer to leads to speed up qualification.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Extension CRM avec champs liés/calculés et adaptation des vues lead.",
+        en: "CRM extension with related/computed fields and lead view adaptation.",
+      },
+    ],
+    impact: {
+      fr: "Meilleure lecture commerciale dès les premières étapes et moins de changements d'écran.",
+      en: "Better commercial reading from early stages and fewer screen switches.",
+    },
+  },
+  invoice_overdue_alert: {
+    businessProblem: {
+      fr: "Le suivi des factures en retard reposait trop sur des recherches manuelles.",
+      en: "Overdue invoice follow-up relied too much on manual searches.",
+    },
+    solution: {
+      fr: "Le module automatise les alertes de retard et laisse les utilisateurs paramétrer les seuils utiles.",
+      en: "The module automates overdue alerts and lets users configure useful thresholds.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Cron Odoo, préférences utilisateur, configuration système et notifications ciblées.",
+        en: "Odoo cron, user preferences, system configuration, and targeted notifications.",
+      },
+    ],
+    impact: {
+      fr: "Recouvrement plus visible et détection plus rapide des dossiers à relancer.",
+      en: "More visible collection workflow and faster detection of accounts to follow up.",
+    },
+  },
+  packing_list: {
+    businessProblem: {
+      fr: "La préparation logistique avait besoin d'un document de colisage plus clair que les documents standards.",
+      en: "Logistics preparation needed a clearer packing document than the standard ones.",
+    },
+    solution: {
+      fr: "Le module génère des packing lists depuis les transferts avec lignes, états, impression et suivi.",
+      en: "The module generates packing lists from transfers with lines, states, printing, and follow-up.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Wizard, séquence, modèles métier, boutons d'action, rapports QWeb et intégration stock picking.",
+        en: "Wizard, sequence, business models, action buttons, QWeb reports, and stock picking integration.",
+      },
+    ],
+    impact: {
+      fr: "Préparation plus structurée, document exploitable par l'entrepôt et meilleure transmission client.",
+      en: "More structured preparation, warehouse-ready document, and better customer handoff.",
+    },
+  },
+  partner_commercial_profile: {
+    businessProblem: {
+      fr: "Les informations commerciales partenaires étaient dispersées et peu standardisées.",
+      en: "Partner commercial information was scattered and poorly standardized.",
+    },
+    solution: {
+      fr: "Le module ajoute une lecture commerciale structurée directement sur la fiche partenaire.",
+      en: "The module adds a structured commercial view directly to the partner record.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Champs métier partenaires, vues dédiées et intégration au cycle CRM/vente.",
+        en: "Partner business fields, dedicated views, and CRM/sales cycle integration.",
+      },
+    ],
+    impact: {
+      fr: "Qualification plus homogène et continuité plus claire entre prospection, vente et suivi.",
+      en: "More consistent qualification and clearer continuity between prospecting, sales, and follow-up.",
+    },
+  },
+  partner_lead_qualification: {
+    businessProblem: {
+      fr: "Les leads n'étaient pas toujours priorisés avec les mêmes critères métier.",
+      en: "Leads were not always prioritized using the same business criteria.",
+    },
+    solution: {
+      fr: "Le module structure la qualification pour mieux identifier les opportunités pertinentes.",
+      en: "The module structures qualification to better identify relevant opportunities.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Statuts, champs d'analyse et vues orientées qualification commerciale.",
+        en: "Statuses, analysis fields, and views focused on sales qualification.",
+      },
+    ],
+    impact: {
+      fr: "Dossiers plus lisibles et effort commercial mieux concentré.",
+      en: "More readable records and better-focused sales effort.",
+    },
+  },
+  product_b2b_pricing: {
+    businessProblem: {
+      fr: "Les données tarifaires B2B devaient être plus visibles pour le catalogue et les équipes commerciales.",
+      en: "B2B pricing data needed to be more visible for the catalog and sales teams.",
+    },
+    solution: {
+      fr: "Le module organise les informations de prix B2B sur les fiches produit.",
+      en: "The module organizes B2B pricing information on product records.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Extension produits/tarifs et adaptation des vues de catalogue.",
+        en: "Product/pricelist extension and catalog view adaptation.",
+      },
+    ],
+    impact: {
+      fr: "Chiffrage et maintenance catalogue plus simples, avec moins de dépendance aux exports.",
+      en: "Simpler quoting and catalog maintenance, with less reliance on exports.",
+    },
+  },
+  product_catalog_metadata: {
+    businessProblem: {
+      fr: "Le catalogue produit demandait des métadonnées absentes du standard Odoo.",
+      en: "The product catalog needed metadata missing from standard Odoo.",
+    },
+    solution: {
+      fr: "Le module centralise les informations produit utiles à la publication, au tri et au reporting.",
+      en: "The module centralizes product information useful for publishing, sorting, and reporting.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Nombreux champs produit, tags, catégories publiques et vues de contrôle catalogue.",
+        en: "Numerous product fields, tags, public categories, and catalog control views.",
+      },
+    ],
+    impact: {
+      fr: "Catalogue plus cohérent et meilleure base pour les usages e-commerce/B2B.",
+      en: "More consistent catalog and better foundation for e-commerce/B2B use cases.",
+    },
+  },
+  product_packaging: {
+    businessProblem: {
+      fr: "Les informations de conditionnement étaient nécessaires à la vente, à l'achat et à la logistique.",
+      en: "Packaging information was needed across sales, purchasing, and logistics.",
+    },
+    solution: {
+      fr: "Le module expose les dimensions, poids, GTIN, colisage et données palettes sur les produits.",
+      en: "The module exposes dimensions, weights, GTINs, packaging, and pallet data on products.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Champs produit calculés/affichés, onchange poids et intégration dans les vues opérationnelles.",
+        en: "Displayed/computed product fields, weight onchange logic, and operational view integration.",
+      },
+    ],
+    impact: {
+      fr: "Moins de recherches manuelles et meilleure fiabilité des documents logistiques.",
+      en: "Fewer manual lookups and more reliable logistics documents.",
+    },
+  },
+  purchase_order_line_barcode: {
+    businessProblem: {
+      fr: "Le contrôle fournisseur demandait d'identifier vite les produits sur les lignes d'achat.",
+      en: "Supplier control required quick product identification on purchase lines.",
+    },
+    solution: {
+      fr: "Le module affiche les codes-barres directement dans les lignes d'achat.",
+      en: "The module displays barcodes directly on purchase order lines.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Extension purchase.order.line et adaptation des vues achat.",
+        en: "purchase.order.line extension and purchase view adaptation.",
+      },
+    ],
+    impact: {
+      fr: "Réception et vérification fournisseur plus rapides, surtout dans les flux avec scan.",
+      en: "Faster supplier receipt and verification, especially in scan-heavy workflows.",
+    },
+  },
+  sale_order_channel_info: {
+    businessProblem: {
+      fr: "L'origine des commandes devait être plus visible pour segmenter l'activité.",
+      en: "Order origin needed to be more visible to segment activity.",
+    },
+    solution: {
+      fr: "Le module ajoute les informations de canal de vente directement dans le flux commande.",
+      en: "The module adds sales-channel information directly into the order workflow.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Champs commande, vues liste/formulaire et logique de reporting commercial.",
+        en: "Order fields, list/form views, and sales reporting logic.",
+      },
+    ],
+    impact: {
+      fr: "Analyse par canal plus simple et lecture commerciale plus rapide.",
+      en: "Simpler channel analysis and faster commercial reading.",
+    },
+  },
+  sale_order_fiscal_year: {
+    businessProblem: {
+      fr: "Le rapprochement entre commandes et périodes financières n'était pas assez explicite.",
+      en: "The link between orders and financial periods was not explicit enough.",
+    },
+    solution: {
+      fr: "Le module rattache les commandes à un exercice fiscal exploitable en recherche et reporting.",
+      en: "The module links orders to a fiscal year usable in search and reporting.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Calcul d'exercice sur date de commande et ajout aux vues de vente.",
+        en: "Fiscal-year calculation from order date and addition to sales views.",
+      },
+    ],
+    impact: {
+      fr: "Classement et reporting financier plus directs pour les équipes internes.",
+      en: "More direct financial classification and reporting for internal teams.",
+    },
+  },
+  sale_order_invoice_date: {
+    businessProblem: {
+      fr: "Le délai entre commande et facture était difficile à suivre depuis les vues de vente.",
+      en: "The delay between order and invoice was hard to follow from sales views.",
+    },
+    solution: {
+      fr: "Le module expose la date de facturation liée à la commande.",
+      en: "The module exposes the invoicing date linked to the order.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Champs liés/calculés sur sale.order et intégration dans les vues liste.",
+        en: "Related/computed fields on sale.order and list view integration.",
+      },
+    ],
+    impact: {
+      fr: "Suivi vente-facture plus fluide et moins de recherches croisées.",
+      en: "Smoother sales-to-invoice tracking and fewer cross-searches.",
+    },
+  },
+  sale_order_line_notes: {
+    businessProblem: {
+      fr: "Certaines consignes ne concernaient qu'une ligne de commande, pas toute la commande.",
+      en: "Some instructions applied to a single order line, not the entire order.",
+    },
+    solution: {
+      fr: "Le module ajoute des notes au niveau ligne et les propage aux flux liés quand nécessaire.",
+      en: "The module adds line-level notes and propagates them to related flows when needed.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Extension sale.order.line, stock.move et affichage dans les vues opérationnelles.",
+        en: "sale.order.line and stock.move extension with operational view display.",
+      },
+    ],
+    impact: {
+      fr: "Consignes plus précises pour la préparation et moins de pertes d'information.",
+      en: "More precise preparation instructions and less information loss.",
+    },
+  },
+  sale_order_risk_alerts: {
+    businessProblem: {
+      fr: "Les commandes sensibles devaient être identifiées avant confirmation ou traitement.",
+      en: "Sensitive orders needed to be identified before confirmation or processing.",
+    },
+    solution: {
+      fr: "Le module met en avant des alertes de risque et peut bloquer ou guider la validation.",
+      en: "The module surfaces risk alerts and can block or guide validation.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Règles métier sur commandes, configuration, templates email et vues d'alerte.",
+        en: "Business rules on orders, configuration, email templates, and alert views.",
+      },
+    ],
+    impact: {
+      fr: "Ventes mieux sécurisées et décisions ADV plus rapides sur les cas à risque.",
+      en: "More secure sales and faster sales-admin decisions on risky cases.",
+    },
+  },
+  stock_move_product_analytics: {
+    businessProblem: {
+      fr: "Les mouvements de stock manquaient d'axes de lecture pour le reporting produit.",
+      en: "Stock moves lacked analysis dimensions for product reporting.",
+    },
+    solution: {
+      fr: "Le module enrichit les mouvements avec des informations produit exploitables en reporting.",
+      en: "The module enriches stock moves with product information usable in reporting.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Champs analytiques sur stock.move et adaptation des vues logistiques.",
+        en: "Analytical fields on stock.move and logistics view adaptation.",
+      },
+    ],
+    impact: {
+      fr: "Meilleure lecture transversale entre stock, produits et performance opérationnelle.",
+      en: "Better cross-functional reading across stock, products, and operational performance.",
+    },
+  },
+  stock_value_api: {
+    businessProblem: {
+      fr: "La valeur de stock devait être consommable par des outils externes sans exports manuels.",
+      en: "Stock value needed to be consumed by external tools without manual exports.",
+    },
+    solution: {
+      fr: "Le module expose des routes API pour récupérer les données de valorisation et de stock.",
+      en: "The module exposes API routes to retrieve stock and valuation data.",
+    },
+    technicalHighlights: [
+      {
+        fr: "Contrôleurs HTTP Odoo, méthodes modèle, calculs de stock et paramètres de sécurité.",
+        en: "Odoo HTTP controllers, model methods, stock calculations, and security parameters.",
+      },
+    ],
+    impact: {
+      fr: "Synchronisation et tableaux de bord plus automatisés, avec moins de manipulation humaine.",
+      en: "More automated synchronization and dashboards, with less human handling.",
+    },
+  },
+};
+
+odooProjects.forEach((project) => {
+  Object.assign(project, odooProjectCaseStudies[project.slug]);
+});
 
 export function getOdooProjectBySlug(slug: string) {
   return odooProjects.find((project) => project.slug === slug);

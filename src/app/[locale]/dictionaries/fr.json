@@ -6,7 +6,7 @@
   "nav": {
     "home": "Accueil",
     "articles": "Articles",
-    "projects": "Projets",
+    "projects": "Projets Odoo",
     "skills": "Compétences",
     "contact": "Contact",
     "about": "À propos",
@@ -22,16 +22,16 @@
     "statement": "Je conçois des interfaces web premium et des systèmes métier robustes, avec une attention égale portée au produit, à la performance et à l'usage réel.",
     "location": "Chambéry, France",
     "status": "En alternance chez 1UP",
-    "availabilityLabel": "Position actuelle",
-    "availability": "Fullstack developer en alternance, disponible pour opportunités créatives et techniques.",
+    "availabilityLabel": "Repères professionnels",
+    "availability": "Développeur fullstack en alternance, avec une pratique quotidienne des systèmes métier, du web et de l'infrastructure.",
     "ctaParcours": "Voir mon parcours",
     "ctaArticles": "Lire mes articles",
     "ctaWork": "Voir les réalisations",
-    "ctaContact": "Discuter d'un projet",
+    "ctaContact": "Me contacter",
     "proofs": [
-      { "value": "Odoo v16→v19", "label": "Migration ERP menée en solo sur un système utilisé au quotidien." },
-      { "value": "20+ modules", "label": "Solutions métier Odoo développées, maintenues et publiées open source." },
-      { "value": "Next + GSAP", "label": "Sites vitrines rapides, animés et pensés pour convertir." }
+      { "value": "ERP", "label": "Systèmes métier, automatisations et migrations sur des environnements réels." },
+      { "value": "Web", "label": "Interfaces modernes, sites multilingues et expériences orientées usage." },
+      { "value": "Produit", "label": "Compréhension du besoin, livraison progressive et attention aux détails." }
     ],
     "scroll": "Scroll"
   },
@@ -67,7 +67,7 @@
   },
   "featuredProjects": {
     "eyebrow": "Études de cas",
-    "heading": "Des projets qui prouvent autant le goût que l'exécution.",
+    "heading": "Des réalisations qui relient exigence produit et exécution technique.",
     "text": "Une sélection courte de réalisations pensées comme des preuves concrètes : migration critique, modules métier, refonte vitrine et impact utilisateur.",
     "featuredLabel": "Case study",
     "resultLabel": "Résultat",
@@ -83,6 +83,9 @@
     "eyebrow": "Chronologie",
     "heading": "Parcours",
     "subtext": "Une trajectoire construite par la pratique : autodidaxie, recherche universitaire, entreprise, ERP, e-commerce et sites vitrines.",
+    "responsibilitiesLabel": "Responsabilités",
+    "linkedRealisationsLabel": "Réalisations liées",
+    "linkedCompetencesLabel": "Compétences liées",
     "entries": [
       {
         "period": "Déc. 2025 — Présent",
@@ -91,6 +94,13 @@
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
         "description": "Développement et maintenance de modules Odoo (Python, PostgreSQL). Conception et développement d'un site B2B e-commerce avec Symfony. Refonte du site corporate avec Next.js. Gestion de la migration Odoo v16 → v19 en solo. Administration de bases de données, CI/CD et gestion de serveurs VPS (OVH, Digital Ocean).",
+        "responsibilities": [
+          "Référent technique Odoo pour les développements métier internes.",
+          "Gestion autonome de la migration ERP Odoo v16 → v19.",
+          "Développement fullstack sur ERP, e-commerce B2B, site corporate et infrastructure."
+        ],
+        "linkedRealisations": ["migration-odoo-v16-v19", "modules-metier-odoo", "refonte-site-corporate"],
+        "linkedCompetences": ["developpement-odoo", "python", "developpement-frontend", "devops", "autonomie"],
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
@@ -100,6 +110,13 @@
         "logo": "/logo-lig.svg",
         "url": "https://www.liglab.fr/fr",
         "description": "Développement d'une application Vue.js et D3.js pour un questionnaire d'étude sociologique sur les trajectoires de vie. Création de visualisations de données sur mesure. Collaboration avec des chercheurs universitaires.",
+        "responsibilities": [
+          "Conception et développement d'une première version fonctionnelle de l'application.",
+          "Implémentation de visualisations D3.js adaptées à des besoins de recherche.",
+          "Traduction de besoins sociologiques en interfaces et modèles de données exploitables."
+        ],
+        "linkedRealisations": ["app-trajectoires-de-vie"],
+        "linkedCompetences": ["developpement-frontend", "communication", "autonomie", "perseverance"],
         "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Recherche"]
       },
       {
@@ -115,22 +132,53 @@
         ],
         "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Développeur Web et Web Mobile (RNCP bac+2, 2024), Concepteur et Développeur d'Application (RNCP bac+3, 2025). Actuellement en mastère Expert en Ingénierie du Logiciel (RNCP 7 bac+5) à l'ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
         "institutions": "Simplon emploie une pédagogie active centrée sur l'apprentissage par la pratique via des projets inspirés de situations professionnelles réelles, en petits groupes de 15 à 25 apprenants. Fondée en 2013, l'organisation a formé plus de 30 000 apprenants avec 75 % d'insertion professionnelle et 95 % de réussite aux certifications. L'ISCOD propose des formations en alternance à distance reconnues par l'État, permettant de concilier expérience en entreprise et montée en compétences académique.",
+        "responsibilities": [
+          "Construction progressive d'un socle web fullstack, de l'autodidaxie à l'alternance.",
+          "Validation de compétences professionnelles via titres RNCP et projets pratiques.",
+          "Consolidation des bases en algorithmique, conception, bases de données et gestion de projet."
+        ],
+        "linkedRealisations": ["portfolio-professionnel"],
+        "linkedCompetences": ["adaptabilite", "amelioration-continue", "communication"],
         "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet", "TOEIC 920"]
       }
     ]
   },
+  "proofs": {
+    "eyebrow": "Documents",
+    "heading": "Quelques preuves vérifiables du parcours.",
+    "text": "CV, certifications et titres sont regroupés ici pour compléter les réalisations détaillées du portfolio.",
+    "cta": "Me contacter",
+    "items": {
+      "cv": {
+        "title": "CV professionnel",
+        "description": "Synthèse PDF du parcours, de la stack et des projets clés."
+      },
+      "toeic": {
+        "title": "Certification TOEIC",
+        "description": "Score TOEIC Listening & Reading : 920/990."
+      },
+      "cda": {
+        "title": "Titre CDA",
+        "description": "Concepteur Développeur d'Applications, RNCP niveau 6."
+      },
+      "dwwm": {
+        "title": "Titre DWWM",
+        "description": "Développeur Web et Web Mobile, RNCP niveau 5."
+      }
+    }
+  },
   "cta": {
     "eyebrow": "Contact",
-    "heading": "Intéressé par mon profil ?",
-    "text": "N'hésitez pas à me contacter pour discuter de vos projets ou d'opportunités de collaboration.",
+    "heading": "Échanger autour de mon profil",
+    "text": "Le formulaire reste le point de contact le plus simple pour une question, un projet ou une prise de contact professionnelle.",
     "ctaContact": "Me contacter",
     "ctaLinkedin": "Voir mon LinkedIn"
   },
   "contact": {
     "pageTitle": "Contact | Orhan Madi Assani",
-    "pageDescription": "Contactez-moi pour discuter de projets, collaborations ou opportunités.",
+    "pageDescription": "Contactez-moi pour une question, un projet ou une prise de contact professionnelle.",
     "heading": "Me contacter",
-    "subtext": "Une question, un projet ou une proposition ? Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.",
+    "subtext": "Une question, un projet ou un message professionnel ? Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.",
     "altEmail": "Vous pouvez aussi me contacter directement par email à",
     "recaptchaDisclosure": "Ce site est protégé par reCAPTCHA et les {privacy} et {terms} de Google s'appliquent.",
     "privacyPolicy": "règles de confidentialité",
@@ -174,6 +222,17 @@
   "articles": {
     "heading": "Articles",
     "subtext": "Tutoriels et retours d'expérience sur des sujets peu documentés.",
+    "allTopics": "Tous",
+    "searchPlaceholder": "Rechercher par titre, contenu ou tag...",
+    "clearSearch": "Effacer la recherche",
+    "noResults": "Aucun article ne correspond à ces filtres.",
+    "readingTime": "Temps de lecture",
+    "minuteShort": "min",
+    "tableOfContents": "Sommaire",
+    "relatedArticles": "Articles liés",
+    "copyLink": "Copier le lien",
+    "copied": "Lien copié",
+    "frenchOnlyNotice": "Article rédigé en français, traduction navigateur recommandée.",
     "articlesData": [
       {
         "slug": "odoo-session-timeout",
@@ -195,6 +254,27 @@
         "description": "Diagnostic et résolution d'un problème de saturation disque causé par des images Docker dangling sur un VPS de production.",
         "date": "2026-03-15",
         "tags": ["Docker", "Linux", "DevOps", "VPS"]
+      },
+      {
+        "slug": "migration-odoo-v16-v19",
+        "title": "Migration Odoo v16 vers v19 : retour d'expérience sur une montée de version ERP",
+        "description": "Analyse de la migration Odoo menée chez 1UP, de la bascule v19 aux corrections métier post-migration.",
+        "date": "2026-05-13",
+        "tags": ["Odoo", "Migration", "ERP", "Python"]
+      },
+      {
+        "slug": "refonte-site-corporate-1up",
+        "title": "Refonte du site corporate 1UP avec Next.js, Sanity et GSAP",
+        "description": "Retour sur la construction d'un site corporate internationalisé, animé, éditable et pensé comme support marketing.",
+        "date": "2026-05-13",
+        "tags": ["Next.js", "Sanity", "GSAP", "i18n"]
+      },
+      {
+        "slug": "application-cap2vie-lig",
+        "title": "CAP2vie au LIG : outil d'enquête sociologique et visualisation D3.js",
+        "description": "Architecture, visualisation, gestion des conflits et synchronisation multi-écrans d'une application de trajectoires de vie.",
+        "date": "2026-05-13",
+        "tags": ["Vue.js", "Nuxt", "D3.js", "Recherche"]
       }
     ]
   },
@@ -211,7 +291,11 @@
     "viewDetails": "Voir la fiche",
     "backToProjects": "Retour aux projets",
     "detailHeading": "Ce que fait le module",
-    "detailSubtext": "Résumé fonctionnel du besoin couvert et de la valeur apportée dans Odoo."
+    "detailSubtext": "Résumé fonctionnel du besoin couvert et de la valeur apportée dans Odoo.",
+    "businessProblem": "Problème métier",
+    "solution": "Solution",
+    "technicalHighlights": "Partie technique notable",
+    "impact": "Impact concret"
   },
   "aboutPage": {
     "pageTitle": "À propos | Orhan Madi Assani",
@@ -262,6 +346,8 @@
     "resultsHeading": "Les résultats",
     "aftermathHeading": "Les lendemains du projet",
     "critiqueHeading": "Mon regard critique",
+    "mediaHeading": "Preuves visuelles",
+    "mediaSubtext": "Captures et démonstrations issues des projets réels.",
     "linkedCompetencesHeading": "Compétences rattachées",
     "context": "Contexte"
   },

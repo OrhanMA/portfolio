@@ -75,7 +75,7 @@ export function Navbar({ locale }: { locale: string }) {
           </Avatar>
           <span className="hidden leading-none sm:block">
             <span className="block text-sm font-semibold tracking-normal">
-              Orhan Madi
+              Orhan Madi Assani
             </span>
             <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
               Fullstack
