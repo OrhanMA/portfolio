@@ -29,18 +29,13 @@ vi.mock("@/lib/recaptcha", () => ({
   RECAPTCHA_THRESHOLD: 0.5,
 }));
 
-// Visual regression tests are skipped in CI because screenshot baselines
-// are platform-specific (font rendering differs between macOS and Linux).
-// Run locally to catch visual regressions: pnpm test:browser
-const isCI = typeof process !== "undefined" && !!process.env.CI;
-
 describe("Visual Regression", () => {
   beforeEach(() => {
     localStorage.clear();
     document.cookie = "cookie-consent-given=;max-age=0";
   });
 
-  test.skipIf(isCI)("cookie consent banner", async () => {
+  test("cookie consent banner", async () => {
     const { container } = await renderWithProviders(<CookieConsent />);
 
     // Wait for banner to appear (1.5s delay)
@@ -51,7 +46,7 @@ describe("Visual Regression", () => {
     await expect(container).toMatchScreenshot("cookie-consent-banner");
   });
 
-  test.skipIf(isCI)("cookie consent with expanded preferences", async () => {
+  test("cookie consent with expanded preferences", async () => {
     const { container } = await renderWithProviders(<CookieConsent />);
 
     // Wait and expand
@@ -66,7 +61,7 @@ describe("Visual Regression", () => {
     );
   });
 
-  test.skipIf(isCI)("language switcher FR state", async () => {
+  test("language switcher FR state", async () => {
     const { usePathname } = await import("next/navigation");
     vi.mocked(usePathname).mockReturnValue("/fr");
 
@@ -81,7 +76,7 @@ describe("Visual Regression", () => {
     );
   });
 
-  test.skipIf(isCI)("contact form", async () => {
+  test("contact form", async () => {
     const { container } = await renderWithProviders(<ContactForm />);
 
     await expect

@@ -16,6 +16,9 @@ export default defineConfig({
   test: {
     name: "browser",
     include: ["src/**/*.browser.test.{ts,tsx}"],
+    exclude: process.env.CI
+      ? ["src/components/__tests__/visual.browser.test.tsx"]
+      : [],
     browser: {
       enabled: true,
       provider: playwright(),
