@@ -284,7 +284,7 @@ export default async function RealisationDetailPage({
                       </h2>
                     </div>
                   </header>
-                  <div className="px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
+                  <div className="realisation-content-deferred px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
                     <RealisationArticleContent text={section.text} />
                     <div className="mx-auto mt-8 max-w-[76ch] border-t border-border/70 pt-5 text-right">
                       <a

@@ -195,39 +195,64 @@ function DesktopSubmenu({
   allLabel: string;
   items: NavbarMenuItem[];
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="group relative">
+    <div
+      className="group relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={(event) => {
+        if (!event.currentTarget.contains(document.activeElement)) {
+          setOpen(false);
+        }
+      }}
+      onFocus={() => setOpen(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setOpen(false);
+        }
+      }}
+    >
       <Link
         href={href}
         prefetch={false}
         aria-haspopup="true"
+        aria-expanded={open}
         className="flex items-center gap-1 rounded-md px-3 py-2 text-xs font-semibold text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
       >
         {label}
-        <ChevronDown aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+        <ChevronDown
+          aria-hidden="true"
+          className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")}
+        />
       </Link>
-      <div className="invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-[opacity,visibility,transform] duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-        <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-lg border border-foreground/15 bg-background/98 p-2 shadow-2xl backdrop-blur-xl">
-          <Link
-            href={href}
-            prefetch={false}
-            className="mb-1 flex items-center justify-between rounded-md bg-primary/[0.06] px-3 py-2.5 text-xs font-black uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-primary/[0.11]"
-          >
-            {allLabel}
-            <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
-          </Link>
-          {items.map((item) => (
+      {open && (
+        <div
+          data-desktop-submenu
+          className="absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3"
+        >
+          <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-lg border border-foreground/15 bg-background/98 p-2 shadow-2xl backdrop-blur-xl">
             <Link
-              key={item.href}
-              href={item.href}
+              href={href}
               prefetch={false}
-              className="block rounded-md px-3 py-2 text-sm leading-5 text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
+              className="mb-1 flex items-center justify-between rounded-md bg-primary/[0.06] px-3 py-2.5 text-xs font-black uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-primary/[0.11]"
             >
-              {item.label}
+              {allLabel}
+              <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
             </Link>
-          ))}
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                prefetch={false}
+                className="block rounded-md px-3 py-2 text-sm leading-5 text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

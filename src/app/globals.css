@@ -278,7 +278,7 @@
 
   .hero-name-outline {
     color: transparent;
-    -webkit-text-stroke: clamp(1.5px, 0.22vw, 3px) var(--primary);
+    -webkit-text-stroke: clamp(1.5px, 0.22vw, 3px) var(--vermillion);
     paint-order: stroke fill;
   }
 
@@ -372,6 +372,14 @@
 
 .landing-deferred-contact {
   contain-intrinsic-size: auto 430px;
+}
+
+/* Detail pages can contain long proof narratives. Keep their headings and
+   anchor targets available immediately while allowing the browser to defer
+   layout and paint of the off-screen body copy. */
+.realisation-content-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 .hero-portrait {

@@ -11,7 +11,7 @@ describe("RealisationDetailPage", () => {
       }),
     });
 
-    render(page);
+    const { container } = render(page);
 
     const contents = screen.getByRole("navigation", { name: "Sommaire" });
     expect(contents).toBeInTheDocument();
@@ -33,6 +33,9 @@ describe("RealisationDetailPage", () => {
     expect(
       screen.getAllByRole("link", { name: "Retour au sommaire" }),
     ).toHaveLength(8);
+    expect(
+      container.querySelectorAll(".realisation-content-deferred"),
+    ).not.toHaveLength(0);
   });
 
   it("shows the dedicated migration risk analysis in French", async () => {

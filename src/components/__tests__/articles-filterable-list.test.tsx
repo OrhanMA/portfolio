@@ -82,6 +82,20 @@ describe("ArticlesFilterableList", () => {
     expect(screen.queryByText("CAP2vie")).not.toBeInTheDocument();
   });
 
+  it("does not rewrite the URL when the initial filters already match it", () => {
+    currentSearchParams = new URLSearchParams("tag=Odoo&q=qweb");
+
+    renderWithProviders(
+      <ArticlesFilterableList
+        articles={articles}
+        locale="fr"
+        labels={labels}
+      />,
+    );
+
+    expect(replaceMock).not.toHaveBeenCalled();
+  });
+
   it("keeps the active filters synchronized in the URL", async () => {
     const user = userEvent.setup();
     renderWithProviders(

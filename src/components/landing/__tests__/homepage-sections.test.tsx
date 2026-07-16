@@ -83,6 +83,10 @@ describe("editorial homepage sections", () => {
         "/images/decorative/sakura-petal.svg",
       );
     });
+    expect(screen.getByRole("link", { name: "Voir les réalisations" })).toHaveClass(
+      "bg-vermillion",
+      "text-white",
+    );
     hero.unmount();
 
     const contact = renderWithProviders(
@@ -149,7 +153,7 @@ describe("editorial homepage sections", () => {
   });
 
   it("shows verifiable result metrics for each featured project", () => {
-    renderWithProviders(
+    const { container } = renderWithProviders(
       <ProjectsSection
         locale="fr"
         projects={featuredProjects}
@@ -166,5 +170,8 @@ describe("editorial homepage sections", () => {
     expect(screen.getByText(/Une demi-journée économisée/)).toBeInTheDocument();
     expect(screen.getByText(/100 en accessibilité et 100 en SEO/)).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Voir la réalisation" })).toHaveLength(3);
+    expect(
+      container.querySelectorAll('[data-slot="project-result"] svg'),
+    ).toHaveLength(0);
   });
 });

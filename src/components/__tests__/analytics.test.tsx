@@ -23,7 +23,7 @@ describe("Analytics", () => {
     expect(screen.queryByTestId("speed-insights")).not.toBeInTheDocument();
   });
 
-  it("reacts to consent changes and enables field Web Vitals", () => {
+  it("reacts to consent changes and enables field Web Vitals", async () => {
     render(<Analytics />);
 
     act(() => {
@@ -34,6 +34,6 @@ describe("Analytics", () => {
       );
     });
 
-    expect(screen.getByTestId("speed-insights")).toBeInTheDocument();
+    expect(await screen.findByTestId("speed-insights")).toBeInTheDocument();
   });
 });

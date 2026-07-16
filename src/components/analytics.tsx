@@ -1,12 +1,19 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import Script from "next/script";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getStoredConsent } from "@/lib/cookie-consent";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const SpeedInsights = dynamic(
+  () =>
+    import("@vercel/speed-insights/next").then(
+      ({ SpeedInsights: SpeedInsightsComponent }) => SpeedInsightsComponent,
+    ),
+  { ssr: false },
+);
 
 function subscribeToConsent(callback: () => void) {
   window.addEventListener("cookie-consent-update", callback);

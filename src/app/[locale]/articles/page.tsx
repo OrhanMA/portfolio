@@ -49,7 +49,7 @@ export default async function ArticlesPage({
         title={dict.articles.heading}
         description={dict.articles.subtext}
         titleClassName="uppercase"
-        className="relative left-1/2 -mt-28 w-screen -translate-x-1/2"
+        className="relative left-1/2 w-screen -translate-x-1/2"
       />
 
       <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">

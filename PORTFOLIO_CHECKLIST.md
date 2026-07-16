@@ -235,12 +235,12 @@ La page de présentation expose désormais explicitement le projet professionnel
 ## Audit technique du 2026-07-16
 
 - Build Next.js 16 de production réussi, avec génération de 109 pages. Toutes les routes du portfolio sont dans l'App Router ; le nonce CSP rend les pages dynamiques par conception.
-- Lighthouse local sur le build de production : mobile **91/100 en performance** et 100/100 en accessibilité, bonnes pratiques et SEO (FCP 1,2 s, LCP 3,5 s, TBT 10 ms, CLS 0). Desktop : **99/100 en performance** et 100/100 dans les trois autres catégories (FCP 0,3 s, LCP 0,8 s, TBT 0 ms, CLS 0). Les mesures de performance doivent être rejouées sur Vercel après mise en production, avec les conditions réseau réelles.
+- Lighthouse mobile lancé avec Chrome for Testing 149 sur 18 routes représentatives FR/EN du build de production : **88–95/100** selon le gabarit et la variabilité normale de la mesure, FCP 1,05–1,65 s, LCP 2,57–3,77 s, TBT 10–33 ms. Les ajustements effectués ensuite ont ramené le CLS de la liste d'articles à **0** et différé le rendu hors écran des longs contenus de réalisations. Les mesures doivent être rejouées sur Vercel après mise en production, avec les conditions réseau réelles.
 - 100/100 URL du sitemap répondent en HTTP 200, possèdent un H1 unique et exposent la bonne URL canonical localisée.
 - Aucun lien interne cassé détecté lors du crawl des routes du sitemap et des preuves publiques.
 - Aucun saut de niveau dans la hiérarchie des titres sur les 100 routes du sitemap.
 - Audit Playwright des pages secondaires réussi en 1280 × 900 et 390 × 844, en français et en anglais, sans débordement horizontal.
-- Suite Vitest unitaire réussie : 34 fichiers, 185 tests. Tests navigateur : 4 fichiers, 20 tests. Suite E2E Playwright : 29 scénarios réussis sur le build de production.
+- Suite Vitest réussie : 36 fichiers, 191 tests. Suite E2E Playwright : 30 scénarios réussis sur le build de production.
 - Régressions visuelles homepage desktop et mobile inspectées, actualisées après les changements intentionnels, puis rejouées avec succès.
 
 ---
@@ -304,7 +304,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Page load time under 3 seconds | ✅ | Lighthouse production local : 99 en performance mobile, 100 desktop ; LCP 2,1 s mobile / 0,4 s desktop, TBT 0 ms, CLS 0 |
+| Page load time under 3 seconds | 🟡 | Audit Chrome for Testing mobile sur 18 gabarits : LCP 2,57–3,77 s, TBT ≤ 33 ms et CLS corrigé à 0. Rejouer Lighthouse sur Vercel avant de clôturer ce point. |
 | Mobile-first approach | ✅ | Tailwind CSS mobile-first breakpoints |
 | Responsive design (all breakpoints) | ✅ | Audit Playwright sur 18 routes représentatives en 390 px et 1280 px, sans débordement horizontal |
 | Touch-friendly navigation | ✅ | Mobile hamburger menu |

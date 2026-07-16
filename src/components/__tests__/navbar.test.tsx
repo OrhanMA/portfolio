@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+import { fireEvent } from "@testing-library/react";
 import { Navbar } from "@/components/navbar";
 import { competences } from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
@@ -47,6 +48,13 @@ describe("Navbar", () => {
     expect(navigation).not.toBeNull();
     const desktop = within(navigation as HTMLElement);
 
+    fireEvent.focus(
+      desktop.getByRole("link", { name: "Compétences" }),
+    );
+    fireEvent.focus(
+      desktop.getByRole("link", { name: "Réalisations" }),
+    );
+
     expect(
       desktop.getByRole("link", { name: "Voir les 10 compétences" }),
     ).toHaveAttribute("href", "/fr/competences");
@@ -61,13 +69,10 @@ describe("Navbar", () => {
       );
     }
 
-    const panels = navigation?.querySelectorAll(".group > div.invisible");
+    const panels = navigation?.querySelectorAll("[data-desktop-submenu]");
     expect(panels).toHaveLength(2);
     panels?.forEach((panel) => {
-      expect(panel).toHaveClass(
-        "group-hover:visible",
-        "group-focus-within:visible",
-      );
+      expect(panel).toHaveClass("absolute", "top-full");
     });
   });
 

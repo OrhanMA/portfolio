@@ -67,7 +67,7 @@ export function HeroSection({
             <LandingButtonLink
               href={`/${locale}/realisations`}
               size="lg"
-              className="gap-2"
+              className="gap-2 bg-vermillion text-white hover:bg-vermillion/90"
             >
               {dict.ctaWork}
               <ArrowRight aria-hidden="true" className="h-4 w-4" />

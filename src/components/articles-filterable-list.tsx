@@ -53,6 +53,7 @@ export function ArticlesFilterableList({
   const router = useRouter();
   const pathname = usePathname() ?? `/${locale}/articles`;
   const searchParams = useSearchParams();
+  const currentSearch = searchParams?.toString() ?? "";
   const [activeTag, setActiveTag] = useState<string | null>(
     searchParams?.get("tag") ?? null,
   );
@@ -83,8 +84,12 @@ export function ArticlesFilterableList({
       ? `${pathname}?${params.toString()}`
       : pathname;
 
-    router.replace(nextUrl, { scroll: false });
-  }, [activeTag, pathname, query, router]);
+    const currentUrl = currentSearch ? `${pathname}?${currentSearch}` : pathname;
+
+    if (nextUrl !== currentUrl) {
+      router.replace(nextUrl, { scroll: false });
+    }
+  }, [activeTag, currentSearch, pathname, query, router]);
 
   const filteredArticles = articles.filter((article) => {
     const matchesTag = activeTag ? article.tags.includes(activeTag) : true;

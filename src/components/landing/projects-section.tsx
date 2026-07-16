@@ -6,7 +6,6 @@ import {
   EditorialWave,
   UkiyoeCrest,
 } from "@/components/landing/editorial-wave";
-import { PixelFlag, PixelHeart, PixelSpark } from "@/components/landing/pixel-art";
 import { cn } from "@/lib/utils";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
@@ -53,8 +52,6 @@ type CaseCopy = {
   metricNote: string;
 };
 
-const ResultIcons = [PixelSpark, PixelHeart, PixelFlag];
-
 export function ProjectsSection({
   locale,
   projects,
@@ -89,7 +86,6 @@ export function ProjectsSection({
               const slug = project.slug;
               const media = CASE_MEDIA[slug];
               const copy = caseCopyBySlug[slug];
-              const ResultIcon = ResultIcons[index] ?? PixelSpark;
               const imageOnRight = index === 1;
 
               return (
@@ -150,8 +146,10 @@ export function ProjectsSection({
                     </Link>
                   </div>
 
-                  <div className="relative flex min-h-48 flex-col justify-center border-t border-foreground/15 px-6 py-8 lg:order-3 lg:min-h-72 lg:border-t-0">
-                    <ResultIcon className="absolute right-4 top-4 h-7 w-7 text-vermillion" />
+                  <div
+                    data-slot="project-result"
+                    className="relative flex min-h-48 flex-col justify-center border-t border-foreground/15 px-6 py-8 lg:order-3 lg:min-h-72 lg:border-t-0"
+                  >
                     <p className="font-sans text-[9px] font-bold uppercase tracking-[0.16em] text-vermillion">
                       {dict.resultLabel}
                     </p>
