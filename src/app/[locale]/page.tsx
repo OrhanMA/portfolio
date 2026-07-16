@@ -65,7 +65,7 @@ export default async function Home({
         dict={dict.hero}
         headshot={
           <Image
-            src="/images/decorative/hero-portrait-jinbei.png"
+            src="/images/decorative/hero-portrait-jinbei-desktop.avif"
             alt="Orhan Madi Assani"
             width={1023}
             height={1537}
