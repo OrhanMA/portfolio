@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: "html",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3000",
     locale: "fr-FR",
     extraHTTPHeaders: {
       "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",

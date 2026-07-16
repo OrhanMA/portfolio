@@ -5,6 +5,7 @@ import { competences } from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
 
 const BASE_URL = "https://orhanmadiassani.com";
+const CONTENT_LAST_UPDATED = new Date("2026-07-16T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
@@ -33,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const page of staticPages) {
       entries.push({
         url: `${BASE_URL}/${locale}${page}`,
-        lastModified: new Date(),
+        lastModified: CONTENT_LAST_UPDATED,
         changeFrequency: page === "" ? "weekly" : "monthly",
         priority: page === "" ? 1 : 0.8,
       });
@@ -42,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const slug of articles) {
       entries.push({
         url: `${BASE_URL}/${locale}/articles/${slug}`,
-        lastModified: new Date(),
+        lastModified: CONTENT_LAST_UPDATED,
         changeFrequency: "monthly",
         priority: 0.6,
       });
@@ -51,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const project of odooProjects) {
       entries.push({
         url: `${BASE_URL}/${locale}/projects/${project.slug}`,
-        lastModified: new Date(),
+        lastModified: CONTENT_LAST_UPDATED,
         changeFrequency: "monthly",
         priority: 0.7,
       });
@@ -60,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const competence of competences) {
       entries.push({
         url: `${BASE_URL}/${locale}/competences/${competence.slug}`,
-        lastModified: new Date(),
+        lastModified: CONTENT_LAST_UPDATED,
         changeFrequency: "monthly",
         priority: 0.7,
       });
@@ -69,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const realisation of realisations) {
       entries.push({
         url: `${BASE_URL}/${locale}/realisations/${realisation.slug}`,
-        lastModified: new Date(),
+        lastModified: CONTENT_LAST_UPDATED,
         changeFrequency: "monthly",
         priority: 0.7,
       });

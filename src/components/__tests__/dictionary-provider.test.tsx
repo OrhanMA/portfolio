@@ -25,7 +25,7 @@ describe("useDictionary()", () => {
       ),
     });
 
-    expect(result.current.nav.home).toBe("Accueil");
+    expect(result.current.cookies.title).toBe(frDict.cookies.title);
   });
 
   it("throws when used outside DictionaryProvider", () => {

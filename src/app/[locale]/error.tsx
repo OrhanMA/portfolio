@@ -2,8 +2,10 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { AlertTriangle } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { useDictionary } from "@/components/dictionary-provider";
 import { cn } from "@/lib/utils";
 
 export default function Error({
@@ -13,28 +15,34 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const pathname = usePathname();
+  const locale = pathname?.split("/").filter(Boolean)[0] || "fr";
+  const dict = useDictionary();
+
   useEffect(() => {
     console.error("Unhandled error:", error);
   }, [error]);
 
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
-        <AlertTriangle className="h-8 w-8 text-destructive" />
-      </div>
-      <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-        Une erreur est survenue
-      </h2>
-      <p className="mt-3 max-w-md text-muted-foreground">
-        Quelque chose s&apos;est mal pass&eacute;. Veuillez r&eacute;essayer ou revenir &agrave; l&apos;accueil.
-      </p>
-      <div className="mt-8 flex gap-4">
-        <Button onClick={reset} variant="default">
-          R&eacute;essayer
-        </Button>
-        <Link href="/" className={cn(buttonVariants({ variant: "outline" }))}>
-          Accueil
-        </Link>
+    <div>
+      <EditorialPageHeader
+        eyebrow={dict.errorPage.eyebrow}
+        title={dict.errorPage.heading}
+        description={dict.errorPage.text}
+        titleClassName="uppercase"
+      />
+      <div className="section-tinted flex min-h-64 items-center justify-center px-6 py-16">
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button onClick={reset} size="lg" className="rounded-full">
+            {dict.errorPage.retry}
+          </Button>
+          <Link
+            href={`/${locale}`}
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-full")}
+          >
+            {dict.errorPage.backHome}
+          </Link>
+        </div>
       </div>
     </div>
   );

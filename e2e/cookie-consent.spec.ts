@@ -13,14 +13,14 @@ test.describe("Cookie Consent", () => {
     // Banner should not be visible immediately
     await expect(page.locator("text=Cookies").first()).not.toBeVisible();
 
-    // Wait for the 1.5s delay + render
-    await page.waitForTimeout(2000);
+    // The static homepage defers non-critical UI until after its paint window.
+    await page.waitForTimeout(4500);
     await expect(page.locator("text=Cookies").first()).toBeVisible();
   });
 
   test("Accept hides the banner", async ({ page }) => {
     await page.goto("/fr");
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(4500);
 
     await page.click('button:has-text("Accepter")');
 
@@ -29,19 +29,19 @@ test.describe("Cookie Consent", () => {
 
   test("banner does not appear after accepting", async ({ page }) => {
     await page.goto("/fr");
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(4500);
     await page.click('button:has-text("Accepter")');
 
     // Reload
     await page.reload();
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(4500);
 
     await expect(page.locator("text=Cookies").first()).not.toBeVisible();
   });
 
   test("Reject hides the banner", async ({ page }) => {
     await page.goto("/fr");
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(4500);
 
     await page.click('button:has-text("Refuser")');
 

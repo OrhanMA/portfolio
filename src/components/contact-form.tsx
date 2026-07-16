@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useRef, useEffect } from "react";
+import { useState, useTransition, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
@@ -29,18 +29,17 @@ import {
   sendContactEmail,
   type ContactActionState,
 } from "@/app/[locale]/actions/contact";
-import { useDictionary } from "@/components/dictionary-provider";
+import type { Dictionary } from "@/app/[locale]/dictionaries";
 
-export function ContactForm() {
+export type ContactFormDictionary = Pick<
+  Dictionary,
+  "contactForm" | "contactReasons"
+>;
+
+export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
   const [isPending, startTransition] = useTransition();
   const [actionState, setActionState] = useState<ContactActionState>(null);
   const mountTimestamp = useRef(Date.now());
-  const dict = useDictionary();
-
-  // Record mount time for time-based anti-spam check
-  useEffect(() => {
-    mountTimestamp.current = Date.now();
-  }, []);
 
   const {
     control,
@@ -56,7 +55,7 @@ export function ContactForm() {
       customSubject: "",
       message: "",
       honeypot: "",
-      timestamp: 0,
+      timestamp: mountTimestamp.current,
       recaptchaToken: "",
     },
   });

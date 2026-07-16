@@ -58,14 +58,12 @@ export async function sendContactEmail(
   }
 
   // ─── 3. Time-based check ────────────────────────────────────
-  if (timestamp) {
-    const elapsed = Date.now() - timestamp;
-    if (elapsed < MIN_SUBMISSION_TIME_MS) {
-      return {
-        success: false,
-        message: "Veuillez patienter quelques secondes avant d'envoyer.",
-      };
-    }
+  const elapsed = Date.now() - timestamp;
+  if (elapsed < MIN_SUBMISSION_TIME_MS) {
+    return {
+      success: false,
+      message: "Veuillez patienter quelques secondes avant d'envoyer.",
+    };
   }
 
   // ─── 4. Rate limiting by IP ─────────────────────────────────
@@ -83,6 +81,14 @@ export async function sendContactEmail(
   }
 
   // ─── 5. reCAPTCHA v3 verification ───────────────────────────
+  const recaptchaEnabled = Boolean(process.env.RECAPTCHA_SECRET_KEY);
+  if (recaptchaEnabled && !recaptchaToken) {
+    return {
+      success: false,
+      message: "La vérification de sécurité a échoué. Veuillez réessayer.",
+    };
+  }
+
   if (recaptchaToken) {
     const recaptchaResult = await verifyRecaptcha(recaptchaToken);
     if (!recaptchaResult.success) {
@@ -164,4 +170,3 @@ export async function sendContactEmail(
     };
   }
 }
-

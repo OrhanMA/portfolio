@@ -1,38 +1,65 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger, Lenis } from "@/lib/gsap";
+import { useEffect } from "react";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
-
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ??
+      false
+    ) {
       return;
     }
 
-    const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-    });
-    lenisRef.current = lenis;
+    let disposed = false;
+    let started = false;
+    let destroyLenis: (() => void) | undefined;
+    const interactionEvents = ["wheel", "touchstart", "pointerdown", "keydown"];
 
-    // Sync Lenis scroll position with GSAP ScrollTrigger
-    lenis.on("scroll", ScrollTrigger.update);
-
-    // Drive Lenis from GSAP's ticker for frame-perfect sync
-    const tickerCallback = (time: number) => {
-      lenis.raf(time * 1000);
+    const removeInteractionListeners = () => {
+      interactionEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, startOnInteraction);
+      });
     };
-    gsap.ticker.add(tickerCallback);
 
-    // Disable Lenis's own rAF since GSAP ticker drives it
-    gsap.ticker.lagSmoothing(0);
+    const startOnInteraction = () => {
+      if (started) return;
+      started = true;
+      removeInteractionListeners();
+
+      void import("@/lib/gsap").then(({ gsap, ScrollTrigger, Lenis }) => {
+        if (disposed) return;
+
+        const lenis = new Lenis({
+          lerp: 0.1,
+          smoothWheel: true,
+        });
+        lenis.on("scroll", ScrollTrigger.update);
+
+        const tickerCallback = (time: number) => {
+          lenis.raf(time * 1000);
+        };
+        gsap.ticker.add(tickerCallback);
+        gsap.ticker.lagSmoothing(0);
+
+        destroyLenis = () => {
+          gsap.ticker.remove(tickerCallback);
+          lenis.destroy();
+        };
+      });
+    };
+
+    interactionEvents.forEach((eventName) => {
+      window.addEventListener(eventName, startOnInteraction, {
+        passive: true,
+        once: true,
+      });
+    });
 
     return () => {
-      gsap.ticker.remove(tickerCallback);
-      lenis.destroy();
-      lenisRef.current = null;
+      disposed = true;
+      removeInteractionListeners();
+      destroyLenis?.();
     };
   }, []);
 

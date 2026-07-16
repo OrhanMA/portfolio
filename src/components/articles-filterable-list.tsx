@@ -51,12 +51,12 @@ export function ArticlesFilterableList({
   labels,
 }: ArticlesFilterableListProps) {
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() ?? `/${locale}/articles`;
   const searchParams = useSearchParams();
   const [activeTag, setActiveTag] = useState<string | null>(
-    searchParams.get("tag"),
+    searchParams?.get("tag") ?? null,
   );
-  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+  const [query, setQuery] = useState(searchParams?.get("q") ?? "");
 
   const tags = useMemo(
     () =>
@@ -105,7 +105,7 @@ export function ArticlesFilterableList({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={labels.searchPlaceholder}
-            className="h-11 rounded-lg pl-10 pr-10"
+          className="h-12 rounded-lg border-foreground/20 bg-background/85 pl-10 pr-10"
           />
           {query && (
             <Button
@@ -164,14 +164,19 @@ export function ArticlesFilterableList({
               href={`/${locale}/articles/${article.slug}`}
               className="no-underline"
             >
-              <Card className="group premium-card my-0 border-border/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+              <Card
+                className={cn(
+                  "group premium-card my-0 rounded-xl border-l-4 border-l-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary/50",
+                  index % 2 === 1 && "border-l-vermillion",
+                )}
+              >
                 <CardHeader className="grid gap-5 sm:grid-cols-[72px_1fr_auto] sm:items-start">
                   <div className="flex h-14 w-14 items-center justify-center rounded-md border border-border/70 bg-background text-primary">
                     <BookOpenText className="h-5 w-5" />
                   </div>
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                      <span className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                         0{index + 1}
                       </span>
                       <span className="text-xs text-muted-foreground">
@@ -188,8 +193,8 @@ export function ArticlesFilterableList({
                         {article.readingMinutes} {labels.minuteShort}
                       </span>
                     </div>
-                    <CardTitle className="text-2xl leading-tight tracking-normal">
-                      {article.title}
+                    <CardTitle className="text-2xl font-black leading-tight tracking-[-0.025em]">
+                      <h2>{article.title}</h2>
                     </CardTitle>
                     <CardDescription className="mt-2 max-w-2xl leading-6">
                       {article.description}
@@ -207,7 +212,7 @@ export function ArticlesFilterableList({
                           >
                             <Badge
                               variant="secondary"
-                              className="border border-border/50 bg-background/70 font-mono text-[11px] hover:border-primary/60"
+                              className="border border-border/50 bg-background/70 font-sans text-[11px] hover:border-primary/60"
                             >
                               {tag}
                             </Badge>

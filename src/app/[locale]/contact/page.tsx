@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { getDictionary } from "../dictionaries";
 import type { Locale } from "@/lib/i18n";
+import { createLocalizedMetadata } from "@/lib/metadata";
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
@@ -14,10 +16,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale as Locale);
-  return {
+  return createLocalizedMetadata({
+    locale: locale as Locale,
+    pathname: "/contact",
     title: dict.contact.pageTitle,
     description: dict.contact.pageDescription,
-  };
+  });
 }
 
 export default async function ContactPage({
@@ -38,26 +42,39 @@ export default async function ContactPage({
         />
       )}
 
-      <div className="px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1fr] lg:items-start">
-          <div className="lg:sticky lg:top-28">
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-border/70 bg-card">
+      <EditorialPageHeader
+        eyebrow={dict.nav.contact}
+        title={dict.contact.heading}
+        description={dict.contact.subtext}
+        titleClassName="uppercase"
+      />
+
+      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.65fr_1fr] lg:items-start">
+          <aside className="premium-card rounded-xl border-l-4 border-l-vermillion p-6 lg:sticky lg:top-28">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-foreground/15 bg-background">
               <Mail className="h-6 w-6 text-primary" />
             </div>
-            <p className="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-              Contact
+            <p className="editorial-index text-vermillion">Email</p>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">
+              {dict.contact.altEmail}
             </p>
-            <h1 className="mt-5 text-balance text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl">
-              {dict.contact.heading}
-            </h1>
-            <p className="mt-5 max-w-md text-lg leading-8 text-muted-foreground">
-              {dict.contact.subtext}
-            </p>
-          </div>
+            <a
+              href="mailto:orhan.madi.assani@gmail.com"
+              className="mt-3 block break-all font-sans text-xs font-bold text-primary underline-offset-4 hover:underline"
+            >
+              orhan.madi.assani@gmail.com
+            </a>
+          </aside>
 
           <div>
-            <div className="premium-card rounded-lg p-5 sm:p-8">
-              <ContactForm />
+            <div className="premium-card rounded-xl border-t-4 border-t-primary p-5 sm:p-8">
+              <ContactForm
+                dict={{
+                  contactForm: dict.contactForm,
+                  contactReasons: dict.contactReasons,
+                }}
+              />
             </div>
 
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
@@ -97,7 +114,7 @@ export default async function ContactPage({
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

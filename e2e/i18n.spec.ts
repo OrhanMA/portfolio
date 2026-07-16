@@ -19,12 +19,12 @@ test.describe("Internationalization", () => {
   test("language switcher toggles locale", async ({ page }) => {
     await page.goto("/fr");
 
-    // Click the EN button to switch to English
-    await page.click('button:has-text("EN")');
+    // Follow the progressive-enhancement language link.
+    await page.locator('[data-language-switcher]:visible').click();
     await expect(page).toHaveURL(/\/en/);
 
-    // Should now show FR button
-    await expect(page.locator('button:has-text("FR")')).toBeVisible();
+    // The opposite language link is now available.
+    await expect(page.locator('[data-language-switcher]:visible')).toHaveText("FR");
   });
 
   test("language preference persists across navigation", async ({ page }) => {

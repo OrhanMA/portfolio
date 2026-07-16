@@ -1,111 +1,124 @@
-"use client";
-
-import {
-  Container,
-  Monitor,
-  Puzzle,
-  Server,
-  GraduationCap,
-  Users,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { useDictionary } from "@/components/dictionary-provider";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
-import { SectionHeading } from "@/components/landing/section-heading";
+import { LandingButtonLink } from "@/components/landing/landing-button-link";
+import {
+  PixelSkillIcon,
+  type PixelSkillIconName,
+} from "@/components/landing/pixel-art";
+import { cn } from "@/lib/utils";
+import type { Dictionary } from "@/app/[locale]/dictionaries";
 
-export function SkillsSection() {
-  const dict = useDictionary();
+type SkillCategory = {
+  icon: PixelSkillIconName;
+  title: string;
+  description: string;
+  skills: string[];
+  color: string;
+};
 
-  const skillCategories = [
+export function SkillsSection({
+  locale,
+  dict,
+}: {
+  locale: string;
+  dict: Dictionary["skills"];
+}) {
+  const skillCategories: SkillCategory[] = [
     {
-      icon: Server,
-      title: dict.skills.backend,
-      description: dict.skills.backendDesc,
-      skills: ["Symfony 6.3+", "PHP", "Python", "Redis", "API Platform"],
+      icon: "backend",
+      title: dict.backend,
+      description: dict.backendDesc,
+      skills: ["PHP", "Symfony", "Python", "PostgreSQL", "REST API", "Architecture modulaire"],
+      color: "text-primary",
     },
     {
-      icon: Monitor,
-      title: dict.skills.frontend,
-      description: dict.skills.frontendDesc,
-      skills: ["Next.js", "React", "Vue.js", "TypeScript", "Tailwind CSS"],
+      icon: "frontend",
+      title: dict.frontend,
+      description: dict.frontendDesc,
+      skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML / CSS", "UI / UX"],
+      color: "text-vermillion",
     },
     {
-      icon: Puzzle,
-      title: dict.skills.odoo,
-      description: dict.skills.odooDesc,
-      skills: ["Odoo 16+", "Module dev", "Upgrade/Migration", "OWL", "Python"],
+      icon: "odoo",
+      title: dict.odoo,
+      description: dict.odooDesc,
+      skills: ["Odoo 16 → 19", "Modules métier", "Personnalisation", "Migrations", "Automatisations", "Rapports"],
+      color: "text-primary",
     },
     {
-      icon: Container,
-      title: dict.skills.devops,
-      description: dict.skills.devopsDesc,
-      skills: ["Git", "Docker", "PostgreSQL", "Shell", "Linux", "CI/CD", "VPS (OVH, DO)"],
+      icon: "devops",
+      title: dict.devops,
+      description: dict.devopsDesc,
+      skills: ["Docker", "Git / GitHub", "Linux", "CI / CD", "Nginx", "VPS"],
+      color: "text-vermillion",
     },
     {
-      icon: Users,
-      title: dict.skills.methods,
-      description: dict.skills.methodsDesc,
-      skills: ["Agile/Scrum", "Code Review", "Tests", "REST API"],
+      icon: "methods",
+      title: dict.methods,
+      description: dict.methodsDesc,
+      skills: ["Agile / Scrum", "Conception", "Tests", "Documentation", "Optimisation", "Qualité"],
+      color: "text-primary",
     },
     {
-      icon: GraduationCap,
-      title: dict.skills.education,
-      description: dict.skills.educationDesc,
-      skills: ["Algorithms", "DB Design", "UML", "Project Management"],
+      icon: "education",
+      title: dict.education,
+      description: dict.educationDesc,
+      skills: ["Algorithmique", "Structures de données", "Réseaux", "Systèmes", "Bases de données", "Mathématiques"],
+      color: "text-foreground",
     },
   ];
 
   return (
     <section
       id="competences"
-      className="px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+      className="landing-deferred landing-deferred-skills px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
     >
       <div className="mx-auto max-w-7xl">
-        <Reveal>
-          <SectionHeading
-            eyebrow={dict.skills.eyebrow}
-            title={dict.skills.heading}
-            description={dict.skills.subtext}
-          />
+        <Reveal className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+              {dict.eyebrow}
+            </p>
+            <h2 className="mt-3 text-5xl font-black uppercase leading-none tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+              {dict.heading}
+            </h2>
+          </div>
+          <LandingButtonLink
+            href={`/${locale}/competences`}
+            variant="outline"
+            size="sm"
+            className="rounded-full border-foreground/25 bg-background/75"
+          >
+            {dict.ctaAll}
+            <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
+          </LandingButtonLink>
         </Reveal>
 
-        <Reveal className="mt-16" stagger=".skill-card">
-          <div className="grid grid-cols-1 border-y border-border/70 md:grid-cols-2 xl:grid-cols-3">
-          {skillCategories.map((category) => (
-            <article
-              key={category.title}
-              className="skill-card invisible group min-h-72 border-b border-border/70 p-5 transition-colors hover:bg-muted/35 md:odd:border-r xl:border-r xl:[&:nth-child(3n)]:border-r-0 xl:[&:nth-last-child(-n+3)]:border-b-0"
-            >
-              <div className="flex h-full flex-col justify-between gap-10">
-                <div>
-                  <div className="mb-8 flex items-center justify-between">
-                    <category.icon className="h-5 w-5 text-primary transition-transform group-hover:-translate-y-1" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                      Stack
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-semibold tracking-normal">
-                    {category.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                    {category.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
+        <Reveal className="mt-10" stagger=".skill-column">
+          <div className="grid border-y border-foreground/20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            {skillCategories.map((category) => (
+              <article
+                key={category.title}
+                className="skill-column invisible group min-h-72 border-b border-foreground/15 px-5 py-7 transition-colors hover:bg-primary/[0.04] sm:[&:nth-child(odd)]:border-r lg:[&:nth-child(odd)]:border-r-0 lg:[&:not(:nth-child(3n))]:border-r xl:border-b-0 xl:[&:not(:last-child)]:border-r"
+              >
+                <PixelSkillIcon
+                  name={category.icon}
+                  className={cn(
+                    "h-10 w-10 transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-2",
+                    category.color,
+                  )}
+                />
+                <h3 className={cn("mt-5 text-lg font-black", category.color)}>
+                  {category.title}
+                </h3>
+                <p className="sr-only">{category.description}</p>
+                <ul className="mt-5 grid gap-1.5 text-[12px] leading-5 text-foreground/72">
                   {category.skills.map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="secondary"
-                      className="border border-border/50 bg-background/70 font-mono text-[11px]"
-                    >
-                      {skill}
-                    </Badge>
+                    <li key={skill}>{skill}</li>
                   ))}
-                </div>
-              </div>
-            </article>
-          ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </Reveal>
       </div>

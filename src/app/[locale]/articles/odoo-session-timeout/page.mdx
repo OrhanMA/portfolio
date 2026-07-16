@@ -1,3 +1,10 @@
+import { getArticleMetadata } from "../article-metadata";
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  return getArticleMetadata(locale, "odoo-session-timeout");
+}
+
 # Résoudre la déconnexion automatique des sessions Odoo
 
 Pas mal d'utilisateurs faisaient face au problème suivant :

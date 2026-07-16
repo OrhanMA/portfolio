@@ -14,7 +14,7 @@ export default async function ArticlesLayout({
 
   return (
     <main className="px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-      <article className="prose prose-neutral mx-auto max-w-3xl dark:prose-invert prose-headings:tracking-normal prose-a:text-primary prose-pre:rounded-lg prose-pre:border prose-pre:border-border">
+      <article className="prose prose-neutral mx-auto max-w-7xl dark:prose-invert prose-h1:text-balance prose-h1:text-5xl prose-h1:font-black prose-h1:uppercase prose-h1:leading-[0.9] prose-h1:tracking-[-0.05em] prose-h2:font-black prose-h2:tracking-[-0.025em] prose-a:text-primary prose-pre:rounded-lg prose-pre:border prose-pre:border-border [&>:not(.not-prose)]:mx-auto [&>:not(.not-prose)]:max-w-3xl">
         <ArticleEnhancements
           locale={locale}
           labels={{

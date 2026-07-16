@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary } from "../dictionaries";
 import type { Locale } from "@/lib/i18n";
+import { createLocalizedMetadata } from "@/lib/metadata";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
 
 export async function generateMetadata({
   params,
@@ -10,9 +12,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale as Locale);
-  return {
+  return createLocalizedMetadata({
+    locale: locale as Locale,
+    pathname: "/mentions-legales",
     title: dict.legal.pageTitle,
-  };
+    description: dict.legal.heading,
+  });
 }
 
 export default async function LegalNoticePage({
@@ -80,32 +85,29 @@ export default async function LegalNoticePage({
   ];
 
   return (
-    <div className="px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-10 lg:grid-cols-[0.55fr_1fr]">
-          <aside className="lg:sticky lg:top-28 lg:self-start">
-            <p className="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-              Legal document
-            </p>
-            <h1 className="mt-5 text-balance text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl">
-              {dict.legal.heading}
-            </h1>
-            <p className="mt-5 text-sm leading-7 text-muted-foreground">
-              Orhan Madi Assani · Chambéry, France
-            </p>
-          </aside>
+    <div>
+      <EditorialPageHeader
+        eyebrow={dict.footer.legalNotice}
+        title={dict.legal.heading}
+        description="Orhan Madi Assani · Chambéry, France"
+        titleClassName="uppercase"
+      />
 
-          <div className="grid gap-3">
+      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-4 lg:grid-cols-2">
             {sections.map((section, index) => (
               <section
                 key={section.title}
-                className="premium-card grid gap-5 rounded-lg p-5 sm:grid-cols-[88px_1fr] sm:p-7"
+                className="premium-card grid gap-5 rounded-xl border-t-4 border-t-primary p-5 even:border-t-vermillion sm:grid-cols-[64px_1fr] sm:p-7"
               >
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+                <p className="editorial-index">
                   0{index + 1}
                 </p>
                 <div>
-                  <h2 className="text-xl font-semibold">{section.title}</h2>
+                  <h2 className="text-xl font-black uppercase tracking-[-0.025em]">
+                    {section.title}
+                  </h2>
                   <div className="mt-3 space-y-1 leading-7 text-muted-foreground">
                     {section.content}
                   </div>
@@ -114,7 +116,7 @@ export default async function LegalNoticePage({
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

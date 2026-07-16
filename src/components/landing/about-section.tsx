@@ -1,74 +1,89 @@
-"use client";
+import { Code2 } from "lucide-react";
+import { PixelHeart, PixelSpark } from "@/components/landing/pixel-art";
+import { AnimatedMascot } from "@/components/landing/animated-mascot";
+import { cn } from "@/lib/utils";
+import type { Dictionary } from "@/app/[locale]/dictionaries";
 
-import { Code, GraduationCap, Briefcase } from "lucide-react";
-import { useDictionary } from "@/components/dictionary-provider";
-import { Reveal } from "@/components/landing/reveal";
-import { SectionHeading } from "@/components/landing/section-heading";
-
-export function AboutSection() {
-  const dict = useDictionary();
-
-  const highlights = [
+export function AboutSection({ dict }: { dict: Dictionary["about"] }) {
+  const principles = [
     {
-      icon: GraduationCap,
-      title: dict.about.card1Title,
-      description: dict.about.card1Desc,
+      title: dict.card1Title,
+      description: dict.card1Desc,
+      icon: PixelHeart,
+      color: "text-vermillion border-primary",
+      rotation: "-rotate-2",
     },
     {
-      icon: Briefcase,
-      title: dict.about.card2Title,
-      description: dict.about.card2Desc,
+      title: dict.card2Title,
+      description: dict.card2Desc,
+      icon: Code2,
+      color: "text-foreground border-vermillion",
+      rotation: "rotate-1",
     },
     {
-      icon: Code,
-      title: dict.about.card3Title,
-      description: dict.about.card3Desc,
+      title: dict.card3Title,
+      description: dict.card3Desc,
+      icon: PixelSpark,
+      color: "text-primary border-primary",
+      rotation: "-rotate-1",
     },
   ];
 
   return (
-    <section id="a-propos" className="section-tinted px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <Reveal>
-          <SectionHeading
-            eyebrow={dict.about.eyebrow}
-            title={dict.about.heading}
-            description={dict.about.lead}
-          />
-        </Reveal>
+    <section
+      id="a-propos"
+      className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
+    >
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.72fr)] lg:items-center lg:gap-24">
+        <div className="relative z-10">
+          <h2 className="about-copy invisible text-5xl font-black uppercase leading-none tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+            {dict.heading}
+          </h2>
+          <p className="about-copy invisible mt-7 max-w-2xl text-xl font-semibold leading-8 sm:text-2xl">
+            {dict.statement}
+          </p>
+          <p className="about-copy invisible mt-6 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+            {dict.text}
+          </p>
+        </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.65fr)] lg:items-start">
-          <Reveal className="lg:pt-12">
-            <p className="text-balance text-3xl font-medium leading-tight tracking-normal sm:text-4xl lg:text-5xl">
-              {dict.about.statement}
-            </p>
-            <p className="mt-8 max-w-3xl text-lg leading-8 text-muted-foreground">
-              {dict.about.text}
-            </p>
-          </Reveal>
-
-          <Reveal stagger=".about-highlight">
-            <div className="grid gap-3">
-              {highlights.map((item) => (
-                <article
-                  key={item.title}
-                  className="about-highlight invisible group grid gap-5 rounded-lg border border-border/70 bg-background/55 p-5 transition-colors hover:border-primary/60 hover:bg-background/80 sm:grid-cols-[48px_1fr]"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-border/70 bg-card text-primary transition-transform group-hover:-translate-y-1">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </Reveal>
+        <div className="about-stamps relative z-10 grid gap-5 pr-10 sm:pr-20 lg:pr-24">
+          {principles.map((principle, index) => {
+            const Icon = principle.icon;
+            return (
+              <article
+                key={principle.title}
+                className={cn(
+                  "about-stamp invisible flex min-h-24 cursor-default items-center gap-5 rounded-xl border-2 bg-background/92 px-5 py-4 shadow-[6px_7px_0_oklch(0.16_0.018_245/0.12)] transition-[color,background-color,transform] duration-300 ease-out will-change-transform hover:-translate-y-2 hover:scale-[1.025] hover:bg-primary/[0.035] motion-reduce:transform-none",
+                  principle.color,
+                  principle.rotation,
+                  index === 1 && "sm:ml-9",
+                  index === 2 && "sm:ml-3",
+                )}
+              >
+                <Icon className="h-9 w-9 shrink-0" strokeWidth={2.2} />
+                <h3 className="text-sm font-black uppercase leading-5 tracking-[-0.01em] sm:text-base">
+                  {principle.title}
+                </h3>
+                <p className="sr-only">{principle.description}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
+
+      <AnimatedMascot
+        src="/images/decorative/pixel-ninja.png"
+        variantSrc="/images/decorative/pixel-ninja-wink.png"
+        width={1254}
+        height={1254}
+        intervalMs={5400}
+        initialDelayMs={2600}
+        className="about-ninja invisible pointer-events-none absolute -right-16 bottom-4 z-20 hidden h-56 w-56 md:block xl:-right-20 xl:h-64 xl:w-64"
+        imageClassName="object-contain object-right-bottom"
+      />
+      <PixelSpark className="absolute right-[14%] top-[18%] h-7 w-7 text-foreground/70" />
+      <PixelSpark className="absolute right-[7%] top-[30%] h-4 w-4 text-vermillion" />
     </section>
   );
 }

@@ -27,6 +27,17 @@
 # misc
 .DS_Store
 *.pem
+/public/proofs/certificate_20251030105639.pdf
+
+# generated design explorations and unused source exports
+/output/
+/public/icons/*.png
+/public/images/decorative/hero-portrait-cutout.webp
+/public/images/decorative/hero-portrait-desktop.avif
+/public/images/decorative/hero-portrait-jinbei.png
+/public/images/decorative/hero-portrait-mobile.avif
+/public/images/decorative/hero-portrait-mobile.webp
+/public/images/decorative/sakura-branch.svg
 
 # debug
 npm-debug.log*

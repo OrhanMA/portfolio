@@ -3,13 +3,18 @@
 import { createContext, useContext } from "react";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
-const DictionaryContext = createContext<Dictionary | null>(null);
+export type ClientDictionary = Pick<
+  Dictionary,
+  "cookies" | "errorPage" | "notFound"
+>;
+
+const DictionaryContext = createContext<ClientDictionary | null>(null);
 
 export function DictionaryProvider({
   dictionary,
   children,
 }: {
-  dictionary: Dictionary;
+  dictionary: ClientDictionary;
   children: React.ReactNode;
 }) {
   return (
@@ -19,7 +24,7 @@ export function DictionaryProvider({
   );
 }
 
-export function useDictionary(): Dictionary {
+export function useDictionary(): ClientDictionary {
   const context = useContext(DictionaryContext);
   if (!context) {
     throw new Error("useDictionary must be used within a DictionaryProvider");

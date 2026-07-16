@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { locales, type Locale } from "@/lib/i18n";
 
 export function LanguageSwitcher() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/fr";
   const router = useRouter();
 
   // Extract current locale from pathname

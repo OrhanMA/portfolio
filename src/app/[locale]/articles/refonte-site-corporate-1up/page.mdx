@@ -1,3 +1,10 @@
+import { getArticleMetadata } from "../article-metadata";
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  return getArticleMetadata(locale, "refonte-site-corporate-1up");
+}
+
 # Refonte du site corporate 1UP : passer d'un site vitrine à une plateforme marketing moderne
 
 ## Contexte
@@ -12,7 +19,7 @@ Le site a été construit avec une stack moderne :
 
 - **Next.js 16** et React 19 ;
 - **next-intl** pour l'internationalisation ;
-- **13 locales** configurées : anglais, français, chinois, espagnol, portugais, hindi, russe, japonais, turc, arabe, coréen, néerlandais et polonais ;
+- une première livraison en **français et en anglais** ;
 - **Sanity** pour le CMS blog/carrières ;
 - **GSAP** pour les animations ;
 - **Lenis** pour le scroll fluide ;
@@ -29,9 +36,7 @@ La refonte a commencé par clarifier ce que le site devait raconter :
 - la capacité à couvrir retail, e-commerce, marketplaces et international ;
 - la création produit via ONIVERSE et les licences ;
 - la crédibilité via les marques et les partenaires retail ;
-- l'histoire de l'entreprise et ses chiffres clés.
-
-Le site met en avant des chiffres comme **35 pays couverts**, **5000+ points de vente**, **120+ marques partenaires** et **25 ans d'expérience**.
+- l'histoire de l'entreprise et les éléments de preuve validés par le marketing et la direction.
 
 ## Travail frontend
 
@@ -66,6 +71,6 @@ Les routes API envoient les emails via Resend. Le site contient aussi une banni�
 
 La refonte transforme le site en support de marque plus complet : internationalisé, animé, responsive, éditable, mieux structuré pour le SEO et plus crédible commercialement.
 
-Un audit Lighthouse réalisé en production donne **99/100 en performance**, **100/100 en accessibilité** et **96/100 en bonnes pratiques**. Ces scores confirment que le site n'est pas seulement plus moderne visuellement : il est aussi rapide, accessible et propre techniquement.
+Un audit Lighthouse réalisé pendant le développement donne **99/100 en performance**, **100/100 en accessibilité** et **96/100 en bonnes pratiques**. Ces scores constituent une référence à contrôler de nouveau avec l'hébergement et les contenus définitifs lors de la mise en production.
 
 Ce projet m'a permis de travailler sur un site corporate complet, avec des enjeux de performance, d'image, d'accessibilité, de contenu, de formulaires et de maintenance à long terme.

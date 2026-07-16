@@ -64,23 +64,3 @@ export function Analytics() {
     </>
   );
 }
-
-/**
- * GTM noscript iframe — rendered in root layout <body>.
- * Always present (for users without JS) but only loads GTM resources.
- */
-export function GTMNoscript() {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  if (!gtmId) return null;
-
-  return (
-    <noscript>
-      <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-        height="0"
-        width="0"
-        style={{ display: "none", visibility: "hidden" }}
-      />
-    </noscript>
-  );
-}

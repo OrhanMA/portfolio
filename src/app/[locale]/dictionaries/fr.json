@@ -11,7 +11,10 @@
     "contact": "Contact",
     "about": "À propos",
     "competences": "Compétences",
-    "realisations": "Réalisations"
+    "realisations": "Réalisations",
+    "allCompetences": "Voir les 10 compétences",
+    "allRealisations": "Voir les 5 réalisations",
+    "showSubmenu": "Afficher le sous-menu"
   },
   "hero": {
     "eyebrow": "Portfolio créatif · Ingénierie logicielle",
@@ -29,9 +32,8 @@
     "ctaWork": "Voir les réalisations",
     "ctaContact": "Me contacter",
     "proofs": [
-      { "value": "ERP", "label": "Systèmes métier, automatisations et migrations sur des environnements réels." },
-      { "value": "Web", "label": "Interfaces modernes, sites multilingues et expériences orientées usage." },
-      { "value": "Produit", "label": "Compréhension du besoin, livraison progressive et attention aux détails." }
+      { "value": "22", "label": "modules Odoo publiés en open source." },
+      { "value": "920/990", "label": "score TOEIC obtenu le 7 août 2025." }
     ],
     "scroll": "Scroll"
   },
@@ -41,23 +43,24 @@
     "lead": "Un profil full-stack orienté produit, capable de passer du besoin métier à l'expérience finale.",
     "statement": "Je construis des produits web qui doivent autant convaincre les utilisateurs que tenir en production.",
     "text": "Développeur fullstack en alternance chez 1UP, j'ai commencé le développement en autodidacte via The Odin Project avant de suivre des formations certifiantes chez Simplon en développement web puis en conception d'applications. Aujourd'hui en mastère Ingénierie du Logiciel à l'ISCOD, je travaille au quotidien sur des projets Odoo et Symfony. Ce qui me passionne dans ce métier, c'est la résolution de problèmes en continu et la richesse du web — il y a toujours quelque chose à apprendre.",
-    "card1Title": "Alternance",
-    "card1Desc": "Deux ans d'expérience en alternance chez 1UP en tant que développeur fullstack, travaillant sur des projets Odoo et Symfony en conditions réelles d'entreprise.",
-    "card2Title": "Stage LIG",
-    "card2Desc": "Stage de 5 mois au Laboratoire d'Informatique de Grenoble, développant des fonctionnalités pour des utilisateurs dans un contexte de recherche.",
-    "card3Title": "Autodidacte",
-    "card3Desc": "Parcours débuté en autodidacte via The Odin Project. Le web est un domaine riche et complexe où la résolution de problèmes est continue."
+    "card1Title": "Focus utilisateur & impact produit",
+    "card1Desc": "Je pars du besoin réel, clarifie l'usage attendu et relie chaque décision technique à un résultat utile pour les personnes concernées.",
+    "card2Title": "Code propre & architecture robuste",
+    "card2Desc": "Je privilégie des fondations lisibles, testables et documentées afin que les produits restent compréhensibles lorsqu'ils évoluent.",
+    "card3Title": "Automatisation & performance",
+    "card3Desc": "J'automatise les tâches déterministes, mesure les effets obtenus et conserve le jugement humain là où il apporte de la valeur."
   },
   "skills": {
     "eyebrow": "Stack & méthode",
     "heading": "Compétences",
-    "subtext": "Une matrice compacte des capacités que j'utilise pour livrer des interfaces, des modules métier et des systèmes maintenables.",
+    "subtext": "Six domaines résument la pratique quotidienne. Le comparatif et les dix compétences détaillées restent disponibles sur la page dédiée.",
+    "ctaAll": "Explorer les 10 compétences",
     "backend": "Backend",
     "backendDesc": "Architecture applicative, logique métier, API et données avec une priorité donnée à la fiabilité.",
     "frontend": "Frontend",
     "frontendDesc": "Interfaces Next.js/React avec typographie, responsive, animations et attention aux détails.",
     "odoo": "Odoo",
-    "odooDesc": "Modules custom, migrations, vues, modèles, intégrations et compréhension des workflows ERP.",
+    "odooDesc": "Modules personnalisés, migrations, vues, modèles, intégrations et compréhension des processus ERP.",
     "devops": "DevOps & Outils",
     "devopsDesc": "Déploiement, bases de données, conteneurs, VPS et outillage pour garder les livraisons propres.",
     "methods": "Méthodes",
@@ -66,17 +69,19 @@
     "educationDesc": "Socle algorithmique, conception, projet et progression continue en ingénierie logicielle."
   },
   "featuredProjects": {
-    "eyebrow": "Études de cas",
+    "eyebrow": "Réalisations",
     "heading": "Des réalisations qui relient exigence produit et exécution technique.",
     "text": "Une sélection courte de réalisations pensées comme des preuves concrètes : migration critique, modules métier, refonte vitrine et impact utilisateur.",
-    "featuredLabel": "Case study",
+    "featuredLabel": "Projet",
+    "problemLabel": "Problème",
+    "contributionLabel": "Ma contribution",
     "resultLabel": "Résultat",
-    "readCase": "Lire l'étude",
+    "readCase": "Voir la réalisation",
     "ctaAll": "Voir toutes les réalisations",
-    "results": [
-      { "slug": "migration-odoo-v16-v19", "result": "ERP modernisé sans perte de données et avec une transition contrôlée pour 30 collaborateurs." },
-      { "slug": "modules-metier-odoo", "result": "Plus de 20 modules adaptés aux usages terrain, nettoyés puis publiés en open source." },
-      { "slug": "refonte-site-corporate", "result": "Une image corporate plus premium, rapide et alignée avec une stack moderne." }
+    "cases": [
+      { "slug": "migration-odoo-v16-v19", "problem": "Faire évoluer un ERP critique de trois versions majeures sans interrompre durablement le travail ni perdre les données.", "contribution": "Inventaire, stratégie par module, répétitions de migration, tests, bascule et stabilisation pilotés en autonomie.", "result": "Odoo 16 → 19 · 19 utilisateurs directs · aucune perte définitive de données · stabilisation en un mois.", "metricValue": "19", "metricLabel": "utilisateurs directs", "metricNote": "Aucune perte définitive de données et stabilisation en un mois." },
+      { "slug": "modules-metier-odoo", "problem": "Des processus métier importants restaient manuels ou dépassaient les possibilités de la configuration standard et d'Odoo Studio.", "contribution": "Recueil du besoin, conception Python/XML, tests, déploiement et maintenance d'une couche métier versionnée dans l'ERP.", "result": "16 modules métier internes · une demi-journée de travail économisée chaque semaine pour la comptabilité.", "metricValue": "16", "metricLabel": "modules métier internes", "metricNote": "Une demi-journée économisée chaque semaine pour la comptabilité." },
+      { "slug": "refonte-site-corporate", "problem": "Moderniser l'image de l'entreprise sans sacrifier le mobile, les performances ni la maîtrise des contenus publiés.", "contribution": "Responsabilité technique, architecture Next.js, design system, internationalisation, SEO, accessibilité et coordination des validations.", "result": "Lighthouse mesuré : 99 en performance, 100 en accessibilité et 100 en SEO.", "metricValue": "99", "metricLabel": "Lighthouse performance", "metricNote": "100 en accessibilité et 100 en SEO sur la mesure publiée." }
     ]
   },
   "experience": {
@@ -86,8 +91,10 @@
     "responsibilitiesLabel": "Responsabilités",
     "linkedRealisationsLabel": "Réalisations liées",
     "linkedCompetencesLabel": "Compétences liées",
+    "detailsLabel": "Afficher le détail",
     "entries": [
       {
+        "order": 1,
         "period": "Déc. 2025 — Présent",
         "title": "Développeur Fullstack — Alternance",
         "company": "1UP Distribution",
@@ -104,6 +111,7 @@
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
+        "order": 3,
         "period": "Mai — Oct. 2025",
         "title": "Stagiaire Développeur Web — Laboratoire LIG",
         "company": "Laboratoire d'Informatique de Grenoble",
@@ -120,26 +128,83 @@
         "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Recherche"]
       },
       {
-        "period": "2024 — Présent",
-        "title": "Parcours en informatique",
-        "company": "ISCOD · Simplon · Université Savoie Mont Blanc",
+        "order": 2,
+        "period": "2025 — 2027",
+        "title": "Mastère Expert en Ingénierie du Logiciel — RNCP niveau 7",
+        "company": "ISCOD",
         "logo": "/logo-iscod.jpeg",
         "url": "https://www.iscod.fr/",
-        "companies": [
-          { "name": "ISCOD", "logo": "/logo-iscod.jpeg", "url": "https://www.iscod.fr/" },
-          { "name": "Simplon", "logo": "/logo-simplon.webp", "url": "https://www.simplon.co/" },
-          { "name": "USMB", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
-        ],
-        "description": "Autodidacte via The Odin Project, puis formations certifiantes chez Simplon : Développeur Web et Web Mobile (RNCP bac+2, 2024), Concepteur et Développeur d'Application (RNCP bac+3, 2025). Actuellement en mastère Expert en Ingénierie du Logiciel (RNCP 7 bac+5) à l'ISCOD. TOEIC 920/990 (Listening C1, Reading B2).",
-        "institutions": "Simplon emploie une pédagogie active centrée sur l'apprentissage par la pratique via des projets inspirés de situations professionnelles réelles, en petits groupes de 15 à 25 apprenants. Fondée en 2013, l'organisation a formé plus de 30 000 apprenants avec 75 % d'insertion professionnelle et 95 % de réussite aux certifications. L'ISCOD propose des formations en alternance à distance reconnues par l'État, permettant de concilier expérience en entreprise et montée en compétences académique.",
+        "location": "Formation à distance · Alternance à Chambéry",
+        "description": "Formation de niveau 7 suivie en alternance, consacrée à l'architecture logicielle, au pilotage de projet, à la qualité, au déploiement et à l'intégration d'applications dans un contexte professionnel réel.",
+        "institutions": "L'ISCOD propose une pédagogie à distance articulée autour de l'alternance. Cette organisation permet de confronter les apports académiques aux décisions techniques prises en entreprise et de documenter les compétences acquises à partir de réalisations vérifiables.",
         "responsibilities": [
-          "Construction progressive d'un socle web fullstack, de l'autodidaxie à l'alternance.",
-          "Validation de compétences professionnelles via titres RNCP et projets pratiques.",
-          "Consolidation des bases en algorithmique, conception, bases de données et gestion de projet."
+          "Relier les blocs de compétences du titre aux missions réalisées en entreprise.",
+          "Approfondir l'architecture, la gestion de projet et la qualité logicielle.",
+          "Construire et soutenir un portfolio de preuves professionnelles."
         ],
         "linkedRealisations": ["portfolio-professionnel"],
-        "linkedCompetences": ["adaptabilite", "amelioration-continue", "communication"],
-        "tags": ["Algorithmique", "BDD", "UML", "Gestion de projet", "TOEIC 920"]
+        "linkedCompetences": ["adaptabilite", "amelioration-continue", "communication", "autonomie"],
+        "tags": ["RNCP 7", "Architecture", "Qualité", "Gestion de projet", "Alternance"]
+      },
+      {
+        "order": 4,
+        "period": "7 août 2025",
+        "title": "TOEIC Listening & Reading — 920/990",
+        "company": "ETS Global",
+        "url": "https://www.etsglobal.org/fr/fr/test-type-family/test-toeic-listening-and-reading",
+        "location": "Certification d'anglais professionnel",
+        "description": "Score de 920/990 au TOEIC Listening & Reading : niveau C1 en compréhension orale et niveau B2 en compréhension écrite.",
+        "institutions": "Le TOEIC mesure la compréhension de l'anglais dans des situations professionnelles internationales. Le certificat public permet au jury de vérifier directement la date, le score global et les niveaux obtenus.",
+        "certificateUrl": "/proofs/certificate_20251030105639_toeic_filigrane.pdf",
+        "certificateLabel": "Consulter le certificat TOEIC",
+        "linkedCompetences": ["communication", "amelioration-continue"],
+        "tags": ["TOEIC", "920/990", "Listening C1", "Reading B2"]
+      },
+      {
+        "order": 5,
+        "period": "2025",
+        "title": "Concepteur Développeur d'Applications — RNCP niveau 6",
+        "company": "Simplon",
+        "logo": "/logo-simplon.webp",
+        "url": "https://www.simplon.co/",
+        "companies": [
+          { "name": "Simplon", "logo": "/logo-simplon.webp", "url": "https://www.simplon.co/" },
+          { "name": "Université Savoie Mont Blanc", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
+        ],
+        "location": "Chambéry · Savoie",
+        "description": "Titre professionnel de niveau 6 centré sur la conception et le développement d'applications, les bases de données, la modélisation, les tests et la conduite d'un projet logiciel.",
+        "institutions": "Simplon privilégie une pédagogie active : apprentissage par la pratique, projets inspirés de situations professionnelles et travail en petit groupe. Cette formation a consolidé ma capacité à passer d'un besoin à une application structurée, testée et documentée.",
+        "certificateUrl": "/proofs/diplome_cda_filigrane.pdf",
+        "certificateLabel": "Consulter le titre CDA",
+        "responsibilities": [
+          "Concevoir une architecture applicative et modéliser les données.",
+          "Développer, tester et documenter une application fullstack.",
+          "Présenter les choix techniques et les résultats obtenus."
+        ],
+        "linkedRealisations": ["app-trajectoires-de-vie", "portfolio-professionnel"],
+        "linkedCompetences": ["developpement-frontend", "python", "communication", "adaptabilite"],
+        "tags": ["RNCP 6", "UML", "BDD", "Tests", "Gestion de projet"]
+      },
+      {
+        "order": 6,
+        "period": "2024",
+        "title": "Développeur Web et Web Mobile — RNCP niveau 5",
+        "company": "Simplon",
+        "logo": "/logo-simplon.webp",
+        "url": "https://www.simplon.co/",
+        "location": "Chambéry · Savoie",
+        "description": "Titre professionnel de niveau 5 consacré à l'intégration d'interfaces, au développement frontend et backend, aux bases de données et au déploiement d'applications web.",
+        "institutions": "La pédagogie par projets de Simplon a transformé une pratique autodidacte, notamment construite avec The Odin Project, en méthode professionnelle : analyser, produire, tester, documenter et présenter une solution utilisable.",
+        "certificateUrl": "/proofs/titre-dwwm_filigrane.pdf",
+        "certificateLabel": "Consulter le titre DWWM",
+        "responsibilities": [
+          "Développer des interfaces web responsives et accessibles.",
+          "Construire une logique serveur reliée à une base de données.",
+          "Versionner, déployer et présenter les projets réalisés."
+        ],
+        "linkedRealisations": ["portfolio-professionnel"],
+        "linkedCompetences": ["developpement-frontend", "python", "autonomie", "perseverance"],
+        "tags": ["RNCP 5", "Frontend", "Backend", "BDD", "Déploiement"]
       }
     ]
   },
@@ -148,6 +213,7 @@
     "heading": "Quelques preuves vérifiables du parcours.",
     "text": "CV, certifications et titres sont regroupés ici pour compléter les réalisations détaillées du portfolio.",
     "cta": "Me contacter",
+    "openDocument": "Voir le document PDF",
     "items": {
       "cv": {
         "title": "CV professionnel",
@@ -155,7 +221,7 @@
       },
       "toeic": {
         "title": "Certification TOEIC",
-        "description": "Score TOEIC Listening & Reading : 920/990."
+        "description": "Score TOEIC Listening & Reading : 920/990, obtenu le 7 août 2025."
       },
       "cda": {
         "title": "Titre CDA",
@@ -299,12 +365,12 @@
   },
   "aboutPage": {
     "pageTitle": "À propos | Orhan Madi Assani",
-    "pageDescription": "Développeur fullstack en alternance — mon parcours, mes valeurs, mes centres d'intérêt.",
+    "pageDescription": "Développeur fullstack en alternance — mon parcours, mes valeurs, mon projet professionnel et personnel.",
     "heading": "À propos de moi",
     "subtext": "Développeur fullstack, autodidacte devenu professionnel — découvrez mon parcours, mes valeurs et ce qui me motive.",
     "journeyHeading": "Mon parcours",
     "valuesHeading": "Mes valeurs",
-    "projectHeading": "Mon projet professionnel",
+    "projectHeading": "Mon projet professionnel et personnel",
     "qualitiesHeading": "Mes qualités humaines",
     "interestsHeading": "Mes centres d'intérêt"
   },
@@ -319,7 +385,12 @@
     "level": "Niveau",
     "radarHeading": "Vue d'ensemble",
     "backToCompetences": "Retour aux compétences",
+    "contentsHeading": "Sommaire",
+    "contentsSubtext": "Parcourez la définition, les preuves et mon évaluation de cette compétence.",
+    "backToContents": "Retour au sommaire",
     "definitionHeading": "Définition",
+    "relatedNewsHeading": "Actualité liée",
+    "newsSourceLabel": "Consulter la source :",
     "proofsHeading": "Éléments de preuve",
     "selfCritiqueHeading": "Autocritique",
     "evolutionHeading": "Évolution",
@@ -341,6 +412,7 @@
     "backToRealisations": "Retour aux réalisations",
     "presentationHeading": "Présentation",
     "objectivesHeading": "Objectifs, contexte et enjeux",
+    "risksHeading": "Risques et mesures de maîtrise",
     "stepsHeading": "Les étapes — ce que j'ai fait",
     "actorsHeading": "Les acteurs — les interactions",
     "resultsHeading": "Les résultats",
@@ -348,6 +420,9 @@
     "critiqueHeading": "Mon regard critique",
     "mediaHeading": "Preuves visuelles",
     "mediaSubtext": "Captures et démonstrations issues des projets réels.",
+    "contentsHeading": "Sommaire",
+    "contentsSubtext": "Accédez directement à une partie de cette étude de cas.",
+    "backToContents": "Retour au sommaire",
     "linkedCompetencesHeading": "Compétences rattachées",
     "context": "Contexte"
   },
@@ -365,6 +440,13 @@
   "notFound": {
     "heading": "Page introuvable",
     "text": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "errorPage": {
+    "eyebrow": "Erreur",
+    "heading": "Une erreur est survenue",
+    "text": "Quelque chose s'est mal passé. Vous pouvez réessayer ou revenir à l'accueil.",
+    "retry": "Réessayer",
     "backHome": "Retour à l'accueil"
   },
   "cookies": {
@@ -403,18 +485,20 @@
     "dataCollected": "Données collectées",
     "dataCollectedText": "Ce site peut collecter les données suivantes :",
     "dataItems": [
-      "Formulaire de contact : nom, adresse email, message",
+      "Formulaire de contact : nom, adresse email, motif et message",
+      "Sécurité du formulaire : adresse IP, horodatage et jeton reCAPTCHA lorsque le service est configuré",
       "Cookies de préférence : langue, thème",
-      "Cookies analytiques : données de navigation anonymisées (Google Analytics, si consenti)"
+      "Mesure d'audience : données de navigation transmises à Google uniquement après consentement"
     ],
     "purpose": "Utilisation des données",
-    "purposeText": "Les données collectées via le formulaire de contact sont uniquement utilisées pour répondre à votre demande. Elles ne sont ni vendues ni partagées avec des tiers.",
+    "purposeText": "Le traitement du formulaire repose sur l'intérêt légitime à répondre aux demandes reçues et à protéger le site contre le spam. Les données sont accessibles à l'éditeur du site et aux prestataires strictement nécessaires à son fonctionnement, notamment Vercel pour l'hébergement et Resend pour l'acheminement des emails. Elles ne sont jamais vendues. Les messages sont conservés le temps nécessaire au suivi de la demande, puis supprimés au plus tard douze mois après le dernier échange, sauf obligation légale contraire.",
     "cookiesSection": "Cookies",
-    "cookiesText": "Ce site utilise des cookies pour fonctionner correctement. Les cookies analytiques ne sont chargés qu'après votre consentement explicite via la bannière de cookies.",
+    "cookiesText": "La langue et le thème sont des préférences nécessaires au fonctionnement demandé. Google Tag Manager et Google Analytics ne sont chargés qu'après un consentement explicite, révocable en supprimant les préférences du site dans le navigateur. reCAPTCHA peut être chargé sur la page de contact afin de sécuriser l'envoi lorsque ce service est configuré.",
     "rights": "Vos droits",
-    "rightsText": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles. Pour exercer ces droits, contactez-moi par email.",
+    "rightsText": "Conformément au RGPD, vous disposez de droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, lorsque applicable, de portabilité. Vous pouvez retirer votre consentement à tout moment. Pour exercer ces droits, utilisez l'adresse indiquée dans les mentions légales. Vous pouvez également introduire une réclamation auprès de la CNIL.",
     "updates": "Modifications",
-    "updatesText": "Cette politique peut être mise à jour à tout moment. La date de dernière modification sera indiquée en bas de cette page.",
-    "lastUpdated": "Dernière mise à jour"
+    "updatesText": "Cette politique est révisée lorsque les traitements ou prestataires évoluent. Une nouvelle date de version est publiée à chaque modification substantielle.",
+    "lastUpdated": "Dernière mise à jour",
+    "lastUpdatedDate": "16 juillet 2026"
   }
 }

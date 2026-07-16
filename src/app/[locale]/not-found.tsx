@@ -1,21 +1,36 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { useDictionary } from "@/components/dictionary-provider";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function NotFound() {
+  const pathname = usePathname();
+  const locale = pathname?.split("/").filter(Boolean)[0] || "fr";
+  const dict = useDictionary();
+
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <h1 className="text-6xl font-bold tracking-tight text-primary">404</h1>
-      <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-        Page introuvable
-      </h2>
-      <p className="mt-3 max-w-md text-muted-foreground">
-        La page que vous recherchez n&apos;existe pas ou a ete deplacee.
-      </p>
-      <Link
-        href="/"
-        className="mt-8 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-      >
-        Retour a l&apos;accueil
-      </Link>
+    <div>
+      <EditorialPageHeader
+        eyebrow="404"
+        title={dict.notFound.heading}
+        description={dict.notFound.text}
+        titleClassName="uppercase"
+      />
+      <div className="section-tinted flex min-h-64 items-center justify-center px-6 py-16">
+        <Link
+          href={`/${locale}`}
+          className={cn(
+            buttonVariants({ size: "lg" }),
+            "rounded-full bg-vermillion px-7 text-white hover:bg-vermillion/90",
+          )}
+        >
+          {dict.notFound.backHome}
+        </Link>
+      </div>
     </div>
   );
 }

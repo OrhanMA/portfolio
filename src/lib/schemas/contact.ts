@@ -26,7 +26,7 @@ export const contactSchema = z
       .max(5000, "Le message ne doit pas dépasser 5000 caractères."),
     // Anti-spam fields (not shown to user)
     honeypot: z.string().max(0, "Bot detected.").optional(),
-    timestamp: z.number().optional(),
+    timestamp: z.number().int().positive(),
     recaptchaToken: z.string().optional(),
   })
   .refine(

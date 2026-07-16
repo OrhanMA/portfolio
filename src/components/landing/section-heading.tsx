@@ -18,7 +18,7 @@ export function SectionHeading({
         className,
       )}
     >
-      <p className="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+      <p className="font-sans text-xs font-semibold uppercase tracking-[0.28em] text-primary">
         {eyebrow}
       </p>
       <div>

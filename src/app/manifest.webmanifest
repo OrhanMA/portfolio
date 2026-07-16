@@ -1,0 +1,21 @@
+{
+  "name": "Orhan Madi Assani — Portfolio",
+  "short_name": "Orhan",
+  "description": "Portfolio d’Orhan Madi Assani, développeur full-stack.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101827",
+  "theme_color": "#101827",
+  "icons": [
+    {
+      "src": "/icons/app-icon-192x192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/icons/app-icon-512x512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

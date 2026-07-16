@@ -1,140 +1,182 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useDictionary } from "@/components/dictionary-provider";
 import { Reveal } from "@/components/landing/reveal";
-import { SectionHeading } from "@/components/landing/section-heading";
+import {
+  EditorialWave,
+  UkiyoeCrest,
+} from "@/components/landing/editorial-wave";
+import { PixelFlag, PixelHeart, PixelSpark } from "@/components/landing/pixel-art";
 import { cn } from "@/lib/utils";
-import { realisations } from "@/lib/realisations";
-import type { Locale } from "@/lib/i18n";
+import type { Dictionary } from "@/app/[locale]/dictionaries";
 
-const FEATURED_SLUGS = [
-  "migration-odoo-v16-v19",
-  "modules-metier-odoo",
-  "refonte-site-corporate",
-] as const;
+type FeaturedSlug =
+  | "migration-odoo-v16-v19"
+  | "modules-metier-odoo"
+  | "refonte-site-corporate";
 
-const CASE_IMAGES: Record<(typeof FEATURED_SLUGS)[number], string> = {
-  "migration-odoo-v16-v19": "/images/odoo-logo.webp",
-  "modules-metier-odoo": "/images/odoo-logo.webp",
-  "refonte-site-corporate": "/images/nextjs-logo.webp",
+export type FeaturedProjectSummary = {
+  slug: FeaturedSlug;
+  title: string;
+  tags: string[];
 };
 
-export function ProjectsSection({ locale }: { locale: string }) {
-  const dict = useDictionary();
-  const loc = locale as Locale;
-  const resultBySlug = Object.fromEntries(
-    dict.featuredProjects.results.map(
-      (item: { slug: string; result: string }) => [item.slug, item.result],
-    ),
-  );
+const CASE_MEDIA: Record<
+  FeaturedSlug,
+  { src: string; imageClassName: string; surfaceClassName: string }
+> = {
+  "migration-odoo-v16-v19": {
+    src: "/images/project-screenshots/odoo/odoo-success-migration-v19.png",
+    imageClassName: "object-contain p-9 sm:p-12",
+    surfaceClassName:
+      "bg-[linear-gradient(135deg,oklch(0.95_0.025_245),oklch(0.98_0.01_92))] dark:bg-[oklch(0.2_0.04_245)]",
+  },
+  "modules-metier-odoo": {
+    src: "/images/project-screenshots/odoo/self-made-modules-list.png",
+    imageClassName: "object-cover object-left",
+    surfaceClassName: "bg-muted",
+  },
+  "refonte-site-corporate": {
+    src: "/images/project-screenshots/corporate/corporate-local-hero.png",
+    imageClassName: "object-cover object-center",
+    surfaceClassName: "bg-muted",
+  },
+};
 
-  const featuredRealisations = FEATURED_SLUGS.map((slug) =>
-    realisations.find((realisation) => realisation.slug === slug),
-  ).filter(Boolean);
+type CaseCopy = {
+  slug: FeaturedSlug;
+  problem: string;
+  contribution: string;
+  result: string;
+  metricValue: string;
+  metricLabel: string;
+  metricNote: string;
+};
+
+const ResultIcons = [PixelSpark, PixelHeart, PixelFlag];
+
+export function ProjectsSection({
+  locale,
+  projects,
+  dict,
+}: {
+  locale: string;
+  projects: FeaturedProjectSummary[];
+  dict: Dictionary["featuredProjects"];
+}) {
+  const caseCopyBySlug = Object.fromEntries(
+    (dict.cases as CaseCopy[]).map((item) => [item.slug, item]),
+  ) as Record<FeaturedSlug, CaseCopy>;
 
   return (
     <section
       id="realisations"
-      className="section-tinted px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+      className="landing-deferred landing-deferred-projects relative overflow-hidden border-y border-foreground/15 px-4 pb-32 pt-20 sm:px-6 lg:px-8 lg:pb-36 lg:pt-24"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <Reveal>
-          <SectionHeading
-            eyebrow={dict.featuredProjects.eyebrow}
-            title={dict.featuredProjects.heading}
-            description={dict.featuredProjects.text}
-          />
+          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+            {dict.eyebrow}
+          </p>
+          <h2 className="mt-3 text-5xl font-black uppercase leading-none tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+            {dict.eyebrow}
+          </h2>
         </Reveal>
 
-        <Reveal className="mt-16" stagger=".case-study-card">
-          <div className="grid gap-4">
-            {featuredRealisations.map((realisation, index) => {
-              if (!realisation) return null;
-              const slug = realisation.slug as (typeof FEATURED_SLUGS)[number];
+        <Reveal className="mt-10" stagger=".case-row">
+          <div className="overflow-hidden rounded-xl border border-foreground/20 bg-background/82 shadow-[0_22px_60px_oklch(0_0_0/0.06)]">
+            {projects.map((project, index) => {
+              const slug = project.slug;
+              const media = CASE_MEDIA[slug];
+              const copy = caseCopyBySlug[slug];
+              const ResultIcon = ResultIcons[index] ?? PixelSpark;
+              const imageOnRight = index === 1;
 
               return (
                 <article
-                  key={realisation.slug}
-                  className="case-study-card invisible group grid overflow-hidden rounded-lg border border-border/70 bg-background/60 transition-colors hover:border-primary/60 hover:bg-background/85 lg:grid-cols-[0.72fr_1fr]"
+                  key={project.slug}
+                  className="case-row invisible grid border-b border-foreground/20 last:border-b-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)_190px]"
                 >
-                  <div className="relative min-h-72 overflow-hidden bg-muted lg:min-h-[420px]">
+                  <div
+                    className={cn(
+                      "group relative min-h-72 overflow-hidden border-b border-foreground/15 sm:min-h-80 lg:min-h-72 lg:border-b-0 lg:border-r",
+                      media.surfaceClassName,
+                      imageOnRight && "lg:order-2",
+                    )}
+                  >
                     <Image
-                      src={CASE_IMAGES[slug]}
-                      alt=""
+                      src={media.src}
+                      alt={project.title}
                       fill
                       sizes="(min-width: 1024px) 42vw, 100vw"
-                      className="pointer-events-none object-contain saturate-[0.82] transition duration-700 group-hover:scale-105 group-hover:saturate-100"
+                      className={cn(
+                        "pointer-events-none transition-transform duration-700 group-hover:scale-[1.025]",
+                        media.imageClassName,
+                      )}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent" />
-                    <p className="absolute left-5 top-5 font-mono text-xs uppercase tracking-[0.24em] text-primary">
-                      {dict.featuredProjects.featuredLabel} 0{index + 1}
-                    </p>
+                    <span className="absolute left-5 top-5 rounded-full border border-foreground/20 bg-background/90 px-3 py-1 font-sans text-[9px] font-bold uppercase tracking-[0.16em] backdrop-blur">
+                      {dict.featuredLabel}
+                    </span>
                   </div>
 
-                  <div className="flex min-h-full flex-col justify-between gap-10 p-5 sm:p-8 lg:p-10">
-                    <div>
-                      <div className="mb-7 flex flex-wrap gap-2">
-                        <Badge variant="outline" className="font-mono">
-                          {realisation.context[loc]}
-                        </Badge>
-                        {realisation.tags.slice(0, 4).map((tag) => (
-                          <Badge key={tag} variant="secondary">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <h3 className="text-balance text-3xl font-semibold leading-tight tracking-normal sm:text-4xl">
-                        {realisation.title[loc]}
-                      </h3>
-                      <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-                        {realisation.shortDescription[loc]}
-                      </p>
+                  <div
+                    className={cn(
+                      "flex min-h-72 flex-col justify-center px-6 py-8 sm:px-8 lg:border-r lg:px-9",
+                      imageOnRight && "lg:order-1",
+                    )}
+                  >
+                    <h3 className="text-2xl font-black leading-tight tracking-[-0.035em] sm:text-3xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                      {copy.contribution}
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {project.tags.slice(0, 4).map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded border border-primary/45 px-2 py-1 font-sans text-[9px] font-medium text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
+                    <Link
+                      href={`/${locale}/realisations/${project.slug}`}
+                      className="mt-5 inline-flex w-fit items-center gap-2 text-xs font-bold text-foreground transition-colors hover:text-primary"
+                    >
+                      {dict.readCase}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
 
-                    <div className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
-                      <div className="border-l border-primary/70 pl-4">
-                        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                          {dict.featuredProjects.resultLabel}
-                        </p>
-                        <p className="mt-2 text-sm leading-6 text-foreground">
-                          {resultBySlug[realisation.slug]}
-                        </p>
-                      </div>
-
-                      <Link
-                        href={`/${locale}/realisations/${realisation.slug}`}
-                        className={cn(
-                          buttonVariants({ variant: "outline", size: "lg" }),
-                          "h-12 rounded-lg px-5",
-                        )}
-                      >
-                        {dict.featuredProjects.readCase}
-                        <ArrowUpRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </div>
+                  <div className="relative flex min-h-48 flex-col justify-center border-t border-foreground/15 px-6 py-8 lg:order-3 lg:min-h-72 lg:border-t-0">
+                    <ResultIcon className="absolute right-4 top-4 h-7 w-7 text-vermillion" />
+                    <p className="font-sans text-[9px] font-bold uppercase tracking-[0.16em] text-vermillion">
+                      {dict.resultLabel}
+                    </p>
+                    <p className="mt-2 text-5xl font-black leading-none tracking-[-0.055em]">
+                      {copy.metricValue}
+                    </p>
+                    <p className="mt-2 text-sm font-bold leading-5">{copy.metricLabel}</p>
+                    <p className="mt-4 text-xs leading-5 text-muted-foreground">
+                      {copy.metricNote}
+                    </p>
                   </div>
                 </article>
               );
             })}
           </div>
         </Reveal>
-
-        <Reveal className="mt-10 flex justify-center">
-          <Link
-            href={`/${locale}/realisations`}
-            className={cn(buttonVariants({ size: "lg" }), "h-12 rounded-lg px-5")}
-          >
-            {dict.featuredProjects.ctaAll}
-            <ArrowUpRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Reveal>
       </div>
+
+      <div className="absolute inset-x-0 bottom-[-1px] z-0 opacity-55">
+        <EditorialWave className="h-24 sm:h-28" />
+      </div>
+      <UkiyoeCrest
+        flip
+        className="absolute -bottom-3 -right-16 z-[1] hidden h-52 w-72 opacity-70 md:block"
+      />
     </section>
   );
 }

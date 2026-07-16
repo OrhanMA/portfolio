@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useId, useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 interface RadarChartDatum {
@@ -10,6 +10,7 @@ interface RadarChartDatum {
 
 interface RadarChartProps {
   data: RadarChartDatum[];
+  title: string;
 }
 
 function polarToCartesian(
@@ -47,8 +48,10 @@ const LABEL_OFFSET = 55;
 const START_ANGLE = -Math.PI / 2;
 const GRID_LEVELS = [0.25, 0.5, 0.75, 1];
 
-export function RadarChart({ data }: RadarChartProps) {
+export function RadarChart({ data, title }: RadarChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
   const count = data.length;
 
   const dataPoints = data.map((d, i) => {
@@ -108,7 +111,16 @@ export function RadarChart({ data }: RadarChartProps) {
 
   return (
     <div ref={containerRef} className="mx-auto w-full max-w-xl">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        className="h-auto w-full"
+        role="img"
+        aria-labelledby={`${titleId} ${descriptionId}`}
+      >
+        <title id={titleId}>{title}</title>
+        <desc id={descriptionId}>
+          {data.map((item) => `${item.label} : ${item.value} sur 100`).join(", ")}
+        </desc>
         {/* Concentric grid polygons */}
         {GRID_LEVELS.map((level) => (
           <polygon

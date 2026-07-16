@@ -1,7 +1,12 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { page } from "vitest/browser";
-import { renderWithProviders } from "@/test/browser-utils";
+import { frDict, renderWithProviders } from "@/test/browser-utils";
 import { ContactForm } from "@/components/contact-form";
+
+const contactDict = {
+  contactForm: frDict.contactForm,
+  contactReasons: frDict.contactReasons,
+};
 
 // Mock the server action
 vi.mock("@/app/[locale]/actions/contact", () => ({
@@ -23,7 +28,7 @@ describe("ContactForm (browser)", () => {
   });
 
   test("renders all form fields", async () => {
-    await renderWithProviders(<ContactForm />);
+    await renderWithProviders(<ContactForm dict={contactDict} />);
 
     // Name field
     await expect
@@ -52,7 +57,7 @@ describe("ContactForm (browser)", () => {
   });
 
   test("honeypot field is hidden from users via aria-hidden", async () => {
-    await renderWithProviders(<ContactForm />);
+    await renderWithProviders(<ContactForm dict={contactDict} />);
 
     // Honeypot container has aria-hidden="true" — invisible to screen readers
     // and positioned off-screen via CSS (-9999px positioning)
@@ -63,7 +68,7 @@ describe("ContactForm (browser)", () => {
   });
 
   test("form fields accept input", async () => {
-    await renderWithProviders(<ContactForm />);
+    await renderWithProviders(<ContactForm dict={contactDict} />);
 
     // Fill name
     await page.getByLabelText("Nom complet").fill("Jean Dupont");
@@ -85,7 +90,7 @@ describe("ContactForm (browser)", () => {
   });
 
   test("character counter appears when typing", async () => {
-    await renderWithProviders(<ContactForm />);
+    await renderWithProviders(<ContactForm dict={contactDict} />);
 
     await page.getByLabelText("Message").fill("Hello World");
 
@@ -103,7 +108,7 @@ describe("ContactForm (browser)", () => {
       message: "Message envoye avec succes !",
     });
 
-    await renderWithProviders(<ContactForm />);
+    await renderWithProviders(<ContactForm dict={contactDict} />);
 
     // Fill required fields
     await page.getByLabelText("Nom complet").fill("Jean Dupont");
@@ -135,7 +140,7 @@ describe("ContactForm (browser)", () => {
       message: "Une erreur est survenue.",
     });
 
-    await renderWithProviders(<ContactForm />);
+    await renderWithProviders(<ContactForm dict={contactDict} />);
 
     // Fill required fields
     await page.getByLabelText("Nom complet").fill("Jean Dupont");

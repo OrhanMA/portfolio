@@ -5,9 +5,12 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Locale } from "@/lib/i18n";
+import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../../dictionaries";
 import { getRealisationBySlug, realisations } from "@/lib/realisations";
 import { getCompetenceBySlug } from "@/lib/competences";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { RealisationArticleContent } from "@/components/realisation-article-content";
 
 const linkClassName =
   "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
@@ -28,33 +31,13 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: `${realisation.title[locale as Locale]} | ${locale === "fr" ? "Réalisations" : "Achievements"} | Orhan Madi Assani`,
-    description: realisation.shortDescription[locale as Locale],
-  };
-}
+  const loc = locale as Locale;
 
-function renderParagraphs(text: string) {
-  return text.split("\n\n").map((paragraph, i) => (
-    <p key={i} className="leading-7 text-muted-foreground">
-      {paragraph}
-    </p>
-  ));
-}
-
-function renderWithBold(text: string) {
-  return text.split("\n\n").map((paragraph, i) => {
-    const parts = paragraph.split(/(\*\*[^*]+\*\*)/g);
-    return (
-      <p key={i} className="leading-7 text-muted-foreground">
-        {parts.map((part, j) => {
-          if (part.startsWith("**") && part.endsWith("**")) {
-            return <strong key={j}>{part.slice(2, -2)}</strong>;
-          }
-          return part;
-        })}
-      </p>
-    );
+  return createLocalizedMetadata({
+    locale: loc,
+    pathname: `/realisations/${slug}`,
+    title: `${realisation.title[loc]} | ${locale === "fr" ? "Réalisations" : "Achievements"} | Orhan Madi Assani`,
+    description: realisation.shortDescription[loc],
   });
 }
 
@@ -74,50 +57,70 @@ export default async function RealisationDetailPage({
   const loc = locale as Locale;
   const contentSections = [
     {
+      id: "presentation",
       title: dict.realisationsPage.presentationHeading,
-      content: renderParagraphs(realisation.presentation[loc]),
+      text: realisation.presentation[loc],
     },
     {
+      id: "objectives",
       title: dict.realisationsPage.objectivesHeading,
-      content: renderParagraphs(realisation.objectives[loc]),
+      text: realisation.objectives[loc],
     },
+    ...(realisation.risks
+      ? [
+          {
+            id: "risks",
+            title: dict.realisationsPage.risksHeading,
+            text: realisation.risks[loc],
+          },
+        ]
+      : []),
     {
+      id: "steps",
       title: dict.realisationsPage.stepsHeading,
-      content: renderParagraphs(realisation.steps[loc]),
+      text: realisation.steps[loc],
     },
     {
+      id: "actors",
       title: dict.realisationsPage.actorsHeading,
-      content: renderParagraphs(realisation.actors[loc]),
+      text: realisation.actors[loc],
     },
     {
+      id: "results",
       title: dict.realisationsPage.resultsHeading,
-      content: renderWithBold(realisation.results[loc]),
+      text: realisation.results[loc],
     },
     {
+      id: "aftermath",
       title: dict.realisationsPage.aftermathHeading,
-      content: renderParagraphs(realisation.aftermath[loc]),
+      text: realisation.aftermath[loc],
     },
     {
+      id: "critique",
       title: dict.realisationsPage.critiqueHeading,
-      content: renderParagraphs(realisation.critique[loc]),
+      text: realisation.critique[loc],
     },
   ];
 
   return (
-    <div className="px-4 pb-16 pt-28 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <Link
-          href={`/${locale}/realisations`}
-          className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {dict.realisationsPage.backToRealisations}
-        </Link>
-
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
-          <div>
-          <div className="mb-4 flex flex-wrap gap-2">
-            <Badge variant="outline" className="font-mono text-[11px] tracking-wide">
+    <div>
+      <EditorialPageHeader
+        compact
+        eyebrow={dict.nav.realisations}
+        title={realisation.title[loc]}
+        description={realisation.shortDescription[loc]}
+        leading={
+          <Link
+            href={`/${locale}/realisations`}
+            className="mb-6 inline-flex items-center gap-2 text-sm font-bold text-foreground/65 transition-colors hover:text-primary"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            {dict.realisationsPage.backToRealisations}
+          </Link>
+        }
+        meta={
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="outline" className="font-sans text-[11px] tracking-wide">
               {realisation.context[loc]}
             </Badge>
             {realisation.tags.map((tag) => (
@@ -126,28 +129,21 @@ export default async function RealisationDetailPage({
               </Badge>
             ))}
           </div>
-
-          <h1 className="text-balance text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl lg:text-7xl">
-            {realisation.title[loc]}
-          </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
-            {realisation.shortDescription[loc]}
-          </p>
-          </div>
-
-          <aside className="premium-card rounded-lg p-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
-              Case file
+        }
+        aside={
+          <aside className="premium-card rounded-xl border-l-4 border-l-vermillion p-5">
+            <p className="editorial-index text-vermillion">
+              {dict.realisationsPage.context}
             </p>
             <div className="mt-5 grid gap-4">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                   {dict.realisationsPage.context}
                 </p>
                 <p className="mt-1 text-sm">{realisation.context[loc]}</p>
               </div>
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                   Stack
                 </p>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -160,126 +156,187 @@ export default async function RealisationDetailPage({
               </div>
             </div>
           </aside>
-        </div>
+        }
+      />
 
-        {realisation.media && realisation.media.length > 0 && (
-          <section className="mt-12">
-            <div className="mb-5 grid gap-2 lg:grid-cols-[240px_1fr]">
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-primary">
-                {dict.realisationsPage.mediaHeading}
-              </p>
-              <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-                {dict.realisationsPage.mediaSubtext}
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {realisation.media.map((item) => (
-                <figure
-                  key={item.src}
-                  className="premium-card overflow-hidden rounded-lg border border-border/50"
+      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-7xl">
+          {realisation.media && realisation.media.length > 0 && (
+            <section aria-labelledby="visual-proof-heading">
+              <div className="mb-5 grid gap-2 lg:grid-cols-[260px_1fr]">
+                <h2
+                  id="visual-proof-heading"
+                  className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-primary"
                 >
-                  <div className="relative aspect-video bg-muted">
-                    {item.type === "image" ? (
-                      <Image
-                        src={item.src}
-                        alt={item.title[loc]}
-                        fill
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <iframe
-                        src={item.src}
-                        title={item.title[loc]}
-                        className="h-full w-full"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      />
-                    )}
-                  </div>
-                  <figcaption className="p-4">
-                    <p className="font-medium">{item.title[loc]}</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      {item.description[loc]}
-                    </p>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <div className="mt-12 grid gap-10 lg:grid-cols-[240px_1fr]">
-          <aside className="hidden lg:block">
-            <div className="sticky top-28 border-t border-border/70 pt-5">
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                Narrative
-              </p>
-              <ol className="mt-5 grid gap-2 text-sm text-muted-foreground">
-                {contentSections.map((section, index) => (
-                  <li key={section.title}>
-                    <span className="font-mono text-primary">
-                      0{index + 1}
-                    </span>{" "}
-                    {section.title}
-                  </li>
+                  {dict.realisationsPage.mediaHeading}
+                </h2>
+                <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+                  {dict.realisationsPage.mediaSubtext}
+                </p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                {realisation.media.map((item) => (
+                  <figure
+                    key={item.src}
+                    className="premium-card overflow-hidden rounded-xl border-t-4 border-t-primary"
+                  >
+                    <div className="relative aspect-video bg-muted">
+                      {item.type === "image" ? (
+                        <Image
+                          src={item.src}
+                          alt={item.title[loc]}
+                          fill
+                          sizes="(min-width: 768px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <iframe
+                          src={item.src}
+                          title={item.title[loc]}
+                          className="h-full w-full"
+                          loading="lazy"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        />
+                      )}
+                    </div>
+                    <figcaption className="p-4">
+                      <p className="font-medium">{item.title[loc]}</p>
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                        {item.description[loc]}
+                      </p>
+                    </figcaption>
+                  </figure>
                 ))}
-              </ol>
-            </div>
-          </aside>
+              </div>
+            </section>
+          )}
 
-          <div className="grid gap-4">
-            {contentSections.map((section, index) => (
-              <section
-                key={section.title}
-                className="premium-card rounded-lg p-5 sm:p-8"
+          <div className="mt-12 grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:items-start">
+            <aside id="realisation-contents" className="scroll-mt-28 lg:sticky lg:top-28">
+              <nav
+                aria-label={dict.realisationsPage.contentsHeading}
+                className="premium-card rounded-xl border-t-4 border-t-primary p-5 sm:p-6"
               >
-                <div className="grid gap-5 sm:grid-cols-[72px_1fr]">
-                  <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
-                    0{index + 1}
+                <p className="editorial-index">
+                  {dict.realisationsPage.contentsHeading}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  {dict.realisationsPage.contentsSubtext}
+                </p>
+                <ol className="mt-5 divide-y divide-border/70 border-y border-border/70">
+                  {contentSections.map((section, index) => (
+                    <li key={section.id}>
+                      <a
+                        href={`#${section.id}`}
+                        className="group grid grid-cols-[2rem_1fr] gap-2 py-3 text-sm leading-5 text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="font-sans text-xs font-bold text-primary"
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="font-medium group-hover:underline group-hover:underline-offset-4">
+                          {section.title}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                  <li>
+                    <a
+                      href="#linked-competences"
+                      className="group grid grid-cols-[2rem_1fr] gap-2 py-3 text-sm leading-5 text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="font-sans text-xs font-bold text-vermillion"
+                      >
+                        {String(contentSections.length + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-medium group-hover:underline group-hover:underline-offset-4">
+                        {dict.realisationsPage.linkedCompetencesHeading}
+                      </span>
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+            </aside>
+
+            <div className="grid min-w-0 gap-8">
+              {contentSections.map((section, index) => (
+                <section
+                  id={section.id}
+                  key={section.id}
+                  aria-labelledby={`${section.id}-heading`}
+                  className="premium-card scroll-mt-28 overflow-hidden rounded-xl border-t-4 border-t-primary even:border-t-vermillion"
+                >
+                  <header className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
+                    <div className="flex items-start gap-4 sm:gap-5">
+                      <p className="mt-1 shrink-0 font-sans text-xs font-bold tracking-[0.18em] text-primary">
+                        {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <h2
+                        id={`${section.id}-heading`}
+                        className="text-balance text-2xl font-black leading-tight tracking-[-0.025em] sm:text-3xl"
+                      >
+                        {section.title}
+                      </h2>
+                    </div>
+                  </header>
+                  <div className="px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
+                    <RealisationArticleContent text={section.text} />
+                    <div className="mx-auto mt-8 max-w-[76ch] border-t border-border/70 pt-5 text-right">
+                      <a
+                        href="#realisation-contents"
+                        className="text-sm font-semibold text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary"
+                      >
+                        {dict.realisationsPage.backToContents}
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              ))}
+
+              <section
+                id="linked-competences"
+                aria-labelledby="linked-competences-heading"
+                className="premium-card scroll-mt-28 rounded-xl border-t-4 border-t-vermillion p-5 sm:p-8 lg:p-10"
+              >
+                <div className="flex items-start gap-4 sm:gap-5">
+                  <p className="mt-1 shrink-0 font-sans text-xs font-bold tracking-[0.18em] text-vermillion">
+                    {String(contentSections.length + 1).padStart(2, "0")}
                   </p>
                   <div>
-                    <h2 className="text-2xl font-semibold tracking-normal">
-                      {section.title}
+                    <h2
+                      id="linked-competences-heading"
+                      className="text-balance text-2xl font-black leading-tight tracking-[-0.025em] sm:text-3xl"
+                    >
+                      {dict.realisationsPage.linkedCompetencesHeading}
                     </h2>
-                    <div className="mt-5 space-y-4">{section.content}</div>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {realisation.linkedCompetences.map((compSlug) => {
+                        const competence = getCompetenceBySlug(compSlug);
+                        if (!competence) return null;
+                        return (
+                          <Link
+                            key={compSlug}
+                            href={`/${locale}/competences/${compSlug}`}
+                            className={linkClassName}
+                          >
+                            {competence.title[loc]}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </section>
-            ))}
-
-            <section className="premium-card rounded-lg p-5 sm:p-8">
-              <div className="grid gap-5 sm:grid-cols-[72px_1fr]">
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
-                  08
-                </p>
-                <div>
-                  <h2 className="text-2xl font-semibold tracking-normal">
-                    {dict.realisationsPage.linkedCompetencesHeading}
-                  </h2>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {realisation.linkedCompetences.map((compSlug) => {
-                  const competence = getCompetenceBySlug(compSlug);
-                  if (!competence) return null;
-                  return (
-                    <Link
-                      key={compSlug}
-                      href={`/${locale}/competences/${compSlug}`}
-                      className={linkClassName}
-                    >
-                      {competence.title[loc]}
-                    </Link>
-                  );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </section>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

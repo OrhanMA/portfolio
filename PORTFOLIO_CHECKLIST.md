@@ -4,28 +4,32 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-05-13
+Last reviewed: 2026-07-16
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 ---
 
-## État des lieux actuel — 2026-05-13
+## État des lieux actuel — 2026-07-16
 
-L'application est un portfolio Next.js 16 bilingue FR/EN bien avancé : page d'accueil animée, pages dédiées pour l'à-propos, les compétences, les réalisations, les projets open source Odoo, les articles MDX, le contact, les mentions légales et la politique de confidentialité. Le socle technique est solide : App Router avec segment `[locale]`, dictionnaires JSON, navbar/footer persistants, GSAP centralisé, Lenis, thème dark/light, cookie consent, GTM consent-gated, formulaire de contact avec validations et anti-spam, sitemap, robots, tests unitaires/browser/e2e et CI GitHub Actions. La homepage expose désormais une section Documents qui pointe vers le CV, le TOEIC et les titres RNCP.
+L'application est un portfolio Next.js 16 bilingue FR/EN bien avancé : page d'accueil animée, pages dédiées pour l'à-propos, les compétences, les réalisations, les projets open source Odoo, les articles MDX, le contact, les mentions légales et la politique de confidentialité. Le socle technique est solide : pages secondaires dans l'App Router avec segment `[locale]`, homepage SSG progressive sans runtime React côté client, dictionnaires JSON, navbar/footer persistants, GSAP centralisé et Lenis sur les routes interactives, thème dark/light, cookie consent, GTM consent-gated, formulaire de contact avec validations et anti-spam, sitemap, robots, tests unitaires/browser/e2e et CI GitHub Actions. Le footer donne accès au CV, au TOEIC et aux titres RNCP sans alourdir la homepage.
 
-Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 réalisations détaillées, navigation circulaire compétences ↔ réalisations, frise chronologique, expérience/formation avec logos, responsabilités explicites, page contact et sous-menus dédiés pour les compétences et réalisations. Les pages réalisations ont maintenant des preuves visuelles : captures Odoo, captures corporate, captures CAP2vie et vidéos de démonstration CAP2vie. Les derniers écarts concernent surtout les métriques d'impact quand elles ne peuvent pas être déduites du code.
+La direction artistique Japan Pop est désormais cohérente sur l'ensemble du site : papier ivoire texturé, typographie géométrique massive, soleil vermillon, mont Fuji, règles bleu/rouge et pétales de sakura pixelisés. La homepage conserve son portrait détouré, ses vagues ukiyo-e multicouches et ses quatre mascottes pixel originales, tandis que les pages secondaires utilisent un en-tête éditorial commun et des panneaux papier plus sobres. Chaque mascotte possède une variante de clin d'œil affichée brièvement à intervalle désynchronisé. La section À propos utilise trois tampons irréguliers avec une ombre synchronisée au hover, la frise verticale est épurée et accompagnée de logos réels, les compétences sont synthétisées en six domaines, les réalisations forment une mosaïque compacte avec captures et métriques vérifiées, et le contact repose sur un grand cercle rouge illustré. Les documents publics sont regroupés dans le footer. Les animations natives CSS/Web Animations de la homepage et les animations GSAP des pages interactives disposent d'une variante statique `prefers-reduced-motion` ; les régressions couvrent desktop et mobile.
+
+Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 réalisations détaillées, navigation circulaire compétences ↔ réalisations, frise chronologique ouverte, expérience/formation avec logos et page contact. La navbar mène directement aux pages À propos, Compétences et Réalisations, tout en conservant l'ancre Parcours de la homepage ; ses sous-menus donnent aussi accès aux 10 compétences et aux 5 réalisations sur desktop comme sur mobile. Les pages réalisations ont des preuves visuelles : captures Odoo, captures corporate, captures CAP2vie et vidéos de démonstration CAP2vie. Les relations compétences ↔ réalisations sont réciproques et protégées par un test automatique. Le TOEIC est daté du 7 août 2025 et son certificat public est lié depuis le footer.
+
+La page de présentation expose désormais explicitement le projet professionnel et personnel : devenir développeur confirmé et référent technique Odoo, élargir le profil aux intégrations ERP par API, progresser vers la gestion de projet, la décision produit et l'architecture, et construire un outil de business intelligence auto-hébergé connecté à Odoo. Les cinq réalisations sont désormais entièrement développées dans toutes leurs rubriques et isolées dans cinq modules de contenu distincts derrière un index public léger. Pour le portfolio professionnel, la présentation, les objectifs, les risques, les 32 étapes, les interactions, les résultats, les lendemains et le regard critique s'appuient sur les réponses, le code, l'historique Git et la capture Lighthouse du 15 juillet 2026. Les dix compétences ont été réécrites en français et en anglais à partir de ces études de cas : chacune possède trois preuves développées, des résultats explicites, une autocritique argumentée et une trajectoire d'évolution. Chaque définition reste reliée à une actualité datée, contextualisée et renvoyant vers une source officielle distincte.
 
 ---
 
 ## ISCOD Grille d'évaluation (100 points)
 
-### Prénom, Nom, Photo — sur toutes les pages (obligatoire, pas de points dédiés)
+### Prénom, Nom, Photo — critère transversal obligatoire (sans points dédiés)
 
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Prénom + Nom sur toutes les pages | ✅ | Nom complet visible dans le hero, le footer et la navbar desktop persistante |
-| Photo sur toutes les pages | ✅ | Avatar headshot dans la navbar |
+| Photo sur toutes les pages | ✅ | Portrait compact visible dans le logo de la navbar, sur desktop comme sur mobile |
 
 ---
 
@@ -33,9 +37,9 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Attrayante | ✅ | GSAP animations, gradient hero, dark/light mode |
-| Convaincante | ✅ | CTAs clairs, parcours autodidacte → professionnel |
-| Correctement structurée | ✅ | Hero → About → Skills → Réalisations mises en avant → Experience → Documents → CTA |
+| Attrayante | ✅ | Direction Japan Pop distinctive : hero monumental, portrait détouré, Fuji, vagues ukiyo-e, pixel art, animations natives légères et dark/light mode |
+| Convaincante | ✅ | CTA contact persistant, mosaïque de cas avec métriques vérifiées et documents publics accessibles dans le footer |
+| Correctement structurée | ✅ | Hero → About → Experience → Skills → Réalisations mises en avant → CTA, avec niveaux de lecture détaillés sur les pages dédiées |
 
 ---
 
@@ -45,21 +49,21 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 |---------|--------|-------|
 | Présent sur toutes les pages | ✅ | Navbar persistante (fixed header) |
 | Persistant en scrolling | ✅ | Fixed position, toujours visible |
-| Mots courts, simples, significatifs | ✅ | Accueil, À propos, Compétences, Réalisations, Articles, Contact |
-| Lien vers page Compétences dans le menu | ✅ | `/competences` dans la navbar |
-| Lien vers page Réalisations dans le menu | ✅ | `/realisations` dans la navbar |
+| Mots courts, simples, significatifs | ✅ | À propos, Parcours, Compétences, Réalisations, Contact |
+| Lien vers page Compétences dans le menu | ✅ | La navbar pointe directement vers `/${locale}/competences` |
+| Lien vers page Réalisations dans le menu | ✅ | La navbar pointe directement vers `/${locale}/realisations` |
 
 ---
 
-### Article de présentation générale — 15 pts (estimé : ~14/15)
+### Article de présentation générale — 15 pts (estimé : 15/15)
 
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Article spécifique dans une **page dédiée** | ✅ | Page `/a-propos` créée |
 | Article détaillé | ✅ | Texte riche avec parcours narratif complet |
-| Article structuré (paragraphes, sous-titres, caractères gras) | ✅ | 5 sections avec sous-titres (parcours, valeurs, projet pro, qualités, intérêts) |
+| Article structuré (paragraphes, sous-titres, caractères gras) | ✅ | 5 sections distinctes avec sous-titres, paragraphes et éléments importants en gras |
 | Mes valeurs (ingénieur humain, conscient, responsable) | ✅ | Responsabilité, autonomie, amélioration continue |
-| Mon projet professionnel / personnel | ✅ | Lead dev, spécialisation Odoo, contribution open source |
+| Mon projet professionnel / personnel | ✅ | Objectifs à 2-5 ans, environnement recherché, responsabilités visées, autoformations et projet BI auto-hébergé connecté à Odoo |
 | Mes principales qualités humaines | ✅ | Persévérance, adaptabilité, communication |
 | Mes principaux centres d'intérêt | ✅ | Basketball 3x3, NBA (Spurs), échecs (club Aix-les-Bains) |
 | Éviter expressions introductives auto-centristes | ✅ | Ton narratif approprié |
@@ -78,14 +82,14 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 ---
 
-### Chacune de mes compétences — articles individuels — 30 pts (estimé : ~30/30)
+### Chacune de mes compétences — articles individuels — 30 pts (estimé : 30/30)
 
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Page dédiée par compétence (`/competences/[slug]`) | ✅ | 10 pages créées |
-| Article structuré (paragraphes, sous-titres, caractères gras) | ✅ | Sections avec headings |
-| **Définition** : définir la compétence dans un contexte pro + actualité | ✅ | Section "Définition" dans chaque article |
-| **Éléments de preuve** : 1-3 anecdotes concrètes | ✅ | 1-3 anecdotes par compétence |
+| Article structuré (paragraphes, sous-titres, caractères gras) | ✅ | Sommaire responsive, cinq sections ancrées, paragraphes éditoriaux et hiérarchie de titres |
+| **Définition** : définir la compétence dans un contexte pro + actualité | ✅ | Chaque définition est suivie d'une actualité datée, contextualisée et liée à une source officielle distincte |
+| **Éléments de preuve** : 1-3 anecdotes concrètes | ✅ | 3 anecdotes développées par compétence, toutes reliées à une réalisation documentée |
 | Résultat énoncé + valeur ajoutée mise en avant | ✅ | Résultat dans chaque anecdote |
 | Lien vers la réalisation évoquée dans l'anecdote | ✅ | Liens cliquables vers `/realisations/[slug]` |
 | **Autocritique** : niveau de maîtrise | ✅ | Barres de progression + labels |
@@ -96,7 +100,7 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 | Évolution : formations/autoformations en cours ou à venir | ✅ | "Formations en cours ou à venir" |
 | En fin d'article : liste des réalisations rattachées + liens | ✅ | Section "Réalisations rattachées" avec liens |
 | Accessibles depuis la page commune des compétences | ✅ | Liens "Lire l'article" sur chaque card |
-| Accessibles par un sous-menu | ✅ | Dropdown desktop + accordéon mobile dans la navbar |
+| Accessibles par un sous-menu | ✅ | Sous-menu exhaustif des 10 compétences sur desktop et accordéon complet sur mobile |
 
 ---
 
@@ -111,21 +115,21 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 ---
 
-### Chacune de mes réalisations — articles individuels — 20 pts (estimé : ~20/20)
+### Chacune de mes réalisations — articles individuels — 20 pts (estimé : 20/20)
 
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Accessible depuis la page commune des réalisations | ✅ | Liens depuis `/realisations` |
-| Accessible par un sous-menu | ✅ | Dropdown desktop + accordéon mobile dans la navbar |
+| Accessible par un sous-menu | ✅ | Sous-menu exhaustif des 5 réalisations sur desktop et accordéon complet sur mobile |
 | Nom évocateur (indépendant du contexte école/entreprise) | ✅ | Noms descriptifs (ex: "Migration Odoo v16 → v19") |
-| Article spécifique, structuré, détaillé | ✅ | 7 sections par article |
-| **Présentation/définition** du projet ou de la réalisation | ✅ | Section "Présentation" |
-| **Objectifs, contexte, enjeu, risques** | ✅ | Section "Objectifs, contexte et enjeux" |
-| **Étapes** — ce que j'ai fait | ✅ | Section "Les étapes — ce que j'ai fait" |
-| **Acteurs** — les interactions | ✅ | Section "Les acteurs — les interactions" |
-| **Résultats** — pour moi, pour l'entreprise | ✅ | Section "Les résultats" |
-| **Lendemains** du projet (futur immédiat, à distance, aujourd'hui) | ✅ | Section "Les lendemains du projet" |
-| **Regard critique** | ✅ | Section "Mon regard critique" |
+| Article spécifique, structuré, détaillé | ✅ | 8 sections communes ; les cinq réalisations sont entièrement développées et disposent d'un sommaire responsive, de sous-titres numérotés et d'une largeur de lecture maîtrisée |
+| **Présentation/définition** du projet ou de la réalisation | ✅ | Les cinq réalisations disposent désormais d'une présentation détaillée |
+| **Objectifs, contexte, enjeu, risques** | ✅ | Les cinq réalisations détaillent désormais leurs objectifs, enjeux et risques |
+| **Étapes** — ce que j'ai fait | ✅ | Les cinq réalisations sont détaillées ; le portfolio décrit 32 étapes vérifiées à partir du code et de l'historique Git |
+| **Acteurs** — les interactions | ✅ | Les cinq réalisations sont détaillées ; le portfolio distingue porteur, learning coach, testeurs informels, publics cibles, DG approbateur et assistance IA |
+| **Résultats** — pour moi, pour l'entreprise | ✅ | Résultats détaillés pour les cinq réalisations ; le portfolio distingue métriques prouvées, retours qualitatifs et validations encore absentes |
+| **Lendemains** du projet (futur immédiat, à distance, aujourd'hui) | ✅ | Les cinq réalisations sont détaillées ; le portfolio distingue finalisation en août 2026, maintenance événementielle et rôles durables |
+| **Regard critique** | ✅ | Les cinq réalisations sont détaillées ; erreurs, dettes, limites des tests, arbitrages et décisions à conserver sont explicités |
 | En fin d'article : liste des compétences rattachées + liens | ✅ | Section "Compétences rattachées" avec liens vers `/competences/[slug]` |
 
 ---
@@ -154,30 +158,30 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Responsabilité (chef de projet, etc.) | ✅ | Responsabilités listées explicitement dans chaque carte |
+| Responsabilité (chef de projet, etc.) | ✅ | Détail repliable par entrée avec les responsabilités explicites |
 | Statut (stagiaire, alternant) | ✅ | "Alternance", "Stagiaire" mentionnés |
-| Détail des missions | ✅ | Descriptions enrichies dans les cards |
-| Liens vers réalisations et compétences rattachées | ✅ | Liens croisés ajoutés depuis la timeline |
+| Détail des missions | ✅ | Descriptions synthétiques visibles directement dans la frise ouverte |
+| Liens vers réalisations et compétences rattachées | ✅ | Liens localisés présents dans le détail repliable de chaque entrée |
 
 #### Formation — 1er niveau de lecture
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Période | ✅ | "2024 — Présent" |
+| Période | ✅ | Entrées séparées : 2024 (DWWM), 2025 (CDA), 2025–2027 (Mastère) |
 | Diplôme/titre/niveau atteint | ✅ | DWWM RNCP 5, CDA RNCP 6, Mastère RNCP 7 |
-| Lieu (nom établissement + **LOGO** pointant vers le site) | ✅ | Logo ISCOD + lien vers le site |
+| Lieu (nom établissement + **LOGO** pointant vers le site) | ✅ | Logos ISCOD, Simplon et USMB affichés avec liens institutionnels |
 
 #### Formation — 2ème niveau de lecture
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Présentation de l'établissement / vision de la pédagogie | ✅ | Description Simplon + ISCOD ajoutée dans le 2ème niveau de lecture de la timeline |
+| Présentation de l'établissement / vision de la pédagogie | ✅ | Présentation spécifique de Simplon et de l'ISCOD dans le deuxième niveau de chaque formation |
 
 #### Test ou certification
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Date et intitulé | ✅ | TOEIC 920/990 (Listening C1, Reading B2), formations certifiantes datées |
+| Date et intitulé | ✅ | TOEIC passé le 7 août 2025 : 920/990 (Listening C1, Reading B2), certificat PDF lié |
 
 ---
 
@@ -185,8 +189,8 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Chaque compétence → réalisations rattachées (liens) | ✅ | Liens en fin d'article compétence vers `/realisations/[slug]` |
-| Chaque réalisation → compétences rattachées (liens) | ✅ | Liens en fin d'article réalisation vers `/competences/[slug]` |
+| Chaque compétence → réalisations rattachées (liens) | ✅ | Liens réciproques contrôlés automatiquement |
+| Chaque réalisation → compétences rattachées (liens) | ✅ | Test unitaire garantissant la symétrie des deux sens |
 
 ---
 
@@ -203,7 +207,7 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Orthographe corrigée | ✅ | Contenu relu, accents français corrects |
+| Orthographe corrigée | ✅ | Fautes identifiées corrigées, accents de la page 404 rétablis et anglicismes les plus visibles reformulés |
 
 ---
 
@@ -211,27 +215,40 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Critère | Points max | Score estimé | Status |
 |---------|-----------|-------------|--------|
+| Prénom, nom, photo | — | Obligatoire | ✅ |
 | Page d'accueil | 5 | 5 | ✅ |
 | Menu | 3 | 3 | ✅ |
-| Article de présentation générale | 15 | ~14 | ✅ |
-| Mes compétences (page commune) | 10 | ~9 | ✅ |
-| Chacune de mes compétences (articles) | 30 | ~30 | ✅ |
+| Article de présentation générale | 15 | 15 | ✅ |
+| Mes compétences (page commune) | 10 | 10 | ✅ |
+| Chacune de mes compétences (articles) | 30 | 30 | ✅ |
 | Mes réalisations (page commune) | 5 | 5 | ✅ |
-| Chacune de mes réalisations (articles) | 20 | ~20 | ✅ |
+| Chacune de mes réalisations (articles) | 20 | 20 | ✅ |
 | Mon parcours (frise) | 5 | 5 | ✅ |
 | Détail expériences | 5 | 5 | ✅ |
 | Navigation circulaire | — | ✅ | ✅ |
 | Espace contact | 2 | 2 | ✅ |
 | Orthographe | -1%/5 fautes | 0 retrait | ✅ |
-| **TOTAL** | **100** | **~99/100** | ✅ |
+| **TOTAL** | **100** | **100/100** | ✅ |
+
+---
+
+## Audit technique du 2026-07-16
+
+- Build Next.js 16 de production réussi, avec génération de 110 pages : routes secondaires App Router et homepages FR/EN SSG sans runtime React.
+- Lighthouse local sur le build de production : **99/100 en performance mobile, 100/100 en performance desktop**, et 100/100 en accessibilité, bonnes pratiques et SEO. Mesure mobile : FCP 1,3 s, LCP 2,1 s, TBT 0 ms, CLS 0. Mesure desktop : FCP 0,3 s, LCP 0,4 s, TBT 0 ms, CLS 0.
+- 100/100 URL du sitemap répondent en HTTP 200, possèdent un H1 unique et exposent la bonne URL canonical localisée.
+- Aucun lien interne cassé détecté lors du crawl des routes du sitemap et des preuves publiques.
+- Aucun saut de niveau dans la hiérarchie des titres sur les 100 routes du sitemap.
+- Audit Playwright des pages secondaires réussi en 1280 × 900 et 390 × 844, en français et en anglais, sans débordement horizontal.
+- Suite Vitest unitaire réussie : 31 fichiers, 179 tests. Tests navigateur : 4 fichiers, 20 tests. Suite E2E Playwright : 27 scénarios réussis sur le build de production.
+- Régressions visuelles homepage desktop et mobile inspectées, actualisées après les changements intentionnels, puis rejouées avec succès.
 
 ---
 
 ## Améliorations restantes
 
 ### Grille ISCOD
-- Aucun manque bloquant identifié après les dernières corrections.
-- Points à relire humainement avant rendu : orthographe fine, cohérence du ton, et validation que les formulations correspondent bien à ton vécu exact.
+- Séparer davantage les formations dans la frise si les périodes exactes de chaque cursus peuvent être confirmées.
 
 ### Best practices hors grille
 - Ajouter des preuves humaines si disponibles : attestations, recommandations, retours de collègues ou encadrants.
@@ -248,8 +265,8 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 | Professional headline describing your role | ✅ | "Développeur Fullstack" via i18n |
 | Brief personal summary / elevator pitch | ✅ | About section with autodidact → Simplon → ISCOD journey |
 | Professional headshot or avatar | ✅ | Headshot in navbar + hero |
-| Clear call-to-action for employers | ✅ | Réalisations + contact en CTA principal dans le hero |
-| Social proof (awards, certifications, recognition) | ✅ | Section Documents sur la homepage + RNCP, TOEIC, CV PDF et chiffres clés disponibles dans `public/proofs` / contenus projet |
+| Clear call-to-action for employers | ✅ | CTA contact vermillon persistant dans la navbar et grand cercle de contact en fin de homepage |
+| Social proof (awards, certifications, recognition) | ✅ | Mosaïque avec métriques vérifiées et liens de footer vers le TOEIC 920/990, les titres RNCP et le CV |
 
 ### Projects Section
 
@@ -287,24 +304,34 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Page load time under 3 seconds | ✅ | Static site via SSG on Vercel |
+| Page load time under 3 seconds | ✅ | Lighthouse production local : 99 en performance mobile, 100 desktop ; LCP 2,1 s mobile / 0,4 s desktop, TBT 0 ms, CLS 0 |
 | Mobile-first approach | ✅ | Tailwind CSS mobile-first breakpoints |
-| Responsive design (all breakpoints) | ✅ | sm/md/lg/xl breakpoints throughout |
+| Responsive design (all breakpoints) | ✅ | Audit Playwright sur 18 routes représentatives en 390 px et 1280 px, sans débordement horizontal |
 | Touch-friendly navigation | ✅ | Mobile hamburger menu |
 
 ### SEO
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Meta titles and descriptions | ✅ | Per-page via `generateMetadata()` |
-| Open Graph tags | ✅ | OG title, description, locale, dynamic OG image |
+| Meta titles and descriptions | ✅ | Métadonnées localisées par page et par article MDX via `generateMetadata()` |
+| Open Graph tags | ✅ | OG title, description, locale, URL localisée et image dynamique |
 | Schema markup / JSON-LD | ✅ | Person + WebSite + ProfilePage JSON-LD in locale layout |
 | XML sitemap | ✅ | `src/app/sitemap.ts` — includes all new pages |
 | Robots.txt | ✅ | `src/app/robots.ts` |
-| Canonical URLs | ✅ | `metadataBase` + `alternates.canonical` |
-| Semantic HTML | ✅ | `<nav>`, `<main>`, `<footer>`, `<section>` |
+| Canonical URLs | ✅ | 100/100 routes du sitemap contrôlées avec canonical FR/EN exacte |
+| Semantic HTML | ✅ | 100/100 routes avec un H1 unique et sans saut de niveau dans la hiérarchie des titres |
 | Clean URL structure | ✅ | Locale-prefixed (`/fr/contact`, `/en/articles`) |
 | Discoverable article topics | ✅ | Tags cliquables et recherche texte sur titre, contenu MDX indexé et tags, avec filtres synchronisés dans l'URL |
+
+### Accessibility
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Langue du document | ✅ | Attribut `lang` contrôlé au runtime sur les pages représentatives FR/EN ; les 100 routes partagent le même layout localisé |
+| Textes alternatifs des images | ✅ | Aucun `<img>` sans attribut `alt` dans l'audit Playwright |
+| Structure des titres | ✅ | H1 unique et hiérarchie sans saut sur les 100 routes du sitemap |
+| Identifiants DOM uniques | ✅ | Aucun doublon détecté sur les pages représentatives desktop/mobile |
+| Réduction des animations | ✅ | Variantes statiques `prefers-reduced-motion` pour CSS/Web Animations et GSAP ; tests E2E exécutés en mouvement réduit |
 
 ### Security
 
@@ -322,10 +349,10 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Unit tests | ✅ | Vitest + jsdom + React Testing Library configured, 17 unit test files, 107 tests passing |
-| Browser component tests | ✅ | Vitest Browser Mode + Playwright configured with visual baselines |
-| Visual regression tests | ✅ | `toMatchScreenshot()` |
-| E2E tests | ✅ | Playwright infrastructure |
+| Unit tests | ✅ | Suite Vitest : 31 fichiers et 179 tests réussis |
+| Browser component tests | ✅ | Vitest Browser Mode + Playwright : 4 fichiers et 20 tests réussis |
+| Visual regression tests | ✅ | Deux références homepage desktop/mobile inspectées, mises à jour et rejouées avec succès |
+| E2E tests | ✅ | 27/27 scénarios Playwright réussis sur le build de production : navigation, accès direct à la frise, i18n, consentement, contact, responsive, pages secondaires et homepage |
 | CI/CD pipeline | ✅ | GitHub Actions: lint → tests → build → e2e |
 
 ### Deployment
@@ -342,8 +369,8 @@ Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 r�
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Smooth scrolling | ✅ | Lenis + GSAP ticker |
-| Scroll-triggered animations | ✅ | GSAP ScrollTrigger throughout |
+| Smooth scrolling | ✅ | Lenis + GSAP ticker sur les routes App Router ; défilement natif sans coût JS sur la homepage SSG |
+| Scroll-triggered animations | ✅ | IntersectionObserver + Web Animations sur la homepage ; GSAP ScrollTrigger sur les composants interactifs secondaires |
 | Dark/light mode | ✅ | `next-themes` with system detection |
 | Page transitions | ✅ | Fade + y-translate (0.4s) |
 | i18n (FR + EN) | ✅ | Dictionary-based, locale routing |

@@ -14,8 +14,10 @@ import {
   competenceLevelLabels,
 } from "@/lib/competences";
 import type { Locale } from "@/lib/i18n";
+import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../dictionaries";
 import { RadarChart } from "@/components/radar-chart";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
 
 const linkClassName =
   "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
@@ -27,10 +29,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale as Locale);
-  return {
+  return createLocalizedMetadata({
+    locale: locale as Locale,
+    pathname: "/competences",
     title: dict.competencesPage.pageTitle,
     description: dict.competencesPage.pageDescription,
-  };
+  });
 }
 
 export default async function CompetencesPage({
@@ -58,29 +62,23 @@ export default async function CompetencesPage({
   }));
 
   return (
-    <div className="pt-28">
-      {/* Header */}
-      <section className="px-4 pb-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-3xl">
-            <h1 className="text-balance text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl md:text-7xl">
-              {dict.competencesPage.heading}
-            </h1>
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-              {dict.competencesPage.subtext}
-            </p>
-          </div>
-        </div>
-      </section>
+    <div>
+      <EditorialPageHeader
+        eyebrow={dict.nav.competences}
+        title={dict.competencesPage.heading}
+        description={dict.competencesPage.subtext}
+        titleClassName="uppercase"
+      />
 
       {/* Radar Chart */}
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+      <section className="section-tinted border-b border-foreground/15 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight sm:text-3xl">
+          <p className="editorial-index mb-3">01</p>
+          <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
             {dict.competencesPage.radarHeading}
           </h2>
           <div className="flex justify-center">
-            <RadarChart data={radarData} />
+            <RadarChart data={radarData} title={dict.competencesPage.radarHeading} />
           </div>
         </div>
       </section>
@@ -88,20 +86,21 @@ export default async function CompetencesPage({
       {/* Human Skills */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight sm:text-3xl">
+          <p className="editorial-index mb-3 text-vermillion">02</p>
+          <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
             {dict.competencesPage.humanSkills}
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
             {humanSkills.map((competence) => (
               <Card
                 key={competence.slug}
-                className="premium-card h-full border-border/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+                className="premium-card h-full rounded-xl border-l-4 border-l-vermillion transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <CardTitle className="text-xl">
-                        {competence.title[locale as Locale]}
+                      <CardTitle className="text-xl font-black tracking-[-0.025em]">
+                        <h3>{competence.title[locale as Locale]}</h3>
                       </CardTitle>
                       <CardDescription className="mt-2">
                         {competence.definition[locale as Locale].slice(0, 100)}
@@ -130,22 +129,23 @@ export default async function CompetencesPage({
       </section>
 
       {/* Technical Skills */}
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+      <section className="section-tinted border-t border-foreground/15 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight sm:text-3xl">
+          <p className="editorial-index mb-3">03</p>
+          <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
             {dict.competencesPage.technicalSkills}
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
             {technicalSkills.map((competence) => (
               <Card
                 key={competence.slug}
-                className="premium-card h-full border-border/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+                className="premium-card h-full rounded-xl border-l-4 border-l-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <CardTitle className="text-xl">
-                        {competence.title[locale as Locale]}
+                      <CardTitle className="text-xl font-black tracking-[-0.025em]">
+                        <h3>{competence.title[locale as Locale]}</h3>
                       </CardTitle>
                       <CardDescription className="mt-2">
                         {competence.definition[locale as Locale].slice(0, 100)}

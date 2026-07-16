@@ -1,3 +1,10 @@
+import { getArticleMetadata } from "../article-metadata";
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  return getArticleMetadata(locale, "telecharger-code-odoo-jupyter");
+}
+
 # Télécharger le code source Odoo via Jupyter Lab
 
 ## Contexte

@@ -49,7 +49,7 @@ export function ArticleEnhancements({
   locale,
   labels,
 }: ArticleEnhancementsProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
   const slug = getCurrentArticle(pathname);
   const [headings, setHeadings] = useState<HeadingItem[]>([]);
   const [readingMinutes, setReadingMinutes] = useState(1);
@@ -141,7 +141,7 @@ export function ArticleEnhancements({
   }
 
   return (
-    <aside className="not-prose mb-10 grid gap-4 rounded-lg border border-border/70 bg-card/65 p-4 text-sm shadow-sm">
+    <aside className="not-prose premium-card mx-auto mb-10 grid max-w-3xl gap-4 rounded-xl border-l-4 border-l-primary p-4 text-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="secondary">
@@ -169,7 +169,7 @@ export function ArticleEnhancements({
 
       {headings.length > 0 && (
         <nav aria-label={labels.tableOfContents}>
-          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="mb-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
             {labels.tableOfContents}
           </p>
           <div className="flex flex-wrap gap-2">
@@ -192,7 +192,7 @@ export function ArticleEnhancements({
 
       {relatedArticles.length > 0 && (
         <div>
-          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="mb-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
             {labels.relatedArticles}
           </p>
           <div className="grid gap-2 sm:grid-cols-3">

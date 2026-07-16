@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getDictionary } from "../dictionaries";
 import type { Locale } from "@/lib/i18n";
+import { createLocalizedMetadata } from "@/lib/metadata";
+import { EditorialPageHeader } from "@/components/editorial-page-header";
 
 export async function generateMetadata({
   params,
@@ -9,10 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale as Locale);
-  return {
+  return createLocalizedMetadata({
+    locale: locale as Locale,
+    pathname: "/a-propos",
     title: dict.aboutPage.pageTitle,
     description: dict.aboutPage.pageDescription,
-  };
+  });
 }
 
 export default async function AboutPage({
@@ -26,28 +30,23 @@ export default async function AboutPage({
   const isFr = locale === "fr";
 
   return (
-    <div className="pt-28">
-      {/* Hero / Header */}
-      <section className="px-4 pb-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h1 className="text-balance text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl md:text-7xl">
-            {dict.aboutPage.heading}
-          </h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            {dict.aboutPage.subtext}
-          </p>
-        </div>
-      </section>
+    <div>
+      <EditorialPageHeader
+        eyebrow={dict.nav.about}
+        title={dict.aboutPage.heading}
+        description={dict.aboutPage.subtext}
+        titleClassName="uppercase"
+      />
 
       {/* Section 1: Mon parcours */}
       <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-primary p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index">
               01
             </p>
             <div>
-            <h2 className="text-2xl font-semibold tracking-normal mb-4">
+            <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
                 {dict.aboutPage.journeyHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -56,8 +55,8 @@ export default async function AboutPage({
                   <p>
                     Initialement en études de droit à l&apos;Université Savoie
                     Mont Blanc, j&apos;ai remis en question ce choix pendant la
-                    pandémie COVID. Durant cette période, j&apos;ai perdu
-                    intérêt pour mes études et commencé à explorer le
+                    pandémie COVID. Durant cette période, je me suis
+                    désintéressé de mes études et j&apos;ai commencé à explorer le
                     fonctionnement du web en autodidacte — YouTube, articles,
                     puis The Odin Project, un cursus complet pour maîtriser le
                     développement web.
@@ -122,12 +121,12 @@ export default async function AboutPage({
       {/* Section 2: Mes valeurs */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-vermillion p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index text-vermillion">
               02
             </p>
             <div>
-            <h2 className="text-2xl font-semibold tracking-normal mb-4">
+            <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
                 {dict.aboutPage.valuesHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -138,7 +137,7 @@ export default async function AboutPage({
                     modifie est déployé en production. Je suis responsable de
                     livrer des fonctionnalités de qualité. Sur Odoo, j&apos;ai
                     une autonomie totale et j&apos;ai déjà réalisé des dizaines
-                    de features et corrections. Sur le site B2B en Symfony,
+                    de fonctionnalités et de corrections. Sur le site B2B en Symfony,
                     j&apos;ai une autonomie complète sur le développement de
                     fonctionnalités jusqu&apos;à la mise en production sur le
                     serveur.
@@ -146,13 +145,13 @@ export default async function AboutPage({
                   <p>
                     <strong>Autonomie</strong> — Dès le premier jour de mon
                     alternance, j&apos;ai dû apprendre le framework Odoo en
-                    autonomie : comprendre la codebase du framework,
-                    l&apos;existant en termes de configuration et de code custom,
+                    autonomie : comprendre la base de code du framework,
+                    l&apos;existant en matière de configuration et de code personnalisé,
                     et répondre au fur et à mesure aux demandes sur l&apos;ERP.
                   </p>
                   <p>
                     <strong>Amélioration continue</strong> — Je n&apos;ai pas la
-                    prétention d&apos;implémenter à chaque fois la feature
+                    prétention d&apos;implémenter à chaque fois la fonctionnalité
                     parfaite. C&apos;est pourquoi je cherche continuellement à
                     améliorer l&apos;existant, pas seulement à développer de
                     nouvelles fonctionnalités.
@@ -188,15 +187,117 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Section 3: Mes qualités humaines */}
+      {/* Section 3: Mon projet professionnel et personnel */}
       <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
+          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-primary p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index">
               03
             </p>
             <div>
-            <h2 className="text-2xl font-semibold tracking-normal mb-4">
+              <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
+                {dict.aboutPage.projectHeading}
+              </h2>
+              <div className="prose max-w-none dark:prose-invert">
+                {isFr ? (
+                  <>
+                    <p>
+                      Le cap professionnel vise un rôle de{" "}
+                      <strong>
+                        développeur confirmé et référent technique Odoo
+                      </strong>{" "}
+                      au sein d&apos;une PME utilisatrice finale. Cette proximité
+                      avec les équipes métier et les utilisateurs permet de
+                      transformer leurs besoins en solutions durables, avec une
+                      priorité claire : <strong>l&apos;écoute utilisateur</strong>{" "}
+                      et <strong>la qualité avant la rapidité</strong>.
+                    </p>
+                    <p>
+                      Ce positionnement a vocation à dépasser Odoo pour couvrir
+                      l&apos;
+                      <strong>
+                        intégration d&apos;ERP avec des systèmes externes
+                      </strong>{" "}
+                      au moyen d&apos;API personnalisées destinées aux clients
+                      finaux. L&apos;évolution recherchée inclut progressivement
+                      la gestion de projet, la décision produit et
+                      l&apos;architecture logicielle, au service de
+                      l&apos;automatisation et d&apos;outils métier réellement
+                      utiles.
+                    </p>
+                    <p>
+                      À cinq ans, l&apos;objectif est d&apos;atteindre un niveau
+                      de maîtrise solide sur la stack actuelle — Odoo/Python,
+                      Symfony/PHP et Next.js/React — tout en approfondissant les{" "}
+                      <strong>API, le DevOps et le clean code</strong> aux
+                      interfaces entre ERP et systèmes externes.
+                    </p>
+                    <p>
+                      Le projet personnel qui concrétise cette trajectoire est la
+                      création d&apos;un{" "}
+                      <strong>outil de business intelligence auto-hébergé</strong>{" "}
+                      pour le pilotage opérationnel. Il synchronisera les données
+                      d&apos;Odoo par API afin de répondre au principal point de
+                      friction rencontré dans l&apos;entreprise : faire parler
+                      la donnée Odoo dans un système plus moderne et automatisé.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      The professional goal is to become an{" "}
+                      <strong>
+                        experienced developer and Odoo technical lead
+                      </strong>{" "}
+                      within an end-user SME. Working closely with business teams
+                      and users makes it possible to turn their needs into
+                      sustainable solutions, with a clear priority:{" "}
+                      <strong>listening to users</strong> and{" "}
+                      <strong>quality before speed</strong>.
+                    </p>
+                    <p>
+                      This role is intended to extend beyond Odoo to cover{" "}
+                      <strong>
+                        ERP integrations with external systems
+                      </strong>{" "}
+                      through custom APIs for end customers. The desired
+                      progression includes project management, product decisions,
+                      and software architecture, supporting automation and
+                      genuinely useful business tools.
+                    </p>
+                    <p>
+                      Within five years, the goal is to achieve strong mastery of
+                      the current stack — Odoo/Python, Symfony/PHP, and
+                      Next.js/React — while deepening expertise in{" "}
+                      <strong>APIs, DevOps, and clean code</strong> at the
+                      boundaries between ERP platforms and external systems.
+                    </p>
+                    <p>
+                      The personal project that puts this direction into practice
+                      is a{" "}
+                      <strong>self-hosted business intelligence tool</strong> for
+                      operational management. It will synchronize Odoo data
+                      through APIs to address the biggest pain point encountered
+                      in the company: turning Odoo data into actionable
+                      information in a more modern, automated system.
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Mes qualités humaines */}
+      <section className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-vermillion p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index text-vermillion">
+              04
+            </p>
+            <div>
+            <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
                 {dict.aboutPage.qualitiesHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">
@@ -218,7 +319,7 @@ export default async function AboutPage({
                   <p>
                     <strong>Communication</strong> — Encore en progression, mais
                     la documentation et la communication avec les profils non
-                    techniques est une chose que je veux largement améliorer et
+                    techniques sont deux aspects que je veux largement améliorer et
                     maîtriser. Si on ne communique pas sur ce qu&apos;on fait,
                     nos fonctionnalités n&apos;existent pas aux yeux des
                     utilisateurs.
@@ -253,15 +354,15 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Section 4: Mes centres d'intérêt */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      {/* Section 5: Mes centres d'intérêt */}
+      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-lg p-5 sm:p-8 lg:grid-cols-[160px_1fr]">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
-              04
+          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-primary p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index">
+              05
             </p>
             <div>
-            <h2 className="text-2xl font-semibold tracking-normal mb-4">
+            <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
                 {dict.aboutPage.interestsHeading}
               </h2>
             <div className="prose dark:prose-invert max-w-none">

@@ -22,7 +22,7 @@ export function StructuredData({ locale }: { locale: Locale }) {
         image: `${BASE_URL}/images/coporate-headshot.webp`,
         jobTitle:
           locale === "fr"
-            ? "Developpeur Fullstack"
+            ? "Développeur Fullstack"
             : "Fullstack Developer",
         knowsAbout: [
           "Next.js",

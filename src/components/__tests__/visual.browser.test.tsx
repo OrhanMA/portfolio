@@ -1,6 +1,6 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { page } from "vitest/browser";
-import { renderWithProviders } from "@/test/browser-utils";
+import { frDict, renderWithProviders } from "@/test/browser-utils";
 import { CookieConsent } from "@/components/cookie-consent";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { ContactForm } from "@/components/contact-form";
@@ -77,7 +77,14 @@ describe("Visual Regression", () => {
   });
 
   test("contact form", async () => {
-    const { container } = await renderWithProviders(<ContactForm />);
+    const { container } = await renderWithProviders(
+      <ContactForm
+        dict={{
+          contactForm: frDict.contactForm,
+          contactReasons: frDict.contactReasons,
+        }}
+      />
+    );
 
     await expect
       .element(page.getByRole("button", { name: /envoyer/i }))

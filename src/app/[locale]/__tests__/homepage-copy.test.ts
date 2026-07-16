@@ -36,16 +36,16 @@ describe("homepage positioning copy", () => {
     }
   });
 
-  it("uses general hero proof cards instead of specific metrics", () => {
+  it("uses short, verifiable hero proofs in both languages", () => {
     expect(frDict.hero.proofs.map((proof) => proof.value)).toEqual([
-      "ERP",
-      "Web",
-      "Produit",
+      "22",
+      "920/990",
     ]);
     expect(enDict.hero.proofs.map((proof) => proof.value)).toEqual([
-      "ERP",
-      "Web",
-      "Product",
+      "22",
+      "920/990",
     ]);
+    expect(frDict.hero.proofs[0].label).toContain("open source");
+    expect(enDict.hero.proofs[1].label).toContain("August 7, 2025");
   });
 });

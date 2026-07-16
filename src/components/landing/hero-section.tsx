@@ -1,223 +1,120 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { useRef } from "react";
-import Link from "next/link";
+import Image from "next/image";
+import { Briefcase, Code2, MapPin } from "lucide-react";
 import {
-  ArrowDown,
-  ArrowUpRight,
-  Briefcase,
-  Code2,
-  MapPin,
-  Sparkles,
-} from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
-import { buttonVariants } from "@/components/ui/button";
-import { useDictionary } from "@/components/dictionary-provider";
-import { cn } from "@/lib/utils";
+  EditorialWave,
+  UkiyoeCrest,
+} from "@/components/landing/editorial-wave";
+import type { Dictionary } from "@/app/[locale]/dictionaries";
 
 export function HeroSection({
-  locale,
   headshot,
+  dict,
 }: {
   locale: string;
   headshot: ReactNode;
+  dict: Dictionary["hero"];
 }) {
-  const container = useRef<HTMLDivElement>(null);
-  const dict = useDictionary();
-
-  useGSAP(
-    () => {
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      if (prefersReducedMotion) {
-        gsap.set(
-          [
-            ".hero-kicker",
-            ".hero-word",
-            ".hero-copy",
-            ".hero-meta",
-            ".hero-cta",
-            ".hero-panel",
-            ".hero-proof",
-            ".hero-scroll-hint",
-          ],
-          { autoAlpha: 1, y: 0, scale: 1 },
-        );
-        return;
-      }
-
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.from(".hero-kicker", { y: 24, autoAlpha: 0, duration: 0.65 })
-        .from(
-          ".hero-word",
-          { y: 90, autoAlpha: 0, duration: 0.9, stagger: 0.08 },
-          "-=0.25",
-        )
-        .from(
-          ".hero-copy",
-          { y: 28, autoAlpha: 0, duration: 0.65, stagger: 0.08 },
-          "-=0.45",
-        )
-        .from(
-          ".hero-meta",
-          { y: 18, autoAlpha: 0, duration: 0.55, stagger: 0.08 },
-          "-=0.35",
-        )
-        .from(
-          ".hero-cta",
-          { y: 18, autoAlpha: 0, duration: 0.5, stagger: 0.1 },
-          "-=0.3",
-        )
-        .from(
-          ".hero-panel",
-          { y: 40, scale: 0.96, autoAlpha: 0, duration: 0.85 },
-          "-=0.65",
-        )
-        .from(
-          ".hero-proof",
-          { y: 18, autoAlpha: 0, duration: 0.5, stagger: 0.08 },
-          "-=0.35",
-        )
-        .from(
-          ".hero-scroll-hint",
-          { y: 10, autoAlpha: 0, duration: 0.5 },
-          "-=0.1",
-        );
-
-      gsap.to(".hero-scroll-hint", {
-        y: 8,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: 2,
-      });
-    },
-    { scope: container }
-  );
 
   return (
     <section
-      ref={container}
-      className="hero-gradient relative isolate flex min-h-[100svh] items-center overflow-hidden px-4 pb-8 pt-28 sm:px-6 lg:px-8"
+      className="relative isolate min-h-[860px] overflow-hidden px-4 pb-36 pt-28 sm:px-6 lg:min-h-[820px] lg:px-8 lg:pb-44 lg:pt-24"
     >
-      <div className="section-ambient absolute inset-0 opacity-45" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+      <picture className="hero-fuji absolute right-[-11%] top-[16%] z-0 hidden h-[60%] w-[74%] opacity-70 mix-blend-multiply dark:opacity-25 dark:mix-blend-screen lg:block">
+        <source
+          media="(min-width: 1024px)"
+          srcSet="/images/decorative/fuji-hero.webp"
+        />
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-contain object-right-bottom"
+        />
+      </picture>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:items-center">
-        <div className="pb-8 lg:pb-0">
-          <p className="hero-kicker invisible mb-5 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.28em] text-primary">
-            <Sparkles className="h-4 w-4" />
-            {dict.hero.eyebrow}
-          </p>
+      <div className="hero-sun absolute left-[51%] top-[13%] z-[1] aspect-square w-[min(31vw,440px)] rounded-full bg-vermillion shadow-[0_20px_70px_oklch(0.61_0.235_29/0.16)] max-lg:left-auto max-lg:right-[8%] max-lg:top-[48%] max-lg:w-[68vw] max-sm:top-[58%]" />
 
-          <h1 className="text-balance max-w-5xl text-6xl font-semibold leading-[0.84] tracking-normal sm:text-7xl md:text-8xl lg:text-9xl">
-            {["Orhan ", "Madi ", "Assani"].map((word) => (
-              <span key={word} className="hero-word invisible block">
-                {word}
-              </span>
-            ))}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl lg:grid-cols-[minmax(0,0.82fr)_minmax(480px,1.18fr)]">
+        <div className="relative z-20 pt-4 lg:pt-12">
+          <h1 className="hero-display text-[clamp(5rem,10vw,9.5rem)] font-black uppercase leading-[0.73] tracking-[-0.068em] text-foreground">
+            <span className="hero-word block">Orhan</span>
+            <span className="hero-word hero-name-outline block">Madi</span>
+            <span className="hero-word block">Assani</span>
           </h1>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(220px,0.34fr)] lg:items-start">
-            <p className="hero-copy invisible max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-              {dict.hero.statement}
-            </p>
+          <p className="hero-copy mt-9 max-w-lg text-[15px] font-semibold leading-6 text-foreground sm:text-base sm:leading-7">
+            {dict.statement}
+          </p>
 
-            <div className="grid gap-3 text-sm text-muted-foreground">
-              <span className="hero-meta invisible flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                {dict.hero.location}
-              </span>
-              <span className="hero-meta invisible flex items-center gap-2">
-                <Briefcase className="h-4 w-4 text-primary" />
-                {dict.hero.status}
-              </span>
-              <span className="hero-meta invisible flex items-center gap-2">
-                <Code2 className="h-4 w-4 text-primary" />
-                {dict.hero.subtitle}
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#realisations"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "hero-cta invisible h-12 rounded-lg px-5 text-sm",
-              )}
-            >
-              {dict.hero.ctaWork}
-              <ArrowDown className="ml-2 h-4 w-4" />
-            </a>
-            <Link
-              href={`/${locale}/contact`}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "hero-cta invisible h-12 rounded-lg px-5 text-sm",
-              )}
-            >
-              {dict.hero.ctaContact}
-              <ArrowUpRight className="ml-2 h-4 w-4" />
-            </Link>
+          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-3 font-sans text-[10px] font-medium text-foreground/72 sm:text-[11px]">
+            <span className="hero-meta flex items-center gap-2">
+              <MapPin className="h-3.5 w-3.5 text-foreground" />
+              {dict.location}
+            </span>
+            <span className="hero-meta hidden h-4 w-px bg-foreground/30 sm:block" />
+            <span className="hero-meta flex items-center gap-2">
+              <Briefcase className="h-3.5 w-3.5 text-foreground" />
+              {dict.status}
+            </span>
+            <span className="hero-meta hidden h-4 w-px bg-foreground/30 sm:block" />
+            <span className="hero-meta flex items-center gap-2">
+              <Code2 className="h-3.5 w-3.5 text-foreground" />
+              {dict.subtitle}
+            </span>
           </div>
         </div>
 
-        <div className="hero-panel invisible premium-card relative overflow-hidden rounded-lg p-3 sm:p-4">
-          <div className="grid gap-3 sm:grid-cols-[0.8fr_1fr] lg:grid-cols-1 xl:grid-cols-[0.82fr_1fr]">
-            <div className="relative min-h-72 overflow-hidden rounded-md bg-muted sm:min-h-96">
-              {headshot}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-4">
-                <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-primary">
-                  {dict.hero.availabilityLabel}
-                </p>
-                <p className="mt-2 text-sm text-foreground">
-                  {dict.hero.availability}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid content-between gap-3">
-              {dict.hero.proofs.map(
-                (proof: { value: string; label: string }, index: number) => (
-                  <div
-                    key={proof.label}
-                    className="hero-proof invisible rounded-md border border-border/70 bg-background/55 p-4"
-                  >
-                    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                      0{index + 1}
-                    </p>
-                    <p className="mt-4 text-3xl font-semibold leading-none text-foreground">
-                      {proof.value}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {proof.label}
-                    </p>
-                  </div>
-                ),
-              )}
-            </div>
+        <div className="relative mt-8 hidden min-h-[570px] sm:block lg:mt-0 lg:min-h-[700px]">
+          <div className="hero-portrait absolute inset-x-0 bottom-[-8%] z-10 mx-auto h-[112%] max-w-[690px] [&>img]:h-full [&>img]:w-full [&>img]:object-contain [&>img]:object-bottom">
+            {headshot}
           </div>
+          <Image
+            src="/images/decorative/sakura-petals-scatter.svg"
+            alt=""
+            aria-hidden="true"
+            width={180}
+            height={120}
+            loading="eager"
+            className="hero-petals pointer-events-none absolute bottom-[30%] right-[8%] z-20 h-auto w-24 rotate-6 object-contain sm:w-28 lg:right-[4%]"
+          />
+          <Image
+            src="/images/decorative/sakura-petal.svg"
+            alt=""
+            aria-hidden="true"
+            width={36}
+            height={42}
+            loading="eager"
+            className="hero-petal-accent pointer-events-none absolute left-[9%] top-[15%] z-20 h-9 w-auto -rotate-[28deg] lg:left-[4%]"
+          />
+          <Image
+            src="/images/decorative/sakura-petal.svg"
+            alt=""
+            aria-hidden="true"
+            width={26}
+            height={30}
+            loading="eager"
+            className="hero-petal-accent pointer-events-none absolute right-[6%] top-[9%] z-20 h-7 w-auto rotate-[32deg]"
+          />
         </div>
       </div>
 
-      <a
-        href="#a-propos"
-        aria-label={dict.hero.scroll}
-        className="hero-scroll-hint invisible absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 cursor-pointer lg:block"
-      >
-        <div className="flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-            {dict.hero.scroll}
-          </span>
-          <ArrowDown className="h-4 w-4" />
-        </div>
-      </a>
+      <div className="hero-side-note absolute right-3 top-36 z-30 hidden items-center gap-3 [writing-mode:vertical-rl] xl:flex">
+        <span className="h-12 w-px bg-foreground/45" />
+        <span className="font-sans text-[10px] font-bold uppercase tracking-[0.14em]">
+          {dict.availabilityLabel}
+        </span>
+        <span className="h-1.5 w-1.5 rounded-full bg-vermillion" />
+      </div>
+
+      <div className="absolute inset-x-0 bottom-[-1px] z-30">
+        <EditorialWave />
+      </div>
+      <UkiyoeCrest className="hero-crest absolute -bottom-1 -left-16 z-[31] h-52 w-72 sm:h-60 sm:w-80" />
+      <UkiyoeCrest
+        flip
+        className="hero-crest absolute -bottom-1 -right-20 z-[31] hidden h-64 w-96 sm:block"
+      />
     </section>
   );
 }

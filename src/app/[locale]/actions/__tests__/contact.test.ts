@@ -133,6 +133,17 @@ describe("sendContactEmail()", () => {
     expect(result?.message).toContain("sécurité");
   });
 
+  it("rejects a missing reCAPTCHA token when verification is configured", async () => {
+    vi.stubEnv("RECAPTCHA_SECRET_KEY", "test-secret");
+
+    const result = await sendContactEmail(validData);
+
+    vi.unstubAllEnvs();
+    expect(result?.success).toBe(false);
+    expect(result?.message).toContain("sécurité");
+    expect(mockSend).not.toHaveBeenCalled();
+  });
+
   it("sends email via Resend on success", async () => {
     const result = await sendContactEmail(validData);
 

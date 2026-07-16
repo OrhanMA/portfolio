@@ -11,7 +11,9 @@ import { SetLang } from "@/components/set-lang";
 import { CookieConsent } from "@/components/cookie-consent";
 import { Analytics } from "@/components/analytics";
 import { StructuredData } from "@/components/structured-data";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { createLocalizedMetadata } from "@/lib/metadata";
+import { competences } from "@/lib/competences";
+import { realisations } from "@/lib/realisations";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -23,31 +25,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = locale as Locale;
+  const dict = await getDictionary(loc);
   return {
-    title: dict.metadata.title,
-    description: dict.metadata.description,
+    ...createLocalizedMetadata({
+      locale: locale as Locale,
+      title: dict.metadata.title,
+      description: dict.metadata.description,
+    }),
     metadataBase: new URL("https://orhanmadiassani.com"),
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        fr: "/fr",
-        en: "/en",
-      },
-    },
-    openGraph: {
-      title: dict.metadata.title,
-      description: dict.metadata.description,
-      type: "website",
-      locale: locale === "fr" ? "fr_FR" : "en_US",
-      siteName: "Orhan Madi Assani",
-      url: `https://orhanmadiassani.com/${locale}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: dict.metadata.title,
-      description: dict.metadata.description,
-    },
     robots: {
       index: true,
       follow: true,
@@ -63,28 +49,57 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = locale as Locale;
+  const dict = await getDictionary(loc);
 
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="light"
       enableSystem
       disableTransitionOnChange
     >
-      <DictionaryProvider dictionary={dict}>
-        <StructuredData locale={locale as Locale} />
+      <DictionaryProvider
+        dictionary={{
+          cookies: dict.cookies,
+          errorPage: dict.errorPage,
+          notFound: dict.notFound,
+        }}
+      >
+        <StructuredData locale={loc} />
         <SetLang locale={locale} />
         <SmoothScroll>
-          <Navbar locale={locale} />
-          <main className="min-h-screen">
+          <a
+            href="#main-content"
+            className="fixed left-3 top-3 z-[110] -translate-y-24 rounded-md bg-background px-4 py-2 text-sm font-bold shadow-lg transition-transform focus:translate-y-0"
+          >
+            {locale === "fr" ? "Aller au contenu" : "Skip to content"}
+          </a>
+          <Navbar
+            locale={locale}
+            dict={{
+              nav: dict.nav,
+              experienceHeading: dict.experience.heading,
+              skillsHeading: dict.skills.heading,
+            }}
+            menus={{
+              competences: competences.map((competence) => ({
+                href: `/${locale}/competences/${competence.slug}`,
+                label: competence.title[loc],
+              })),
+              realisations: realisations.map((realisation) => ({
+                href: `/${locale}/realisations/${realisation.slug}`,
+                label: realisation.title[loc],
+              })),
+            }}
+          />
+          <main id="main-content" tabIndex={-1} className="min-h-screen">
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer dict={dict} locale={locale} />
         </SmoothScroll>
         <CookieConsent />
         <Analytics />
-        <SpeedInsights />
       </DictionaryProvider>
     </ThemeProvider>
   );

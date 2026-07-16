@@ -78,7 +78,7 @@ requirements. Do this automatically without being asked.**
   - Dispatches `cookie-consent-update` CustomEvent for reactive script loading
 - **Google Tag Manager** : Via `next/script` in `src/components/analytics.tsx`
   - `<Analytics>` component loads GTM script (consent-gated, in locale layout)
-  - `<GTMNoscript>` renders noscript iframe in root layout `<body>`
+  - No `<noscript>` GTM iframe: analytics must never bypass the consent gate
   - Only loaded AFTER user accepts analytics cookies
   - Listens for consent changes via CustomEvent
   - Uses `NEXT_PUBLIC_GTM_ID` env variable (format: GTM-XXXXXXX)

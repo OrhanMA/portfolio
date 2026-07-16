@@ -6,6 +6,7 @@ const validData = {
   email: "jean@example.com",
   reason: "offer",
   message: "Bonjour, je souhaite discuter d'une opportunite.",
+  timestamp: Date.now() - 5_000,
 };
 
 describe("contactSchema", () => {
@@ -31,7 +32,7 @@ describe("contactSchema", () => {
       expect(result.success).toBe(true);
     });
 
-    it("accepts anti-spam fields as optional", () => {
+    it("accepts a reCAPTCHA token when provided", () => {
       const result = contactSchema.safeParse({
         ...validData,
         timestamp: 1234567890,
@@ -51,6 +52,14 @@ describe("contactSchema", () => {
   });
 
   describe("invalid submissions", () => {
+    it("rejects a submission without a timestamp", () => {
+      const result = contactSchema.safeParse({
+        ...validData,
+        timestamp: undefined,
+      });
+      expect(result.success).toBe(false);
+    });
+
     it("rejects name shorter than 2 chars", () => {
       const result = contactSchema.safeParse({ ...validData, name: "A" });
       expect(result.success).toBe(false);

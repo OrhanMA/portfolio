@@ -6,6 +6,17 @@ test.describe("Navigation", () => {
     await expect(page.locator("h1")).toBeVisible();
   });
 
+  test("timeline entries reveal on direct hash navigation", async ({ page }) => {
+    await page.goto("/fr#parcours", { waitUntil: "networkidle" });
+
+    await expect(
+      page.getByRole("heading", {
+        name: "Développeur Fullstack — Alternance",
+      }),
+    ).toBeVisible();
+    await expect(page.locator("#parcours details")).toHaveCount(6);
+  });
+
   test("articles page loads", async ({ page }) => {
     await page.goto("/fr/articles");
     await expect(page.locator("h1")).toHaveText("Articles");
