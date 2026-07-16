@@ -12,9 +12,9 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 ## État des lieux actuel — 2026-07-16
 
-L'application est un portfolio Next.js 16 bilingue FR/EN bien avancé : page d'accueil animée, pages dédiées pour l'à-propos, les compétences, les réalisations, les projets open source Odoo, les articles MDX, le contact, les mentions légales et la politique de confidentialité. Le socle technique est solide : pages secondaires dans l'App Router avec segment `[locale]`, homepage SSG progressive sans runtime React côté client, dictionnaires JSON, navbar/footer persistants, GSAP centralisé et Lenis sur les routes interactives, thème dark/light, cookie consent, GTM consent-gated, formulaire de contact avec validations et anti-spam, sitemap, robots, tests unitaires/browser/e2e et CI GitHub Actions. Le footer donne accès au CV, au TOEIC et aux titres RNCP sans alourdir la homepage.
+L'application est un portfolio Next.js 16 bilingue FR/EN : toutes les routes utilisent l'App Router et le segment `[locale]`. Le socle technique couvre les dictionnaires JSON, une navbar et un footer persistants, GSAP centralisé, Lenis chargé à l'interaction, thème dark/light, consentement cookies versionné, GTM conditionné au consentement, formulaire de contact avec validation et anti-spam multicouche, sitemap, robots, tests unitaires/browser/E2E et CI GitHub Actions. Un nonce CSP est généré par requête : le rendu est donc dynamique par choix de sécurité, sans script non sécurisé. Le footer donne accès au CV, au TOEIC et aux titres RNCP sans alourdir la homepage.
 
-La direction artistique Japan Pop est désormais cohérente sur l'ensemble du site : papier ivoire texturé, typographie géométrique massive, soleil vermillon, mont Fuji, règles bleu/rouge et pétales de sakura pixelisés. La homepage conserve son portrait détouré, ses vagues ukiyo-e multicouches et ses quatre mascottes pixel originales, tandis que les pages secondaires utilisent un en-tête éditorial commun et des panneaux papier plus sobres. Chaque mascotte possède une variante de clin d'œil affichée brièvement à intervalle désynchronisé. La section À propos utilise trois tampons irréguliers avec une ombre synchronisée au hover, la frise verticale est épurée et accompagnée de logos réels, les compétences sont synthétisées en six domaines, les réalisations forment une mosaïque compacte avec captures et métriques vérifiées, et le contact repose sur un grand cercle rouge illustré. Les documents publics sont regroupés dans le footer. Les animations natives CSS/Web Animations de la homepage et les animations GSAP des pages interactives disposent d'une variante statique `prefers-reduced-motion` ; les régressions couvrent desktop et mobile.
+La direction artistique Japan Pop est cohérente sur l'ensemble du site : papier ivoire texturé, typographie géométrique massive, soleil vermillon, mont Fuji, règles bleu/rouge, pétales de sakura pixelisés et illustrations décoratives statiques. La homepage conserve son portrait détouré et ses vagues ukiyo-e multicouches ; les pages secondaires utilisent un en-tête éditorial commun et des panneaux papier plus sobres. La section À propos utilise trois tampons irréguliers avec une ombre synchronisée au hover, la frise verticale est épurée et accompagnée de logos réels, les compétences sont synthétisées en six domaines, les réalisations forment une mosaïque compacte avec captures et métriques vérifiées, et le contact repose sur un grand cercle rouge illustré. Les documents publics sont regroupés dans le footer. Les animations disposent d'une variante `prefers-reduced-motion` ; les régressions couvrent desktop et mobile.
 
 Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 réalisations détaillées, navigation circulaire compétences ↔ réalisations, frise chronologique ouverte, expérience/formation avec logos et page contact. La navbar mène directement aux pages À propos, Compétences et Réalisations, tout en conservant l'ancre Parcours de la homepage ; ses sous-menus donnent aussi accès aux 10 compétences et aux 5 réalisations sur desktop comme sur mobile. Les pages réalisations ont des preuves visuelles : captures Odoo, captures corporate, captures CAP2vie et vidéos de démonstration CAP2vie. Les relations compétences ↔ réalisations sont réciproques et protégées par un test automatique. Le TOEIC est daté du 7 août 2025 et son certificat public est lié depuis le footer.
 
@@ -234,13 +234,13 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 ## Audit technique du 2026-07-16
 
-- Build Next.js 16 de production réussi, avec génération de 110 pages : routes secondaires App Router et homepages FR/EN SSG sans runtime React.
-- Lighthouse local sur le build de production : **99/100 en performance mobile, 100/100 en performance desktop**, et 100/100 en accessibilité, bonnes pratiques et SEO. Mesure mobile : FCP 1,3 s, LCP 2,1 s, TBT 0 ms, CLS 0. Mesure desktop : FCP 0,3 s, LCP 0,4 s, TBT 0 ms, CLS 0.
+- Build Next.js 16 de production réussi, avec génération de 109 pages. Toutes les routes du portfolio sont dans l'App Router ; le nonce CSP rend les pages dynamiques par conception.
+- Lighthouse local sur le build de production : mobile **91/100 en performance** et 100/100 en accessibilité, bonnes pratiques et SEO (FCP 1,2 s, LCP 3,5 s, TBT 10 ms, CLS 0). Desktop : **99/100 en performance** et 100/100 dans les trois autres catégories (FCP 0,3 s, LCP 0,8 s, TBT 0 ms, CLS 0). Les mesures de performance doivent être rejouées sur Vercel après mise en production, avec les conditions réseau réelles.
 - 100/100 URL du sitemap répondent en HTTP 200, possèdent un H1 unique et exposent la bonne URL canonical localisée.
 - Aucun lien interne cassé détecté lors du crawl des routes du sitemap et des preuves publiques.
 - Aucun saut de niveau dans la hiérarchie des titres sur les 100 routes du sitemap.
 - Audit Playwright des pages secondaires réussi en 1280 × 900 et 390 × 844, en français et en anglais, sans débordement horizontal.
-- Suite Vitest unitaire réussie : 31 fichiers, 179 tests. Tests navigateur : 4 fichiers, 20 tests. Suite E2E Playwright : 27 scénarios réussis sur le build de production.
+- Suite Vitest unitaire réussie : 34 fichiers, 185 tests. Tests navigateur : 4 fichiers, 20 tests. Suite E2E Playwright : 29 scénarios réussis sur le build de production.
 - Régressions visuelles homepage desktop et mobile inspectées, actualisées après les changements intentionnels, puis rejouées avec succès.
 
 ---
@@ -349,10 +349,10 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Unit tests | ✅ | Suite Vitest : 31 fichiers et 179 tests réussis |
+| Unit tests | ✅ | Suite Vitest : 34 fichiers et 185 tests réussis |
 | Browser component tests | ✅ | Vitest Browser Mode + Playwright : 4 fichiers et 20 tests réussis |
 | Visual regression tests | ✅ | Deux références homepage desktop/mobile inspectées, mises à jour et rejouées avec succès |
-| E2E tests | ✅ | 27/27 scénarios Playwright réussis sur le build de production : navigation, accès direct à la frise, i18n, consentement, contact, responsive, pages secondaires et homepage |
+| E2E tests | ✅ | 29/29 scénarios Playwright réussis sur le build de production : navigation, accès direct à la frise, i18n, consentement, contact, responsive, pages secondaires, homepage et audit sitemap/CSP/structure |
 | CI/CD pipeline | ✅ | GitHub Actions: lint → tests → build → e2e |
 
 ### Deployment
@@ -369,7 +369,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Smooth scrolling | ✅ | Lenis + GSAP ticker sur les routes App Router ; défilement natif sans coût JS sur la homepage SSG |
+| Smooth scrolling | ✅ | Lenis + GSAP ticker, initialisés uniquement après une interaction utilisateur pertinente |
 | Scroll-triggered animations | ✅ | IntersectionObserver + Web Animations sur la homepage ; GSAP ScrollTrigger sur les composants interactifs secondaires |
 | Dark/light mode | ✅ | `next-themes` with system detection |
 | Page transitions | ✅ | Fade + y-translate (0.4s) |

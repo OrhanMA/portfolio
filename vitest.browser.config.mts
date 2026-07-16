@@ -1,12 +1,12 @@
 import { defineConfig } from "vitest/config";
 import { playwright } from "@vitest/browser-playwright";
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), react()],
+  plugins: [react()],
   resolve: {
+    tsconfigPaths: true,
     alias: {
       "@/lib/gsap": fileURLToPath(
         new URL("./src/test/__mocks__/gsap.ts", import.meta.url)

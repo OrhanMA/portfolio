@@ -71,7 +71,14 @@ export function HomepageMotion() {
         });
       };
 
-      if (reducedMotion || !("IntersectionObserver" in window)) {
+      const isDirectHashTarget =
+        root.id.length > 0 && window.location.hash === `#${root.id}`;
+
+      if (
+        isDirectHashTarget ||
+        reducedMotion ||
+        !("IntersectionObserver" in window)
+      ) {
         reveal();
         return;
       }

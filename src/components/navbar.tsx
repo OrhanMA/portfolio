@@ -67,10 +67,12 @@ export function Navbar({
               className="object-cover"
             />
           </span>
-          Orhan Madi Assani
+          <span>
+            Orhan<span className="hidden sm:inline"> Madi Assani</span>
+          </span>
         </Link>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div data-desktop-navigation className="hidden items-center gap-1 lg:flex">
           {leadingLinks.map((link) => (
             <NavbarLink key={link.href} {...link} />
           ))}
@@ -98,11 +100,11 @@ export function Navbar({
             prefetch={false}
             className={cn(
               buttonVariants({ size: "sm" }),
-              "hidden rounded-full bg-vermillion px-5 text-white hover:bg-vermillion/90 md:inline-flex",
+              "hidden rounded-full bg-vermillion px-5 text-vermillion-foreground hover:bg-vermillion/90 md:inline-flex",
             )}
           >
             {dict.nav.contact}
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" />
           </Link>
           <Button
             variant="ghost"
@@ -110,15 +112,15 @@ export function Navbar({
             className="lg:hidden"
             onClick={() => setMobileOpen((open) => !open)}
             aria-expanded={mobileOpen}
-            aria-label="Toggle menu"
+            aria-label={dict.nav.toggleMenu}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
           </Button>
         </div>
       </nav>
 
       {mobileOpen && (
-        <div className="fixed inset-x-3 top-[72px] max-h-[calc(100dvh-84px)] overflow-y-auto overscroll-contain rounded-lg border border-foreground/15 bg-background/98 p-3 shadow-2xl backdrop-blur-xl lg:hidden">
+        <div data-mobile-navigation className="fixed inset-x-3 top-[72px] max-h-[calc(100dvh-84px)] overflow-y-auto overscroll-contain rounded-lg border border-foreground/15 bg-background/98 p-3 shadow-2xl backdrop-blur-xl lg:hidden">
           <div className="grid gap-1">
             {leadingLinks.map((link) => (
               <MobileLink
@@ -153,11 +155,11 @@ export function Navbar({
               onClick={closeMobileMenu}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "mt-2 rounded-full bg-vermillion text-white hover:bg-vermillion/90",
+                "mt-2 rounded-full bg-vermillion text-vermillion-foreground hover:bg-vermillion/90",
               )}
             >
               {dict.nav.contact}
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" />
             </Link>
             <div className="mt-2 flex items-center justify-center gap-2 border-t border-foreground/10 pt-3 sm:hidden">
               <LanguageSwitcher />
@@ -202,7 +204,7 @@ function DesktopSubmenu({
         className="flex items-center gap-1 rounded-md px-3 py-2 text-xs font-semibold text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
       >
         {label}
-        <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+        <ChevronDown aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
       </Link>
       <div className="invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-[opacity,visibility,transform] duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
         <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-lg border border-foreground/15 bg-background/98 p-2 shadow-2xl backdrop-blur-xl">
@@ -212,7 +214,7 @@ function DesktopSubmenu({
             className="mb-1 flex items-center justify-between rounded-md bg-primary/[0.06] px-3 py-2.5 text-xs font-black uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-primary/[0.11]"
           >
             {allLabel}
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
           </Link>
           {items.map((item) => (
             <Link
@@ -280,6 +282,7 @@ function MobileSubmenu({
           aria-label={`${toggleLabel} ${label}`}
         >
           <ChevronDown
+            aria-hidden="true"
             className={cn("h-4 w-4 transition-transform", open && "rotate-180")}
           />
         </Button>

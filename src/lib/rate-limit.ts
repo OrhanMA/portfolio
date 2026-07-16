@@ -1,70 +1,126 @@
-/**
- * Simple in-memory rate limiter.
- * Tracks submissions per key (typically IP address).
- *
- * NOTE: This works per-process. In a serverless environment (Vercel),
- * each function invocation may have its own memory space, so this
- * provides a best-effort rate limit. For stricter needs, use Redis
- * (e.g. Upstash) or Vercel KV.
- */
+import "server-only";
+
+export interface RateLimitResult {
+  success: boolean;
+  remaining: number;
+  resetAt: number;
+}
 
 interface RateLimitEntry {
   count: number;
   resetAt: number;
 }
 
-const store = new Map<string, RateLimitEntry>();
+const localStore = new Map<string, RateLimitEntry>();
 
-// Cleanup expired entries every 10 minutes
-const CLEANUP_INTERVAL = 10 * 60 * 1000;
-let lastCleanup = Date.now();
+function getRedisCredentials() {
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 
-function cleanup() {
-  const now = Date.now();
-  if (now - lastCleanup < CLEANUP_INTERVAL) return;
-  lastCleanup = now;
-
-  for (const [key, entry] of store) {
-    if (now > entry.resetAt) {
-      store.delete(key);
-    }
-  }
+  return url && token ? { url: url.replace(/\/$/, ""), token } : null;
 }
 
-/**
- * Check and consume a rate limit token.
- *
- * @param key - Unique identifier (IP address, user ID, etc.)
- * @param limit - Maximum number of requests in the time window (default: 5)
- * @param windowMs - Time window in milliseconds (default: 1 hour)
- * @returns { success, remaining, resetAt }
- */
-export function rateLimit(
+function localRateLimit(
   key: string,
-  limit = 5,
-  windowMs = 60 * 60 * 1000
-): { success: boolean; remaining: number; resetAt: number } {
-  cleanup();
-
+  limit: number,
+  windowMs: number,
+): RateLimitResult {
   const now = Date.now();
-  const entry = store.get(key);
+  const entry = localStore.get(key);
 
-  // No existing entry or window expired — create fresh
-  if (!entry || now > entry.resetAt) {
-    store.set(key, { count: 1, resetAt: now + windowMs });
-    return { success: true, remaining: limit - 1, resetAt: now + windowMs };
+  if (!entry || now >= entry.resetAt) {
+    const resetAt = now + windowMs;
+    localStore.set(key, { count: 1, resetAt });
+    return { success: true, remaining: Math.max(0, limit - 1), resetAt };
   }
 
-  // Within window — check count
   if (entry.count >= limit) {
     return { success: false, remaining: 0, resetAt: entry.resetAt };
   }
 
-  // Increment
-  entry.count++;
+  entry.count += 1;
   return {
     success: true,
-    remaining: limit - entry.count,
+    remaining: Math.max(0, limit - entry.count),
     resetAt: entry.resetAt,
   };
+}
+
+async function redisRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number,
+  credentials: { url: string; token: string },
+): Promise<RateLimitResult> {
+  const script = [
+    "local current = redis.call('INCR', KEYS[1])",
+    "if current == 1 then redis.call('PEXPIRE', KEYS[1], ARGV[1]) end",
+    "local ttl = redis.call('PTTL', KEYS[1])",
+    "return {current, ttl}",
+  ].join("\n");
+  const response = await fetch(credentials.url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${credentials.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify([
+      "EVAL",
+      script,
+      "1",
+      `portfolio:contact:${key}`,
+      String(windowMs),
+    ]),
+    cache: "no-store",
+    signal: AbortSignal.timeout(5_000),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Rate-limit store returned ${response.status}.`);
+  }
+
+  const payload = (await response.json()) as {
+    result?: [number, number];
+    error?: string;
+  };
+  if (payload.error || !Array.isArray(payload.result)) {
+    throw new Error(payload.error ?? "Invalid rate-limit store response.");
+  }
+
+  const [count, ttl] = payload.result.map(Number);
+  if (!Number.isFinite(count) || !Number.isFinite(ttl)) {
+    throw new Error("Invalid rate-limit counters.");
+  }
+
+  return {
+    success: count <= limit,
+    remaining: Math.max(0, limit - count),
+    resetAt: Date.now() + Math.max(0, ttl),
+  };
+}
+
+/**
+ * Consumes one contact-form attempt. Production uses an atomic Redis window so
+ * the limit remains consistent across serverless instances. Tests and local
+ * development use an isolated in-process store.
+ */
+export async function rateLimit(
+  key: string,
+  limit = 5,
+  windowMs = 60 * 60 * 1_000,
+): Promise<RateLimitResult> {
+  const credentials = getRedisCredentials();
+  if (credentials) {
+    return redisRateLimit(key, limit, windowMs, credentials);
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "A durable Redis rate-limit store is required in production.",
+    );
+  }
+
+  return localRateLimit(key, limit, windowMs);
 }

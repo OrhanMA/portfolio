@@ -3,10 +3,12 @@
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { locales, type Locale } from "@/lib/i18n";
+import { useDictionary } from "@/components/dictionary-provider";
 
 export function LanguageSwitcher() {
   const pathname = usePathname() ?? "/fr";
   const router = useRouter();
+  const { nav } = useDictionary();
 
   // Extract current locale from pathname
   const currentLocale = locales.find(
@@ -29,10 +31,13 @@ export function LanguageSwitcher() {
 
   return (
     <Button
+      data-language-switcher
       variant="ghost"
       size="icon"
       onClick={switchLocale}
-      aria-label={`Switch to ${currentLocale === "fr" ? "English" : "French"}`}
+      aria-label={
+        currentLocale === "fr" ? nav.switchToEnglish : nav.switchToFrench
+      }
       className="text-xs font-semibold"
     >
       {currentLocale === "fr" ? "EN" : "FR"}

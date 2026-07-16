@@ -1,15 +1,17 @@
 "use server";
 
 import { headers } from "next/headers";
+import { createHash } from "node:crypto";
 import { Resend } from "resend";
 import {
   contactSchema,
-  contactReasons,
   type ContactFormData,
 } from "@/lib/schemas/contact";
 import { verifyRecaptcha } from "@/lib/recaptcha";
 import { rateLimit } from "@/lib/rate-limit";
 import { escapeHtml } from "@/lib/utils";
+import { getDictionary } from "@/app/[locale]/dictionaries";
+import { isValidLocale, type Locale } from "@/lib/i18n";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -26,14 +28,23 @@ export type ContactActionState = {
 } | null;
 
 export async function sendContactEmail(
-  data: ContactFormData
+  locale: Locale,
+  data: ContactFormData,
 ): Promise<ContactActionState> {
-  // ─── 1. Schema validation ───────────────────────────────────
+  const safeLocale = isValidLocale(locale) ? locale : "fr";
+  const dict = await getDictionary(safeLocale);
+
+  // Read the honeypot before schema validation so bots receive a silent,
+  // indistinguishable success response without reaching external services.
+  if (typeof data?.honeypot === "string" && data.honeypot.length > 0) {
+    return { success: true, message: dict.contactErrors.success };
+  }
+
   const parsed = contactSchema.safeParse(data);
   if (!parsed.success) {
     return {
       success: false,
-      message: "Données invalides. Veuillez vérifier le formulaire.",
+      message: dict.contactErrors.invalidData,
     };
   }
 
@@ -43,70 +54,69 @@ export async function sendContactEmail(
     reason,
     customSubject,
     message,
-    honeypot,
     timestamp,
     recaptchaToken,
   } = parsed.data;
 
-  // ─── 2. Honeypot check ──────────────────────────────────────
-  if (honeypot && honeypot.length > 0) {
-    // Silently succeed — never reveal to bots that they were caught
-    return {
-      success: true,
-      message: "Message envoyé avec succès ! Je vous répondrai rapidement.",
-    };
-  }
-
-  // ─── 3. Time-based check ────────────────────────────────────
+  // Time-based bot check.
   const elapsed = Date.now() - timestamp;
   if (elapsed < MIN_SUBMISSION_TIME_MS) {
     return {
       success: false,
-      message: "Veuillez patienter quelques secondes avant d'envoyer.",
+      message: dict.contactErrors.tooFast,
     };
   }
 
-  // ─── 4. Rate limiting by IP ─────────────────────────────────
-  const headersList = await headers();
-  const forwardedFor = headersList.get("x-forwarded-for");
-  const ip = forwardedFor?.split(",")[0]?.trim() ?? "unknown";
-
-  const rateLimitResult = rateLimit(ip);
-  if (!rateLimitResult.success) {
-    return {
-      success: false,
-      message:
-        "Trop de messages envoyés. Veuillez réessayer dans une heure.",
-    };
-  }
-
-  // ─── 5. reCAPTCHA v3 verification ───────────────────────────
+  // Verify reCAPTCHA before consuming a rate-limit token, preventing invalid
+  // traffic from exhausting a legitimate shared-IP quota.
   const recaptchaEnabled = Boolean(process.env.RECAPTCHA_SECRET_KEY);
   if (recaptchaEnabled && !recaptchaToken) {
     return {
       success: false,
-      message: "La vérification de sécurité a échoué. Veuillez réessayer.",
+      message: dict.contactErrors.recaptchaFailed,
     };
   }
 
   if (recaptchaToken) {
-    const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+    const recaptchaResult = await verifyRecaptcha(
+      recaptchaToken,
+      "contact_form",
+    );
     if (!recaptchaResult.success) {
       return {
         success: false,
-        message:
-          "La vérification de sécurité a échoué. Veuillez réessayer.",
+        message: dict.contactErrors.recaptchaFailed,
       };
     }
   }
 
-  // ─── 6. Build and send email ────────────────────────────────
+  const headersList = await headers();
+  const forwardedFor = headersList.get("x-forwarded-for");
+  const ip = forwardedFor?.split(",")[0]?.trim() ?? "unknown";
+  const rateLimitKey = createHash("sha256").update(ip).digest("hex");
+
+  try {
+    const rateLimitResult = await rateLimit(rateLimitKey);
+    if (!rateLimitResult.success) {
+      return { success: false, message: dict.contactErrors.rateLimit };
+    }
+  } catch (error) {
+    console.error("Contact rate-limit unavailable:", error);
+    return {
+      success: false,
+      message: dict.contactErrors.securityUnavailable,
+    };
+  }
+
   const reasonLabel =
     reason === "other"
-      ? customSubject ?? "Autre"
-      : contactReasons.find((r) => r.value === reason)?.label ?? reason;
+      ? customSubject ?? dict.contactReasons.at(-1)?.label ?? "Other"
+      : dict.contactReasons.find((item) => item.value === reason)?.label ??
+        reason;
 
-  const subject = `[Portfolio] ${reasonLabel} — de ${name}`;
+  const subjectName = name.replace(/[\r\n]+/g, " ");
+  const subjectReason = reasonLabel.replace(/[\r\n]+/g, " ");
+  const subject = `[Portfolio] ${subjectReason} — de ${subjectName}`;
 
   try {
     const { error } = await resend.emails.send({
@@ -152,21 +162,19 @@ export async function sendContactEmail(
       console.error("Resend error:", error);
       return {
         success: false,
-        message:
-          "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
+        message: dict.contactErrors.sendError,
       };
     }
 
     return {
       success: true,
-      message: "Message envoyé avec succès ! Je vous répondrai rapidement.",
+      message: dict.contactErrors.success,
     };
   } catch (error) {
     console.error("Contact form error:", error);
     return {
       success: false,
-      message:
-        "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+      message: dict.contactErrors.unexpectedError,
     };
   }
 }

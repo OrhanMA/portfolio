@@ -1,10 +1,10 @@
 import createMDX from "@next/mdx";
 
-const developmentScriptPolicy =
-  process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : "";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    globalNotFound: true,
+  },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     qualities: [75, 90, 95],
@@ -20,23 +20,6 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              "base-uri 'self'",
-              "object-src 'none'",
-              "frame-ancestors 'none'",
-              "form-action 'self'",
-              `script-src 'self' 'unsafe-inline'${developmentScriptPolicy} https://www.googletagmanager.com https://www.google.com https://www.gstatic.com`,
-              "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https:",
-              "media-src 'self' blob:",
-              "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://vitals.vercel-insights.com https://*.vercel-insights.com",
-              "frame-src https://www.google.com https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com",
-            ].join("; "),
-          },
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 
 const proofLinks = [
   { key: "cv", href: "/proofs/orhan-madi-assani-cv.pdf" },
@@ -28,7 +29,7 @@ export function Footer({
 
   return (
     <footer className="border-t border-foreground/15 px-4 py-5 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl font-sans text-[9px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
+      <div className="mx-auto max-w-7xl font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
         <nav
           aria-label={dict.footer.navTitle}
           className="flex flex-wrap items-center gap-x-5 gap-y-3 border-b border-foreground/12 pb-4"
@@ -83,26 +84,25 @@ export function Footer({
             >
               {dict.footer.privacyPolicy}
             </Link>
+            <CookieSettingsButton label={dict.cookies.manage} />
             <a href="mailto:orhan.madi.assani@gmail.com" aria-label="Email" className="hover:text-primary">
-              <Mail className="h-3.5 w-3.5" />
+              <Mail aria-hidden="true" className="h-4 w-4" />
             </a>
             <a
               href="https://github.com/OrhanMA"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
               className="hover:text-primary"
             >
-              <Github className="h-3.5 w-3.5" />
+              GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/orhanmadi/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
               className="hover:text-primary"
             >
-              <Linkedin className="h-3.5 w-3.5" />
+              LinkedIn
             </a>
           </div>
         </div>

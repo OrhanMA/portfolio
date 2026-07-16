@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -13,7 +14,7 @@ import {
   getCompetencesByType,
   competenceLevelLabels,
 } from "@/lib/competences";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../dictionaries";
 import { RadarChart } from "@/components/radar-chart";
@@ -28,9 +29,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: "/competences",
     title: dict.competencesPage.pageTitle,
     description: dict.competencesPage.pageDescription,
@@ -43,7 +46,9 @@ export default async function CompetencesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
 
   const humanSkills = getCompetencesByType("human");
   const technicalSkills = getCompetencesByType("technical");
@@ -57,7 +62,7 @@ export default async function CompetencesPage({
   };
 
   const radarData = competences.map((c) => ({
-    label: radarLabels[c.slug]?.[locale] ?? c.title[locale as Locale],
+    label: radarLabels[c.slug]?.[loc] ?? c.title[loc],
     value: c.radarValue,
   }));
 
@@ -100,17 +105,17 @@ export default async function CompetencesPage({
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <CardTitle className="text-xl font-black tracking-[-0.025em]">
-                        <h3>{competence.title[locale as Locale]}</h3>
+                        <h3>{competence.title[loc]}</h3>
                       </CardTitle>
                       <CardDescription className="mt-2">
-                        {competence.definition[locale as Locale].slice(0, 100)}
-                        {competence.definition[locale as Locale].length > 100
+                        {competence.definition[loc].slice(0, 100)}
+                        {competence.definition[loc].length > 100
                           ? "…"
                           : ""}
                       </CardDescription>
                     </div>
                     <Badge variant="secondary">
-                      {competenceLevelLabels[competence.level][locale as Locale]}
+                      {competenceLevelLabels[competence.level][loc]}
                     </Badge>
                   </div>
                 </CardHeader>
@@ -145,17 +150,17 @@ export default async function CompetencesPage({
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <CardTitle className="text-xl font-black tracking-[-0.025em]">
-                        <h3>{competence.title[locale as Locale]}</h3>
+                        <h3>{competence.title[loc]}</h3>
                       </CardTitle>
                       <CardDescription className="mt-2">
-                        {competence.definition[locale as Locale].slice(0, 100)}
-                        {competence.definition[locale as Locale].length > 100
+                        {competence.definition[loc].slice(0, 100)}
+                        {competence.definition[loc].length > 100
                           ? "…"
                           : ""}
                       </CardDescription>
                     </div>
                     <Badge variant="secondary">
-                      {competenceLevelLabels[competence.level][locale as Locale]}
+                      {competenceLevelLabels[competence.level][loc]}
                     </Badge>
                   </div>
                 </CardHeader>

@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getStoredConsent } from "@/lib/cookie-consent";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
@@ -31,7 +32,6 @@ export function Analytics() {
 
   return (
     <>
-      {/* Google Tag Manager */}
       {GTM_ID && (
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
@@ -44,8 +44,7 @@ export function Analytics() {
         </Script>
       )}
 
-      {/* Google Analytics (gtag.js) */}
-      {GA_MEASUREMENT_ID && (
+      {!GTM_ID && GA_MEASUREMENT_ID && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -54,13 +53,15 @@ export function Analytics() {
           <Script id="google-analytics" strategy="afterInteractive">
             {`
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_MEASUREMENT_ID}');
+              window.gtag = function(){window.dataLayer.push(arguments);}
+              window.gtag('js', new Date());
+              window.gtag('consent', 'update', { analytics_storage: 'granted' });
+              window.gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });
             `}
           </Script>
         </>
       )}
+      <SpeedInsights />
     </>
   );
 }

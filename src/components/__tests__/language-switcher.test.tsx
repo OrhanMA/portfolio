@@ -45,7 +45,7 @@ describe("LanguageSwitcher", () => {
     renderWithProviders(<LanguageSwitcher />);
 
     const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: /switch to english/i }));
+    await user.click(screen.getByRole("button", { name: /passer en anglais/i }));
 
     expect(mockPush).toHaveBeenCalledWith("/en/contact");
   });
@@ -57,7 +57,7 @@ describe("LanguageSwitcher", () => {
     renderWithProviders(<LanguageSwitcher />);
 
     const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: /switch to english/i }));
+    await user.click(screen.getByRole("button", { name: /passer en anglais/i }));
 
     expect(document.cookie).toContain("NEXT_LOCALE=en");
   });
@@ -68,7 +68,7 @@ describe("LanguageSwitcher", () => {
 
     renderWithProviders(<LanguageSwitcher />);
     expect(
-      screen.getByRole("button", { name: "Switch to English" })
+      screen.getByRole("button", { name: "Passer en anglais" })
     ).toBeInTheDocument();
   });
 });

@@ -19,6 +19,24 @@ const labels = {
   frenchOnlyNotice: "Article rédigé en français, traduction navigateur recommandée.",
 };
 
+const articles = [
+  {
+    slug: "migration-odoo-v16-v19",
+    title: "Migration Odoo",
+    tags: ["Odoo", "Migration"],
+  },
+  {
+    slug: "odoo-javascript",
+    title: "JavaScript dans Odoo",
+    tags: ["Odoo", "JavaScript"],
+  },
+];
+
+const headings = [
+  { id: "contexte-metier", text: "Contexte métier", level: 2 },
+  { id: "migration-progressive", text: "Migration progressive", level: 3 },
+];
+
 describe("ArticleEnhancements", () => {
   beforeEach(() => {
     pathname = "/fr/articles/migration-odoo-v16-v19";
@@ -36,7 +54,7 @@ describe("ArticleEnhancements", () => {
     });
   });
 
-  it("builds a table of contents and related article links from the current article", async () => {
+  it("renders server-derived table-of-contents data without waiting for hydration", () => {
     renderWithProviders(
       <>
         <article>
@@ -44,12 +62,19 @@ describe("ArticleEnhancements", () => {
           <p>Un court contenu de test.</p>
           <h3>Migration progressive</h3>
         </article>
-        <ArticleEnhancements locale="fr" labels={labels} />
+        <ArticleEnhancements
+          locale="fr"
+          slug="migration-odoo-v16-v19"
+          articles={articles}
+          headings={headings}
+          readingMinutes={2}
+          labels={labels}
+        />
       </>,
     );
 
     expect(
-      await screen.findByRole("navigation", { name: labels.tableOfContents }),
+      screen.getByRole("navigation", { name: labels.tableOfContents }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Contexte métier/ })).toHaveAttribute(
       "href",
@@ -71,7 +96,14 @@ describe("ArticleEnhancements", () => {
         <article>
           <h2>Contexte métier</h2>
         </article>
-        <ArticleEnhancements locale="fr" labels={labels} />
+        <ArticleEnhancements
+          locale="fr"
+          slug="migration-odoo-v16-v19"
+          articles={articles}
+          headings={headings}
+          readingMinutes={2}
+          labels={labels}
+        />
       </>,
     );
 
@@ -90,7 +122,14 @@ describe("ArticleEnhancements", () => {
         <article>
           <h2>Context</h2>
         </article>
-        <ArticleEnhancements locale="en" labels={labels} />
+        <ArticleEnhancements
+          locale="en"
+          slug="migration-odoo-v16-v19"
+          articles={articles}
+          headings={headings}
+          readingMinutes={2}
+          labels={labels}
+        />
       </>,
       { locale: "en" },
     );

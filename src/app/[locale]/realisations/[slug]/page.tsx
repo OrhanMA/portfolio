@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../../dictionaries";
 import { getRealisationBySlug, realisations } from "@/lib/realisations";
@@ -26,12 +26,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const realisation = getRealisationBySlug(slug);
+  const loc = parseLocale(locale);
 
-  if (!realisation) {
+  if (!realisation || !loc) {
     return {};
   }
-
-  const loc = locale as Locale;
 
   return createLocalizedMetadata({
     locale: loc,
@@ -48,13 +47,13 @@ export default async function RealisationDetailPage({
 }) {
   const { locale, slug } = await params;
   const realisation = getRealisationBySlug(slug);
+  const loc = parseLocale(locale);
 
-  if (!realisation) {
+  if (!realisation || !loc) {
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
-  const loc = locale as Locale;
+  const dict = await getDictionary(loc);
   const contentSections = [
     {
       id: "presentation",

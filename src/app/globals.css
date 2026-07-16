@@ -36,6 +36,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-vermillion: var(--vermillion);
+  --color-vermillion-foreground: var(--vermillion-foreground);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -59,6 +60,7 @@
   --primary: oklch(0.48 0.225 261);
   --primary-foreground: oklch(0.98 0.006 92);
   --vermillion: oklch(0.59 0.24 29);
+  --vermillion-foreground: oklch(0.17 0.02 245);
   --secondary: oklch(0.93 0.025 255);
   --secondary-foreground: oklch(0.22 0.02 245);
   --muted: oklch(0.92 0.01 95);
@@ -95,6 +97,7 @@
   --primary: oklch(0.72 0.18 261);
   --primary-foreground: oklch(0.11 0.018 245);
   --vermillion: oklch(0.68 0.21 29);
+  --vermillion-foreground: oklch(0.17 0.02 245);
   --secondary: oklch(0.23 0.022 245);
   --secondary-foreground: oklch(0.92 0.014 95);
   --muted: oklch(0.24 0.018 245);
@@ -412,18 +415,6 @@
   animation: crest-foam-float 1.55s ease-in-out infinite alternate;
 }
 
-.mascot-layer-base {
-  animation: none !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.mascot-layer-variant {
-  opacity: 0;
-  visibility: hidden;
-  will-change: opacity;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .nav-enter,
   .wave-fill,
@@ -434,16 +425,6 @@
   .crest-foam circle {
     animation: none !important;
     transform: none !important;
-  }
-
-  .mascot-layer-base {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .mascot-layer-variant {
-    opacity: 0;
-    visibility: hidden;
   }
 }
 

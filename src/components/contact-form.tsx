@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition, useRef } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useMemo, useState, useTransition } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
@@ -23,31 +23,48 @@ import {
   FieldDescription,
 } from "@/components/ui/field";
 
-import { contactSchema, type ContactFormData } from "@/lib/schemas/contact";
-import { executeRecaptcha } from "@/lib/recaptcha";
+import {
+  createContactSchema,
+  type ContactFormData,
+  type ContactFormInput,
+} from "@/lib/schemas/contact";
+import {
+  executeRecaptcha,
+  preloadRecaptcha,
+} from "@/lib/recaptcha-client";
 import {
   sendContactEmail,
   type ContactActionState,
 } from "@/app/[locale]/actions/contact";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
+import type { Locale } from "@/lib/i18n";
 
 export type ContactFormDictionary = Pick<
   Dictionary,
-  "contactForm" | "contactReasons"
+  "contactForm" | "contactReasons" | "contactValidation"
 >;
 
-export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
+export function ContactForm({
+  locale,
+  dict,
+}: {
+  locale: Locale;
+  dict: ContactFormDictionary;
+}) {
   const [isPending, startTransition] = useTransition();
   const [actionState, setActionState] = useState<ContactActionState>(null);
-  const mountTimestamp = useRef(Date.now());
+  const [mountTimestamp] = useState(() => Date.now());
+  const schema = useMemo(
+    () => createContactSchema(dict.contactValidation),
+    [dict.contactValidation],
+  );
 
-  const {
-    control,
-    handleSubmit,
-    watch,
-    reset,
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+  const { control, handleSubmit, reset } = useForm<
+    ContactFormInput,
+    unknown,
+    ContactFormData
+  >({
+    resolver: zodResolver(schema),
     defaultValues: {
       name: "",
       email: "",
@@ -55,27 +72,27 @@ export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
       customSubject: "",
       message: "",
       honeypot: "",
-      timestamp: mountTimestamp.current,
+      timestamp: mountTimestamp,
       recaptchaToken: "",
     },
   });
 
-  // eslint-disable-next-line react-hooks/incompatible-library -- watch() is inherently incompatible with React Compiler (react-hook-form subscription model)
-  const selectedReason = watch("reason");
+  const selectedReason = useWatch({ control, name: "reason" });
 
   function onSubmit(data: ContactFormData) {
+    setActionState(null);
     startTransition(async () => {
-      // Get reCAPTCHA token (non-blocking — works even if script hasn't loaded)
       let recaptchaToken = "";
       try {
         recaptchaToken = await executeRecaptcha("contact_form");
       } catch {
-        // reCAPTCHA failed to execute — continue without it
+        // The server applies the authoritative security policy and returns a
+        // localized retry message when reCAPTCHA is required but unavailable.
       }
 
-      const result = await sendContactEmail({
+      const result = await sendContactEmail(locale, {
         ...data,
-        timestamp: mountTimestamp.current,
+        timestamp: mountTimestamp,
         recaptchaToken,
       });
       setActionState(result);
@@ -88,9 +105,13 @@ export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
   // Show success state
   if (actionState?.success) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-xl border border-border bg-card p-8 text-center">
+      <div
+        role="status"
+        aria-live="polite"
+        className="flex flex-col items-center gap-4 rounded-xl border border-border bg-card p-8 text-center"
+      >
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
-          <CheckCircle2 className="h-6 w-6 text-green-500" />
+          <CheckCircle2 aria-hidden="true" className="h-6 w-6 text-green-500" />
         </div>
         <div>
           <h3 className="text-lg font-semibold">
@@ -112,11 +133,22 @@ export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      onFocusCapture={() => {
+        void preloadRecaptcha().catch(() => undefined);
+      }}
+      aria-busy={isPending}
+      noValidate
+    >
       <FieldGroup>
         {/* Error banner */}
         {actionState && !actionState.success && (
-          <div className="rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          <div
+            role="alert"
+            aria-live="assertive"
+            className="rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          >
             {actionState.message}
           </div>
         )}
@@ -289,12 +321,12 @@ export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
         >
           {isPending ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />
               {dict.contactForm.submittingLabel}
             </>
           ) : (
             <>
-              <Send className="mr-2 h-4 w-4" />
+              <Send aria-hidden="true" className="mr-2 h-4 w-4" />
               {dict.contactForm.submitLabel}
             </>
           )}

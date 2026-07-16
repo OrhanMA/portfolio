@@ -1,11 +1,11 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), react()],
+  plugins: [react()],
   resolve: {
+    tsconfigPaths: true,
     alias: {
       "@/lib/gsap": fileURLToPath(
         new URL("./src/test/__mocks__/gsap.ts", import.meta.url)
@@ -26,7 +26,7 @@ export default defineConfig({
       include: [
         "src/lib/**",
         "src/components/**",
-        "src/middleware.ts",
+        "src/proxy.ts",
         "src/app/**/actions/**",
         "src/app/**/dictionaries.ts",
       ],
@@ -36,9 +36,14 @@ export default defineConfig({
         "src/components/theme-provider.tsx",
         "src/components/smooth-scroll.tsx",
         "src/components/page-transition.tsx",
-        "src/components/set-lang.tsx",
         "src/test/**",
       ],
+      thresholds: {
+        statements: 65,
+        branches: 60,
+        functions: 65,
+        lines: 65,
+      },
     },
   },
 });

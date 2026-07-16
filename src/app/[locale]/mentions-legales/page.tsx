@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { getDictionary } from "../dictionaries";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 
@@ -11,9 +12,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: "/mentions-legales",
     title: dict.legal.pageTitle,
     description: dict.legal.heading,
@@ -26,7 +29,9 @@ export default async function LegalNoticePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   const sections = [
     {
       title: dict.legal.editor,

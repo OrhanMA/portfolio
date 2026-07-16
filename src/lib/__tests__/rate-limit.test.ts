@@ -1,67 +1,69 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { rateLimit } from "@/lib/rate-limit";
 
 describe("rateLimit()", () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    vi.stubEnv("NODE_ENV", "test");
+    vi.stubEnv("UPSTASH_REDIS_REST_URL", "");
+    vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "");
+    vi.stubEnv("KV_REST_API_URL", "");
+    vi.stubEnv("KV_REST_API_TOKEN", "");
   });
 
-  it("first request succeeds with remaining = limit - 1", () => {
-    const result = rateLimit("test-first", 5, 60_000);
-    expect(result.success).toBe(true);
-    expect(result.remaining).toBe(4);
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllEnvs();
+    vi.restoreAllMocks();
   });
 
-  it("successive requests decrement remaining count", () => {
-    const key = "test-successive";
-    rateLimit(key, 5, 60_000);
-    const result = rateLimit(key, 5, 60_000);
-    expect(result.success).toBe(true);
-    expect(result.remaining).toBe(3);
+  it("tracks an isolated fixed window locally in tests", async () => {
+    const key = `local-${crypto.randomUUID()}`;
+    expect(await rateLimit(key, 2, 60_000)).toMatchObject({
+      success: true,
+      remaining: 1,
+    });
+    expect(await rateLimit(key, 2, 60_000)).toMatchObject({
+      success: true,
+      remaining: 0,
+    });
+    expect(await rateLimit(key, 2, 60_000)).toMatchObject({
+      success: false,
+      remaining: 0,
+    });
   });
 
-  it("rejects request when limit is reached", () => {
-    const key = "test-limit";
-    for (let i = 0; i < 3; i++) {
-      rateLimit(key, 3, 60_000);
-    }
-    const result = rateLimit(key, 3, 60_000);
-    expect(result.success).toBe(false);
-    expect(result.remaining).toBe(0);
-  });
-
-  it("different keys are independent", () => {
-    rateLimit("key-a", 1, 60_000);
-    const result = rateLimit("key-b", 1, 60_000);
-    expect(result.success).toBe(true);
-  });
-
-  it("expired window resets the counter", () => {
-    const key = "test-reset";
-    // Exhaust the limit
-    rateLimit(key, 1, 60_000);
-    const rejected = rateLimit(key, 1, 60_000);
-    expect(rejected.success).toBe(false);
-
-    // Advance past the window
+  it("resets the local window after expiry", async () => {
+    const key = `reset-${crypto.randomUUID()}`;
+    await rateLimit(key, 1, 60_000);
+    expect((await rateLimit(key, 1, 60_000)).success).toBe(false);
     vi.advanceTimersByTime(60_001);
-
-    const after = rateLimit(key, 1, 60_000);
-    expect(after.success).toBe(true);
-    expect(after.remaining).toBe(0);
+    expect((await rateLimit(key, 1, 60_000)).success).toBe(true);
   });
 
-  it("returns correct resetAt timestamp", () => {
-    const now = Date.now();
-    const windowMs = 60_000;
-    const result = rateLimit("test-reset-at", 5, windowMs);
-    expect(result.resetAt).toBe(now + windowMs);
+  it("uses an atomic Redis script when durable credentials exist", async () => {
+    vi.stubEnv("UPSTASH_REDIS_REST_URL", "https://redis.example");
+    vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "secret");
+    const fetchSpy = vi.spyOn(global, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ result: [2, 30_000] })),
+    );
+
+    const result = await rateLimit("hashed-ip", 5, 60_000);
+
+    expect(result).toMatchObject({ success: true, remaining: 3 });
+    expect(fetchSpy).toHaveBeenCalledWith(
+      "https://redis.example",
+      expect.objectContaining({
+        method: "POST",
+        headers: expect.objectContaining({ Authorization: "Bearer secret" }),
+      }),
+    );
+    const request = fetchSpy.mock.calls[0]?.[1];
+    expect(String(request?.body)).toContain("EVAL");
   });
 
-  it("works with custom limit and windowMs", () => {
-    const key = "test-custom";
-    const result = rateLimit(key, 10, 30_000);
-    expect(result.success).toBe(true);
-    expect(result.remaining).toBe(9);
+  it("fails closed in production without a durable store", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    await expect(rateLimit("hashed-ip")).rejects.toThrow("durable Redis");
   });
 });

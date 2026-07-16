@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { locales, defaultLocale, isValidLocale } from "@/lib/i18n";
+import {
+  locales,
+  defaultLocale,
+  isValidLocale,
+  parseLocale,
+} from "@/lib/i18n";
 
 describe("i18n config", () => {
   it("locales contains exactly fr and en", () => {
@@ -8,6 +13,17 @@ describe("i18n config", () => {
 
   it("defaultLocale is fr", () => {
     expect(defaultLocale).toBe("fr");
+  });
+});
+
+describe("parseLocale()", () => {
+  it("returns a typed supported locale", () => {
+    expect(parseLocale("fr")).toBe("fr");
+    expect(parseLocale("en")).toBe("en");
+  });
+
+  it("returns null instead of coercing an unsupported locale", () => {
+    expect(parseLocale("de")).toBeNull();
   });
 });
 

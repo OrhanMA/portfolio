@@ -1,6 +1,6 @@
 import { Code2 } from "lucide-react";
+import Image from "next/image";
 import { PixelHeart, PixelSpark } from "@/components/landing/pixel-art";
-import { AnimatedMascot } from "@/components/landing/animated-mascot";
 import { cn } from "@/lib/utils";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
@@ -61,7 +61,7 @@ export function AboutSection({ dict }: { dict: Dictionary["about"] }) {
                   index === 2 && "sm:ml-3",
                 )}
               >
-                <Icon className="h-9 w-9 shrink-0" strokeWidth={2.2} />
+                <Icon aria-hidden="true" className="h-9 w-9 shrink-0" strokeWidth={2.2} />
                 <h3 className="text-sm font-black uppercase leading-5 tracking-[-0.01em] sm:text-base">
                   {principle.title}
                 </h3>
@@ -72,15 +72,14 @@ export function AboutSection({ dict }: { dict: Dictionary["about"] }) {
         </div>
       </div>
 
-      <AnimatedMascot
+      <Image
         src="/images/decorative/pixel-ninja.png"
-        variantSrc="/images/decorative/pixel-ninja-wink.png"
+        alt=""
+        aria-hidden="true"
         width={1254}
         height={1254}
-        intervalMs={5400}
-        initialDelayMs={2600}
         className="about-ninja invisible pointer-events-none absolute -right-16 bottom-4 z-20 hidden h-56 w-56 md:block xl:-right-20 xl:h-64 xl:w-64"
-        imageClassName="object-contain object-right-bottom"
+        sizes="(min-width: 1280px) 256px, 224px"
       />
       <PixelSpark className="absolute right-[14%] top-[18%] h-7 w-7 text-foreground/70" />
       <PixelSpark className="absolute right-[7%] top-[30%] h-4 w-4 text-vermillion" />

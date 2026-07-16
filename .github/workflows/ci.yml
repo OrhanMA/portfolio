@@ -14,8 +14,8 @@ env:
   NODE_VERSION: "22"
 
 jobs:
-  lint:
-    name: Lint
+  quality:
+    name: Static quality & security
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +30,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm audit:security
 
   unit-tests:
     name: Unit Tests
@@ -46,7 +48,14 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm test:unit run
+      - run: pnpm test:coverage
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 14
 
   browser-tests:
     name: Browser Component Tests
@@ -71,7 +80,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    needs: [lint, unit-tests]
+    needs: [quality, unit-tests, browser-tests]
     env:
       # Secrets — injected via GitHub Actions Secrets
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -81,6 +90,8 @@ jobs:
       RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
       NEXT_PUBLIC_GTM_ID: ${{ secrets.NEXT_PUBLIC_GTM_ID }}
       NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -94,6 +105,15 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm build
+      - run: pnpm check:bundle
+
+      - name: Upload production build
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-build
+          path: .next/
+          include-hidden-files: true
+          retention-days: 1
 
   e2e-tests:
     name: E2E Tests
@@ -107,6 +127,8 @@ jobs:
       RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
       NEXT_PUBLIC_GTM_ID: ${{ secrets.NEXT_PUBLIC_GTM_ID }}
       NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -118,6 +140,12 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+
+      - name: Download production build
+        uses: actions/download-artifact@v4
+        with:
+          name: next-build
+          path: .next/
 
       - name: Install Playwright browsers
         run: pnpm exec playwright install chromium --with-deps

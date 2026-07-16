@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { X, Cookie, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDictionary } from "@/components/dictionary-provider";
 import {
   setStoredConsent,
   hasConsentBeenGiven,
+  getStoredConsent,
   type CookieConsent as CookieConsentType,
 } from "@/lib/cookie-consent";
 
@@ -14,23 +15,37 @@ export function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [analyticsChecked, setAnalyticsChecked] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const dict = useDictionary();
 
   useEffect(() => {
-    // Show banner only if no consent decision has been made
     if (!hasConsentBeenGiven()) {
-      // Small delay to avoid showing immediately on page load
       const timer = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    function openPreferences() {
+      const stored = getStoredConsent();
+      setAnalyticsChecked(stored?.analytics ?? false);
+      setExpanded(true);
+      setVisible(true);
+    }
+    window.addEventListener("cookie-consent-open", openPreferences);
+    return () =>
+      window.removeEventListener("cookie-consent-open", openPreferences);
+  }, []);
+
+  useEffect(() => {
+    if (visible) dialogRef.current?.focus();
+  }, [visible]);
 
   const saveConsent = useCallback(
     (consent: CookieConsentType) => {
       setStoredConsent(consent);
       setVisible(false);
 
-      // Dispatch custom event so GA component can react
       window.dispatchEvent(
         new CustomEvent("cookie-consent-update", { detail: consent })
       );
@@ -54,22 +69,32 @@ export function CookieConsent() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] p-4 sm:p-6">
-      <div className="mx-auto max-w-lg rounded-xl border border-border bg-card shadow-2xl">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-consent-title"
+        tabIndex={-1}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") handleRejectAll();
+        }}
+        className="mx-auto max-w-lg rounded-xl border border-border bg-card shadow-2xl outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
         <div className="p-4 sm:p-5">
           {/* Header */}
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-2">
-              <Cookie className="h-5 w-5 text-primary shrink-0" />
-              <h3 className="font-semibold text-sm">
+              <Cookie aria-hidden="true" className="h-5 w-5 text-primary shrink-0" />
+              <h2 id="cookie-consent-title" className="font-semibold text-sm">
                 {dict.cookies.title}
-              </h3>
+              </h2>
             </div>
             <button
               onClick={handleRejectAll}
               className="text-muted-foreground hover:text-foreground transition-colors shrink-0 cursor-pointer"
               aria-label={dict.cookies.close}
             >
-              <X className="h-4 w-4" />
+              <X aria-hidden="true" className="h-4 w-4" />
             </button>
           </div>
 
@@ -92,7 +117,7 @@ export function CookieConsent() {
                   </p>
                 </div>
                 <div className="shrink-0 pt-0.5">
-                  <div className="h-5 w-9 rounded-full bg-primary flex items-center justify-end px-0.5">
+                  <div role="switch" aria-checked="true" aria-readonly="true" className="h-5 w-9 rounded-full bg-primary flex items-center justify-end px-0.5">
                     <div className="h-4 w-4 rounded-full bg-white" />
                   </div>
                 </div>
@@ -111,7 +136,9 @@ export function CookieConsent() {
                 <button
                   onClick={() => setAnalyticsChecked(!analyticsChecked)}
                   className="shrink-0 pt-0.5 cursor-pointer"
-                  aria-label={`Toggle ${dict.cookies.analytics}`}
+                  role="switch"
+                  aria-checked={analyticsChecked}
+                  aria-label={dict.cookies.toggleAnalytics}
                 >
                   <div
                     className={`h-5 w-9 rounded-full flex items-center px-0.5 transition-colors ${
@@ -157,7 +184,7 @@ export function CookieConsent() {
                 className="text-xs ml-auto"
               >
                 {dict.cookies.manage}
-                <ChevronDown className="ml-1 h-3 w-3" />
+                <ChevronDown aria-hidden="true" className="ml-1 h-3 w-3" />
               </Button>
             )}
             {expanded && (
@@ -166,8 +193,9 @@ export function CookieConsent() {
                 variant="ghost"
                 onClick={() => setExpanded(false)}
                 className="text-xs ml-auto"
+                aria-label={dict.cookies.collapse}
               >
-                <ChevronUp className="h-3 w-3" />
+                <ChevronUp aria-hidden="true" className="h-3 w-3" />
               </Button>
             )}
           </div>

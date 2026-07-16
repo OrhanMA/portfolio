@@ -3,11 +3,12 @@ import { locales } from "@/lib/i18n";
 import { odooProjects } from "@/lib/odoo-projects";
 import { competences } from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
+import { getDictionary } from "@/app/[locale]/dictionaries";
 
 const BASE_URL = "https://orhanmadiassani.com";
 const CONTENT_LAST_UPDATED = new Date("2026-07-16T00:00:00.000Z");
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [
     "",
     "/a-propos",
@@ -19,14 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/mentions-legales",
     "/politique-confidentialite",
   ];
-  const articles = [
-    "odoo-session-timeout",
-    "telecharger-code-odoo-jupyter",
-    "docker-dangling-images",
-    "migration-odoo-v16-v19",
-    "refonte-site-corporate-1up",
-    "application-cap2vie-lig",
-  ];
+  const { articles } = await getDictionary("fr");
 
   const entries: MetadataRoute.Sitemap = [];
 
@@ -40,10 +34,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
 
-    for (const slug of articles) {
+    for (const article of articles.articlesData) {
       entries.push({
-        url: `${BASE_URL}/${locale}/articles/${slug}`,
-        lastModified: CONTENT_LAST_UPDATED,
+        url: `${BASE_URL}/${locale}/articles/${article.slug}`,
+        lastModified: new Date(`${article.date}T00:00:00.000Z`),
         changeFrequency: "monthly",
         priority: 0.6,
       });

@@ -32,7 +32,7 @@ async function preparePage(page: Page) {
   await page.addInitScript(() => {
     localStorage.setItem(
       "cookie-consent",
-      JSON.stringify({ necessary: true, analytics: false }),
+      JSON.stringify({ necessary: true, analytics: false, version: 2, decidedAt: Date.now() }),
     );
     localStorage.setItem("theme", "light");
   });
@@ -48,7 +48,7 @@ for (const viewport of [
     await preparePage(page);
 
     for (const route of routes) {
-      const response = await page.goto(route.path, { waitUntil: "networkidle" });
+      const response = await page.goto(route.path, { waitUntil: "load" });
       expect(response?.status(), route.path).toBe(route.expectedStatus ?? 200);
 
       await expect(page.locator("h1"), route.path).toHaveCount(1);

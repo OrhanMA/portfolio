@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../../dictionaries";
 import {
@@ -78,12 +78,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const competence = getCompetenceBySlug(slug);
+  const loc = parseLocale(locale);
 
-  if (!competence) {
+  if (!competence || !loc) {
     return {};
   }
-
-  const loc = locale as Locale;
 
   return createLocalizedMetadata({
     locale: loc,
@@ -100,13 +99,13 @@ export default async function CompetenceDetailPage({
 }) {
   const { locale, slug } = await params;
   const competence = getCompetenceBySlug(slug);
+  const loc = parseLocale(locale);
 
-  if (!competence) {
+  if (!competence || !loc) {
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
-  const loc = locale as Locale;
+  const dict = await getDictionary(loc);
   const sections = [
     { id: "definition", title: dict.competencesPage.definitionHeading },
     { id: "evidence", title: dict.competencesPage.proofsHeading },

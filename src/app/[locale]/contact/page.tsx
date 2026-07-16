@@ -1,13 +1,53 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import { notFound } from "next/navigation";
 import { Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { getDictionary } from "../dictionaries";
-import type { Locale } from "@/lib/i18n";
+import { isValidLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+function RecaptchaDisclosure({
+  text,
+  privacyLabel,
+  termsLabel,
+}: {
+  text: string;
+  privacyLabel: string;
+  termsLabel: string;
+}) {
+  return text.split(/(\{privacy\}|\{terms\})/g).map((part, index) => {
+    if (part === "{privacy}") {
+      return (
+        <a
+          key={part}
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-muted-foreground"
+        >
+          {privacyLabel}
+        </a>
+      );
+    }
+    if (part === "{terms}") {
+      return (
+        <a
+          key={part}
+          href="https://policies.google.com/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-muted-foreground"
+        >
+          {termsLabel}
+        </a>
+      );
+    }
+    return <span key={`${index}-${part}`}>{part}</span>;
+  });
+}
 
 export async function generateMetadata({
   params,
@@ -15,9 +55,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  if (!isValidLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale,
     pathname: "/contact",
     title: dict.contact.pageTitle,
     description: dict.contact.pageDescription,
@@ -30,18 +71,11 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  if (!isValidLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
 
   return (
     <>
-      {/* Load reCAPTCHA v3 script only on this page */}
-      {recaptchaSiteKey && (
-        <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-          strategy="afterInteractive"
-        />
-      )}
-
       <EditorialPageHeader
         eyebrow={dict.nav.contact}
         title={dict.contact.heading}
@@ -53,7 +87,7 @@ export default async function ContactPage({
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.65fr_1fr] lg:items-start">
           <aside className="premium-card rounded-xl border-l-4 border-l-vermillion p-6 lg:sticky lg:top-28">
             <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-foreground/15 bg-background">
-              <Mail className="h-6 w-6 text-primary" />
+              <Mail aria-hidden="true" className="h-6 w-6 text-primary" />
             </div>
             <p className="editorial-index text-vermillion">Email</p>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">
@@ -70,9 +104,11 @@ export default async function ContactPage({
           <div>
             <div className="premium-card rounded-xl border-t-4 border-t-primary p-5 sm:p-8">
               <ContactForm
+                locale={locale}
                 dict={{
                   contactForm: dict.contactForm,
                   contactReasons: dict.contactReasons,
+                  contactValidation: dict.contactValidation,
                 }}
               />
             </div>
@@ -89,26 +125,11 @@ export default async function ContactPage({
               </p>
               {recaptchaSiteKey && (
                 <p className="text-xs leading-6 text-muted-foreground/70">
-                  {dict.contact.recaptchaDisclosure
-                    .replace(
-                      "{privacy}",
-                      `<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-muted-foreground">${dict.contact.privacyPolicy}</a>`
-                    )
-                    .replace(
-                      "{terms}",
-                      `<a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-muted-foreground">${dict.contact.termsOfService}</a>`
-                    )
-                    .split(/(<a[^>]*>.*?<\/a>)/g)
-                    .map((part, i) =>
-                      part.startsWith("<a") ? (
-                        <span
-                          key={i}
-                          dangerouslySetInnerHTML={{ __html: part }}
-                        />
-                      ) : (
-                        <span key={i}>{part}</span>
-                      )
-                    )}
+                  <RecaptchaDisclosure
+                    text={dict.contact.recaptchaDisclosure}
+                    privacyLabel={dict.contact.privacyPolicy}
+                    termsLabel={dict.contact.termsOfService}
+                  />
                 </p>
               )}
             </div>

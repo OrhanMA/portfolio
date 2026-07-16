@@ -2,22 +2,24 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Check, Copy, Link2 } from "lucide-react";
-import frDictionary from "@/app/[locale]/dictionaries/fr.json";
-import enDictionary from "@/app/[locale]/dictionaries/en.json";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import type { ArticleHeading } from "@/lib/article-headings";
 
-type HeadingItem = {
-  id: string;
-  text: string;
-  level: number;
+type ArticleSummary = {
+  slug: string;
+  title: string;
+  tags: string[];
 };
 
 type ArticleEnhancementsProps = {
   locale: string;
+  slug: string;
+  articles: ArticleSummary[];
+  headings: ArticleHeading[];
+  readingMinutes: number;
   labels: {
     readingTime: string;
     minuteShort: string;
@@ -29,40 +31,19 @@ type ArticleEnhancementsProps = {
   };
 };
 
-function slugify(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
-
-function getCurrentArticle(pathname: string) {
-  const parts = pathname.split("/").filter(Boolean);
-  const articleIndex = parts.indexOf("articles");
-
-  return articleIndex >= 0 ? parts[articleIndex + 1] : undefined;
-}
-
 export function ArticleEnhancements({
   locale,
+  slug,
+  articles,
+  headings,
+  readingMinutes,
   labels,
 }: ArticleEnhancementsProps) {
-  const pathname = usePathname() ?? "";
-  const slug = getCurrentArticle(pathname);
-  const [headings, setHeadings] = useState<HeadingItem[]>([]);
-  const [readingMinutes, setReadingMinutes] = useState(1);
   const [copied, setCopied] = useState(false);
 
-  const articleData =
-    locale === "fr"
-      ? frDictionary.articles.articlesData
-      : enDictionary.articles.articlesData;
-
   const currentArticle = useMemo(
-    () => articleData.find((article) => article.slug === slug),
-    [articleData, slug],
+    () => articles.find((article) => article.slug === slug),
+    [articles, slug],
   );
 
   const relatedArticles = useMemo(() => {
@@ -72,7 +53,7 @@ export function ArticleEnhancements({
 
     const currentTags = new Set(currentArticle.tags ?? []);
 
-    return articleData
+    return articles
       .filter((article) => article.slug !== currentArticle.slug)
       .map((article) => ({
         article,
@@ -83,7 +64,7 @@ export function ArticleEnhancements({
       .sort((a, b) => b.score - a.score)
       .slice(0, 3)
       .map(({ article }) => article);
-  }, [articleData, currentArticle]);
+  }, [articles, currentArticle]);
 
   useEffect(() => {
     if (!slug) {
@@ -98,31 +79,13 @@ export function ArticleEnhancements({
     const headingElements = Array.from(
       article.querySelectorAll<HTMLHeadingElement>("h2, h3"),
     );
-    const nextHeadings = headingElements.map((heading) => {
-      const text = heading.textContent?.trim() ?? "";
-      const id = heading.id || slugify(text);
-
-      heading.id = id;
-
-      return {
-        id,
-        text,
-        level: Number(heading.tagName.replace("H", "")),
-      };
+    headingElements.forEach((heading, index) => {
+      const nextHeading = headings[index];
+      if (nextHeading) {
+        heading.id = nextHeading.id;
+      }
     });
-
-    const wordCount = (article.textContent ?? "")
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean).length;
-
-    const frame = window.requestAnimationFrame(() => {
-      setHeadings(nextHeadings);
-      setReadingMinutes(Math.max(1, Math.ceil(wordCount / 220)));
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [slug]);
+  }, [headings, slug]);
 
   if (!slug || !currentArticle) {
     return null;
@@ -159,9 +122,9 @@ export function ArticleEnhancements({
           onClick={copyArticleLink}
         >
           {copied ? (
-            <Check className="h-4 w-4" />
+            <Check aria-hidden="true" className="h-4 w-4" />
           ) : (
-            <Copy className="h-4 w-4" />
+            <Copy aria-hidden="true" className="h-4 w-4" />
           )}
           {copied ? labels.copied : labels.copyLink}
         </Button>
@@ -182,7 +145,7 @@ export function ArticleEnhancements({
                   heading.level === 3 && "opacity-80",
                 )}
               >
-                <Link2 className="h-3 w-3" />
+                <Link2 aria-hidden="true" className="h-3 w-3" />
                 {heading.text}
               </a>
             ))}

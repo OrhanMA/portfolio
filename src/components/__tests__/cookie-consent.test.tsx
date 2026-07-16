@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderWithProviders, screen, userEvent, act } from "@/test/utils";
 import { CookieConsent } from "@/components/cookie-consent";
+import { setStoredConsent } from "@/lib/cookie-consent";
 
 describe("CookieConsent", () => {
   beforeEach(() => {
@@ -30,10 +31,7 @@ describe("CookieConsent", () => {
   });
 
   it("does not render when consent already given", async () => {
-    localStorage.setItem(
-      "cookie-consent",
-      JSON.stringify({ necessary: true, analytics: false })
-    );
+    setStoredConsent({ necessary: true, analytics: false });
 
     renderWithProviders(<CookieConsent />);
 
@@ -134,6 +132,7 @@ describe("CookieConsent", () => {
 
     const stored = JSON.parse(localStorage.getItem("cookie-consent")!);
     expect(stored.analytics).toBe(true);
+    expect(stored.version).toBe(2);
   });
 
   it("X button rejects all and hides banner", async () => {
@@ -145,11 +144,27 @@ describe("CookieConsent", () => {
 
     vi.useRealTimers();
     const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: "Fermer" }));
+    await user.click(
+      screen.getByRole("button", { name: "Fermer et refuser" }),
+    );
 
     expect(screen.queryByText("Cookies")).not.toBeInTheDocument();
 
     const stored = JSON.parse(localStorage.getItem("cookie-consent")!);
     expect(stored.analytics).toBe(false);
+  });
+
+  it("can be reopened after a prior decision and preserves preferences", async () => {
+    setStoredConsent({ necessary: true, analytics: true });
+    renderWithProviders(<CookieConsent />);
+
+    act(() => {
+      window.dispatchEvent(new Event("cookie-consent-open"));
+    });
+
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(
+      screen.getByRole("switch", { name: "Autoriser les cookies analytiques" }),
+    ).toHaveAttribute("aria-checked", "true");
   });
 });

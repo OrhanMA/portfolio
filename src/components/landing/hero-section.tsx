@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { Briefcase, Code2, MapPin } from "lucide-react";
+import { ArrowRight, Briefcase, Code2, Mail, MapPin } from "lucide-react";
 import {
   EditorialWave,
   UkiyoeCrest,
 } from "@/components/landing/editorial-wave";
+import { LandingButtonLink } from "@/components/landing/landing-button-link";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
 export function HeroSection({
+  locale,
   headshot,
   dict,
 }: {
@@ -15,23 +17,20 @@ export function HeroSection({
   headshot: ReactNode;
   dict: Dictionary["hero"];
 }) {
-
   return (
     <section
       className="relative isolate min-h-[860px] overflow-hidden px-4 pb-36 pt-28 sm:px-6 lg:min-h-[820px] lg:px-8 lg:pb-44 lg:pt-24"
     >
-      <picture className="hero-fuji absolute right-[-11%] top-[16%] z-0 hidden h-[60%] w-[74%] opacity-70 mix-blend-multiply dark:opacity-25 dark:mix-blend-screen lg:block">
-        <source
-          media="(min-width: 1024px)"
-          srcSet="/images/decorative/fuji-hero.webp"
-        />
-        <img
-          src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+      <div className="hero-fuji absolute right-[-11%] top-[16%] z-0 hidden h-[60%] w-[74%] opacity-70 mix-blend-multiply dark:opacity-25 dark:mix-blend-screen lg:block">
+        <Image
+          src="/images/decorative/fuji-hero.webp"
           alt=""
           aria-hidden="true"
-          className="h-full w-full object-contain object-right-bottom"
+          fill
+          sizes="74vw"
+          className="object-contain object-right-bottom"
         />
-      </picture>
+      </div>
 
       <div className="hero-sun absolute left-[51%] top-[13%] z-[1] aspect-square w-[min(31vw,440px)] rounded-full bg-vermillion shadow-[0_20px_70px_oklch(0.61_0.235_29/0.16)] max-lg:left-auto max-lg:right-[8%] max-lg:top-[48%] max-lg:w-[68vw] max-sm:top-[58%]" />
 
@@ -63,10 +62,30 @@ export function HeroSection({
               {dict.subtitle}
             </span>
           </div>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            <LandingButtonLink
+              href={`/${locale}/realisations`}
+              size="lg"
+              className="gap-2"
+            >
+              {dict.ctaWork}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </LandingButtonLink>
+            <LandingButtonLink
+              href={`/${locale}/contact`}
+              variant="outline"
+              size="lg"
+              className="gap-2 bg-background/55 backdrop-blur-sm"
+            >
+              <Mail aria-hidden="true" className="h-4 w-4" />
+              {dict.ctaContact}
+            </LandingButtonLink>
+          </div>
         </div>
 
-        <div className="relative mt-8 hidden min-h-[570px] sm:block lg:mt-0 lg:min-h-[700px]">
-          <div className="hero-portrait absolute inset-x-0 bottom-[-8%] z-10 mx-auto h-[112%] max-w-[690px] [&>img]:h-full [&>img]:w-full [&>img]:object-contain [&>img]:object-bottom">
+        <div className="relative mt-4 min-h-[430px] sm:mt-8 sm:min-h-[570px] lg:mt-0 lg:min-h-[700px]">
+          <div className="hero-portrait absolute inset-x-[-8%] bottom-[-7%] z-10 mx-auto h-[108%] max-w-[690px] sm:inset-x-0 sm:bottom-[-8%] sm:h-[112%] [&>img]:h-full [&>img]:w-full [&>img]:object-contain [&>img]:object-bottom">
             {headshot}
           </div>
           <Image

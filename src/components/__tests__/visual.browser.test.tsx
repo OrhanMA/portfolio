@@ -24,9 +24,9 @@ vi.mock("@/app/[locale]/actions/contact", () => ({
 }));
 
 // Mock reCAPTCHA for ContactForm
-vi.mock("@/lib/recaptcha", () => ({
+vi.mock("@/lib/recaptcha-client", () => ({
   executeRecaptcha: vi.fn(() => Promise.resolve("")),
-  RECAPTCHA_THRESHOLD: 0.5,
+  preloadRecaptcha: vi.fn(() => Promise.resolve()),
 }));
 
 describe("Visual Regression", () => {
@@ -36,18 +36,20 @@ describe("Visual Regression", () => {
   });
 
   test("cookie consent banner", async () => {
-    const { container } = await renderWithProviders(<CookieConsent />);
+    await renderWithProviders(<CookieConsent />);
 
     // Wait for banner to appear (1.5s delay)
     await expect
       .element(page.getByRole("heading", { name: "Cookies" }), { timeout: 3000 })
       .toBeVisible();
 
-    await expect(container).toMatchScreenshot("cookie-consent-banner");
+    await expect(page.getByRole("dialog")).toMatchScreenshot(
+      "cookie-consent-banner",
+    );
   });
 
   test("cookie consent with expanded preferences", async () => {
-    const { container } = await renderWithProviders(<CookieConsent />);
+    await renderWithProviders(<CookieConsent />);
 
     // Wait and expand
     const manageBtn = page.getByRole("button", { name: /g[eé]rer/i });
@@ -56,7 +58,7 @@ describe("Visual Regression", () => {
 
     await expect.element(page.getByText("Analytiques")).toBeVisible();
 
-    await expect(container).toMatchScreenshot(
+    await expect(page.getByRole("dialog")).toMatchScreenshot(
       "cookie-consent-expanded"
     );
   });
@@ -79,9 +81,11 @@ describe("Visual Regression", () => {
   test("contact form", async () => {
     const { container } = await renderWithProviders(
       <ContactForm
+        locale="fr"
         dict={{
           contactForm: frDict.contactForm,
           contactReasons: frDict.contactReasons,
+          contactValidation: frDict.contactValidation,
         }}
       />
     );

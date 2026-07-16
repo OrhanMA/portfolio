@@ -1,130 +1,151 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { sendContactEmail } from "@/app/[locale]/actions/contact";
 import { escapeHtml } from "@/lib/utils";
 
-// Use vi.hoisted so mockSend is available when vi.mock factories run (they're hoisted)
-const { mockSend } = vi.hoisted(() => ({
-  mockSend: vi.fn(),
-}));
+const { mockSend } = vi.hoisted(() => ({ mockSend: vi.fn() }));
 
-// Mock next/headers
 vi.mock("next/headers", () => ({
   headers: vi.fn(() =>
-    Promise.resolve(
-      new Map([["x-forwarded-for", "127.0.0.1"]])
-    )
+    Promise.resolve(new Map([["x-forwarded-for", "127.0.0.1"]])),
   ),
 }));
 
-// Mock resend — use a regular function (not arrow) so it works as a constructor with `new`
 vi.mock("resend", () => ({
   Resend: vi.fn(function () {
     return { emails: { send: mockSend } };
   }),
 }));
 
-// Mock rate limiter
 vi.mock("@/lib/rate-limit", () => ({
-  rateLimit: vi.fn(() => ({ success: true, remaining: 4, resetAt: Date.now() + 3600000 })),
+  rateLimit: vi.fn(() =>
+    Promise.resolve({
+      success: true,
+      remaining: 4,
+      resetAt: Date.now() + 3_600_000,
+    }),
+  ),
 }));
 
-// Mock recaptcha
 vi.mock("@/lib/recaptcha", () => ({
-  verifyRecaptcha: vi.fn(() => Promise.resolve({ success: true, score: 0.9 })),
+  verifyRecaptcha: vi.fn(() =>
+    Promise.resolve({ success: true, score: 0.9 }),
+  ),
   RECAPTCHA_THRESHOLD: 0.5,
 }));
 
 const validData = {
   name: "Jean Dupont",
   email: "jean@example.com",
-  reason: "offer",
+  reason: "offer" as const,
   message: "Bonjour, je souhaite discuter d'une opportunite professionnelle.",
   honeypot: "",
-  timestamp: Date.now() - 10000, // 10 seconds ago
+  timestamp: Date.now() - 10_000,
 };
 
 describe("escapeHtml()", () => {
-  it("escapes & < > quotes", () => {
+  it("escapes HTML metacharacters", () => {
     expect(escapeHtml('Hello & "World" <script>')).toBe(
-      "Hello &amp; &quot;World&quot; &lt;script&gt;"
+      "Hello &amp; &quot;World&quot; &lt;script&gt;",
     );
-  });
-
-  it("escapes single quotes", () => {
     expect(escapeHtml("it's")).toBe("it&#039;s");
   });
 
-  it("handles strings with no special chars", () => {
+  it("keeps plain and empty strings unchanged", () => {
     expect(escapeHtml("Hello World")).toBe("Hello World");
-  });
-
-  it("handles empty string", () => {
     expect(escapeHtml("")).toBe("");
   });
 });
 
 describe("sendContactEmail()", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     mockSend.mockReset();
     mockSend.mockResolvedValue({ error: null });
+    const { rateLimit } = await import("@/lib/rate-limit");
+    vi.mocked(rateLimit).mockResolvedValue({
+      success: true,
+      remaining: 4,
+      resetAt: Date.now() + 3_600_000,
+    });
   });
 
-  it("returns error for invalid schema data", async () => {
-    const result = await sendContactEmail({
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  it("returns an error for invalid schema data", async () => {
+    const result = await sendContactEmail("fr", {
       name: "",
       email: "bad",
-      reason: "",
+      reason: "offer",
       message: "",
-    } as unknown as Parameters<typeof sendContactEmail>[0]);
+    } as Parameters<typeof sendContactEmail>[1]);
 
     expect(result?.success).toBe(false);
     expect(result?.message).toContain("invalides");
   });
 
-  it("rejects honeypot-filled submissions at schema level", async () => {
-    const result = await sendContactEmail({
+  it("silently succeeds for a filled honeypot without sending", async () => {
+    const result = await sendContactEmail("fr", {
       ...validData,
       honeypot: "bot-filled",
     });
 
-    // Schema rejects non-empty honeypot (max(0)) → validation error
-    expect(result?.success).toBe(false);
-    expect(result?.message).toContain("invalides");
-    // Should NOT have called Resend
+    expect(result?.success).toBe(true);
+    expect(result?.message).toContain("succès");
     expect(mockSend).not.toHaveBeenCalled();
   });
 
-  it("returns error when submission is too fast", async () => {
-    const result = await sendContactEmail({
+  it("rejects submissions completed too quickly", async () => {
+    const result = await sendContactEmail("fr", {
       ...validData,
-      timestamp: Date.now() - 1000, // Only 1 second ago
+      timestamp: Date.now() - 1_000,
     });
 
     expect(result?.success).toBe(false);
     expect(result?.message).toContain("patienter");
   });
 
-  it("returns error when rate limit is exceeded", async () => {
-    const { rateLimit } = await import("@/lib/rate-limit");
-    vi.mocked(rateLimit).mockReturnValueOnce({
-      success: false,
-      remaining: 0,
-      resetAt: Date.now() + 3600000,
+  it("returns localized errors for the English form", async () => {
+    const result = await sendContactEmail("en", {
+      ...validData,
+      timestamp: Date.now(),
     });
 
-    const result = await sendContactEmail(validData);
+    expect(result?.success).toBe(false);
+    expect(result?.message).toContain("wait");
+  });
+
+  it("rejects when the durable rate limit is exceeded", async () => {
+    const { rateLimit } = await import("@/lib/rate-limit");
+    vi.mocked(rateLimit).mockResolvedValueOnce({
+      success: false,
+      remaining: 0,
+      resetAt: Date.now() + 3_600_000,
+    });
+
+    const result = await sendContactEmail("fr", validData);
     expect(result?.success).toBe(false);
     expect(result?.message).toContain("Trop de messages");
   });
 
-  it("returns error when reCAPTCHA fails", async () => {
+  it("fails closed when the rate-limit store is unavailable", async () => {
+    const { rateLimit } = await import("@/lib/rate-limit");
+    vi.mocked(rateLimit).mockRejectedValueOnce(new Error("Redis unavailable"));
+
+    const result = await sendContactEmail("fr", validData);
+    expect(result?.success).toBe(false);
+    expect(result?.message).toContain("sécurité");
+    expect(mockSend).not.toHaveBeenCalled();
+  });
+
+  it("rejects when reCAPTCHA fails", async () => {
     const { verifyRecaptcha } = await import("@/lib/recaptcha");
     vi.mocked(verifyRecaptcha).mockResolvedValueOnce({
       success: false,
       score: 0.2,
     });
 
-    const result = await sendContactEmail({
+    const result = await sendContactEmail("fr", {
       ...validData,
       recaptchaToken: "bad-token",
     });
@@ -133,44 +154,54 @@ describe("sendContactEmail()", () => {
     expect(result?.message).toContain("sécurité");
   });
 
-  it("rejects a missing reCAPTCHA token when verification is configured", async () => {
+  it("rejects a missing reCAPTCHA token when configured", async () => {
     vi.stubEnv("RECAPTCHA_SECRET_KEY", "test-secret");
 
-    const result = await sendContactEmail(validData);
+    const result = await sendContactEmail("fr", validData);
 
-    vi.unstubAllEnvs();
     expect(result?.success).toBe(false);
     expect(result?.message).toContain("sécurité");
     expect(mockSend).not.toHaveBeenCalled();
   });
 
-  it("sends email via Resend on success", async () => {
-    const result = await sendContactEmail(validData);
+  it("sends an escaped email through Resend", async () => {
+    const result = await sendContactEmail("fr", validData);
 
     expect(result?.success).toBe(true);
-    expect(mockSend).toHaveBeenCalledTimes(1);
     expect(mockSend).toHaveBeenCalledWith(
       expect.objectContaining({
         subject: expect.stringContaining("[Portfolio]"),
-      })
+        html: expect.not.stringContaining("<script>"),
+      }),
     );
   });
 
-  it("returns error when Resend returns an error", async () => {
-    mockSend.mockResolvedValueOnce({
-      error: { message: "API error" },
+  it("strips line breaks from email subjects", async () => {
+    await sendContactEmail("fr", {
+      ...validData,
+      name: "Jean\r\nBcc: attacker@example.com",
     });
 
-    const result = await sendContactEmail(validData);
-    expect(result?.success).toBe(false);
-    expect(result?.message).toContain("erreur");
+    expect(mockSend).toHaveBeenCalledWith(
+      expect.objectContaining({
+        subject: expect.not.stringMatching(/[\r\n]/),
+      }),
+    );
   });
 
-  it("returns error when Resend throws", async () => {
+  it("returns a localized error when Resend reports a failure", async () => {
+    mockSend.mockResolvedValueOnce({ error: { message: "API error" } });
+
+    const result = await sendContactEmail("en", validData);
+    expect(result?.success).toBe(false);
+    expect(result?.message).toContain("error");
+  });
+
+  it("returns a localized error when Resend throws", async () => {
     mockSend.mockRejectedValueOnce(new Error("Network error"));
 
-    const result = await sendContactEmail(validData);
+    const result = await sendContactEmail("en", validData);
     expect(result?.success).toBe(false);
-    expect(result?.message).toContain("inattendue");
+    expect(result?.message).toContain("unexpected");
   });
 });

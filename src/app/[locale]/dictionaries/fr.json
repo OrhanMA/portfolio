@@ -14,7 +14,11 @@
     "realisations": "Réalisations",
     "allCompetences": "Voir les 10 compétences",
     "allRealisations": "Voir les 5 réalisations",
-    "showSubmenu": "Afficher le sous-menu"
+    "showSubmenu": "Afficher le sous-menu",
+    "toggleMenu": "Ouvrir ou fermer le menu",
+    "switchToEnglish": "Passer en anglais",
+    "switchToFrench": "Passer en français",
+    "toggleTheme": "Changer de thème"
   },
   "hero": {
     "eyebrow": "Portfolio créatif · Ingénierie logicielle",
@@ -268,6 +272,16 @@
     "successHeading": "Message envoyé !",
     "sendAnother": "Envoyer un autre message"
   },
+  "contactValidation": {
+    "nameMin": "Le nom doit contenir au moins 2 caractères.",
+    "nameMax": "Le nom ne doit pas dépasser 100 caractères.",
+    "emailInvalid": "Adresse email invalide.",
+    "reasonRequired": "Veuillez sélectionner une raison.",
+    "subjectRequired": "Veuillez préciser le sujet de votre message.",
+    "subjectMax": "Le sujet ne doit pas dépasser 120 caractères.",
+    "messageMin": "Le message doit contenir au moins 10 caractères.",
+    "messageMax": "Le message ne doit pas dépasser 5000 caractères."
+  },
   "contactReasons": [
     { "value": "offer", "label": "Offre" },
     { "value": "freelance", "label": "Mission freelance" },
@@ -281,6 +295,7 @@
     "tooFast": "Veuillez patienter quelques secondes avant d'envoyer.",
     "rateLimit": "Trop de messages envoyés. Veuillez réessayer dans une heure.",
     "recaptchaFailed": "La vérification de sécurité a échoué. Veuillez réessayer.",
+    "securityUnavailable": "Le service de sécurité est momentanément indisponible. Veuillez réessayer plus tard ou utiliser l’adresse email indiquée.",
     "sendError": "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
     "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
     "success": "Message envoyé avec succès ! Je vous répondrai rapidement."
@@ -459,8 +474,10 @@
     "necessaryDesc": "Cookies essentiels au fonctionnement du site (langue, thème). Toujours actifs.",
     "analytics": "Analytiques",
     "analyticsDesc": "Cookies Google Analytics pour comprendre comment le site est utilisé.",
+    "toggleAnalytics": "Autoriser les cookies analytiques",
     "save": "Enregistrer",
-    "close": "Fermer"
+    "close": "Fermer et refuser",
+    "collapse": "Réduire les préférences"
   },
   "legal": {
     "pageTitle": "Mentions légales | Orhan Madi Assani",
@@ -493,7 +510,7 @@
     "purpose": "Utilisation des données",
     "purposeText": "Le traitement du formulaire repose sur l'intérêt légitime à répondre aux demandes reçues et à protéger le site contre le spam. Les données sont accessibles à l'éditeur du site et aux prestataires strictement nécessaires à son fonctionnement, notamment Vercel pour l'hébergement et Resend pour l'acheminement des emails. Elles ne sont jamais vendues. Les messages sont conservés le temps nécessaire au suivi de la demande, puis supprimés au plus tard douze mois après le dernier échange, sauf obligation légale contraire.",
     "cookiesSection": "Cookies",
-    "cookiesText": "La langue et le thème sont des préférences nécessaires au fonctionnement demandé. Google Tag Manager et Google Analytics ne sont chargés qu'après un consentement explicite, révocable en supprimant les préférences du site dans le navigateur. reCAPTCHA peut être chargé sur la page de contact afin de sécuriser l'envoi lorsque ce service est configuré.",
+    "cookiesText": "La langue et le thème sont des préférences nécessaires au fonctionnement demandé. Google Tag Manager et Google Analytics ne sont chargés qu'après un consentement explicite, révocable à tout moment via le lien « Gérer les cookies » du pied de page. reCAPTCHA ne peut être chargé qu'après une interaction avec le formulaire de contact lorsque ce service est configuré.",
     "rights": "Vos droits",
     "rightsText": "Conformément au RGPD, vous disposez de droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, lorsque applicable, de portabilité. Vous pouvez retirer votre consentement à tout moment. Pour exercer ces droits, utilisez l'adresse indiquée dans les mentions légales. Vous pouvez également introduire une réclamation auprès de la CNIL.",
     "updates": "Modifications",

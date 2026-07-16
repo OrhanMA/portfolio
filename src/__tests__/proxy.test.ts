@@ -31,19 +31,28 @@ function getRedirectPathname(response: ReturnType<typeof proxy>): string {
 }
 
 describe("proxy", () => {
-  it("returns undefined when pathname starts with /fr/", () => {
+  it("continues localized routes with a nonce-based CSP", () => {
     const result = proxy(createRequest("/fr/contact"));
-    expect(result).toBeUndefined();
+    expect(result?.status).toBe(200);
+    expect(result?.headers.get("content-security-policy")).toContain(
+      "'strict-dynamic'",
+    );
+    expect(result?.headers.get("content-security-policy")).not.toContain(
+      "script-src 'self' 'unsafe-inline'",
+    );
+    expect(result?.headers.get("x-middleware-request-x-pathname")).toBe(
+      "/fr/contact",
+    );
   });
 
-  it("returns undefined when pathname is exactly /fr", () => {
+  it("continues when pathname is exactly /fr", () => {
     const result = proxy(createRequest("/fr"));
-    expect(result).toBeUndefined();
+    expect(result?.status).toBe(200);
   });
 
-  it("returns undefined when pathname starts with /en/", () => {
+  it("continues when pathname starts with /en/", () => {
     const result = proxy(createRequest("/en/articles"));
-    expect(result).toBeUndefined();
+    expect(result?.status).toBe(200);
   });
 
   it("redirects to /fr by default (no cookie, no Accept-Language)", () => {

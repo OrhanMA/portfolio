@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -8,7 +9,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../dictionaries";
 import { realisations } from "@/lib/realisations";
@@ -23,9 +24,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: "/realisations",
     title: dict.realisationsPage.pageTitle,
     description: dict.realisationsPage.pageDescription,
@@ -38,7 +41,9 @@ export default async function RealisationsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
 
   return (
     <div>
@@ -64,13 +69,13 @@ export default async function RealisationsPage({
                         variant="outline"
                         className="mb-3 font-sans text-[11px] tracking-wide"
                       >
-                        {realisation.context[locale as Locale]}
+                        {realisation.context[loc]}
                       </Badge>
                       <CardTitle className="text-xl font-black tracking-[-0.025em] sm:text-2xl">
-                        <h2>{realisation.title[locale as Locale]}</h2>
+                        <h2>{realisation.title[loc]}</h2>
                       </CardTitle>
                       <CardDescription className="mt-2">
-                        {realisation.shortDescription[locale as Locale]}
+                        {realisation.shortDescription[loc]}
                       </CardDescription>
                     </div>
                   </div>

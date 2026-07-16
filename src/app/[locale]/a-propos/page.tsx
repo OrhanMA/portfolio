@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getDictionary } from "../dictionaries";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 
@@ -10,9 +11,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: "/a-propos",
     title: dict.aboutPage.pageTitle,
     description: dict.aboutPage.pageDescription,
@@ -25,7 +28,9 @@ export default async function AboutPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
 
   const isFr = locale === "fr";
 

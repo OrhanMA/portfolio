@@ -5,7 +5,6 @@ import {
   EditorialWave,
   UkiyoeCrest,
 } from "@/components/landing/editorial-wave";
-import { AnimatedMascot } from "@/components/landing/animated-mascot";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
@@ -74,10 +73,10 @@ export function ExperienceSection({
   locale = "fr",
   dict,
 }: {
-  locale?: string;
+  locale?: Locale;
   dict: Dictionary["experience"];
 }) {
-  const loc = locale as Locale;
+  const loc = locale;
 
   return (
     <section
@@ -141,7 +140,7 @@ export function ExperienceSection({
                             </span>
                           )}
                           {organization.name}
-                          <ArrowUpRight className="h-3.5 w-3.5" />
+                          <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
                         </a>
                       ))}
                     </div>
@@ -166,7 +165,7 @@ export function ExperienceSection({
                         className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary/10"
                       >
                         {experience.certificateLabel}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
+                        <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
                       </Link>
                     )}
                     {(experience.responsibilities?.length ||
@@ -236,25 +235,23 @@ export function ExperienceSection({
         </div>
       </div>
 
-      <AnimatedMascot
+      <Image
         src="/images/decorative/pixel-samurai.png"
-        variantSrc="/images/decorative/pixel-samurai-wink.png"
+        alt=""
+        aria-hidden="true"
         width={1254}
         height={1254}
-        intervalMs={6800}
-        initialDelayMs={3400}
         className="journey-samurai invisible pointer-events-none absolute -bottom-2 -left-20 z-20 hidden h-72 w-72 lg:block xl:-left-28 xl:h-80 xl:w-80"
-        imageClassName="object-contain object-left-bottom"
+        sizes="(min-width: 1280px) 320px, 288px"
       />
-      <AnimatedMascot
+      <Image
         src="/images/decorative/pixel-ninja-hanging.png"
-        variantSrc="/images/decorative/pixel-ninja-hanging-blink.png"
+        alt=""
+        aria-hidden="true"
         width={1024}
         height={1536}
-        intervalMs={7600}
-        initialDelayMs={4300}
-        className="journey-hanging-ninja invisible pointer-events-none absolute -right-16 top-6 z-20 hidden h-48 w-36 xl:block"
-        imageClassName="object-contain object-right-top"
+        className="journey-hanging-ninja invisible pointer-events-none absolute -right-16 top-6 z-20 hidden h-48 w-32 xl:block"
+        sizes="128px"
       />
       <div className="absolute inset-x-0 bottom-[-1px] z-0 opacity-95">
         <EditorialWave className="h-28 sm:h-32 lg:h-36" />

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 import { EditorialWave } from "@/components/landing/editorial-wave";
-import { AnimatedMascot } from "@/components/landing/animated-mascot";
 import { LandingButtonLink } from "@/components/landing/landing-button-link";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
@@ -12,13 +11,21 @@ export function CtaSection({
   locale: string;
   dict: Dictionary["cta"];
 }) {
-
   return (
     <section
       id="contact"
       className="landing-deferred landing-deferred-contact relative min-h-[430px] overflow-hidden border-t border-foreground/15 px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
     >
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[52%] bg-[url('/images/decorative/fuji-detail.webp')] bg-cover bg-left opacity-15 mix-blend-multiply dark:opacity-10 dark:mix-blend-screen md:block" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[52%] opacity-15 mix-blend-multiply dark:opacity-10 dark:mix-blend-screen md:block">
+        <Image
+          src="/images/decorative/fuji-detail.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="52vw"
+          className="object-cover object-left"
+        />
+      </div>
       <div className="relative z-20 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-20">
         <div className="contact-copy invisible max-w-2xl lg:pl-20">
           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
@@ -33,13 +40,13 @@ export function CtaSection({
             </p>
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 font-sans text-[9px] font-medium text-foreground/72 sm:text-[10px]">
               <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-3.5 w-3.5" /> Chambéry, France
+                <MapPin aria-hidden="true" className="h-3.5 w-3.5" /> Chambéry, France
               </span>
               <a
                 href="mailto:orhan.madi.assani@gmail.com"
                 className="inline-flex items-center gap-1.5 transition-colors hover:text-primary"
               >
-                <Mail className="h-3.5 w-3.5" /> orhan.madi.assani@gmail.com
+                <Mail aria-hidden="true" className="h-3.5 w-3.5" /> orhan.madi.assani@gmail.com
               </a>
               <span>Odoo · Symfony · Next.js</span>
             </div>
@@ -53,7 +60,7 @@ export function CtaSection({
             className="contact-circle invisible h-full w-full rounded-full bg-vermillion text-lg font-black text-white shadow-[0_22px_60px_oklch(0.61_0.235_29/0.24)] transition-transform duration-500 hover:scale-105 hover:bg-vermillion/95 sm:text-xl"
           >
             {dict.ctaContact}
-            <ArrowRight className="ml-3 h-7 w-7" />
+            <ArrowRight aria-hidden="true" className="ml-3 h-7 w-7" />
           </LandingButtonLink>
           <Image
             src="/images/decorative/pixel-sakura-petals-trio.svg"
@@ -66,15 +73,14 @@ export function CtaSection({
         </div>
       </div>
 
-      <AnimatedMascot
+      <Image
         src="/images/decorative/pixel-samurai-calm.png"
-        variantSrc="/images/decorative/pixel-samurai-calm-blink.png"
+        alt=""
+        aria-hidden="true"
         width={1254}
         height={1254}
-        intervalMs={6200}
-        initialDelayMs={3800}
-        className="contact-samurai invisible pointer-events-none absolute -bottom-14 -left-20 z-10 hidden h-72 w-72 lg:block"
-        imageClassName="object-contain object-left-bottom"
+        sizes="288px"
+        className="contact-samurai invisible pointer-events-none absolute -bottom-14 -left-20 z-10 hidden h-72 w-72 object-contain object-left-bottom lg:block"
       />
       <Image
         src="/images/decorative/pixel-sakura-branch.svg"

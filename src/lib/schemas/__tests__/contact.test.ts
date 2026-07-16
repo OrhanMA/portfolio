@@ -102,10 +102,27 @@ describe("contactSchema", () => {
       expect(result.success).toBe(false);
     });
 
-    it("rejects filled honeypot (bot detection)", () => {
+    it("accepts a bounded honeypot value so the action can respond silently", () => {
       const result = contactSchema.safeParse({
         ...validData,
         honeypot: "bot-filled-this",
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it("rejects unknown contact reasons", () => {
+      const result = contactSchema.safeParse({
+        ...validData,
+        reason: "arbitrary-value",
+      });
+      expect(result.success).toBe(false);
+    });
+
+    it("rejects an oversized custom subject", () => {
+      const result = contactSchema.safeParse({
+        ...validData,
+        reason: "other",
+        customSubject: "A".repeat(121),
       });
       expect(result.success).toBe(false);
     });

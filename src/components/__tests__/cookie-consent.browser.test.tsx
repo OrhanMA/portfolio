@@ -2,6 +2,7 @@ import { describe, test, expect, beforeEach } from "vitest";
 import { page } from "vitest/browser";
 import { renderWithProviders } from "@/test/browser-utils";
 import { CookieConsent } from "@/components/cookie-consent";
+import { setStoredConsent } from "@/lib/cookie-consent";
 
 describe("CookieConsent (browser)", () => {
   beforeEach(() => {
@@ -26,10 +27,7 @@ describe("CookieConsent (browser)", () => {
   });
 
   test("does not render when consent already given", async () => {
-    localStorage.setItem(
-      "cookie-consent",
-      JSON.stringify({ necessary: true, analytics: false })
-    );
+    setStoredConsent({ necessary: true, analytics: false });
 
     await renderWithProviders(<CookieConsent />);
 
@@ -62,7 +60,10 @@ describe("CookieConsent (browser)", () => {
   test("Reject button stores consent and hides banner", async () => {
     await renderWithProviders(<CookieConsent />);
 
-    const rejectBtn = page.getByRole("button", { name: "Refuser" });
+    const rejectBtn = page.getByRole("button", {
+      name: "Refuser",
+      exact: true,
+    });
     await expect.element(rejectBtn, { timeout: 3000 }).toBeVisible();
 
     await rejectBtn.click();

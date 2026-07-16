@@ -5,7 +5,7 @@ import type { Dictionary } from "@/app/[locale]/dictionaries";
 
 export type ClientDictionary = Pick<
   Dictionary,
-  "cookies" | "errorPage" | "notFound"
+  "cookies" | "errorPage" | "notFound" | "nav"
 >;
 
 const DictionaryContext = createContext<ClientDictionary | null>(null);

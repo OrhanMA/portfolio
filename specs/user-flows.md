@@ -52,6 +52,18 @@ Default locale: French (`/fr`)
 **Expected Results:**
 - Footer links navigate to correct pages (`/fr/mentions-legales`, `/fr/politique-confidentialite`)
 
+#### 1.4 Sitemap and document structure remain healthy
+**Seed:** `e2e/sitemap.spec.ts`
+
+**Steps:**
+1. Fetch every URL emitted by `/sitemap.xml`
+2. Verify semantic landmarks, one H1, heading order, canonical URL and image alternatives
+3. Validate JSON-LD, internal links and the nonce-based CSP on each route
+
+**Expected Results:**
+- Every sitemap URL and internal link returns HTTP 200
+- No duplicate IDs, heading-level skips or CSP nonce mismatch is present
+
 ---
 
 ### 2. Internationalization (i18n)

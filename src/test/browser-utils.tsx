@@ -1,4 +1,5 @@
 import { render, type RenderOptions } from "vitest-browser-react";
+import "@/app/globals.css";
 import { DictionaryProvider } from "@/components/dictionary-provider";
 import frDict from "@/app/[locale]/dictionaries/fr.json";
 import enDict from "@/app/[locale]/dictionaries/en.json";

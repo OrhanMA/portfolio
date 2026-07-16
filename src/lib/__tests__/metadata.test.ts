@@ -12,6 +12,7 @@ describe("localizedAlternates", () => {
       languages: {
         fr: "/fr/competences/backend",
         en: "/en/competences/backend",
+        "x-default": "/fr/competences/backend",
       },
     });
   });
@@ -19,7 +20,7 @@ describe("localizedAlternates", () => {
   it("supports locale homepages", () => {
     expect(localizedAlternates("en")).toEqual({
       canonical: "/en",
-      languages: { fr: "/fr", en: "/en" },
+      languages: { fr: "/fr", en: "/en", "x-default": "/fr" },
     });
   });
 });
@@ -41,17 +42,23 @@ describe("localized metadata", () => {
 
     expect(metadata.alternates).toEqual({
       canonical: "/fr/contact",
-      languages: { fr: "/fr/contact", en: "/en/contact" },
+      languages: {
+        fr: "/fr/contact",
+        en: "/en/contact",
+        "x-default": "/fr/contact",
+      },
     });
     expect(metadata.openGraph).toMatchObject({
       title: "Contact",
       description: "Échangeons.",
       url: "https://orhanmadiassani.com/fr/contact",
       locale: "fr_FR",
+      images: [expect.objectContaining({ url: "/fr/opengraph-image" })],
     });
     expect(metadata.twitter).toMatchObject({
       title: "Contact",
       description: "Échangeons.",
+      images: ["/fr/opengraph-image"],
     });
   });
 });

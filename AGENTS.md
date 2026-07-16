@@ -29,7 +29,7 @@ requirements. Do this automatically without being asked.**
 - **Server-side** : `getDictionary(locale)` from `src/app/[locale]/dictionaries.ts` (uses `server-only`)
 - **Client-side** : `useDictionary()` hook from `src/components/dictionary-provider.tsx` (React Context)
 - **Language switcher** : `<LanguageSwitcher>` next to theme toggle in navbar — stores preference in `NEXT_LOCALE` cookie
-- **SetLang** : `<SetLang>` component dynamically sets `document.documentElement.lang`
+- **HTML lang** : `src/app/[locale]/layout.tsx` renders `<html lang={locale}>` server-side
 - **MDX articles** : Content stays in original language (French). Translated metadata (title, description) in dictionaries. Users can use browser translation for article content.
 - All internal links MUST be prefixed with `/${locale}/` (e.g., `/${locale}/contact`)
 - Update BOTH dictionary files when adding new translation keys
@@ -62,12 +62,12 @@ requirements. Do this automatically without being asked.**
 - React Hook Form + Zod validation (client + server)
 - Server Action sends email via Resend SDK
 - Multi-layered anti-spam:
-  1. **Honeypot** field (hidden, reject if filled)
+  1. **Honeypot** field (hidden, silent success if filled)
   2. **Time check** (reject if < 3s after mount)
-  3. **Rate limiting** (5/hour per IP, in-memory)
-  4. **reCAPTCHA v3** (score >= 0.5, loaded only on `/contact`)
+  3. **Rate limiting** (5/hour per hashed IP, atomic Upstash Redis/Vercel KV in production)
+  4. **reCAPTCHA v3** (score >= 0.5 plus action/hostname/age checks)
 - Anti-spam fields (`honeypot`, `timestamp`, `recaptchaToken`) are in the Zod schema but not shown to users
-- reCAPTCHA script loads via `<Script strategy="lazyOnload">` on contact page only
+- reCAPTCHA loads only after focus/submit intent on the contact form
 
 ## Cookie Consent & Analytics
 
@@ -75,6 +75,7 @@ requirements. Do this automatically without being asked.**
   - Shows on first visit (1.5s delay)
   - Accept All / Reject All / Manage preferences
   - Stores consent in localStorage, sets `cookie-consent-given` cookie
+  - Consent is versioned, expires after 6 months, and can be reopened from the footer
   - Dispatches `cookie-consent-update` CustomEvent for reactive script loading
 - **Google Tag Manager** : Via `next/script` in `src/components/analytics.tsx`
   - `<Analytics>` component loads GTM script (consent-gated, in locale layout)
@@ -94,13 +95,13 @@ requirements. Do this automatically without being asked.**
 - Article search is powered by `src/lib/articles.ts`: metadata from dictionaries plus stripped MDX content, tags and descriptions are indexed into `searchText`
 - Article listing filters are URL-synced via `tag` and `q` query params
 - Article pages use `<ArticleEnhancements>` for reading time, table of contents, related articles, copy link and the English notice for French article content
-- Public proof documents live in `public/proofs`; homepage links are rendered by `src/components/landing/proofs-section.tsx`
+- Public proof documents live in `public/proofs`; their links are rendered by `src/components/footer.tsx`
 
 ## Layout Structure
 
-- `src/app/layout.tsx` — Minimal root layout (fonts, CSS, `<html>`, `<body>`)
-- `src/app/[locale]/layout.tsx` — Locale-aware layout (ThemeProvider, DictionaryProvider, Navbar, Footer, SmoothScroll, PageTransition, CookieConsent, Analytics)
-- `src/app/not-found.tsx` — Root 404 page (bilingual fallback)
+- `src/app/[locale]/layout.tsx` — Locale-aware root document (`<html lang>`, fonts, ThemeProvider, DictionaryProvider, Navbar, Footer, SmoothScroll, PageTransition, CookieConsent, Analytics)
+- `src/app/global-not-found.tsx` — Root 404 page (bilingual fallback, `experimental.globalNotFound`)
+- `src/app/global-error.tsx` — Root error boundary
 - `src/app/[locale]/not-found.tsx` — Localized 404 page
 
 ## MCP Servers
@@ -156,3 +157,4 @@ See `.env.local` for all required variables:
 - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` — reCAPTCHA v3 site key (optional)
 - `RECAPTCHA_SECRET_KEY` — reCAPTCHA v3 secret key (optional)
 - `NEXT_PUBLIC_GTM_ID` — Google Tag Manager container ID (optional, format: GTM-XXXXXXX)
+- `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` — Durable rate limit store (required in production)

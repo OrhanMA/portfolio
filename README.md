@@ -1,172 +1,84 @@
-# Portfolio — Fullstack Developer
+# Portfolio — Orhan Madi Assani
 
-Bilingual personal portfolio built with Next.js 16, GSAP animations, shadcn/ui components, Lenis smooth scroll, and a comprehensive testing stack.
+Portfolio bilingue FR/EN construit avec Next.js 16.2, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui (Base UI), GSAP, Lenis et MDX.
 
-## Tech Stack
-
-- **Framework** : Next.js 16.1.6 (App Router, Turbopack)
-- **UI** : React 19, shadcn/ui (Base UI), Tailwind CSS v4
-- **Animations** : GSAP 3 + @gsap/react (useGSAP, ScrollTrigger, Lenis)
-- **Content** : MDX articles
-- **i18n** : French (default) + English — `[locale]` dynamic segment, JSON dictionaries
-- **Theme** : next-themes (dark/light mode)
-- **Forms** : React Hook Form + Zod validation
-- **Email** : Resend SDK (Server Action)
-- **Anti-spam** : Honeypot + time check + rate limiting + reCAPTCHA v3
-- **Cookie consent** : Custom GDPR-compliant banner with analytics opt-in
-- **Analytics** : Google Tag Manager (consent-gated)
-- **Language** : TypeScript (strict mode)
-- **Fonts** : Roboto Flex (sans) + Geist Mono (mono) via `next/font/google`
-- **Package manager** : pnpm
-
-## Getting Started
+## Démarrage
 
 ```bash
-pnpm install
-pnpm dev
+corepack pnpm install
+corepack pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Le site est ensuite disponible sur [http://localhost:3000](http://localhost:3000), qui redirige vers `/fr` ou `/en` selon la préférence enregistrée et `Accept-Language`.
 
-> See [MANUAL_CONFIGURATION.md](./MANUAL_CONFIGURATION.md) for Resend, reCAPTCHA, Google Analytics, and environment variable setup.
+La configuration de Resend, reCAPTCHA, Redis et Analytics est détaillée dans [MANUAL_CONFIGURATION.md](./MANUAL_CONFIGURATION.md). Copier [.env.example](./.env.example) vers `.env.local` pour démarrer.
 
-## Project Structure
+## Architecture
 
-```
+```text
 src/
   app/
-    layout.tsx                        # Root layout (fonts, CSS)
-    not-found.tsx                     # Root 404 (bilingual fallback)
-    globals.css                       # Global styles, shadcn vars, Lenis, gradient
     [locale]/
-      layout.tsx                      # Locale layout (providers, navbar, footer)
-      page.tsx                        # Landing page
-      dictionaries.ts                 # getDictionary() loader
-      dictionaries/
-        fr.json                       # French translations
-        en.json                       # English translations
-      articles/
-        page.tsx                      # Filterable article listing
-        [slug]/page.mdx               # MDX articles
-      contact/
-        page.tsx                      # Contact page (form + reCAPTCHA)
-      actions/
-        contact.ts                    # Server Action (Resend + anti-spam)
-      mentions-legales/page.tsx       # Legal notice
-      politique-confidentialite/      # Privacy policy
-      not-found.tsx                   # Localized 404
-  components/
-    navbar.tsx                        # Fixed nav with theme toggle + language switcher
-    footer.tsx                        # Footer (server component)
-    contact-form.tsx                  # Contact form (RHF + Zod + honeypot)
-    articles-filterable-list.tsx      # Tag + text search with URL-synced filters
-    article-enhancements.tsx          # Reading time, TOC, related articles, copy link
-    cookie-consent.tsx                # GDPR cookie consent banner
-    analytics.tsx                     # Consent-gated Google Analytics
-    language-switcher.tsx             # FR/EN language switcher
-    dictionary-provider.tsx           # i18n React Context
-    theme-provider.tsx                # next-themes provider
-    theme-toggle.tsx                  # Dark/light mode toggle
-    smooth-scroll.tsx                 # Lenis provider (GSAP ticker sync)
-    page-transition.tsx               # GSAP page transitions
-    set-lang.tsx                      # Dynamic <html lang> setter
-    landing/                          # Landing page sections (hero, about, skills, proofs, etc.)
-    ui/                               # shadcn/ui components
-  lib/
-    gsap.ts                           # Centralized GSAP plugin registration
-    utils.ts                          # cn() utility + escapeHtml()
-    i18n.ts                           # Locale constants
-    recaptcha.ts                      # reCAPTCHA v3 helpers
-    rate-limit.ts                     # In-memory IP rate limiter
-    cookie-consent.ts                 # Cookie consent utilities
-    articles.ts                       # MDX indexing helpers for reading time + search
-    schemas/
-      contact.ts                      # Zod schema for contact form
-  proxy.ts                            # Locale detection proxy (Next.js 16)
-  test/                               # Test utilities and mocks
+      layout.tsx                    # Document HTML localisé + providers
+      page.tsx                      # Accueil App Router
+      dictionaries/{fr,en}.json    # Contenu bilingue
+      articles/                    # Listing + articles MDX
+      competences/                 # Synthèse + 10 fiches
+      realisations/                # Synthèse + 5 études de cas
+      projects/                    # Modules Odoo open source
+      contact/                     # Formulaire
+      actions/contact.ts           # Server Action sécurisée
+    global-error.tsx
+    global-not-found.tsx
+    sitemap.ts
+    robots.ts
+  components/                      # UI, sections et composants interactifs
+  lib/                             # Contenu, schémas et services
+  proxy.ts                         # Locale + CSP à nonce
+scripts/check-bundle-budget.mjs    # Budgets JS/CSS
 ```
 
-## Testing
+Les routes applicatives utilisent exclusivement l’App Router. Le layout `[locale]` rend directement `<html lang="fr|en">`; `global-not-found.tsx` couvre les URL hors arbre localisé. Le proxy applique un CSP à nonce sans `unsafe-inline` pour les scripts.
 
-### Unit Tests (Vitest + jsdom)
+## Fonctionnalités clés
+
+- Métadonnées localisées, canonical/hreflang `x-default`, OpenGraph, Twitter, sitemap et données structurées `Person`, `WebSite`, `WebPage`, `ProfilePage`, `TechArticle` et `BreadcrumbList`.
+- Contenu de portfolio conforme à la grille ISCOD : présentation, parcours, 10 compétences, 5 réalisations, preuves et navigation réciproque.
+- Formulaire bilingue validé côté client et serveur, honeypot silencieux, contrôle temporel, reCAPTCHA v3 chargé à l’intention et rate limit Redis atomique.
+- Consentement Analytics versionné, valable six mois, réouvrable et révocable ; GTM/GA et Speed Insights restent désactivés avant accord.
+- Images optimisées par `next/image`, fontes via `next/font`, GSAP centralisé et Lenis chargé à la première interaction.
+- Dark mode, navigation clavier, focus visibles, lien d’évitement et gestion de `prefers-reduced-motion`.
+
+## Commandes qualité
 
 ```bash
-pnpm test:unit       # Watch mode
-pnpm test:unit run   # Single run
+pnpm lint              # ESLint
+pnpm typecheck         # TypeScript strict
+pnpm audit:security    # Échec dès une vulnérabilité modérée
+pnpm test:unit         # Vitest jsdom
+pnpm test:coverage     # Couverture + seuils bloquants
+pnpm test:browser      # Composants et snapshots Chromium
+pnpm build             # Build de production Next.js
+pnpm check:bundle      # Budgets des assets produits
+pnpm test:e2e          # Parcours Playwright
+pnpm test              # Projets Vitest unitaires + navigateur
 ```
 
-Current unit coverage includes article filtering/search, MDX content indexing, article enhancement controls, proof document links, dictionaries, i18n proxy behavior, contact validation, anti-spam helpers, and cookie consent helpers.
+La CI exécute lint, typecheck, audit, couverture, tests navigateur, build, budgets puis E2E. Le build `.next` est partagé entre les jobs Build et E2E pour éviter une compilation redondante.
 
-### Browser Component Tests (Vitest + Playwright)
+## Variables CI/Vercel
 
-```bash
-pnpm test:browser    # Runs in headless Chromium
-```
+| Variable | Usage |
+|---|---|
+| `RESEND_API_KEY` | Envoi d’email |
+| `CONTACT_EMAIL` | Destinataire du formulaire |
+| `FROM_EMAIL` | Expéditeur Resend vérifié |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Clé publique reCAPTCHA v3 |
+| `RECAPTCHA_SECRET_KEY` | Vérification serveur reCAPTCHA |
+| `RECAPTCHA_ALLOWED_HOSTNAMES` | Domaines autorisés, séparés par des virgules |
+| `UPSTASH_REDIS_REST_URL` | Stockage distribué du rate limit |
+| `UPSTASH_REDIS_REST_TOKEN` | Jeton secret Redis |
+| `NEXT_PUBLIC_GTM_ID` | Conteneur GTM optionnel |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 direct, utilisé seulement sans GTM |
 
-### Visual Regression Tests
-
-Screenshot baselines in `__screenshots__/` — uses `toMatchScreenshot()` in browser tests.
-
-### E2E Tests (Playwright)
-
-```bash
-pnpm test:e2e        # Builds app then runs E2E suite
-```
-
-### All Tests
-
-```bash
-pnpm test            # Runs unit + browser tests via Vitest workspace
-```
-
-### Playwright Agents
-
-Three AI-powered agents for test automation:
-
-- **Planner** — explores the app, generates test plans in `specs/`
-- **Generator** — converts plans into Playwright tests
-- **Healer** — debugs and fixes failing tests
-
-## CI/CD
-
-GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to `main`:
-
-1. **Lint** — ESLint
-2. **Unit Tests** — Vitest (jsdom)
-3. **Browser Tests** — Vitest Browser Mode (Chromium)
-4. **Build** — Next.js production build
-5. **E2E Tests** — Playwright (post-build)
-
-### Required GitHub Secrets
-
-| Secret | Description |
-|--------|-------------|
-| `RESEND_API_KEY` | Resend API key |
-| `CONTACT_EMAIL` | Contact form recipient email |
-| `FROM_EMAIL` | Sender address (verified domain) |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA v3 site key (optional) |
-| `RECAPTCHA_SECRET_KEY` | reCAPTCHA v3 secret key (optional) |
-| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container ID (optional) |
-
-## Architecture Highlights
-
-- **GSAP** — All imports from `@/lib/gsap`; `autoAlpha` for FOUC prevention; `useGSAP({ scope })` pattern
-- **Lenis** — Driven by `gsap.ticker` for frame-perfect ScrollTrigger sync
-- **i18n** — Cookie → Accept-Language → default locale; `src/proxy.ts` handles redirects
-- **Articles** — MDX content is indexed server-side for search; filters are synced in the URL
-- **Proof documents** — CV and certifications are exposed from `public/proofs` via the homepage documents section
-- **Anti-spam** — 4-layer defense: honeypot, time check, IP rate limiting, reCAPTCHA v3
-- **Server Components** — Used where no interactivity/animation is needed
-- **Cookie Consent** — Custom GDPR banner; analytics scripts load only after consent
-
-## Deployment
-
-The project is deployed on **Vercel** with automatic deployments:
-
-- **Production** — push to `main` triggers a production deployment
-- **Preview** — pull requests get preview deployments with unique URLs
-- **Environment variables** — configured in the Vercel dashboard (Settings → Environment Variables)
-
-GitHub Actions CI runs quality gates (lint, tests, build) in parallel with Vercel's deployment pipeline.
-
-> See [MANUAL_CONFIGURATION.md](./MANUAL_CONFIGURATION.md) for the full environment variable list.
+En production, Redis est obligatoire : le formulaire échoue volontairement de façon fermée si aucun stockage durable n’est configuré.

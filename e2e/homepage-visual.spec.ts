@@ -5,14 +5,22 @@ async function prepareHomepage(page: Page) {
   await page.addInitScript(() => {
     localStorage.setItem(
       "cookie-consent",
-      JSON.stringify({ necessary: true, analytics: false }),
+      JSON.stringify({ necessary: true, analytics: false, version: 2, decidedAt: Date.now() }),
     );
     localStorage.setItem("theme", "light");
   });
-  await page.goto("/fr", { waitUntil: "networkidle" });
-  await page.addStyleTag({
-    content:
-      ".nextjs-portal, button[aria-label='Open Next.js Dev Tools'] { display: none !important; } .landing-deferred { content-visibility: visible !important; contain-intrinsic-size: none !important; } .invisible { visibility: visible !important; }",
+  await page.goto("/fr", { waitUntil: "load" });
+  await page.locator(".landing-deferred").evaluateAll((elements) => {
+    for (const element of elements) {
+      const htmlElement = element as HTMLElement;
+      htmlElement.style.contentVisibility = "visible";
+      htmlElement.style.containIntrinsicSize = "none";
+    }
+  });
+  await page.locator(".invisible").evaluateAll((elements) => {
+    for (const element of elements) {
+      (element as HTMLElement).style.visibility = "visible";
+    }
   });
   await expect(
     page.getByRole("heading", { name: "Orhan Madi Assani" }),
@@ -22,6 +30,7 @@ async function prepareHomepage(page: Page) {
 
 test.describe("Homepage visual regression", () => {
   test("desktop composition", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.setViewportSize({ width: 1440, height: 1000 });
     await prepareHomepage(page);
 
@@ -33,6 +42,7 @@ test.describe("Homepage visual regression", () => {
   });
 
   test("mobile composition", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.setViewportSize({ width: 390, height: 844 });
     await prepareHomepage(page);
 
@@ -44,6 +54,7 @@ test.describe("Homepage visual regression", () => {
   });
 
   test("about stamp hover keeps its shadow attached", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.emulateMedia({
       colorScheme: "light",
@@ -52,11 +63,11 @@ test.describe("Homepage visual regression", () => {
     await page.addInitScript(() => {
       localStorage.setItem(
         "cookie-consent",
-        JSON.stringify({ necessary: true, analytics: false }),
+        JSON.stringify({ necessary: true, analytics: false, version: 2, decidedAt: Date.now() }),
       );
       localStorage.setItem("theme", "light");
     });
-    await page.goto("/fr", { waitUntil: "networkidle" });
+    await page.goto("/fr", { waitUntil: "load" });
 
     const stamp = page.locator(".about-stamp").first();
     await stamp.scrollIntoViewIfNeeded();

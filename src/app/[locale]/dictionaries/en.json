@@ -14,7 +14,11 @@
     "realisations": "Achievements",
     "allCompetences": "View all 10 skills",
     "allRealisations": "View all 5 achievements",
-    "showSubmenu": "Show submenu"
+    "showSubmenu": "Show submenu",
+    "toggleMenu": "Open or close the menu",
+    "switchToEnglish": "Switch to English",
+    "switchToFrench": "Switch to French",
+    "toggleTheme": "Toggle theme"
   },
   "hero": {
     "eyebrow": "Creative portfolio · Software engineering",
@@ -268,6 +272,16 @@
     "successHeading": "Message sent!",
     "sendAnother": "Send another message"
   },
+  "contactValidation": {
+    "nameMin": "Your name must contain at least 2 characters.",
+    "nameMax": "Your name must not exceed 100 characters.",
+    "emailInvalid": "Enter a valid email address.",
+    "reasonRequired": "Select a contact reason.",
+    "subjectRequired": "Specify the subject of your message.",
+    "subjectMax": "The subject must not exceed 120 characters.",
+    "messageMin": "Your message must contain at least 10 characters.",
+    "messageMax": "Your message must not exceed 5000 characters."
+  },
   "contactReasons": [
     { "value": "offer", "label": "Job offer" },
     { "value": "freelance", "label": "Freelance mission" },
@@ -281,6 +295,7 @@
     "tooFast": "Please wait a few seconds before submitting.",
     "rateLimit": "Too many messages sent. Please try again in an hour.",
     "recaptchaFailed": "Security verification failed. Please try again.",
+    "securityUnavailable": "The security service is temporarily unavailable. Please try again later or use the email address provided.",
     "sendError": "An error occurred while sending. Please try again later.",
     "unexpectedError": "An unexpected error occurred. Please try again later.",
     "success": "Message sent successfully! I'll get back to you shortly."
@@ -459,8 +474,10 @@
     "necessaryDesc": "Essential cookies for the site to function (language, theme). Always active.",
     "analytics": "Analytics",
     "analyticsDesc": "Google Analytics cookies to understand how the site is used.",
+    "toggleAnalytics": "Allow analytics cookies",
     "save": "Save",
-    "close": "Close"
+    "close": "Close and reject",
+    "collapse": "Collapse preferences"
   },
   "legal": {
     "pageTitle": "Legal Notice | Orhan Madi Assani",
@@ -493,7 +510,7 @@
     "purpose": "Use of Data",
     "purposeText": "Contact-form processing relies on the legitimate interest of answering received requests and protecting the website against spam. Data is available to the site publisher and to providers strictly required for operation, including Vercel for hosting and Resend for email delivery. It is never sold. Messages are kept for the time required to follow up on a request and deleted no later than twelve months after the last exchange, unless a legal obligation requires otherwise.",
     "cookiesSection": "Cookies",
-    "cookiesText": "Language and theme are preferences required to provide the requested experience. Google Tag Manager and Google Analytics load only after explicit consent, which can be withdrawn by clearing this site's preferences in the browser. reCAPTCHA may load on the contact page to secure submissions when that service is configured.",
+    "cookiesText": "Language and theme are preferences required to provide the requested experience. Google Tag Manager and Google Analytics load only after explicit consent, which can be withdrawn at any time through the “Manage cookies” link in the footer. reCAPTCHA can load only after an interaction with the contact form when that service is configured.",
     "rights": "Your Rights",
     "rightsText": "Under the GDPR, you have rights of access, rectification, erasure, restriction, objection, and, where applicable, portability. You may withdraw consent at any time. To exercise these rights, use the address listed in the legal notice. You may also lodge a complaint with the French data protection authority, the CNIL.",
     "updates": "Changes",

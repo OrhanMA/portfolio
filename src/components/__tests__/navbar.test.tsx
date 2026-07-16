@@ -1,122 +1,106 @@
 import { describe, expect, it, vi } from "vitest";
 import { Navbar } from "@/components/navbar";
-import { frDict, renderWithProviders, screen, userEvent, within } from "@/test/utils";
 import { competences } from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
-
-const navbarDict = {
-  nav: frDict.nav,
-  experienceHeading: frDict.experience.heading,
-  skillsHeading: frDict.skills.heading,
-};
-
-const navbarMenus = {
-  competences: competences.map((competence) => ({
-    href: `/fr/competences/${competence.slug}`,
-    label: competence.title.fr,
-  })),
-  realisations: realisations.map((realisation) => ({
-    href: `/fr/realisations/${realisation.slug}`,
-    label: realisation.title.fr,
-  })),
-};
+import {
+  frDict,
+  renderWithProviders,
+  screen,
+  userEvent,
+  within,
+} from "@/test/utils";
 
 vi.mock("next/navigation", () => ({
-  usePathname: vi.fn(() => "/fr"),
-  useRouter: vi.fn(() => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-    prefetch: vi.fn(),
-  })),
+  usePathname: () => "/fr",
+  useRouter: () => ({ push: vi.fn() }),
 }));
 
+const menus = {
+  competences: competences.map((item) => ({
+    href: `/fr/competences/${item.slug}`,
+    label: item.title.fr,
+  })),
+  realisations: realisations.map((item) => ({
+    href: `/fr/realisations/${item.slug}`,
+    label: item.title.fr,
+  })),
+};
+
+function renderNavbar() {
+  return renderWithProviders(
+    <Navbar
+      locale="fr"
+      dict={{
+        nav: frDict.nav,
+        experienceHeading: frDict.experience.heading,
+        skillsHeading: frDict.skills.heading,
+      }}
+      menus={menus}
+    />,
+  );
+}
+
 describe("Navbar", () => {
-  it("links directly to every homepage section", () => {
-    const { container } = renderWithProviders(
-      <Navbar locale="fr" dict={navbarDict} menus={navbarMenus} />,
-    );
+  it("exposes every competence and realisation in keyboard-accessible desktop submenus", () => {
+    const { container } = renderNavbar();
+    const navigation = container.querySelector("[data-desktop-navigation]");
+    expect(navigation).not.toBeNull();
+    const desktop = within(navigation as HTMLElement);
 
     expect(
-      container.querySelector('img[src*="coporate-headshot"]'),
-    ).toBeInTheDocument();
+      desktop.getByRole("link", { name: "Voir les 10 compétences" }),
+    ).toHaveAttribute("href", "/fr/competences");
     expect(
-      container.querySelector('header svg[shape-rendering="crispEdges"]'),
-    ).not.toBeInTheDocument();
+      desktop.getByRole("link", { name: "Voir les 5 réalisations" }),
+    ).toHaveAttribute("href", "/fr/realisations");
 
-    expect(screen.getByRole("link", { name: "À propos" })).toHaveAttribute(
-      "href",
-      "/fr/a-propos",
-    );
-    expect(screen.getByRole("link", { name: "Parcours" })).toHaveAttribute(
-      "href",
-      "/fr#parcours",
-    );
-    expect(screen.getByRole("link", { name: "Compétences" })).toHaveAttribute(
-      "href",
-      "/fr/competences",
-    );
-    expect(screen.getByRole("link", { name: "Réalisations" })).toHaveAttribute(
-      "href",
-      "/fr/realisations",
-    );
-    expect(screen.queryByRole("link", { name: "Documents" })).not.toBeInTheDocument();
-
-    for (const item of [...navbarMenus.competences, ...navbarMenus.realisations]) {
-      expect(screen.getByRole("link", { name: item.label })).toHaveAttribute(
+    for (const item of [...menus.competences, ...menus.realisations]) {
+      expect(desktop.getByRole("link", { name: item.label })).toHaveAttribute(
         "href",
         item.href,
       );
     }
+
+    const panels = navigation?.querySelectorAll(".group > div.invisible");
+    expect(panels).toHaveLength(2);
+    panels?.forEach((panel) => {
+      expect(panel).toHaveClass(
+        "group-hover:visible",
+        "group-focus-within:visible",
+      );
+    });
   });
 
-  it("opens a scrollable mobile menu with section links and contact", async () => {
-    const { container } = renderWithProviders(
-      <Navbar locale="fr" dict={navbarDict} menus={navbarMenus} />,
-    );
+  it("opens the mobile menu and its localized submenus", async () => {
     const user = userEvent.setup();
-
-    await user.click(screen.getByRole("button", { name: "Toggle menu" }));
-
-    const mobilePanel = container.querySelector("header > div.fixed");
-    expect(mobilePanel).not.toBeNull();
-    expect(mobilePanel).toHaveClass("overflow-y-auto");
-    expect(mobilePanel).toHaveClass("overscroll-contain");
-
-    const mobileMenu = within(mobilePanel as HTMLElement);
-    expect(mobileMenu.getByRole("link", { name: "Parcours" })).toHaveAttribute(
-      "href",
-      "/fr#parcours",
-    );
-    expect(mobileMenu.getByRole("link", { name: "Contact" })).toHaveAttribute(
-      "href",
-      "/fr/contact",
-    );
+    const { container } = renderNavbar();
 
     await user.click(
-      mobileMenu.getByRole("button", {
-        name: "Afficher le sous-menu Compétences",
-      }),
+      screen.getByRole("button", { name: "Ouvrir ou fermer le menu" }),
     );
-    for (const item of navbarMenus.competences) {
-      expect(mobileMenu.getByRole("link", { name: item.label })).toHaveAttribute(
-        "href",
-        item.href,
-      );
-    }
+    const mobileNavigation = container.querySelector(
+      "[data-mobile-navigation]",
+    );
+    expect(mobileNavigation).not.toBeNull();
 
     await user.click(
-      mobileMenu.getByRole("button", {
-        name: "Afficher le sous-menu Réalisations",
+      within(mobileNavigation as HTMLElement).getByRole("button", {
+        name: /Afficher le sous-menu Compétences/,
       }),
     );
-    for (const item of navbarMenus.realisations) {
-      expect(mobileMenu.getByRole("link", { name: item.label })).toHaveAttribute(
-        "href",
-        item.href,
-      );
-    }
+
+    expect(
+      within(mobileNavigation as HTMLElement).getByRole("link", {
+        name: competences[0].title.fr,
+      }),
+    ).toHaveAttribute("href", `/fr/competences/${competences[0].slug}`);
+  });
+
+  it("keeps the contact call to action contrast-safe", () => {
+    renderNavbar();
+
+    expect(screen.getByRole("link", { name: /Contact/ })).toHaveClass(
+      "text-vermillion-foreground",
+    );
   });
 });

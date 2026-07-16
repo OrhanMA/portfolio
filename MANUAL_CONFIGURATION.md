@@ -17,6 +17,11 @@ FROM_EMAIL=Contact Portfolio <onboarding@resend.dev>
 # Google reCAPTCHA v3 (optionnel mais recommande en production)
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=votre_cle_site
 RECAPTCHA_SECRET_KEY=votre_cle_secrete
+RECAPTCHA_ALLOWED_HOSTNAMES=orhanmadiassani.com,www.orhanmadiassani.com
+
+# Upstash Redis / Vercel KV (obligatoire en production)
+UPSTASH_REDIS_REST_URL=https://votre-base.upstash.io
+UPSTASH_REDIS_REST_TOKEN=votre_jeton_secret
 
 # Google Analytics (optionnel)
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
@@ -92,6 +97,11 @@ Consulter le tableau de bord reCAPTCHA pour surveiller :
 - Les actions suspectes
 - Le taux de faux positifs
 
+La vérification serveur contrôle également que l'action vaut `contact_form`,
+que le hostname appartient à `RECAPTCHA_ALLOWED_HOSTNAMES` et que le jeton a
+moins de deux minutes. Le script client n'est téléchargé qu'au premier focus
+dans le formulaire ou au moment de l'envoi.
+
 ---
 
 ## 4. Google Analytics
@@ -135,6 +145,9 @@ Sur Vercel, ajouter les variables dans **Settings** > **Environment Variables** 
 | `FROM_EMAIL` | Plain text | Oui |
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Plain text | Recommande |
 | `RECAPTCHA_SECRET_KEY` | Secret | Recommande |
+| `RECAPTCHA_ALLOWED_HOSTNAMES` | Plain text | Recommande |
+| `UPSTASH_REDIS_REST_URL` | Secret | Oui |
+| `UPSTASH_REDIS_REST_TOKEN` | Secret | Oui |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Plain text | Optionnel |
 
 > Les variables `NEXT_PUBLIC_*` sont exposees cote client. Ne jamais mettre de cle secrete dans une variable `NEXT_PUBLIC_`.
@@ -150,9 +163,12 @@ Sur Vercel, ajouter les variables dans **Settings** > **Environment Variables** 
 
 ### Rate limiting en production
 
-Le rate limiter in-memory fonctionne par processus. Sur Vercel (serverless), chaque invocation peut avoir sa propre memoire. Pour un rate limiting plus strict, envisager :
-- [Upstash Redis](https://upstash.com) — rate limiting distribue
-- [Vercel KV](https://vercel.com/storage/kv) — key-value store integre
+Le rate limiter exécute un script Redis atomique pour conserver une fenêtre de
+5 tentatives par heure entre toutes les instances serverless. Créer une base
+[Upstash Redis](https://upstash.com) ou Vercel KV, puis exposer ses identifiants
+REST. Les alias `KV_REST_API_URL` et `KV_REST_API_TOKEN` sont également pris en
+charge. En production, l'envoi échoue volontairement si aucun stockage durable
+n'est configuré ; il n'existe plus de fallback in-memory trompeur.
 
 ---
 
@@ -220,6 +236,7 @@ Les articles MDX restent dans leur langue originale (francais). Les metadonnees 
 - [ ] Configurer `.env.local` avec la cle Resend
 - [ ] (Optionnel) Creer un projet reCAPTCHA v3 et ajouter les cles
 - [ ] (Optionnel) Creer une propriete Google Analytics et ajouter le Measurement ID
+- [ ] Creer une base Upstash Redis/Vercel KV et ajouter les identifiants REST
 - [ ] Tester le formulaire de contact en local (`pnpm dev`)
 - [ ] (Production) Verifier un domaine sur Resend
 - [ ] (Production) Mettre a jour `FROM_EMAIL` avec le domaine verifie

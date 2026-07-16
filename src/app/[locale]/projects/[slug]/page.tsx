@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getDictionary } from "../../dictionaries";
 import { getOdooProjectBySlug, odooProjects } from "@/lib/odoo-projects";
@@ -30,16 +30,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const project = getOdooProjectBySlug(slug);
+  const loc = parseLocale(locale);
 
-  if (!project) {
+  if (!project || !loc) {
     return {};
   }
 
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: `/projects/${slug}`,
     title: `${project.title} | ${locale === "fr" ? "Projets" : "Projects"} | Orhan Madi Assani`,
-    description: project.summary[locale as Locale],
+    description: project.summary[loc],
   });
 }
 
@@ -50,12 +51,13 @@ export default async function ProjectDetailPage({
 }) {
   const { locale, slug } = await params;
   const project = getOdooProjectBySlug(slug);
+  const loc = parseLocale(locale);
 
-  if (!project) {
+  if (!project || !loc) {
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  const dict = await getDictionary(loc);
 
   return (
     <div>
@@ -63,7 +65,7 @@ export default async function ProjectDetailPage({
         compact
         eyebrow={dict.projects.eyebrow}
         title={project.title}
-        description={project.summary[locale as Locale]}
+        description={project.summary[loc]}
         leading={
           <Link
             href={`/${locale}/projects`}
@@ -158,7 +160,7 @@ export default async function ProjectDetailPage({
                           {item.label}
                         </p>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                          {item.value[locale as Locale]}
+                          {item.value[loc]}
                         </p>
                       </div>
                     ))}
@@ -174,10 +176,10 @@ export default async function ProjectDetailPage({
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {project.technicalHighlights.map((highlight) => (
                         <div
-                          key={highlight[locale as Locale]}
+                          key={highlight[loc]}
                           className="rounded-lg border border-border/60 bg-muted/30 p-4 text-sm leading-6 text-muted-foreground"
                         >
-                          {highlight[locale as Locale]}
+                          {highlight[loc]}
                         </div>
                       ))}
                     </div>
@@ -186,14 +188,14 @@ export default async function ProjectDetailPage({
 
               {project.details.map((paragraph, index) => (
                 <div
-                  key={paragraph[locale as Locale]}
+                  key={paragraph[loc]}
                   className="grid gap-4 border-t border-border/70 pt-5 first:border-t-0 first:pt-0 sm:grid-cols-[52px_1fr]"
                 >
                   <span className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                     0{index + 1}
                   </span>
                   <p className="leading-7 text-muted-foreground">
-                    {paragraph[locale as Locale]}
+                    {paragraph[loc]}
                   </p>
                 </div>
               ))}

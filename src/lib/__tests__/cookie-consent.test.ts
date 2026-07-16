@@ -1,77 +1,79 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  CONSENT_MAX_AGE_SECONDS,
   getStoredConsent,
-  setStoredConsent,
   hasConsentBeenGiven,
   isAnalyticsAccepted,
+  setStoredConsent,
 } from "@/lib/cookie-consent";
 
 describe("cookie-consent utilities", () => {
   beforeEach(() => {
     localStorage.clear();
-    // Clear cookies
-    document.cookie = "cookie-consent-given=;max-age=0";
+    document.cookie = "cookie-consent-given=;Max-Age=0;Path=/";
   });
 
-  describe("getStoredConsent()", () => {
-    it("returns null when localStorage is empty", () => {
-      expect(getStoredConsent()).toBeNull();
-    });
+  it("stores a versioned, timestamped consent for six months", () => {
+    const now = 1_700_000_000_000;
+    vi.spyOn(Date, "now").mockReturnValue(now);
 
-    it("returns parsed consent object when stored", () => {
-      localStorage.setItem(
-        "cookie-consent",
-        JSON.stringify({ necessary: true, analytics: true })
-      );
-      expect(getStoredConsent()).toEqual({
+    setStoredConsent({ necessary: true, analytics: true });
+
+    expect(getStoredConsent()).toEqual({
+      necessary: true,
+      analytics: true,
+      version: 2,
+      decidedAt: now,
+    });
+    expect(document.cookie).toContain("cookie-consent-given=true");
+    expect(CONSENT_MAX_AGE_SECONDS).toBe(15_552_000);
+    vi.restoreAllMocks();
+  });
+
+  it("rejects malformed, legacy, future and expired consent", () => {
+    const cases = [
+      "not-json",
+      JSON.stringify({ necessary: true, analytics: true }),
+      JSON.stringify({
         necessary: true,
         analytics: true,
-      });
-    });
+        version: 2,
+        decidedAt: Date.now() + 120_000,
+      }),
+      JSON.stringify({
+        necessary: true,
+        analytics: true,
+        version: 2,
+        decidedAt: Date.now() - (CONSENT_MAX_AGE_SECONDS + 1) * 1_000,
+      }),
+    ];
 
-    it("returns null on corrupted JSON", () => {
-      localStorage.setItem("cookie-consent", "not-valid-json");
+    for (const stored of cases) {
+      localStorage.setItem("cookie-consent", stored);
       expect(getStoredConsent()).toBeNull();
-    });
+      expect(localStorage.getItem("cookie-consent")).toBeNull();
+    }
   });
 
-  describe("setStoredConsent()", () => {
-    it("writes to localStorage", () => {
-      setStoredConsent({ necessary: true, analytics: false });
-      const stored = JSON.parse(localStorage.getItem("cookie-consent")!);
-      expect(stored).toEqual({ necessary: true, analytics: false });
-    });
+  it("reports whether a valid decision and analytics consent exist", () => {
+    expect(hasConsentBeenGiven()).toBe(false);
+    expect(isAnalyticsAccepted()).toBe(false);
 
-    it("sets a cookie", () => {
-      setStoredConsent({ necessary: true, analytics: true });
-      expect(document.cookie).toContain("cookie-consent-given=true");
-    });
+    setStoredConsent({ necessary: true, analytics: false });
+    expect(hasConsentBeenGiven()).toBe(true);
+    expect(isAnalyticsAccepted()).toBe(false);
+
+    setStoredConsent({ necessary: true, analytics: true });
+    expect(isAnalyticsAccepted()).toBe(true);
   });
 
-  describe("hasConsentBeenGiven()", () => {
-    it("returns false when no consent stored", () => {
-      expect(hasConsentBeenGiven()).toBe(false);
-    });
+  it("removes Google Analytics cookies when consent is withdrawn", () => {
+    document.cookie = "_ga=test;Path=/";
+    document.cookie = "portfolio=value;Path=/";
 
-    it("returns true after consent is stored", () => {
-      setStoredConsent({ necessary: true, analytics: false });
-      expect(hasConsentBeenGiven()).toBe(true);
-    });
-  });
+    setStoredConsent({ necessary: true, analytics: false });
 
-  describe("isAnalyticsAccepted()", () => {
-    it("returns false when no consent", () => {
-      expect(isAnalyticsAccepted()).toBe(false);
-    });
-
-    it("returns false when analytics is false", () => {
-      setStoredConsent({ necessary: true, analytics: false });
-      expect(isAnalyticsAccepted()).toBe(false);
-    });
-
-    it("returns true when analytics is true", () => {
-      setStoredConsent({ necessary: true, analytics: true });
-      expect(isAnalyticsAccepted()).toBe(true);
-    });
+    expect(document.cookie).not.toContain("_ga=test");
+    expect(document.cookie).toContain("portfolio=value");
   });
 });

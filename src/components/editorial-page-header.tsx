@@ -37,7 +37,16 @@ export function EditorialPageHeader({
       <div className="absolute inset-0 -z-20 bg-primary/[0.025]" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_72%_32%,color-mix(in_oklch,var(--primary)_13%,transparent)_0_1px,transparent_1.4px)] bg-[size:7px_7px] opacity-35" />
       <div className="absolute -right-28 -top-32 -z-10 aspect-square w-80 rounded-full bg-vermillion/95 sm:w-[26rem]" />
-      <div className="absolute right-[-8%] top-[4%] -z-10 h-[125%] w-[62%] bg-[url('/images/decorative/fuji-detail.webp')] bg-contain bg-right-bottom bg-no-repeat opacity-20 mix-blend-multiply dark:opacity-10 dark:mix-blend-screen" />
+      <div className="absolute right-[-8%] top-[4%] -z-10 h-[125%] w-[62%] opacity-20 mix-blend-multiply dark:opacity-10 dark:mix-blend-screen">
+        <Image
+          src="/images/decorative/fuji-detail.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="62vw"
+          className="object-contain object-right-bottom"
+        />
+      </div>
       <Image
         src="/images/decorative/sakura-petals-trio.svg"
         alt=""

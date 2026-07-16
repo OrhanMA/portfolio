@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getDictionary } from "../dictionaries";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { Suspense } from "react";
 import {
@@ -16,10 +17,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
 
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: "/articles",
     title: `${dict.articles.heading} | Orhan Madi Assani`,
     description: dict.articles.subtext,
@@ -32,7 +35,9 @@ export default async function ArticlesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   const articles: SearchableArticle[] = await buildArticleIndex(
     dict.articles.articlesData,
   );

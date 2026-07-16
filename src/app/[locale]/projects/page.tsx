@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { ArrowUpRight, FolderKanban, Layers3, PackageOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -11,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getDictionary } from "../dictionaries";
-import type { Locale } from "@/lib/i18n";
+import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { odooProjects } from "@/lib/odoo-projects";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
@@ -25,9 +26,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
   return createLocalizedMetadata({
-    locale: locale as Locale,
+    locale: loc,
     pathname: "/projects",
     title: dict.projects.pageTitle,
     description: dict.projects.pageDescription,
@@ -40,7 +43,9 @@ export default async function ProjectsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
+  const dict = await getDictionary(loc);
 
   return (
     <div>
@@ -105,7 +110,7 @@ export default async function ProjectsPage({
                         <h2>{project.title}</h2>
                       </CardTitle>
                       <CardDescription className="mt-2">
-                        {project.summary[locale as Locale]}
+                        {project.summary[loc]}
                       </CardDescription>
                     </div>
 
