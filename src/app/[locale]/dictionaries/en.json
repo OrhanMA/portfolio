@@ -313,6 +313,8 @@
     "relatedArticles": "Related articles",
     "copyLink": "Copy link",
     "copied": "Link copied",
+    "copyCode": "Copy code",
+    "codeCopied": "Code copied",
     "frenchOnlyNotice": "Articles are written in French; browser translation works well.",
     "articlesData": [
       {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ArticleCodeLabelsProvider } from "@/components/article-code-block";
 import { ArticleEnhancements } from "@/components/article-enhancements";
 import { ArticleStructuredData } from "@/components/structured-data";
 import { Badge } from "@/components/ui/badge";
@@ -134,7 +135,14 @@ export async function ArticlePageLayout({
               frenchOnlyNotice: dict.articles.frenchOnlyNotice,
             }}
           />
-          {children}
+          <ArticleCodeLabelsProvider
+            labels={{
+              copyCode: dict.articles.copyCode,
+              codeCopied: dict.articles.codeCopied,
+            }}
+          >
+            {children}
+          </ArticleCodeLabelsProvider>
         </article>
       </section>
     </div>

@@ -313,6 +313,8 @@
     "relatedArticles": "Articles liés",
     "copyLink": "Copier le lien",
     "copied": "Lien copié",
+    "copyCode": "Copier le code",
+    "codeCopied": "Code copié",
     "frenchOnlyNotice": "Article rédigé en français, traduction navigateur recommandée.",
     "articlesData": [
       {

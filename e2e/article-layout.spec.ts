@@ -48,6 +48,12 @@ test("every article keeps its editorial layout in both locales", async ({ page }
           "background-color",
           "rgba(0, 0, 0, 0)",
         );
+        await expect(
+          page.getByRole("button", {
+            name: locale === "fr" ? "Copier le code" : "Copy code",
+          }),
+          route,
+        ).toHaveCount(4);
       }
       await expect(page.locator("article[data-article-content]")).toHaveClass(/prose/);
     }
