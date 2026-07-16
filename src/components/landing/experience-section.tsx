@@ -83,7 +83,7 @@ export function ExperienceSection({
       id="parcours"
       className="landing-deferred landing-deferred-experience relative overflow-hidden border-y border-foreground/15 bg-primary/[0.025] px-4 pb-32 pt-20 sm:px-6 lg:px-8 lg:pb-40 lg:pt-24"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-28 xl:gap-32">
         <div className="relative z-20">
           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
             {dict.eyebrow}
