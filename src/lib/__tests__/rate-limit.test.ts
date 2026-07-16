@@ -9,6 +9,8 @@ describe("rateLimit()", () => {
     vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "");
     vi.stubEnv("KV_REST_API_URL", "");
     vi.stubEnv("KV_REST_API_TOKEN", "");
+    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_URL", "");
+    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_TOKEN", "");
   });
 
   afterEach(() => {
@@ -60,6 +62,26 @@ describe("rateLimit()", () => {
     );
     const request = fetchSpy.mock.calls[0]?.[1];
     expect(String(request?.body)).toContain("EVAL");
+  });
+
+  it("supports the Vercel integration variables created with the configured prefix", async () => {
+    vi.stubEnv(
+      "UPSTASH_REDIS_REST_KV_REST_API_URL",
+      "https://redis.vercel.example",
+    );
+    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_TOKEN", "secret");
+    const fetchSpy = vi.spyOn(global, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ result: [1, 60_000] })),
+    );
+
+    await rateLimit("hashed-ip");
+
+    expect(fetchSpy).toHaveBeenCalledWith(
+      "https://redis.vercel.example",
+      expect.objectContaining({
+        headers: expect.objectContaining({ Authorization: "Bearer secret" }),
+      }),
+    );
   });
 
   it("fails closed in production without a durable store", async () => {

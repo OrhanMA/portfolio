@@ -167,8 +167,11 @@ Le rate limiter exécute un script Redis atomique pour conserver une fenêtre de
 5 tentatives par heure entre toutes les instances serverless. Créer une base
 [Upstash Redis](https://upstash.com) ou Vercel KV, puis exposer ses identifiants
 REST. Les alias `KV_REST_API_URL` et `KV_REST_API_TOKEN` sont également pris en
-charge. En production, l'envoi échoue volontairement si aucun stockage durable
-n'est configuré ; il n'existe plus de fallback in-memory trompeur.
+charge, comme les variables `UPSTASH_REDIS_REST_KV_REST_API_URL` et
+`UPSTASH_REDIS_REST_KV_REST_API_TOKEN` générées par l'intégration Vercel avec
+le préfixe `UPSTASH_REDIS_REST`. En production, l'envoi échoue volontairement
+si aucun stockage durable n'est configuré ; il n'existe plus de fallback
+in-memory trompeur.
 
 ---
 
