@@ -96,11 +96,11 @@ describe("Navbar", () => {
     ).toHaveAttribute("href", `/fr/competences/${competences[0].slug}`);
   });
 
-  it("keeps the contact call to action contrast-safe", () => {
+  it("keeps the contact call to action contrast-safe in every theme", () => {
     renderNavbar();
 
     expect(screen.getByRole("link", { name: /Contact/ })).toHaveClass(
-      "text-vermillion-foreground",
+      "text-white",
     );
   });
 });

@@ -100,7 +100,7 @@ export function Navbar({
             prefetch={false}
             className={cn(
               buttonVariants({ size: "sm" }),
-              "hidden rounded-full bg-vermillion px-5 text-vermillion-foreground hover:bg-vermillion/90 md:inline-flex",
+              "hidden rounded-full bg-vermillion px-5 text-white hover:bg-vermillion/90 md:inline-flex",
             )}
           >
             {dict.nav.contact}
@@ -155,7 +155,7 @@ export function Navbar({
               onClick={closeMobileMenu}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "mt-2 rounded-full bg-vermillion text-vermillion-foreground hover:bg-vermillion/90",
+                "mt-2 rounded-full bg-vermillion text-white hover:bg-vermillion/90",
               )}
             >
               {dict.nav.contact}
