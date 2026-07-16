@@ -294,6 +294,53 @@
   }
 }
 
+@layer components {
+  .article-content :not(pre) > code {
+    overflow-wrap: anywhere;
+    border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+    border-radius: 0.35rem;
+    background: color-mix(in oklch, var(--primary) 9%, var(--card));
+    padding: 0.12em 0.38em;
+    color: var(--primary);
+    font-size: 0.88em;
+    font-weight: 650;
+  }
+
+  .article-content pre {
+    overflow-x: auto;
+    border: 1px solid color-mix(in oklch, var(--primary) 42%, transparent);
+    border-left: 3px solid var(--primary);
+    border-radius: 0.75rem;
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 38%),
+      linear-gradient(135deg, oklch(0.145 0.022 245), oklch(0.105 0.016 245));
+    box-shadow: 6px 7px 0 color-mix(in oklch, var(--primary) 14%, transparent);
+  }
+
+  .article-content pre code {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 1.1rem 1.25rem;
+    color: oklch(0.94 0.012 95);
+    font-size: 0.875rem;
+    font-weight: 450;
+    line-height: 1.75;
+  }
+
+  .article-content pre::-webkit-scrollbar {
+    height: 0.5rem;
+  }
+
+  .article-content pre::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--primary) 55%, transparent);
+  }
+}
+
 @keyframes nav-enter {
   from {
     opacity: 0;

@@ -39,6 +39,16 @@ test("every article keeps its editorial layout in both locales", async ({ page }
         "border-top-width",
         "1px",
       );
+      if (slug === "odoo-session-timeout") {
+        await expect(page.locator("article[data-article-content] pre").first(), route).toHaveCSS(
+          "border-left-width",
+          "3px",
+        );
+        await expect(page.locator("article[data-article-content] pre code").first(), route).toHaveCSS(
+          "background-color",
+          "rgba(0, 0, 0, 0)",
+        );
+      }
       await expect(page.locator("article[data-article-content]")).toHaveClass(/prose/);
     }
   }
