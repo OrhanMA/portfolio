@@ -1442,10 +1442,10 @@ describe("RealisationDetailPage", () => {
       screen.getByText("Un produit réellement publié sur un domaine personnel."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("L'objectif Lighthouse atteint sur la page française en production."),
+      screen.getByText("Un audit Lighthouse réalisé sur toute la production."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Une accessibilité mesurée à 96 sur 100."),
+      screen.getByText("Une accessibilité très élevée, avec deux corrections précises à livrer."),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Des statistiques de consultation effectivement disponibles."),
@@ -1478,10 +1478,10 @@ describe("RealisationDetailPage", () => {
       screen.getByText("A product genuinely published on a personal domain."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("The Lighthouse objective achieved on the live French page."),
+      screen.getByText("A Lighthouse audit carried out across the whole production site."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Accessibility measured at 96 out of 100."),
+      screen.getByText("Very high accessibility, with two precise fixes to deliver."),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Actual audience statistics available."),
@@ -1523,7 +1523,7 @@ describe("RealisationDetailPage", () => {
       screen.getByText("La poursuite d'un blog centré sur le développement."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Une accessibilité à faire progresser au-delà du score de 96."),
+      screen.getByText("Une accessibilité à faire progresser à partir de défauts identifiés."),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Un découpage du fichier central désormais réalisé."),
@@ -1559,7 +1559,7 @@ describe("RealisationDetailPage", () => {
       screen.getByText("Continuing a development-focused blog."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Accessibility to improve beyond the score of 96."),
+      screen.getByText("Accessibility to improve from identified defects."),
     ).toBeInTheDocument();
     expect(
       screen.getByText("The central file has now been split."),

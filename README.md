@@ -49,6 +49,12 @@ Les routes applicatives utilisent exclusivement l’App Router. Le layout `[loca
 - Images optimisées par `next/image`, fontes via `next/font`, GSAP centralisé et Lenis chargé à la première interaction.
 - Dark mode, navigation clavier, focus visibles, lien d’évitement et gestion de `prefers-reduced-motion`.
 
+## Audit Lighthouse de production
+
+Le 16 juillet 2026, Lighthouse 13.4.0 avec le profil mobile de Chrome a audité les 100 URL du sitemap public, une fois par URL. Les moyennes relevées sont de **94,3** en performance, **99,8** en accessibilité, **99,9** en bonnes pratiques et **100** en SEO ; les 100 pages ont un CLS de 0 et 98 atteignent au moins 90 en performance.
+
+Les deux variantes de `/realisations/app-trajectoires-de-vie` sont l’exception prioritaire : les quatre lecteurs YouTube chargés directement font chuter leur score de performance à 57. Le rapport complet par page, avec FCP, LCP, TBT et CLS, est disponible dans [reports/lighthouse-production-2026-07-16.md](./reports/lighthouse-production-2026-07-16.md). Ces mesures sont des résultats de laboratoire : elles doivent être rejouées après une modification significative du frontend.
+
 ## Commandes qualité
 
 ```bash

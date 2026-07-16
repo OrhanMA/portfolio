@@ -105,6 +105,31 @@ describe("CookieConsent", () => {
     expect(screen.getByText("Nécessaires")).toBeInTheDocument();
   });
 
+  it("keeps keyboard focus within the modal dialog", async () => {
+    renderWithProviders(<CookieConsent />);
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1600);
+    });
+
+    vi.useRealTimers();
+    const user = userEvent.setup();
+    const dialog = screen.getByRole("dialog");
+    const closeButton = screen.getByRole("button", {
+      name: "Fermer et refuser",
+    });
+    const manageButton = screen.getByRole("button", { name: /g[eé]rer/i });
+
+    expect(dialog).toHaveFocus();
+
+    manageButton.focus();
+    await user.tab();
+    expect(closeButton).toHaveFocus();
+
+    await user.tab({ shift: true });
+    expect(manageButton).toHaveFocus();
+  });
+
   it("banner disappears after accepting", async () => {
     renderWithProviders(<CookieConsent />);
 

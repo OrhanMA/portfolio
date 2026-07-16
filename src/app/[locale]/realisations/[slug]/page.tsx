@@ -11,6 +11,7 @@ import { getRealisationBySlug, realisations } from "@/lib/realisations";
 import { getCompetenceBySlug } from "@/lib/competences";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { RealisationArticleContent } from "@/components/realisation-article-content";
+import { YouTubeFacade } from "@/components/youtube-facade";
 
 const linkClassName =
   "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
@@ -189,14 +190,10 @@ export default async function RealisationDetailPage({
                           className="object-cover"
                         />
                       ) : (
-                        <iframe
+                        <YouTubeFacade
                           src={item.src}
                           title={item.title[loc]}
-                          className="h-full w-full"
-                          loading="lazy"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                          allowFullScreen
+                          locale={loc}
                         />
                       )}
                     </div>

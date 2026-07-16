@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { X, Cookie, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDictionary } from "@/components/dictionary-provider";
@@ -11,11 +17,21 @@ import {
   type CookieConsent as CookieConsentType,
 } from "@/lib/cookie-consent";
 
+const focusableSelector = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])",
+].join(",");
+
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [analyticsChecked, setAnalyticsChecked] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   const dict = useDictionary();
 
   useEffect(() => {
@@ -38,7 +54,19 @@ export function CookieConsent() {
   }, []);
 
   useEffect(() => {
-    if (visible) dialogRef.current?.focus();
+    if (visible) {
+      const activeElement = document.activeElement;
+      previousFocusRef.current =
+        activeElement instanceof HTMLElement && activeElement !== document.body
+          ? activeElement
+          : null;
+      dialogRef.current?.focus();
+      return;
+    }
+
+    const previousFocus = previousFocusRef.current;
+    if (previousFocus?.isConnected) previousFocus.focus();
+    previousFocusRef.current = null;
   }, [visible]);
 
   const saveConsent = useCallback(
@@ -65,6 +93,34 @@ export function CookieConsent() {
     saveConsent({ necessary: true, analytics: analyticsChecked });
   }
 
+  function trapFocus(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "Escape") {
+      handleRejectAll();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const focusableElements = Array.from(
+      dialog.querySelectorAll<HTMLElement>(focusableSelector),
+    );
+    const first = focusableElements[0];
+    const last = focusableElements.at(-1);
+    if (!first || !last) return;
+
+    const activeElement = document.activeElement;
+    if (event.shiftKey && (activeElement === first || activeElement === dialog)) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   if (!visible) return null;
 
   return (
@@ -74,10 +130,9 @@ export function CookieConsent() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="cookie-consent-title"
+        aria-describedby="cookie-consent-description"
         tabIndex={-1}
-        onKeyDown={(event) => {
-          if (event.key === "Escape") handleRejectAll();
-        }}
+        onKeyDown={trapFocus}
         className="mx-auto max-w-lg rounded-xl border border-border bg-card shadow-2xl outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <div className="p-4 sm:p-5">
@@ -91,7 +146,7 @@ export function CookieConsent() {
             </div>
             <button
               onClick={handleRejectAll}
-              className="text-muted-foreground hover:text-foreground transition-colors shrink-0 cursor-pointer"
+              className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
               aria-label={dict.cookies.close}
             >
               <X aria-hidden="true" className="h-4 w-4" />
@@ -99,7 +154,10 @@ export function CookieConsent() {
           </div>
 
           {/* Description */}
-          <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+          <p
+            id="cookie-consent-description"
+            className="mt-2 text-xs text-muted-foreground leading-relaxed"
+          >
             {dict.cookies.description}
           </p>
 

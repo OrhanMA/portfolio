@@ -66,6 +66,43 @@ describe("ArticlesFilterableList", () => {
     expect(screen.queryByText("Migration Odoo")).not.toBeInTheDocument();
   });
 
+  it("keeps article-card tag controls large enough and exposes their selected state", async () => {
+    const user = userEvent.setup();
+    renderWithProviders(
+      <ArticlesFilterableList
+        articles={articles}
+        locale="fr"
+        labels={labels}
+      />,
+    );
+
+    const tag = screen.getAllByRole("button", { name: "D3.js" })[0];
+    expect(tag).toHaveAttribute("aria-pressed", "false");
+    expect(tag).toHaveClass("h-7");
+
+    await user.click(tag);
+
+    expect(tag).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("keeps tag controls outside article links", () => {
+    renderWithProviders(
+      <ArticlesFilterableList
+        articles={articles}
+        locale="fr"
+        labels={labels}
+      />,
+    );
+
+    const articleTag = screen.getAllByRole("button", { name: "D3.js" })[1];
+
+    expect(articleTag.closest("a")).toBeNull();
+    expect(screen.getByRole("link", { name: "CAP2vie" })).toHaveAttribute(
+      "href",
+      "/fr/articles/cap2vie",
+    );
+  });
+
   it("initializes filters from the URL search params", () => {
     currentSearchParams = new URLSearchParams("tag=Odoo&q=qweb");
 
