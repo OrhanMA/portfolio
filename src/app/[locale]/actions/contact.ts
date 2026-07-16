@@ -9,7 +9,7 @@ import {
 } from "@/lib/schemas/contact";
 import { verifyRecaptcha } from "@/lib/recaptcha";
 import { rateLimit } from "@/lib/rate-limit";
-import { escapeHtml } from "@/lib/utils";
+import { createContactEmailHtml, createContactEmailText } from "@/lib/contact-email";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { isValidLocale, type Locale } from "@/lib/i18n";
 
@@ -124,38 +124,20 @@ export async function sendContactEmail(
       to: [RECIPIENT_EMAIL],
       replyTo: email,
       subject,
-      html: `
-        <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1a1a1a; border-bottom: 2px solid #e5e5e5; padding-bottom: 12px;">
-            Nouveau message de contact
-          </h2>
-          <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-            <tr>
-              <td style="padding: 8px 12px; font-weight: 600; color: #525252; width: 140px; vertical-align: top;">Nom</td>
-              <td style="padding: 8px 12px;">${escapeHtml(name)}</td>
-            </tr>
-            <tr style="background: #f9f9f9;">
-              <td style="padding: 8px 12px; font-weight: 600; color: #525252; vertical-align: top;">Email</td>
-              <td style="padding: 8px 12px;">
-                <a href="mailto:${escapeHtml(email)}" style="color: #2563eb;">${escapeHtml(email)}</a>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; font-weight: 600; color: #525252; vertical-align: top;">Raison</td>
-              <td style="padding: 8px 12px;">${escapeHtml(reasonLabel)}</td>
-            </tr>
-          </table>
-          <div style="background: #f5f5f5; border-left: 4px solid #2563eb; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0;">
-            <h3 style="margin: 0 0 8px; color: #1a1a1a; font-size: 14px;">Message</h3>
-            <p style="margin: 0; white-space: pre-wrap; color: #374151; line-height: 1.6;">
-              ${escapeHtml(message)}
-            </p>
-          </div>
-          <p style="color: #9ca3af; font-size: 12px; margin-top: 24px;">
-            Envoye depuis le formulaire de contact du portfolio.
-          </p>
-        </div>
-      `,
+      html: createContactEmailHtml({
+        locale: safeLocale,
+        name,
+        email,
+        reasonLabel,
+        message,
+      }),
+      text: createContactEmailText({
+        locale: safeLocale,
+        name,
+        email,
+        reasonLabel,
+        message,
+      }),
     });
 
     if (error) {

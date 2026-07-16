@@ -172,6 +172,7 @@ describe("sendContactEmail()", () => {
       expect.objectContaining({
         subject: expect.stringContaining("[Portfolio]"),
         html: expect.not.stringContaining("<script>"),
+        text: expect.stringContaining("Jean Dupont"),
       }),
     );
   });
