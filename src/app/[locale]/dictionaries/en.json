@@ -62,7 +62,7 @@
     "backend": "Backend",
     "backendDesc": "Application architecture, business logic, APIs, and data with reliability as the baseline.",
     "frontend": "Frontend",
-    "frontendDesc": "Next.js/React interfaces with refined typography, responsive design, animation, and attention to detail.",
+    "frontendDesc": "Polished, responsive Next.js/React interfaces with purposeful animation.",
     "odoo": "Odoo",
     "odooDesc": "Custom modules, migrations, views, models, integrations, and ERP workflow understanding.",
     "devops": "DevOps & Tools",
