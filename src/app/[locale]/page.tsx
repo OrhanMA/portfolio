@@ -13,7 +13,7 @@ const featuredProjects = {
   fr: [
     {
       slug: "migration-odoo-v16-v19" as const,
-      title: "Migration d'un ERP d'entreprise de Odoo 16 vers Odoo 19",
+      title: "Migration d’un ERP d’entreprise d’Odoo 16 vers Odoo 19",
       tags: ["Odoo", "Python", "PostgreSQL", "Migration"],
     },
     {

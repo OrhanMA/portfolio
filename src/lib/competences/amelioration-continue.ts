@@ -66,11 +66,11 @@ I try to avoid two extremes: rewriting without measured benefit and retaining de
         en: "Evolving the portfolio from evidence rather than impressions",
       },
       content: {
-        fr: `Le portfolio a progressé par petites modifications vérifiables : ajout du bilinguisme, structuration des compétences et réalisations, liens réciproques protégés par des tests, contrôles Lighthouse, amélioration de l'accessibilité, tests unitaires, navigateur et bout en bout. Les retours du learning coach ont déclenché l'approfondissement des articles et une nouvelle hiérarchie de la page d'accueil. Mon propre regard critique a ensuite conduit à réduire les effets décoratifs, à retravailler les pages longues et à découper les fichiers de contenu devenus monolithiques.`,
+        fr: `Le portfolio a progressé par petites modifications vérifiables : ajout du bilinguisme, structuration des compétences et réalisations, liens réciproques protégés par des tests, contrôles Lighthouse, amélioration de l'accessibilité, tests unitaires, de navigateur et de bout en bout. Les retours du learning coach ont déclenché l'approfondissement des articles et une nouvelle hiérarchie de la page d'accueil. Mon propre regard critique a ensuite conduit à réduire les effets décoratifs, à retravailler les pages longues et à découper les fichiers de contenu devenus monolithiques.`,
         en: `The portfolio evolved through small, verifiable changes: bilingual support, structured skills and achievements, reciprocal links protected by tests, Lighthouse checks, accessibility improvements, and unit, browser, and end-to-end testing. Learning-coach feedback triggered deeper articles and a revised homepage hierarchy. My own critical review then led to reducing decorative effects, improving long-form pages, and splitting content files that had become monolithic.`,
       },
       result: {
-        fr: "Le site publié dispose aujourd'hui d'un socle complet et de plus de 170 tests automatisés. Les scores de performance restent présentés comme des mesures datées, et le checklist du portfolio sert de contrôle explicite plutôt que de simple mémoire du travail réalisé.",
+        fr: "Le site publié dispose aujourd'hui d'un socle complet et de plus de 170 tests automatisés. Les scores de performance restent présentés comme des mesures datées, et la liste de contrôle du portfolio sert de contrôle explicite plutôt que de simple mémoire du travail réalisé.",
         en: "The published site now has a complete foundation and more than 170 automated tests. Performance scores remain presented as dated measurements, and the portfolio checklist acts as an explicit control rather than a simple memory of completed work.",
       },
       linkedRealisation: "portfolio-professionnel",
@@ -78,7 +78,7 @@ I try to avoid two extremes: rewriting without measured benefit and retaining de
   ],
   selfCritique: {
     level: {
-      fr: "Je situe mon niveau à intermédiaire. J'identifie les défauts, j'accepte de reprendre mon propre travail et je transforme plusieurs retours en améliorations durables. En revanche, certaines boucles commencent encore trop tard : les tests d'intégration, les critères de mesure ou la validation de contenu auraient dû être définis avant l'accumulation des fonctionnalités.",
+      fr: "J'estime avoir un niveau intermédiaire. J'identifie les défauts, j'accepte de reprendre mon propre travail et je transforme plusieurs retours en améliorations durables. En revanche, certaines boucles commencent encore trop tard : les tests d'intégration, les critères de mesure ou la validation de contenu auraient dû être définis avant l'accumulation des fonctionnalités.",
       en: "I assess myself as intermediate. I identify defects, accept revisiting my own work, and turn several kinds of feedback into lasting improvements. However, some loops still begin too late: integration tests, measurement criteria, and content validation should have been defined before features accumulated.",
     },
     importance: {

@@ -4,7 +4,7 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-08-22
+Last reviewed: 2026-08-23
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
@@ -139,7 +139,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Matérialisé sur une frise ou un axe | ✅ | Timeline animée dans ExperienceSection (GSAP) |
-| Anti-chronologique | ✅ | Du plus récent au plus ancien |
+| Antéchronologique | ✅ | Du plus récent au plus ancien |
 | Accessible par le menu | ✅ | Section dans la homepage, accessible via "Accueil" |
 
 ---
@@ -150,7 +150,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Période (du xx au xx) | ✅ | "Déc. 2025 — Présent", "Mai — Oct. 2025" |
+| Période (du xx au xx) | ✅ | "Déc. 2024 — Présent", "Mai — oct. 2024" |
 | Poste occupé | ✅ | "Développeur Fullstack — Alternance" |
 | Lieu (nom société + **LOGO**) | ✅ | Logo + nom avec lien vers le site |
 
@@ -167,7 +167,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Période | ✅ | Entrées séparées : 2024 (DWWM), 2025 (CDA), 2025–2027 (Mastère) |
+| Période | ✅ | Entrées séparées : 2023 (DWWM), janv.–déc. 2024 (CDA), 2025–2027 (Mastère) |
 | Diplôme/titre/niveau atteint | ✅ | DWWM RNCP 5, CDA RNCP 6, Mastère RNCP 7 |
 | Lieu (nom établissement + **LOGO** pointant vers le site) | ✅ | Logos ISCOD, Simplon et USMB affichés avec liens institutionnels |
 
@@ -203,7 +203,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 ---
 
-### Orthographe — Retrait d'1% toutes les 5 fautes
+### Orthographe — Retrait de 1 % toutes les 5 fautes
 
 | Critère | Status | Notes |
 |---------|--------|-------|
@@ -227,7 +227,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 | Détail expériences | 5 | 5 | ✅ |
 | Navigation circulaire | — | ✅ | ✅ |
 | Espace contact | 2 | 2 | ✅ |
-| Orthographe | -1%/5 fautes | 0 retrait | ✅ |
+| Orthographe | −1 % toutes les 5 fautes | 0 retrait | ✅ |
 | **TOTAL** | **100** | **100/100 documentaire** | ⚠️ |
 
 ---
@@ -245,30 +245,29 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 ---
 
-## Revue de livraison — 2026-08-14
+## Revue de livraison — 2026-08-23
 
 Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-delivery-audit-2026-08-14.md`](./reports/portfolio-delivery-audit-2026-08-14.md). Le relevé des preuves humaines, mesures et essais externes est prêt dans [`reports/portfolio-evidence-collection-template.md`](./reports/portfolio-evidence-collection-template.md). Les états ci-dessous remplacent les affirmations globales de l'audit historique lorsqu'ils divergent.
 
 | Domaine | État | Vérification effectuée |
 | --- | --- | --- |
 | Contenu, grille et relations compétences ↔ réalisations | ✅ | 10 compétences et 5 réalisations, liens réciproques et rubriques attendues contrôlés par les tests. Nom, portrait, menu fixe, frise et contact sont présents dans le rendu. |
-| PDFs et données documentées | ✅ | TOEIC 920/990 du 7 août 2025, DWWM délivré le 21 décembre 2023 et CDA délivré le 24 décembre 2024 vérifiés visuellement. Le CV public a été aligné le 22 août 2026 avec les dates confirmées du site : 1UP depuis décembre 2024, LIG de mai à octobre 2024, CDA de janvier à décembre 2024 et DWWM en 2023. |
-| Métriques d'impact | ⚠️ | Les valeurs documentées 16 modules et 19 utilisateurs directs sont conservées. Les effectifs externes, volumes de modules tiers, durée d'interruption, délai de stabilisation et gain estimé ont été retirés des contenus courts et de l'article public faute de source publiable : mesure à réaliser. |
+| PDFs et données documentées | ✅ | TOEIC 920/990 du 7 août 2025, DWWM délivré le 21 décembre 2023 et CDA délivré le 24 décembre 2024 vérifiés visuellement. Le CV public a été aligné le 23 août 2026 avec les dates confirmées du site : 1UP depuis décembre 2024, LIG de mai à octobre 2024, CDA de janvier à décembre 2024 et DWWM en 2023. |
+| Métriques d'impact | ⚠️ | Les valeurs documentées restent distinguées : 16 modules internes personnalisés, 20 modules open source présentés sur `/projects` et 20 utilisateurs Odoo directs. Les effectifs externes, la durée d'interruption et le gain estimé restent exclus faute de source publiable. |
 | Liens | ⚠️ | 44 liens externes publics contrôlés : 42 répondent, 1 lien ETS cassé a été corrigé dans le code, LinkedIn et OpenAI bloquent les robots mais correspondent aux URL attendues. Les liens internes, CV, TOEIC et titres sont couverts par le crawl et les E2E. |
 | Mobile, navigation, thèmes, langues et retours arrière | ✅ en émulation | E2E vert sur build de production : desktop 1280 × 900 et mobile 390 × 844, FR/EN, menu, sous-menus, formulaires, ancres, dark/light, 404 et absence de débordement horizontal. Un téléphone physique reste à essayer. |
 | Accessibilité | ✅ localement | Un H1 par route, `lang`, `alt`, labels, erreurs de formulaire, focus visibles et réduction des mouvements sont vérifiés par code et E2E. Un essai VoiceOver/NVDA réel reste requis. |
 | SEO et partage | ✅ structurellement | Métadonnées localisées, canonical, hreflang, OG, JSON-LD, robots et sitemap sont présents. Le crawl de production couvre 100/100 URL (200, H1 unique, canonical exacte). Les aperçus LinkedIn/WhatsApp ne peuvent être validés qu'après publication de la version courante. |
 | Performance | ⚠️ | Les vidéos CAP2vie restent différées jusqu'au clic ; l'image décorative de l'en-tête est allégée dans le code. Les deux passages Lighthouse production du 14 août donnent un LCP de 3,5 s puis 4,5 s sur CAP2vie, contre 2,2 s pour le build local : la cible < 3 s n'est pas confirmée en production. |
 | Sécurité et conformité | ✅ localement / ⚠️ production | CSP, HTTPS, anti-spam, validation, cookies, politique de confidentialité et absence de secret suivi dans le code sont vérifiés. Next.js est en 16.2.11 et `pnpm audit` ne remonte aucune vulnérabilité. La réception réelle d'un e-mail et la configuration des variables Vercel restent à confirmer par le propriétaire. |
-| Tests et déploiement | ✅ | `corepack pnpm test` : 37 fichiers, 174 tests ; build : 109 routes ; E2E : 30 scénarios ; audit des dépendances : 0 vulnérabilité connue. Le domaine public est servi par Vercel avec HTTPS, sitemap, robots et 404 valides. Les changements de cette revue ne sont pas encore déployés. |
+| Tests et livraison | ✅ localement / ⏳ publication | `pnpm lint` et `pnpm typecheck` réussis ; `pnpm test` : 37 fichiers, 175 tests ; build : 109 routes ; `pnpm test:e2e` : 31 scénarios réussis. Le commit exact est prêt pour publication sur `main` ; le déploiement Vercel et les pages publiques doivent être contrôlés après le push. |
 
 ### Bloquants externes à lever avant une validation finale
 
-1. Décider les dates exactes de début 1UP et du stage LIG : le CV PDF (décembre 2025 et 2025) ne correspond pas à la frise et au récit du site (décembre 2024 et mai-octobre 2024).
-2. Fournir 1 à 3 recommandations, attestations ou retours nominatifs autorisés à publier ; aucun ne doit être inventé.
-3. Relever sur une période définie les temps de traitement, utilisateurs et erreurs avant/après afin de publier des métriques mesurées.
-4. Déployer cette version, refaire au moins trois Lighthouse mobiles sur CAP2vie et ramener son LCP sous 3 s.
-5. Envoyer un message réel vers la boîte de réception cible, puis effectuer un essai non guidé avec 2 à 3 personnes et un téléphone physique.
+1. Fournir 1 à 3 recommandations, attestations ou retours nominatifs autorisés à publier ; aucun ne doit être inventé.
+2. Relever sur une période définie les temps de traitement, utilisateurs et erreurs avant/après afin de publier des métriques mesurées.
+3. Après le déploiement, refaire au moins trois Lighthouse mobiles sur CAP2vie et ramener son LCP sous 3 s.
+4. Envoyer un message réel vers la boîte de réception cible, puis effectuer un essai non guidé avec 2 à 3 personnes et un téléphone physique.
 
 ---
 
@@ -289,7 +288,7 @@ Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-del
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Professional headline describing your role | ✅ | "Développeur Fullstack" via i18n |
+| Professional headline describing your role | ✅ | "Développeur full-stack" via i18n |
 | Brief personal summary / elevator pitch | ✅ | About section with autodidact → Simplon → ISCOD journey |
 | Professional headshot or avatar | ✅ | Headshot in navbar + hero |
 | Clear call-to-action for employers | ✅ | CTA contact vermillon persistant dans la navbar et grand cercle de contact en fin de homepage |
@@ -299,14 +298,14 @@ Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-del
 
 | Item | Status | Notes |
 |------|--------|-------|
-| 4-6 highlighted projects | ✅ | 5 réalisations détaillées + 22 modules Odoo open source sur `/projects` |
+| 4-6 highlighted projects | ✅ | 5 réalisations détaillées + 20 modules Odoo open source sur `/projects` |
 | Clear descriptions and objectives | ✅ | Bilingual summary + details per project |
 | Technologies used listed | ✅ | Odoo + Python badges on each card |
 | GitHub repository links | ✅ | Each project links to GitHub |
 | Screenshots or video demos | ✅ | Captures Odoo/corporate/CAP2vie + vidéos CAP2vie intégrées aux pages réalisations |
 | Your specific role and contributions | ✅ | Explicit in `/realisations` and strengthened on Odoo module detail pages |
 | Challenges solved and solutions | ✅ | Odoo module pages now include business problem, solution, technical highlight and impact |
-| Measurable results and impact | ✅ | Added available metrics: 16 modules, ~10 third-party modules, 19 direct Odoo users, ~30 employees impacted, 1-month stabilization, Lighthouse score |
+| Measurable results and impact | ✅ | Added available metrics: 16 internal modules, 20 open-source modules, ~10 third-party modules, 20 direct Odoo users, and Lighthouse score |
 
 ### Technical Skills
 
@@ -316,16 +315,16 @@ Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-del
 | Frameworks and libraries | ✅ | Symfony, Next.js, React, Vue.js, Odoo, etc. |
 | Development tools and environments | ✅ | Git, Docker, Shell, Linux, CI/CD |
 | Database technologies | ✅ | PostgreSQL, Redis |
-| Cloud platforms and services | ✅ | VPS (OVH, Digital Ocean), Vercel |
+| Cloud platforms and services | ✅ | VPS (OVH, DigitalOcean), Vercel |
 | Skills categorized by expertise level | ✅ | Radar chart + Débutant/Intermédiaire/Avancé/Expert |
 
 ### Professional Experience
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Relevant work history | ✅ | 1UP fullstack dev (Dec 2025–Present) |
-| Internships and apprenticeships | ✅ | LIG Lab internship (May–Oct 2025) |
-| Open source contributions | ✅ | 22 Odoo modules on GitHub |
+| Relevant work history | ✅ | 1UP full-stack developer (Dec. 2024–Present) |
+| Internships and apprenticeships | ✅ | LIG Lab internship (May–Oct. 2024) |
+| Open source contributions | ✅ | 20 Odoo modules on GitHub |
 
 ### Performance & Responsive Design
 

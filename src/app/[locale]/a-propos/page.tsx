@@ -54,7 +54,7 @@ export default async function AboutPage({
                   <p>
                     Initialement en études de droit à l&apos;Université Savoie
                     Mont Blanc, j&apos;ai remis en question ce choix pendant la
-                    pandémie COVID. Durant cette période, je me suis
+                    pandémie de Covid-19. Durant cette période, je me suis
                     désintéressé de mes études et j&apos;ai commencé à explorer le
                     fonctionnement du web en autodidacte — YouTube, articles,
                     puis The Odin Project, un cursus complet pour maîtriser le
@@ -63,51 +63,52 @@ export default async function AboutPage({
                   <p>
                     Ce qui m&apos;a accroché dans ce domaine, c&apos;est le côté
                     mathématique : il y a un fonctionnement logique et la limite,
-                    c&apos;est notre niveau de connaissance. Il n&apos;y a pas de
-                    hasard, pas d&apos;interprétations, seulement une vérité
-                    algorithmique. Et le deuxième élément, c&apos;est la
-                    possibilité de résoudre de vrais problèmes, au quotidien.
+                    c&apos;est notre niveau de connaissances. Il n&apos;y a pas de
+                    hasard, pas d&apos;interprétation, seulement une vérité
+                    algorithmique. Le second aspect qui m&apos;attire est la
+                    possibilité de résoudre de vrais problèmes au quotidien.
                   </p>
                   <p>
                     J&apos;ai intégré le centre de formation Simplon à Chambéry
-                    pour une formation en développement web et web mobile (RNCP
-                    bac+2, 2024), puis à Grenoble pour une formation Concepteur
-                    et Développeur d&apos;Applications (RNCP bac+3, 2024), qui
-                    incluait un stage de 5 mois au Laboratoire
-                    d&apos;Informatique de Grenoble. Après l&apos;obtention de
-                    mon titre, j&apos;ai démarré une alternance en décembre 2024
-                    chez 1UP Distribution en tant que développeur fullstack, en
+                    pour préparer le titre de développeur web et web mobile
+                    (DWWM, RNCP bac + 2, 2023), puis celui de concepteur et
+                    développeur d&apos;applications à Grenoble (RNCP bac + 3,
+                    2024). Cette seconde formation comprenait un stage de cinq
+                    mois au Laboratoire d&apos;Informatique de Grenoble. Après
+                    l&apos;obtention de mon titre, j&apos;ai démarré une alternance
+                    en décembre 2024 chez 1UP Distribution en tant que
+                    développeur full-stack, en
                     parallèle d&apos;un mastère Expert en Ingénierie du Logiciel
-                    (RNCP 7, bac+5) à l&apos;ISCOD, jusqu&apos;en mars 2027.
+                    (RNCP niveau 7, bac + 5) à l&apos;ISCOD, jusqu&apos;en mars 2027.
                   </p>
                 </>
               ) : (
                 <>
                   <p>
-                    Originally studying law at Université Savoie Mont Blanc, I
-                    questioned that choice during the COVID pandemic. During that
-                    period, I lost interest in my studies and started exploring
-                    how the web works on my own — YouTube, articles, then The
-                    Odin Project, a comprehensive curriculum for mastering web
-                    development.
+                    I initially studied law at Université Savoie Mont Blanc, but
+                    reconsidered that choice during the Covid-19 pandemic. During
+                    that period, I lost interest in my studies and started
+                    exploring how the web works on my own — through YouTube,
+                    articles, and then The Odin Project, a comprehensive web
+                    development curriculum.
                   </p>
                   <p>
-                    What hooked me about this field is the mathematical side:
-                    there&apos;s a logical framework and the only limit is our
-                    level of knowledge. There&apos;s no chance, no
-                    interpretations, only algorithmic truth. The second element
-                    is the ability to solve real problems, every day.
+                    What drew me to this field was its mathematical side: it
+                    follows a logical structure, and the only limit is the depth
+                    of our knowledge. There is no guesswork or room for
+                    interpretation, only algorithmic truth. The other appeal is
+                    the ability to solve real-world problems every day.
                   </p>
                   <p>
-                    I joined the Simplon training center in Chambéry for web and
-                    mobile web development training (RNCP level 5, 2024), then in
-                    Grenoble for Application Designer &amp; Developer training
-                    (RNCP level 6, 2024), which included a 5-month internship at
-                    the Grenoble Computer Science Laboratory. After obtaining my
-                    degree, I started a work-study program in December 2024 at
-                    1UP Distribution as a fullstack developer, alongside a
-                    Master&apos;s in Software Engineering (RNCP level 7) at
-                    ISCOD, until March 2027.
+                    I joined the Simplon training center in Chambéry for its Web
+                    and Mobile Web Developer program (DWWM, RNCP level 5, 2023),
+                    then completed an Application Designer and Developer program
+                    in Grenoble (RNCP level 6, 2024), which included a five-month
+                    internship at the Grenoble Computer Science Laboratory. After
+                    obtaining my qualification, I started a work-study program in
+                    December 2024 at 1UP Distribution as a full-stack developer
+                    while pursuing a Master&apos;s in Software Engineering (RNCP
+                    level 7) at ISCOD through March 2027.
                   </p>
                 </>
               )}
@@ -161,22 +162,22 @@ export default async function AboutPage({
                   <p>
                     <strong>Responsibility</strong> — What I develop and modify
                     is shipped to production. I&apos;m responsible for delivering
-                    quality features. On Odoo, I have full autonomy and have
+                    high-quality features. On Odoo, I have full autonomy and have
                     already completed dozens of features and bug fixes. On the
-                    B2B site in Symfony, I have complete autonomy over feature
+                    Symfony B2B site, I have complete autonomy over feature
                     development through to production deployment on the server.
                   </p>
                   <p>
-                    <strong>Autonomy</strong> — From day one of my work-study, I
+                    <strong>Autonomy</strong> — From the first day of my work-study program, I
                     had to learn the Odoo framework independently: understanding
                     the framework&apos;s codebase, existing configurations and
-                    custom code, and progressively responding to ERP requests.
+                    custom code, and addressing ERP requests as they arose.
                   </p>
                   <p>
                     <strong>Continuous improvement</strong> — I don&apos;t claim
                     to implement the perfect feature every time. That&apos;s why
-                    I continuously seek to improve what exists, not just develop
-                    new features.
+                    I continuously seek to improve existing solutions, not just
+                    develop new features.
                   </p>
                 </>
               )}
@@ -259,20 +260,20 @@ export default async function AboutPage({
                       <strong>
                         ERP integrations with external systems
                       </strong>{" "}
-                      through custom APIs for end customers. The desired
+                      through custom APIs for end customers. My intended
                       progression includes project management, product decisions,
                       and software architecture, supporting automation and
                       genuinely useful business tools.
                     </p>
                     <p>
-                      Within five years, the goal is to achieve strong mastery of
+                      Within five years, the goal is to gain a strong command of
                       the current stack — Odoo/Python, Symfony/PHP, and
                       Next.js/React — while deepening expertise in{" "}
                       <strong>APIs, DevOps, and clean code</strong> at the
                       boundaries between ERP platforms and external systems.
                     </p>
                     <p>
-                      The personal project that puts this direction into practice
+                      The personal project that embodies this direction
                       is a{" "}
                       <strong>self-hosted business intelligence tool</strong> for
                       operational management. It will synchronize Odoo data
@@ -309,17 +310,17 @@ export default async function AboutPage({
                     développement — en est la preuve.
                   </p>
                   <p>
-                    <strong>Adaptabilité</strong> — Le nombre de projets aux
-                    technologies et natures différentes sur lesquels j&apos;ai
-                    travaillé m&apos;a donné une forte capacité
-                    d&apos;adaptation. Au quotidien, je navigue entre
+                    <strong>Adaptabilité</strong> — La diversité des projets,
+                    des technologies et des contextes sur lesquels j&apos;ai
+                    travaillé a renforcé ma capacité d&apos;adaptation. Au
+                    quotidien, je navigue entre
                     Odoo/Python, Symfony/PHP et Next.js/React.
                   </p>
                   <p>
                     <strong>Communication</strong> — Encore en progression, mais
                     la documentation et la communication avec les profils non
-                    techniques sont deux aspects que je veux largement améliorer et
-                    maîtriser. Si on ne communique pas sur ce qu&apos;on fait,
+                    techniques sont deux aspects que je souhaite encore améliorer
+                    et maîtriser. Si on ne communique pas sur ce qu&apos;on fait,
                     nos fonctionnalités n&apos;existent pas aux yeux des
                     utilisateurs.
                   </p>
@@ -333,15 +334,15 @@ export default async function AboutPage({
                     development — is proof of that.
                   </p>
                   <p>
-                    <strong>Adaptability</strong> — The number of projects with
-                    different technologies and natures I&apos;ve worked on has
-                    given me strong adaptability. On a daily basis, I navigate
+                    <strong>Adaptability</strong> — Working on projects with
+                    varied technologies and requirements has strengthened my
+                    adaptability. On a daily basis, I navigate
                     between Odoo/Python, Symfony/PHP, and Next.js/React.
                   </p>
                   <p>
                     <strong>Communication</strong> — Still a work in progress,
                     but documentation and communication with non-technical
-                    profiles is something I want to greatly improve and master.
+                    colleagues are two areas I want to improve and master.
                     If we don&apos;t communicate about what we do, our features
                     don&apos;t exist in users&apos; eyes.
                   </p>
@@ -368,24 +369,25 @@ export default async function AboutPage({
               {isFr ? (
                 <p>
                   En dehors du code, je suis passionné de{" "}
-                  <strong>basketball</strong> — que ce soit jouer en street 3x3
-                  ou suivre la NBA (surtout les Spurs de Wembanyama). Je suis
-                  également membre de l&apos;
+                  <strong>basket-ball</strong> — qu&apos;il s&apos;agisse de jouer au
+                  basket 3x3 en extérieur ou de suivre la NBA (surtout les Spurs
+                  de Wembanyama). Je suis également membre de l&apos;
                   <strong>Académie d&apos;Échecs d&apos;Aix-les-Bains</strong>,
-                  où je participe à l&apos;organisation du club et à des
-                  tournois réguliers, en personne (tournois à +1700 Elo FIDE)
-                  comme en ligne contre des clubs du monde entier.
+                  où je contribue à l&apos;organisation du club et participe
+                  régulièrement à des tournois, en présentiel — notamment face
+                  à des joueurs classés à plus de 1 700 Elo FIDE — comme en
+                  ligne contre des clubs du monde entier.
                 </p>
               ) : (
                 <p>
                   Outside of coding, I&apos;m passionate about{" "}
-                  <strong>basketball</strong> — whether playing street 3x3 or
-                  watching the NBA (especially Wembanyama&apos;s Spurs).
+                  <strong>basketball</strong> — whether playing 3x3 basketball
+                  outdoors or watching the NBA (especially Wembanyama&apos;s Spurs).
                   I&apos;m also a member of the{" "}
                   <strong>Aix-les-Bains Chess Academy</strong>, where I
-                  participate in club organization and regular tournaments, both
-                  in person (1700+ FIDE Elo tournaments) and online against
-                  clubs from around the world.
+                  help organize the club and regularly compete, both in person
+                  — including against players rated above
+                  1,700 FIDE Elo — and online against clubs from around the world.
                 </p>
               )}
             </div>

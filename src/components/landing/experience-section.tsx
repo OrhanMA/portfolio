@@ -26,7 +26,7 @@ type ExperienceEntry = {
 
 const linkedRealisationTitles: Record<Locale, Record<string, string>> = {
   fr: {
-    "migration-odoo-v16-v19": "Migration d'un ERP d'entreprise de Odoo 16 vers Odoo 19",
+    "migration-odoo-v16-v19": "Migration d'un ERP d'entreprise d'Odoo 16 vers Odoo 19",
     "modules-metier-odoo": "Développement de modules métier pour un ERP",
     "refonte-site-corporate": "Refonte d'un site corporate Next.js",
     "app-trajectoires-de-vie": "Développement d'une application web de trajectoires de vie",
@@ -36,7 +36,7 @@ const linkedRealisationTitles: Record<Locale, Record<string, string>> = {
     "migration-odoo-v16-v19": "Enterprise ERP migration from Odoo 16 to Odoo 19",
     "modules-metier-odoo": "Business module development for an ERP",
     "refonte-site-corporate": "Next.js corporate website redesign",
-    "app-trajectoires-de-vie": "Development of a life trajectories web application",
+    "app-trajectoires-de-vie": "Development of a web application for mapping life trajectories",
     "portfolio-professionnel": "Building a professional portfolio",
   },
 };

@@ -37,7 +37,7 @@ This skill requires separating structural decisions from reversible ones. Archit
       },
       content: {
         fr: `La première version du module de factures impayées détectait les échéances et notifiait les membres de la comptabilité ainsi que le commercial concerné. Les retours d'usage ont montré que cette réponse restait trop rigide : les délais, destinataires, modèles de courriel, pièces jointes, exclusions et règles de blocage devaient pouvoir varier sans redéploiement. J'ai conservé le moteur de sélection, mais déplacé les valeurs figées vers la configuration Odoo et fait évoluer le traitement vers l'envoi de relances pilotées par la comptabilité.`,
-        en: `The first version of the overdue-invoice module detected deadlines and notified accounting members and the relevant salesperson. Usage feedback showed that this response remained too rigid: intervals, recipients, email templates, attachments, exclusions, and blocking rules had to vary without redeployment. I retained the selection engine but moved fixed values into Odoo settings and evolved the process toward reminders controlled by accounting.`,
+        en: `The first version of the overdue-invoice module detected deadlines and notified accounting team members and the relevant salesperson. Usage feedback showed that this response remained too rigid: intervals, recipients, email templates, attachments, exclusions, and blocking rules had to vary without redeployment. I retained the selection engine but moved fixed values into Odoo settings and evolved the process toward reminders controlled by accounting.`,
       },
       result: {
         fr: "Le module répond aujourd'hui à davantage de situations tout en demandant moins d'intervention technique. L'adaptation n'a pas produit une seconde solution parallèle : elle a transformé le premier prototype en mécanisme maintenable et administrable par les utilisateurs compétents.",
@@ -55,8 +55,8 @@ This skill requires separating structural decisions from reversible ones. Archit
         en: `The corporate website redesign began while layouts, copy, brand permissions, and the form's final routing were not all stable. Preparation considered thirteen languages, but the first release was ultimately refocused on French and English. Several visual directions were prototyped before a final direction was selected. I adapted the implementation by isolating content, building reusable components, and separating server elements from animated interactions so open decisions would not destabilize the whole application.`,
       },
       result: {
-        fr: "Le projet dispose d'un socle responsive, bilingue, testable et déployable alors que la direction visuelle et les contenus poursuivent leur validation. Le périmètre de la V1 reste protégé, et l'extension future des langues n'exigera pas de réécrire les pages.",
-        en: "The project has a responsive, bilingual, testable, and deployable foundation while visual direction and content continue through approval. The first-release scope remains protected, and adding languages later will not require rewriting pages.",
+        fr: "Le projet dispose d'un socle responsive, bilingue, testable et déployable alors que la direction visuelle et les contenus continuent d'être validés. Le périmètre de la V1 reste protégé, et l'extension future des langues n'exigera pas de réécrire les pages.",
+        en: "The project has a responsive, bilingual, testable, and deployable foundation while the visual direction and content continue to be reviewed. The first-release scope remains protected, and adding languages later will not require rewriting pages.",
       },
       linkedRealisation: "refonte-site-corporate",
     },
@@ -78,7 +78,7 @@ This skill requires separating structural decisions from reversible ones. Archit
   ],
   selfCritique: {
     level: {
-      fr: "Je situe mon niveau à avancé : je peux changer de technologie, de structure ou de périmètre sans perdre l'objectif principal, et je sais conserver des interfaces stables autour d'une partie encore mouvante. Ma limite est organisationnelle : sur le site corporate, certains contenus et choix graphiques auraient dû être demandés ou arbitrés plus tôt afin de réduire le nombre de prototypes nécessaires.",
+      fr: "J'estime avoir un niveau avancé : je peux changer de technologie, de structure ou de périmètre sans perdre l'objectif principal, et je sais conserver des interfaces stables autour d'une partie encore mouvante. Ma limite est organisationnelle : sur le site corporate, certains contenus et choix graphiques auraient dû être demandés ou arbitrés plus tôt afin de réduire le nombre de prototypes nécessaires.",
       en: "I assess myself as advanced: I can change technology, structure, or scope without losing the main objective, and I can preserve stable interfaces around an evolving area. My limitation is organizational: on the corporate website, some content and visual choices should have been requested or decided earlier to reduce the number of necessary prototypes.",
     },
     importance: {

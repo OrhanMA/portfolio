@@ -76,7 +76,7 @@ describe("portfolio relationships", () => {
       (item) => item.slug === "portfolio-professionnel",
     );
 
-    expect(portfolio?.results.fr).toContain("6 articles publiés");
-    expect(portfolio?.results.en).toContain("6 published articles");
+    expect(portfolio?.results.fr).toContain("six articles publiés");
+    expect(portfolio?.results.en).toContain("six published articles");
   });
 });

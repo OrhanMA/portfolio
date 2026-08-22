@@ -32,8 +32,8 @@ export function StructuredData({
         image: `${BASE_URL}/images/coporate-headshot.webp`,
         jobTitle:
           locale === "fr"
-            ? "Développeur Fullstack"
-            : "Fullstack Developer",
+            ? "Développeur full-stack"
+            : "Full-Stack Developer",
         knowsAbout: [
           "Next.js",
           "React",

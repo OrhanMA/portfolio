@@ -10,12 +10,12 @@ export const developpementOdoo: Competence = {
   definition: {
     fr: `Le développement Odoo consiste à étendre un ERP sans rompre la cohérence de son modèle métier, de ses droits et de ses mécanismes internes. Un module peut ajouter des modèles Python, des champs, des vues XML, des rapports QWeb, des actions planifiées, des contrôleurs API, des données de configuration et des scripts de migration. La difficulté n'est pas seulement de faire fonctionner chaque composant : il faut comprendre l'ORM, les héritages, le contexte d'exécution, les dépendances entre modules et les conventions du framework afin qu'une personnalisation reste installable, testable et compatible avec les versions suivantes.
 
-La compétence inclut également la traduction du besoin. Dans un ERP, une règle technique représente souvent une décision comptable, commerciale, logistique ou de sécurité. Je dois identifier les données fiables, les utilisateurs autorisés, les exceptions et les effets sur les autres applications. Les ACL accordent des opérations au niveau d'un modèle, les record rules limitent les enregistrements accessibles et les groupes composent les privilèges d'un utilisateur ; masquer un écran n'est donc jamais une protection suffisante.
+La compétence inclut également la traduction du besoin. Dans un ERP, une règle technique représente souvent une décision comptable, commerciale, logistique ou de sécurité. Je dois identifier les données fiables, les utilisateurs autorisés, les exceptions et les effets sur les autres applications. Les ACL accordent des opérations au niveau d'un modèle, les record rules limitent les enregistrements accessibles et les groupes se combinent pour définir les privilèges d'un utilisateur ; masquer un écran n'est donc jamais une protection suffisante.
 
 Enfin, développer pour Odoo implique de savoir choisir entre le standard, la configuration, Studio et un module versionné. Je privilégie le standard lorsqu'il répond au besoin, la configuration lorsque la règle doit rester pilotable par les utilisateurs et le code lorsque le comportement exige une logique durable, révisable et déployable. Cette frontière réduit la dette technique et facilite les migrations.`,
     en: `Odoo development means extending an ERP without breaking the consistency of its business model, permissions, and internal mechanisms. A module can add Python models, fields, XML views, QWeb reports, scheduled actions, API controllers, configuration data, and migration scripts. The difficulty is not merely making each component work: the ORM, inheritance, execution context, module dependencies, and framework conventions must be understood so a customization remains installable, testable, and compatible with future releases.
 
-The skill also includes translating requirements. In an ERP, a technical rule often represents an accounting, sales, logistics, or security decision. I must identify reliable data, authorized users, exceptions, and effects on other applications. ACLs grant operations at model level, record rules restrict accessible records, and groups compose a user's privileges; hiding a screen is therefore never sufficient protection.
+The skill also includes translating requirements. In an ERP, a technical rule often represents an accounting, sales, logistics, or security decision. I must identify reliable data, authorized users, exceptions, and effects on other applications. ACLs grant operations at model level, record rules restrict accessible records, and groups combine to define a user's privileges; hiding a screen is therefore never sufficient protection.
 
 Finally, developing for Odoo requires choosing between standard behavior, configuration, Studio, and a version-controlled module. I favor standard functionality when it addresses the need, configuration when the rule should remain controlled by users, and code when behavior requires durable, reviewable, deployable logic. This boundary reduces technical debt and simplifies migrations.`,
   },
@@ -40,8 +40,8 @@ Finally, developing for Odoo requires choosing between standard behavior, config
         en: "Migrating an ERP from version 16 to version 19",
       },
       content: {
-        fr: `J'ai pris en charge la migration successive d'Odoo 16 vers 17, 18 puis 19 pour un ERP utilisé par 19 utilisateurs internes directs. Le projet comprenait 16 modules sur mesure, des extensions tierces et de nombreuses personnalisations Studio. Pour chaque étape, j'ai adapté les modèles, méthodes Python, vues XML et XPath devenus incompatibles, recherché les changements dans le code source, récupéré ou corrigé les modules tiers et contrôlé les données PostgreSQL ainsi que le filestore. La recette couvrait les processus métier, les droits et les intégrations externes, avec une sauvegarde complète comme point de retour arrière.`,
-        en: `I owned the successive migration from Odoo 16 to 17, 18, and then 19 for an ERP used by 19 direct internal users. The project included 16 custom modules, third-party extensions, and many Studio customizations. At each step, I adapted incompatible models, Python methods, XML views, and XPath expressions, researched changes in the source code, retrieved or fixed third-party modules, and checked PostgreSQL data and the filestore. Acceptance testing covered business processes, permissions, and external integrations, with a complete backup as the rollback point.`,
+        fr: `J'ai pris en charge la migration successive d'Odoo 16 vers 17, 18 puis 19 pour un ERP utilisé par 20 utilisateurs internes directs. Le projet comprenait 16 modules sur mesure, des extensions tierces et de nombreuses personnalisations Studio. Pour chaque étape, j'ai adapté les modèles, méthodes Python, vues XML et XPath devenus incompatibles, recherché les changements dans le code source, récupéré ou corrigé les modules tiers et contrôlé les données PostgreSQL ainsi que le filestore. La recette couvrait les processus métier, les droits et les intégrations externes, avec une sauvegarde complète comme point de retour arrière.`,
+        en: `I owned the successive migration from Odoo 16 to 17, 18, and then 19 for an ERP used by 20 direct internal users. The project included 16 custom modules, third-party extensions, and many Studio customizations. At each step, I adapted incompatible models, Python methods, XML views, and XPath expressions, researched changes in the source code, retrieved or fixed third-party modules, and checked PostgreSQL data and the filestore. Acceptance testing covered business processes, permissions, and external integrations, with a complete backup as the rollback point.`,
       },
       result: {
         fr: "Odoo 19 a été mis en production sans perte définitive de données signalée. Les fonctions utiles ont été conservées, des personnalisations Studio obsolètes supprimées et les intégrations principales modernisées ; la durée d'interruption n'a pas été mesurée de façon publiable.",
@@ -60,7 +60,7 @@ Finally, developing for Odoo requires choosing between standard behavior, config
       },
       result: {
         fr: "Ces modules automatisent des tâches quotidiennes, rendent les documents plus complets et mettent des indicateurs de pilotage à disposition pendant l'exercice. Le module de relance automatise notamment le contrôle des factures et les étapes de relance ; son gain de temps reste à mesurer.",
-        en: "These modules automate daily tasks, make documents more complete, and provide management indicators during the financial year. The reminder module notably automates invoice checks and reminder stages; its time saving remains to be measured.",
+        en: "These modules automate daily tasks, make documents more complete, and provide management indicators during the financial year. The reminder module notably automates invoice checks and reminder stages; its time savings remain to be measured.",
       },
       linkedRealisation: "modules-metier-odoo",
     },
@@ -75,19 +75,19 @@ Finally, developing for Odoo requires choosing between standard behavior, config
       },
       result: {
         fr: "Les systèmes externes ont retrouvé leurs échanges principaux après la migration et les modules internes restent maîtrisés dans le dépôt versionné. Cette capacité à descendre jusqu'au framework me permet de corriger la cause d'un défaut et pas seulement son affichage.",
-        en: "External systems recovered their main exchanges after the migration, and internal modules remain controlled in the versioned repository. This ability to work down into the framework lets me correct a defect's cause rather than only its display.",
+        en: "External systems resumed their main data exchanges after the migration, and internal modules remain controlled in the versioned repository. This ability to work down into the framework lets me correct a defect's cause rather than only its display.",
       },
       linkedRealisation: "modules-metier-odoo",
     },
   ],
   selfCritique: {
     level: {
-      fr: "Je situe mon niveau à avancé. Je peux concevoir, migrer, sécuriser, déployer et maintenir des modules couvrant plusieurs services, et je sais rechercher un comportement dans le code source. Je ne me considère pas expert : le moteur comptable, les optimisations profondes de l'ORM et certaines interactions internes restent des domaines où je dois encore mesurer davantage avant de modifier.",
+      fr: "J'estime avoir un niveau avancé. Je peux concevoir, migrer, sécuriser, déployer et maintenir des modules couvrant plusieurs services, et je sais rechercher un comportement dans le code source. Je ne me considère pas expert : le moteur comptable, les optimisations profondes de l'ORM et certaines interactions internes restent des domaines où je dois encore mesurer davantage avant de modifier.",
       en: "I assess myself as advanced. I can design, migrate, secure, deploy, and maintain modules spanning several departments, and I can investigate behavior in the source code. I do not consider myself an expert: the accounting engine, deep ORM optimization, and some internal interactions remain areas where I need more measurement before making changes.",
     },
     importance: {
       fr: "C'est la compétence technique la plus importante de mon profil actuel. Elle combine Python, PostgreSQL, XML, API, sécurité, déploiement et compréhension des processus d'entreprise. Elle correspond aussi à mon objectif de devenir développeur confirmé et référent technique Odoo.",
-      en: "This is the most important technical skill in my current profile. It combines Python, PostgreSQL, XML, APIs, security, deployment, and understanding of business processes. It also matches my objective of becoming a senior developer and Odoo technical reference.",
+      en: "This is the most important technical skill in my current profile. It combines Python, PostgreSQL, XML, APIs, security, deployment, and understanding of business processes. It also matches my objective of becoming a senior developer and Odoo technical specialist.",
     },
     acquisitionSpeed: {
       fr: "J'ai appris Odoo à partir de zéro en alternance, en étant rapidement le seul développeur interne chargé des demandes. Les modules, incidents et migrations m'ont fait progresser plus vite qu'un parcours uniquement théorique, mais cette vitesse explique aussi certaines premières implémentations trop dépendantes de valeurs figées.",
@@ -101,7 +101,7 @@ Finally, developing for Odoo requires choosing between standard behavior, config
   evolution: {
     goal: {
       fr: "Consolider un niveau avancé jusqu'à pouvoir définir l'architecture d'un ensemble de modules, préparer les migrations en amont et accompagner d'autres développeurs sur les choix de sécurité, performance et maintenabilité.",
-      en: "Consolidate an advanced level until I can define the architecture of a module suite, prepare migrations in advance, and guide other developers on security, performance, and maintainability decisions.",
+      en: "Build on my advanced proficiency so I can define the architecture of a module suite, prepare migrations in advance, and guide other developers on security, performance, and maintainability decisions.",
     },
     training: {
       fr: "Je poursuis la lecture du code source et de la documentation officielle, l'étude des scripts de migration et l'automatisation des tests Odoo. Les prochains axes pratiques sont la performance du calcul de marge, les intégrations JSON-2 et la future architecture de Business Intelligence connectée à l'ERP.",

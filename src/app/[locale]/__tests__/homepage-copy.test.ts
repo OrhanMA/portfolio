@@ -38,11 +38,11 @@ describe("homepage positioning copy", () => {
 
   it("uses short, verifiable hero proofs in both languages", () => {
     expect(frDict.hero.proofs.map((proof) => proof.value)).toEqual([
-      "22",
+      "20",
       "920/990",
     ]);
     expect(enDict.hero.proofs.map((proof) => proof.value)).toEqual([
-      "22",
+      "20",
       "920/990",
     ]);
     expect(frDict.hero.proofs[0].label).toContain("open source");

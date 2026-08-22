@@ -9,9 +9,9 @@ export async function generateMetadata({ params }) {
 
 ## Contexte
 
-Chez 1UP Distribution, Odoo est l'ERP central : ventes, facturation, comptabilité, logistique, catalogue produit, intégrations B2B et reporting métier. La migration de la version 16 vers la version 19 ne consistait donc pas à mettre à jour une application isolée, mais à sécuriser un outil utilisé par 19 utilisateurs internes directs. Les accès externes ne sont pas chiffrés ici faute de source publiable.
+Chez 1UP Distribution, Odoo est l'ERP central : ventes, facturation, comptabilité, logistique, catalogue produit, intégrations B2B et reporting métier. La migration de la version 16 vers la version 19 ne consistait donc pas à mettre à jour une application isolée, mais à sécuriser un outil utilisé par 20 utilisateurs internes directs. Les accès externes ne sont pas chiffrés ici faute de source publiable.
 
-Le périmètre était large : 16 modules développés de zéro, des modules tiers à corriger, améliorer ou migrer, des personnalisations Odoo Studio stockées en base de données, des rapports PDF QWeb, des scripts de migration et des routes API consommées par d'autres outils.
+Le périmètre était large : 16 modules développés à partir de zéro, des modules tiers à corriger, améliorer ou migrer, des personnalisations Odoo Studio stockées en base de données, des rapports PDF QWeb, des scripts de migration et des routes API consommées par d'autres outils.
 
 ## Point de bascule
 
@@ -38,7 +38,7 @@ Cette phase a permis de réduire le risque avant le passage final en v19.
 
 ## Après la bascule
 
-Les deux mois suivants ont servi à stabiliser l'ERP en conditions proches du réel.
+La période suivant la bascule a servi à stabiliser l'ERP en conditions proches du réel, sans publication d'une durée chiffrée faute de mesure vérifiable.
 
 L'historique de développement montre plusieurs familles de corrections :
 
@@ -74,6 +74,6 @@ Cette migration m'a aussi appris qu'un ERP est autant un système technique qu'u
 
 ## Résultat
 
-La version Odoo 19 a été intégrée le 6 février 2026. La durée de stabilisation et les accès externes ne sont pas chiffrés publiquement : ils devront être confirmés par une attestation avant toute publication de métrique. Le projet a permis de maintenir les usages des 19 utilisateurs internes directs et de limiter les impacts sur les équipes logistique, B2B, corporate et les clients connectés aux outils de l'entreprise.
+La version Odoo 19 a été intégrée le 6 février 2026. La durée de stabilisation et les accès externes ne sont pas chiffrés publiquement : ils devront être confirmés par une attestation avant toute publication de métrique. Le projet a permis de maintenir les usages des 20 utilisateurs internes directs et de limiter les impacts sur les équipes logistique, B2B, corporate et les clients connectés aux outils de l'entreprise.
 
 Le projet a posé une base plus saine pour les futures montées de version : modules mieux documentés, scripts de migration plus explicites, meilleure compréhension des points sensibles et des dépendances métier.

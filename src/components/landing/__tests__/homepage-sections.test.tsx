@@ -11,7 +11,7 @@ import { frDict, renderWithProviders, screen } from "@/test/utils";
 const featuredProjects = [
   {
     slug: "migration-odoo-v16-v19" as const,
-    title: "Migration d'un ERP d'entreprise de Odoo 16 vers Odoo 19",
+    title: "Migration d'un ERP d'entreprise d'Odoo 16 vers Odoo 19",
     tags: ["Odoo", "Python", "PostgreSQL", "Migration"],
   },
   {
@@ -148,8 +148,8 @@ describe("editorial homepage sections", () => {
       "Déc. 2024 — Présent",
       "2025 — 2027",
       "7 août 2025",
-      "Mai — Oct. 2024",
-      "Janv. — Déc. 2024",
+      "Mai — oct. 2024",
+      "Janv. — déc. 2024",
       "2023",
     ]);
   });
@@ -165,10 +165,10 @@ describe("editorial homepage sections", () => {
 
     expect(screen.queryByText(/^0[1-3]$/)).not.toBeInTheDocument();
     expect(screen.queryByText(/Projet 0[1-3]/)).not.toBeInTheDocument();
-    expect(screen.getByText("19")).toBeInTheDocument();
+    expect(screen.getByText("20")).toBeInTheDocument();
     expect(screen.getByText("16")).toBeInTheDocument();
     expect(screen.getByText("99")).toBeInTheDocument();
-    expect(screen.getByText(/Aucune perte définitive de données/)).toBeInTheDocument();
+    expect(screen.getByText(/Périmètre interne documenté/)).toBeInTheDocument();
     expect(screen.getByText(/temps économisé n'est pas encore mesuré/i)).toBeInTheDocument();
     expect(screen.getByText(/100 en accessibilité et 100 en SEO/)).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Voir la réalisation" })).toHaveLength(3);

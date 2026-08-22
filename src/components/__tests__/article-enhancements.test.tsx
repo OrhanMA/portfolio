@@ -16,7 +16,7 @@ const labels = {
   relatedArticles: "Articles liés",
   copyLink: "Copier le lien",
   copied: "Lien copié",
-  frenchOnlyNotice: "Article rédigé en français, traduction navigateur recommandée.",
+  frenchOnlyNotice: "Article rédigé en français, traduction par le navigateur recommandée.",
 };
 
 const articles = [

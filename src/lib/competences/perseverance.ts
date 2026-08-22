@@ -78,7 +78,7 @@ I therefore distinguish perseverance from stubbornness. Continuing is worthwhile
   ],
   selfCritique: {
     level: {
-      fr: "Je situe mon niveau à avancé parce que je reste mobilisé sur des problèmes longs, incertains et techniquement ingrats jusqu'à obtenir un résultat exploitable. Je sais reprendre une hypothèse, lire le code d'un framework et accepter de réécrire. Mon axe de progrès est d'instrumenter plus tôt cette persévérance avec des scénarios de test, des mesures et un journal de décisions afin de réduire le nombre d'itérations tardives.",
+      fr: "J'estime avoir un niveau avancé parce que je reste mobilisé sur des problèmes longs, incertains et techniquement ingrats jusqu'à obtenir un résultat exploitable. Je sais reprendre une hypothèse, lire le code d'un framework et accepter de réécrire. Mon axe de progrès est d'instrumenter plus tôt cette persévérance avec des scénarios de test, des mesures et un journal de décisions afin de réduire le nombre d'itérations tardives.",
       en: "I assess myself as advanced because I stay engaged with long, uncertain, and technically unrewarding problems until I obtain a usable outcome. I can revisit an assumption, read framework source code, and accept rewriting work. My improvement area is to support that perseverance earlier with test scenarios, measurements, and a decision log so fewer iterations happen late.",
     },
     importance: {

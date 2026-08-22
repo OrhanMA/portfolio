@@ -8,12 +8,12 @@ export const python: Competence = {
   radarValue: 60,
   icon: "Code",
   definition: {
-    fr: `Python est un langage généraliste dont la lisibilité permet d'exprimer rapidement une règle, mais cette simplicité apparente ne dispense pas de concevoir les données, les responsabilités et les erreurs. Je l'utilise principalement dans Odoo, où il porte les modèles ORM, les champs calculés, les contraintes, les actions planifiées, les contrôleurs, les scripts de migration et les tests. Le code s'exécute au sein d'un framework riche : comprendre l'héritage, les décorateurs, les ensembles d'enregistrements et le contexte est aussi important que connaître la syntaxe du langage.
+    fr: `Python est un langage généraliste dont la lisibilité permet d'exprimer rapidement une règle, mais cette simplicité apparente ne dispense pas de concevoir les structures de données, de répartir les responsabilités et de gérer les erreurs. Je l'utilise principalement dans Odoo, où il porte les modèles ORM, les champs calculés, les contraintes, les actions planifiées, les contrôleurs, les scripts de migration et les tests. Le code s'exécute au sein d'un framework riche : comprendre l'héritage, les décorateurs, les ensembles d'enregistrements et le contexte est aussi important que connaître la syntaxe du langage.
 
 Ma pratique vise un code métier explicite. Je sépare les paramètres des algorithmes, évite les valeurs figées, travaille sur des ensembles d'enregistrements plutôt que sur des hypothèses de volume et tiens compte des transactions et des droits. Lorsque la documentation ne suffit pas, je lis les implémentations standard pour identifier la méthode réellement appelée et reproduire le pattern attendu par la version d'Odoo utilisée.
 
 Je suis également les évolutions du langage, mais je distingue les nouveautés de Python de ce qui est disponible et pertinent dans l'environnement précis de l'ERP. Une fonctionnalité récente n'a de valeur que si elle reste compatible avec le runtime, les conventions et le cycle de migration du produit.`,
-    en: `Python is a general-purpose language whose readability makes it possible to express a rule quickly, but that apparent simplicity does not remove the need to design data, responsibilities, and errors. I use it mainly in Odoo, where it powers ORM models, computed fields, constraints, scheduled actions, controllers, migration scripts, and tests. The code runs within a rich framework: understanding inheritance, decorators, recordsets, and context is as important as knowing the language syntax.
+    en: `Python is a general-purpose language whose readability makes it possible to express a rule quickly, but that apparent simplicity does not remove the need to design data structures, assign responsibilities, and handle errors. I use it mainly in Odoo, where it powers ORM models, computed fields, constraints, scheduled actions, controllers, migration scripts, and tests. The code runs within a rich framework: understanding inheritance, decorators, recordsets, and context is as important as knowing the language syntax.
 
 My practice aims for explicit business code. I separate settings from algorithms, avoid fixed values, operate on recordsets rather than volume assumptions, and account for transactions and permissions. When documentation is insufficient, I read standard implementations to identify the method actually called and reproduce the pattern expected by the Odoo version in use.
 
@@ -27,7 +27,7 @@ I also follow language evolution, while distinguishing Python innovations from w
       en: "Python 3.14 officially supports free-threaded mode",
     },
     summary: {
-      fr: "Python 3.14 a rendu officiellement supporté le mode free-threaded et ajouté notamment les annotations différées, les template strings et plusieurs interpréteurs dans la bibliothèque standard. Suivre ces évolutions permet de distinguer les nouveautés du langage de ce qui reste compatible avec le cadre précis d'Odoo.",
+      fr: "Python 3.14 assure désormais officiellement la prise en charge du mode free-threaded et a notamment ajouté les annotations différées, les template strings et plusieurs interpréteurs dans la bibliothèque standard. Suivre ces évolutions permet de distinguer les nouveautés du langage de ce qui reste compatible avec le cadre précis d'Odoo.",
       en: "Python 3.14 officially supported free-threaded mode and added deferred annotations, template strings, and multiple interpreters in the standard library. Following these changes helps distinguish new language capabilities from what remains compatible with Odoo's specific runtime constraints.",
     },
     source: "Python Software Foundation",
@@ -45,7 +45,7 @@ I also follow language evolution, while distinguishing Python innovations from w
       },
       result: {
         fr: "Le traitement quotidien couvre automatiquement les factures concernées. Le code peut évoluer sans dupliquer une version du module pour chaque règle de la comptabilité ; le gain de temps reste à mesurer.",
-        en: "Daily processing automatically covers the relevant invoices. The code can evolve without duplicating a module version for every accounting rule; the time saving remains to be measured.",
+        en: "Daily processing automatically covers the relevant invoices. The code can evolve without duplicating a module version for every accounting rule; the time savings remain to be measured.",
       },
       linkedRealisation: "modules-metier-odoo",
     },
@@ -82,7 +82,7 @@ I also follow language evolution, while distinguishing Python innovations from w
   ],
   selfCritique: {
     level: {
-      fr: "Je situe mon niveau à intermédiaire. J'utilise Python quotidiennement pour des modules, migrations, API et tâches planifiées, et je peux lire des portions du framework pour diagnostiquer un problème. Mon expérience reste fortement concentrée sur Odoo ; je dois encore approfondir les usages du langage hors ERP, le typage, l'asynchronisme et les outils de profilage plus avancés.",
+      fr: "J'estime avoir un niveau intermédiaire. J'utilise Python quotidiennement pour des modules, migrations, API et tâches planifiées, et je peux lire des portions du framework pour diagnostiquer un problème. Mon expérience reste fortement concentrée sur Odoo ; je dois encore approfondir les usages du langage hors ERP, le typage, l'asynchronisme et les outils de profilage plus avancés.",
       en: "I assess myself as intermediate. I use Python daily for modules, migrations, APIs, and scheduled tasks, and I can read framework portions to diagnose a problem. My experience remains strongly concentrated on Odoo; I still need to deepen language use outside ERP, typing, asynchronous programming, and more advanced profiling tools.",
     },
     importance: {

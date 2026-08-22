@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Orhan Madi Assani — Développeur Fullstack";
+export const alt = "Orhan Madi Assani — Développeur full-stack";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -91,7 +91,7 @@ export default async function Image({
               textAlign: "left",
             }}
           >
-            {isFr ? "Développeur Fullstack" : "Fullstack Developer"}
+            {isFr ? "Développeur full-stack" : "Full-Stack Developer"}
           </div>
           <div
             style={{

@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Orhan Madi Assani | Fullstack Developer",
-    "description": "Fullstack developer portfolio — Odoo, Symfony, Next.js. Based in Chambéry, France."
+    "title": "Orhan Madi Assani | Full-Stack Developer",
+    "description": "Full-stack developer portfolio — Odoo, Symfony, Next.js. Based in Chambéry, France."
   },
   "nav": {
     "home": "Home",
@@ -23,20 +23,20 @@
   "hero": {
     "eyebrow": "Creative portfolio · Software engineering",
     "greeting": "Hi, I'm",
-    "title1": "Fullstack",
+    "title1": "Full-Stack",
     "title2": "Developer",
     "subtitle": "Odoo · Symfony · Next.js",
     "statement": "I design premium web interfaces and robust business systems, with equal attention to product thinking, performance, and real-world usage.",
     "location": "Chambéry, France",
     "status": "Work-study at 1UP",
     "availabilityLabel": "ポートフォリオ",
-    "availability": "Fullstack developer in a work-study program, working daily across business systems, web products, and infrastructure.",
+    "availability": "Full-stack developer in a work-study program, working daily across business systems, web products, and infrastructure.",
     "ctaParcours": "View my experience",
     "ctaArticles": "Read my articles",
     "ctaWork": "View achievements",
     "ctaContact": "Contact me",
     "proofs": [
-      { "value": "22", "label": "Odoo modules published as open source." },
+      { "value": "20", "label": "Odoo modules published as open source." },
       { "value": "920/990", "label": "TOEIC score obtained on August 7, 2025." }
     ],
     "scroll": "Scroll"
@@ -44,9 +44,9 @@
   "about": {
     "eyebrow": "Profile",
     "heading": "About",
-    "lead": "A product-minded full-stack profile able to move from business need to final experience.",
+    "lead": "A product-minded full-stack profile able to move from a business need to the final user experience.",
     "statement": "I build web products that must convince users and hold up in production.",
-    "text": "Fullstack developer in a work-study program at 1UP, I started coding self-taught through The Odin Project before completing certified training at Simplon in web development and then application design. Currently pursuing a Master's in Software Engineering at ISCOD, I work daily on Odoo and Symfony projects. What I love about this field is the continuous problem-solving and the richness of the web — there's always something new to learn.",
+    "text": "As a full-stack developer in a work-study program at 1UP, I began learning to code independently through The Odin Project before completing certified training at Simplon in web development and then application design. Currently pursuing a Master's in Software Engineering at ISCOD, I work daily on Odoo and Symfony projects. What I love about this field is the continuous problem-solving and the richness of the web — there's always something new to learn.",
     "card1Title": "User focus & product impact",
     "card1Desc": "I start from the real need, clarify the expected use, and connect each technical decision to a useful outcome for the people concerned.",
     "card2Title": "Clean code & robust architecture",
@@ -62,13 +62,13 @@
     "backend": "Backend",
     "backendDesc": "Application architecture, business logic, APIs, and data with reliability as the baseline.",
     "frontend": "Frontend",
-    "frontendDesc": "Next.js/React interfaces with typography, responsiveness, motion, and sharp details.",
+    "frontendDesc": "Next.js/React interfaces with refined typography, responsive design, animation, and attention to detail.",
     "odoo": "Odoo",
     "odooDesc": "Custom modules, migrations, views, models, integrations, and ERP workflow understanding.",
     "devops": "DevOps & Tools",
     "devopsDesc": "Deployment, databases, containers, VPS operations, and tooling to keep releases clean.",
     "methods": "Methods",
-    "methodsDesc": "Requirement discovery, iteration, documentation, code review, and communication with business profiles.",
+    "methodsDesc": "Requirement discovery, iteration, documentation, code review, and communication with business stakeholders.",
     "education": "Education",
     "educationDesc": "Algorithmic foundations, design, project practice, and continuous growth in software engineering."
   },
@@ -83,7 +83,7 @@
     "readCase": "View achievement",
     "ctaAll": "View all achievements",
     "cases": [
-      { "slug": "migration-odoo-v16-v19", "problem": "Move a critical ERP across three major releases without lasting disruption to work or loss of data.", "contribution": "Inventory, module-by-module strategy, migration rehearsals, testing, cutover, and stabilization managed autonomously.", "result": "Odoo 16 → 19 · 19 direct users · no permanent data loss · stabilized within one month.", "metricValue": "19", "metricLabel": "direct users", "metricNote": "No permanent data loss and stabilization within one month." },
+      { "slug": "migration-odoo-v16-v19", "problem": "Move a critical ERP across three major releases without lasting disruption to work or loss of data.", "contribution": "Inventory, module-by-module strategy, migration rehearsals, testing, cutover, and stabilization managed autonomously.", "result": "Odoo 16 → 19 · 20 direct users · no permanent data loss.", "metricValue": "20", "metricLabel": "direct users", "metricNote": "Documented internal scope, without a published count of external users." },
       { "slug": "modules-metier-odoo", "problem": "Important business processes remained manual or exceeded the limits of standard configuration and Odoo Studio.", "contribution": "Requirement discovery, Python/XML design, testing, deployment, and maintenance of a version-controlled business layer in the ERP.", "result": "16 internal business modules · automated invoice checks and reminders.", "metricValue": "16", "metricLabel": "internal business modules", "metricNote": "Time saved has not yet been measured reliably." },
       { "slug": "refonte-site-corporate", "problem": "Modernize the company image without sacrificing mobile quality, performance, or control over published content.", "contribution": "Technical ownership, Next.js architecture, design system, internationalization, SEO, accessibility, and coordination of approvals.", "result": "Measured Lighthouse: 99 performance, 100 accessibility, and 100 SEO.", "metricValue": "99", "metricLabel": "Lighthouse performance", "metricNote": "100 accessibility and 100 SEO in the published measurement." }
     ]
@@ -100,15 +100,15 @@
       {
         "order": 1,
         "period": "Dec. 2024 — Present",
-        "title": "Fullstack Developer — Work-Study",
+        "title": "Full-Stack Developer — Work-Study",
         "company": "1UP Distribution",
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
-        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Corporate website redesign with Next.js. Solo management of Odoo v16 → v19 migration. Database administration, CI/CD and VPS server management (OVH, Digital Ocean).",
+        "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Corporate website redesign with Next.js. Solo management of Odoo v16 → v19 migration. Database administration, CI/CD, and VPS server management (OVH, DigitalOcean).",
         "responsibilities": [
           "Technical owner for internal Odoo business developments.",
           "Autonomous management of the Odoo v16 → v19 ERP migration.",
-          "Fullstack development across ERP, B2B e-commerce, corporate website and infrastructure."
+          "Full-stack development across ERP, B2B e-commerce, corporate website, and infrastructure."
         ],
         "linkedRealisations": ["migration-odoo-v16-v19", "modules-metier-odoo", "refonte-site-corporate"],
         "linkedCompetences": ["developpement-odoo", "python", "developpement-frontend", "devops", "autonomie"],
@@ -117,7 +117,7 @@
       {
         "order": 4,
         "period": "May — Oct. 2024",
-        "title": "Web Developer Intern — LIG Lab",
+        "title": "Web Developer Intern — LIG",
         "company": "Grenoble Computer Science Laboratory",
         "logo": "/logo-lig.svg",
         "url": "https://www.liglab.fr/fr",
@@ -182,7 +182,7 @@
         "certificateLabel": "View the CDA certification",
         "responsibilities": [
           "Design an application architecture and model its data.",
-          "Develop, test, and document a fullstack application.",
+          "Develop, test, and document a full-stack application.",
           "Present technical choices and achieved results."
         ],
         "linkedRealisations": ["app-trajectoires-de-vie", "portfolio-professionnel"],
@@ -198,7 +198,7 @@
         "url": "https://www.simplon.co/",
         "location": "Chambéry · Savoie",
         "description": "Level 5 professional certification covering interface integration, frontend and backend development, databases, and web application deployment.",
-        "institutions": "Simplon's project-based pedagogy turned a self-taught practice, notably built with The Odin Project, into a professional method: analyze, build, test, document, and present a usable solution.",
+        "institutions": "Simplon's project-based pedagogy turned self-directed learning, developed notably through The Odin Project, into a professional method: analyze, build, test, document, and present a usable solution.",
         "certificateUrl": "/proofs/titre-dwwm_filigrane.pdf",
         "certificateLabel": "View the DWWM certification",
         "responsibilities": [
@@ -214,8 +214,8 @@
   },
   "proofs": {
     "eyebrow": "Documents",
-    "heading": "A few verifiable proofs of the journey.",
-    "text": "CV, certifications, and titles are grouped here to complement the detailed portfolio case studies.",
+    "heading": "A few verifiable pieces of evidence from my journey.",
+    "text": "My résumé, certificates, and qualifications are grouped here to complement the detailed portfolio case studies.",
     "cta": "Contact me",
     "openDocument": "View PDF document",
     "items": {
@@ -228,11 +228,11 @@
         "description": "TOEIC Listening & Reading score: 920/990, obtained on August 7, 2025."
       },
       "cda": {
-        "title": "CDA title",
+        "title": "CDA qualification",
         "description": "Application Designer & Developer, RNCP level 6."
       },
       "dwwm": {
-        "title": "DWWM title",
+        "title": "DWWM qualification",
         "description": "Web and Mobile Web Developer, RNCP level 5."
       }
     }
@@ -248,7 +248,7 @@
     "pageTitle": "Contact | Orhan Madi Assani",
     "pageDescription": "Contact me for a question, a project, or a professional conversation.",
     "heading": "Contact me",
-    "subtext": "A question, a project, or a professional message? Fill out the form below and I'll get back to you as soon as possible.",
+    "subtext": "A question, a project, or a professional message? Fill out the form below, and I'll get back to you as soon as possible.",
     "altEmail": "You can also reach me directly by email at",
     "recaptchaDisclosure": "This site is protected by reCAPTCHA and the Google {privacy} and {terms} apply.",
     "privacyPolicy": "Privacy Policy",
@@ -282,11 +282,11 @@
     "subjectRequired": "Specify the subject of your message.",
     "subjectMax": "The subject must not exceed 120 characters.",
     "messageMin": "Your message must contain at least 10 characters.",
-    "messageMax": "Your message must not exceed 5000 characters."
+    "messageMax": "Your message must not exceed 5,000 characters."
   },
   "contactReasons": [
     { "value": "offer", "label": "Job offer" },
-    { "value": "freelance", "label": "Freelance mission" },
+    { "value": "freelance", "label": "Freelance project" },
     { "value": "collaboration", "label": "Technical collaboration" },
     { "value": "question", "label": "Technical question" },
     { "value": "feedback", "label": "Article feedback" },
@@ -323,21 +323,21 @@
         "slug": "odoo-session-timeout",
         "title": "Solving automatic session disconnection in Odoo",
         "description": "How to configure sessions.max_inactivity_seconds to prevent unwanted user disconnections in Odoo.",
-        "date": "2025-01-15",
+        "date": "2026-03-13",
         "tags": ["Odoo", "PostgreSQL", "Administration"]
       },
       {
         "slug": "telecharger-code-odoo-jupyter",
         "title": "Download Odoo source code via Jupyter Lab",
         "description": "How to retrieve the community and enterprise Odoo source code from Odoo.sh locally using the built-in Jupyter Lab terminal.",
-        "date": "2025-02-10",
+        "date": "2026-03-15",
         "tags": ["Odoo", "Odoo.sh", "Jupyter"]
       },
       {
         "slug": "docker-dangling-images",
-        "title": "Free disk space by cleaning Docker dangling images",
+        "title": "Free disk space by removing dangling Docker images",
         "description": "Diagnosing and resolving disk saturation caused by dangling Docker images on a production VPS.",
-        "date": "2025-03-01",
+        "date": "2026-03-15",
         "tags": ["Docker", "Linux", "DevOps", "VPS"]
       },
       {
@@ -357,7 +357,7 @@
       {
         "slug": "application-cap2vie-lig",
         "title": "CAP2vie at LIG: sociological survey tool and D3.js visualization",
-        "description": "Architecture, visualization, conflict handling, and multi-screen synchronization for a life trajectories app.",
+        "description": "Architecture, visualization, conflict handling, and multi-screen synchronization for a life-trajectory app.",
         "date": "2026-05-13",
         "tags": ["Vue.js", "Nuxt", "D3.js", "Research"]
       }
@@ -365,7 +365,7 @@
   },
   "projects": {
     "pageTitle": "Projects | Orhan Madi Assani",
-    "pageDescription": "Standalone Odoo modules extracted from business features and published as open-source repositories on GitHub.",
+    "pageDescription": "Standalone Odoo modules extracted from business features and published in open-source repositories on GitHub.",
     "eyebrow": "Open-source modules",
     "heading": "Odoo Projects",
     "subtext": "A curated list of standalone Odoo modules extracted from real business features, cleaned up for generic installations and published on GitHub.",
@@ -384,9 +384,9 @@
   },
   "aboutPage": {
     "pageTitle": "About | Orhan Madi Assani",
-    "pageDescription": "Fullstack developer in a work-study program — my journey, my values, and my professional and personal project.",
+    "pageDescription": "Full-stack developer in a work-study program — my journey, my values, and my professional and personal project.",
     "heading": "About me",
-    "subtext": "Fullstack developer, self-taught turned professional — discover my journey, my values, and what drives me.",
+    "subtext": "A self-taught developer turned professional — discover my journey, my values, and what drives me.",
     "journeyHeading": "My journey",
     "valuesHeading": "My values",
     "projectHeading": "My professional and personal project",
@@ -397,7 +397,7 @@
     "pageTitle": "Skills | Orhan Madi Assani",
     "pageDescription": "My technical and human skills in software engineering — Odoo, Python, Symfony, React, and more.",
     "heading": "My skills",
-    "subtext": "A synthetic overview of my technical and human skills, with their relative level.",
+    "subtext": "A concise overview of my technical and human skills, with their relative level.",
     "humanSkills": "Human skills",
     "technicalSkills": "Technical skills",
     "viewDetail": "Read article",
@@ -433,7 +433,7 @@
     "objectivesHeading": "Objectives, context and stakes",
     "risksHeading": "Risks and mitigation measures",
     "stepsHeading": "The steps — what I did",
-    "actorsHeading": "The actors — interactions",
+    "actorsHeading": "The stakeholders — interactions",
     "resultsHeading": "The results",
     "aftermathHeading": "After the project",
     "critiqueHeading": "My critical review",
@@ -447,7 +447,7 @@
   },
   "footer": {
     "pitch": "Full-stack, product, premium interfaces.",
-    "about": "Fullstack Developer in a work-study program at 1UP, specialized in Odoo, Symfony and Next.js. Based in Chambéry, France.",
+    "about": "Full-Stack Developer in a work-study program at 1UP, specializing in Odoo, Symfony, and Next.js. Based in Chambéry, France.",
     "navTitle": "Navigation",
     "linksTitle": "Links",
     "legalTitle": "Legal",
@@ -513,11 +513,11 @@
       "Audience measurement: browsing data sent to Google only after consent"
     ],
     "purpose": "Use of Data",
-    "purposeText": "Contact-form processing relies on the legitimate interest of answering received requests and protecting the website against spam. Data is available to the site publisher and to providers strictly required for operation, including Vercel for hosting and Resend for email delivery. It is never sold. Messages are kept for the time required to follow up on a request and deleted no later than twelve months after the last exchange, unless a legal obligation requires otherwise.",
+    "purposeText": "Contact-form processing relies on the legitimate interest in responding to requests and protecting the website against spam. Data is available to the site publisher and to providers strictly required for operation, including Vercel for hosting and Resend for email delivery. It is never sold. Messages are kept for the time required to follow up on a request and deleted no later than twelve months after the last exchange, unless a legal obligation requires otherwise.",
     "cookiesSection": "Cookies",
     "cookiesText": "Language and theme are preferences required to provide the requested experience. Google Tag Manager and Google Analytics load only after explicit consent, which can be withdrawn at any time through the “Manage cookies” link in the footer. reCAPTCHA can load only after an interaction with the contact form when that service is configured.",
     "internationalTransfers": "International data transfers",
-    "internationalTransfersText": "Depending on the service and configuration, Vercel, Resend and Google (GTM, Google Analytics and reCAPTCHA) may process certain data from the United States or other countries outside the European Economic Area. When a transfer is necessary, it is governed by a European Commission adequacy decision, including the EU–US Data Privacy Framework where applicable, or otherwise by the European Commission’s Standard Contractual Clauses and appropriate supplementary safeguards. You can request more information about these safeguards at the address listed in the legal notice.",
+    "internationalTransfersText": "Depending on the service and configuration, Vercel, Resend, and Google (GTM, Google Analytics, and reCAPTCHA) may process certain data in the United States or other countries outside the European Economic Area. When a transfer is necessary, it is governed by a European Commission adequacy decision, including the EU–US Data Privacy Framework where applicable, or otherwise by the European Commission’s Standard Contractual Clauses and appropriate supplementary safeguards. You can request more information about these safeguards at the address listed in the legal notice.",
     "rights": "Your Rights",
     "rightsText": "Under the GDPR, you have rights of access, rectification, erasure, restriction, objection, and, where applicable, portability. You may withdraw consent at any time. To exercise these rights, use the address listed in the legal notice. You may also lodge a complaint with the French data protection authority, the CNIL.",
     "updates": "Changes",

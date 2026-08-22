@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import CompetenceDetailPage from "../competences/[slug]/page";
 
 describe("CompetenceDetailPage", () => {
-  it("provides a readable contents navigation and three achievement-backed proofs", async () => {
+  it("provides readable table-of-contents navigation and three achievement-backed proofs", async () => {
     const page = await CompetenceDetailPage({
       params: Promise.resolve({ locale: "fr", slug: "developpement-backend" }),
     });
