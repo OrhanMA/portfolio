@@ -86,6 +86,7 @@ describe("Visual Regression", () => {
           contactForm: frDict.contactForm,
           contactReasons: frDict.contactReasons,
           contactValidation: frDict.contactValidation,
+          legal: frDict.legal,
         }}
       />
     );

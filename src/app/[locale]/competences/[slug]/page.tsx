@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
-import { getDictionary } from "../../dictionaries";
 import {
   getCompetenceBySlug,
   competences,
@@ -15,6 +14,17 @@ import {
 } from "@/lib/competences";
 import { getRealisationBySlug } from "@/lib/realisations";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { getLocalizedPageContext } from "../../route-context";
+
+const romanNumerals = ["I", "II", "III", "IV", "V"] as const;
+
+function formatRomanIndex(index: number) {
+  return romanNumerals[index - 1] ?? String(index);
+}
+
+function formatAlphabeticalIndex(index: number) {
+  return `${String.fromCharCode(96 + index)}.`;
+}
 
 function EditorialText({
   text,
@@ -43,9 +53,10 @@ function SectionHeading({ index, children }: { index: number; children: ReactNod
     <div className="flex items-start gap-4 sm:gap-5">
       <span
         aria-hidden="true"
+        data-section-index
         className="mt-1 shrink-0 font-sans text-xs font-bold tracking-[0.18em] text-primary"
       >
-        {String(index).padStart(2, "0")}
+        {formatRomanIndex(index)}
       </span>
       <h2 className="text-balance text-2xl font-black leading-tight tracking-[-0.025em] sm:text-3xl">
         {children}
@@ -99,13 +110,12 @@ export default async function CompetenceDetailPage({
 }) {
   const { locale, slug } = await params;
   const competence = getCompetenceBySlug(slug);
-  const loc = parseLocale(locale);
 
-  if (!competence || !loc) {
+  if (!competence) {
     notFound();
   }
 
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const sections = [
     { id: "definition", title: dict.competencesPage.definitionHeading },
     { id: "evidence", title: dict.competencesPage.proofsHeading },
@@ -146,7 +156,7 @@ export default async function CompetenceDetailPage({
           </div>
         }
         aside={
-          <aside className="premium-card rounded-xl border-l-4 border-l-primary p-5">
+          <aside className="border border-border bg-card p-5">
             <p className="editorial-index">{dict.competencesPage.levelLabel}</p>
             <div className="mt-5">
               <div className="flex items-end justify-between gap-4">
@@ -178,12 +188,12 @@ export default async function CompetenceDetailPage({
         }
       />
 
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:items-start">
           <aside id="competence-contents" className="scroll-mt-28 lg:sticky lg:top-28">
             <nav
               aria-label={dict.competencesPage.contentsHeading}
-              className="premium-card rounded-xl border-t-4 border-t-primary p-5 sm:p-6"
+              className="border border-border bg-card p-5 sm:p-6"
             >
               <p className="editorial-index">
                 {dict.competencesPage.contentsHeading}
@@ -202,7 +212,7 @@ export default async function CompetenceDetailPage({
                         aria-hidden="true"
                         className="font-sans text-xs font-bold text-primary"
                       >
-                        {String(index + 1).padStart(2, "0")}
+                        {formatRomanIndex(index + 1)}
                       </span>
                       <span className="font-medium group-hover:underline group-hover:underline-offset-4">
                         {section.title}
@@ -217,7 +227,7 @@ export default async function CompetenceDetailPage({
           <div className="grid min-w-0 gap-8">
             <Card
               id="definition"
-              className="premium-card scroll-mt-28 gap-0 rounded-xl border-t-4 border-t-primary py-0"
+              className="scroll-mt-28 gap-0 border border-border bg-card py-0"
             >
               <CardHeader className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
                 <CardTitle>
@@ -229,12 +239,21 @@ export default async function CompetenceDetailPage({
               <CardContent className="px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
                 <div className="mx-auto max-w-[76ch]">
                   <EditorialText text={competence.definition[loc]} />
-                  <article className="mt-9 border-l-2 border-vermillion bg-vermillion/[0.04] px-5 py-5 sm:px-6">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                      <span>{dict.competencesPage.relatedNewsHeading}</span>
-                      <time dateTime={competence.relatedNews.date}>
-                        {competence.relatedNews.dateLabel[loc]}
-                      </time>
+                  <article className="mt-9 border-l-2 border-foreground bg-muted/50 px-5 py-5 sm:px-6">
+                    <div className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3">
+                      <span
+                        aria-hidden="true"
+                        data-subsection-index
+                        className="font-sans text-xs font-bold text-primary"
+                      >
+                        {formatAlphabeticalIndex(1)}
+                      </span>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                        <span>{dict.competencesPage.relatedNewsHeading}</span>
+                        <time dateTime={competence.relatedNews.date}>
+                          {competence.relatedNews.dateLabel[loc]}
+                        </time>
+                      </div>
                     </div>
                     <h3 className="mt-3 text-xl font-bold leading-snug">
                       {competence.relatedNews.title[loc]}
@@ -260,7 +279,7 @@ export default async function CompetenceDetailPage({
 
             <Card
               id="evidence"
-              className="premium-card scroll-mt-28 gap-0 rounded-xl border-t-4 border-t-vermillion py-0"
+              className="scroll-mt-28 gap-0 border border-border bg-card py-0"
             >
               <CardHeader className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
                 <CardTitle>
@@ -279,9 +298,10 @@ export default async function CompetenceDetailPage({
                       <div className="grid gap-3 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-5">
                         <span
                           aria-hidden="true"
-                          className="flex h-9 w-11 items-center justify-center rounded-md bg-primary/10 font-sans text-xs font-bold tracking-[0.12em] text-primary"
+                          data-subsection-index
+                          className="font-sans text-xs font-bold tracking-[0.12em] text-primary"
                         >
-                          {String(index + 1).padStart(2, "0")}
+                          {formatAlphabeticalIndex(index + 1)}
                         </span>
                         <div className="min-w-0">
                           <h3 className="text-pretty text-xl font-bold leading-snug tracking-[-0.015em]">
@@ -319,7 +339,7 @@ export default async function CompetenceDetailPage({
 
             <Card
               id="self-assessment"
-              className="premium-card scroll-mt-28 gap-0 rounded-xl border-t-4 border-t-primary py-0"
+              className="scroll-mt-28 gap-0 border border-border bg-card py-0"
             >
               <CardHeader className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
                 <CardTitle>
@@ -351,11 +371,18 @@ export default async function CompetenceDetailPage({
                       label: dict.competencesPage.adviceLabel,
                       value: competence.selfCritique.advice[loc],
                     },
-                  ].map((item) => (
+                  ].map((item, index) => (
                     <div
                       key={item.label}
-                      className="grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6"
+                      className="grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-[2rem_12rem_minmax(0,1fr)] sm:gap-6"
                     >
+                      <span
+                        aria-hidden="true"
+                        data-subsection-index
+                        className="font-sans text-xs font-bold text-primary"
+                      >
+                        {formatAlphabeticalIndex(index + 1)}
+                      </span>
                       <dt className="font-semibold text-foreground">{item.label}</dt>
                       <dd>
                         <EditorialText text={item.value} compact />
@@ -371,7 +398,7 @@ export default async function CompetenceDetailPage({
 
             <Card
               id="growth"
-              className="premium-card scroll-mt-28 gap-0 rounded-xl border-t-4 border-t-vermillion py-0"
+              className="scroll-mt-28 gap-0 border border-border bg-card py-0"
             >
               <CardHeader className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
                 <CardTitle>
@@ -391,11 +418,18 @@ export default async function CompetenceDetailPage({
                       label: dict.competencesPage.trainingLabel,
                       value: competence.evolution.training[loc],
                     },
-                  ].map((item) => (
+                  ].map((item, index) => (
                     <div
                       key={item.label}
-                      className="grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6"
+                      className="grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-[2rem_12rem_minmax(0,1fr)] sm:gap-6"
                     >
+                      <span
+                        aria-hidden="true"
+                        data-subsection-index
+                        className="font-sans text-xs font-bold text-primary"
+                      >
+                        {formatAlphabeticalIndex(index + 1)}
+                      </span>
                       <dt className="font-semibold text-foreground">{item.label}</dt>
                       <dd>
                         <EditorialText text={item.value} compact />
@@ -412,7 +446,7 @@ export default async function CompetenceDetailPage({
             {competence.linkedRealisations.length > 0 && (
               <Card
                 id="linked-achievements"
-                className="premium-card scroll-mt-28 gap-0 rounded-xl border-t-4 border-t-primary py-0"
+                className="scroll-mt-28 gap-0 border border-border bg-card py-0"
               >
                 <CardHeader className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
                   <CardTitle>
@@ -423,14 +457,21 @@ export default async function CompetenceDetailPage({
                 </CardHeader>
                 <CardContent className="px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
                   <ul className="mx-auto grid max-w-[76ch] gap-3">
-                    {competence.linkedRealisations.map((realisationSlug) => {
+                    {competence.linkedRealisations.map((realisationSlug, index) => {
                       const realisation = getRealisationBySlug(realisationSlug);
                       return (
                         <li key={realisationSlug}>
                           <Link
                             href={`/${locale}/realisations/${realisationSlug}`}
-                            className="group flex items-center rounded-lg border border-border/70 bg-background/55 px-4 py-3.5 font-medium transition-colors hover:border-primary/60 hover:bg-muted"
+                            className="group grid grid-cols-[2rem_minmax(0,1fr)] items-center border-b border-border/70 py-3.5 font-medium transition-colors hover:text-primary"
                           >
+                            <span
+                              aria-hidden="true"
+                              data-subsection-index
+                              className="font-sans text-xs font-bold text-primary"
+                            >
+                              {formatAlphabeticalIndex(index + 1)}
+                            </span>
                             <span className="transition-colors group-hover:text-primary">
                               {realisation?.title[loc] ?? realisationSlug}
                             </span>

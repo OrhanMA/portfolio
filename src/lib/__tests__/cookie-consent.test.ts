@@ -5,6 +5,7 @@ import {
   hasConsentBeenGiven,
   isAnalyticsAccepted,
   setStoredConsent,
+  shouldReloadAfterAnalyticsWithdrawal,
 } from "@/lib/cookie-consent";
 
 describe("cookie-consent utilities", () => {
@@ -75,5 +76,26 @@ describe("cookie-consent utilities", () => {
 
     expect(document.cookie).not.toContain("_ga=test");
     expect(document.cookie).toContain("portfolio=value");
+  });
+
+  it("requires a reload only when already-granted analytics consent is withdrawn", () => {
+    expect(
+      shouldReloadAfterAnalyticsWithdrawal(
+        { analytics: true },
+        { necessary: true, analytics: false },
+      ),
+    ).toBe(true);
+    expect(
+      shouldReloadAfterAnalyticsWithdrawal(
+        { analytics: false },
+        { necessary: true, analytics: false },
+      ),
+    ).toBe(false);
+    expect(
+      shouldReloadAfterAnalyticsWithdrawal(null, {
+        necessary: true,
+        analytics: false,
+      }),
+    ).toBe(false);
   });
 });

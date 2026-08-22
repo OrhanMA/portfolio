@@ -2,12 +2,13 @@ import createMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  devIndicators: false,
   experimental: {
     globalNotFound: true,
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    qualities: [75, 90, 95],
+    qualities: [60, 75, 90, 95],
   },
   allowedDevOrigins: [
     "localhost",

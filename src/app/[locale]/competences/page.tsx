@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -14,14 +13,11 @@ import {
   getCompetencesByType,
   competenceLevelLabels,
 } from "@/lib/competences";
-import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
-import { getDictionary } from "../dictionaries";
 import { RadarChart } from "@/components/radar-chart";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
-
-const linkClassName =
-  "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
+import { actionLinkClassName } from "@/lib/styles";
+import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
   params,
@@ -29,9 +25,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   return createLocalizedMetadata({
     locale: loc,
     pathname: "/competences",
@@ -46,9 +40,7 @@ export default async function CompetencesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   const humanSkills = getCompetencesByType("human");
   const technicalSkills = getCompetencesByType("technical");
@@ -76,7 +68,7 @@ export default async function CompetencesPage({
       />
 
       {/* Radar Chart */}
-      <section className="section-tinted border-b border-foreground/15 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="border-b border-border bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="editorial-index mb-3">01</p>
           <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
@@ -91,7 +83,7 @@ export default async function CompetencesPage({
       {/* Human Skills */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="editorial-index mb-3 text-vermillion">02</p>
+          <p className="editorial-index mb-3">02</p>
           <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
             {dict.competencesPage.humanSkills}
           </h2>
@@ -99,7 +91,7 @@ export default async function CompetencesPage({
             {humanSkills.map((competence) => (
               <Card
                 key={competence.slug}
-                className="premium-card h-full rounded-xl border-l-4 border-l-vermillion transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+                className="h-full border border-border bg-card transition-colors duration-200 hover:bg-muted/50"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
@@ -122,7 +114,7 @@ export default async function CompetencesPage({
                 <CardContent>
                   <Link
                     href={`/${locale}/competences/${competence.slug}`}
-                    className={linkClassName}
+                    className={actionLinkClassName}
                   >
                     {dict.competencesPage.viewDetail}
                   </Link>
@@ -134,7 +126,7 @@ export default async function CompetencesPage({
       </section>
 
       {/* Technical Skills */}
-      <section className="section-tinted border-t border-foreground/15 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="border-t border-border bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <p className="editorial-index mb-3">03</p>
           <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
@@ -144,7 +136,7 @@ export default async function CompetencesPage({
             {technicalSkills.map((competence) => (
               <Card
                 key={competence.slug}
-                className="premium-card h-full rounded-xl border-l-4 border-l-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+                className="h-full border border-border bg-card transition-colors duration-200 hover:bg-muted/50"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
@@ -167,7 +159,7 @@ export default async function CompetencesPage({
                 <CardContent>
                   <Link
                     href={`/${locale}/competences/${competence.slug}`}
-                    className={linkClassName}
+                    className={actionLinkClassName}
                   >
                     {dict.competencesPage.viewDetail}
                   </Link>

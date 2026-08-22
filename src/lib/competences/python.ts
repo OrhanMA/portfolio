@@ -44,8 +44,8 @@ I also follow language evolution, while distinguishing Python innovations from w
         en: `The overdue-reminder module uses Python to select invoices, calculate their position relative to the due date, apply exclusions, and trigger the action matching the current stage. Early values were too fixed. I restructured the code so intervals, email templates, recipients, attachments, and blocking thresholds come from configuration. The algorithm retains responsibility for applying the rule, while authorized users select business values from Odoo.`,
       },
       result: {
-        fr: "Le traitement quotidien couvre automatiquement les factures concernées et économise environ une demi-journée de travail par semaine. Le code peut évoluer sans dupliquer une version du module pour chaque règle de la comptabilité.",
-        en: "Daily processing automatically covers the relevant invoices and saves around half a working day each week. The code can evolve without duplicating a module version for every accounting rule.",
+        fr: "Le traitement quotidien couvre automatiquement les factures concernées. Le code peut évoluer sans dupliquer une version du module pour chaque règle de la comptabilité ; le gain de temps reste à mesurer.",
+        en: "Daily processing automatically covers the relevant invoices. The code can evolve without duplicating a module version for every accounting rule; the time saving remains to be measured.",
       },
       linkedRealisation: "modules-metier-odoo",
     },

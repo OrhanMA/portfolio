@@ -28,7 +28,10 @@ export function Footer({
   ];
 
   return (
-    <footer className="border-t border-foreground/15 px-4 py-5 sm:px-6 lg:px-8">
+    <footer
+      data-site-footer
+      className="border-t border-foreground/15 px-4 py-5 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
         <nav
           aria-label={dict.footer.navTitle}
@@ -71,8 +74,6 @@ export function Footer({
           <p>
             © {new Date().getFullYear()} Orhan Madi Assani · {dict.footer.copyright}
           </p>
-
-          <p className="hidden xl:block">{dict.footer.builtWith}</p>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link href={`/${locale}/mentions-legales`} className="hover:text-foreground">

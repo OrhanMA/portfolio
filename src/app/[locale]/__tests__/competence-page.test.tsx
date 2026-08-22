@@ -37,6 +37,23 @@ describe("CompetenceDetailPage", () => {
       }),
     ).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Retour au sommaire" })).toHaveLength(4);
+
+    const sectionIndexes = document.querySelectorAll("[data-section-index]");
+    expect(Array.from(sectionIndexes, (index) => index.textContent)).toEqual([
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V",
+    ]);
+
+    const evidence = document.querySelector("#evidence");
+    expect(
+      Array.from(
+        evidence?.querySelectorAll("[data-subsection-index]") ?? [],
+        (index) => index.textContent,
+      ),
+    ).toEqual(["a.", "b.", "c."]);
   });
 
   it("shows the dated news item and official source in French", async () => {

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getDictionary } from "../dictionaries";
-import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
   params,
@@ -12,9 +10,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   return createLocalizedMetadata({
     locale: loc,
     pathname: "/mentions-legales",
@@ -29,10 +25,12 @@ export default async function LegalNoticePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { dictionary: dict } = await getLocalizedPageContext(locale);
   const sections = [
+    {
+      title: dict.legal.status,
+      content: <p>{dict.legal.statusText}</p>,
+    },
     {
       title: dict.legal.editor,
       content: (
@@ -98,13 +96,13 @@ export default async function LegalNoticePage({
         titleClassName="uppercase"
       />
 
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 lg:grid-cols-2">
             {sections.map((section, index) => (
               <section
                 key={section.title}
-                className="premium-card grid gap-5 rounded-xl border-t-4 border-t-primary p-5 even:border-t-vermillion sm:grid-cols-[64px_1fr] sm:p-7"
+                className="grid gap-5 border border-border bg-card p-5 sm:grid-cols-[64px_1fr] sm:p-7"
               >
                 <p className="editorial-index">
                   0{index + 1}

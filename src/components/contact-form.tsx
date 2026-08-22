@@ -41,7 +41,7 @@ import type { Locale } from "@/lib/i18n";
 
 export type ContactFormDictionary = Pick<
   Dictionary,
-  "contactForm" | "contactReasons" | "contactValidation"
+  "contactForm" | "contactReasons" | "contactValidation" | "legal"
 >;
 
 export function ContactForm({
@@ -110,8 +110,8 @@ export function ContactForm({
         aria-live="polite"
         className="flex flex-col items-center gap-4 rounded-xl border border-border bg-card p-8 text-center"
       >
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
-          <CheckCircle2 aria-hidden="true" className="h-6 w-6 text-green-500" />
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <CheckCircle2 aria-hidden="true" className="h-6 w-6 text-foreground" />
         </div>
         <div>
           <h3 className="text-lg font-semibold">
@@ -331,6 +331,23 @@ export function ContactForm({
             </>
           )}
         </Button>
+
+        <p className="max-w-2xl text-xs leading-5 text-muted-foreground">
+          {dict.contactForm.privacyNotice} {" "}
+          <a
+            href={`mailto:${dict.legal.editorEmail}`}
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            {dict.legal.editorEmail}
+          </a>
+          {" "}
+          <a
+            href={`/${locale}/politique-confidentialite`}
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            {dict.contactForm.privacyNoticeLink}
+          </a>
+        </p>
       </FieldGroup>
     </form>
   );

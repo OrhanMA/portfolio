@@ -1,4 +1,4 @@
-import type { LocalizedContent } from "../odoo-projects";
+import type { LocalizedContent } from "@/lib/types/content";
 
 export type Realisation = {
   slug: string;

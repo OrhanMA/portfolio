@@ -4,13 +4,13 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-07-16
+Last reviewed: 2026-08-22
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 ---
 
-## État des lieux actuel — 2026-07-16
+## État des lieux historique — 2026-07-16
 
 L'application est un portfolio Next.js 16 bilingue FR/EN : toutes les routes utilisent l'App Router et le segment `[locale]`. Le socle technique couvre les dictionnaires JSON, une navbar et un footer persistants, GSAP centralisé, Lenis chargé à l'interaction, thème dark/light, consentement cookies versionné, GTM conditionné au consentement, formulaire de contact avec validation et anti-spam multicouche, sitemap, robots, tests unitaires/browser/E2E et CI GitHub Actions. Un nonce CSP est généré par requête : le rendu est donc dynamique par choix de sécurité, sans script non sécurisé. Le footer donne accès au CV, au TOEIC et aux titres RNCP sans alourdir la homepage.
 
@@ -228,11 +228,11 @@ La page de présentation expose désormais explicitement le projet professionnel
 | Navigation circulaire | — | ✅ | ✅ |
 | Espace contact | 2 | 2 | ✅ |
 | Orthographe | -1%/5 fautes | 0 retrait | ✅ |
-| **TOTAL** | **100** | **100/100** | ✅ |
+| **TOTAL** | **100** | **100/100 documentaire** | ⚠️ |
 
 ---
 
-## Audit technique du 2026-07-16
+## Audit technique historique du 2026-07-16
 
 - Build Next.js 16 de production réussi, avec génération de 109 pages. Toutes les routes du portfolio sont dans l'App Router ; le nonce CSP rend les pages dynamiques par conception.
 - Lighthouse 13.4.0 lancé avec le profil mobile de Chrome sur les **100 URL** de production du sitemap, une fois par URL : moyennes de **94,3/100** en performance, **99,8/100** en accessibilité, **99,9/100** en bonnes pratiques et **100/100** en SEO. Les 100 pages ont un CLS de **0**, 98 pages atteignent au moins 90 en performance, le FCP médian est de 1,08 s, le LCP médian de 2,49 s et le TBT médian de 44 ms. L’audit antérieur relevait 57/100 sur les variantes App Trajectoires de vie à cause de quatre lecteurs YouTube créés dès le chargement. Ils sont désormais remplacés par une façade sans requête tierce, qui ne crée le lecteur `youtube-nocookie` qu’après une action explicite. Rejouer Lighthouse sur la production reste nécessaire pour consigner le nouveau score. Voir le rapport historique dans [`reports/lighthouse-production-2026-07-16.md`](./reports/lighthouse-production-2026-07-16.md).
@@ -242,6 +242,33 @@ La page de présentation expose désormais explicitement le projet professionnel
 - Audit Playwright des pages secondaires réussi en 1280 × 900 et 390 × 844, en français et en anglais, sans débordement horizontal.
 - Suite Vitest réussie : 36 fichiers, 191 tests. Suite E2E Playwright : 30 scénarios réussis sur le build de production.
 - Régressions visuelles homepage desktop et mobile inspectées, actualisées après les changements intentionnels, puis rejouées avec succès.
+
+---
+
+## Revue de livraison — 2026-08-14
+
+Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-delivery-audit-2026-08-14.md`](./reports/portfolio-delivery-audit-2026-08-14.md). Le relevé des preuves humaines, mesures et essais externes est prêt dans [`reports/portfolio-evidence-collection-template.md`](./reports/portfolio-evidence-collection-template.md). Les états ci-dessous remplacent les affirmations globales de l'audit historique lorsqu'ils divergent.
+
+| Domaine | État | Vérification effectuée |
+| --- | --- | --- |
+| Contenu, grille et relations compétences ↔ réalisations | ✅ | 10 compétences et 5 réalisations, liens réciproques et rubriques attendues contrôlés par les tests. Nom, portrait, menu fixe, frise et contact sont présents dans le rendu. |
+| PDFs et données documentées | ✅ | TOEIC 920/990 du 7 août 2025, DWWM délivré le 21 décembre 2023 et CDA délivré le 24 décembre 2024 vérifiés visuellement. Le CV public a été aligné le 22 août 2026 avec les dates confirmées du site : 1UP depuis décembre 2024, LIG de mai à octobre 2024, CDA de janvier à décembre 2024 et DWWM en 2023. |
+| Métriques d'impact | ⚠️ | Les valeurs documentées 16 modules et 19 utilisateurs directs sont conservées. Les effectifs externes, volumes de modules tiers, durée d'interruption, délai de stabilisation et gain estimé ont été retirés des contenus courts et de l'article public faute de source publiable : mesure à réaliser. |
+| Liens | ⚠️ | 44 liens externes publics contrôlés : 42 répondent, 1 lien ETS cassé a été corrigé dans le code, LinkedIn et OpenAI bloquent les robots mais correspondent aux URL attendues. Les liens internes, CV, TOEIC et titres sont couverts par le crawl et les E2E. |
+| Mobile, navigation, thèmes, langues et retours arrière | ✅ en émulation | E2E vert sur build de production : desktop 1280 × 900 et mobile 390 × 844, FR/EN, menu, sous-menus, formulaires, ancres, dark/light, 404 et absence de débordement horizontal. Un téléphone physique reste à essayer. |
+| Accessibilité | ✅ localement | Un H1 par route, `lang`, `alt`, labels, erreurs de formulaire, focus visibles et réduction des mouvements sont vérifiés par code et E2E. Un essai VoiceOver/NVDA réel reste requis. |
+| SEO et partage | ✅ structurellement | Métadonnées localisées, canonical, hreflang, OG, JSON-LD, robots et sitemap sont présents. Le crawl de production couvre 100/100 URL (200, H1 unique, canonical exacte). Les aperçus LinkedIn/WhatsApp ne peuvent être validés qu'après publication de la version courante. |
+| Performance | ⚠️ | Les vidéos CAP2vie restent différées jusqu'au clic ; l'image décorative de l'en-tête est allégée dans le code. Les deux passages Lighthouse production du 14 août donnent un LCP de 3,5 s puis 4,5 s sur CAP2vie, contre 2,2 s pour le build local : la cible < 3 s n'est pas confirmée en production. |
+| Sécurité et conformité | ✅ localement / ⚠️ production | CSP, HTTPS, anti-spam, validation, cookies, politique de confidentialité et absence de secret suivi dans le code sont vérifiés. Next.js est en 16.2.11 et `pnpm audit` ne remonte aucune vulnérabilité. La réception réelle d'un e-mail et la configuration des variables Vercel restent à confirmer par le propriétaire. |
+| Tests et déploiement | ✅ | `corepack pnpm test` : 37 fichiers, 174 tests ; build : 109 routes ; E2E : 30 scénarios ; audit des dépendances : 0 vulnérabilité connue. Le domaine public est servi par Vercel avec HTTPS, sitemap, robots et 404 valides. Les changements de cette revue ne sont pas encore déployés. |
+
+### Bloquants externes à lever avant une validation finale
+
+1. Décider les dates exactes de début 1UP et du stage LIG : le CV PDF (décembre 2025 et 2025) ne correspond pas à la frise et au récit du site (décembre 2024 et mai-octobre 2024).
+2. Fournir 1 à 3 recommandations, attestations ou retours nominatifs autorisés à publier ; aucun ne doit être inventé.
+3. Relever sur une période définie les temps de traitement, utilisateurs et erreurs avant/après afin de publier des métriques mesurées.
+4. Déployer cette version, refaire au moins trois Lighthouse mobiles sur CAP2vie et ramener son LCP sous 3 s.
+5. Envoyer un message réel vers la boîte de réception cible, puis effectuer un essai non guidé avec 2 à 3 personnes et un téléphone physique.
 
 ---
 

@@ -14,6 +14,7 @@ import {
   setStoredConsent,
   hasConsentBeenGiven,
   getStoredConsent,
+  shouldReloadAfterAnalyticsWithdrawal,
   type CookieConsent as CookieConsentType,
 } from "@/lib/cookie-consent";
 
@@ -71,12 +72,25 @@ export function CookieConsent() {
 
   const saveConsent = useCallback(
     (consent: CookieConsentType) => {
+      const previousConsent = getStoredConsent();
+      const analyticsWasWithdrawn = shouldReloadAfterAnalyticsWithdrawal(
+        previousConsent,
+        consent,
+      );
+
       setStoredConsent(consent);
       setVisible(false);
 
       window.dispatchEvent(
         new CustomEvent("cookie-consent-update", { detail: consent })
       );
+
+      // next/script keeps a previously injected third-party script in the DOM.
+      // A full navigation is required to guarantee that GTM is no longer active
+      // after consent is withdrawn.
+      if (analyticsWasWithdrawn) {
+        window.location.reload();
+      }
     },
     []
   );
@@ -133,7 +147,7 @@ export function CookieConsent() {
         aria-describedby="cookie-consent-description"
         tabIndex={-1}
         onKeyDown={trapFocus}
-        className="mx-auto max-w-lg rounded-xl border border-border bg-card shadow-2xl outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="mx-auto max-w-lg border border-border bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <div className="p-4 sm:p-5">
           {/* Header */}

@@ -31,14 +31,14 @@ export default function Error({
         description={dict.errorPage.text}
         titleClassName="uppercase"
       />
-      <div className="section-tinted flex min-h-64 items-center justify-center px-6 py-16">
+      <div className="flex min-h-64 items-center justify-center bg-muted/35 px-6 py-16">
         <div className="flex flex-wrap justify-center gap-4">
-          <Button onClick={reset} size="lg" className="rounded-full">
+          <Button onClick={reset} size="lg">
             {dict.errorPage.retry}
           </Button>
           <Link
             href={`/${locale}`}
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-full")}
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
           >
             {dict.errorPage.backHome}
           </Link>

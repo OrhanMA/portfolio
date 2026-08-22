@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -49,24 +48,14 @@ export function Navbar({
   return (
     <header
       id="primary-navigation"
-      className="nav-enter fixed inset-x-0 top-0 z-[100] border-b border-foreground/10 bg-background/95 lg:bg-background/92 lg:backdrop-blur-lg"
+      className="nav-enter fixed inset-x-0 top-0 z-[100] border-b border-border bg-background/95 backdrop-blur-sm"
     >
       <nav className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href={`/${locale}`}
           prefetch={false}
-          className="group flex shrink-0 items-center gap-3 text-sm font-black uppercase tracking-[-0.015em]"
+          className="shrink-0 text-sm font-semibold tracking-[-0.01em]"
         >
-          <span className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-vermillion bg-background shadow-[2px_2px_0_var(--primary)] transition-transform duration-300 group-hover:scale-105">
-            <Image
-              src="/images/coporate-headshot.webp"
-              alt=""
-              aria-hidden="true"
-              fill
-              sizes="32px"
-              className="object-cover"
-            />
-          </span>
           <span>
             Orhan<span className="hidden sm:inline"> Madi Assani</span>
           </span>
@@ -100,7 +89,7 @@ export function Navbar({
             prefetch={false}
             className={cn(
               buttonVariants({ size: "sm" }),
-              "hidden rounded-full bg-vermillion px-5 text-white hover:bg-vermillion/90 md:inline-flex",
+              "hidden px-5 md:inline-flex",
             )}
           >
             {dict.nav.contact}
@@ -120,7 +109,7 @@ export function Navbar({
       </nav>
 
       {mobileOpen && (
-        <div data-mobile-navigation className="fixed inset-x-3 top-[72px] max-h-[calc(100dvh-84px)] overflow-y-auto overscroll-contain rounded-lg border border-foreground/15 bg-background/98 p-3 shadow-2xl backdrop-blur-xl lg:hidden">
+        <div data-mobile-navigation className="fixed inset-x-3 top-[72px] max-h-[calc(100dvh-84px)] overflow-y-auto overscroll-contain border border-border bg-background p-3 shadow-lg lg:hidden">
           <div className="grid gap-1">
             {leadingLinks.map((link) => (
               <MobileLink
@@ -155,7 +144,7 @@ export function Navbar({
               onClick={closeMobileMenu}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "mt-2 rounded-full bg-vermillion text-white hover:bg-vermillion/90",
+                "mt-2",
               )}
             >
               {dict.nav.contact}
@@ -177,7 +166,7 @@ function NavbarLink({ href, label }: NavbarMenuItem) {
     <Link
       href={href}
       prefetch={false}
-      className="rounded-md px-3 py-2 text-xs font-semibold text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
+      className="rounded-sm px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
     >
       {label}
     </Link>
@@ -218,7 +207,7 @@ function DesktopSubmenu({
         prefetch={false}
         aria-haspopup="true"
         aria-expanded={open}
-        className="flex items-center gap-1 rounded-md px-3 py-2 text-xs font-semibold text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
+        className="flex items-center gap-1 rounded-sm px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         {label}
         <ChevronDown
@@ -231,11 +220,11 @@ function DesktopSubmenu({
           data-desktop-submenu
           className="absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3"
         >
-          <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-lg border border-foreground/15 bg-background/98 p-2 shadow-2xl backdrop-blur-xl">
+          <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto border border-border bg-background p-2 shadow-lg">
             <Link
               href={href}
               prefetch={false}
-              className="mb-1 flex items-center justify-between rounded-md bg-primary/[0.06] px-3 py-2.5 text-xs font-black uppercase tracking-[0.08em] text-foreground transition-colors hover:bg-primary/[0.11]"
+              className="mb-1 flex items-center justify-between rounded-sm bg-muted px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] transition-colors hover:bg-accent"
             >
               {allLabel}
               <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
@@ -245,7 +234,7 @@ function DesktopSubmenu({
                 key={item.href}
                 href={item.href}
                 prefetch={false}
-                className="block rounded-md px-3 py-2 text-sm leading-5 text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
+                className="block rounded-sm px-3 py-2 text-sm leading-5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 {item.label}
               </Link>
@@ -267,7 +256,7 @@ function MobileLink({
       href={href}
       prefetch={false}
       onClick={onNavigate}
-      className="rounded-md px-4 py-3 text-sm font-bold hover:bg-primary/[0.06]"
+      className="rounded-sm px-4 py-3 text-sm font-semibold hover:bg-muted"
     >
       {label}
     </Link>
@@ -320,7 +309,7 @@ function MobileSubmenu({
               href={item.href}
               prefetch={false}
               onClick={onNavigate}
-              className="rounded-md px-3 py-2 text-sm text-foreground/70 transition-colors hover:bg-primary/[0.05] hover:text-foreground"
+              className="rounded-sm px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>

@@ -71,12 +71,12 @@ export function RealisationArticleContent({ text }: { text: string }) {
 
   return (
     <ol className="mx-auto max-w-[76ch] divide-y divide-border/70">
-      {blocks.map((block) => {
+      {blocks.map((block, index) => {
         if (block.kind !== "numbered") return null;
 
         return (
           <li
-            key={block.number}
+            key={`${block.number}-${index}`}
             value={block.number}
             className="grid gap-3 py-7 first:pt-0 last:pb-0 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-5 sm:py-9"
           >

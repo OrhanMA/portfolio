@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { ArrowUpRight, FolderKanban, Layers3, PackageOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -11,14 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getDictionary } from "../dictionaries";
-import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { odooProjects } from "@/lib/odoo-projects";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
-
-const projectLinkClassName =
-  "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
+import { actionLinkClassName } from "@/lib/styles";
+import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
   params,
@@ -26,9 +22,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   return createLocalizedMetadata({
     locale: loc,
     pathname: "/projects",
@@ -43,9 +37,7 @@ export default async function ProjectsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return (
     <div>
@@ -63,7 +55,7 @@ export default async function ProjectsPage({
         }
         aside={
           <div className="grid gap-3">
-            <Card size="sm" className="premium-card rounded-xl border-l-4 border-l-vermillion">
+            <Card size="sm" className="border border-border bg-card">
               <CardHeader className="pb-1">
                 <CardDescription>{dict.projects.summaryLabel}</CardDescription>
                 <CardTitle className="flex items-center gap-2 text-2xl font-black">
@@ -76,7 +68,7 @@ export default async function ProjectsPage({
               </CardHeader>
             </Card>
 
-            <Card size="sm" className="premium-card rounded-xl border-l-4 border-l-primary">
+            <Card size="sm" className="border border-border bg-card">
               <CardHeader className="pb-1">
                 <CardDescription>{dict.projects.stackLabel}</CardDescription>
                 <CardTitle className="flex items-center gap-2 text-base font-black">
@@ -89,13 +81,13 @@ export default async function ProjectsPage({
         }
       />
 
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {odooProjects.map((project) => (
               <Card
                 key={project.slug}
-                className="premium-card h-full rounded-xl border-t-4 border-t-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
+                className="h-full border border-border bg-card transition-colors duration-200 hover:bg-muted/50"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
@@ -131,7 +123,7 @@ export default async function ProjectsPage({
                   <div className="flex flex-wrap gap-2">
                     <Link
                       href={`/${locale}/projects/${project.slug}`}
-                      className={projectLinkClassName}
+                      className={actionLinkClassName}
                     >
                       {dict.projects.viewDetails}
                     </Link>
@@ -139,7 +131,7 @@ export default async function ProjectsPage({
                       href={project.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={projectLinkClassName}
+                      className={actionLinkClassName}
                     >
                       {dict.projects.viewProject}
                       <ArrowUpRight className="h-4 w-4" />

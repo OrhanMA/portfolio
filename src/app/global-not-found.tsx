@@ -6,8 +6,8 @@ export default function GlobalNotFound() {
   return (
     <html lang="fr" className={deferredFontClassName}>
       <body className="flex min-h-screen items-center justify-center bg-background p-6 text-foreground antialiased">
-        <main className="w-full max-w-2xl rounded-xl border border-foreground/15 bg-card p-8 text-center shadow-xl sm:p-12">
-          <p className="font-mono text-sm font-bold uppercase tracking-[0.22em] text-vermillion">
+        <main className="w-full max-w-2xl border border-border bg-card p-8 text-center sm:p-12">
+          <p className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             404
           </p>
           <h1 className="mt-4 text-4xl font-black uppercase tracking-[-0.04em] sm:text-6xl">
@@ -19,13 +19,13 @@ export default function GlobalNotFound() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="/fr"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-vermillion px-6 text-sm font-bold text-white hover:bg-vermillion/90"
+              className="inline-flex h-11 items-center justify-center rounded-sm bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/85"
             >
               Accueil français
             </Link>
             <Link
               href="/en"
-              className="inline-flex h-11 items-center justify-center rounded-full border border-foreground/20 px-6 text-sm font-bold hover:border-primary"
+              className="inline-flex h-11 items-center justify-center rounded-sm border border-border px-6 text-sm font-semibold hover:bg-muted"
             >
               English home
             </Link>

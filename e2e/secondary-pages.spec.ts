@@ -58,7 +58,7 @@ for (const viewport of [
           page.locator("header#primary-navigation"),
           route.path,
         ).toHaveCount(1);
-        await expect(page.locator("footer"), route.path).toHaveCount(1);
+        await expect(page.locator("[data-site-footer]"), route.path).toHaveCount(1);
         await expect(page.locator("html"), route.path).toHaveAttribute(
           "lang",
           route.path.split("/")[1],

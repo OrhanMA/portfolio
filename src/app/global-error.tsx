@@ -17,7 +17,7 @@ export default function GlobalError({
   return (
     <html lang="fr">
       <body className="flex min-h-screen items-center justify-center bg-background p-6 text-foreground antialiased">
-        <main className="w-full max-w-xl rounded-xl border border-destructive/30 bg-card p-8 text-center shadow-xl">
+        <main className="w-full max-w-xl border border-border bg-card p-8 text-center">
           <p className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-destructive">
             Erreur / Error
           </p>
@@ -30,7 +30,7 @@ export default function GlobalError({
           <button
             type="button"
             onClick={reset}
-            className="mt-7 inline-flex h-11 cursor-pointer items-center justify-center rounded-full bg-vermillion px-6 text-sm font-bold text-white hover:bg-vermillion/90"
+            className="mt-7 inline-flex h-11 cursor-pointer items-center justify-center rounded-sm bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/85"
           >
             Réessayer / Retry
           </button>

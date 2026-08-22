@@ -7,6 +7,7 @@ const contactDict = {
   contactForm: frDict.contactForm,
   contactReasons: frDict.contactReasons,
   contactValidation: frDict.contactValidation,
+  legal: frDict.legal,
 };
 
 // Mock the server action
@@ -55,6 +56,20 @@ describe("ContactForm (browser)", () => {
     await expect
       .element(page.getByRole("button", { name: /envoyer/i }))
       .toBeVisible();
+  });
+
+  test("displays the privacy notice and its localized link", async () => {
+    await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
+
+    await expect
+      .element(page.getByText(/base de l’intérêt légitime/i))
+      .toBeVisible();
+    await expect
+      .element(page.getByRole("link", { name: /politique de confidentialité/i }))
+      .toHaveAttribute("href", "/fr/politique-confidentialite");
+    await expect
+      .element(page.getByRole("link", { name: frDict.legal.editorEmail }))
+      .toHaveAttribute("href", `mailto:${frDict.legal.editorEmail}`);
   });
 
   test("honeypot field is hidden from users via aria-hidden", async () => {

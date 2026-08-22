@@ -5,7 +5,7 @@ export function CookieSettingsButton({ label }: { label: string }) {
     <button
       type="button"
       onClick={() => window.dispatchEvent(new Event("cookie-consent-open"))}
-      className="transition-colors hover:text-foreground"
+      className="[font:inherit] uppercase transition-colors hover:text-foreground"
     >
       {label}
     </button>

@@ -3,6 +3,13 @@ export type CookieConsent = {
   analytics: boolean;
 };
 
+export function shouldReloadAfterAnalyticsWithdrawal(
+  previousConsent: Pick<CookieConsent, "analytics"> | null,
+  nextConsent: CookieConsent,
+): boolean {
+  return previousConsent?.analytics === true && nextConsent.analytics === false;
+}
+
 type StoredCookieConsent = CookieConsent & {
   version: 2;
   decidedAt: number;

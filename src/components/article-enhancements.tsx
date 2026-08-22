@@ -104,7 +104,7 @@ export function ArticleEnhancements({
   }
 
   return (
-    <aside className="not-prose premium-card mx-auto mb-10 grid max-w-3xl gap-4 rounded-xl border-l-4 border-l-primary p-4 text-sm">
+    <aside className="not-prose mx-auto mb-10 grid max-w-3xl gap-4 border border-border bg-card p-4 text-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="secondary">

@@ -169,8 +169,8 @@ export function ArticlesFilterableList({
             <Card
               key={article.slug}
               className={cn(
-                "group premium-card my-0 rounded-xl border-l-4 border-l-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary/50",
-                index % 2 === 1 && "border-l-vermillion",
+                "group my-0 border border-border bg-card transition-colors duration-200 hover:bg-muted/50",
+                index % 2 === 1 && "bg-muted/20",
               )}
             >
               <CardHeader className="grid gap-5 sm:grid-cols-[72px_1fr_auto] sm:items-start">

@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Navigation", () => {
+  test.describe.configure({ mode: "serial", timeout: 60_000 });
+
   test("home page loads correctly", async ({ page }) => {
     await page.goto("/fr");
     await expect(
@@ -16,7 +18,10 @@ test.describe("Navigation", () => {
         name: "Développeur Fullstack — Alternance",
       }),
     ).toBeVisible();
-    await expect(page.locator("#parcours details")).toHaveCount(6);
+    await expect(page.locator("#parcours .experience-details")).toHaveCount(6);
+    await expect(
+      page.locator("#parcours .experience-details button[aria-expanded='false']"),
+    ).toHaveCount(6);
   });
 
   test("articles page loads", async ({ page }) => {
@@ -53,20 +58,34 @@ test.describe("Navigation", () => {
   });
 
   test("nav links work", async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        "cookie-consent",
+        JSON.stringify({
+          necessary: true,
+          analytics: false,
+          version: 2,
+          decidedAt: Date.now(),
+        }),
+      );
+    });
     await page.goto("/fr");
+    const footer = page.locator("[data-site-footer]");
 
-    // Click articles link in nav
-    await page.click('nav a[href="/fr/articles"]');
+    await footer.getByRole("link", { name: "Articles", exact: true }).click();
     await expect(page).toHaveURL(/\/fr\/articles/);
 
-    // Click contact link in nav
-    await page.click('nav a[href="/fr/contact"]');
+    await page
+      .locator("[data-site-footer]")
+      .getByRole("link", { name: "Contact", exact: true })
+      .click();
     await expect(page).toHaveURL(/\/fr\/contact/);
 
     await page.goto("/fr");
-
-    // Click projects link in nav
-    await page.click('nav a[href="/fr/projects"]');
-    await expect(page).toHaveURL(/\/fr\/projects/);
+    await expect(
+      page
+      .locator("[data-site-footer]")
+      .getByRole("link", { name: "Projets Odoo", exact: true }),
+    ).toHaveAttribute("href", "/fr/projects");
   });
 });

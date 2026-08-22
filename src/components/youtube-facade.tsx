@@ -41,10 +41,10 @@ export function YouTubeFacade({
     <button
       type="button"
       onClick={() => setIsLoaded(true)}
-      className="group relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden bg-[radial-gradient(circle_at_70%_18%,oklch(0.68_0.21_29/0.3),transparent_35%),linear-gradient(135deg,var(--card),var(--muted))] px-6 text-center text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+      className="group relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden bg-muted px-6 text-center text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
       aria-label={`${loadLabel}: ${title}`}
     >
-      <span className="flex size-14 items-center justify-center rounded-full bg-vermillion text-white shadow-lg transition-transform group-hover:scale-110">
+      <span className="flex size-14 items-center justify-center rounded-full bg-foreground text-background transition-transform group-hover:scale-105">
         <Play aria-hidden="true" className="ml-0.5 size-6 fill-current" />
       </span>
       <span className="font-sans text-xs font-bold uppercase tracking-[0.16em]">

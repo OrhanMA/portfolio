@@ -6,15 +6,13 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
-import { getDictionary } from "../../dictionaries";
 import { getRealisationBySlug, realisations } from "@/lib/realisations";
 import { getCompetenceBySlug } from "@/lib/competences";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { RealisationArticleContent } from "@/components/realisation-article-content";
 import { YouTubeFacade } from "@/components/youtube-facade";
-
-const linkClassName =
-  "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
+import { actionLinkClassName } from "@/lib/styles";
+import { getLocalizedPageContext } from "../../route-context";
 
 export async function generateStaticParams() {
   return realisations.map((r) => ({ slug: r.slug }));
@@ -48,13 +46,12 @@ export default async function RealisationDetailPage({
 }) {
   const { locale, slug } = await params;
   const realisation = getRealisationBySlug(slug);
-  const loc = parseLocale(locale);
 
-  if (!realisation || !loc) {
+  if (!realisation) {
     notFound();
   }
 
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const contentSections = [
     {
       id: "presentation",
@@ -131,8 +128,8 @@ export default async function RealisationDetailPage({
           </div>
         }
         aside={
-          <aside className="premium-card rounded-xl border-l-4 border-l-vermillion p-5">
-            <p className="editorial-index text-vermillion">
+          <aside className="border border-border bg-card p-5">
+            <p className="editorial-index">
               {dict.realisationsPage.context}
             </p>
             <div className="mt-5 grid gap-4">
@@ -159,7 +156,7 @@ export default async function RealisationDetailPage({
         }
       />
 
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-7xl">
           {realisation.media && realisation.media.length > 0 && (
             <section aria-labelledby="visual-proof-heading">
@@ -178,7 +175,7 @@ export default async function RealisationDetailPage({
                 {realisation.media.map((item) => (
                   <figure
                     key={item.src}
-                    className="premium-card overflow-hidden rounded-xl border-t-4 border-t-primary"
+                    className="overflow-hidden border border-border bg-card"
                   >
                     <div className="relative aspect-video bg-muted">
                       {item.type === "image" ? (
@@ -213,7 +210,7 @@ export default async function RealisationDetailPage({
             <aside id="realisation-contents" className="scroll-mt-28 lg:sticky lg:top-28">
               <nav
                 aria-label={dict.realisationsPage.contentsHeading}
-                className="premium-card rounded-xl border-t-4 border-t-primary p-5 sm:p-6"
+                className="border border-border bg-card p-5 sm:p-6"
               >
                 <p className="editorial-index">
                   {dict.realisationsPage.contentsHeading}
@@ -247,7 +244,7 @@ export default async function RealisationDetailPage({
                     >
                       <span
                         aria-hidden="true"
-                        className="font-sans text-xs font-bold text-vermillion"
+                        className="text-xs font-semibold text-foreground"
                       >
                         {String(contentSections.length + 1).padStart(2, "0")}
                       </span>
@@ -266,7 +263,7 @@ export default async function RealisationDetailPage({
                   id={section.id}
                   key={section.id}
                   aria-labelledby={`${section.id}-heading`}
-                  className="premium-card scroll-mt-28 overflow-hidden rounded-xl border-t-4 border-t-primary even:border-t-vermillion"
+                  className="scroll-mt-28 overflow-hidden border border-border bg-card"
                 >
                   <header className="border-b border-border/70 px-5 py-5 sm:px-8 sm:py-6 lg:px-10">
                     <div className="flex items-start gap-4 sm:gap-5">
@@ -298,10 +295,10 @@ export default async function RealisationDetailPage({
               <section
                 id="linked-competences"
                 aria-labelledby="linked-competences-heading"
-                className="premium-card scroll-mt-28 rounded-xl border-t-4 border-t-vermillion p-5 sm:p-8 lg:p-10"
+                className="scroll-mt-28 border border-border bg-card p-5 sm:p-8 lg:p-10"
               >
                 <div className="flex items-start gap-4 sm:gap-5">
-                  <p className="mt-1 shrink-0 font-sans text-xs font-bold tracking-[0.18em] text-vermillion">
+                  <p className="mt-1 shrink-0 font-mono text-xs font-semibold tracking-[0.18em] text-muted-foreground">
                     {String(contentSections.length + 1).padStart(2, "0")}
                   </p>
                   <div>
@@ -319,7 +316,7 @@ export default async function RealisationDetailPage({
                           <Link
                             key={compSlug}
                             href={`/${locale}/competences/${compSlug}`}
-                            className={linkClassName}
+                            className={actionLinkClassName}
                           >
                             {competence.title[loc]}
                           </Link>

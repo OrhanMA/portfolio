@@ -79,6 +79,7 @@ export function StructuredData({
   return (
     <script
       nonce={nonce}
+      suppressHydrationWarning
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: stringifyJsonLd(data) }}
     />
@@ -148,6 +149,7 @@ export function ArticleStructuredData({
   return (
     <script
       nonce={nonce}
+      suppressHydrationWarning
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: stringifyJsonLd(data) }}
     />

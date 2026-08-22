@@ -42,7 +42,7 @@ test("every article keeps its editorial layout in both locales", async ({ page }
       if (slug === "odoo-session-timeout") {
         await expect(page.locator("article[data-article-content] pre").first(), route).toHaveCSS(
           "border-left-width",
-          "3px",
+          "1px",
         );
         await expect(page.locator("article[data-article-content] pre code").first(), route).toHaveCSS(
           "background-color",

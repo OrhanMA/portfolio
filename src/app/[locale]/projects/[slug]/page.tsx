@@ -12,12 +12,10 @@ import {
 } from "@/components/ui/card";
 import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
-import { getDictionary } from "../../dictionaries";
 import { getOdooProjectBySlug, odooProjects } from "@/lib/odoo-projects";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
-
-const actionLinkClassName =
-  "inline-flex h-10 w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-all outline-none hover:border-primary/70 hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
+import { actionLinkClassName } from "@/lib/styles";
+import { getLocalizedPageContext } from "../../route-context";
 
 export async function generateStaticParams() {
   return odooProjects.map((project) => ({ slug: project.slug }));
@@ -51,13 +49,12 @@ export default async function ProjectDetailPage({
 }) {
   const { locale, slug } = await params;
   const project = getOdooProjectBySlug(slug);
-  const loc = parseLocale(locale);
 
-  if (!project || !loc) {
+  if (!project) {
     notFound();
   }
 
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return (
     <div>
@@ -85,7 +82,7 @@ export default async function ProjectDetailPage({
           </div>
         }
         aside={
-          <div className="premium-card rounded-xl border-l-4 border-l-primary p-5">
+          <div className="border border-border bg-card p-5">
             <p className="editorial-index">GitHub</p>
             <div className="mt-5 flex flex-wrap gap-3 lg:flex-col">
             <a
@@ -105,7 +102,7 @@ export default async function ProjectDetailPage({
         }
       />
 
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[220px_1fr]">
           <aside className="hidden border-t border-border/70 pt-5 lg:block">
             <p className="font-sans text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
@@ -123,7 +120,7 @@ export default async function ProjectDetailPage({
               ))}
             </div>
           </aside>
-          <Card className="premium-card rounded-xl border-t-4 border-t-primary">
+          <Card className="border border-border bg-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FolderGit2 className="h-5 w-5 text-primary" />

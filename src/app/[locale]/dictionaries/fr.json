@@ -26,7 +26,7 @@
     "title1": "Développeur",
     "title2": "Fullstack",
     "subtitle": "Odoo · Symfony · Next.js",
-    "statement": "Je conçois des interfaces web premium et des systèmes métier robustes, avec une attention égale portée au produit, à la performance et à l'usage réel.",
+    "statement": "Je transforme des besoins métier en solutions numériques robustes, performantes et durables",
     "location": "Chambéry, France",
     "status": "En alternance chez 1UP",
     "availabilityLabel": "ポートフォリオ",
@@ -84,7 +84,7 @@
     "ctaAll": "Voir toutes les réalisations",
     "cases": [
       { "slug": "migration-odoo-v16-v19", "problem": "Faire évoluer un ERP critique de trois versions majeures sans interrompre durablement le travail ni perdre les données.", "contribution": "Inventaire, stratégie par module, répétitions de migration, tests, bascule et stabilisation pilotés en autonomie.", "result": "Odoo 16 → 19 · 19 utilisateurs directs · aucune perte définitive de données · stabilisation en un mois.", "metricValue": "19", "metricLabel": "utilisateurs directs", "metricNote": "Aucune perte définitive de données et stabilisation en un mois." },
-      { "slug": "modules-metier-odoo", "problem": "Des processus métier importants restaient manuels ou dépassaient les possibilités de la configuration standard et d'Odoo Studio.", "contribution": "Recueil du besoin, conception Python/XML, tests, déploiement et maintenance d'une couche métier versionnée dans l'ERP.", "result": "16 modules métier internes · une demi-journée de travail économisée chaque semaine pour la comptabilité.", "metricValue": "16", "metricLabel": "modules métier internes", "metricNote": "Une demi-journée économisée chaque semaine pour la comptabilité." },
+      { "slug": "modules-metier-odoo", "problem": "Des processus métier importants restaient manuels ou dépassaient les possibilités de la configuration standard et d'Odoo Studio.", "contribution": "Recueil du besoin, conception Python/XML, tests, déploiement et maintenance d'une couche métier versionnée dans l'ERP.", "result": "16 modules métier internes · contrôle et relances de factures automatisés.", "metricValue": "16", "metricLabel": "modules métier internes", "metricNote": "Le temps économisé n'est pas encore mesuré de manière fiable." },
       { "slug": "refonte-site-corporate", "problem": "Moderniser l'image de l'entreprise sans sacrifier le mobile, les performances ni la maîtrise des contenus publiés.", "contribution": "Responsabilité technique, architecture Next.js, design system, internationalisation, SEO, accessibilité et coordination des validations.", "result": "Lighthouse mesuré : 99 en performance, 100 en accessibilité et 100 en SEO.", "metricValue": "99", "metricLabel": "Lighthouse performance", "metricNote": "100 en accessibilité et 100 en SEO sur la mesure publiée." }
     ]
   },
@@ -115,7 +115,7 @@
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
-        "order": 3,
+        "order": 4,
         "period": "Mai — Oct. 2024",
         "title": "Stagiaire Développeur Web — Laboratoire LIG",
         "company": "Laboratoire d'Informatique de Grenoble",
@@ -151,7 +151,7 @@
         "tags": ["RNCP 7", "Architecture", "Qualité", "Gestion de projet", "Alternance"]
       },
       {
-        "order": 4,
+        "order": 3,
         "period": "7 août 2025",
         "title": "TOEIC Listening & Reading — 920/990",
         "company": "ETS Global",
@@ -166,7 +166,7 @@
       },
       {
         "order": 5,
-        "period": "Mai — Juin 2024",
+        "period": "Janv. — Déc. 2024",
         "title": "Concepteur Développeur d'Applications — RNCP niveau 6",
         "company": "Simplon",
         "logo": "/logo-simplon.webp",
@@ -270,7 +270,9 @@
     "submitLabel": "Envoyer le message",
     "submittingLabel": "Envoi en cours...",
     "successHeading": "Message envoyé !",
-    "sendAnother": "Envoyer un autre message"
+    "sendAnother": "Envoyer un autre message",
+    "privacyNotice": "Vos données sont traitées pour répondre à votre demande et protéger ce formulaire contre le spam, sur la base de l’intérêt légitime de l’éditeur. Pour exercer vos droits, contactez",
+    "privacyNoticeLink": "Consultez également la politique de confidentialité."
   },
   "contactValidation": {
     "nameMin": "Le nom doit contenir au moins 2 caractères.",
@@ -451,8 +453,7 @@
     "legalTitle": "Légal",
     "legalNotice": "Mentions légales",
     "privacyPolicy": "Politique de confidentialité",
-    "copyright": "Tous droits réservés.",
-    "builtWith": "Construit avec Next.js, GSAP & shadcn/ui"
+    "copyright": "Tous droits réservés."
   },
   "notFound": {
     "heading": "Page introuvable",
@@ -484,6 +485,8 @@
   "legal": {
     "pageTitle": "Mentions légales | Orhan Madi Assani",
     "heading": "Mentions légales",
+    "status": "Statut de l’éditeur",
+    "statusText": "Ce site est édité à titre non professionnel. Les éléments d’identification requis de l’éditeur ont été communiqués à l’hébergeur conformément à l’article 6 de la loi pour la confiance dans l’économie numérique.",
     "editor": "Éditeur du site",
     "editorName": "Orhan Madi Assani",
     "editorLocation": "Chambéry, France",
@@ -513,11 +516,13 @@
     "purposeText": "Le traitement du formulaire repose sur l'intérêt légitime à répondre aux demandes reçues et à protéger le site contre le spam. Les données sont accessibles à l'éditeur du site et aux prestataires strictement nécessaires à son fonctionnement, notamment Vercel pour l'hébergement et Resend pour l'acheminement des emails. Elles ne sont jamais vendues. Les messages sont conservés le temps nécessaire au suivi de la demande, puis supprimés au plus tard douze mois après le dernier échange, sauf obligation légale contraire.",
     "cookiesSection": "Cookies",
     "cookiesText": "La langue et le thème sont des préférences nécessaires au fonctionnement demandé. Google Tag Manager et Google Analytics ne sont chargés qu'après un consentement explicite, révocable à tout moment via le lien « Gérer les cookies » du pied de page. reCAPTCHA ne peut être chargé qu'après une interaction avec le formulaire de contact lorsque ce service est configuré.",
+    "internationalTransfers": "Transferts hors de l’Union européenne",
+    "internationalTransfersText": "Vercel, Resend et Google (GTM, Google Analytics et reCAPTCHA) peuvent, selon le service et sa configuration, traiter certaines données depuis les États-Unis ou d’autres pays hors de l’Espace économique européen. Lorsqu’un transfert est nécessaire, il est encadré par une décision d’adéquation de la Commission européenne, notamment le cadre UE–États-Unis de protection des données lorsqu’il s’applique, ou à défaut par les clauses contractuelles types de la Commission européenne et les garanties complémentaires appropriées. Vous pouvez demander plus d’informations sur ces garanties à l’adresse indiquée dans les mentions légales.",
     "rights": "Vos droits",
     "rightsText": "Conformément au RGPD, vous disposez de droits d'accès, de rectification, d'effacement, de limitation, d'opposition et, lorsque applicable, de portabilité. Vous pouvez retirer votre consentement à tout moment. Pour exercer ces droits, utilisez l'adresse indiquée dans les mentions légales. Vous pouvez également introduire une réclamation auprès de la CNIL.",
     "updates": "Modifications",
     "updatesText": "Cette politique est révisée lorsque les traitements ou prestataires évoluent. Une nouvelle date de version est publiée à chaque modification substantielle.",
     "lastUpdated": "Dernière mise à jour",
-    "lastUpdatedDate": "16 juillet 2026"
+    "lastUpdatedDate": "14 août 2026"
   }
 }

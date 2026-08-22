@@ -9,7 +9,7 @@ import { developpementFrontend } from "./competences/developpement-frontend";
 import { devops } from "./competences/devops";
 import { python } from "./competences/python";
 import type { Competence, CompetenceLevel, CompetenceType } from "./competences/types";
-import type { LocalizedContent } from "./odoo-projects";
+import type { LocalizedContent } from "@/lib/types/content";
 
 export type { Anecdote, Competence, CompetenceLevel, CompetenceNews, CompetenceType } from "./competences/types";
 

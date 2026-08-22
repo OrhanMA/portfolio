@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
-import { getDictionary } from "../dictionaries";
-import { isValidLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
+import { getLocalizedPageContext } from "../route-context";
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
@@ -55,10 +53,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (!isValidLocale(locale)) notFound();
-  const dict = await getDictionary(locale);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   return createLocalizedMetadata({
-    locale,
+    locale: loc,
     pathname: "/contact",
     title: dict.contact.pageTitle,
     description: dict.contact.pageDescription,
@@ -71,8 +68,7 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!isValidLocale(locale)) notFound();
-  const dict = await getDictionary(locale);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return (
     <>
@@ -83,13 +79,13 @@ export default async function ContactPage({
         titleClassName="uppercase"
       />
 
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.65fr_1fr] lg:items-start">
-          <aside className="premium-card rounded-xl border-l-4 border-l-vermillion p-6 lg:sticky lg:top-28">
+          <aside className="border border-border bg-card p-6 lg:sticky lg:top-28">
             <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-foreground/15 bg-background">
               <Mail aria-hidden="true" className="h-6 w-6 text-primary" />
             </div>
-            <p className="editorial-index text-vermillion">Email</p>
+            <p className="editorial-index">Email</p>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">
               {dict.contact.altEmail}
             </p>
@@ -102,13 +98,14 @@ export default async function ContactPage({
           </aside>
 
           <div>
-            <div className="premium-card rounded-xl border-t-4 border-t-primary p-5 sm:p-8">
+            <div className="border border-border bg-card p-5 sm:p-8">
               <ContactForm
-                locale={locale}
+                locale={loc}
                 dict={{
                   contactForm: dict.contactForm,
                   contactReasons: dict.contactReasons,
                   contactValidation: dict.contactValidation,
+                  legal: dict.legal,
                 }}
               />
             </div>

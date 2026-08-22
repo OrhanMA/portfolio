@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getDictionary } from "../dictionaries";
-import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { Suspense } from "react";
 import {
@@ -10,6 +7,7 @@ import {
 } from "@/components/articles-filterable-list";
 import { buildArticleIndex } from "@/lib/articles";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
   params,
@@ -17,9 +15,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return createLocalizedMetadata({
     locale: loc,
@@ -35,9 +31,7 @@ export default async function ArticlesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const articles: SearchableArticle[] = await buildArticleIndex(
     dict.articles.articlesData,
   );
@@ -56,7 +50,7 @@ export default async function ArticlesPage({
         <Suspense>
           <ArticlesFilterableList
             articles={articles}
-            locale={locale}
+            locale={loc}
             labels={{
               allTopics: dict.articles.allTopics,
               searchPlaceholder: dict.articles.searchPlaceholder,

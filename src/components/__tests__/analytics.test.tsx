@@ -36,4 +36,28 @@ describe("Analytics", () => {
 
     expect(await screen.findByTestId("speed-insights")).toBeInTheDocument();
   });
+
+  it("stops rendering analytics when consent is withdrawn", async () => {
+    render(<Analytics />);
+
+    act(() => {
+      const accepted = { necessary: true, analytics: true } as const;
+      setStoredConsent(accepted);
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent-update", { detail: accepted }),
+      );
+    });
+
+    expect(await screen.findByTestId("speed-insights")).toBeInTheDocument();
+
+    act(() => {
+      const withdrawn = { necessary: true, analytics: false } as const;
+      setStoredConsent(withdrawn);
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent-update", { detail: withdrawn }),
+      );
+    });
+
+    expect(screen.queryByTestId("speed-insights")).not.toBeInTheDocument();
+  });
 });

@@ -1,15 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 
-async function prepareHomepage(page: Page) {
-  await page.emulateMedia({ colorScheme: "light", reducedMotion: "reduce" });
-  await page.addInitScript(() => {
+async function prepareHomepage(page: Page, theme: "light" | "dark" = "light") {
+  await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+  await page.addInitScript((selectedTheme) => {
     localStorage.setItem(
       "cookie-consent",
       JSON.stringify({ necessary: true, analytics: false, version: 2, decidedAt: Date.now() }),
     );
-    localStorage.setItem("theme", "light");
-  });
-  await page.goto("/fr", { waitUntil: "load" });
+    localStorage.setItem("theme", selectedTheme);
+  }, theme);
+  await page.goto("/fr", { waitUntil: "networkidle" });
   await page.locator(".landing-deferred").evaluateAll((elements) => {
     for (const element of elements) {
       const htmlElement = element as HTMLElement;
@@ -29,12 +29,14 @@ async function prepareHomepage(page: Page) {
 }
 
 test.describe("Homepage visual regression", () => {
+  test.describe.configure({ mode: "serial" });
+
   test("desktop composition", async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 1440, height: 1000 });
     await prepareHomepage(page);
 
-    await expect(page).toHaveScreenshot("homepage-japan-pop-desktop.png", {
+    await expect(page).toHaveScreenshot("homepage-minimal-desktop.png", {
       fullPage: true,
       animations: "disabled",
       maxDiffPixelRatio: 0.02,
@@ -46,14 +48,26 @@ test.describe("Homepage visual regression", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await prepareHomepage(page);
 
-    await expect(page).toHaveScreenshot("homepage-japan-pop-mobile.png", {
+    await expect(page).toHaveScreenshot("homepage-minimal-mobile.png", {
       fullPage: true,
       animations: "disabled",
       maxDiffPixelRatio: 0.02,
     });
   });
 
-  test("about stamp hover keeps its shadow attached", async ({ page }) => {
+  test("dark composition", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await prepareHomepage(page, "dark");
+
+    await expect(page).toHaveScreenshot("homepage-minimal-dark.png", {
+      fullPage: true,
+      animations: "disabled",
+      maxDiffPixelRatio: 0.02,
+    });
+  });
+
+  test("uses the neutral portrait without Japanese decorative assets", async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.emulateMedia({
@@ -67,34 +81,19 @@ test.describe("Homepage visual regression", () => {
       );
       localStorage.setItem("theme", "light");
     });
-    await page.goto("/fr", { waitUntil: "load" });
+    await page.goto("/fr", { waitUntil: "networkidle" });
 
-    const stamp = page.locator(".about-stamp").first();
-    await stamp.scrollIntoViewIfNeeded();
-    await expect(stamp).toBeVisible();
-    await page.waitForTimeout(1_200);
-    await stamp.scrollIntoViewIfNeeded();
-
-    const before = await stamp.evaluate((element) => {
-      const rect = element.getBoundingClientRect();
-      return {
-        y: rect.y,
-        boxShadow: getComputedStyle(element).boxShadow,
-      };
-    });
-
-    await stamp.hover();
-    await page.waitForTimeout(320);
-
-    const after = await stamp.evaluate((element) => {
-      const rect = element.getBoundingClientRect();
-      return {
-        y: rect.y,
-        boxShadow: getComputedStyle(element).boxShadow,
-      };
-    });
-
-    expect(after.y).toBeLessThan(before.y - 7);
-    expect(after.boxShadow).toBe(before.boxShadow);
+    const portrait = page.locator('img[src*="coporate-headshot"]');
+    await expect(portrait).toBeVisible();
+    await expect(portrait).toHaveCSS("filter", "none");
+    await expect(page.locator("#realisations img").first()).toHaveCSS("filter", "none");
+    await expect(page.locator('img[src*="/images/decorative/"]')).toHaveCount(0);
+    await expect(
+      page.getByRole("button", { name: "Open issues overlay" }),
+    ).toHaveCount(0);
+    await expect(page.locator(".about-stamp").first()).toHaveCSS(
+      "box-shadow",
+      "none",
+    );
   });
 });

@@ -8,8 +8,8 @@ export const migrationOdooV16V19: Realisation =
       en: "Enterprise ERP migration from Odoo 16 to Odoo 19",
     },
     shortDescription: {
-      fr: "Migration en solo d'un ERP utilisé par 20 utilisateurs internes et une dizaine d'agents commerciaux, avec 16 modules personnalisés et une dizaine de modules tiers à adapter.",
-      en: "Solo migration of an ERP used by 20 internal users and around 10 sales agents, with 16 custom modules and about 10 third-party modules to adapt.",
+      fr: "Migration en solo d'un ERP utilisé par 19 utilisateurs internes directs, avec 16 modules personnalisés et des extensions tierces à adapter.",
+      en: "Solo migration of an ERP used by 19 direct internal users, with 16 custom modules and third-party extensions to adapt.",
     },
     context: { fr: "Entreprise", en: "Company" },
     tags: ["Odoo", "Python", "PostgreSQL", "Migration"],

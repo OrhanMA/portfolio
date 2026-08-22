@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getDictionary } from "../dictionaries";
-import { parseLocale } from "@/lib/i18n";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
   params,
@@ -11,9 +9,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   return createLocalizedMetadata({
     locale: loc,
     pathname: "/a-propos",
@@ -28,9 +24,7 @@ export default async function AboutPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const loc = parseLocale(locale);
-  if (!loc) notFound();
-  const dict = await getDictionary(loc);
+  const { dictionary: dict } = await getLocalizedPageContext(locale);
 
   const isFr = locale === "fr";
 
@@ -44,11 +38,11 @@ export default async function AboutPage({
       />
 
       {/* Section 1: Mon parcours */}
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-primary p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+          <div className="grid gap-6 border border-border bg-card p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
             <p className="editorial-index">
-              01
+              I
             </p>
             <div>
             <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
@@ -78,10 +72,10 @@ export default async function AboutPage({
                     J&apos;ai intégré le centre de formation Simplon à Chambéry
                     pour une formation en développement web et web mobile (RNCP
                     bac+2, 2024), puis à Grenoble pour une formation Concepteur
-                    et Développeur d&apos;Applications (RNCP bac+3, 2025), qui
+                    et Développeur d&apos;Applications (RNCP bac+3, 2024), qui
                     incluait un stage de 5 mois au Laboratoire
                     d&apos;Informatique de Grenoble. Après l&apos;obtention de
-                    mon titre, j&apos;ai démarré une alternance en décembre 2025
+                    mon titre, j&apos;ai démarré une alternance en décembre 2024
                     chez 1UP Distribution en tant que développeur fullstack, en
                     parallèle d&apos;un mastère Expert en Ingénierie du Logiciel
                     (RNCP 7, bac+5) à l&apos;ISCOD, jusqu&apos;en mars 2027.
@@ -108,9 +102,9 @@ export default async function AboutPage({
                     I joined the Simplon training center in Chambéry for web and
                     mobile web development training (RNCP level 5, 2024), then in
                     Grenoble for Application Designer &amp; Developer training
-                    (RNCP level 6, 2025), which included a 5-month internship at
+                    (RNCP level 6, 2024), which included a 5-month internship at
                     the Grenoble Computer Science Laboratory. After obtaining my
-                    degree, I started a work-study program in December 2025 at
+                    degree, I started a work-study program in December 2024 at
                     1UP Distribution as a fullstack developer, alongside a
                     Master&apos;s in Software Engineering (RNCP level 7) at
                     ISCOD, until March 2027.
@@ -126,9 +120,9 @@ export default async function AboutPage({
       {/* Section 2: Mes valeurs */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-vermillion p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
-            <p className="editorial-index text-vermillion">
-              02
+          <div className="grid gap-6 border border-border bg-card p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index">
+              II
             </p>
             <div>
             <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
@@ -193,11 +187,11 @@ export default async function AboutPage({
       </section>
 
       {/* Section 3: Mon projet professionnel et personnel */}
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-primary p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+          <div className="grid gap-6 border border-border bg-card p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
             <p className="editorial-index">
-              03
+              III
             </p>
             <div>
               <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
@@ -297,9 +291,9 @@ export default async function AboutPage({
       {/* Section 4: Mes qualités humaines */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-vermillion p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
-            <p className="editorial-index text-vermillion">
-              04
+          <div className="grid gap-6 border border-border bg-card p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+            <p className="editorial-index">
+              IV
             </p>
             <div>
             <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">
@@ -360,11 +354,11 @@ export default async function AboutPage({
       </section>
 
       {/* Section 5: Mes centres d'intérêt */}
-      <section className="section-tinted px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="premium-card grid gap-6 rounded-xl border-l-4 border-l-primary p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
+          <div className="grid gap-6 border border-border bg-card p-5 sm:p-8 lg:grid-cols-[120px_1fr]">
             <p className="editorial-index">
-              05
+              V
             </p>
             <div>
             <h2 className="mb-4 text-2xl font-black uppercase tracking-[-0.03em] sm:text-3xl">

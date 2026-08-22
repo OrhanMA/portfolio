@@ -39,6 +39,10 @@ describe("Footer", () => {
       "href",
       "/fr/mentions-legales",
     );
+    expect(
+      screen.getByRole("button", { name: "Gérer les cookies" }),
+    ).toHaveClass("[font:inherit]", "uppercase");
+    expect(screen.queryByText(/GSAP & shadcn\/ui/)).not.toBeInTheDocument();
   });
 
   it("exposes the public proof documents", () => {

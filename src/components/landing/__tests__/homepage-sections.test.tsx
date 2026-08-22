@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import userEvent from "@testing-library/user-event";
 import { AboutSection } from "@/components/landing/about-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { ExperienceSection } from "@/components/landing/experience-section";
@@ -40,7 +41,7 @@ describe("editorial homepage sections", () => {
     ).toBeInTheDocument();
   });
 
-  it("keeps the shadow synchronized with the CSS hover transform", () => {
+  it("presents principles without decorative transforms or shadows", () => {
     renderWithProviders(<AboutSection dict={frDict.about} />);
 
     const stamp = screen
@@ -48,17 +49,11 @@ describe("editorial homepage sections", () => {
       .closest("article");
     expect(stamp).not.toBeNull();
 
-    expect(stamp).toHaveClass(
-      "hover:-translate-y-2",
-      "hover:scale-[1.025]",
-      "transition-[color,background-color,transform]",
-    );
-    expect(stamp).toHaveClass(
-      "shadow-[6px_7px_0_oklch(0.16_0.018_245/0.12)]",
-    );
+    expect(stamp).toHaveClass("border-b", "border-border");
+    expect(stamp?.className).not.toMatch(/shadow|rotate|scale/);
   });
 
-  it("uses sakura assets instead of animated mouse cursors", () => {
+  it("uses a monochrome hero and contact section without decorative assets", () => {
     const hero = renderWithProviders(
       <HeroSection
         locale="fr"
@@ -70,22 +65,10 @@ describe("editorial homepage sections", () => {
     expect(
       screen.queryByText("Portfolio créatif · Ingénierie logicielle"),
     ).not.toBeInTheDocument();
-    expect(hero.container.querySelector(".hero-cursor")).toBeNull();
-    expect(hero.container.querySelector(".hero-petals")).toHaveAttribute(
-      "src",
-      "/images/decorative/sakura-petals-scatter.svg",
-    );
-    const petalAccents = hero.container.querySelectorAll(".hero-petal-accent");
-    expect(petalAccents).toHaveLength(2);
-    petalAccents.forEach((petal) => {
-      expect(petal).toHaveAttribute(
-        "src",
-        "/images/decorative/sakura-petal.svg",
-      );
-    });
+    expect(hero.container.querySelector('img[src*="decorative"]')).toBeNull();
     expect(screen.getByRole("link", { name: "Voir les réalisations" })).toHaveClass(
-      "bg-vermillion",
-      "text-white",
+      "bg-primary",
+      "text-primary-foreground",
     );
     hero.unmount();
 
@@ -93,14 +76,10 @@ describe("editorial homepage sections", () => {
       <CtaSection locale="fr" dict={frDict.cta} />,
     );
 
-    expect(contact.container.querySelector(".contact-cursor")).toBeNull();
-    expect(contact.container.querySelector(".contact-petals")).toHaveAttribute(
-      "src",
-      "/images/decorative/pixel-sakura-petals-trio.svg",
-    );
-    expect(contact.container.querySelector(".contact-sakura")).toHaveAttribute(
-      "src",
-      "/images/decorative/pixel-sakura-branch.svg",
+    expect(contact.container.querySelector("img")).toBeNull();
+    expect(screen.getByRole("link", { name: "Me contacter" })).toHaveClass(
+      "bg-primary",
+      "text-primary-foreground",
     );
   });
 
@@ -120,12 +99,23 @@ describe("editorial homepage sections", () => {
     ).toHaveAttribute("href", "/fr/competences");
   });
 
-  it("shows a jury-readable timeline with separate training, logos and proofs", () => {
+  it("shows a jury-readable timeline with animated details, logos and proofs", async () => {
+    const user = userEvent.setup();
     const { container } = renderWithProviders(
       <ExperienceSection dict={frDict.experience} />,
     );
 
-    expect(container.querySelectorAll("details")).toHaveLength(6);
+    expect(container.querySelectorAll(".experience-details")).toHaveLength(6);
+    const detailButtons = screen.getAllByRole("button", {
+      name: "Afficher le détail",
+    });
+    expect(detailButtons).toHaveLength(6);
+    expect(detailButtons[0]).toHaveAttribute("aria-expanded", "false");
+    await user.click(detailButtons[0]);
+    expect(detailButtons[0]).toHaveAttribute("aria-expanded", "true");
+    expect(
+      document.getElementById(detailButtons[0].getAttribute("aria-controls") ?? ""),
+    ).toHaveClass("grid-rows-[1fr]", "opacity-100");
     expect(container.querySelector(".journey-path")).toBeNull();
     expect(container.querySelectorAll(".journey-marker")).toHaveLength(0);
     expect(container.querySelector(".journey-row > span")).toBeNull();
@@ -150,9 +140,21 @@ describe("editorial homepage sections", () => {
         name: "Concepteur Développeur d'Applications — RNCP niveau 6",
       }),
     ).toBeInTheDocument();
+
+    const journeyRows = Array.from(container.querySelectorAll(".journey-row"));
+    expect(
+      journeyRows.map((row) => row.querySelector("p")?.textContent),
+    ).toEqual([
+      "Déc. 2024 — Présent",
+      "2025 — 2027",
+      "7 août 2025",
+      "Mai — Oct. 2024",
+      "Janv. — Déc. 2024",
+      "2023",
+    ]);
   });
 
-  it("shows verifiable result metrics for each featured project", () => {
+  it("shows documented result metrics without presenting an estimate as a measurement", () => {
     const { container } = renderWithProviders(
       <ProjectsSection
         locale="fr"
@@ -167,7 +169,7 @@ describe("editorial homepage sections", () => {
     expect(screen.getByText("16")).toBeInTheDocument();
     expect(screen.getByText("99")).toBeInTheDocument();
     expect(screen.getByText(/Aucune perte définitive de données/)).toBeInTheDocument();
-    expect(screen.getByText(/Une demi-journée économisée/)).toBeInTheDocument();
+    expect(screen.getByText(/temps économisé n'est pas encore mesuré/i)).toBeInTheDocument();
     expect(screen.getByText(/100 en accessibilité et 100 en SEO/)).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Voir la réalisation" })).toHaveLength(3);
     expect(

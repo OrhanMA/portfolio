@@ -84,7 +84,7 @@
     "ctaAll": "View all achievements",
     "cases": [
       { "slug": "migration-odoo-v16-v19", "problem": "Move a critical ERP across three major releases without lasting disruption to work or loss of data.", "contribution": "Inventory, module-by-module strategy, migration rehearsals, testing, cutover, and stabilization managed autonomously.", "result": "Odoo 16 → 19 · 19 direct users · no permanent data loss · stabilized within one month.", "metricValue": "19", "metricLabel": "direct users", "metricNote": "No permanent data loss and stabilization within one month." },
-      { "slug": "modules-metier-odoo", "problem": "Important business processes remained manual or exceeded the limits of standard configuration and Odoo Studio.", "contribution": "Requirement discovery, Python/XML design, testing, deployment, and maintenance of a version-controlled business layer in the ERP.", "result": "16 internal business modules · half a working day saved every week for accounting.", "metricValue": "16", "metricLabel": "internal business modules", "metricNote": "Half a working day saved every week for accounting." },
+      { "slug": "modules-metier-odoo", "problem": "Important business processes remained manual or exceeded the limits of standard configuration and Odoo Studio.", "contribution": "Requirement discovery, Python/XML design, testing, deployment, and maintenance of a version-controlled business layer in the ERP.", "result": "16 internal business modules · automated invoice checks and reminders.", "metricValue": "16", "metricLabel": "internal business modules", "metricNote": "Time saved has not yet been measured reliably." },
       { "slug": "refonte-site-corporate", "problem": "Modernize the company image without sacrificing mobile quality, performance, or control over published content.", "contribution": "Technical ownership, Next.js architecture, design system, internationalization, SEO, accessibility, and coordination of approvals.", "result": "Measured Lighthouse: 99 performance, 100 accessibility, and 100 SEO.", "metricValue": "99", "metricLabel": "Lighthouse performance", "metricNote": "100 accessibility and 100 SEO in the published measurement." }
     ]
   },
@@ -115,7 +115,7 @@
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
-        "order": 3,
+        "order": 4,
         "period": "May — Oct. 2024",
         "title": "Web Developer Intern — LIG Lab",
         "company": "Grenoble Computer Science Laboratory",
@@ -151,11 +151,11 @@
         "tags": ["RNCP 7", "Architecture", "Quality", "Project Management", "Work-study"]
       },
       {
-        "order": 4,
+        "order": 3,
         "period": "August 7, 2025",
         "title": "TOEIC Listening & Reading — 920/990",
         "company": "ETS Global",
-        "url": "https://www.etsglobal.org/fr/en/test-type-family/test-toeic-listening-and-reading",
+        "url": "https://www.etsglobal.org/fr/fr/test-type-family/test-toeic-listening-and-reading",
         "location": "Professional English certification",
         "description": "TOEIC Listening & Reading score of 920/990: C1 level in listening comprehension and B2 level in reading comprehension.",
         "institutions": "The TOEIC measures English comprehension in international professional situations. The public certificate lets reviewers verify the date, overall score, and achieved levels directly.",
@@ -166,7 +166,7 @@
       },
       {
         "order": 5,
-        "period": "May — June 2024",
+        "period": "January — December 2024",
         "title": "Application Designer & Developer — RNCP level 6",
         "company": "Simplon",
         "logo": "/logo-simplon.webp",
@@ -270,7 +270,9 @@
     "submitLabel": "Send message",
     "submittingLabel": "Sending...",
     "successHeading": "Message sent!",
-    "sendAnother": "Send another message"
+    "sendAnother": "Send another message",
+    "privacyNotice": "Your data is processed to respond to your request and protect this form from spam, on the basis of the publisher’s legitimate interest. To exercise your rights, contact",
+    "privacyNoticeLink": "You can also read the Privacy Policy."
   },
   "contactValidation": {
     "nameMin": "Your name must contain at least 2 characters.",
@@ -451,8 +453,7 @@
     "legalTitle": "Legal",
     "legalNotice": "Legal notice",
     "privacyPolicy": "Privacy policy",
-    "copyright": "All rights reserved.",
-    "builtWith": "Built with Next.js, GSAP & shadcn/ui"
+    "copyright": "All rights reserved."
   },
   "notFound": {
     "heading": "Page not found",
@@ -484,6 +485,8 @@
   "legal": {
     "pageTitle": "Legal Notice | Orhan Madi Assani",
     "heading": "Legal Notice",
+    "status": "Publisher status",
+    "statusText": "This site is published on a non-professional basis. The publisher’s legally required identification details have been provided to the hosting provider in accordance with Article 6 of the French Law for Confidence in the Digital Economy.",
     "editor": "Site editor",
     "editorName": "Orhan Madi Assani",
     "editorLocation": "Chambéry, France",
@@ -513,11 +516,13 @@
     "purposeText": "Contact-form processing relies on the legitimate interest of answering received requests and protecting the website against spam. Data is available to the site publisher and to providers strictly required for operation, including Vercel for hosting and Resend for email delivery. It is never sold. Messages are kept for the time required to follow up on a request and deleted no later than twelve months after the last exchange, unless a legal obligation requires otherwise.",
     "cookiesSection": "Cookies",
     "cookiesText": "Language and theme are preferences required to provide the requested experience. Google Tag Manager and Google Analytics load only after explicit consent, which can be withdrawn at any time through the “Manage cookies” link in the footer. reCAPTCHA can load only after an interaction with the contact form when that service is configured.",
+    "internationalTransfers": "International data transfers",
+    "internationalTransfersText": "Depending on the service and configuration, Vercel, Resend and Google (GTM, Google Analytics and reCAPTCHA) may process certain data from the United States or other countries outside the European Economic Area. When a transfer is necessary, it is governed by a European Commission adequacy decision, including the EU–US Data Privacy Framework where applicable, or otherwise by the European Commission’s Standard Contractual Clauses and appropriate supplementary safeguards. You can request more information about these safeguards at the address listed in the legal notice.",
     "rights": "Your Rights",
     "rightsText": "Under the GDPR, you have rights of access, rectification, erasure, restriction, objection, and, where applicable, portability. You may withdraw consent at any time. To exercise these rights, use the address listed in the legal notice. You may also lodge a complaint with the French data protection authority, the CNIL.",
     "updates": "Changes",
     "updatesText": "This policy is reviewed whenever processing activities or providers change. A new version date is published for every material update.",
     "lastUpdated": "Last updated",
-    "lastUpdatedDate": "July 16, 2026"
+    "lastUpdatedDate": "August 14, 2026"
   }
 }

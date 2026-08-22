@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import {
-  EditorialWave,
-  UkiyoeCrest,
-} from "@/components/landing/editorial-wave";
+import { ExperienceDetails } from "@/components/landing/experience-details";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
@@ -81,14 +78,14 @@ export function ExperienceSection({
   return (
     <section
       id="parcours"
-      className="landing-deferred landing-deferred-experience relative overflow-hidden border-y border-foreground/15 bg-primary/[0.025] px-4 pb-32 pt-20 sm:px-6 lg:px-8 lg:pb-40 lg:pt-24"
+      className="landing-deferred landing-deferred-experience border-y border-border bg-muted/35 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-28 xl:gap-32">
-        <div className="relative z-20">
-          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-20">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             {dict.eyebrow}
           </p>
-          <h2 className="mt-4 text-5xl font-black uppercase leading-none tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
             {dict.heading}
           </h2>
           <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
@@ -96,8 +93,8 @@ export function ExperienceSection({
           </p>
         </div>
 
-        <div className="journey-list relative z-10">
-          <div className="grid lg:pl-6">
+        <div className="journey-list">
+          <div className="grid border-t border-border">
             {[...(dict.entries as ExperienceEntry[])]
               .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
               .map((experience) => {
@@ -108,13 +105,13 @@ export function ExperienceSection({
               return (
                 <article
                   key={`${experience.period}-${experience.title}`}
-                  className="journey-row invisible relative min-h-48 border-b border-foreground/15 py-7 first:pt-0 last:border-b-0"
+                  className="journey-row invisible border-b border-border py-8"
                 >
                   <div>
-                    <p className="text-[10px] font-bold uppercase leading-5 tracking-[0.16em] text-foreground/70">
+                    <p className="font-mono text-xs text-muted-foreground">
                       {experience.period}
                     </p>
-                    <h3 className="mt-2 text-xl font-black leading-tight tracking-[-0.025em] sm:text-2xl">
+                    <h3 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.02em] sm:text-2xl">
                       {experience.title}
                     </h3>
                     <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
@@ -124,10 +121,10 @@ export function ExperienceSection({
                           href={organization.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group/organization inline-flex items-center gap-2.5 rounded-md border border-foreground/10 bg-background/60 py-1.5 pl-1.5 pr-2.5 text-sm font-bold text-primary transition-colors hover:border-primary/30 hover:text-vermillion"
+                          className="group/organization inline-flex items-center gap-2.5 border border-border bg-background py-1.5 pl-1.5 pr-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
                         >
                           {organization.logo && (
-                            <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded bg-white p-1 shadow-sm">
+                            <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden bg-white p-1">
                               <Image
                                 src={organization.logo}
                                 alt=""
@@ -162,7 +159,7 @@ export function ExperienceSection({
                         href={experience.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary/10"
+                        className="mt-4 inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-muted"
                       >
                         {experience.certificateLabel}
                         <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
@@ -172,14 +169,8 @@ export function ExperienceSection({
                       experience.institutions ||
                       experience.linkedRealisations?.length ||
                       experience.linkedCompetences?.length) && (
-                      <details className="group mt-5 border-t border-foreground/15 pt-4">
-                        <summary className="cursor-pointer list-none font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-primary marker:hidden">
-                          <span className="inline-flex items-center gap-2">
-                            <span className="transition-transform group-open:rotate-45">+</span>
-                            {dict.detailsLabel}
-                          </span>
-                        </summary>
-                        <div className="mt-4 grid gap-5 rounded-lg border border-foreground/15 bg-background/65 p-4 text-sm">
+                      <ExperienceDetails label={dict.detailsLabel}>
+                        <div className="grid gap-5 border border-border bg-background p-4 text-sm">
                           {experience.responsibilities && (
                             <div>
                               <p className="editorial-index mb-2">
@@ -188,7 +179,7 @@ export function ExperienceSection({
                               <ul className="grid gap-2 text-muted-foreground">
                                 {experience.responsibilities.map((responsibility) => (
                                   <li key={responsibility} className="flex gap-2 leading-6">
-                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-vermillion" />
+                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
                                     {responsibility}
                                   </li>
                                 ))}
@@ -206,7 +197,7 @@ export function ExperienceSection({
                                 <Link
                                   key={linkedSlug}
                                   href={`/${locale}/realisations/${linkedSlug}`}
-                                  className="rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary/10"
+                                  className="border border-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-muted"
                                 >
                                   {linkedRealisationTitles[loc][linkedSlug] ?? linkedSlug}
                                 </Link>
@@ -217,7 +208,7 @@ export function ExperienceSection({
                                 <Link
                                   key={linkedSlug}
                                   href={`/${locale}/competences/${linkedSlug}`}
-                                  className="rounded-full border border-vermillion/30 px-3 py-1.5 text-xs font-bold text-vermillion transition-colors hover:bg-vermillion/10"
+                                  className="border border-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-muted"
                                 >
                                   {linkedCompetenceTitles[loc][linkedSlug] ?? linkedSlug}
                                 </Link>
@@ -225,7 +216,7 @@ export function ExperienceSection({
                             })}
                           </div>
                         </div>
-                      </details>
+                      </ExperienceDetails>
                     )}
                   </div>
                 </article>
@@ -235,31 +226,6 @@ export function ExperienceSection({
         </div>
       </div>
 
-      <Image
-        src="/images/decorative/pixel-samurai.png"
-        alt=""
-        aria-hidden="true"
-        width={1254}
-        height={1254}
-        className="journey-samurai invisible pointer-events-none absolute -bottom-2 -left-20 z-20 hidden h-72 w-72 lg:block xl:-left-28 xl:h-80 xl:w-80"
-        sizes="(min-width: 1280px) 320px, 288px"
-      />
-      <Image
-        src="/images/decorative/pixel-ninja-hanging.png"
-        alt=""
-        aria-hidden="true"
-        width={1024}
-        height={1536}
-        className="journey-hanging-ninja invisible pointer-events-none absolute -right-16 top-6 z-20 hidden h-48 w-32 xl:block"
-        sizes="128px"
-      />
-      <div className="absolute inset-x-0 bottom-[-1px] z-0 opacity-95">
-        <EditorialWave className="h-28 sm:h-32 lg:h-36" />
-      </div>
-      <UkiyoeCrest
-        flip
-        className="pointer-events-none absolute -bottom-2 -right-20 z-[1] hidden h-56 w-80 opacity-90 md:block"
-      />
     </section>
   );
 }

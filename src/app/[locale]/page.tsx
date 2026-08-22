@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { notFound } from "next/navigation";
 
 import { AboutSection } from "@/components/landing/about-section";
 import { CtaSection } from "@/components/landing/cta-section";
@@ -8,8 +7,7 @@ import { HeroSection } from "@/components/landing/hero-section";
 import { HomepageMotion } from "@/components/landing/homepage-motion";
 import { ProjectsSection } from "@/components/landing/projects-section";
 import { SkillsSection } from "@/components/landing/skills-section";
-import { isValidLocale } from "@/lib/i18n";
-import { getDictionary } from "./dictionaries";
+import { getLocalizedPageContext } from "./route-context";
 
 const featuredProjects = {
   fr: [
@@ -54,37 +52,35 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!isValidLocale(locale)) notFound();
-
-  const dict = await getDictionary(locale);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return (
     <>
       <HeroSection
-        locale={locale}
+        locale={loc}
         dict={dict.hero}
         headshot={
           <Image
-            src="/images/decorative/hero-portrait-jinbei-desktop.avif"
+            src="/images/coporate-headshot.webp"
             alt="Orhan Madi Assani"
-            width={1023}
-            height={1537}
-            sizes="(max-width: 639px) 88vw, (max-width: 1023px) 520px, 690px"
-            className="pointer-events-none h-full w-full object-contain object-bottom"
+            width={1024}
+            height={1024}
+            sizes="(max-width: 1023px) min(100vw - 2rem, 384px), 440px"
+            className="pointer-events-none"
             fetchPriority="high"
             preload
           />
         }
       />
       <AboutSection dict={dict.about} />
-      <ExperienceSection locale={locale} dict={dict.experience} />
-      <SkillsSection locale={locale} dict={dict.skills} />
+      <ExperienceSection locale={loc} dict={dict.experience} />
+      <SkillsSection locale={loc} dict={dict.skills} />
       <ProjectsSection
-        locale={locale}
-        projects={featuredProjects[locale]}
+        locale={loc}
+        projects={featuredProjects[loc]}
         dict={dict.featuredProjects}
       />
-      <CtaSection locale={locale} dict={dict.cta} />
+      <CtaSection locale={loc} dict={dict.cta} />
       <HomepageMotion />
     </>
   );

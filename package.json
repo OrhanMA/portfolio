@@ -25,7 +25,7 @@
     "@hookform/resolvers": "^5.4.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "^16.2.10",
+    "@next/mdx": "^16.2.11",
     "@tailwindcss/typography": "^0.5.20",
     "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
@@ -34,13 +34,14 @@
     "lenis": "^1.3.25",
     "lucide-react": "^1.24.0",
     "negotiator": "^1.0.0",
-    "next": "16.2.10",
+    "next": "16.2.11",
     "next-themes": "^0.4.6",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-hook-form": "^7.81.0",
     "resend": "^6.17.2",
     "server-only": "^0.0.1",
+    "sharp": "^0.35.3",
     "tailwind-merge": "^3.6.0",
     "tw-animate-css": "^1.4.0",
     "zod": "^4.4.3"
@@ -62,7 +63,7 @@
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-v8": "4.1.10",
     "eslint": "^9",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "16.2.11",
     "jsdom": "^29.1.1",
     "shadcn": "4.13.0",
     "tailwindcss": "^4.3.3",
@@ -73,11 +74,19 @@
   },
   "pnpm": {
     "overrides": {
-      "brace-expansion@1": "^1.1.13",
+      "@hono/node-server": "^1.19.15",
+      "brace-expansion@1": "^1.1.18",
+      "brace-expansion@5": "^5.0.9",
+      "fast-uri": "^3.1.5",
       "flatted": "^3.4.2",
-      "js-yaml": "^4.2.0",
+      "hono": "^4.12.34",
+      "ip-address": "^10.3.1",
+      "js-yaml": "^4.3.1",
+      "nanoid": "^3.3.18",
       "picomatch@2": "^2.3.2",
-      "postcss": "^8.5.10"
+      "postcss": "^8.5.26",
+      "sharp": "^0.35.3",
+      "undici": "^7.29.0"
     }
   }
 }

@@ -105,7 +105,7 @@ describe("Navbar", () => {
     renderNavbar();
 
     expect(screen.getByRole("link", { name: /Contact/ })).toHaveClass(
-      "text-white",
+      "text-primary-foreground",
     );
   });
 });

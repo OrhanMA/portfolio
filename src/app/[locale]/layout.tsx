@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { notFound } from "next/navigation";
 import "../globals.css";
-import { isValidLocale, locales } from "@/lib/i18n";
-import { getDictionary } from "./dictionaries";
+import { locales } from "@/lib/i18n";
 import { deferredFontClassName } from "@/components/deferred-fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -17,6 +15,7 @@ import { StructuredData } from "@/components/structured-data";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { competences } from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
+import { getLocalizedPageContext } from "./route-context";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -28,11 +27,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (!isValidLocale(locale)) notFound();
-  const dict = await getDictionary(locale);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   return {
     ...createLocalizedMetadata({
-      locale,
+      locale: loc,
       title: dict.metadata.title,
       description: dict.metadata.description,
     }),
@@ -52,9 +50,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!isValidLocale(locale)) notFound();
-  const loc = locale;
-  const dict = await getDictionary(loc);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const requestHeaders = await headers();
   const nonce = requestHeaders.get("x-nonce") ?? undefined;
   const pathname = requestHeaders.get("x-pathname") ?? `/${loc}`;
