@@ -1,0 +1,355 @@
+{
+  "sourceFiles": 179,
+  "productionFiles": 124,
+  "tsProductionFiles": 118,
+  "mdxFiles": 6,
+  "testFiles": 47,
+  "productionLines": 14436,
+  "clientModules": 32,
+  "explicitAny": [],
+  "assertions": 27,
+  "longFunctions": [
+    {
+      "file": "src/app/[locale]/competences/[slug]/page.tsx",
+      "name": "CompetenceDetailPage",
+      "line": 111,
+      "lines": 385
+    },
+    {
+      "file": "src/app/[locale]/a-propos/page.tsx",
+      "name": "AboutPage",
+      "line": 22,
+      "lines": 381
+    },
+    {
+      "file": "src/app/[locale]/realisations/[slug]/page.tsx",
+      "name": "RealisationDetailPage",
+      "line": 43,
+      "lines": 311
+    },
+    {
+      "file": "src/components/contact-form.tsx",
+      "name": "ContactForm",
+      "line": 47,
+      "lines": 307
+    },
+    {
+      "file": "src/components/cookie-consent.tsx",
+      "name": "CookieConsent",
+      "line": 30,
+      "lines": 248
+    },
+    {
+      "file": "src/components/landing/experience-section.tsx",
+      "name": "ExperienceSection",
+      "line": 75,
+      "lines": 196
+    },
+    {
+      "file": "src/components/articles-filterable-list.tsx",
+      "name": "ArticlesFilterableList",
+      "line": 49,
+      "lines": 187
+    },
+    {
+      "file": "src/app/[locale]/projects/[slug]/page.tsx",
+      "name": "ProjectDetailPage",
+      "line": 47,
+      "lines": 154
+    },
+    {
+      "file": "src/components/landing/experience-section.tsx",
+      "name": "callback",
+      "line": 111,
+      "lines": 153
+    },
+    {
+      "file": "src/app/[locale]/parcours/[slug]/page.tsx",
+      "name": "ExperiencePage",
+      "line": 40,
+      "lines": 146
+    },
+    {
+      "file": "src/components/article-enhancements.tsx",
+      "name": "ArticleEnhancements",
+      "line": 34,
+      "lines": 142
+    },
+    {
+      "file": "src/app/[locale]/competences/page.tsx",
+      "name": "CompetencesPage",
+      "line": 37,
+      "lines": 138
+    },
+    {
+      "file": "src/components/radar-chart.tsx",
+      "name": "RadarChart",
+      "line": 52,
+      "lines": 133
+    },
+    {
+      "file": "src/app/[locale]/actions/contact.ts",
+      "name": "sendContactEmail",
+      "line": 30,
+      "lines": 132
+    },
+    {
+      "file": "src/components/navbar.tsx",
+      "name": "Navbar",
+      "line": 29,
+      "lines": 126
+    }
+  ],
+  "largestModules": [
+    {
+      "name": "src/lib/odoo-projects.ts",
+      "lines": 816
+    },
+    {
+      "name": "src/lib/realisations/app-trajectoires-de-vie.ts",
+      "lines": 726
+    },
+    {
+      "name": "src/lib/realisations/portfolio-professionnel.ts",
+      "lines": 704
+    },
+    {
+      "name": "src/lib/realisations/refonte-site-corporate.ts",
+      "lines": 642
+    },
+    {
+      "name": "src/app/[locale]/competences/[slug]/page.tsx",
+      "lines": 497
+    },
+    {
+      "name": "src/lib/realisations/modules-metier-odoo.ts",
+      "lines": 418
+    },
+    {
+      "name": "src/app/[locale]/a-propos/page.tsx",
+      "lines": 404
+    },
+    {
+      "name": "src/app/[locale]/realisations/[slug]/page.tsx",
+      "lines": 355
+    },
+    {
+      "name": "src/components/contact-form.tsx",
+      "lines": 355
+    },
+    {
+      "name": "src/lib/realisations/migration-odoo-v16-v19.ts",
+      "lines": 328
+    },
+    {
+      "name": "src/components/navbar.tsx",
+      "lines": 319
+    },
+    {
+      "name": "src/components/cookie-consent.tsx",
+      "lines": 279
+    },
+    {
+      "name": "src/components/landing/experience-section.tsx",
+      "lines": 272
+    },
+    {
+      "name": "src/components/ui/field.tsx",
+      "lines": 239
+    },
+    {
+      "name": "src/components/articles-filterable-list.tsx",
+      "lines": 237
+    },
+    {
+      "name": "src/app/[locale]/projects/[slug]/page.tsx",
+      "lines": 202
+    },
+    {
+      "name": "src/components/ui/select.tsx",
+      "lines": 202
+    },
+    {
+      "name": "src/components/landing/skills-section.tsx",
+      "lines": 189
+    },
+    {
+      "name": "src/lib/topic-links.ts",
+      "lines": 189
+    },
+    {
+      "name": "src/app/[locale]/parcours/[slug]/page.tsx",
+      "lines": 187
+    }
+  ],
+  "fanIn": [
+    [
+      "src/lib/utils.ts",
+      25
+    ],
+    [
+      "src/components/linked-text.tsx",
+      16
+    ],
+    [
+      "src/app/[locale]/route-context.ts",
+      15
+    ],
+    [
+      "src/lib/metadata.ts",
+      14
+    ],
+    [
+      "src/components/editorial-page-header.tsx",
+      14
+    ],
+    [
+      "src/lib/i18n.ts",
+      10
+    ],
+    [
+      "src/components/topic-link.tsx",
+      10
+    ],
+    [
+      "src/components/ui/button.tsx",
+      10
+    ],
+    [
+      "src/app/[locale]/articles/[slug]/layout.tsx",
+      6
+    ],
+    [
+      "src/components/ui/card.tsx",
+      6
+    ],
+    [
+      "src/lib/competences.ts",
+      6
+    ],
+    [
+      "src/lib/realisations.ts",
+      6
+    ],
+    [
+      "src/lib/styles.ts",
+      6
+    ],
+    [
+      "src/components/dictionary-provider.tsx",
+      6
+    ],
+    [
+      "src/app/[locale]/dictionaries.ts",
+      5
+    ],
+    [
+      "src/components/ui/badge.tsx",
+      5
+    ],
+    [
+      "src/app/globals.css",
+      3
+    ],
+    [
+      "src/lib/odoo-projects.ts",
+      3
+    ],
+    [
+      "src/components/site-identity.tsx",
+      3
+    ],
+    [
+      "src/components/landing/landing-button-link.tsx",
+      3
+    ]
+  ],
+  "cycles": [],
+  "edges": 283,
+  "externalImports": [
+    [
+      "next",
+      65
+    ],
+    [
+      "node:crypto",
+      1
+    ],
+    [
+      "resend",
+      1
+    ],
+    [
+      "lucide-react",
+      22
+    ],
+    [
+      "server-only",
+      5
+    ],
+    [
+      "react",
+      32
+    ],
+    [
+      "react-hook-form",
+      1
+    ],
+    [
+      "@hookform/resolvers",
+      1
+    ],
+    [
+      "class-variance-authority",
+      5
+    ],
+    [
+      "next-themes",
+      2
+    ],
+    [
+      "@base-ui/react",
+      8
+    ],
+    [
+      "node:fs",
+      1
+    ],
+    [
+      "node:path",
+      1
+    ],
+    [
+      "gsap",
+      2
+    ],
+    [
+      "@gsap/react",
+      1
+    ],
+    [
+      "lenis",
+      1
+    ],
+    [
+      "zod",
+      1
+    ],
+    [
+      "clsx",
+      1
+    ],
+    [
+      "tailwind-merge",
+      1
+    ],
+    [
+      "negotiator",
+      1
+    ],
+    [
+      "@formatjs/intl-localematcher",
+      1
+    ]
+  ]
+}

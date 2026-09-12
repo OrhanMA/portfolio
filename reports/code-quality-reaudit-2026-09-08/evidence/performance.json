@@ -1,0 +1,447 @@
+{
+  "date": "2026-09-08T16:01:45.971Z",
+  "browser": "149.0.7827.55",
+  "method": "Fresh context per route; cache cold; analytics rejected; mobile 390x844 DPR1; reduced motion; 150ms latency, 1.6Mbps down, 0.75Mbps up, CPU x4 for constrained profile. Laboratory sample, not Lighthouse or field CWV.",
+  "measurements": [
+    {
+      "route": "/fr",
+      "profile": "local",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 16,
+        "encoded": 211163,
+        "decoded": 701054
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 2,
+        "encoded": 1954,
+        "decoded": 3093
+      },
+      "allResources": {
+        "count": 35,
+        "encoded": 307951,
+        "decoded": 922676
+      },
+      "document": {
+        "encoded": 58671,
+        "decoded": 315885,
+        "ttfb": 16.700000047683716
+      },
+      "domElements": 1031,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 72
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 72
+        }
+      ],
+      "lcp": 72,
+      "longTasks": [],
+      "mainTextLength": 7348
+    },
+    {
+      "route": "/fr/articles",
+      "profile": "local",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 16,
+        "encoded": 214424,
+        "decoded": 710742
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 28,
+        "encoded": 298907,
+        "decoded": 914080
+      },
+      "document": {
+        "encoded": 27618,
+        "decoded": 127699,
+        "ttfb": 14.200000047683716
+      },
+      "domElements": 442,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 32
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 52
+        }
+      ],
+      "lcp": 52,
+      "longTasks": [],
+      "mainTextLength": 1578
+    },
+    {
+      "route": "/fr/realisations/portfolio-professionnel",
+      "profile": "local",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 16,
+        "encoded": 210834,
+        "decoded": 699898
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 30,
+        "encoded": 296710,
+        "decoded": 906632
+      },
+      "document": {
+        "encoded": 185415,
+        "decoded": 607270,
+        "ttfb": 24.700000047683716
+      },
+      "domElements": 1550,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 68
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 68
+        }
+      ],
+      "lcp": 68,
+      "longTasks": [],
+      "mainTextLength": 1283
+    },
+    {
+      "route": "/fr/competences",
+      "profile": "local",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 17,
+        "encoded": 255649,
+        "decoded": 820528
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 21,
+        "encoded": 333794,
+        "decoded": 1006675
+      },
+      "document": {
+        "encoded": 26658,
+        "decoded": 118045,
+        "ttfb": 9.599999904632568
+      },
+      "domElements": 403,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 24
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 44
+        }
+      ],
+      "lcp": 44,
+      "longTasks": [],
+      "mainTextLength": 1773
+    },
+    {
+      "route": "/fr",
+      "profile": "constrained",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 16,
+        "encoded": 211163,
+        "decoded": 701054
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 33,
+        "encoded": 305992,
+        "decoded": 919583
+      },
+      "document": {
+        "encoded": 58633,
+        "decoded": 315885,
+        "ttfb": 15.800000190734863
+      },
+      "domElements": 1031,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 1080
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 1080
+        }
+      ],
+      "lcp": 1080,
+      "longTasks": [
+        {
+          "start": 992.5,
+          "duration": 78
+        },
+        {
+          "start": 2092.600000143051,
+          "duration": 111
+        }
+      ],
+      "mainTextLength": 7348
+    },
+    {
+      "route": "/fr/articles",
+      "profile": "constrained",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 16,
+        "encoded": 214424,
+        "decoded": 710742
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 28,
+        "encoded": 298911,
+        "decoded": 914080
+      },
+      "document": {
+        "encoded": 27617,
+        "decoded": 127699,
+        "ttfb": 13.5
+      },
+      "domElements": 442,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 1020
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 1020
+        }
+      ],
+      "lcp": 1020,
+      "longTasks": [
+        {
+          "start": 954.0999999046326,
+          "duration": 58
+        },
+        {
+          "start": 1946,
+          "duration": 189
+        },
+        {
+          "start": 2244,
+          "duration": 107
+        }
+      ],
+      "mainTextLength": 1578
+    },
+    {
+      "route": "/fr/realisations/portfolio-professionnel",
+      "profile": "constrained",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 16,
+        "encoded": 210834,
+        "decoded": 699898
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 30,
+        "encoded": 296711,
+        "decoded": 906632
+      },
+      "document": {
+        "encoded": 185669,
+        "decoded": 607270,
+        "ttfb": 62.89999985694885
+      },
+      "domElements": 1550,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 1080
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 1080
+        }
+      ],
+      "lcp": 1080,
+      "longTasks": [
+        {
+          "start": 995.2000000476837,
+          "duration": 79
+        },
+        {
+          "start": 2433.7000000476837,
+          "duration": 130
+        }
+      ],
+      "mainTextLength": 1283
+    },
+    {
+      "route": "/fr/competences",
+      "profile": "constrained",
+      "status": 200,
+      "errors": [],
+      "js": {
+        "count": 17,
+        "encoded": 255649,
+        "decoded": 820528
+      },
+      "css": {
+        "count": 2,
+        "encoded": 20617,
+        "decoded": 128619
+      },
+      "fonts": {
+        "count": 2,
+        "encoded": 57528,
+        "decoded": 57528
+      },
+      "images": {
+        "count": 0,
+        "encoded": 0,
+        "decoded": 0
+      },
+      "allResources": {
+        "count": 21,
+        "encoded": 333794,
+        "decoded": 1006675
+      },
+      "document": {
+        "encoded": 26657,
+        "decoded": 118045,
+        "ttfb": 10.099999904632568
+      },
+      "domElements": 403,
+      "paint": [
+        {
+          "name": "first-paint",
+          "start": 960
+        },
+        {
+          "name": "first-contentful-paint",
+          "start": 960
+        }
+      ],
+      "lcp": 960,
+      "longTasks": [
+        {
+          "start": 847.7000000476837,
+          "duration": 54
+        },
+        {
+          "start": 1973.5999999046326,
+          "duration": 112
+        }
+      ],
+      "mainTextLength": 1773
+    }
+  ]
+}

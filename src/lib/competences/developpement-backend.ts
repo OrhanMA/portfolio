@@ -8,7 +8,7 @@ export const developpementBackend: Competence = {
   },
   type: "technical",
   level: "intermediate",
-  radarValue: 55,
+  radarValue: 80,
   icon: "Server",
   definition: {
     fr: `Le développement backend couvre les traitements exécutés côté serveur : règles métier, accès aux données, authentification et autorisation, API, tâches planifiées, intégrations externes et observabilité. Une route qui renvoie une réponse correcte n'est qu'une partie du travail. Il faut définir les données acceptées, valider les entrées, préserver les invariants, gérer les erreurs, protéger les secrets, contrôler les effets de bord et rendre le comportement testable.

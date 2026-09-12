@@ -4,6 +4,14 @@ Portfolio bilingue FR/EN construit avec Next.js 16.2, React 19, TypeScript stric
 
 ## Démarrage
 
+Le dépôt cible **Node.js 22** et **pnpm 10.20.0**, comme la CI. Le fichier [.nvmrc](./.nvmrc) permet de sélectionner Node 22 avec nvm ; `package.json` vérifie également les versions attendues. Si Corepack n'est pas encore activé sur la machine :
+
+```bash
+corepack enable
+```
+
+Utiliser ensuite Corepack pour que la version pnpm déclarée par le dépôt soit sélectionnée automatiquement :
+
 ```bash
 corepack pnpm install
 corepack pnpm dev
@@ -36,9 +44,12 @@ src/
   lib/                             # Contenu, schémas et services
   proxy.ts                         # Locale + CSP à nonce
 scripts/check-bundle-budget.mjs    # Budgets JS/CSS
+performance-budget.json             # Budgets agrégés de routes représentatives
 ```
 
 Les routes applicatives utilisent exclusivement l’App Router. Le layout `[locale]` rend directement `<html lang="fr|en">`; `global-not-found.tsx` couvre les URL hors arbre localisé. Le proxy applique un CSP à nonce sans `unsafe-inline` pour les scripts.
+
+Les frontières de rendu, la dégradation sans JavaScript, les catalogues canoniques et les budgets de performance sont décrits dans [`docs/architecture.md`](./docs/architecture.md). Les recettes pour ajouter une page, une donnée éditoriale, un article ou une langue sont dans [`docs/contributing.md`](./docs/contributing.md).
 
 ## Fonctionnalités clés
 
@@ -66,6 +77,7 @@ pnpm test:coverage     # Couverture + seuils bloquants
 pnpm test:browser      # Composants et snapshots Chromium
 pnpm build             # Build de production Next.js
 pnpm check:bundle      # Budgets des assets produits
+pnpm check:performance # Mesure le build .next courant puis contrôle document/JS/fontes/DOM
 pnpm test:e2e          # Parcours Playwright
 pnpm test              # Projets Vitest unitaires + navigateur
 ```

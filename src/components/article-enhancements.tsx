@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Check, Copy, Link2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { ArticleHeading } from "@/lib/article-headings";
+import type { Locale } from "@/lib/i18n";
 
 type ArticleSummary = {
   slug: string;
@@ -15,7 +16,7 @@ type ArticleSummary = {
 };
 
 type ArticleEnhancementsProps = {
-  locale: string;
+  locale: Locale;
   slug: string;
   articles: ArticleSummary[];
   headings: ArticleHeading[];
@@ -66,27 +67,6 @@ export function ArticleEnhancements({
       .map(({ article }) => article);
   }, [articles, currentArticle]);
 
-  useEffect(() => {
-    if (!slug) {
-      return;
-    }
-
-    const article = document.querySelector("article");
-    if (!article) {
-      return;
-    }
-
-    const headingElements = Array.from(
-      article.querySelectorAll<HTMLHeadingElement>("h2, h3"),
-    );
-    headingElements.forEach((heading, index) => {
-      const nextHeading = headings[index];
-      if (nextHeading) {
-        heading.id = nextHeading.id;
-      }
-    });
-  }, [headings, slug]);
-
   if (!slug || !currentArticle) {
     return null;
   }
@@ -104,9 +84,9 @@ export function ArticleEnhancements({
   }
 
   return (
-    <aside className="not-prose mx-auto mb-10 grid max-w-3xl gap-4 border border-border bg-card p-4 text-sm">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
+    <aside>
+      <div>
+        <div>
           <Badge variant="secondary">
             {labels.readingTime} : {readingMinutes} {labels.minuteShort}
           </Badge>
@@ -118,13 +98,12 @@ export function ArticleEnhancements({
           type="button"
           variant="outline"
           size="sm"
-          className="rounded-md"
           onClick={copyArticleLink}
         >
           {copied ? (
-            <Check aria-hidden="true" className="h-4 w-4" />
+            <Check aria-hidden="true" />
           ) : (
-            <Copy aria-hidden="true" className="h-4 w-4" />
+            <Copy aria-hidden="true" />
           )}
           {copied ? labels.copied : labels.copyLink}
         </Button>
@@ -132,20 +111,16 @@ export function ArticleEnhancements({
 
       {headings.length > 0 && (
         <nav aria-label={labels.tableOfContents}>
-          <p className="mb-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+          <p>
             {labels.tableOfContents}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div>
             {headings.map((heading) => (
               <a
                 key={heading.id}
                 href={`#${heading.id}`}
-                className={cn(
-                  "inline-flex items-center gap-1 rounded-md border border-border/70 px-2.5 py-1 text-xs text-muted-foreground no-underline transition-colors hover:border-primary/60 hover:text-foreground",
-                  heading.level === 3 && "opacity-80",
-                )}
               >
-                <Link2 aria-hidden="true" className="h-3 w-3" />
+                <Link2 aria-hidden="true" />
                 {heading.text}
               </a>
             ))}
@@ -155,15 +130,14 @@ export function ArticleEnhancements({
 
       {relatedArticles.length > 0 && (
         <div>
-          <p className="mb-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+          <p>
             {labels.relatedArticles}
           </p>
-          <div className="grid gap-2 sm:grid-cols-3">
+          <div>
             {relatedArticles.map((article) => (
               <Link
                 key={article.slug}
                 href={`/${locale}/articles/${article.slug}`}
-                className="rounded-md border border-border/70 p-3 text-xs leading-5 text-foreground no-underline transition-colors hover:border-primary/60 hover:bg-muted/50"
               >
                 {article.title}
               </Link>

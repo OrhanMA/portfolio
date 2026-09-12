@@ -1,0 +1,30 @@
+{
+  "csp": [],
+  "scripts": [
+    {
+      "id": "google-tag-manager",
+      "nonce": "",
+      "src": "",
+      "textStart": "\n            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n        "
+    }
+  ],
+  "dataLayer": [
+    {
+      "gtm.start": 1788857548223,
+      "event": "gtm.js"
+    }
+  ],
+  "consent": {
+    "necessary": true,
+    "analytics": true,
+    "version": 2,
+    "decidedAt": 1788857548219
+  },
+  "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Refused to execute script from 'http://127.0.0.1:3318/_vercel/speed-insights/script.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled."
+  ],
+  "externalRequests": [
+    "https://www.googletagmanager.com/gtm.js?id=GTM-AUDIT01"
+  ]
+}

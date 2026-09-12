@@ -5,7 +5,7 @@ export const ameliorationContinue: Competence = {
   title: { fr: "Amélioration continue", en: "Continuous improvement" },
   type: "human",
   level: "intermediate",
-  radarValue: 55,
+  radarValue: 80,
   icon: "TrendingUp",
   definition: {
     fr: `L'amélioration continue consiste à utiliser les défauts, les mesures et les retours d'usage pour faire progresser à la fois le produit et la manière de le construire. Elle ne se limite pas au refactoring du code. Elle peut concerner la formulation du besoin, les critères d'acceptation, la couverture de test, la configuration, la documentation, le déploiement ou la façon d'associer les utilisateurs. Une amélioration est utile lorsqu'elle réduit un risque, un effort récurrent ou une incertitude observable.

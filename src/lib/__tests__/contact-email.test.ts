@@ -3,9 +3,12 @@ import {
   createContactEmailHtml,
   createContactEmailText,
 } from "@/lib/contact-email";
+import frDict from "@/app/[locale]/dictionaries/fr.json";
+import enDict from "@/app/[locale]/dictionaries/en.json";
 
 const message = {
   locale: "fr" as const,
+  copy: frDict.contactEmail,
   name: 'Jean <Dupont>',
   email: "jean@example.com",
   reasonLabel: "Proposition professionnelle",
@@ -33,7 +36,11 @@ describe("contact email template", () => {
   });
 
   it("provides a readable English plain-text fallback", () => {
-    const text = createContactEmailText({ ...message, locale: "en" });
+    const text = createContactEmailText({
+      ...message,
+      locale: "en",
+      copy: enDict.contactEmail,
+    });
 
     expect(text).toContain("New message");
     expect(text).toContain("Email address: jean@example.com");

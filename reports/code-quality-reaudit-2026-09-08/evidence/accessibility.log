@@ -1,0 +1,196 @@
+[
+  {
+    "url": "http://localhost:3318/fr",
+    "mobile": false,
+    "state": "initial",
+    "violations": [
+      "color-contrast"
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/competences",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/articles",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/en/articles/docker-dangling-images",
+    "mobile": false,
+    "state": "initial",
+    "violations": [
+      "color-contrast"
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/realisations/portfolio-professionnel",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/a-propos",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/parcours/1up-fullstack-developer",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/projects",
+    "mobile": false,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": false,
+    "state": "validation errors",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": false,
+    "state": "expanded consent",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr",
+    "mobile": true,
+    "state": "initial",
+    "violations": [
+      "color-contrast",
+      "target-size"
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/competences",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/articles",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/en/articles/docker-dangling-images",
+    "mobile": true,
+    "state": "initial",
+    "violations": [
+      "color-contrast",
+      "scrollable-region-focusable"
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/realisations/portfolio-professionnel",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/a-propos",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/parcours/1up-fullstack-developer",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/projects",
+    "mobile": true,
+    "state": "initial",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "validation errors",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "expanded consent",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "mobile menu",
+    "violations": [],
+    "overflow": false,
+    "errors": []
+  }
+]

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
@@ -25,7 +26,7 @@ export default async function LegalNoticePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { dictionary: dict } = await getLocalizedPageContext(locale);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const sections = [
     {
       title: dict.legal.status,
@@ -40,7 +41,6 @@ export default async function LegalNoticePage({
           <p>
             <a
               href={`mailto:${dict.legal.editorEmail}`}
-              className="text-primary hover:underline"
             >
               {dict.legal.editorEmail}
             </a>
@@ -59,7 +59,6 @@ export default async function LegalNoticePage({
               href={dict.legal.hostingWebsite}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
             >
               {dict.legal.hostingWebsite}
             </a>
@@ -78,7 +77,6 @@ export default async function LegalNoticePage({
           {dict.legal.contactText}{" "}
           <Link
             href={`/${locale}/contact`}
-            className="text-primary hover:underline"
           >
             {dict.nav.contact}
           </Link>
@@ -88,7 +86,9 @@ export default async function LegalNoticePage({
   ];
 
   return (
-    <div>
+    <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/mentions-legales`} />
+      <div>
       <EditorialPageHeader
         eyebrow={dict.footer.legalNotice}
         title={dict.legal.heading}
@@ -96,22 +96,21 @@ export default async function LegalNoticePage({
         titleClassName="uppercase"
       />
 
-      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-4 lg:grid-cols-2">
+      <section>
+        <div>
+          <div>
             {sections.map((section, index) => (
               <section
                 key={section.title}
-                className="grid gap-5 border border-border bg-card p-5 sm:grid-cols-[64px_1fr] sm:p-7"
               >
-                <p className="editorial-index">
+                <p>
                   0{index + 1}
                 </p>
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-[-0.025em]">
+                  <h2>
                     {section.title}
                   </h2>
-                  <div className="mt-3 space-y-1 leading-7 text-muted-foreground">
+                  <div>
                     {section.content}
                   </div>
                 </div>
@@ -120,6 +119,7 @@ export default async function LegalNoticePage({
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

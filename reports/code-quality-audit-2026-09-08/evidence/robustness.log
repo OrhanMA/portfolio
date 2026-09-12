@@ -1,0 +1,15 @@
+
+ RUN  v4.1.10 /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo
+
+ ✓ |unit| src/lib/__tests__/audit-robustness.test.tsx > Audit reproductions - assertions document existing defects, not intended behavior > missing MDX rejects instead of returning the intended empty fallback 3ms
+ ✓ |unit| src/lib/__tests__/audit-robustness.test.tsx > Audit reproductions - assertions document existing defects, not intended behavior > search index retains MDX module metadata implementation 1ms
+ ✓ |unit| src/lib/__tests__/audit-robustness.test.tsx > Audit reproductions - assertions document existing defects, not intended behavior > reCAPTCHA network exception escapes the action without a localized response 16ms
+ ✓ |unit| src/lib/__tests__/audit-robustness.test.tsx > Audit reproductions - assertions document existing defects, not intended behavior > blocked local storage escapes the read fallback and prevents saving consent 1ms
+ ✓ |unit| src/lib/__tests__/audit-robustness.test.tsx > Audit reproductions - assertions document existing defects, not intended behavior > URL navigation after mount is overwritten by stale filter state 119ms
+ ✓ |unit| src/lib/__tests__/audit-robustness.test.tsx > Audit reproductions - assertions document existing defects, not intended behavior > failed reCAPTCHA script is reused on retry without a new request 10ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  10:46:23
+   Duration  1.37s (transform 129ms, setup 185ms, import 262ms, tests 150ms, environment 650ms)
+

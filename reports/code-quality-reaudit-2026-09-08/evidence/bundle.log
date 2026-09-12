@@ -1,0 +1,3 @@
+Current isolated build: node scripts/check-bundle-budget.mjs
+Bundle budgets respected (JS <= 250 KiB, CSS <= 150 KiB per asset).
+Exit code: 0

@@ -8,7 +8,7 @@ export const devops: Competence = {
   },
   type: "technical",
   level: "beginner",
-  radarValue: 35,
+  radarValue: 70,
   icon: "Container",
   definition: {
     fr: `Le DevOps rassemble les pratiques qui rendent une modification reproductible depuis le dépôt de code jusqu'à son exploitation : intégration continue, tests, construction, déploiement, configuration, secrets, sauvegardes, surveillance et retour arrière. L'objectif n'est pas seulement d'automatiser une commande. Il faut réduire l'écart entre l'environnement testé et celui qui sert réellement les utilisateurs, puis disposer d'indices suffisants pour comprendre un échec.

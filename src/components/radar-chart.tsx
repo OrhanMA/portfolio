@@ -6,11 +6,13 @@ import { gsap, useGSAP } from "@/lib/gsap";
 interface RadarChartDatum {
   label: string;
   value: number;
+  href: string;
 }
 
 interface RadarChartProps {
   data: RadarChartDatum[];
   title: string;
+  scaleLabel: string;
 }
 
 function polarToCartesian(
@@ -48,7 +50,7 @@ const LABEL_OFFSET = 55;
 const START_ANGLE = -Math.PI / 2;
 const GRID_LEVELS = [0.25, 0.5, 0.75, 1];
 
-export function RadarChart({ data, title }: RadarChartProps) {
+export function RadarChart({ data, title, scaleLabel }: RadarChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const descriptionId = useId();
@@ -75,7 +77,7 @@ export function RadarChart({ data, title }: RadarChartProps) {
     if (sin < -0.5) dy = "0em";
     else if (sin > 0.5) dy = "0.7em";
 
-    return { label: d.label, x, y, textAnchor, dy };
+    return { href: d.href, label: d.label, x, y, textAnchor, dy };
   });
 
   useGSAP(
@@ -85,6 +87,20 @@ export function RadarChart({ data, title }: RadarChartProps) {
       );
       if (!polygon) return;
 
+      const labelEls = containerRef.current?.querySelectorAll(
+        "[data-radar-label]",
+      );
+      const reducedMotion =
+        window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ??
+        false;
+
+      if (reducedMotion) {
+        [polygon, ...Array.from(labelEls ?? [])].forEach((element) => {
+          element.classList.remove("invisible");
+        });
+        return;
+      }
+
       gsap.from(polygon, {
         autoAlpha: 0,
         scale: 0,
@@ -93,9 +109,6 @@ export function RadarChart({ data, title }: RadarChartProps) {
         ease: "power2.out",
       });
 
-      const labelEls = containerRef.current?.querySelectorAll(
-        "[data-radar-label]",
-      );
       if (labelEls?.length) {
         gsap.from(labelEls, {
           autoAlpha: 0,
@@ -110,16 +123,20 @@ export function RadarChart({ data, title }: RadarChartProps) {
   );
 
   return (
-    <div ref={containerRef} className="mx-auto w-full max-w-xl">
+    <div
+      ref={containerRef}
+      data-radar-chart
+    >
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        className="h-auto w-full"
-        role="img"
+        role="group"
         aria-labelledby={`${titleId} ${descriptionId}`}
       >
         <title id={titleId}>{title}</title>
         <desc id={descriptionId}>
-          {data.map((item) => `${item.label} : ${item.value} sur 100`).join(", ")}
+          {data
+            .map((item) => `${item.label} : ${item.value} ${scaleLabel}`)
+            .join(", ")}
         </desc>
         {/* Concentric grid polygons */}
         {GRID_LEVELS.map((level) => (
@@ -132,7 +149,6 @@ export function RadarChart({ data, title }: RadarChartProps) {
               count,
               START_ANGLE,
             )}
-            className="fill-none stroke-foreground/20"
             strokeWidth={1}
           />
         ))}
@@ -148,7 +164,6 @@ export function RadarChart({ data, title }: RadarChartProps) {
               y1={CY}
               x2={x}
               y2={y}
-              className="stroke-foreground/20"
               strokeWidth={1}
             />
           );
@@ -157,7 +172,6 @@ export function RadarChart({ data, title }: RadarChartProps) {
         {/* Data polygon */}
         <polygon
           data-radar-polygon
-          className="invisible fill-primary/20 stroke-primary"
           points={dataPolygonPoints}
           strokeWidth={2}
           strokeLinejoin="round"
@@ -165,10 +179,9 @@ export function RadarChart({ data, title }: RadarChartProps) {
 
         {/* Labels */}
         {labels.map((l) => (
+          <a key={l.label} href={l.href}>
           <text
-            key={l.label}
             data-radar-label
-            className="invisible fill-foreground text-sm"
             x={l.x}
             y={l.y}
             textAnchor={l.textAnchor}
@@ -176,6 +189,7 @@ export function RadarChart({ data, title }: RadarChartProps) {
           >
             {l.label}
           </text>
+          </a>
         ))}
       </svg>
     </div>

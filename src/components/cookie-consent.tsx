@@ -5,10 +5,18 @@ import {
   useEffect,
   useRef,
   useState,
-  type KeyboardEvent,
 } from "react";
 import { X, Cookie, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogDescription,
+  DialogPopup,
+  DialogPortal,
+  DialogTitle,
+  DialogViewport,
+} from "@/components/ui/dialog";
 import { useDictionary } from "@/components/dictionary-provider";
 import {
   setStoredConsent,
@@ -18,15 +26,6 @@ import {
   type CookieConsent as CookieConsentType,
 } from "@/lib/cookie-consent";
 
-const focusableSelector = [
-  "a[href]",
-  "button:not([disabled])",
-  "input:not([disabled])",
-  "select:not([disabled])",
-  "textarea:not([disabled])",
-  "[tabindex]:not([tabindex='-1'])",
-].join(",");
-
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -35,16 +34,28 @@ export function CookieConsent() {
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const dict = useDictionary();
 
+  const rememberPreviousFocus = useCallback(() => {
+    const activeElement = document.activeElement;
+    previousFocusRef.current =
+      activeElement instanceof HTMLElement && activeElement !== document.body
+        ? activeElement
+        : null;
+  }, []);
+
   useEffect(() => {
     if (!hasConsentBeenGiven()) {
-      const timer = setTimeout(() => setVisible(true), 1500);
+      const timer = setTimeout(() => {
+        rememberPreviousFocus();
+        setVisible(true);
+      }, 1500);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [rememberPreviousFocus]);
 
   useEffect(() => {
     function openPreferences() {
       const stored = getStoredConsent();
+      rememberPreviousFocus();
       setAnalyticsChecked(stored?.analytics ?? false);
       setExpanded(true);
       setVisible(true);
@@ -52,23 +63,7 @@ export function CookieConsent() {
     window.addEventListener("cookie-consent-open", openPreferences);
     return () =>
       window.removeEventListener("cookie-consent-open", openPreferences);
-  }, []);
-
-  useEffect(() => {
-    if (visible) {
-      const activeElement = document.activeElement;
-      previousFocusRef.current =
-        activeElement instanceof HTMLElement && activeElement !== document.body
-          ? activeElement
-          : null;
-      dialogRef.current?.focus();
-      return;
-    }
-
-    const previousFocus = previousFocusRef.current;
-    if (previousFocus?.isConnected) previousFocus.focus();
-    previousFocusRef.current = null;
-  }, [visible]);
+  }, [rememberPreviousFocus]);
 
   const saveConsent = useCallback(
     (consent: CookieConsentType) => {
@@ -78,7 +73,7 @@ export function CookieConsent() {
         consent,
       );
 
-      setStoredConsent(consent);
+      const consentPersisted = setStoredConsent(consent);
       setVisible(false);
 
       window.dispatchEvent(
@@ -88,7 +83,7 @@ export function CookieConsent() {
       // next/script keeps a previously injected third-party script in the DOM.
       // A full navigation is required to guarantee that GTM is no longer active
       // after consent is withdrawn.
-      if (analyticsWasWithdrawn) {
+      if (analyticsWasWithdrawn && consentPersisted) {
         window.location.reload();
       }
     },
@@ -107,119 +102,94 @@ export function CookieConsent() {
     saveConsent({ necessary: true, analytics: analyticsChecked });
   }
 
-  function trapFocus(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "Escape") {
-      handleRejectAll();
-      return;
-    }
-
-    if (event.key !== "Tab") return;
-
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const focusableElements = Array.from(
-      dialog.querySelectorAll<HTMLElement>(focusableSelector),
-    );
-    const first = focusableElements[0];
-    const last = focusableElements.at(-1);
-    if (!first || !last) return;
-
-    const activeElement = document.activeElement;
-    if (event.shiftKey && (activeElement === first || activeElement === dialog)) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
-  }
-
-  if (!visible) return null;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] p-4 sm:p-6">
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="cookie-consent-title"
-        aria-describedby="cookie-consent-description"
-        tabIndex={-1}
-        onKeyDown={trapFocus}
-        className="mx-auto max-w-lg border border-border bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <div className="p-4 sm:p-5">
+    <Dialog
+      open={visible}
+      modal
+      disablePointerDismissal
+      onOpenChange={(open) => {
+        if (!open) handleRejectAll();
+      }}
+    >
+      <DialogPortal>
+        <DialogBackdrop />
+        <DialogViewport>
+          <DialogPopup
+            ref={dialogRef}
+            initialFocus={dialogRef}
+            finalFocus={previousFocusRef}
+            aria-describedby="cookie-consent-description"
+          >
+        <div>
           {/* Header */}
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Cookie aria-hidden="true" className="h-5 w-5 text-primary shrink-0" />
-              <h2 id="cookie-consent-title" className="font-semibold text-sm">
+          <div>
+            <div>
+              <Cookie aria-hidden="true" />
+              <DialogTitle
+                id="cookie-consent-title"
+              >
                 {dict.cookies.title}
-              </h2>
+              </DialogTitle>
             </div>
             <button
               onClick={handleRejectAll}
-              className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
               aria-label={dict.cookies.close}
             >
-              <X aria-hidden="true" className="h-4 w-4" />
+              <X aria-hidden="true" />
             </button>
           </div>
 
           {/* Description */}
-          <p
+          <DialogDescription
             id="cookie-consent-description"
-            className="mt-2 text-xs text-muted-foreground leading-relaxed"
           >
             {dict.cookies.description}
-          </p>
+          </DialogDescription>
 
           {/* Expandable preferences */}
           {expanded && (
-            <div className="mt-3 space-y-3 border-t border-border pt-3">
+            <div>
               {/* Necessary cookies — always on */}
-              <div className="flex items-start justify-between gap-3">
+              <div>
                 <div>
-                  <p className="text-xs font-medium">
+                  <p>
                     {dict.cookies.necessary}
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p>
                     {dict.cookies.necessaryDesc}
                   </p>
                 </div>
-                <div className="shrink-0 pt-0.5">
-                  <div role="switch" aria-checked="true" aria-readonly="true" className="h-5 w-9 rounded-full bg-primary flex items-center justify-end px-0.5">
-                    <div className="h-4 w-4 rounded-full bg-white" />
+                <div>
+                  <div
+                    role="switch"
+                    aria-label={dict.cookies.necessary}
+                    aria-checked="true"
+                    aria-readonly="true"
+                  >
+                    <div />
                   </div>
                 </div>
               </div>
 
               {/* Analytics cookies — toggleable */}
-              <div className="flex items-start justify-between gap-3">
+              <div>
                 <div>
-                  <p className="text-xs font-medium">
+                  <p>
                     {dict.cookies.analytics}
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p>
                     {dict.cookies.analyticsDesc}
                   </p>
                 </div>
                 <button
                   onClick={() => setAnalyticsChecked(!analyticsChecked)}
-                  className="shrink-0 pt-0.5 cursor-pointer"
                   role="switch"
                   aria-checked={analyticsChecked}
                   aria-label={dict.cookies.toggleAnalytics}
                 >
                   <div
-                    className={`h-5 w-9 rounded-full flex items-center px-0.5 transition-colors ${
-                      analyticsChecked
-                        ? "bg-primary justify-end"
-                        : "bg-muted justify-start"
-                    }`}
                   >
-                    <div className="h-4 w-4 rounded-full bg-white shadow-sm" />
+                    <div />
                   </div>
                 </button>
               </div>
@@ -227,15 +197,14 @@ export function CookieConsent() {
           )}
 
           {/* Actions */}
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            <Button size="sm" onClick={handleAcceptAll} className="text-xs">
+          <div>
+            <Button size="sm" onClick={handleAcceptAll}>
               {dict.cookies.accept}
             </Button>
             <Button
               size="sm"
               variant="outline"
               onClick={handleRejectAll}
-              className="text-xs"
             >
               {dict.cookies.reject}
             </Button>
@@ -244,7 +213,6 @@ export function CookieConsent() {
                 size="sm"
                 variant="ghost"
                 onClick={handleSavePreferences}
-                className="text-xs"
               >
                 {dict.cookies.save}
               </Button>
@@ -253,10 +221,9 @@ export function CookieConsent() {
                 size="sm"
                 variant="ghost"
                 onClick={() => setExpanded(true)}
-                className="text-xs ml-auto"
               >
                 {dict.cookies.manage}
-                <ChevronDown aria-hidden="true" className="ml-1 h-3 w-3" />
+                <ChevronDown aria-hidden="true" />
               </Button>
             )}
             {expanded && (
@@ -264,15 +231,16 @@ export function CookieConsent() {
                 size="sm"
                 variant="ghost"
                 onClick={() => setExpanded(false)}
-                className="text-xs ml-auto"
                 aria-label={dict.cookies.collapse}
               >
-                <ChevronUp aria-hidden="true" className="h-3 w-3" />
+                <ChevronUp aria-hidden="true" />
               </Button>
             )}
           </div>
         </div>
-      </div>
-    </div>
+          </DialogPopup>
+        </DialogViewport>
+      </DialogPortal>
+    </Dialog>
   );
 }

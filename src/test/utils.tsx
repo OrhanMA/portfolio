@@ -2,11 +2,12 @@ import { render, type RenderOptions } from "@testing-library/react";
 import { DictionaryProvider } from "@/components/dictionary-provider";
 import frDict from "@/app/[locale]/dictionaries/fr.json";
 import enDict from "@/app/[locale]/dictionaries/en.json";
+import type { Locale } from "@/lib/i18n";
 
 type Dictionary = typeof frDict;
 
 interface CustomRenderOptions extends Omit<RenderOptions, "wrapper"> {
-  locale?: "fr" | "en";
+  locale?: Locale;
   dictionary?: Dictionary;
 }
 

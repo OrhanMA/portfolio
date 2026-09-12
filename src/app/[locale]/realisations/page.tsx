@@ -1,6 +1,7 @@
+import { LinkedText } from "@/components/linked-text";
+import { TopicLink } from "@/components/topic-link";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -9,9 +10,11 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { createLocalizedMetadata } from "@/lib/metadata";
+import { requireLinkedExperience } from "@/lib/experience";
 import { realisations } from "@/lib/realisations";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { actionLinkClassName } from "@/lib/styles";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
@@ -38,7 +41,9 @@ export default async function RealisationsPage({
   const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return (
-    <div>
+    <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/realisations`} />
+      <div>
       <EditorialPageHeader
         eyebrow={dict.nav.realisations}
         title={dict.realisationsPage.heading}
@@ -46,46 +51,41 @@ export default async function RealisationsPage({
         titleClassName="uppercase"
       />
 
-      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-5 md:grid-cols-2">
+      <section>
+        <div>
+          <div>
             {realisations.map((realisation) => (
               <Card
                 key={realisation.slug}
-                className="h-full border border-border bg-card transition-colors duration-200 hover:bg-muted/50"
               >
                 <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
+                  <div>
                     <div>
-                      <Badge
-                        variant="outline"
-                        className="mb-3 font-sans text-[11px] tracking-wide"
+                      <Link
+                        href={`/${loc}/parcours/${requireLinkedExperience(dict.experience.entries, realisation.slug).id}`}
                       >
                         {realisation.context[loc]}
-                      </Badge>
-                      <CardTitle className="text-xl font-black tracking-[-0.025em] sm:text-2xl">
-                        <h2>{realisation.title[loc]}</h2>
+                      </Link>
+                      <CardTitle>
+                        <h2><Link href={`/${loc}/realisations/${realisation.slug}`}>{realisation.title[loc]}</Link></h2>
                       </CardTitle>
-                      <CardDescription className="mt-2">
-                        {realisation.shortDescription[loc]}
+                      <CardDescription>
+                        <LinkedText locale={loc}>{realisation.shortDescription[loc]}</LinkedText>
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
 
-                <CardContent className="flex h-full flex-col justify-between gap-5">
-                  <div className="flex flex-wrap gap-2">
+                <CardContent>
+                  <div>
                     {realisation.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
+                      <TopicLink key={tag} label={tag} locale={loc} />
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div>
                     <Link
                       href={`/${locale}/realisations/${realisation.slug}`}
-                      className={actionLinkClassName}
                     >
                       {dict.realisationsPage.viewDetail}
                     </Link>
@@ -96,6 +96,7 @@ export default async function RealisationsPage({
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/mentions-legales",
     "/politique-confidentialite",
   ];
-  const { articles } = await getDictionary("fr");
+  const { articles, experience } = await getDictionary("fr");
 
   const entries: MetadataRoute.Sitemap = [];
 
@@ -32,6 +32,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: page === "" ? "weekly" : "monthly",
         priority: page === "" ? 1 : 0.8,
       });
+    }
+
+    for (const entry of experience.entries) {
+      entries.push({ url: `${BASE_URL}/${locale}/parcours/${entry.id}`, lastModified: CONTENT_LAST_UPDATED, changeFrequency: "monthly", priority: 0.7 });
     }
 
     for (const article of articles.articlesData) {

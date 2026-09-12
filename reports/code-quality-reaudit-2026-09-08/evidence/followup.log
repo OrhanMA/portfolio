@@ -1,0 +1,414 @@
+[
+  {
+    "theme": "light",
+    "route": "/fr",
+    "target": {
+      "id": "color-contrast",
+      "selector": "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+    },
+    "geometry": {
+      "text": "Odoo 16+",
+      "width": 65.375,
+      "height": 24,
+      "top": 409.53125,
+      "color": "oklab(0.14 -0.00000137836 0.00000326335 / 0.55)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 65,
+      "clientWidth": 65
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "light",
+    "route": "/fr",
+    "target": {
+      "id": "color-contrast",
+      "selector": "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+    },
+    "geometry": {
+      "text": "Symfony 6.3+",
+      "width": 95.453125,
+      "height": 24,
+      "top": 409.53125,
+      "color": "oklab(0.14 -0.00000137836 0.00000326335 / 0.55)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 95,
+      "clientWidth": 95
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "light",
+    "route": "/fr",
+    "target": {
+      "id": "target-size",
+      "selector": "li:nth-child(6) > .hover\\:decoration-current.focus-visible\\:text-foreground[href$=\"devops\"]"
+    },
+    "geometry": {
+      "text": "VPS",
+      "width": 39.5625,
+      "height": 24,
+      "top": 409.53125,
+      "color": "oklab(0.14 -0.00000137836 0.00000326335 / 0.75)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 40,
+      "clientWidth": 40
+    },
+    "violations": [
+      {
+        "id": "target-size",
+        "nodes": [
+          "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 39.6px by 20px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20px instead of at least 24px."
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "light",
+    "route": "/fr",
+    "target": {
+      "id": "target-size",
+      "selector": ".skill-column.min-h-64.border-r:nth-child(5) > .text-foreground\\/75 > li:nth-child(5) > .hover\\:decoration-current.focus-visible\\:text-foreground.focus-visible\\:ring-offset-2"
+    },
+    "geometry": {
+      "text": "Optimisation",
+      "width": 86.03125,
+      "height": 24,
+      "top": 706.53125,
+      "color": "oklab(0.14 -0.00000137836 0.00000326335 / 0.75)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 86,
+      "clientWidth": 86
+    },
+    "violations": []
+  },
+  {
+    "theme": "light",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "color-contrast",
+      "selector": ".opacity-80.border-border\\/70.py-1:nth-child(4)"
+    },
+    "geometry": {
+      "text": "1. Analyse de l'espace disque global",
+      "width": 229.046875,
+      "height": 26,
+      "top": 674.546875,
+      "color": "lab(37.36 0.0000149012 -0.00000596046)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "0.8",
+      "tabIndex": 0,
+      "scrollWidth": 227,
+      "clientWidth": 227
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "light",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "color-contrast",
+      "selector": ".opacity-80.border-border\\/70.py-1:nth-child(5)"
+    },
+    "geometry": {
+      "text": "2. Identification du dossier le plus volumineux",
+      "width": 279.578125,
+      "height": 26,
+      "top": 708.546875,
+      "color": "lab(37.36 0.0000149012 -0.00000596046)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "0.8",
+      "tabIndex": 0,
+      "scrollWidth": 278,
+      "clientWidth": 278
+    },
+    "violations": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "light",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "scrollable-region-focusable",
+      "selector": ".article-code-block.not-prose.relative:nth-child(13) > pre"
+    },
+    "geometry": {
+      "text": "sudo du -h --max-depth=1 / | sort -hr | head -n 20\n",
+      "width": 358,
+      "height": 61.6875,
+      "top": 391.109375,
+      "color": "lab(27.036 0 0)",
+      "background": "lab(1.5609 0 0)",
+      "opacity": "1",
+      "tabIndex": -1,
+      "scrollWidth": 460,
+      "clientWidth": 356
+    },
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "nodes": [
+          "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "light",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "scrollable-region-focusable",
+      "selector": ".article-code-block.not-prose.relative:nth-child(19) > pre"
+    },
+    "geometry": {
+      "text": "sudo du -h --max-depth=1 /var/lib | sort -hr\n",
+      "width": 358,
+      "height": 61.6875,
+      "top": 783.484375,
+      "color": "lab(27.036 0 0)",
+      "background": "lab(1.5609 0 0)",
+      "opacity": "1",
+      "tabIndex": -1,
+      "scrollWidth": 410,
+      "clientWidth": 356
+    },
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "nodes": [
+          "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "dark",
+    "route": "/fr",
+    "target": {
+      "id": "color-contrast",
+      "selector": "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+    },
+    "geometry": {
+      "text": "Odoo 16+",
+      "width": 65.375,
+      "height": 24,
+      "top": 409.53125,
+      "color": "oklab(0.939998 -0.00000908971 0.0000219345 / 0.55)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 65,
+      "clientWidth": 65
+    },
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "/fr",
+    "target": {
+      "id": "color-contrast",
+      "selector": "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+    },
+    "geometry": {
+      "text": "Symfony 6.3+",
+      "width": 95.453125,
+      "height": 24,
+      "top": 409.53125,
+      "color": "oklab(0.939998 -0.00000908971 0.0000219345 / 0.55)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 95,
+      "clientWidth": 95
+    },
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "/fr",
+    "target": {
+      "id": "target-size",
+      "selector": "li:nth-child(6) > .hover\\:decoration-current.focus-visible\\:text-foreground[href$=\"devops\"]"
+    },
+    "geometry": {
+      "text": "VPS",
+      "width": 39.5625,
+      "height": 24,
+      "top": 409.53125,
+      "color": "oklab(0.939998 -0.00000908971 0.0000219345 / 0.75)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 40,
+      "clientWidth": 40
+    },
+    "violations": [
+      {
+        "id": "target-size",
+        "nodes": [
+          "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 39.6px by 20px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20px instead of at least 24px."
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "dark",
+    "route": "/fr",
+    "target": {
+      "id": "target-size",
+      "selector": ".skill-column.min-h-64.border-r:nth-child(5) > .text-foreground\\/75 > li:nth-child(5) > .hover\\:decoration-current.focus-visible\\:text-foreground.focus-visible\\:ring-offset-2"
+    },
+    "geometry": {
+      "text": "Optimisation",
+      "width": 86.03125,
+      "height": 24,
+      "top": 706.53125,
+      "color": "oklab(0.939998 -0.00000908971 0.0000219345 / 0.75)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "1",
+      "tabIndex": 0,
+      "scrollWidth": 86,
+      "clientWidth": 86
+    },
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "color-contrast",
+      "selector": ".opacity-80.border-border\\/70.py-1:nth-child(4)"
+    },
+    "geometry": {
+      "text": "1. Analyse de l'espace disque global",
+      "width": 229.046875,
+      "height": 26,
+      "top": 674.546875,
+      "color": "lab(62.88 -0.0000298023 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "0.8",
+      "tabIndex": 0,
+      "scrollWidth": 227,
+      "clientWidth": 227
+    },
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "color-contrast",
+      "selector": ".opacity-80.border-border\\/70.py-1:nth-child(5)"
+    },
+    "geometry": {
+      "text": "2. Identification du dossier le plus volumineux",
+      "width": 279.578125,
+      "height": 26,
+      "top": 708.546875,
+      "color": "lab(62.88 -0.0000298023 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "opacity": "0.8",
+      "tabIndex": 0,
+      "scrollWidth": 278,
+      "clientWidth": 278
+    },
+    "violations": []
+  },
+  {
+    "theme": "dark",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "scrollable-region-focusable",
+      "selector": ".article-code-block.not-prose.relative:nth-child(13) > pre"
+    },
+    "geometry": {
+      "text": "sudo du -h --max-depth=1 / | sort -hr | head -n 20\n",
+      "width": 358,
+      "height": 61.6875,
+      "top": 391.109375,
+      "color": "lab(84.92 0 -0.0000119209)",
+      "background": "lab(1.5609 0 0)",
+      "opacity": "1",
+      "tabIndex": -1,
+      "scrollWidth": 460,
+      "clientWidth": 356
+    },
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "nodes": [
+          "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+        ]
+      }
+    ]
+  },
+  {
+    "theme": "dark",
+    "route": "/en/articles/docker-dangling-images",
+    "target": {
+      "id": "scrollable-region-focusable",
+      "selector": ".article-code-block.not-prose.relative:nth-child(19) > pre"
+    },
+    "geometry": {
+      "text": "sudo du -h --max-depth=1 /var/lib | sort -hr\n",
+      "width": 358,
+      "height": 61.6875,
+      "top": 783.484375,
+      "color": "lab(84.92 0 -0.0000119209)",
+      "background": "lab(1.5609 0 0)",
+      "opacity": "1",
+      "tabIndex": -1,
+      "scrollWidth": 410,
+      "clientWidth": 356
+    },
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "nodes": [
+          "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+        ]
+      }
+    ]
+  },
+  {
+    "noJSArticles": {
+      "articleLinks": 0,
+      "main": "ARTICLES\n\nARTICLES\nTutoriels et retours d'expérience sur des sujets peu documentés."
+    }
+  }
+]

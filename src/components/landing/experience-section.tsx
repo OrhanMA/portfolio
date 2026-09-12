@@ -1,12 +1,21 @@
+import { LinkedText } from "@/components/linked-text";
+import { TopicLink } from "@/components/topic-link";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ExperienceDetails } from "@/components/landing/experience-details";
 import type { Locale } from "@/lib/i18n";
+import { sortTimelineEntries } from "@/lib/experience";
+import {
+  resolveCompetenceLinks,
+  resolveRealisationLinks,
+} from "@/lib/portfolio-links";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 
 type ExperienceEntry = {
-  order?: number;
+  id: string;
+  startDate: string;
+  endDate: string | null;
   period: string;
   title: string;
   company: string;
@@ -15,6 +24,7 @@ type ExperienceEntry = {
   companies?: { name: string; logo?: string; url: string }[];
   description: string;
   location?: string;
+  trainingId?: string;
   institutions?: string;
   certificateUrl?: string;
   certificateLabel?: string;
@@ -22,48 +32,6 @@ type ExperienceEntry = {
   linkedRealisations?: string[];
   linkedCompetences?: string[];
   tags: string[];
-};
-
-const linkedRealisationTitles: Record<Locale, Record<string, string>> = {
-  fr: {
-    "migration-odoo-v16-v19": "Migration d'un ERP d'entreprise d'Odoo 16 vers Odoo 19",
-    "modules-metier-odoo": "Développement de modules métier pour un ERP",
-    "refonte-site-corporate": "Refonte d'un site corporate Next.js",
-    "app-trajectoires-de-vie": "Développement d'une application web de trajectoires de vie",
-    "portfolio-professionnel": "Conception d'un portfolio professionnel",
-  },
-  en: {
-    "migration-odoo-v16-v19": "Enterprise ERP migration from Odoo 16 to Odoo 19",
-    "modules-metier-odoo": "Business module development for an ERP",
-    "refonte-site-corporate": "Next.js corporate website redesign",
-    "app-trajectoires-de-vie": "Development of a web application for mapping life trajectories",
-    "portfolio-professionnel": "Building a professional portfolio",
-  },
-};
-
-const linkedCompetenceTitles: Record<Locale, Record<string, string>> = {
-  fr: {
-    autonomie: "Autonomie",
-    perseverance: "Persévérance",
-    adaptabilite: "Adaptabilité",
-    "amelioration-continue": "Amélioration continue",
-    communication: "Communication",
-    "developpement-odoo": "Développement Odoo",
-    "developpement-frontend": "Développement Frontend (React/Next.js)",
-    devops: "DevOps & Administration Serveur",
-    python: "Python",
-  },
-  en: {
-    autonomie: "Autonomy",
-    perseverance: "Perseverance",
-    adaptabilite: "Adaptability",
-    "amelioration-continue": "Continuous improvement",
-    communication: "Communication",
-    "developpement-odoo": "Odoo Development",
-    "developpement-frontend": "Frontend Development (React/Next.js)",
-    devops: "DevOps & Server Administration",
-    python: "Python",
-  },
 };
 
 export function ExperienceSection({
@@ -74,57 +42,82 @@ export function ExperienceSection({
   dict: Dictionary["experience"];
 }) {
   const loc = locale;
+  const experiences = sortTimelineEntries(dict.entries as ExperienceEntry[]);
 
   return (
     <section
       id="parcours"
-      className="landing-deferred landing-deferred-experience border-y border-border bg-muted/35 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-20">
+      <div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+          <p>
             {dict.eyebrow}
           </p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+          <h2
+            id="experience-heading"
+          >
             {dict.heading}
           </h2>
-          <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
+          <p>
             {dict.subtext}
+          </p>
+          <p>
+            {dict.orderingLabel}
           </p>
         </div>
 
-        <div className="journey-list">
-          <div className="grid border-t border-border">
-            {[...(dict.entries as ExperienceEntry[])]
-              .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
-              .map((experience) => {
+        <div>
+          <ol aria-labelledby="experience-heading">
+            {experiences.map((experience, index) => {
+              const training = experiences.find((entry) => entry.id === experience.trainingId);
+              const realisationLinks = resolveRealisationLinks(
+                experience.linkedRealisations,
+                loc,
+              );
+              const competenceLinks = resolveCompetenceLinks(
+                experience.linkedCompetences,
+                loc,
+              );
               const organizations = experience.companies ?? [
-                { name: experience.company, logo: experience.logo, url: experience.url },
+                {
+                  name: experience.company,
+                  logo: experience.logo,
+                  url: experience.url,
+                },
               ];
+              const isLast = index === experiences.length - 1;
 
               return (
-                <article
-                  key={`${experience.period}-${experience.title}`}
-                  className="journey-row invisible border-b border-border py-8"
+                <li
+                  key={experience.id}
+                  id={`experience-${experience.id}`}
+                  data-start-date={experience.startDate}
+                  data-end-date={experience.endDate ?? "present"}
                 >
-                  <div>
-                    <p className="font-mono text-xs text-muted-foreground">
+                  {!isLast && (
+                    <span
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span
+                    aria-hidden="true"
+                  />
+                  <article
+                  >
+                    <p>
                       {experience.period}
                     </p>
-                    <h3 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.02em] sm:text-2xl">
-                      {experience.title}
+                    <h3>
+                      <Link href={`/${locale}/parcours/${experience.id}`}>{experience.title}</Link>
                     </h3>
-                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                    <div>
                       {organizations.map((organization) => (
-                        <a
+                        <Link
                           key={organization.name}
-                          href={organization.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/organization inline-flex items-center gap-2.5 border border-border bg-background py-1.5 pl-1.5 pr-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                          href={`/${locale}/parcours/${experience.id}`}
                         >
                           {organization.logo && (
-                            <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden bg-white p-1">
+                            <span>
                               <Image
                                 src={organization.logo}
                                 alt=""
@@ -132,26 +125,32 @@ export function ExperienceSection({
                                 width={36}
                                 height={36}
                                 sizes="36px"
-                                className="h-full w-full object-contain"
                               />
                             </span>
                           )}
                           {organization.name}
-                          <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
-                        </a>
+                          <ArrowUpRight aria-hidden="true" />
+                        </Link>
                       ))}
                     </div>
                     {experience.location && (
-                      <p className="mt-2 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/55">
+                      <p>
                         {experience.location}
                       </p>
                     )}
-                    <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
-                      {experience.description}
+                    <p>
+                      <LinkedText locale={locale}>{experience.description}</LinkedText>
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-sans text-[9px] font-medium uppercase tracking-[0.12em] text-foreground/55">
+                    {training && (
+                      <Link
+                        href={`/${locale}/parcours/${training.id}`}
+                      >
+                        {training.company} — {training.title}
+                      </Link>
+                    )}
+                    <div>
                       {experience.tags.slice(0, 5).map((tag) => (
-                        <span key={tag}>{tag}</span>
+                        <TopicLink key={tag} label={tag} locale={locale} />
                       ))}
                     </div>
                     {experience.certificateUrl && experience.certificateLabel && (
@@ -159,10 +158,9 @@ export function ExperienceSection({
                         href={experience.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-muted"
                       >
                         {experience.certificateLabel}
-                        <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
+                        <ArrowUpRight aria-hidden="true" />
                       </Link>
                     )}
                     {(experience.responsibilities?.length ||
@@ -170,47 +168,45 @@ export function ExperienceSection({
                       experience.linkedRealisations?.length ||
                       experience.linkedCompetences?.length) && (
                       <ExperienceDetails label={dict.detailsLabel}>
-                        <div className="grid gap-5 border border-border bg-background p-4 text-sm">
+                        <div>
                           {experience.responsibilities && (
                             <div>
-                              <p className="editorial-index mb-2">
+                              <p>
                                 {dict.responsibilitiesLabel}
                               </p>
-                              <ul className="grid gap-2 text-muted-foreground">
+                              <ul>
                                 {experience.responsibilities.map((responsibility) => (
-                                  <li key={responsibility} className="flex gap-2 leading-6">
-                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
-                                    {responsibility}
+                                  <li key={responsibility}>
+                                    <span />
+                                    <LinkedText locale={locale}>{responsibility}</LinkedText>
                                   </li>
                                 ))}
                               </ul>
                             </div>
                           )}
                           {experience.institutions && (
-                            <p className="leading-6 text-muted-foreground">
-                              {experience.institutions}
+                            <p>
+                              <LinkedText locale={locale}>{experience.institutions}</LinkedText>
                             </p>
                           )}
-                          <div className="flex flex-wrap gap-2">
-                            {experience.linkedRealisations?.map((linkedSlug) => {
+                          <div>
+                            {realisationLinks.map(({ slug: linkedSlug, title }) => {
                               return (
                                 <Link
                                   key={linkedSlug}
                                   href={`/${locale}/realisations/${linkedSlug}`}
-                                  className="border border-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-muted"
                                 >
-                                  {linkedRealisationTitles[loc][linkedSlug] ?? linkedSlug}
+                                  {title}
                                 </Link>
                               );
                             })}
-                            {experience.linkedCompetences?.map((linkedSlug) => {
+                            {competenceLinks.map(({ slug: linkedSlug, title }) => {
                               return (
                                 <Link
                                   key={linkedSlug}
                                   href={`/${locale}/competences/${linkedSlug}`}
-                                  className="border border-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-muted"
                                 >
-                                  {linkedCompetenceTitles[loc][linkedSlug] ?? linkedSlug}
+                                  {title}
                                 </Link>
                               );
                             })}
@@ -218,11 +214,11 @@ export function ExperienceSection({
                         </div>
                       </ExperienceDetails>
                     )}
-                  </div>
-                </article>
+                  </article>
+                </li>
               );
-              })}
-          </div>
+            })}
+          </ol>
         </div>
       </div>
 

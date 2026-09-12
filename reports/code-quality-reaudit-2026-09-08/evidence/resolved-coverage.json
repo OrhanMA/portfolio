@@ -1,0 +1,192 @@
+{
+  "node": "v22.23.2",
+  "root": {
+    "provider": "v8",
+    "enabled": true,
+    "clean": true,
+    "cleanOnRerun": true,
+    "reportsDirectory": "./coverage",
+    "exclude": [
+      "**/*.{test,spec}.?(c|m)[jt]s?(x)",
+      "/Users/orhan/Developer/projects/portfolio/vitest.config.mts",
+      "vitest.config.ts",
+      "vitest.config.mts",
+      "vitest.config.cts",
+      "vitest.config.js",
+      "vitest.config.mjs",
+      "vitest.config.cjs",
+      "vite.config.ts",
+      "vite.config.mts",
+      "vite.config.cts",
+      "vite.config.js",
+      "vite.config.mjs",
+      "vite.config.cjs",
+      "**/virtual:*",
+      "**/__x00__*",
+      "**/node_modules/**",
+      "src/test/setup.ts",
+      "src/**/*.test.{ts,tsx}",
+      "vitest.config.ts",
+      "vitest.config.mts",
+      "vitest.config.cts",
+      "vitest.config.js",
+      "vitest.config.mjs",
+      "vitest.config.cjs",
+      "vite.config.ts",
+      "vite.config.mts",
+      "vite.config.cts",
+      "vite.config.js",
+      "vite.config.mjs",
+      "vite.config.cjs",
+      "**/virtual:*",
+      "**/__x00__*",
+      "**/node_modules/**"
+    ],
+    "reportOnFailure": false,
+    "reporter": [
+      [
+        "text",
+        {
+          "skipFull": true
+        }
+      ],
+      [
+        "html",
+        {}
+      ],
+      [
+        "clover",
+        {}
+      ],
+      [
+        "json",
+        {}
+      ],
+      [
+        "text-summary",
+        {}
+      ]
+    ],
+    "allowExternal": false,
+    "excludeAfterRemap": false,
+    "processingConcurrency": 10,
+    "ignoreClassMethods": [],
+    "skipFull": false,
+    "watermarks": {
+      "statements": [
+        50,
+        80
+      ],
+      "functions": [
+        50,
+        80
+      ],
+      "branches": [
+        50,
+        80
+      ],
+      "lines": [
+        50,
+        80
+      ]
+    },
+    "htmlDir": "/Users/orhan/Developer/projects/portfolio/coverage"
+  },
+  "projects": [
+    {
+      "name": "unit",
+      "coverage": {
+        "provider": "v8",
+        "enabled": true,
+        "clean": true,
+        "cleanOnRerun": true,
+        "reportsDirectory": "./coverage",
+        "exclude": [
+          "**/*.{test,spec}.?(c|m)[jt]s?(x)",
+          "/Users/orhan/Developer/projects/portfolio/vitest.config.mts",
+          "vitest.config.ts",
+          "vitest.config.mts",
+          "vitest.config.cts",
+          "vitest.config.js",
+          "vitest.config.mjs",
+          "vitest.config.cjs",
+          "vite.config.ts",
+          "vite.config.mts",
+          "vite.config.cts",
+          "vite.config.js",
+          "vite.config.mjs",
+          "vite.config.cjs",
+          "**/virtual:*",
+          "**/__x00__*",
+          "**/node_modules/**",
+          "src/test/setup.ts",
+          "src/**/*.test.{ts,tsx}",
+          "vitest.config.ts",
+          "vitest.config.mts",
+          "vitest.config.cts",
+          "vitest.config.js",
+          "vitest.config.mjs",
+          "vitest.config.cjs",
+          "vite.config.ts",
+          "vite.config.mts",
+          "vite.config.cts",
+          "vite.config.js",
+          "vite.config.mjs",
+          "vite.config.cjs",
+          "**/virtual:*",
+          "**/__x00__*",
+          "**/node_modules/**"
+        ],
+        "reportOnFailure": false,
+        "reporter": [
+          [
+            "text",
+            {
+              "skipFull": true
+            }
+          ],
+          [
+            "html",
+            {}
+          ],
+          [
+            "clover",
+            {}
+          ],
+          [
+            "json",
+            {}
+          ],
+          [
+            "text-summary",
+            {}
+          ]
+        ],
+        "allowExternal": false,
+        "excludeAfterRemap": false,
+        "processingConcurrency": 10,
+        "ignoreClassMethods": [],
+        "skipFull": false,
+        "watermarks": {
+          "statements": [
+            50,
+            80
+          ],
+          "functions": [
+            50,
+            80
+          ],
+          "branches": [
+            50,
+            80
+          ],
+          "lines": [
+            50,
+            80
+          ]
+        },
+        "htmlDir": "/Users/orhan/Developer/projects/portfolio/coverage"
+      }
+    }
+  ]
+}

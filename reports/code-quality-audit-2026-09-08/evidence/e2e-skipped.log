@@ -1,0 +1,66 @@
+
+Running 11 tests using 2 workers
+
+(node:72816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72817) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › e2e/contact.spec.ts:34:7 › Contact Page › English contact page loads correctly (516ms)
+  ✓   3 [chromium] › e2e/navigation.spec.ts:29:7 › Navigation › articles page loads (217ms)
+  ✓   4 [chromium] › e2e/navigation.spec.ts:36:7 › Navigation › contact page loads (261ms)
+  ✓   5 [chromium] › e2e/navigation.spec.ts:43:7 › Navigation › projects page loads (211ms)
+  ✓   6 [chromium] › e2e/navigation.spec.ts:50:7 › Navigation › project detail page loads (165ms)
+  ✓   7 [chromium] › e2e/navigation.spec.ts:57:7 › Navigation › 404 page renders for unknown routes (289ms)
+  ✓   8 [chromium] › e2e/navigation.spec.ts:64:7 › Navigation › nav links work (567ms)
+  ✓   9 [chromium] › e2e/navigation.spec.ts:96:7 › Navigation › closes a desktop submenu after navigating from a child link (1.4s)
+  ✘   2 [chromium] › e2e/homepage-visual.spec.ts:46:7 › Homepage visual regression › mobile composition (4.0s)
+  -  10 [chromium] › e2e/homepage-visual.spec.ts:58:7 › Homepage visual regression › dark composition
+  -  11 [chromium] › e2e/homepage-visual.spec.ts:70:7 › Homepage visual regression › uses the neutral portrait without Japanese decorative assets
+
+
+  1) [chromium] › e2e/homepage-visual.spec.ts:46:7 › Homepage visual regression › mobile composition 
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      Expected an image 390px by 10608px, received 390px by 11480px. 231750 pixels (ratio 0.06 of all image pixels) are different.
+
+      Snapshot: homepage-minimal-mobile.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage-minimal-mobile.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - Expected an image 390px by 10608px, received 390px by 11480px. 231750 pixels (ratio 0.06 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - Expected an image 390px by 10608px, received 390px by 11480px. 231750 pixels (ratio 0.06 of all image pixels) are different.
+
+
+      49 |     await prepareHomepage(page);
+      50 |
+    > 51 |     await expect(page).toHaveScreenshot("homepage-minimal-mobile.png", {
+         |                        ^
+      52 |       fullPage: true,
+      53 |       animations: "disabled",
+      54 |       maxDiffPixelRatio: 0.02,
+        at /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/e2e/homepage-visual.spec.ts:51:24
+
+    attachment #1: homepage-minimal-mobile (image/png) ─────────────────────────────────────────────
+    Expected: e2e/homepage-visual.spec.ts-snapshots/homepage-minimal-mobile-chromium-darwin.png
+    Received: test-results/homepage-visual-Homepage-v-ced11-gression-mobile-composition-chromium/homepage-minimal-mobile-actual.png
+    Diff:     test-results/homepage-visual-Homepage-v-ced11-gression-mobile-composition-chromium/homepage-minimal-mobile-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-visual-Homepage-v-ced11-gression-mobile-composition-chromium/error-context.md
+
+  1 failed
+    [chromium] › e2e/homepage-visual.spec.ts:46:7 › Homepage visual regression › mobile composition 
+  2 did not run
+  8 passed (5.5s)

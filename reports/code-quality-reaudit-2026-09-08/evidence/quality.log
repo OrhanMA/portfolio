@@ -1,0 +1,120 @@
+v22.23.2
+
+> portfolio@0.1.0 lint /Users/orhan/Developer/projects/portfolio
+> eslint
+
+
+> portfolio@0.1.0 typecheck /Users/orhan/Developer/projects/portfolio
+> tsc --noEmit
+
+
+> portfolio@0.1.0 test:coverage /Users/orhan/Developer/projects/portfolio
+> vitest run --project unit --coverage
+
+
+ RUN  v4.1.10 /Users/orhan/Developer/projects/portfolio
+      Coverage enabled with v8
+
+Not implemented: navigation to another Document
+
+ Test Files  44 passed (44)
+      Tests  240 passed (240)
+   Start at  17:56:37
+   Duration  10.87s (transform 2.69s, setup 11.50s, import 6.76s, tests 18.61s, environment 40.42s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   86.64 |     76.6 |   86.47 |   88.85 |                   
+ src               |     100 |       90 |     100 |     100 |                   
+  proxy.ts         |     100 |       90 |     100 |     100 | 13                
+ src/app/[locale]  |    92.3 |       50 |     100 |      90 |                   
+  route-context.ts |   83.33 |       50 |     100 |   83.33 | 14                
+ ...cale]/a-propos |   66.66 |      100 |   66.66 |   66.66 |                   
+  page.tsx         |   66.66 |      100 |   66.66 |   66.66 | 14-16             
+ ...ocale]/actions |     100 |    77.14 |     100 |     100 |                   
+  contact.ts       |     100 |    77.14 |     100 |     100 | ...04-115,137-139 
+ ...etences/[slug] |   68.96 |       56 |      80 |   71.42 |                   
+  page.tsx         |   68.96 |       56 |      80 |   71.42 | 88-104,121        
+ ...arcours/[slug] |   72.41 |    84.21 |   84.61 |   79.16 |                   
+  page.tsx         |   72.41 |    84.21 |   84.61 |   79.16 | 30-35             
+ ...sations/[slug] |      64 |    52.94 |   72.72 |   66.66 |                   
+  page.tsx         |      64 |    52.94 |   72.72 |   66.66 | 21-37,54          
+ src/components    |   85.46 |    74.02 |   84.28 |   87.26 |                   
+  analytics.tsx    |   93.33 |    77.77 |   85.71 |    92.3 | 28                
+  ...ode-block.tsx |   86.36 |       75 |      80 |      90 | 62,70             
+  ...ancements.tsx |   82.14 |    81.81 |   85.71 |   84.61 | 52,65,71,82       
+  ...nked-text.tsx |     100 |       50 |     100 |     100 | 10                
+  ...able-list.tsx |   88.13 |    83.33 |   93.75 |    87.5 | ...,93-95,171-172 
+  ...e-consent.tsx |   86.04 |       75 |      75 |    87.8 | ...02,111-190,247 
+  ...gs-button.tsx |   66.66 |      100 |      50 |   66.66 | 7                 
+  ...-switcher.tsx |      80 |    59.09 |      75 |      80 | 22-36             
+  navbar.tsx       |   72.13 |    54.54 |   71.42 |      78 | ...29-238,321-326 
+  radar-chart.tsx  |      80 |    44.44 |   84.61 |   79.62 | 85-113            
+  ...e-content.tsx |   95.23 |    86.66 |     100 |     100 | 64-77             
+  ...ured-data.tsx |     100 |    68.75 |     100 |     100 | 16-80,94,155      
+  theme-toggle.tsx |      80 |        0 |      50 |      80 | 16                
+ ...onents/landing |   75.49 |    72.85 |    87.5 |   78.02 |                   
+  ...e-section.tsx |     100 |     93.1 |     100 |     100 | 178               
+  ...ge-motion.tsx |   52.94 |    38.46 |   64.28 |   55.81 | 50-59,72-93       
+  ...s-section.tsx |   94.11 |    83.33 |     100 |   93.75 | 57                
+ src/components/ui |   86.95 |      100 |   82.35 |   86.95 |                   
+  card.tsx         |   71.42 |      100 |   71.42 |   71.42 | 60,83             
+  dialog.tsx       |   88.88 |      100 |   85.71 |   88.88 | 76                
+ src/lib           |   89.22 |    80.99 |   93.58 |   92.21 |                   
+  ...e-headings.ts |   95.23 |       90 |     100 |   95.23 | 76,102            
+  articles.ts      |     100 |       80 |     100 |     100 | 55-56             
+  competences.ts   |   66.66 |      100 |      50 |      75 | 34                
+  ...ie-consent.ts |    90.9 |     73.8 |     100 |      95 | 52,63,152         
+  experience.ts    |   95.83 |    96.66 |     100 |     100 | 75                
+  metadata.ts      |     100 |    72.72 |     100 |     100 | 8,52-61           
+  odoo-projects.ts |   66.66 |      100 |   33.33 |      80 | 814               
+  ...-integrity.ts |   71.42 |       60 |     100 |   69.23 | ...58,65,75,83,91 
+  rate-limit.ts    |   90.32 |    85.29 |     100 |   90.32 | 85,93,98          
+  ...cha-client.ts |   80.76 |    59.25 |    92.3 |   88.57 | ...09-112,125-129 
+  recaptcha.ts     |     100 |    90.47 |     100 |     100 | 45,53             
+ ...test/__mocks__ |   66.66 |      100 |       0 |      80 |                   
+  gsap.ts          |   66.66 |      100 |       0 |      80 | 8                 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 86.64% ( 1019/1176 )
+Branches     : 76.6% ( 514/671 )
+Functions    : 86.47% ( 294/340 )
+Lines        : 88.85% ( 973/1095 )
+================================================================================
+
+> portfolio@0.1.0 test:browser /Users/orhan/Developer/projects/portfolio
+> vitest run --project browser
+
+
+ RUN  v4.1.10 /Users/orhan/Developer/projects/portfolio
+
+5:56:51 PM [vite] (client) [console.error] Contact form action unavailable: Error: Action unavailable
+    at http://localhost:63315/Users/orhan/Developer/projects/portfolio/src/components/__tests__/contact-form.browser.test.tsx?import&browserv=1788883010082:196:53
+    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=796e5b33:1903:20
+
+ Test Files  4 passed (4)
+      Tests  23 passed (23)
+   Start at  17:56:48
+   Duration  10.97s (transform 0ms, setup 0ms, import 2.71s, tests 13.05s, environment 0ms)
+
+{
+  "actions": [],
+  "advisories": {},
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "dependencies": 955,
+    "devDependencies": 0,
+    "optionalDependencies": 0,
+    "totalDependencies": 955
+  }
+}

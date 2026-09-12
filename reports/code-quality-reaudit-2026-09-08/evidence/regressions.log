@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 /private/tmp/portfolio-reaudit-20260908
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  18:03:06
+   Duration  1.13s (transform 42ms, setup 224ms, import 20ms, tests 10ms, environment 720ms)
+

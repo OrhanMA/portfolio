@@ -5,7 +5,7 @@ export const developpementOdoo: Competence = {
   title: { fr: "Développement Odoo", en: "Odoo Development" },
   type: "technical",
   level: "advanced",
-  radarValue: 85,
+  radarValue: 90,
   icon: "Puzzle",
   definition: {
     fr: `Le développement Odoo consiste à étendre un ERP sans rompre la cohérence de son modèle métier, de ses droits et de ses mécanismes internes. Un module peut ajouter des modèles Python, des champs, des vues XML, des rapports QWeb, des actions planifiées, des contrôleurs API, des données de configuration et des scripts de migration. La difficulté n'est pas seulement de faire fonctionner chaque composant : il faut comprendre l'ORM, les héritages, le contexte d'exécution, les dépendances entre modules et les conventions du framework afin qu'une personnalisation reste installable, testable et compatible avec les versions suivantes.

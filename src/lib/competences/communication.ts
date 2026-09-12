@@ -5,7 +5,7 @@ export const communication: Competence = {
   title: { fr: "Communication", en: "Communication" },
   type: "human",
   level: "intermediate",
-  radarValue: 50,
+  radarValue: 70,
   icon: "MessageSquare",
   definition: {
     fr: `La communication d'un développeur consiste à rendre un problème, une décision et un résultat compréhensibles par des personnes qui n'ont ni les mêmes connaissances ni les mêmes responsabilités. Elle commence par l'écoute : reconstituer le processus réel, faire préciser les exceptions et distinguer le besoin de la solution imaginée. Elle se poursuit par la reformulation, la démonstration, la documentation et l'explication des compromis. Un message techniquement exact reste insuffisant s'il n'aide pas son destinataire à décider ou à agir.

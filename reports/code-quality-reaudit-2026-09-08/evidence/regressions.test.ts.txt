@@ -1,0 +1,21 @@
+import {expect,it,vi} from 'vitest';
+import {setStoredConsent,isAnalyticsAccepted} from '@/lib/cookie-consent';
+it('reproduces old persisted acceptance overriding a withdrawal after quota failure',()=>{
+  localStorage.clear();
+  setStoredConsent({necessary:true,analytics:true});
+  expect(isAnalyticsAccepted()).toBe(true);
+  vi.spyOn(Storage.prototype,'setItem').mockImplementation(()=>{throw new DOMException('Quota exhausted','QuotaExceededError')});
+  setStoredConsent({necessary:true,analytics:false});
+  expect(isAnalyticsAccepted()).toBe(true); // characterisation of the defect
+  vi.restoreAllMocks();
+});
+import {createHeadingIdResolver,stripMdxEsm} from '@/lib/article-headings';
+it('reproduces collision between a repeated heading and a literal numbered heading',()=>{
+ const resolver=createHeadingIdResolver();
+ const ids=['Titre','Titre','Titre 2'].map(resolver);
+ expect(ids).toEqual(['titre','titre-2','titre-2']);
+});
+it('reproduces an unclosed semicolonless MDX import consuming the article',()=>{
+ const source='import { X } from "./x"\n\n# Article\n\nTexte public.';
+ expect(stripMdxEsm(source)).not.toContain('Texte public.');
+});

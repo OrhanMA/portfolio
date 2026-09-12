@@ -1,3 +1,5 @@
+import { LinkedText } from "@/components/linked-text";
+import { TopicLink } from "@/components/topic-link";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -15,6 +17,7 @@ import { createLocalizedMetadata } from "@/lib/metadata";
 import { getOdooProjectBySlug, odooProjects } from "@/lib/odoo-projects";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { actionLinkClassName } from "@/lib/styles";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../../route-context";
 
 export async function generateStaticParams() {
@@ -57,44 +60,44 @@ export default async function ProjectDetailPage({
   const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
 
   return (
-    <div>
+    <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/projects/${slug}`} />
+      <div>
       <EditorialPageHeader
         compact
         eyebrow={dict.projects.eyebrow}
         title={project.title}
-        description={project.summary[loc]}
+        description={<LinkedText locale={loc} currentPath={`/projects/${slug}`}>{project.summary[loc]}</LinkedText>}
         leading={
           <Link
             href={`/${locale}/projects`}
-            className="mb-6 inline-flex items-center gap-2 text-sm font-bold text-foreground/65 transition-colors hover:text-primary"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft />
             {dict.projects.backToProjects}
           </Link>
         }
         meta={
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="font-sans text-[11px] tracking-wide">
+          <div>
+            <Badge variant="outline">
               {project.slug}
             </Badge>
-            <Badge variant="secondary">Odoo</Badge>
-            <Badge variant="secondary">Python</Badge>
+            <TopicLink label="Odoo" locale={loc} />
+            <TopicLink label="Python" locale={loc} />
           </div>
         }
         aside={
-          <div className="border border-border bg-card p-5">
-            <p className="editorial-index">GitHub</p>
-            <div className="mt-5 flex flex-wrap gap-3 lg:flex-col">
+          <div>
+            <p>GitHub</p>
+            <div>
             <a
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={actionLinkClassName}
             >
               {dict.projects.viewProject}
-              <ArrowUpRight className="h-4 w-4" />
+              <ArrowUpRight />
             </a>
-            <Link href={`/${locale}/projects`} className={actionLinkClassName}>
+            <Link href={`/${locale}/projects`}>
               {dict.projects.backToProjects}
             </Link>
             </div>
@@ -102,39 +105,33 @@ export default async function ProjectDetailPage({
         }
       />
 
-      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[220px_1fr]">
-          <aside className="hidden border-t border-border/70 pt-5 lg:block">
-            <p className="font-sans text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-              Module anatomy
+      <section>
+        <div>
+          <aside>
+            <p>
+              {dict.projects.moduleAnatomy}
             </p>
-            <div className="mt-5 grid gap-2">
+            <div>
               {["Odoo", "Python", "Business workflow"].map((item) => (
-                <Badge
-                  key={item}
-                  variant="secondary"
-                  className="w-fit border border-border/50 bg-background/70 font-sans"
-                >
-                  {item}
-                </Badge>
+                <TopicLink key={item} label={item} locale={loc} />
               ))}
             </div>
           </aside>
-          <Card className="border border-border bg-card">
+          <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FolderGit2 className="h-5 w-5 text-primary" />
-                <h2 className="text-2xl font-black uppercase tracking-[-0.025em]">
+              <CardTitle>
+                <FolderGit2 />
+                <h2>
                   {dict.projects.detailHeading}
                 </h2>
               </CardTitle>
               <CardDescription>{dict.projects.detailSubtext}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent>
               {project.businessProblem &&
                 project.solution &&
                 project.impact && (
-                  <div className="grid gap-4 border-b border-border/70 pb-6 md:grid-cols-3">
+                  <div>
                     {[
                       {
                         label: dict.projects.businessProblem,
@@ -151,13 +148,12 @@ export default async function ProjectDetailPage({
                     ].map((item) => (
                       <div
                         key={item.label}
-                        className="rounded-lg border border-foreground/15 bg-background/75 p-4"
                       >
-                        <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+                        <p>
                           {item.label}
                         </p>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                          {item.value[loc]}
+                        <p>
+                          <LinkedText locale={loc} currentPath={`/projects/${slug}`}>{item.value[loc]}</LinkedText>
                         </p>
                       </div>
                     ))}
@@ -166,17 +162,16 @@ export default async function ProjectDetailPage({
 
               {project.technicalHighlights &&
                 project.technicalHighlights.length > 0 && (
-                  <div className="border-b border-border/70 pb-6">
-                    <p className="font-sans text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
+                  <div>
+                    <p>
                       {dict.projects.technicalHighlights}
                     </p>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    <div>
                       {project.technicalHighlights.map((highlight) => (
                         <div
                           key={highlight[loc]}
-                          className="rounded-lg border border-border/60 bg-muted/30 p-4 text-sm leading-6 text-muted-foreground"
                         >
-                          {highlight[loc]}
+                          <LinkedText locale={loc} currentPath={`/projects/${slug}`}>{highlight[loc]}</LinkedText>
                         </div>
                       ))}
                     </div>
@@ -186,13 +181,12 @@ export default async function ProjectDetailPage({
               {project.details.map((paragraph, index) => (
                 <div
                   key={paragraph[loc]}
-                  className="grid gap-4 border-t border-border/70 pt-5 first:border-t-0 first:pt-0 sm:grid-cols-[52px_1fr]"
                 >
-                  <span className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                  <span>
                     0{index + 1}
                   </span>
-                  <p className="leading-7 text-muted-foreground">
-                    {paragraph[loc]}
+                  <p>
+                    <LinkedText locale={loc} currentPath={`/projects/${slug}`}>{paragraph[loc]}</LinkedText>
                   </p>
                 </div>
               ))}
@@ -200,6 +194,7 @@ export default async function ProjectDetailPage({
           </Card>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

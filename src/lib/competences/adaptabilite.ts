@@ -5,7 +5,7 @@ export const adaptabilite: Competence = {
   title: { fr: "Adaptabilité", en: "Adaptability" },
   type: "human",
   level: "advanced",
-  radarValue: 75,
+  radarValue: 80,
   icon: "RefreshCw",
   definition: {
     fr: `L'adaptabilité est la capacité à modifier sa manière de travailler lorsqu'une information nouvelle rend le plan initial moins pertinent. En développement, le changement peut venir du besoin métier, d'une version de framework, d'une contrainte de sécurité, d'un design incomplet ou d'un résultat de test. S'adapter ne signifie pas accepter chaque nouvelle demande : il faut préserver l'objectif, mesurer le coût du changement et décider si l'on ajuste la solution, le calendrier ou le périmètre.

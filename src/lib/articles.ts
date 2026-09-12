@@ -1,25 +1,19 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { cache } from "react";
+import type {
+  ArticleDictionaryItem,
+  ArticleIndexItem,
+} from "@/lib/types/articles";
+import { stripMdxEsm } from "@/lib/article-headings";
 
-export type ArticleDictionaryItem = {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  tags?: string[];
-};
-
-export type ArticleIndexItem = ArticleDictionaryItem & {
-  tags: string[];
-  readingMinutes: number;
-  searchText: string;
-};
+export type { ArticleDictionaryItem, ArticleIndexItem } from "@/lib/types/articles";
 
 const WORDS_PER_MINUTE = 220;
+const ARTICLE_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function stripMdxForSearch(content: string) {
-  return content
+  return stripMdxEsm(content)
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`([^`]+)`/g, "$1")
     .replace(/!\[[^\]]*]\([^)]*\)/g, " ")
@@ -36,7 +30,15 @@ export function estimateReadingMinutes(content: string) {
   return Math.max(1, Math.ceil(words.length / WORDS_PER_MINUTE));
 }
 
+/**
+ * Reads one published article during the current React render/request cache.
+ * Missing or unreadable content is a validation failure, not an empty article.
+ */
 export const getArticleContent = cache(async (slug: string) => {
+  if (!ARTICLE_SLUG_PATTERN.test(slug)) {
+    throw new Error(`Invalid article slug: ${slug}`);
+  }
+
   const filePath = path.join(
     process.cwd(),
     "src",
@@ -48,9 +50,13 @@ export const getArticleContent = cache(async (slug: string) => {
   );
 
   try {
-    return readFile(filePath, "utf8");
-  } catch {
-    return "";
+    return await readFile(filePath, "utf8");
+  } catch (error) {
+    const code = error instanceof Error && "code" in error ? error.code : undefined;
+    const reason = code === "ENOENT" ? "file not found" : "could not be read";
+    throw new Error(`Article content ${reason} for slug: ${slug}`, {
+      cause: error,
+    });
   }
 });
 
@@ -59,6 +65,8 @@ export async function buildArticleIndex(articles: ArticleDictionaryItem[]) {
     articles.map(async (article): Promise<ArticleIndexItem> => {
       const tags = article.tags ?? [];
       const content = await getArticleContent(article.slug);
+      // An empty file is distinct from a missing file: metadata remains
+      // searchable, and estimateReadingMinutes deliberately returns 1.
       const cleanContent = stripMdxForSearch(content);
 
       return {

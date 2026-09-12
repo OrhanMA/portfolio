@@ -5,7 +5,7 @@ export const perseverance: Competence = {
   title: { fr: "Persévérance", en: "Perseverance" },
   type: "human",
   level: "advanced",
-  radarValue: 80,
+  radarValue: 90,
   icon: "Mountain",
   definition: {
     fr: `La persévérance en développement logiciel est la capacité à continuer une investigation lorsque le premier correctif ne traite que le symptôme, que la documentation ne couvre pas le cas rencontré ou qu'une solution impose plusieurs cycles d'essai. Elle associe endurance, méthode et mémoire du chemin parcouru : reproduire le défaut, formuler une hypothèse, recueillir des traces, modifier une seule variable utile, vérifier le résultat et conserver ce qui a été appris. Sans cette discipline, la ténacité peut devenir une répétition coûteuse des mêmes tentatives.

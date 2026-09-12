@@ -1,0 +1,152 @@
+{
+  "before": {
+    "scripts": [
+      {
+        "name": "0nkf8xzafd3z4.js",
+        "bytes": 9989,
+        "decoded": 31765
+      },
+      {
+        "name": "0s32pkxf_gy3s.js",
+        "bytes": 29327,
+        "decoded": 110484
+      },
+      {
+        "name": "2st5t8cyf4264.js",
+        "bytes": 72382,
+        "decoded": 231603
+      },
+      {
+        "name": "1m7sntc14l8en.js",
+        "bytes": 1451,
+        "decoded": 3376
+      },
+      {
+        "name": "turbopack-0mln8q1g7uwr2.js",
+        "bytes": 4161,
+        "decoded": 10613
+      },
+      {
+        "name": "0sbz2pez1ypgh.js",
+        "bytes": 9269,
+        "decoded": 44833
+      },
+      {
+        "name": "0vao_r5k_okx1.js",
+        "bytes": 12895,
+        "decoded": 54639
+      },
+      {
+        "name": "3dplcz06blgd-.js",
+        "bytes": 1019,
+        "decoded": 2131
+      },
+      {
+        "name": "357n2k852hbhs.js",
+        "bytes": 4333,
+        "decoded": 10882
+      },
+      {
+        "name": "1g_mw2v1tvrd6.js",
+        "bytes": 6615,
+        "decoded": 17188
+      },
+      {
+        "name": "0eoc4kvejg_qy.js",
+        "bytes": 8555,
+        "decoded": 27399
+      },
+      {
+        "name": "0g36jmhb-4rje.js",
+        "bytes": 919,
+        "decoded": 1862
+      },
+      {
+        "name": "4128lcqm0x200.js",
+        "bytes": 18243,
+        "decoded": 54987
+      }
+    ],
+    "rscRequests": 14
+  },
+  "after": {
+    "scripts": [
+      {
+        "name": "0nkf8xzafd3z4.js",
+        "bytes": 9989,
+        "decoded": 31765
+      },
+      {
+        "name": "0s32pkxf_gy3s.js",
+        "bytes": 29327,
+        "decoded": 110484
+      },
+      {
+        "name": "2st5t8cyf4264.js",
+        "bytes": 72382,
+        "decoded": 231603
+      },
+      {
+        "name": "1m7sntc14l8en.js",
+        "bytes": 1451,
+        "decoded": 3376
+      },
+      {
+        "name": "turbopack-0mln8q1g7uwr2.js",
+        "bytes": 4161,
+        "decoded": 10613
+      },
+      {
+        "name": "0sbz2pez1ypgh.js",
+        "bytes": 9269,
+        "decoded": 44833
+      },
+      {
+        "name": "0vao_r5k_okx1.js",
+        "bytes": 12895,
+        "decoded": 54639
+      },
+      {
+        "name": "3dplcz06blgd-.js",
+        "bytes": 1019,
+        "decoded": 2131
+      },
+      {
+        "name": "357n2k852hbhs.js",
+        "bytes": 4333,
+        "decoded": 10882
+      },
+      {
+        "name": "1g_mw2v1tvrd6.js",
+        "bytes": 6615,
+        "decoded": 17188
+      },
+      {
+        "name": "0eoc4kvejg_qy.js",
+        "bytes": 8555,
+        "decoded": 27399
+      },
+      {
+        "name": "0g36jmhb-4rje.js",
+        "bytes": 919,
+        "decoded": 1862
+      },
+      {
+        "name": "4128lcqm0x200.js",
+        "bytes": 18243,
+        "decoded": 54987
+      },
+      {
+        "name": "177lp0klekq25.js",
+        "bytes": 292,
+        "decoded": 292
+      },
+      {
+        "name": "36to4_uq0fmor.js",
+        "bytes": 49293,
+        "decoded": 132686
+      }
+    ],
+    "rscRequests": 20
+  }
+}

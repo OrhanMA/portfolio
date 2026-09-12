@@ -1,24 +1,16 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { renderWithProviders, screen, userEvent } from "@/test/utils";
-import { LanguageSwitcher } from "@/components/language-switcher";
-
-const mockPush = vi.fn();
+import { renderWithProviders, screen } from "@/test/utils";
+import {
+  LanguageSwitcher,
+  replaceLocaleInUrl,
+} from "@/components/language-switcher";
 
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/fr"),
-  useRouter: vi.fn(() => ({
-    push: mockPush,
-    replace: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-    prefetch: vi.fn(),
-  })),
 }));
 
 describe("LanguageSwitcher", () => {
   beforeEach(() => {
-    mockPush.mockReset();
     document.cookie = "NEXT_LOCALE=;max-age=0";
   });
 
@@ -38,28 +30,15 @@ describe("LanguageSwitcher", () => {
     expect(screen.getByText("FR")).toBeInTheDocument();
   });
 
-  it("clicking switches locale and calls router.push", async () => {
-    const { usePathname } = await import("next/navigation");
-    vi.mocked(usePathname).mockReturnValue("/fr/contact");
-
-    renderWithProviders(<LanguageSwitcher />);
-
-    const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: /passer en anglais/i }));
-
-    expect(mockPush).toHaveBeenCalledWith("/en/contact");
-  });
-
-  it("sets NEXT_LOCALE cookie on switch", async () => {
-    const { usePathname } = await import("next/navigation");
-    vi.mocked(usePathname).mockReturnValue("/fr");
-
-    renderWithProviders(<LanguageSwitcher />);
-
-    const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: /passer en anglais/i }));
-
-    expect(document.cookie).toContain("NEXT_LOCALE=en");
+  it("replaces only the locale and keeps query and hash", () => {
+    expect(
+      replaceLocaleInUrl(
+        "/fr/articles/migration-odoo-v16-v19",
+        "en",
+        "?q=odoo",
+        "#contexte",
+      ),
+    ).toBe("/en/articles/migration-odoo-v16-v19?q=odoo#contexte");
   });
 
   it("has correct aria-label", async () => {
@@ -68,7 +47,7 @@ describe("LanguageSwitcher", () => {
 
     renderWithProviders(<LanguageSwitcher />);
     expect(
-      screen.getByRole("button", { name: "Passer en anglais" })
+      screen.getByRole("button", { name: "Passer en anglais" }),
     ).toBeInTheDocument();
   });
 });

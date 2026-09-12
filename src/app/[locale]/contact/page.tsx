@@ -3,6 +3,7 @@ import { Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { createLocalizedMetadata } from "@/lib/metadata";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -24,7 +25,6 @@ function RecaptchaDisclosure({
           href="https://policies.google.com/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-muted-foreground"
         >
           {privacyLabel}
         </a>
@@ -37,7 +37,6 @@ function RecaptchaDisclosure({
           href="https://policies.google.com/terms"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-muted-foreground"
         >
           {termsLabel}
         </a>
@@ -72,6 +71,7 @@ export default async function ContactPage({
 
   return (
     <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/contact`} />
       <EditorialPageHeader
         eyebrow={dict.nav.contact}
         title={dict.contact.heading}
@@ -79,49 +79,48 @@ export default async function ContactPage({
         titleClassName="uppercase"
       />
 
-      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.65fr_1fr] lg:items-start">
-          <aside className="border border-border bg-card p-6 lg:sticky lg:top-28">
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-foreground/15 bg-background">
-              <Mail aria-hidden="true" className="h-6 w-6 text-primary" />
+      <section>
+        <div>
+          <aside>
+            <div>
+              <Mail aria-hidden="true" />
             </div>
-            <p className="editorial-index">Email</p>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground">
+            <p>Email</p>
+            <p>
               {dict.contact.altEmail}
             </p>
             <a
               href="mailto:orhan.madi.assani@gmail.com"
-              className="mt-3 block break-all font-sans text-xs font-bold text-primary underline-offset-4 hover:underline"
             >
               orhan.madi.assani@gmail.com
             </a>
           </aside>
 
           <div>
-            <div className="border border-border bg-card p-5 sm:p-8">
+            <div>
               <ContactForm
                 locale={loc}
                 dict={{
                   contactForm: dict.contactForm,
                   contactReasons: dict.contactReasons,
                   contactValidation: dict.contactValidation,
+                  contactErrors: dict.contactErrors,
                   legal: dict.legal,
                 }}
               />
             </div>
 
-            <div className="mt-6 space-y-2 text-sm text-muted-foreground">
+            <div>
               <p>
                 {dict.contact.altEmail}{" "}
                 <a
                   href="mailto:orhan.madi.assani@gmail.com"
-                  className="font-medium text-primary underline-offset-4 hover:underline"
                 >
                   orhan.madi.assani@gmail.com
                 </a>
               </p>
               {recaptchaSiteKey && (
-                <p className="text-xs leading-6 text-muted-foreground/70">
+                <p>
                   <RecaptchaDisclosure
                     text={dict.contact.recaptchaDisclosure}
                     privacyLabel={dict.contact.privacyPolicy}

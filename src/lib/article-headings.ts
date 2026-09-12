@@ -4,7 +4,53 @@ export type ArticleHeading = {
   level: number;
 };
 
-function slugify(value: string) {
+function braceDelta(value: string) {
+  return (
+    (value.match(/{/g)?.length ?? 0) -
+    (value.match(/}/g)?.length ?? 0)
+  );
+}
+
+function hasEsmContinuation(line: string, braceDepth: number) {
+  if (braceDepth > 0) return true;
+  return /(?:[,=([{]|=>|\\)$/.test(line.trim());
+}
+
+/** Removes leading MDX ESM statements without treating article prose as code. */
+export function stripMdxEsm(content: string) {
+  const lines = content.split("\n");
+  const output: string[] = [];
+  let inEsm = false;
+  let esmBraceDepth = 0;
+  let seenContent = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    if (inEsm) {
+      esmBraceDepth += braceDelta(line);
+      if (esmBraceDepth <= 0 && !hasEsmContinuation(line, esmBraceDepth)) {
+        inEsm = false;
+      }
+      continue;
+    }
+
+    if (!seenContent && /^(?:import|export)\b/.test(trimmed)) {
+      esmBraceDepth = braceDelta(line);
+      inEsm = hasEsmContinuation(line, esmBraceDepth);
+      continue;
+    }
+
+    if (trimmed) {
+      seenContent = true;
+    }
+    output.push(line);
+  }
+
+  return output.join("\n");
+}
+
+export function slugifyHeading(value: string) {
   return value
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -13,19 +59,45 @@ function slugify(value: string) {
     .replace(/^-|-$/g, "");
 }
 
-function stripHeadingMarkup(value: string) {
+export function stripHeadingMarkup(value: string) {
   return value
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, "")
     .replace(/[\*_`]/g, "")
     .replace(/\s+#+$/, "")
     .trim();
 }
 
+/** Creates the same duplicate-safe IDs for server-extracted and rendered headings. */
+export function createHeadingIdResolver() {
+  const occurrences = new Map<string, number>();
+  const usedIds = new Set<string>();
+
+  return (value: string) => {
+    const text = stripHeadingMarkup(value);
+    const baseId = slugifyHeading(text);
+    if (!baseId) {
+      return undefined;
+    }
+
+    let occurrence = occurrences.get(baseId) ?? 0;
+    let id = baseId;
+    do {
+      occurrence += 1;
+      id = occurrence === 1 ? baseId : `${baseId}-${occurrence}`;
+    } while (usedIds.has(id));
+
+    occurrences.set(baseId, occurrence);
+    usedIds.add(id);
+    return id;
+  };
+}
+
 /** Extracts stable, anchor-safe headings from an MDX source file. */
 export function extractArticleHeadings(content: string): ArticleHeading[] {
-  const occurrences = new Map<string, number>();
+  const getHeadingId = createHeadingIdResolver();
 
-  return content
+  return stripMdxEsm(content)
     .replace(/```[\s\S]*?```/g, "")
     .split("\n")
     .flatMap((line) => {
@@ -35,16 +107,13 @@ export function extractArticleHeadings(content: string): ArticleHeading[] {
       }
 
       const text = stripHeadingMarkup(match[2]);
-      const baseId = slugify(text);
-      if (!baseId) {
+      const id = getHeadingId(text);
+      if (!id) {
         return [];
       }
 
-      const occurrence = (occurrences.get(baseId) ?? 0) + 1;
-      occurrences.set(baseId, occurrence);
-
       return [{
-        id: occurrence === 1 ? baseId : `${baseId}-${occurrence}`,
+        id,
         text,
         level: match[1].length,
       }];

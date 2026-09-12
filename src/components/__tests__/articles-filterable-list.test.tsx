@@ -1,15 +1,15 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ArticlesFilterableList } from "@/components/articles-filterable-list";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  ArticlesFilterableList,
+  formatArticleDate,
+} from "@/components/articles-filterable-list";
 import { renderWithProviders, screen, userEvent } from "@/test/utils";
 
-const replaceMock = vi.fn();
+const replaceStateMock = vi.fn();
 let currentSearchParams = new URLSearchParams();
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/fr/articles",
-  useRouter: () => ({
-    replace: replaceMock,
-  }),
   useSearchParams: () => currentSearchParams,
 }));
 
@@ -46,8 +46,13 @@ const labels = {
 
 describe("ArticlesFilterableList", () => {
   beforeEach(() => {
-    replaceMock.mockClear();
+    replaceStateMock.mockClear();
+    vi.spyOn(window.history, "replaceState").mockImplementation(replaceStateMock);
     currentSearchParams = new URLSearchParams();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it("filters articles by tag", async () => {
@@ -94,9 +99,10 @@ describe("ArticlesFilterableList", () => {
       />,
     );
 
-    const articleTag = screen.getAllByRole("button", { name: "D3.js" })[1];
+    const articleTag = screen.getByRole("link", { name: "D3.js" });
 
-    expect(articleTag.closest("a")).toBeNull();
+    expect(articleTag).toHaveAttribute("href", "/fr/realisations/app-trajectoires-de-vie");
+    expect(articleTag.parentElement?.closest("a")).toBeNull();
     expect(screen.getByRole("link", { name: "CAP2vie" })).toHaveAttribute(
       "href",
       "/fr/articles/cap2vie",
@@ -119,6 +125,68 @@ describe("ArticlesFilterableList", () => {
     expect(screen.queryByText("CAP2vie")).not.toBeInTheDocument();
   });
 
+  it("keeps date-only article values stable across time zones", () => {
+    const date = new Date("2026-05-13");
+    const format = (timeZone: string) =>
+      new Intl.DateTimeFormat("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone,
+      }).format(date);
+
+    expect(format("America/Los_Angeles")).toBe("12 mai 2026");
+    expect(format("UTC")).toBe("13 mai 2026");
+    expect(formatArticleDate("2026-05-13", "fr")).toBe("13 mai 2026");
+  });
+
+  it("adopts external URL changes without rewriting them", () => {
+    currentSearchParams = new URLSearchParams("q=odoo&sort=recent");
+
+    const view = renderWithProviders(
+      <ArticlesFilterableList
+        articles={articles}
+        locale="fr"
+        labels={labels}
+      />,
+    );
+
+    expect(screen.getByRole("searchbox")).toHaveValue("odoo");
+
+    currentSearchParams = new URLSearchParams("q=socket&sort=recent");
+    view.rerender(
+      <ArticlesFilterableList
+        articles={articles}
+        locale="fr"
+        labels={labels}
+      />,
+    );
+
+    expect(screen.getByRole("searchbox")).toHaveValue("socket");
+    expect(screen.getByText("CAP2vie")).toBeInTheDocument();
+    expect(screen.queryByText("Migration Odoo")).not.toBeInTheDocument();
+    expect(replaceStateMock).not.toHaveBeenCalled();
+  });
+
+  it("preserves unrelated URL parameters when changing filters", async () => {
+    currentSearchParams = new URLSearchParams("sort=recent");
+    const user = userEvent.setup();
+
+    renderWithProviders(
+      <ArticlesFilterableList
+        articles={articles}
+        locale="fr"
+        labels={labels}
+      />,
+    );
+
+    await user.type(screen.getByRole("searchbox"), "socket");
+
+    expect(replaceStateMock.mock.calls.at(-1)?.[2]).toBe(
+      "/fr/articles?sort=recent&q=socket",
+    );
+  });
+
   it("does not rewrite the URL when the initial filters already match it", () => {
     currentSearchParams = new URLSearchParams("tag=Odoo&q=qweb");
 
@@ -130,7 +198,7 @@ describe("ArticlesFilterableList", () => {
       />,
     );
 
-    expect(replaceMock).not.toHaveBeenCalled();
+    expect(replaceStateMock).not.toHaveBeenCalled();
   });
 
   it("keeps the active filters synchronized in the URL", async () => {
@@ -146,16 +214,15 @@ describe("ArticlesFilterableList", () => {
     await user.click(screen.getAllByRole("button", { name: "D3.js" })[0]);
     await user.type(screen.getByRole("searchbox"), "socket");
 
-    expect(replaceMock).toHaveBeenLastCalledWith(
+    expect(replaceStateMock.mock.calls.at(-1)?.[2]).toBe(
       "/fr/articles?tag=D3.js&q=socket",
-      { scroll: false },
     );
 
     await user.click(screen.getByRole("button", { name: labels.clearSearch }));
 
-    expect(replaceMock).toHaveBeenLastCalledWith("/fr/articles?tag=D3.js", {
-      scroll: false,
-    });
+    expect(replaceStateMock.mock.calls.at(-1)?.[2]).toBe(
+      "/fr/articles?tag=D3.js",
+    );
   });
 
   it("searches in title, content and tags", async () => {

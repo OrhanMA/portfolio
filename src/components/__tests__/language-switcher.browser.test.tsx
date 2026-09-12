@@ -3,23 +3,12 @@ import { page } from "vitest/browser";
 import { renderWithProviders } from "@/test/browser-utils";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
-const mockPush = vi.fn();
-
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/fr"),
-  useRouter: vi.fn(() => ({
-    push: mockPush,
-    replace: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-    prefetch: vi.fn(),
-  })),
 }));
 
 describe("LanguageSwitcher (browser)", () => {
   beforeEach(() => {
-    mockPush.mockReset();
     document.cookie = "NEXT_LOCALE=;max-age=0";
   });
 
@@ -51,26 +40,4 @@ describe("LanguageSwitcher (browser)", () => {
       .toBeInTheDocument();
   });
 
-  test("clicking switches locale", async () => {
-    const { usePathname } = await import("next/navigation");
-    vi.mocked(usePathname).mockReturnValue("/fr/contact");
-
-    await renderWithProviders(<LanguageSwitcher />);
-
-    const btn = page.getByRole("button", { name: /passer en anglais/i });
-    await btn.click();
-
-    expect(mockPush).toHaveBeenCalledWith("/en/contact");
-  });
-
-  test("sets NEXT_LOCALE cookie on switch", async () => {
-    const { usePathname } = await import("next/navigation");
-    vi.mocked(usePathname).mockReturnValue("/fr");
-
-    await renderWithProviders(<LanguageSwitcher />);
-
-    await page.getByRole("button", { name: /passer en anglais/i }).click();
-
-    expect(document.cookie).toContain("NEXT_LOCALE=en");
-  });
 });

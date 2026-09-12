@@ -1,0 +1,9 @@
+
+> portfolio@0.1.0 start /private/tmp/portfolio-reaudit-20260908
+> next start --port 3318
+
+▲ Next.js 16.2.11
+- Local:         http://localhost:3318
+- Network:       http://192.168.1.26:3318
+✓ Ready in 233ms
+ ELIFECYCLE  Command failed with exit code 130.

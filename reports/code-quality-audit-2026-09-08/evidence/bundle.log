@@ -1,0 +1,5 @@
+
+> portfolio@0.1.0 check:bundle /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo
+> node scripts/check-bundle-budget.mjs
+
+Bundle budgets respected (JS ≤ 250 KiB, CSS ≤ 150 KiB per asset). 

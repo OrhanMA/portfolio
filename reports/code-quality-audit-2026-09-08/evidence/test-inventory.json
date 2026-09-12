@@ -1,0 +1,576 @@
+[
+  {
+    "file": "src/app/[locale]/__tests__/homepage-copy.test.ts",
+    "declarations": [
+      "homepage positioning copy",
+      "keeps availability wording neutral in French and English",
+      "uses short, verifiable hero proofs in both languages"
+    ]
+  },
+  {
+    "file": "src/app/[locale]/__tests__/dictionaries.test.ts",
+    "declarations": [
+      "getDictionary()",
+      "returns French dictionary",
+      "returns English dictionary",
+      "both dictionaries have matching top-level keys",
+      "exposes the TOEIC date in both languages",
+      "keeps timeline chronology metadata identical across locales"
+    ]
+  },
+  {
+    "file": "src/app/[locale]/actions/__tests__/contact.test.ts",
+    "declarations": [
+      "escapeHtml()",
+      "escapes HTML metacharacters",
+      "keeps plain and empty strings unchanged",
+      "sendContactEmail()",
+      "returns an error for invalid schema data",
+      "silently succeeds for a filled honeypot without sending",
+      "rejects submissions completed too quickly",
+      "returns localized errors for the English form",
+      "rejects when the durable rate limit is exceeded",
+      "fails closed when the rate-limit store is unavailable",
+      "rejects when reCAPTCHA fails",
+      "rejects a missing reCAPTCHA token when configured",
+      "sends an escaped email through Resend",
+      "strips line breaks from email subjects",
+      "returns a localized error when Resend reports a failure",
+      "returns a localized error when Resend throws"
+    ]
+  },
+  {
+    "file": "src/app/__tests__/sitemap.test.ts",
+    "declarations": [
+      "sitemap",
+      "derives every localized article URL and publication date from content",
+      "does not emit duplicate URLs"
+    ]
+  },
+  {
+    "file": "src/__tests__/proxy.test.ts",
+    "declarations": [
+      "proxy",
+      "continues localized routes with a nonce-based CSP",
+      "continues when pathname is exactly /fr",
+      "continues when pathname starts with /en/",
+      "redirects to /fr by default (no cookie, no Accept-Language)",
+      "redirects to /fr/contact when NEXT_LOCALE cookie is fr",
+      "redirects to /en/contact when NEXT_LOCALE cookie is en",
+      "redirects based on Accept-Language: en",
+      "preserves pathname after locale prefix",
+      "redirects to /fr as fallback for unsupported Accept-Language"
+    ]
+  },
+  {
+    "file": "src/lib/schemas/__tests__/contact.test.ts",
+    "declarations": [
+      "contactSchema",
+      "valid submissions",
+      "accepts a complete valid form submission",
+      "accepts submission with reason != other and no customSubject",
+      "accepts honeypot as empty string",
+      "accepts a reCAPTCHA token when provided",
+      "accepts reason ",
+      "invalid submissions",
+      "rejects a submission without a timestamp",
+      "rejects name shorter than 2 chars",
+      "rejects name longer than 100 chars",
+      "rejects invalid email format",
+      "rejects empty reason",
+      "rejects message shorter than 10 chars",
+      "rejects message longer than 5000 chars",
+      "accepts a bounded honeypot value so the action can respond silently",
+      "rejects unknown contact reasons",
+      "rejects an oversized custom subject",
+      "rejects reason ",
+      "rejects reason ",
+      "contactReasons",
+      "has 6 entries",
+      "contains expected values"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/utils.test.ts",
+    "declarations": [
+      "cn()",
+      "returns empty string for no arguments",
+      "merges multiple class strings",
+      "handles conditional classes (undefined, null, false)",
+      "resolves Tailwind conflicts (last one wins)",
+      "handles array inputs"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/recaptcha.test.ts",
+    "declarations": [
+      "RECAPTCHA_THRESHOLD",
+      "is 0.5",
+      "verifyRecaptcha()",
+      "is optional when no secret key is configured",
+      "rejects an empty token when verification is configured",
+      "posts the token to Google",
+      "accepts a fresh token with the expected score, action and hostname",
+      "rejects unsuccessful and non-OK verification responses"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/topic-links.test.ts",
+    "declarations": [
+      "internal topic destinations",
+      "keeps all destinations internal and avoids self-links",
+      "reports missing mappings instead of publishing a broken link"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/portfolio-relationships.test.ts",
+    "declarations": [
+      "portfolio relationships",
+      "keeps the required portfolio grid complete",
+      "keeps competence and realisation links reciprocal",
+      "keeps the current portfolio article count accurate"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/contact-email.test.ts",
+    "declarations": [
+      "contact email template",
+      "renders the portfolio identity and a reply CTA",
+      "escapes user-provided values and preserves message line breaks",
+      "provides a readable English plain-text fallback"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/rate-limit.test.ts",
+    "declarations": [
+      "rateLimit()",
+      "tracks an isolated fixed window locally in tests",
+      "resets the local window after expiry",
+      "uses an atomic Redis script when durable credentials exist",
+      "hashed-ip",
+      "supports the Vercel integration variables created with the configured prefix",
+      "hashed-ip",
+      "fails closed in production without a durable store",
+      "hashed-ip"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/cookie-consent.test.ts",
+    "declarations": [
+      "cookie-consent utilities",
+      "stores a versioned, timestamped consent for six months",
+      "rejects malformed, legacy, future and expired consent",
+      "reports whether a valid decision and analytics consent exist",
+      "removes Google Analytics cookies when consent is withdrawn",
+      "requires a reload only when already-granted analytics consent is withdrawn"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/recaptcha-client.test.ts",
+    "declarations": [
+      "recaptcha client",
+      "is a no-op when no public site key is configured",
+      "loads the script once on intent",
+      "executes the expected action through the loaded API"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/experience.test.ts",
+    "declarations": [
+      "sortTimelineEntries",
+      "sorts overlapping periods by latest end, then latest start",
+      "uses the stable id for identical intervals without mutating the source",
+      "uses the upper boundary of a partial end date"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/metadata.test.ts",
+    "declarations": [
+      "localizedAlternates",
+      "builds canonical and language URLs for a localized route",
+      "supports locale homepages",
+      "localized metadata",
+      "builds an absolute localized social URL",
+      "keeps canonical, Open Graph and Twitter metadata in sync"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/article-headings.test.ts",
+    "declarations": [
+      "extractArticleHeadings",
+      "creates stable anchors from MDX headings"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/competences.test.ts",
+    "declarations": [
+      "competences",
+      "links every definition to a distinct, dated official source",
+      "keeps every skill article substantial, bilingual, and grounded in achievements"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/i18n.test.ts",
+    "declarations": [
+      "i18n config",
+      "locales contains exactly fr and en",
+      "defaultLocale is fr",
+      "parseLocale()",
+      "returns a typed supported locale",
+      "returns null instead of coercing an unsupported locale",
+      "isValidLocale()",
+      "returns true for ",
+      "returns true for ",
+      "returns false for ",
+      "returns false for empty string",
+      "returns false for "
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/articles.test.ts",
+    "declarations": [
+      "article indexing helpers",
+      "strips markdown and keeps article text searchable",
+      "estimates at least one minute of reading time",
+      "indexes real MDX article content for article search"
+    ]
+  },
+  {
+    "file": "src/lib/__tests__/content-architecture.test.ts",
+    "declarations": [
+      "editorial content architecture",
+      "keeps each achievement in its own module behind a lightweight index",
+      "keeps each skill in its own module behind a lightweight index"
+    ]
+  },
+  {
+    "file": "src/app/[locale]/__tests__/about-page.test.tsx",
+    "declarations": [
+      "AboutPage",
+      "presents the professional and personal project in French",
+      "presents the professional and personal project in English",
+      "uses Roman numerals for the five editorial sections"
+    ]
+  },
+  {
+    "file": "src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "declarations": [
+      "RealisationDetailPage",
+      "keeps the long-form reading structure navigable"
+    ]
+  },
+  {
+    "file": "src/app/[locale]/__tests__/competence-page.test.tsx",
+    "declarations": [
+      "CompetenceDetailPage",
+      "provides readable table-of-contents navigation and three achievement-backed proofs",
+      "shows the dated news item and official source in French",
+      "localizes the news item in English"
+    ]
+  },
+  {
+    "file": "src/app/[locale]/__tests__/experience-page.test.tsx",
+    "declarations": [
+      "experience detail pages",
+      "generates one detail route per timeline entry"
+    ]
+  },
+  {
+    "file": "src/components/landing/__tests__/homepage-sections.test.tsx",
+    "declarations": [
+      "editorial homepage sections",
+      "presents the about section as three product principles",
+      "presents principles without decorative transforms or shadows",
+      "uses a monochrome hero and contact section without decorative assets",
+      "shows six compact skill domains and links to the full comparison",
+      "shows a jury-readable timeline with animated details, logos and proofs",
+      "shows documented result metrics without presenting an estimate as a measurement"
+    ]
+  },
+  {
+    "file": "src/components/landing/__tests__/homepage-motion.test.tsx",
+    "declarations": [
+      "HomepageMotion",
+      "reveals a section immediately when it is the direct hash target"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/linked-text.test.tsx",
+    "declarations": [
+      "LinkedText",
+      "links exact technology and experience mentions in the active language",
+      "preserves existing links, code, controls and partial words",
+      "preserves emphasis and sends current-page mentions to another page"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/editorial-page-header.test.tsx",
+    "declarations": [
+      "EditorialPageHeader",
+      "renders a semantic page title without decorative imagery"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/language-switcher.test.tsx",
+    "declarations": [
+      "LanguageSwitcher",
+      "shows ",
+      "shows ",
+      "clicking switches locale and calls router.push",
+      "sets NEXT_LOCALE cookie on switch",
+      "has correct aria-label"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/article-enhancements.test.tsx",
+    "declarations": [
+      "ArticleEnhancements",
+      "renders server-derived table-of-contents data without waiting for hydration",
+      "shows copied feedback after using the copy link button",
+      "shows the French article notice on English article pages"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/contact-form.browser.test.tsx",
+    "declarations": [
+      "ContactForm (browser)",
+      "renders all form fields",
+      "displays the privacy notice and its localized link",
+      "honeypot field is hidden from users via aria-hidden",
+      "form fields accept input",
+      "character counter appears when typing",
+      "shows success state after successful submission",
+      "shows error banner after failed submission"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/article-code-block.test.tsx",
+    "declarations": [
+      "ArticleCodeBlock",
+      "copies the full code block and confirms the action"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/dictionary-provider.test.tsx",
+    "declarations": [
+      "DictionaryProvider",
+      "renders children",
+      "useDictionary()",
+      "returns dictionary when inside DictionaryProvider",
+      "throws when used outside DictionaryProvider"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/navbar.test.tsx",
+    "declarations": [
+      "Navbar",
+      "shows the full name as a compact persistent signature",
+      "exposes every competence and realisation in keyboard-accessible desktop submenus",
+      "opens the mobile menu and its localized submenus",
+      "closes a desktop submenu when navigating from one of its child links",
+      "keeps the contact call to action contrast-safe in every theme"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/structured-data.test.tsx",
+    "declarations": [
+      "StructuredData",
+      "uses ProfilePage only on the localized homepage",
+      "emits TechArticle and breadcrumb schemas"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/cookie-consent.test.tsx",
+    "declarations": [
+      "CookieConsent",
+      "does not render initially",
+      "renders after 1.5s delay when no prior consent",
+      "does not render when consent already given",
+      "Accept button dispatches CustomEvent with analytics: true",
+      "Reject button dispatches CustomEvent with analytics: false",
+      "Manage button expands preferences",
+      "keeps keyboard focus within the modal dialog",
+      "banner disappears after accepting",
+      "stores consent in localStorage after accepting",
+      "X button rejects all and hides banner",
+      "can be reopened after a prior decision and preserves preferences"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/language-switcher.browser.test.tsx",
+    "declarations": [
+      "LanguageSwitcher (browser)",
+      "shows ",
+      "shows ",
+      "clicking switches locale",
+      "sets NEXT_LOCALE cookie on switch"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/visual.browser.test.tsx",
+    "declarations": [
+      "Visual Regression",
+      "cookie consent banner",
+      "cookie consent with expanded preferences",
+      "language switcher FR state",
+      "contact form"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/footer.test.tsx",
+    "declarations": [
+      "Footer",
+      "exposes the secondary pages and legal links",
+      "exposes the public proof documents"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/articles-filterable-list.test.tsx",
+    "declarations": [
+      "ArticlesFilterableList",
+      "filters articles by tag",
+      "keeps article-card tag controls large enough and exposes their selected state",
+      "keeps tag controls outside article links",
+      "initializes filters from the URL search params",
+      "does not rewrite the URL when the initial filters already match it",
+      "keeps the active filters synchronized in the URL",
+      "searches in title, content and tags",
+      "shows an empty state when no article matches"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/realisation-article-content.test.tsx",
+    "declarations": [
+      "RealisationArticleContent",
+      "turns numbered paragraphs into a scannable semantic list",
+      "keeps unnumbered editorial paragraphs as readable prose",
+      "parses every French and English achievement section without losing content"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/radar-chart.test.tsx",
+    "declarations": [
+      "RadarChart navigation",
+      "exposes each skill label as an accessible link"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/analytics.test.tsx",
+    "declarations": [
+      "Analytics",
+      "does not load analytics without explicit consent",
+      "reacts to consent changes and enables field Web Vitals",
+      "stops rendering analytics when consent is withdrawn"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/article-linked-text.test.tsx",
+    "declarations": [
+      "article technology links",
+      "uses the reader locale even for a French article"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/cookie-consent.browser.test.tsx",
+    "declarations": [
+      "CookieConsent (browser)",
+      "does not render immediately",
+      "renders after 1.5s delay when no prior consent",
+      "does not render when consent already given",
+      "Accept button stores consent and hides banner",
+      "Reject button stores consent and hides banner",
+      "Manage button expands preferences panel"
+    ]
+  },
+  {
+    "file": "src/components/__tests__/youtube-facade.test.tsx",
+    "declarations": [
+      "YouTubeFacade",
+      "does not create a third-party player until the visitor explicitly loads it"
+    ]
+  },
+  {
+    "file": "e2e/navigation.spec.ts",
+    "declarations": [
+      "Navigation",
+      "home page loads correctly",
+      "timeline entries reveal on direct hash navigation",
+      "articles page loads",
+      "contact page loads",
+      "projects page loads",
+      "project detail page loads",
+      "404 page renders for unknown routes",
+      "nav links work",
+      "closes a desktop submenu after navigating from a child link"
+    ]
+  },
+  {
+    "file": "e2e/sitemap.spec.ts",
+    "declarations": [
+      "every sitemap route and internal link is structurally healthy",
+      "/"
+    ]
+  },
+  {
+    "file": "e2e/secondary-pages.spec.ts",
+    "declarations": [
+      "/",
+      "/"
+    ]
+  },
+  {
+    "file": "e2e/seed.spec.ts",
+    "declarations": [
+      "Seed",
+      "homepage loads and is ready"
+    ]
+  },
+  {
+    "file": "e2e/cookie-consent.spec.ts",
+    "declarations": [
+      "Cookie Consent",
+      "banner appears on first visit after delay",
+      "Accept hides the banner",
+      "banner does not appear after accepting",
+      "Reject hides the banner",
+      "preferences can be reopened and withdrawn from the footer"
+    ]
+  },
+  {
+    "file": "e2e/article-layout.spec.ts",
+    "declarations": [
+      "every article keeps its editorial layout in both locales"
+    ]
+  },
+  {
+    "file": "e2e/homepage-visual.spec.ts",
+    "declarations": [
+      "Homepage visual regression",
+      "desktop composition",
+      "mobile composition",
+      "dark composition",
+      "uses the neutral portrait without Japanese decorative assets"
+    ]
+  },
+  {
+    "file": "e2e/contact.spec.ts",
+    "declarations": [
+      "Contact Page",
+      "page loads with correct heading",
+      "form fields are visible",
+      "form shows validation errors on empty submission",
+      "English contact page loads correctly"
+    ]
+  },
+  {
+    "file": "e2e/i18n.spec.ts",
+    "declarations": [
+      "Internationalization",
+      "root path redirects to /fr (default locale)",
+      "/fr shows French content",
+      "/en shows English content",
+      "language switcher toggles locale",
+      "language preference persists across navigation"
+    ]
+  }
+]

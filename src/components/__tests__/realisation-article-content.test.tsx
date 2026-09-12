@@ -34,8 +34,8 @@ describe("RealisationArticleContent", () => {
     expect(
       screen.getByText("The complete explanation remains visible."),
     ).toBeInTheDocument();
-    expect(screen.getByText("01")).toBeInTheDocument();
-    expect(screen.getByText("02")).toBeInTheDocument();
+    expect(screen.getByText("a")).toBeInTheDocument();
+    expect(screen.getByText("b")).toBeInTheDocument();
   });
 
   it("keeps unnumbered editorial paragraphs as readable prose", () => {
@@ -67,6 +67,35 @@ describe("RealisationArticleContent", () => {
             .join("\n\n");
 
           expect(reconstructed).toBe(source);
+        }
+      }
+    }
+  });
+
+  it("uses alphabetic markers for every numbered achievement section", () => {
+    for (const realisation of realisations) {
+      for (const field of contentFields) {
+        const localizedContent = realisation[field];
+        if (!localizedContent || typeof localizedContent === "string") continue;
+
+        for (const locale of ["fr", "en"] as const) {
+          const blocks = parseRealisationContent(localizedContent[locale]);
+          if (!blocks.every((block) => block.kind === "numbered")) continue;
+
+          const { container, unmount } = render(
+            <RealisationArticleContent text={localizedContent[locale]} locale={locale} />,
+          );
+
+          const markers = Array.from(
+            container.querySelectorAll("ol[type='a'] > li > span[aria-hidden='true']"),
+            (marker) => marker.textContent,
+          );
+
+          expect(markers).toEqual(
+            blocks.map((_, index) => String.fromCharCode("a".charCodeAt(0) + index)),
+          );
+
+          unmount();
         }
       }
     }

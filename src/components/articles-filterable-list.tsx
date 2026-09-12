@@ -1,33 +1,19 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ArrowUpRight, BookOpenText, Search, X } from "lucide-react";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Search, X } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-
-export type SearchableArticle = {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  tags: string[];
-  readingMinutes: number;
-  searchText: string;
-};
+import { ArticleCards, formatArticleDate } from "@/components/article-cards";
+import { filterArticleIndex } from "@/lib/article-search";
+import type { Locale } from "@/lib/i18n";
+import type { ArticleIndexItem } from "@/lib/types/articles";
 
 type ArticlesFilterableListProps = {
-  articles: SearchableArticle[];
-  locale: string;
+  articles: ArticleIndexItem[];
+  locale: Locale;
   labels: {
     allTopics: string;
     searchPlaceholder: string;
@@ -38,26 +24,20 @@ type ArticlesFilterableListProps = {
   };
 };
 
-function normalizeSearchText(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-}
+export { formatArticleDate };
 
 export function ArticlesFilterableList({
   articles,
   locale,
   labels,
 }: ArticlesFilterableListProps) {
-  const router = useRouter();
   const pathname = usePathname() ?? `/${locale}/articles`;
   const searchParams = useSearchParams();
   const currentSearch = searchParams?.toString() ?? "";
-  const [activeTag, setActiveTag] = useState<string | null>(
-    searchParams?.get("tag") ?? null,
-  );
-  const [query, setQuery] = useState(searchParams?.get("q") ?? "");
+  const activeTag = searchParams?.get("tag") ?? null;
+  const query = searchParams?.get("q") ?? "";
+  const [tagInput, setTagInput] = useState(activeTag);
+  const [queryInput, setQueryInput] = useState(query);
 
   const tags = useMemo(
     () =>
@@ -67,77 +47,82 @@ export function ArticlesFilterableList({
     [articles, locale],
   );
 
-  const normalizedQuery = normalizeSearchText(query.trim());
-
   useEffect(() => {
-    const params = new URLSearchParams();
+    // This effect mirrors browser back/forward and external URL changes into
+    // the controlled fields. Local input changes update their state directly.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- URL state is an external synchronization source.
+    setTagInput(activeTag);
+    setQueryInput(query);
+  }, [activeTag, currentSearch, query]);
 
-    if (activeTag) {
-      params.set("tag", activeTag);
+  function replaceFilters(nextTag: string | null, nextQuery: string) {
+    const params = new URLSearchParams(currentSearch);
+
+    if (nextTag) params.set("tag", nextTag);
+    else params.delete("tag");
+
+    if (nextQuery.trim()) params.set("q", nextQuery.trim());
+    else params.delete("q");
+
+    const nextSearch = params.toString();
+
+    // Filtering is local. Native history integration updates Next's search
+    // params without scheduling competing route transitions when a visitor
+    // types and clears quickly.
+    if (typeof window !== "undefined") {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        nextSearch ? `${pathname}?${nextSearch}` : pathname,
+      );
+      window.dispatchEvent(new PopStateEvent("popstate"));
     }
+  }
 
-    if (query.trim()) {
-      params.set("q", query.trim());
-    }
-
-    const nextUrl = params.toString()
-      ? `${pathname}?${params.toString()}`
-      : pathname;
-
-    const currentUrl = currentSearch ? `${pathname}?${currentSearch}` : pathname;
-
-    if (nextUrl !== currentUrl) {
-      router.replace(nextUrl, { scroll: false });
-    }
-  }, [activeTag, currentSearch, pathname, query, router]);
-
-  const filteredArticles = articles.filter((article) => {
-    const matchesTag = activeTag ? article.tags.includes(activeTag) : true;
-    const matchesQuery = normalizedQuery
-      ? normalizeSearchText(article.searchText).includes(normalizedQuery)
-      : true;
-
-    return matchesTag && matchesQuery;
+  const filteredArticles = filterArticleIndex(articles, {
+    tag: tagInput,
+    query: queryInput,
   });
 
   return (
-    <section className="mt-10">
-      <div className="grid gap-4 border-b border-border/70 pb-6">
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+    <section>
+      <div>
+        <div>
+          <Search />
           <Input
             type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            value={queryInput}
+            onChange={(event) => {
+              const nextQuery = event.target.value;
+              setQueryInput(nextQuery);
+              replaceFilters(tagInput, nextQuery);
+            }}
             placeholder={labels.searchPlaceholder}
-          className="h-12 rounded-lg border-foreground/20 bg-background/85 pl-10 pr-10"
           />
-          {query && (
+          {queryInput && (
             <Button
               type="button"
               variant="ghost"
               size="icon-sm"
               aria-label={labels.clearSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2"
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQueryInput("");
+                replaceFilters(tagInput, "");
+              }}
             >
-              <X className="h-4 w-4" />
+              <X />
             </Button>
           )}
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div>
           <button
             type="button"
-            onClick={() => setActiveTag(null)}
-            aria-pressed={activeTag === null}
-            className={cn(
-              buttonVariants({
-                variant: activeTag === null ? "default" : "outline",
-                size: "sm",
-              }),
-              "rounded-md",
-            )}
+            onClick={() => {
+              setTagInput(null);
+              replaceFilters(null, queryInput);
+            }}
+            aria-pressed={tagInput === null}
           >
             {labels.allTopics}
           </button>
@@ -145,17 +130,12 @@ export function ArticlesFilterableList({
             <button
               key={tag}
               type="button"
-              aria-pressed={activeTag === tag}
-              onClick={() =>
-                setActiveTag((current) => (current === tag ? null : tag))
-              }
-              className={cn(
-                buttonVariants({
-                  variant: activeTag === tag ? "default" : "outline",
-                  size: "sm",
-                }),
-                "rounded-md",
-              )}
+              aria-pressed={tagInput === tag}
+              onClick={() => {
+                const nextTag = tagInput === tag ? null : tag;
+                setTagInput(nextTag);
+                replaceFilters(nextTag, queryInput);
+              }}
             >
               {tag}
             </button>
@@ -163,86 +143,12 @@ export function ArticlesFilterableList({
         </div>
       </div>
 
-      {filteredArticles.length > 0 ? (
-        <div className="mt-6 grid gap-4">
-          {filteredArticles.map((article, index) => (
-            <Card
-              key={article.slug}
-              className={cn(
-                "group my-0 border border-border bg-card transition-colors duration-200 hover:bg-muted/50",
-                index % 2 === 1 && "bg-muted/20",
-              )}
-            >
-              <CardHeader className="grid gap-5 sm:grid-cols-[72px_1fr_auto] sm:items-start">
-                <div className="flex h-14 w-14 items-center justify-center rounded-md border border-border/70 bg-background text-primary">
-                  <BookOpenText className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="mb-2 flex flex-wrap items-center gap-2">
-                    <span className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                      0{index + 1}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {new Date(article.date).toLocaleDateString(
-                        locale === "fr" ? "fr-FR" : "en-US",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        },
-                      )}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {article.readingMinutes} {labels.minuteShort}
-                    </span>
-                  </div>
-                  <CardTitle className="text-2xl font-black leading-tight tracking-[-0.025em]">
-                    <h2>
-                      <Link
-                        href={`/${locale}/articles/${article.slug}`}
-                        className="rounded-md transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-                      >
-                        {article.title}
-                      </Link>
-                    </h2>
-                  </CardTitle>
-                  <CardDescription className="mt-2 max-w-2xl leading-6">
-                    {article.description}
-                  </CardDescription>
-                  {article.tags.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {article.tags.map((tag) => (
-                        <button
-                          key={tag}
-                          type="button"
-                          aria-pressed={activeTag === tag}
-                          className="rounded-full focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-                          onClick={() => setActiveTag(tag)}
-                        >
-                          <Badge
-                            variant="secondary"
-                            className="h-7 border border-border/50 bg-background/70 px-3 font-sans text-[11px] hover:border-primary/60"
-                          >
-                            {tag}
-                          </Badge>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="hidden h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary sm:block"
-                />
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <div className="mt-6 rounded-lg border border-border/70 bg-muted/30 p-6 text-sm text-muted-foreground">
-          {labels.noResults}
-        </div>
-      )}
+      <ArticleCards
+        articles={filteredArticles}
+        locale={locale}
+        minuteShort={labels.minuteShort}
+        noResults={labels.noResults}
+      />
     </section>
   );
 }

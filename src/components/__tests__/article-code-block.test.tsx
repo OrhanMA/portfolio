@@ -10,6 +10,7 @@ const writeTextMock = vi.fn();
 const labels = {
   copyCode: "Copier le code",
   codeCopied: "Code copié",
+  codeBlock: "Bloc de code",
 };
 
 describe("ArticleCodeBlock", () => {

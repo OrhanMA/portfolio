@@ -9,6 +9,8 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    document.documentElement.classList.add("js");
+
     // Skip animation on initial mount
     if (previousPathname.current === null) {
       previousPathname.current = pathname;

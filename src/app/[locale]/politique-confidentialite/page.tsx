@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
@@ -24,7 +25,7 @@ export default async function PrivacyPolicyPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { dictionary: dict } = await getLocalizedPageContext(locale);
+  const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const sections = [
     {
       title: dict.privacy.dataCollected,
@@ -42,44 +43,44 @@ export default async function PrivacyPolicyPage({
   ];
 
   return (
-    <div>
+    <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/politique-confidentialite`} />
+      <div>
       <EditorialPageHeader
         eyebrow={dict.footer.privacyPolicy}
         title={dict.privacy.heading}
         description={dict.privacy.intro}
         titleClassName="uppercase"
         meta={
-          <p className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+          <p>
             {dict.privacy.lastUpdated}:{" "}
             {dict.privacy.lastUpdatedDate}
           </p>
         }
       />
 
-      <section className="bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-4 lg:grid-cols-2">
+      <section>
+        <div>
+          <div>
             {sections.map((section, index) => (
               <section
                 key={section.title}
-                className="grid gap-5 border border-border bg-card p-5 sm:grid-cols-[64px_1fr] sm:p-7"
               >
-                <p className="editorial-index">
+                <p>
                   0{index + 1}
                 </p>
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-[-0.025em]">
+                  <h2>
                     {section.title}
                   </h2>
-                  <p className="mt-3 leading-7 text-muted-foreground">
+                  <p>
                     {section.body}
                   </p>
                   {section.items && (
-                    <ul className="mt-4 grid gap-2 text-muted-foreground sm:grid-cols-2">
+                    <ul>
                       {section.items.map((item: string) => (
                         <li
                           key={item}
-                          className="rounded-md border border-border/70 bg-background/50 px-3 py-2 text-sm"
                         >
                           {item}
                         </li>
@@ -92,6 +93,7 @@ export default async function PrivacyPolicyPage({
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

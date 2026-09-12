@@ -4,7 +4,7 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-08-23
+Last reviewed: 2026-09-08
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
@@ -14,7 +14,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 L'application est un portfolio Next.js 16 bilingue FR/EN : toutes les routes utilisent l'App Router et le segment `[locale]`. Le socle technique couvre les dictionnaires JSON, une navbar et un footer persistants, GSAP centralisé, Lenis chargé à l'interaction, thème dark/light, consentement cookies versionné, GTM conditionné au consentement, formulaire de contact avec validation et anti-spam multicouche, sitemap, robots, tests unitaires/browser/E2E et CI GitHub Actions. Un nonce CSP est généré par requête : le rendu est donc dynamique par choix de sécurité, sans script non sécurisé. Le footer donne accès au CV, au TOEIC et aux titres RNCP sans alourdir la homepage.
 
-La direction artistique Japan Pop est cohérente sur l'ensemble du site : papier ivoire texturé, typographie géométrique massive, soleil vermillon, mont Fuji, règles bleu/rouge, pétales de sakura pixelisés et illustrations décoratives statiques. La homepage conserve son portrait détouré et ses vagues ukiyo-e multicouches ; les pages secondaires utilisent un en-tête éditorial commun et des panneaux papier plus sobres. La section À propos utilise trois tampons irréguliers avec une ombre synchronisée au hover, la frise verticale est épurée et accompagnée de logos réels, les compétences sont synthétisées en six domaines, les réalisations forment une mosaïque compacte avec captures et métriques vérifiées, et le contact repose sur un grand cercle rouge illustré. Les documents publics sont regroupés dans le footer. Les animations disposent d'une variante `prefers-reduced-motion` ; les régressions couvrent desktop et mobile.
+La direction éditoriale actuelle est neutre et structurée : typographie expressive, palette monochrome pilotée par les variables shadcn, séparateurs nets, panneaux sobres et accent donné par le contenu plutôt que par une illustration thématique. La homepage conserve son portrait et ses sections de preuve ; les pages secondaires utilisent un en-tête éditorial commun et des panneaux lisibles. La frise verticale est accompagnée de logos réels, les compétences sont synthétisées en six domaines, les réalisations forment une mosaïque compacte avec captures et métriques vérifiées, et le contact expose aussi une adresse email de secours. Les documents publics sont regroupés dans le footer. Les animations disposent d'une variante `prefers-reduced-motion` et le contenu principal reste lisible sans JavaScript ; les régressions couvrent desktop et mobile.
 
 Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 réalisations détaillées, navigation circulaire compétences ↔ réalisations, frise chronologique ouverte, expérience/formation avec logos et page contact. La navbar mène directement aux pages À propos, Compétences et Réalisations, tout en conservant l'ancre Parcours de la homepage ; ses sous-menus donnent aussi accès aux 10 compétences et aux 5 réalisations sur desktop comme sur mobile. Les pages réalisations ont des preuves visuelles : captures Odoo, captures corporate, captures CAP2vie et vidéos de démonstration CAP2vie. Les relations compétences ↔ réalisations sont réciproques et protégées par un test automatique. Le TOEIC est daté du 7 août 2025 et son certificat public est lié depuis le footer.
 
@@ -28,8 +28,8 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Prénom + Nom sur toutes les pages | ✅ | Nom complet visible dans le hero, le footer et la navbar desktop persistante |
-| Photo sur toutes les pages | ✅ | Portrait compact visible dans le logo de la navbar, sur desktop comme sur mobile |
+| Prénom + Nom sur toutes les pages | ✅ | Signature texte discrète visible en haut à gauche dans la navbar persistante, sur desktop comme sur mobile |
+| Photo sur toutes les pages | — | Choix éditorial demandé : le portrait reste réservé au hero de la page d’accueil et n’est pas répété sur les pages secondaires |
 
 ---
 
@@ -37,7 +37,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Attrayante | ✅ | Direction Japan Pop distinctive : hero monumental, portrait détouré, Fuji, vagues ukiyo-e, pixel art, animations natives légères et dark/light mode |
+| Attrayante | ✅ | Direction éditoriale neutre et distinctive : hero monumental, portrait, composition typographique, animations natives légères et dark/light mode |
 | Convaincante | ✅ | CTA contact persistant, mosaïque de cas avec métriques vérifiées et documents publics accessibles dans le footer |
 | Correctement structurée | ✅ | Hero → About → Experience → Skills → Réalisations mises en avant → CTA, avec niveaux de lecture détaillés sur les pages dédiées |
 
@@ -76,6 +76,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 |---------|--------|-------|
 | Schéma synthétique comparatif | ✅ | Radar chart SVG animé (GSAP) |
 | Accessible par le menu principal | ✅ | "Compétences" dans la navbar |
+| Chaque élément de la section Compétences de l’accueil est cliquable | ✅ | 36 liens internes localisés FR/EN vers les fiches et projets associés, soulignés avec une flèche et un focus clavier visible |
 | Niveau de chaque compétence visible par rapport aux autres | ✅ | Radar chart + badges de niveau (Débutant → Expert) |
 | 10 compétences (4-7 humaines + 4-6 techniques) | ✅ | 5 humaines + 5 techniques = 10 |
 | Divisé en au moins 2 domaines (technique + non-technique) | ✅ | "Compétences humaines" + "Compétences techniques" |
@@ -138,8 +139,8 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Matérialisé sur une frise ou un axe | ✅ | Timeline animée dans ExperienceSection (GSAP) |
-| Antéchronologique | ✅ | Du plus récent au plus ancien |
+| Matérialisé sur une frise ou un axe | ✅ | Axe vertical continu et un marqueur par entrée, visibles sur mobile comme sur desktop |
+| Antéchronologique | ✅ | Fin « Présent » d’abord, puis date de fin décroissante ; à fin égale, date de début décroissante |
 | Accessible par le menu | ✅ | Section dans la homepage, accessible via "Accueil" |
 
 ---
@@ -191,6 +192,8 @@ La page de présentation expose désormais explicitement le projet professionnel
 |---------|--------|-------|
 | Chaque compétence → réalisations rattachées (liens) | ✅ | Liens réciproques contrôlés automatiquement |
 | Chaque réalisation → compétences rattachées (liens) | ✅ | Test unitaire garantissant la symétrie des deux sens |
+| Chaque réalisation → expériences et formations associées | ✅ | Liens FR/EN dans le bloc Contexte vers les entrées précises du Parcours, à partir des relations existantes |
+| Navigation interne des expériences, réalisations, compétences et technologies | ✅ | Titres, logos du Parcours, images de réalisations, badges, radar et mentions textuelles reliés aux pages internes ; 7 fiches Parcours en FR/EN ; destinations des sujets centralisées et contrôlées par les tests |
 
 ---
 
@@ -291,7 +294,7 @@ Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-del
 | Professional headline describing your role | ✅ | "Développeur full-stack" via i18n |
 | Brief personal summary / elevator pitch | ✅ | About section with autodidact → Simplon → ISCOD journey |
 | Professional headshot or avatar | ✅ | Headshot in navbar + hero |
-| Clear call-to-action for employers | ✅ | CTA contact vermillon persistant dans la navbar et grand cercle de contact en fin de homepage |
+| Clear call-to-action for employers | ✅ | CTA contact persistant dans la navbar et section de contact en fin de homepage |
 | Social proof (awards, certifications, recognition) | ✅ | Mosaïque avec métriques vérifiées et liens de footer vers le TOEIC 920/990, les titres RNCP et le CV |
 
 ### Projects Section
@@ -354,7 +357,7 @@ Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-del
 | Item | Status | Notes |
 |------|--------|-------|
 | Langue du document | ✅ | Attribut `lang` contrôlé au runtime sur les pages représentatives FR/EN ; les 100 routes partagent le même layout localisé |
-| Audit Lighthouse mobile | ⚠️ | Moyenne historique 99,8/100. Le contraste des CTA vermillon a été porté au niveau AA et les tags cliquables font désormais 28 px, avec état `aria-pressed`. Une collecte de production reste à rejouer pour mettre à jour le score. |
+| Audit Lighthouse mobile | ⚠️ | Moyenne historique 99,8/100. Les contrastes des petits liens et du sommaire sont contrôlés localement avec Axe ; les tags cliquables font 28 px et exposent leur état `aria-pressed`. Une collecte de production reste à rejouer pour mettre à jour le score. |
 | Textes alternatifs des images | ✅ | Aucun `<img>` sans attribut `alt` dans l'audit Playwright |
 | Structure des titres | ✅ | H1 unique et hiérarchie sans saut sur les 100 routes du sitemap |
 | Identifiants DOM uniques | ✅ | Aucun doublon détecté sur les pages représentatives desktop/mobile |
@@ -376,10 +379,10 @@ Le détail vérifiable de cette revue est consigné dans [`reports/portfolio-del
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Unit tests | ✅ | Suite Vitest : 34 fichiers et 185 tests réussis |
-| Browser component tests | ✅ | Vitest Browser Mode + Playwright : 4 fichiers et 20 tests réussis |
+| Unit tests | ✅ | Suite Vitest : 45 fichiers et 245 tests réussis |
+| Browser component tests | ✅ | Vitest Browser Mode + Playwright : 4 fichiers et 23 tests réussis |
 | Visual regression tests | ✅ | Deux références homepage desktop/mobile inspectées, mises à jour et rejouées avec succès |
-| E2E tests | ✅ | 29/29 scénarios Playwright réussis sur le build de production : navigation, accès direct à la frise, i18n, consentement, contact, responsive, pages secondaires, homepage et audit sitemap/CSP/structure |
+| E2E tests | ✅ | 45/45 scénarios Playwright réussis sur le build de production : navigation, accès direct à la frise, i18n, consentement, contact, fuseaux horaires, stockage refusé, erreurs navigateur, fallback sans JavaScript, recherche rapide, responsive, pages secondaires, homepage et audit sitemap/CSP/structure |
 | CI/CD pipeline | ✅ | GitHub Actions: lint → tests → build → e2e |
 
 ### Deployment

@@ -17,7 +17,6 @@ export function Reveal({
 }: RevealProps) {
   return (
     <div
-      className={cn("reveal-root", !stagger && "invisible", className)}
       data-reveal-stagger={stagger}
       data-reveal-delay={delay}
       data-reveal-y={y}

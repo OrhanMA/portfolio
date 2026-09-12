@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+vi.mock("@/components/route-structured-data", () => ({
+  RouteStructuredData: () => null,
+}));
 import CompetenceDetailPage from "../competences/[slug]/page";
 
 describe("CompetenceDetailPage", () => {

@@ -20,7 +20,6 @@ export function LandingButtonLink({
   return (
     <Link
       href={href}
-      className={cn(buttonVariants({ variant, size }), className)}
     >
       {children}
     </Link>

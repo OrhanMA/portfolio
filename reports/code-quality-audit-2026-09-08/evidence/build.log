@@ -1,0 +1,55 @@
+
+> portfolio@0.1.0 build /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo
+> next build
+
+▲ Next.js 16.2.11 (Turbopack)
+- Experiments (use with caution):
+  ✓ globalNotFound
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.5s
+  Running TypeScript ...
+  Finished TypeScript in 7.5s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/123) ...
+  Generating static pages using 9 workers (30/123) 
+  Generating static pages using 9 workers (61/123) 
+  Generating static pages using 9 workers (92/123) 
+✓ Generating static pages using 9 workers (123/123) in 354ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/a-propos
+├ ƒ /[locale]/articles
+├ ƒ /[locale]/articles/application-cap2vie-lig
+├ ƒ /[locale]/articles/docker-dangling-images
+├ ƒ /[locale]/articles/migration-odoo-v16-v19
+├ ƒ /[locale]/articles/odoo-session-timeout
+├ ƒ /[locale]/articles/refonte-site-corporate-1up
+├ ƒ /[locale]/articles/telecharger-code-odoo-jupyter
+├ ƒ /[locale]/competences
+├ ƒ /[locale]/competences/[slug]
+├ ƒ /[locale]/contact
+├ ƒ /[locale]/mentions-legales
+├ ƒ /-/opengraph-image
+├ ƒ /[locale]/parcours/[slug]
+├ ƒ /[locale]/politique-confidentialite
+├ ƒ /[locale]/projects
+├ ƒ /[locale]/projects/[slug]
+├ ƒ /[locale]/realisations
+├ ƒ /[locale]/realisations/[slug]
+├ ○ /apple-icon.png
+├ ○ /icon1.png
+├ ○ /icon2.png
+├ ○ /manifest.webmanifest
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

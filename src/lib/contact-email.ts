@@ -3,38 +3,25 @@ import { escapeHtml } from "@/lib/utils";
 
 type ContactEmailContent = {
   locale: Locale;
+  copy: ContactEmailCopy;
   name: string;
   email: string;
   reasonLabel: string;
   message: string;
 };
 
-const emailCopy = {
-  fr: {
-    eyebrow: "ORHAN MADI ASSANI · PORTFOLIO",
-    title: "Nouveau message",
-    intro: "Une personne vient de te contacter depuis ton portfolio.",
-    name: "Nom",
-    email: "Adresse e-mail",
-    reason: "Sujet",
-    message: "Message",
-    reply: "Répondre à",
-    footer: "Message reçu depuis le formulaire de contact de",
-    preheader: "Nouveau message reçu de",
-  },
-  en: {
-    eyebrow: "ORHAN MADI ASSANI · PORTFOLIO",
-    title: "New message",
-    intro: "Someone has contacted you through your portfolio.",
-    name: "Name",
-    email: "Email address",
-    reason: "Subject",
-    message: "Message",
-    reply: "Reply to",
-    footer: "Message received through the contact form on",
-    preheader: "New message received from",
-  },
-} as const;
+type ContactEmailCopy = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  name: string;
+  email: string;
+  reason: string;
+  message: string;
+  reply: string;
+  footer: string;
+  preheader: string;
+};
 
 function formatMessage(message: string) {
   return escapeHtml(message).replace(/\r?\n/g, "<br />");
@@ -50,12 +37,12 @@ function detailRow(label: string, value: string, muted = false) {
 
 export function createContactEmailHtml({
   locale,
+  copy,
   name,
   email,
   reasonLabel,
   message,
 }: ContactEmailContent) {
-  const copy = emailCopy[locale];
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safeReason = escapeHtml(reasonLabel);
@@ -121,13 +108,11 @@ export function createContactEmailHtml({
 }
 
 export function createContactEmailText({
-  locale,
+  copy,
   name,
   email,
   reasonLabel,
   message,
 }: ContactEmailContent) {
-  const copy = emailCopy[locale];
-
   return `${copy.title}\n\n${copy.name}: ${name}\n${copy.email}: ${email}\n${copy.reason}: ${reasonLabel}\n\n${copy.message}:\n${message}\n\n${copy.footer} orhanmadiassani.com.`;
 }

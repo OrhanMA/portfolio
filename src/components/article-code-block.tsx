@@ -10,15 +10,18 @@ import {
   type ReactNode,
 } from "react";
 import { Check, Copy } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export type ArticleCodeLabels = {
   copyCode: string;
   codeCopied: string;
+  codeBlock: string;
 };
 
 const defaultLabels: ArticleCodeLabels = {
   copyCode: "Copy code",
   codeCopied: "Code copied",
+  codeBlock: "Code block",
 };
 
 const ArticleCodeLabelsContext = createContext<ArticleCodeLabels>(defaultLabels);
@@ -72,19 +75,23 @@ export function ArticleCodeBlock({
   }
 
   return (
-    <div className="not-prose article-code-block relative mx-auto max-w-3xl">
-      <pre ref={preRef} {...props}>
+    <div>
+      <pre
+        ref={preRef}
+        {...props}
+        tabIndex={0}
+        aria-label={labels.codeBlock}
+      >
         {children}
       </pre>
       <button
         type="button"
         onClick={copyCode}
-        className="absolute right-3 top-3 inline-flex h-7 items-center gap-1.5 rounded-md border border-white/20 bg-black/20 px-2.5 font-sans text-[0.75rem] font-semibold text-white/90 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
       >
         {copied ? (
-          <Check aria-hidden="true" className="h-3.5 w-3.5" />
+          <Check aria-hidden="true" />
         ) : (
-          <Copy aria-hidden="true" className="h-3.5 w-3.5" />
+          <Copy aria-hidden="true" />
         )}
         {copied ? labels.codeCopied : labels.copyCode}
       </button>

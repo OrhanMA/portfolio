@@ -8,19 +8,15 @@ function stringifyJsonLd(data: object) {
 
 export function StructuredData({
   locale,
-  pathname,
   nonce,
 }: {
   locale: Locale;
-  pathname: string;
   nonce?: string;
 }) {
   const inLanguage = locale === "fr" ? "fr-FR" : "en-US";
   const personId = `${BASE_URL}/#person`;
   const websiteId = `${BASE_URL}/${locale}#website`;
 
-  const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`;
-  const pageUrl = `${BASE_URL}${pathname}`;
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -59,6 +55,36 @@ export function StructuredData({
           "@id": personId,
         },
       },
+    ],
+  };
+
+  return (
+    <script
+      nonce={nonce}
+      suppressHydrationWarning
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: stringifyJsonLd(data) }}
+    />
+  );
+}
+
+export function PageStructuredData({
+  locale,
+  pathname,
+  nonce,
+}: {
+  locale: Locale;
+  pathname: string;
+  nonce?: string;
+}) {
+  const inLanguage = locale === "fr" ? "fr-FR" : "en-US";
+  const personId = `${BASE_URL}/#person`;
+  const websiteId = `${BASE_URL}/${locale}#website`;
+  const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`;
+  const pageUrl = `${BASE_URL}${pathname}`;
+  const data = {
+    "@context": "https://schema.org",
+    "@graph": [
       {
         "@type": isHomepage ? "ProfilePage" : "WebPage",
         "@id": `${pageUrl}#webpage`,

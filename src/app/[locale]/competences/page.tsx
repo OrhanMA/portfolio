@@ -17,6 +17,7 @@ import { createLocalizedMetadata } from "@/lib/metadata";
 import { RadarChart } from "@/components/radar-chart";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { actionLinkClassName } from "@/lib/styles";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
@@ -45,21 +46,18 @@ export default async function CompetencesPage({
   const humanSkills = getCompetencesByType("human");
   const technicalSkills = getCompetencesByType("technical");
 
-  const radarLabels: Record<string, Record<string, string>> = {
-    "developpement-backend": { fr: "Backend", en: "Backend" },
-    "developpement-frontend": { fr: "Frontend", en: "Frontend" },
-    "devops": { fr: "DevOps", en: "DevOps" },
-    "amelioration-continue": { fr: "Amélioration", en: "Improvement" },
-    "developpement-odoo": { fr: "Odoo", en: "Odoo" },
-  };
+  const radarLabels: Record<string, string> = dict.competencesPage.radarLabels;
 
   const radarData = competences.map((c) => ({
-    label: radarLabels[c.slug]?.[loc] ?? c.title[loc],
+    label: radarLabels[c.slug] ?? c.title[loc],
     value: c.radarValue,
+    href: `/${loc}/competences/${c.slug}`,
   }));
 
   return (
-    <div>
+    <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/competences`} />
+      <div>
       <EditorialPageHeader
         eyebrow={dict.nav.competences}
         title={dict.competencesPage.heading}
@@ -68,38 +66,39 @@ export default async function CompetencesPage({
       />
 
       {/* Radar Chart */}
-      <section className="border-b border-border bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <p className="editorial-index mb-3">01</p>
-          <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
+      <section>
+        <div>
+          <h2>
             {dict.competencesPage.radarHeading}
           </h2>
-          <div className="flex justify-center">
-            <RadarChart data={radarData} title={dict.competencesPage.radarHeading} />
+          <div>
+            <RadarChart
+              data={radarData}
+              title={dict.competencesPage.radarHeading}
+              scaleLabel={dict.competencesPage.radarScaleLabel}
+            />
           </div>
         </div>
       </section>
 
       {/* Human Skills */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <p className="editorial-index mb-3">02</p>
-          <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
+      <section>
+        <div>
+          <h2>
             {dict.competencesPage.humanSkills}
           </h2>
-          <div className="grid gap-5 md:grid-cols-2">
-            {humanSkills.map((competence) => (
+          <div>
+            {humanSkills.map((competence, index) => (
               <Card
                 key={competence.slug}
-                className="h-full border border-border bg-card transition-colors duration-200 hover:bg-muted/50"
               >
                 <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
+                  <div>
                     <div>
-                      <CardTitle className="text-xl font-black tracking-[-0.025em]">
-                        <h3>{competence.title[loc]}</h3>
+                      <CardTitle>
+                        <h3><Link href={`/${loc}/competences/${competence.slug}`}>{competence.title[loc]}</Link></h3>
                       </CardTitle>
-                      <CardDescription className="mt-2">
+                      <CardDescription>
                         {competence.definition[loc].slice(0, 100)}
                         {competence.definition[loc].length > 100
                           ? "…"
@@ -114,7 +113,6 @@ export default async function CompetencesPage({
                 <CardContent>
                   <Link
                     href={`/${locale}/competences/${competence.slug}`}
-                    className={actionLinkClassName}
                   >
                     {dict.competencesPage.viewDetail}
                   </Link>
@@ -126,25 +124,23 @@ export default async function CompetencesPage({
       </section>
 
       {/* Technical Skills */}
-      <section className="border-t border-border bg-muted/35 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <p className="editorial-index mb-3">03</p>
-          <h2 className="mb-8 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
+      <section>
+        <div>
+          <h2>
             {dict.competencesPage.technicalSkills}
           </h2>
-          <div className="grid gap-5 md:grid-cols-2">
-            {technicalSkills.map((competence) => (
+          <div>
+            {technicalSkills.map((competence, index) => (
               <Card
                 key={competence.slug}
-                className="h-full border border-border bg-card transition-colors duration-200 hover:bg-muted/50"
               >
                 <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
+                  <div>
                     <div>
-                      <CardTitle className="text-xl font-black tracking-[-0.025em]">
-                        <h3>{competence.title[loc]}</h3>
+                      <CardTitle>
+                        <h3><Link href={`/${loc}/competences/${competence.slug}`}>{competence.title[loc]}</Link></h3>
                       </CardTitle>
-                      <CardDescription className="mt-2">
+                      <CardDescription>
                         {competence.definition[loc].slice(0, 100)}
                         {competence.definition[loc].length > 100
                           ? "…"
@@ -159,7 +155,6 @@ export default async function CompetencesPage({
                 <CardContent>
                   <Link
                     href={`/${locale}/competences/${competence.slug}`}
-                    className={actionLinkClassName}
                   >
                     {dict.competencesPage.viewDetail}
                   </Link>
@@ -169,6 +164,7 @@ export default async function CompetencesPage({
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

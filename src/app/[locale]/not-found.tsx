@@ -20,13 +20,9 @@ export default function NotFound() {
         description={dict.notFound.text}
         titleClassName="uppercase"
       />
-      <div className="flex min-h-64 items-center justify-center bg-muted/35 px-6 py-16">
+      <div>
         <Link
           href={`/${locale}`}
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "px-7",
-          )}
         >
           {dict.notFound.backHome}
         </Link>

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import {
   ArticleStructuredData,
+  PageStructuredData,
   StructuredData,
 } from "@/components/structured-data";
 
@@ -17,16 +18,19 @@ function readGraph(container: HTMLElement) {
 }
 
 describe("StructuredData", () => {
-  it("uses ProfilePage only on the localized homepage", () => {
+  it("keeps only global entities in the persistent layout graph", () => {
     const { container, rerender } = render(
-      <StructuredData locale="fr" pathname="/fr" nonce="nonce-value" />,
+      <StructuredData locale="fr" nonce="nonce-value" />,
     );
     let result = readGraph(container);
     expect(result.script).toHaveAttribute("nonce", "nonce-value");
-    expect(result.graph["@graph"].at(-1)?.["@type"]).toBe("ProfilePage");
+    expect(result.graph["@graph"].map((item) => item["@type"])).toEqual([
+      "Person",
+      "WebSite",
+    ]);
 
     rerender(
-      <StructuredData
+      <PageStructuredData
         locale="fr"
         pathname="/fr/contact"
         nonce="nonce-value"
@@ -34,6 +38,14 @@ describe("StructuredData", () => {
     );
     result = readGraph(container);
     expect(result.graph["@graph"].at(-1)?.["@type"]).toBe("WebPage");
+  });
+
+  it("uses ProfilePage only for the localized homepage route", () => {
+    const { container } = render(
+      <PageStructuredData locale="fr" pathname="/fr" nonce="nonce-value" />,
+    );
+    const { graph } = readGraph(container);
+    expect(graph["@graph"].at(-1)?.["@type"]).toBe("ProfilePage");
   });
 
   it("emits TechArticle and breadcrumb schemas", () => {

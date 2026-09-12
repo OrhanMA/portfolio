@@ -1,0 +1,99 @@
+{
+  "/fr": {
+    "jsFiles": 14,
+    "jsEncoded": 187171,
+    "jsDecoded": 629503,
+    "fonts": [
+      {
+        "bytes": 23108,
+        "name": "797e433ab948586e-s.p.0r6juujl39pe6.woff2"
+      },
+      {
+        "bytes": 34420,
+        "name": "d8bd0e9af077c7ac-s.p.2gt28utfl-tis.woff2"
+      }
+    ],
+    "document": {
+      "encoded": 58148,
+      "decoded": 301524,
+      "ttfbMs": 52
+    },
+    "domElements": 950,
+    "links": 259
+  },
+  "/fr/articles": {
+    "jsFiles": 15,
+    "jsEncoded": 192528,
+    "jsDecoded": 644309,
+    "fonts": [
+      {
+        "bytes": 23108,
+        "name": "797e433ab948586e-s.p.0r6juujl39pe6.woff2"
+      },
+      {
+        "bytes": 34420,
+        "name": "d8bd0e9af077c7ac-s.p.2gt28utfl-tis.woff2"
+      }
+    ],
+    "document": {
+      "encoded": 28412,
+      "decoded": 114753,
+      "ttfbMs": 11
+    },
+    "domElements": 364,
+    "links": 62
+  },
+  "/fr/realisations/portfolio-professionnel": {
+    "jsFiles": 14,
+    "jsEncoded": 186836,
+    "jsDecoded": 628347,
+    "fonts": [
+      {
+        "bytes": 23108,
+        "name": "797e433ab948586e-s.p.0r6juujl39pe6.woff2"
+      },
+      {
+        "bytes": 34420,
+        "name": "d8bd0e9af077c7ac-s.p.2gt28utfl-tis.woff2"
+      }
+    ],
+    "document": {
+      "encoded": 185154,
+      "decoded": 593225,
+      "ttfbMs": 24
+    },
+    "domElements": 1469,
+    "links": 235
+  },
+  "/fr/competences": {
+    "jsFiles": 15,
+    "jsEncoded": 231565,
+    "jsDecoded": 748805,
+    "fonts": [
+      {
+        "bytes": 23108,
+        "name": "797e433ab948586e-s.p.0r6juujl39pe6.woff2"
+      },
+      {
+        "bytes": 34420,
+        "name": "d8bd0e9af077c7ac-s.p.2gt28utfl-tis.woff2"
+      }
+    ],
+    "document": {
+      "encoded": 25943,
+      "decoded": 103781,
+      "ttfbMs": 18
+    },
+    "domElements": 322,
+    "links": 53
+  },
+  "noJS": {
+    "route": "/fr",
+    "method": "Playwright Chromium with javaScriptEnabled=false after a production build",
+    "h1Count": 1,
+    "visibleMain": "Orhan Madi Assani",
+    "invisibleAll": 0,
+    "hiddenContainers": 0,
+    "statusCount": 0
+  }
+}

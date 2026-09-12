@@ -1,5 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+vi.mock("@/components/route-structured-data", () => ({
+  RouteStructuredData: () => null,
+}));
 import frDict from "@/app/[locale]/dictionaries/fr.json";
 import enDict from "@/app/[locale]/dictionaries/en.json";
 import { getCompetenceBySlug } from "@/lib/competences";
@@ -101,8 +104,22 @@ describe("RealisationDetailPage", () => {
 
       expect(competence).toBeDefined();
       expect(
-        screen.getByRole("link", { name: competence?.title[locale] }),
+        within(container.querySelector("#linked-competences") as HTMLElement).getByRole("link", { name: competence?.title[locale] }),
       ).toHaveAttribute("href", `/${locale}/competences/${competenceSlug}`);
+    }
+
+    const experiences = dictionaries[locale].experience.entries.filter(
+      (entry) => entry.linkedRealisations?.includes(realisation.slug),
+    );
+    expect(experiences.length).toBeGreaterThan(0);
+    const experienceNavigation = within(screen.getByRole("navigation", {
+      name: dict.linkedExperiencesHeading,
+    }));
+    expect(experienceNavigation.getAllByRole("link")).toHaveLength(experiences.length);
+    for (const experience of experiences) {
+      expect(experienceNavigation.getByRole("link", {
+        name: `${experience.company} — ${experience.title}`,
+      })).toHaveAttribute("href", `/${locale}#experience-${experience.id}`);
     }
   });
 

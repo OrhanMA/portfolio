@@ -1,0 +1,180 @@
+{
+  "urlSynchronization": {
+    "initial": "odoo",
+    "requested": "?q=docker",
+    "actualURL": "http://127.0.0.1:3317/fr/articles?q=odoo",
+    "input": "odoo"
+  },
+  "languageSwitcher": {
+    "actualURL": "http://127.0.0.1:3317/en/articles",
+    "input": ""
+  },
+  "contactFields": [
+    {
+      "id": "website",
+      "name": "honeypot",
+      "invalid": null,
+      "describedBy": null,
+      "autoComplete": "off",
+      "role": null
+    },
+    {
+      "id": "name",
+      "name": "name",
+      "invalid": "true",
+      "describedBy": null,
+      "autoComplete": null,
+      "role": null
+    },
+    {
+      "id": "email",
+      "name": "email",
+      "invalid": "true",
+      "describedBy": null,
+      "autoComplete": null,
+      "role": null
+    },
+    {
+      "id": "reason",
+      "name": null,
+      "invalid": "true",
+      "describedBy": null,
+      "autoComplete": null,
+      "role": "combobox"
+    },
+    {
+      "id": "message",
+      "name": "message",
+      "invalid": "true",
+      "describedBy": null,
+      "autoComplete": null,
+      "role": null
+    }
+  ],
+  "axeContact": {
+    "violations": [],
+    "incomplete": 0
+  },
+  "desktopEscape": {
+    "expanded": "true"
+  },
+  "mobileEscape": {
+    "open": 1,
+    "controls": null
+  },
+  "axeCookie": {
+    "violations": [
+      {
+        "id": "aria-toggle-field-name",
+        "impact": "serious",
+        "help": "ARIA toggle fields must have an accessible name",
+        "nodes": [
+          {
+            "target": [
+              ".justify-end"
+            ],
+            "summary": "Fix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        ]
+      }
+    ],
+    "incomplete": 0
+  },
+  "modalBackground": {
+    "urlAfterBackgroundClick": "http://127.0.0.1:3317/fr/a-propos",
+    "dialogStillPresent": 1
+  },
+  "noJavascript": {
+    "route": "/fr",
+    "javaScriptEnabled": false,
+    "invisibleElements": 0,
+    "hiddenTitles": [],
+    "h1Count": 1,
+    "statusCount": 0
+  },
+  "timezone": {
+    "errors": [
+      "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    ],
+    "renderedDateText": [
+      "12 mai 2026",
+      "12 mai 2026",
+      "12 mai 2026"
+    ]
+  },
+  "reducedMotion": {
+    "transform": "transform-origin: 0px 0px; translate: none; rotate: none; scale: none; opacity: 0.2526; visibility: inherit;",
+    "visibility": "visible"
+  },
+  "article": {
+    "htmlLang": "en",
+    "articleLang": null,
+    "headings": [
+      {
+        "id": "contexte",
+        "text": "Contexte"
+      },
+      {
+        "id": "qu-est-ce-qu-une-image-docker-dangling",
+        "text": "Qu'est-ce qu'une image Docker « dangling » ?"
+      },
+      {
+        "id": "diagnostic-pas-a-pas",
+        "text": "Diagnostic pas à pas"
+      },
+      {
+        "id": "1-analyse-de-l-espace-disque-global",
+        "text": "1. Analyse de l'espace disque global"
+      },
+      {
+        "id": "2-identification-du-dossier-le-plus-volumineux",
+        "text": "2. Identification du dossier le plus volumineux"
+      },
+      {
+        "id": "3-investigation-dans-var",
+        "text": "3. Investigation dans /var"
+      },
+      {
+        "id": "4-exploration-de-var-lib",
+        "text": "4. Exploration de /var/lib"
+      },
+      {
+        "id": "5-verification-des-containers-actifs",
+        "text": "5. Vérification des containers actifs"
+      },
+      {
+        "id": "6-lister-les-images-docker",
+        "text": "6. Lister les images Docker"
+      },
+      {
+        "id": "resolution",
+        "text": "Résolution"
+      },
+      {
+        "id": "nettoyer-les-images-dangling-par-service",
+        "text": "Nettoyer les images dangling par service"
+      },
+      {
+        "id": "alternative-nettoyage-global",
+        "text": "Alternative : nettoyage global"
+      },
+      {
+        "id": "resultat",
+        "text": "Résultat"
+      },
+      {
+        "id": "bonnes-pratiques-pour-eviter-la-recurrence",
+        "text": "Bonnes pratiques pour éviter la récurrence"
+      }
+    ],
+    "contentTextStart": "Reading time : 3 min\nArticles are written in French; browser translation works well.\nCopy link\n\nTABLE OF CONTENTS\n\nContexte\nQu'est-ce qu'une image Docker « dangling » ?\nDiagnostic pas à pas\n1. Analyse de l'espace disque global\n2. Identification du dossier le plus volumineux\n3. Investigation dans /var\n4. Exploration de /var/lib\n5. Vérification des containers actifs\n6. Lister les images Docker\nRésolution\nNettoyer les images dangling par service\nAlternative : nettoyage global\nRésultat\nBonnes pratiq"
+  },
+  "axeArticle": {
+    "violations": [],
+    "incomplete": 0
+  },
+  "runtimeErrors": [
+    "Applying inline style violates the following Content Security Policy directive 'style-src-elem 'self' 'nonce-YzEwODdmNWUtNjc3OC00YWEzLThiMzYtODMzMjIzZDE4NTA1''. Either the 'unsafe-inline' keyword, a hash ('sha256-skqujXORqzxt1aE0NNXxujEanPTX6raoqSscTV/Ww/Y='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked."
+  ],
+  "externalRequests": []
+}

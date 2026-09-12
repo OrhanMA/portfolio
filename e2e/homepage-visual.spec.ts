@@ -29,8 +29,6 @@ async function prepareHomepage(page: Page, theme: "light" | "dark" = "light") {
 }
 
 test.describe("Homepage visual regression", () => {
-  test.describe.configure({ mode: "serial" });
-
   test("desktop composition", async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 1440, height: 1000 });
@@ -67,7 +65,7 @@ test.describe("Homepage visual regression", () => {
     });
   });
 
-  test("uses the neutral portrait without Japanese decorative assets", async ({ page }) => {
+  test("uses the neutral portrait without decorative assets", async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.emulateMedia({
@@ -83,7 +81,7 @@ test.describe("Homepage visual regression", () => {
     });
     await page.goto("/fr", { waitUntil: "networkidle" });
 
-    const portrait = page.locator('img[src*="coporate-headshot"]');
+    const portrait = page.locator('main img[src*="coporate-headshot"]');
     await expect(portrait).toBeVisible();
     await expect(portrait).toHaveCSS("filter", "none");
     await expect(page.locator("#realisations img").first()).toHaveCSS("filter", "none");

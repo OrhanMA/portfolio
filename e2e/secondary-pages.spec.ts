@@ -52,8 +52,21 @@ for (const viewport of [
       expect(response?.status(), route.path).toBe(route.expectedStatus ?? 200);
 
       await expect(page.locator("h1"), route.path).toHaveCount(1);
+      const identity = page.locator("[data-site-identity]");
+      await expect(identity, route.path).toHaveCount(1);
+      await expect(identity, route.path).toBeVisible();
+      await expect(identity, route.path).toHaveText("Orhan Madi Assani");
+      await expect(
+        identity.locator("[data-site-identity-name]"),
+        route.path,
+      ).toBeVisible();
+      await expect(identity.locator("img"), route.path).toHaveCount(0);
 
       if ((route.expectedStatus ?? 200) === 200) {
+        await expect(identity, route.path).toHaveAttribute(
+          "href",
+          `/${route.path.split("/")[1]}`,
+        );
         await expect(
           page.locator("header#primary-navigation"),
           route.path,

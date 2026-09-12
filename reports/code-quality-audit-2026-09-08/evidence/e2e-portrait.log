@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:72991) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › e2e/homepage-visual.spec.ts:70:7 › Homepage visual regression › uses the neutral portrait without Japanese decorative assets (808ms)
+
+  1 passed (1.8s)

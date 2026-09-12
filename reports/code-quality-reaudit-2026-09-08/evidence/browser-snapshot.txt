@@ -1,0 +1,5 @@
+- heading "Cookies" [level=2, ref=e1]
+- button "Fermer et refuser" [ref=e2]
+- button "Accepter" [ref=e3]
+- button "Refuser" [ref=e4]
+- button "Gérer les cookies" [ref=e5]

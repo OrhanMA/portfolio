@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import "../globals.css";
 import { locales } from "@/lib/i18n";
 import { deferredFontClassName } from "@/components/deferred-fonts";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -53,15 +52,13 @@ export default async function LocaleLayout({
   const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const requestHeaders = await headers();
   const nonce = requestHeaders.get("x-nonce") ?? undefined;
-  const pathname = requestHeaders.get("x-pathname") ?? `/${loc}`;
 
   return (
     <html
       lang={loc}
-      className={deferredFontClassName}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -77,16 +74,15 @@ export default async function LocaleLayout({
               nav: dict.nav,
             }}
           >
-            <StructuredData locale={loc} pathname={pathname} nonce={nonce} />
+            <StructuredData locale={loc} nonce={nonce} />
             <SmoothScroll>
               <a
                 href="#main-content"
-                className="fixed left-3 top-3 z-[110] -translate-y-24 rounded-md bg-background px-4 py-2 text-sm font-bold shadow-lg transition-transform focus:translate-y-0"
               >
                 {locale === "fr" ? "Aller au contenu" : "Skip to content"}
               </a>
               <Navbar
-                locale={locale}
+                locale={loc}
                 dict={{
                   nav: dict.nav,
                   experienceHeading: dict.experience.heading,
@@ -94,19 +90,19 @@ export default async function LocaleLayout({
                 }}
                 menus={{
                   competences: competences.map((competence) => ({
-                    href: `/${locale}/competences/${competence.slug}`,
+                    href: `/${loc}/competences/${competence.slug}`,
                     label: competence.title[loc],
                   })),
                   realisations: realisations.map((realisation) => ({
-                    href: `/${locale}/realisations/${realisation.slug}`,
+                    href: `/${loc}/realisations/${realisation.slug}`,
                     label: realisation.title[loc],
                   })),
                 }}
               />
-              <main id="main-content" tabIndex={-1} className="min-h-screen">
+              <main id="main-content" tabIndex={-1}>
                 <PageTransition>{children}</PageTransition>
               </main>
-              <Footer dict={dict} locale={locale} />
+              <Footer dict={dict} locale={loc} />
             </SmoothScroll>
             <CookieConsent />
             <Analytics />

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   CONSENT_MAX_AGE_SECONDS,
   getStoredConsent,
@@ -12,6 +12,25 @@ describe("cookie-consent utilities", () => {
   beforeEach(() => {
     localStorage.clear();
     document.cookie = "cookie-consent-given=;Max-Age=0;Path=/";
+    document.cookie = "cookie-consent-analytics=;Max-Age=0;Path=/";
+    // Reset the module's session fallback through a successful storage read so
+    // each test starts without inheriting a previous quota failure.
+    localStorage.setItem(
+      "cookie-consent",
+      JSON.stringify({
+        necessary: true,
+        analytics: false,
+        version: 2,
+        decidedAt: Date.now(),
+      }),
+    );
+    getStoredConsent();
+    localStorage.clear();
+    getStoredConsent();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it("stores a versioned, timestamped consent for six months", () => {
@@ -54,6 +73,48 @@ describe("cookie-consent utilities", () => {
       expect(getStoredConsent()).toBeNull();
       expect(localStorage.getItem("cookie-consent")).toBeNull();
     }
+  });
+
+  it("fails closed when reading storage is denied", () => {
+    vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
+      throw new Error("Storage access denied");
+    });
+
+    expect(() => getStoredConsent()).not.toThrow();
+    expect(getStoredConsent()).toBeNull();
+    expect(isAnalyticsAccepted()).toBe(false);
+  });
+
+  it("fails closed when invalid consent cannot be removed", () => {
+    localStorage.setItem("cookie-consent", "not-json");
+    vi.spyOn(Storage.prototype, "removeItem").mockImplementation(() => {
+      throw new Error("Storage removal denied");
+    });
+
+    expect(() => getStoredConsent()).not.toThrow();
+    expect(getStoredConsent()).toBeNull();
+  });
+
+  it("keeps an explicit decision in memory when storage quota is exhausted", () => {
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("Storage quota exceeded");
+    });
+
+    setStoredConsent({ necessary: true, analytics: false });
+
+    expect(hasConsentBeenGiven()).toBe(true);
+    expect(isAnalyticsAccepted()).toBe(false);
+  });
+
+  it("does not restore an old acceptance after a failed withdrawal", () => {
+    setStoredConsent({ necessary: true, analytics: true });
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("Storage quota exceeded");
+    });
+
+    expect(setStoredConsent({ necessary: true, analytics: false })).toBe(true);
+    expect(getStoredConsent()?.analytics).toBe(false);
+    expect(isAnalyticsAccepted()).toBe(false);
   });
 
   it("reports whether a valid decision and analytics consent exist", () => {

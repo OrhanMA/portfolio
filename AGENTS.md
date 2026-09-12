@@ -1,6 +1,8 @@
-**When starting work on a Next.js project, ALWAYS call the `init` tool from
-next-devtools-mcp FIRST to set up proper context and establish documentation
-requirements. Do this automatically without being asked.**
+**When working on this Next.js project, use the currently available
+`next-devtools-mcp` tools when they are exposed. The former `init` tool is not
+part of the current server: use `nextjs_index` to discover a running Next.js
+dev server, `nextjs_docs` for official framework documentation, and
+`nextjs_call`/`browser_eval` for runtime inspection as applicable.**
 
 ## Project Requirements
 
@@ -106,7 +108,7 @@ requirements. Do this automatically without being asked.**
 
 ## MCP Servers
 
-- **next-devtools** : Next.js dev server internals (routes, errors, logs)
+- **next-devtools** : Next.js dev server internals (indexing, routes, errors, logs, and official docs)
 - **resend** : Email sending and contact management via Resend API
 - **playwright-test** : Playwright browser automation for test agents (planner, generator, healer)
 

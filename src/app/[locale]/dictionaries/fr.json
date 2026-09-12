@@ -16,8 +16,8 @@
     "allRealisations": "Voir les 5 réalisations",
     "showSubmenu": "Afficher le sous-menu",
     "toggleMenu": "Ouvrir ou fermer le menu",
-    "switchToEnglish": "Passer en anglais",
-    "switchToFrench": "Passer en français",
+  "switchToLocale": "Passer en {locale}",
+  "localeNames": { "fr": "français", "en": "anglais" },
     "toggleTheme": "Changer de thème"
   },
   "hero": {
@@ -70,7 +70,57 @@
     "methods": "Méthodes",
     "methodsDesc": "Recueil du besoin, itération, documentation, code review et communication avec des profils métier.",
     "education": "Formation",
-    "educationDesc": "Socle algorithmique, conception, projet et progression continue en ingénierie logicielle."
+    "educationDesc": "Socle algorithmique, conception, projet et progression continue en ingénierie logicielle.",
+    "links": {
+      "backend": [
+        { "label": "PHP", "path": "/competences/developpement-backend" },
+        { "label": "Symfony", "path": "/competences/developpement-backend" },
+        { "label": "Python", "path": "/competences/python" },
+        { "label": "PostgreSQL", "path": "/competences/developpement-backend" },
+        { "label": "REST API", "path": "/projects/stock_value_api" },
+        { "label": "Architecture modulaire", "path": "/realisations/modules-metier-odoo" }
+      ],
+      "frontend": [
+        { "label": "Next.js", "path": "/realisations/refonte-site-corporate" },
+        { "label": "React", "path": "/realisations/refonte-site-corporate" },
+        { "label": "TypeScript", "path": "/realisations/refonte-site-corporate" },
+        { "label": "Tailwind CSS", "path": "/realisations/refonte-site-corporate" },
+        { "label": "HTML / CSS", "path": "/competences/developpement-frontend" },
+        { "label": "UI / UX", "path": "/competences/developpement-frontend" }
+      ],
+      "odoo": [
+        { "label": "Odoo 16 → 19", "path": "/realisations/migration-odoo-v16-v19" },
+        { "label": "Modules métier", "path": "/realisations/modules-metier-odoo" },
+        { "label": "Personnalisation", "path": "/competences/developpement-odoo" },
+        { "label": "Migrations", "path": "/realisations/migration-odoo-v16-v19" },
+        { "label": "Automatisations", "path": "/projects/invoice_overdue_alert" },
+        { "label": "Rapports", "path": "/projects/packing_list" }
+      ],
+      "devops": [
+        { "label": "Docker", "path": "/competences/devops" },
+        { "label": "Git / GitHub", "path": "/competences/devops" },
+        { "label": "Linux", "path": "/competences/devops" },
+        { "label": "CI / CD", "path": "/competences/devops" },
+        { "label": "Nginx", "path": "/competences/devops" },
+        { "label": "VPS", "path": "/competences/devops" }
+      ],
+      "methods": [
+        { "label": "Agile / Scrum", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Conception", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Tests", "path": "/realisations/portfolio-professionnel" },
+        { "label": "Documentation", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Optimisation", "path": "/competences/amelioration-continue" },
+        { "label": "Qualité", "path": "/competences/amelioration-continue" }
+      ],
+      "education": [
+        { "label": "Algorithmique", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Structures de données", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Réseaux", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Systèmes", "path": "/competences/devops" },
+        { "label": "Bases de données", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Mathématiques", "path": "/a-propos" }
+      ]
+    }
   },
   "featuredProjects": {
     "eyebrow": "Réalisations",
@@ -89,6 +139,9 @@
     ]
   },
   "experience": {
+    "backToTimeline": "Retour au parcours",
+    "relatedEntriesLabel": "Formation et stages associés",
+    "organizationWebsite": "Site de l’organisme",
     "eyebrow": "Chronologie",
     "heading": "Parcours",
     "subtext": "Une trajectoire construite par la pratique : autodidaxie, recherche universitaire, entreprise, ERP, e-commerce et sites vitrines.",
@@ -96,14 +149,18 @@
     "linkedRealisationsLabel": "Réalisations liées",
     "linkedCompetencesLabel": "Compétences liées",
     "detailsLabel": "Afficher le détail",
+    "orderingLabel": "Ordre : « Présent » d'abord, puis par date de fin décroissante ; à égalité, par date de début décroissante",
     "entries": [
       {
-        "order": 1,
+        "id": "1up-fullstack-developer",
+        "startDate": "2024-12",
+        "endDate": null,
         "period": "Déc. 2024 — Présent",
         "title": "Développeur Fullstack — Alternance",
         "company": "1UP Distribution",
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
+        "location": "Chambéry · Savoie",
         "description": "Développement et maintenance de modules Odoo (Python, PostgreSQL). Conception et développement d'un site B2B e-commerce avec Symfony. Refonte du site corporate avec Next.js. Gestion de la migration Odoo v16 → v19 en solo. Administration de bases de données, CI/CD et gestion de serveurs VPS (OVH, DigitalOcean).",
         "responsibilities": [
           "Référent technique Odoo pour les développements métier internes.",
@@ -115,12 +172,15 @@
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
-        "order": 4,
+        "id": "lig-web-developer-internship",
+        "startDate": "2024-05",
+        "endDate": "2024-10",
         "period": "Mai — oct. 2024",
         "title": "Stagiaire Développeur Web — Laboratoire LIG",
         "company": "Laboratoire d'Informatique de Grenoble",
         "logo": "/logo-lig.svg",
         "url": "https://www.liglab.fr/fr",
+        "location": "Grenoble · Isère",
         "description": "Développement d'une application Vue.js et D3.js pour un questionnaire d'étude sociologique sur les trajectoires de vie. Création de visualisations de données sur mesure. Collaboration avec des chercheurs universitaires.",
         "responsibilities": [
           "Conception et développement d'une première version fonctionnelle de l'application.",
@@ -132,7 +192,9 @@
         "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Recherche"]
       },
       {
-        "order": 2,
+        "id": "iscod-software-engineering-master",
+        "startDate": "2025",
+        "endDate": "2027",
         "period": "2025 — 2027",
         "title": "Mastère Expert en Ingénierie du Logiciel — RNCP niveau 7",
         "company": "ISCOD",
@@ -151,7 +213,9 @@
         "tags": ["RNCP 7", "Architecture", "Qualité", "Gestion de projet", "Alternance"]
       },
       {
-        "order": 3,
+        "id": "toeic-listening-reading",
+        "startDate": "2025-08-07",
+        "endDate": "2025-08-07",
         "period": "7 août 2025",
         "title": "TOEIC Listening & Reading — 920/990",
         "company": "ETS Global",
@@ -165,7 +229,9 @@
         "tags": ["TOEIC", "920/990", "Listening C1", "Reading B2"]
       },
       {
-        "order": 5,
+        "id": "simplon-application-developer",
+        "startDate": "2024-01",
+        "endDate": "2024-12",
         "period": "Janv. — déc. 2024",
         "title": "Concepteur Développeur d'Applications — RNCP niveau 6",
         "company": "Simplon",
@@ -175,7 +241,7 @@
           { "name": "Simplon", "logo": "/logo-simplon.webp", "url": "https://www.simplon.co/" },
           { "name": "Université Savoie Mont Blanc", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
         ],
-        "location": "Chambéry · Savoie",
+        "location": "Grenoble · Isère",
         "description": "Titre professionnel de niveau 6 centré sur la conception et le développement d'applications, les bases de données, la modélisation, les tests et la conduite d'un projet logiciel.",
         "institutions": "Simplon privilégie une pédagogie active : apprentissage par la pratique, projets inspirés de situations professionnelles et travail en petit groupe. Cette formation a consolidé ma capacité à passer d'un besoin à une application structurée, testée et documentée.",
         "certificateUrl": "/proofs/diplome_cda_filigrane.pdf",
@@ -190,7 +256,30 @@
         "tags": ["RNCP 6", "UML", "BDD", "Tests", "Gestion de projet"]
       },
       {
-        "order": 6,
+        "id": "a-gaveau-web-developer-internship",
+        "startDate": "2023",
+        "endDate": "2023",
+        "period": "2023 — 2 mois",
+        "title": "Stagiaire Développeur Web — WordPress / Elementor",
+        "company": "A. Gaveau",
+        "url": "https://a-gaveau.fr/",
+        "location": "Rumilly · Haute-Savoie",
+        "description": "Stage de deux mois réalisé dans le cadre de la formation Développeur Web et Web Mobile chez Simplon. Création de sites web pour de petits commerces avec WordPress et le constructeur de pages Elementor.",
+        "trainingId": "simplon-web-developer",
+        "responsibilities": [
+          "Créer des sites web pour de petits commerces.",
+          "Construire et mettre en page les sites avec WordPress et Elementor."
+        ],
+        "tags": [
+          "WordPress",
+          "Elementor",
+          "Sites web"
+        ]
+      },
+      {
+        "id": "simplon-web-developer",
+        "startDate": "2023",
+        "endDate": "2023",
         "period": "2023",
         "title": "Développeur Web et Web Mobile — RNCP niveau 5",
         "company": "Simplon",
@@ -298,9 +387,22 @@
     "rateLimit": "Trop de messages envoyés. Veuillez réessayer dans une heure.",
     "recaptchaFailed": "La vérification de sécurité a échoué. Veuillez réessayer.",
     "securityUnavailable": "Le service de sécurité est momentanément indisponible. Veuillez réessayer plus tard ou utiliser l’adresse email indiquée.",
+    "temporarilyUnavailable": "Le service de contact est momentanément indisponible. Vos données ont été conservées ; veuillez réessayer.",
     "sendError": "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
     "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
     "success": "Message envoyé avec succès ! Je vous répondrai rapidement."
+  },
+  "contactEmail": {
+    "eyebrow": "ORHAN MADI ASSANI · PORTFOLIO",
+    "title": "Nouveau message",
+    "intro": "Une personne vient de te contacter depuis ton portfolio.",
+    "name": "Nom",
+    "email": "Adresse e-mail",
+    "reason": "Sujet",
+    "message": "Message",
+    "reply": "Répondre à",
+    "footer": "Message reçu depuis le formulaire de contact de",
+    "preheader": "Nouveau message reçu de"
   },
   "articles": {
     "heading": "Articles",
@@ -317,6 +419,7 @@
     "copied": "Lien copié",
     "copyCode": "Copier le code",
     "codeCopied": "Code copié",
+    "codeBlock": "Bloc de code",
     "frenchOnlyNotice": "Article rédigé en français, traduction par le navigateur recommandée.",
     "articlesData": [
       {
@@ -377,6 +480,7 @@
     "backToProjects": "Retour aux projets",
     "detailHeading": "Ce que fait le module",
     "detailSubtext": "Résumé fonctionnel du besoin couvert et de la valeur apportée dans Odoo.",
+    "moduleAnatomy": "Anatomie du module",
     "businessProblem": "Problème métier",
     "solution": "Solution",
     "technicalHighlights": "Partie technique notable",
@@ -384,12 +488,19 @@
   },
   "aboutPage": {
     "pageTitle": "À propos | Orhan Madi Assani",
-    "pageDescription": "Développeur full-stack en alternance — mon parcours, mes valeurs, mon projet professionnel et personnel.",
+    "pageDescription": "Développeur full-stack en alternance : mon parcours, mes valeurs, mon projet professionnel et personnel.",
     "heading": "À propos de moi",
-    "subtext": "Développeur full-stack, autodidacte devenu professionnel — découvrez mon parcours, mes valeurs et ce qui me motive.",
+    "subtext": "Développeur full-stack, autodidacte devenu professionnel. Découvrez mon parcours, mes valeurs et ce qui me motive.",
+    "exploreLabel": "Explorer le portfolio",
+    "portraitAlt": "Portrait d'Orhan Madi Assani",
+    "trainingImageAlt": "Bâtiment Dynamo à Chambéry, lieu de formation Simplon.",
+    "researchImageAlt": "Bâtiment du Laboratoire d'Informatique de Grenoble.",
+    "workImageAlt": "Bâtiment de 1UP Distribution.",
     "journeyHeading": "Mon parcours",
     "valuesHeading": "Mes valeurs",
     "projectHeading": "Mon projet professionnel et personnel",
+    "professionalProjectHeading": "Projet professionnel",
+    "personalProjectHeading": "Projet personnel",
     "qualitiesHeading": "Mes qualités humaines",
     "interestsHeading": "Mes centres d'intérêt"
   },
@@ -403,6 +514,14 @@
     "viewDetail": "Lire l'article",
     "level": "Niveau",
     "radarHeading": "Vue d'ensemble",
+    "radarScaleLabel": "sur 100",
+    "radarLabels": {
+      "developpement-backend": "Backend",
+      "developpement-frontend": "Frontend",
+      "devops": "DevOps",
+      "amelioration-continue": "Amélioration",
+      "developpement-odoo": "Odoo"
+    },
     "backToCompetences": "Retour aux compétences",
     "contentsHeading": "Sommaire",
     "contentsSubtext": "Parcourez la définition, les preuves et mon évaluation de cette compétence.",
@@ -443,6 +562,7 @@
     "contentsSubtext": "Accédez directement à une partie de cette étude de cas.",
     "backToContents": "Retour au sommaire",
     "linkedCompetencesHeading": "Compétences rattachées",
+    "linkedExperiencesHeading": "Expériences et formations associées",
     "context": "Contexte"
   },
   "footer": {

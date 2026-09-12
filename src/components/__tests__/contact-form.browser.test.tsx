@@ -7,6 +7,7 @@ const contactDict = {
   contactForm: frDict.contactForm,
   contactReasons: frDict.contactReasons,
   contactValidation: frDict.contactValidation,
+  contactErrors: frDict.contactErrors,
   legal: frDict.legal,
 };
 
@@ -56,6 +57,35 @@ describe("ContactForm (browser)", () => {
     await expect
       .element(page.getByRole("button", { name: /envoyer/i }))
       .toBeVisible();
+  });
+
+  test("focuses the first invalid field and exposes its error description", async () => {
+    await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
+
+    await page.getByRole("button", { name: /envoyer/i }).click();
+
+    const name = page.getByLabelText("Nom complet");
+    await expect.element(name).toHaveFocus();
+    await expect.element(name).toHaveAttribute("aria-invalid", "true");
+    await expect.element(name).toHaveAttribute("aria-describedby", "name-error");
+    await expect
+      .element(page.getByText(frDict.contactValidation.nameMin))
+      .toHaveAttribute("id", "name-error");
+  });
+
+  test("focuses the select trigger when it is the first invalid control", async () => {
+    await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
+
+    await page.getByLabelText("Nom complet").fill("Jean Dupont");
+    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByRole("button", { name: /envoyer/i }).click();
+
+    const reason = page.getByLabelText("Raison du contact");
+    await expect.element(reason).toHaveFocus();
+    await expect.element(reason).toHaveAttribute("aria-invalid", "true");
+    await expect
+      .element(reason)
+      .toHaveAttribute("aria-describedby", "reason-error");
   });
 
   test("displays the privacy notice and its localized link", async () => {
@@ -120,6 +150,7 @@ describe("ContactForm (browser)", () => {
       "@/app/[locale]/actions/contact"
     );
     vi.mocked(sendContactEmail).mockResolvedValue({
+      status: "success",
       success: true,
       message: "Message envoye avec succes !",
     });
@@ -152,6 +183,7 @@ describe("ContactForm (browser)", () => {
       "@/app/[locale]/actions/contact"
     );
     vi.mocked(sendContactEmail).mockResolvedValue({
+      status: "validation-error",
       success: false,
       message: "Une erreur est survenue.",
     });
@@ -174,5 +206,38 @@ describe("ContactForm (browser)", () => {
     await expect
       .element(page.getByText("Une erreur est survenue."), { timeout: 5000 })
       .toBeVisible();
+  });
+
+  test("keeps entered fields when the action transport fails", async () => {
+    const { sendContactEmail } = await import(
+      "@/app/[locale]/actions/contact"
+    );
+    vi.mocked(sendContactEmail).mockRejectedValueOnce(
+      new Error("Action unavailable"),
+    );
+
+    await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
+
+    await page.getByLabelText("Nom complet").fill("Jean Dupont");
+    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByLabelText("Raison du contact").click();
+    await page.getByText("Offre").click();
+    await page
+      .getByLabelText("Message")
+      .fill("Message conservé pendant une panne temporaire du service.");
+
+    await page.getByRole("button", { name: /envoyer/i }).click();
+
+    await expect
+      .element(page.getByText(frDict.contactErrors.temporarilyUnavailable), {
+        timeout: 5000,
+      })
+      .toBeVisible();
+    await expect
+      .element(page.getByLabelText("Nom complet"))
+      .toHaveValue("Jean Dupont");
+    await expect
+      .element(page.getByLabelText("Message"))
+      .toHaveValue("Message conservé pendant une panne temporaire du service.");
   });
 });

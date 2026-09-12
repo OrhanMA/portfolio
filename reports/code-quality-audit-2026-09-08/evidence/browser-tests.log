@@ -1,0 +1,16 @@
+
+> portfolio@0.1.0 test:browser /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo
+> vitest run --config vitest.browser.config.mts
+
+
+ RUN  v4.1.10 /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo
+
+10:41:54 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+10:41:55 AM [vite] (client) [optimizer] scanning dependencies...
+10:41:57 AM [vite] (client) [optimizer] bundling dependencies...
+
+ Test Files  4 passed (4)
+      Tests  21 passed (21)
+   Start at  10:41:54
+   Duration  13.92s (transform 0ms, setup 0ms, import 6.87s, tests 13.02s, environment 0ms)
+

@@ -8,6 +8,7 @@ describe("CookieConsent (browser)", () => {
   beforeEach(() => {
     localStorage.clear();
     document.cookie = "cookie-consent-given=;max-age=0";
+    document.cookie = "cookie-consent-analytics=;max-age=0";
   });
 
   test("does not render immediately", async () => {
@@ -24,6 +25,7 @@ describe("CookieConsent (browser)", () => {
     await expect
       .element(page.getByRole("heading", { name: "Cookies" }), { timeout: 3000 })
       .toBeVisible();
+    await expect.element(page.getByRole("dialog")).toHaveFocus();
   });
 
   test("does not render when consent already given", async () => {
@@ -86,5 +88,29 @@ describe("CookieConsent (browser)", () => {
 
     await expect.element(page.getByText("Analytiques")).toBeVisible();
     await expect.element(page.getByText("Nécessaires")).toBeVisible();
+    await expect
+      .element(page.getByRole("switch", { name: "Nécessaires" }))
+      .toHaveAttribute("aria-checked", "true");
+  });
+
+  test("restores focus to the opener after closing preferences", async () => {
+    setStoredConsent({ necessary: true, analytics: false });
+    await renderWithProviders(
+      <>
+        <button type="button">Open preferences</button>
+        <CookieConsent />
+      </>,
+    );
+
+    const opener = page.getByRole("button", { name: "Open preferences" });
+    await opener.click();
+    window.dispatchEvent(new Event("cookie-consent-open"));
+
+    await expect.element(page.getByRole("dialog")).toBeVisible();
+    await page.getByRole("button", { name: "Refuser", exact: true }).click();
+    await expect
+      .element(page.getByRole("dialog"), { timeout: 1000 })
+      .not.toBeInTheDocument();
+    await expect.element(opener).toHaveFocus();
   });
 });

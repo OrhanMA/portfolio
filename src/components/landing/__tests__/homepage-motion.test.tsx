@@ -14,7 +14,7 @@ describe("HomepageMotion", () => {
     render(
       <>
         <section id="parcours">
-          <h2 className="journey-row invisible">Parcours</h2>
+          <h2>Parcours</h2>
         </section>
         <HomepageMotion />
       </>,

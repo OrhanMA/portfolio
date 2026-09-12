@@ -16,8 +16,8 @@
     "allRealisations": "View all 5 achievements",
     "showSubmenu": "Show submenu",
     "toggleMenu": "Open or close the menu",
-    "switchToEnglish": "Switch to English",
-    "switchToFrench": "Switch to French",
+  "switchToLocale": "Switch to {locale}",
+  "localeNames": { "fr": "French", "en": "English" },
     "toggleTheme": "Toggle theme"
   },
   "hero": {
@@ -70,7 +70,57 @@
     "methods": "Methods",
     "methodsDesc": "Requirement discovery, iteration, documentation, code review, and communication with business stakeholders.",
     "education": "Education",
-    "educationDesc": "Algorithmic foundations, design, project practice, and continuous growth in software engineering."
+    "educationDesc": "Algorithmic foundations, design, project practice, and continuous growth in software engineering.",
+    "links": {
+      "backend": [
+        { "label": "PHP", "path": "/competences/developpement-backend" },
+        { "label": "Symfony", "path": "/competences/developpement-backend" },
+        { "label": "Python", "path": "/competences/python" },
+        { "label": "PostgreSQL", "path": "/competences/developpement-backend" },
+        { "label": "REST API", "path": "/projects/stock_value_api" },
+        { "label": "Modular architecture", "path": "/realisations/modules-metier-odoo" }
+      ],
+      "frontend": [
+        { "label": "Next.js", "path": "/realisations/refonte-site-corporate" },
+        { "label": "React", "path": "/realisations/refonte-site-corporate" },
+        { "label": "TypeScript", "path": "/realisations/refonte-site-corporate" },
+        { "label": "Tailwind CSS", "path": "/realisations/refonte-site-corporate" },
+        { "label": "HTML / CSS", "path": "/competences/developpement-frontend" },
+        { "label": "UI / UX", "path": "/competences/developpement-frontend" }
+      ],
+      "odoo": [
+        { "label": "Odoo 16 → 19", "path": "/realisations/migration-odoo-v16-v19" },
+        { "label": "Business modules", "path": "/realisations/modules-metier-odoo" },
+        { "label": "Customization", "path": "/competences/developpement-odoo" },
+        { "label": "Migrations", "path": "/realisations/migration-odoo-v16-v19" },
+        { "label": "Automation", "path": "/projects/invoice_overdue_alert" },
+        { "label": "Reports", "path": "/projects/packing_list" }
+      ],
+      "devops": [
+        { "label": "Docker", "path": "/competences/devops" },
+        { "label": "Git / GitHub", "path": "/competences/devops" },
+        { "label": "Linux", "path": "/competences/devops" },
+        { "label": "CI / CD", "path": "/competences/devops" },
+        { "label": "Nginx", "path": "/competences/devops" },
+        { "label": "VPS", "path": "/competences/devops" }
+      ],
+      "methods": [
+        { "label": "Agile / Scrum", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Design", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Tests", "path": "/realisations/portfolio-professionnel" },
+        { "label": "Documentation", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Optimization", "path": "/competences/amelioration-continue" },
+        { "label": "Quality", "path": "/competences/amelioration-continue" }
+      ],
+      "education": [
+        { "label": "Algorithms", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Data structures", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Networks", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Systems", "path": "/competences/devops" },
+        { "label": "Databases", "path": "/realisations/app-trajectoires-de-vie" },
+        { "label": "Mathematics", "path": "/a-propos" }
+      ]
+    }
   },
   "featuredProjects": {
     "eyebrow": "Achievements",
@@ -89,6 +139,9 @@
     ]
   },
   "experience": {
+    "backToTimeline": "Back to the timeline",
+    "relatedEntriesLabel": "Related training and internships",
+    "organizationWebsite": "Organization website",
     "eyebrow": "Timeline",
     "heading": "Experience",
     "subtext": "A practice-built trajectory: self-learning, university research, business software, ERP, e-commerce, and showcase websites.",
@@ -96,14 +149,18 @@
     "linkedRealisationsLabel": "Related case studies",
     "linkedCompetencesLabel": "Related skills",
     "detailsLabel": "Show details",
+    "orderingLabel": "Order: “Present” first, then latest end date; ties use the latest start date",
     "entries": [
       {
-        "order": 1,
+        "id": "1up-fullstack-developer",
+        "startDate": "2024-12",
+        "endDate": null,
         "period": "Dec. 2024 — Present",
         "title": "Full-Stack Developer — Work-Study",
         "company": "1UP Distribution",
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
+        "location": "Chambéry · Savoie",
         "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Corporate website redesign with Next.js. Solo management of Odoo v16 → v19 migration. Database administration, CI/CD, and VPS server management (OVH, DigitalOcean).",
         "responsibilities": [
           "Technical owner for internal Odoo business developments.",
@@ -115,12 +172,15 @@
         "tags": ["Odoo 16+", "Symfony 6.3+", "Python", "PHP", "PostgreSQL", "Redis", "Docker"]
       },
       {
-        "order": 4,
+        "id": "lig-web-developer-internship",
+        "startDate": "2024-05",
+        "endDate": "2024-10",
         "period": "May — Oct. 2024",
         "title": "Web Developer Intern — LIG",
         "company": "Grenoble Computer Science Laboratory",
         "logo": "/logo-lig.svg",
         "url": "https://www.liglab.fr/fr",
+        "location": "Grenoble · Isère",
         "description": "Development of a Vue.js and D3.js application for a sociological study questionnaire on life trajectories. Custom data visualization creation. Collaboration with university researchers.",
         "responsibilities": [
           "Design and development of a first functional version of the application.",
@@ -132,7 +192,9 @@
         "tags": ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Research"]
       },
       {
-        "order": 2,
+        "id": "iscod-software-engineering-master",
+        "startDate": "2025",
+        "endDate": "2027",
         "period": "2025 — 2027",
         "title": "Master's in Software Engineering — RNCP level 7",
         "company": "ISCOD",
@@ -151,7 +213,9 @@
         "tags": ["RNCP 7", "Architecture", "Quality", "Project Management", "Work-study"]
       },
       {
-        "order": 3,
+        "id": "toeic-listening-reading",
+        "startDate": "2025-08-07",
+        "endDate": "2025-08-07",
         "period": "August 7, 2025",
         "title": "TOEIC Listening & Reading — 920/990",
         "company": "ETS Global",
@@ -165,7 +229,9 @@
         "tags": ["TOEIC", "920/990", "Listening C1", "Reading B2"]
       },
       {
-        "order": 5,
+        "id": "simplon-application-developer",
+        "startDate": "2024-01",
+        "endDate": "2024-12",
         "period": "January — December 2024",
         "title": "Application Designer & Developer — RNCP level 6",
         "company": "Simplon",
@@ -175,7 +241,7 @@
           { "name": "Simplon", "logo": "/logo-simplon.webp", "url": "https://www.simplon.co/" },
           { "name": "Université Savoie Mont Blanc", "logo": "/logo-usmb.png", "url": "https://www.univ-smb.fr/" }
         ],
-        "location": "Chambéry · Savoie",
+        "location": "Grenoble · Isère",
         "description": "Level 6 professional certification focused on application design and development, databases, modeling, testing, and software project delivery.",
         "institutions": "Simplon uses active learning through practice, projects inspired by professional situations, and small-group work. The program strengthened my ability to turn a need into a structured, tested, and documented application.",
         "certificateUrl": "/proofs/diplome_cda_filigrane.pdf",
@@ -190,7 +256,30 @@
         "tags": ["RNCP 6", "UML", "Databases", "Testing", "Project Management"]
       },
       {
-        "order": 6,
+        "id": "a-gaveau-web-developer-internship",
+        "startDate": "2023",
+        "endDate": "2023",
+        "period": "2023 — 2 months",
+        "title": "Web Developer Intern — WordPress / Elementor",
+        "company": "A. Gaveau",
+        "url": "https://a-gaveau.fr/",
+        "location": "Rumilly · Haute-Savoie",
+        "description": "Two-month internship completed as part of the Web and Mobile Web Developer training program at Simplon. Created websites for small shops using WordPress and the Elementor page builder.",
+        "trainingId": "simplon-web-developer",
+        "responsibilities": [
+          "Create websites for small shops.",
+          "Build and lay out websites with WordPress and Elementor."
+        ],
+        "tags": [
+          "WordPress",
+          "Elementor",
+          "Websites"
+        ]
+      },
+      {
+        "id": "simplon-web-developer",
+        "startDate": "2023",
+        "endDate": "2023",
         "period": "2023",
         "title": "Web and Mobile Web Developer — RNCP level 5",
         "company": "Simplon",
@@ -298,9 +387,22 @@
     "rateLimit": "Too many messages sent. Please try again in an hour.",
     "recaptchaFailed": "Security verification failed. Please try again.",
     "securityUnavailable": "The security service is temporarily unavailable. Please try again later or use the email address provided.",
+    "temporarilyUnavailable": "The contact service is temporarily unavailable. Your data has been kept; please try again.",
     "sendError": "An error occurred while sending. Please try again later.",
     "unexpectedError": "An unexpected error occurred. Please try again later.",
     "success": "Message sent successfully! I'll get back to you shortly."
+  },
+  "contactEmail": {
+    "eyebrow": "ORHAN MADI ASSANI · PORTFOLIO",
+    "title": "New message",
+    "intro": "Someone has contacted you through your portfolio.",
+    "name": "Name",
+    "email": "Email address",
+    "reason": "Subject",
+    "message": "Message",
+    "reply": "Reply to",
+    "footer": "Message received through the contact form on",
+    "preheader": "New message received from"
   },
   "articles": {
     "heading": "Articles",
@@ -317,6 +419,7 @@
     "copied": "Link copied",
     "copyCode": "Copy code",
     "codeCopied": "Code copied",
+    "codeBlock": "Code block",
     "frenchOnlyNotice": "Articles are written in French; browser translation works well.",
     "articlesData": [
       {
@@ -377,6 +480,7 @@
     "backToProjects": "Back to projects",
     "detailHeading": "What the module does",
     "detailSubtext": "Functional summary of the need covered and the value added inside Odoo.",
+    "moduleAnatomy": "Module anatomy",
     "businessProblem": "Business problem",
     "solution": "Solution",
     "technicalHighlights": "Technical highlights",
@@ -384,12 +488,19 @@
   },
   "aboutPage": {
     "pageTitle": "About | Orhan Madi Assani",
-    "pageDescription": "Full-stack developer in a work-study program — my journey, my values, and my professional and personal project.",
+    "pageDescription": "Full-stack developer in a work-study program: my journey, my values, and my professional and personal project.",
     "heading": "About me",
-    "subtext": "A self-taught developer turned professional — discover my journey, my values, and what drives me.",
+    "subtext": "A self-taught developer turned professional. Discover my journey, my values, and what drives me.",
+    "exploreLabel": "Explore the portfolio",
+    "portraitAlt": "Portrait of Orhan Madi Assani",
+    "trainingImageAlt": "Dynamo building in Chambéry, home to Simplon training.",
+    "researchImageAlt": "Grenoble Computer Science Laboratory building.",
+    "workImageAlt": "1UP Distribution building.",
     "journeyHeading": "My journey",
     "valuesHeading": "My values",
     "projectHeading": "My professional and personal project",
+    "professionalProjectHeading": "Professional project",
+    "personalProjectHeading": "Personal project",
     "qualitiesHeading": "My human qualities",
     "interestsHeading": "My interests"
   },
@@ -403,6 +514,14 @@
     "viewDetail": "Read article",
     "level": "Level",
     "radarHeading": "Overview",
+    "radarScaleLabel": "out of 100",
+    "radarLabels": {
+      "developpement-backend": "Backend",
+      "developpement-frontend": "Frontend",
+      "devops": "DevOps",
+      "amelioration-continue": "Improvement",
+      "developpement-odoo": "Odoo"
+    },
     "backToCompetences": "Back to skills",
     "contentsHeading": "Contents",
     "contentsSubtext": "Browse the definition, evidence, and my assessment of this skill.",
@@ -443,6 +562,7 @@
     "contentsSubtext": "Jump directly to any part of this case study.",
     "backToContents": "Back to contents",
     "linkedCompetencesHeading": "Related skills",
+    "linkedExperiencesHeading": "Related experience and education",
     "context": "Context"
   },
   "footer": {

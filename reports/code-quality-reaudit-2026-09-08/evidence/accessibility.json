@@ -1,0 +1,841 @@
+[
+  {
+    "url": "http://localhost:3318/fr",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".min-h-6.text-xs[href$=\"python\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-a-gaveau-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-a-gaveau-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-a-gaveau-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".min-h-6.text-xs[href$=\"devops\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/competences",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 10
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/articles",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/en/articles/docker-dangling-images",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href$=\"#3-investigation-dans-var\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href$=\"#4-exploration-de-var-lib\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(8)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href=\"#6-lister-les-images-docker\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(11)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href=\"#alternative-nettoyage-global\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/realisations/portfolio-professionnel",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/a-propos",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/parcours/1up-fullstack-developer",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/projects",
+    "mobile": false,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": false,
+    "state": "validation errors",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": false,
+    "state": "expanded consent",
+    "errors": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": 6
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".min-h-6.text-xs[href$=\"python\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-1up-fullstack-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-iscod-software-engineering-master > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-toeic-listening-reading > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-application-developer > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-lig-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-a-gaveau-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-a-gaveau-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-a-gaveau-web-developer-internship > .pb-10 > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(2)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(3)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "#experience-simplon-web-developer > article > .gap-x-3.text-\\[9px\\].tracking-\\[0\\.12em\\] > .min-h-6.text-xs.inline-flex:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".min-h-6.text-xs[href$=\"devops\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #747474, background color: #f7f7f7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".case-row.last\\:border-b-0.lg\\:grid-cols-\\[minmax\\(0\\,1\\.08fr\\)_minmax\\(0\\,0\\.92fr\\)_190px\\]:nth-child(3) > .min-h-48.lg\\:order-3.lg\\:border-t-0 > .tracking-\\[0\\.14em\\].text-\\[10px\\].uppercase"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.79 (foreground color: #585858, background color: #090909, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "target-size",
+        "impact": "serious",
+        "help": "All touch targets must be 24px large, or leave sufficient space",
+        "nodes": [
+          {
+            "target": [
+              "li:nth-child(6) > .hover\\:decoration-current.focus-visible\\:text-foreground[href$=\"devops\"]"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 39.6px by 20px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 20px instead of at least 24px."
+          },
+          {
+            "target": [
+              ".skill-column.min-h-64.border-r:nth-child(5) > .text-foreground\\/75 > li:nth-child(5) > .hover\\:decoration-current.focus-visible\\:text-foreground.focus-visible\\:ring-offset-2"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 86px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 13px instead of at least 24px."
+          },
+          {
+            "target": [
+              ".skill-column.min-h-64.border-r:nth-child(5) > .text-foreground\\/75 > li:nth-child(6) > .hover\\:decoration-current.focus-visible\\:text-foreground.focus-visible\\:ring-offset-2"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 55.7px by 14px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 14px instead of at least 24px."
+          },
+          {
+            "target": [
+              ".skill-column.min-h-64.border-r:nth-child(6) > .text-foreground\\/75 > li:nth-child(1) > .hover\\:decoration-current.focus-visible\\:text-foreground.focus-visible\\:ring-offset-2"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 92.8px by 14px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 8px instead of at least 24px."
+          },
+          {
+            "target": [
+              ".case-row.last\\:border-b-0.lg\\:grid-cols-\\[minmax\\(0\\,1\\.08fr\\)_minmax\\(0\\,0\\.92fr\\)_190px\\]:nth-child(1) > .sm\\:px-8.lg\\:px-9.min-h-72 > .mt-5.flex-wrap.gap-2 > .px-2.py-1.text-\\[10px\\]:nth-child(1)"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 42.6px by 5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 5px instead of at least 24px."
+          },
+          {
+            "target": [
+              ".case-row.last\\:border-b-0.lg\\:grid-cols-\\[minmax\\(0\\,1\\.08fr\\)_minmax\\(0\\,0\\.92fr\\)_190px\\]:nth-child(1) > .sm\\:px-8.lg\\:px-9.min-h-72 > .mt-5.flex-wrap.gap-2 > .px-2.py-1[href$=\"python\"]"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 49.2px by 5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 5px instead of at least 24px."
+          },
+          {
+            "target": [
+              ".case-row.last\\:border-b-0.lg\\:grid-cols-\\[minmax\\(0\\,1\\.08fr\\)_minmax\\(0\\,0\\.92fr\\)_190px\\]:nth-child(1) > .sm\\:px-8.lg\\:px-9.min-h-72 > .w-fit.hover\\:underline.mt-5"
+            ],
+            "summary": "Fix any of the following:\n  Target has insufficient size (118.1px by 16px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 6px instead of at least 24px."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 25
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/competences",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 10
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/articles",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/en/articles/docker-dangling-images",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(4)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(5)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href$=\"#3-investigation-dans-var\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href$=\"#4-exploration-de-var-lib\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(8)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href=\"#6-lister-les-images-docker\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".opacity-80.border-border\\/70.py-1:nth-child(11)"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "a[href=\"#alternative-nettoyage-global\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #797979, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "help": "Scrollable region must have keyboard access",
+        "nodes": [
+          {
+            "target": [
+              ".article-code-block.not-prose.relative:nth-child(13) > pre"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          },
+          {
+            "target": [
+              ".article-code-block.not-prose.relative:nth-child(19) > pre"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          },
+          {
+            "target": [
+              ".article-code-block.not-prose.relative:nth-child(26) > pre"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          },
+          {
+            "target": [
+              ".article-code-block.not-prose.relative:nth-child(31) > pre"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/realisations/portfolio-professionnel",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/a-propos",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/parcours/1up-fullstack-developer",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/projects",
+    "mobile": true,
+    "state": "initial",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "validation errors",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "expanded consent",
+    "errors": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": 6
+      },
+      {
+        "id": "color-contrast",
+        "nodes": 3
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "url": "http://localhost:3318/fr/contact",
+    "mobile": true,
+    "state": "mobile menu",
+    "errors": [],
+    "violations": [],
+    "incomplete": [],
+    "overflow": false
+  }
+]

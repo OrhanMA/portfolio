@@ -5,7 +5,7 @@ export const python: Competence = {
   title: { fr: "Python", en: "Python" },
   type: "technical",
   level: "intermediate",
-  radarValue: 60,
+  radarValue: 70,
   icon: "Code",
   definition: {
     fr: `Python est un langage généraliste dont la lisibilité permet d'exprimer rapidement une règle, mais cette simplicité apparente ne dispense pas de concevoir les structures de données, de répartir les responsabilités et de gérer les erreurs. Je l'utilise principalement dans Odoo, où il porte les modèles ORM, les champs calculés, les contraintes, les actions planifiées, les contrôleurs, les scripts de migration et les tests. Le code s'exécute au sein d'un framework riche : comprendre l'héritage, les décorateurs, les ensembles d'enregistrements et le contexte est aussi important que connaître la syntaxe du langage.

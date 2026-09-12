@@ -1,0 +1,52 @@
+
+Running 1 test using 1 worker
+
+(node:72937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › e2e/homepage-visual.spec.ts:58:7 › Homepage visual regression › dark composition (5.2s)
+
+
+  1) [chromium] › e2e/homepage-visual.spec.ts:58:7 › Homepage visual regression › dark composition ─
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      Expected an image 1440px by 6188px, received 1440px by 6743px. 1009298 pixels (ratio 0.11 of all image pixels) are different.
+
+      Snapshot: homepage-minimal-dark.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage-minimal-dark.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - Expected an image 1440px by 6188px, received 1440px by 6743px. 1009298 pixels (ratio 0.11 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - Expected an image 1440px by 6188px, received 1440px by 6743px. 1009298 pixels (ratio 0.11 of all image pixels) are different.
+
+
+      61 |     await prepareHomepage(page, "dark");
+      62 |
+    > 63 |     await expect(page).toHaveScreenshot("homepage-minimal-dark.png", {
+         |                        ^
+      64 |       fullPage: true,
+      65 |       animations: "disabled",
+      66 |       maxDiffPixelRatio: 0.02,
+        at /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/e2e/homepage-visual.spec.ts:63:24
+
+    attachment #1: homepage-minimal-dark (image/png) ───────────────────────────────────────────────
+    Expected: e2e/homepage-visual.spec.ts-snapshots/homepage-minimal-dark-chromium-darwin.png
+    Received: test-results/homepage-visual-Homepage-visual-regression-dark-composition-chromium/homepage-minimal-dark-actual.png
+    Diff:     test-results/homepage-visual-Homepage-visual-regression-dark-composition-chromium/homepage-minimal-dark-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-visual-Homepage-visual-regression-dark-composition-chromium/error-context.md
+
+  1 failed
+    [chromium] › e2e/homepage-visual.spec.ts:58:7 › Homepage visual regression › dark composition ──

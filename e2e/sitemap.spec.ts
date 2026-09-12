@@ -71,6 +71,24 @@ test("every sitemap route and internal link is structurally healthy", async ({
     if (document.querySelectorAll("header#primary-navigation").length !== 1) {
       errors.push(`${path}: primary navigation missing or duplicated`);
     }
+    const identities = document.querySelectorAll<HTMLAnchorElement>(
+      "[data-site-identity]",
+    );
+    if (identities.length !== 1) {
+      errors.push(`${path}: ${identities.length} site identities`);
+    } else {
+      const identity = identities[0];
+      const identityName = identity.textContent?.replace(/\s+/g, " ").trim();
+      if (identityName !== "Orhan Madi Assani") {
+        errors.push(`${path}: site identity is ${identityName ?? "missing"}`);
+      }
+      if (identity.getAttribute("href") !== `/${locale}`) {
+        errors.push(`${path}: site identity has an invalid home link`);
+      }
+      if (identity.querySelector("img")) {
+        errors.push(`${path}: site identity must remain text-only`);
+      }
+    }
     if (document.querySelectorAll("footer").length !== 1) {
       errors.push(`${path}: footer missing or duplicated`);
     }

@@ -92,4 +92,18 @@ describe("verifyRecaptcha()", () => {
     );
     expect((await verifyRecaptcha("test-token")).success).toBe(false);
   });
+
+  it.each([
+    ["a network rejection", () => Promise.reject(new Error("Network error"))],
+    [
+      "a timeout",
+      () => Promise.reject(new DOMException("The operation was aborted", "TimeoutError")),
+    ],
+    ["malformed JSON", () => Promise.resolve(new Response("not-json"))],
+  ])("propagates %s to the action boundary", async (_label, fetchResult) => {
+    vi.stubEnv("RECAPTCHA_SECRET_KEY", "test-secret");
+    vi.spyOn(global, "fetch").mockImplementation(fetchResult);
+
+    await expect(verifyRecaptcha("test-token")).rejects.toThrow();
+  });
 });

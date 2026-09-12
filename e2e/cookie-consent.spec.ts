@@ -4,7 +4,11 @@ test.describe("Cookie Consent", () => {
   test.beforeEach(async ({ page }) => {
     // Clear storage before each test
     await page.goto("/fr");
-    await page.evaluate(() => localStorage.clear());
+    await page.evaluate(() => {
+      localStorage.clear();
+      document.cookie = "cookie-consent-given=;Max-Age=0;Path=/";
+      document.cookie = "cookie-consent-analytics=;Max-Age=0;Path=/";
+    });
   });
 
   test("banner appears on first visit after delay", async ({ page }) => {
@@ -42,7 +46,10 @@ test.describe("Cookie Consent", () => {
   test("preferences can be reopened and withdrawn from the footer", async ({ page }) => {
     await page.goto("/fr");
     await page.getByRole("button", { name: "Accepter" }).click({ timeout: 2500 });
-    await page.getByRole("button", { name: "Gérer les cookies" }).click();
+    await page
+      .getByRole("contentinfo")
+      .getByRole("button", { name: "Gérer les cookies" })
+      .click();
     await expect(page.getByRole("dialog")).toBeVisible();
     const analyticsSwitch = page.getByRole("switch", {
       name: "Autoriser les cookies analytiques",

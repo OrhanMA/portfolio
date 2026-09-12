@@ -1,0 +1,100 @@
+{
+  "date": "2026-09-08T16:01:01.137Z",
+  "noJS": [
+    {
+      "route": "/fr",
+      "status": 200,
+      "mainText": "ODOO · SYMFONY · NEXT.JS\n\nOrhan Madi\nAssani\n\nJe transforme des besoins métier en solutions numériques robustes, performantes et durables\n\nChambéry, France\nEn alternance chez 1UP\nOdoo\n·\nSymfony\n·\nNext.js\nVoir les réalisations\nMe contacter\nÀ propos\n\nJe construis des produits web qui doivent autant convaincre les utilisateurs que tenir en production.\n",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": null
+    },
+    {
+      "route": "/en",
+      "status": 200,
+      "mainText": "ODOO · SYMFONY · NEXT.JS\n\nOrhan Madi\nAssani\n\nI design premium web interfaces and robust business systems, with equal attention to product thinking, performance, and real-world usage.\n\nChambéry, France\nWork-study at 1UP\nOdoo\n·\nSymfony\n·\nNext.js\nView achievements\nContact me\nAbout\n\nI build web products that must convince users and hold up in productio",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": null
+    },
+    {
+      "route": "/fr/articles",
+      "status": 200,
+      "mainText": "ARTICLES\n\nARTICLES\nTutoriels et retours d'expérience sur des sujets peu documentés.",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": null
+    },
+    {
+      "route": "/en/articles/docker-dangling-images",
+      "status": 200,
+      "mainText": "Articles\n\nARTICLES · 03\n\nDiagnosing and resolving disk saturation caused by dangling Docker images on a production VPS.\n\nMarch 15, 2026\nReading time · 3 min\nDocker\nLinux\nDevOps\nVPS\nReading time : 3 min\nArticles are written in French; browser translation works well.\nCopy link\n\nTABLE OF CONTENTS\n\nContexte\nQu'est-ce qu'une image Docker « dangling » ?\n",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": null
+    },
+    {
+      "route": "/fr/competences",
+      "status": 200,
+      "mainText": "COMPÉTENCES\n\nMES COMPÉTENCES\nUn aperçu synthétique de mes compétences techniques et humaines, avec leur niveau relatif.\n\n01\n\nVUE D'ENSEMBLE\nAutonomie\nPersévérance\nAdaptabilité\nAmélioration\nCommunication\nOdoo\nBackend\nFrontend\nDevOps\nPython\n\n02\n\nCOMPÉTENCES HUMAINES\nAutonomie\nL'autonomie en ingénierie logicielle ne consiste pas à travailler sans inte",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": null
+    },
+    {
+      "route": "/fr/realisations/portfolio-professionnel",
+      "status": 200,
+      "mainText": "Retour aux réalisations\n\nRÉALISATIONS\n\nConception d'un portfolio professionnel\nRéalisation d'un portfolio complet avec Next.js, GSAP, i18n bilingue, conformité RGPD, analytics et blog technique.\nProjet personnel\nNext.js\nReact\nGSAP\nTypeScript\nTailwind CSS\nMDX\n\nCONTEXTE\n\nCONTEXTE\n\nProjet personnel\n\nEXPÉRIENCES ET FORMATIONS ASSOCIÉES\n\nISCOD — Mastère",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": null
+    },
+    {
+      "route": "/fr/contact",
+      "status": 200,
+      "mainText": "CONTACT\n\nME CONTACTER\nUne question, un projet ou un message professionnel ? Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.\n\nEMAIL\n\nVous pouvez aussi me contacter directement par email à\n\norhan.madi.assani@gmail.com\nWebsite\nNom complet\nAdresse email\nRaison du contact\nSélectionnez une raison...\nMessage\n\nEnvoyer l",
+      "hiddenHeadings": [],
+      "hiddenContainers": 0,
+      "h1Count": 1,
+      "form": {
+        "method": "get",
+        "action": "http://localhost:3318/fr/contact"
+      }
+    }
+  ],
+  "consent": {
+    "before": {
+      "necessary": true,
+      "analytics": true,
+      "version": 2,
+      "decidedAt": 1788883267275
+    },
+    "after": {
+      "stored": {
+        "necessary": true,
+        "analytics": true,
+        "version": 2,
+        "decidedAt": 1788883267275
+      },
+      "thirdPartyLoaded": true,
+      "scripts": [
+        "https://www.googletagmanager.com/gtm.js?id=GTM-AUDIT00"
+      ]
+    }
+  },
+  "desktopMenu": {
+    "afterHover": "true",
+    "afterFirstClick": "false",
+    "afterSecondClick": "true"
+  },
+  "noJSForm": {
+    "method": "GET",
+    "url": "http://localhost:3318/fr/contact?honeypot=&name=Audit+Fictif&email=audit%40example.invalid&message=Message+synthetique+audit+uniquement"
+  }
+}

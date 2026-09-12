@@ -1,0 +1,15 @@
+
+> portfolio@0.1.0 lint /Users/orhan/Developer/projects/portfolio
+> eslint
+
+
+/Users/orhan/Developer/projects/portfolio/src/components/__tests__/linked-text.test.tsx
+  26:11  error  Do not use an `<a>` element to navigate to `/fr/articles/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  26:11  error  Do not use an `<a>` element to navigate to `/fr/articles/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  26:11  error  Do not use an `<a>` element to navigate to `/fr/articles/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  26:11  error  Do not use an `<a>` element to navigate to `/fr/articles/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  26:11  error  Do not use an `<a>` element to navigate to `/fr/articles/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+
+✖ 5 problems (5 errors, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.

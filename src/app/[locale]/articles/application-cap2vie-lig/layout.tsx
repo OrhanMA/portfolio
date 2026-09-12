@@ -1,4 +1,6 @@
-import { ArticlePageLayout } from "../[slug]/layout";
+import { ArticlePageLayout } from "@/components/article-page-layout";
+import { notFound } from "next/navigation";
+import { parseLocale } from "@/lib/i18n";
 
 export default async function Cap2VieLayout({
   children,
@@ -8,9 +10,11 @@ export default async function Cap2VieLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+  const loc = parseLocale(locale);
+  if (!loc) notFound();
 
   return (
-    <ArticlePageLayout locale={locale} slug="application-cap2vie-lig">
+    <ArticlePageLayout locale={loc} slug="application-cap2vie-lig">
       {children}
     </ArticlePageLayout>
   );

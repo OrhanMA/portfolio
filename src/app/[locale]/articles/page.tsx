@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { Suspense } from "react";
-import {
-  ArticlesFilterableList,
-  type SearchableArticle,
-} from "@/components/articles-filterable-list";
+import { ArticlesFilterableList } from "@/components/articles-filterable-list";
+import { ArticleCards } from "@/components/article-cards";
 import { buildArticleIndex } from "@/lib/articles";
+import type { ArticleIndexItem } from "@/lib/types/articles";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
 
 export async function generateMetadata({
@@ -32,22 +32,32 @@ export default async function ArticlesPage({
 }) {
   const { locale } = await params;
   const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
-  const articles: SearchableArticle[] = await buildArticleIndex(
+  const articles: ArticleIndexItem[] = await buildArticleIndex(
     dict.articles.articlesData,
   );
 
   return (
-    <div className="article-index not-prose">
+    <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}/articles`} />
+      <div>
       <EditorialPageHeader
         eyebrow={dict.nav.articles}
         title={dict.articles.heading}
         description={dict.articles.subtext}
         titleClassName="uppercase"
-        className="relative left-1/2 w-screen -translate-x-1/2"
       />
 
-      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-        <Suspense>
+      <div>
+        <Suspense
+          fallback={
+            <ArticleCards
+              articles={articles}
+              locale={loc}
+              minuteShort={dict.articles.minuteShort}
+              noResults={dict.articles.noResults}
+            />
+          }
+        >
           <ArticlesFilterableList
             articles={articles}
             locale={loc}
@@ -62,6 +72,7 @@ export default async function ArticlesPage({
           />
         </Suspense>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

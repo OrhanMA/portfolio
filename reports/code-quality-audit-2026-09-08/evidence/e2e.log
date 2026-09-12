@@ -1,0 +1,117 @@
+
+Running 32 tests using 2 workers
+
+(node:72204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72203) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › e2e/contact.spec.ts:4:7 › Contact Page › page loads with correct heading (738ms)
+  ✓   3 [chromium] › e2e/contact.spec.ts:9:7 › Contact Page › form fields are visible (383ms)
+  ✓   4 [chromium] › e2e/contact.spec.ts:17:7 › Contact Page › form shows validation errors on empty submission (408ms)
+  ✓   5 [chromium] › e2e/contact.spec.ts:34:7 › Contact Page › English contact page loads correctly (391ms)
+  ✓   6 [chromium] › e2e/cookie-consent.spec.ts:10:7 › Cookie Consent › banner appears on first visit after delay (3.7s)
+  ✓   1 [chromium] › e2e/article-layout.spec.ts:12:5 › every article keeps its editorial layout in both locales (6.1s)
+  ✓   7 [chromium] › e2e/cookie-consent.spec.ts:17:7 › Cookie Consent › Accept hides the banner (2.2s)
+  ✓   8 [chromium] › e2e/cookie-consent.spec.ts:24:7 › Cookie Consent › banner does not appear after accepting (2.3s)
+  ✓   9 [chromium] › e2e/cookie-consent.spec.ts:33:7 › Cookie Consent › Reject hides the banner (2.2s)
+  ✓  10 [chromium] › e2e/cookie-consent.spec.ts:42:7 › Cookie Consent › preferences can be reopened and withdrawn from the footer (2.4s)
+  ✓  12 [chromium] › e2e/i18n.spec.ts:4:7 › Internationalization › root path redirects to /fr (default locale) (210ms)
+  ✓  13 [chromium] › e2e/i18n.spec.ts:9:7 › Internationalization › /fr shows French content (201ms)
+  ✓  14 [chromium] › e2e/i18n.spec.ts:14:7 › Internationalization › /en shows English content (189ms)
+  ✓  15 [chromium] › e2e/i18n.spec.ts:19:7 › Internationalization › language switcher toggles locale (628ms)
+  ✓  16 [chromium] › e2e/i18n.spec.ts:30:7 › Internationalization › language preference persists across navigation (351ms)
+  ✓  17 [chromium] › e2e/navigation.spec.ts:6:7 › Navigation › home page loads correctly (192ms)
+  ✘  11 [chromium] › e2e/homepage-visual.spec.ts:34:7 › Homepage visual regression › desktop composition (4.9s)
+  -  19 [chromium] › e2e/homepage-visual.spec.ts:46:7 › Homepage visual regression › mobile composition
+  -  20 [chromium] › e2e/homepage-visual.spec.ts:58:7 › Homepage visual regression › dark composition
+  -  21 [chromium] › e2e/homepage-visual.spec.ts:70:7 › Homepage visual regression › uses the neutral portrait without Japanese decorative assets
+(node:72294) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  22 [chromium] › e2e/secondary-pages.spec.ts:45:7 › secondary routes stay healthy on desktop (1.8s)
+  ✘  18 [chromium] › e2e/navigation.spec.ts:15:7 › Navigation › timeline entries reveal on direct hash navigation (5.2s)
+  -  24 [chromium] › e2e/navigation.spec.ts:29:7 › Navigation › articles page loads
+  -  25 [chromium] › e2e/navigation.spec.ts:36:7 › Navigation › contact page loads
+  -  26 [chromium] › e2e/navigation.spec.ts:43:7 › Navigation › projects page loads
+  -  27 [chromium] › e2e/navigation.spec.ts:50:7 › Navigation › project detail page loads
+  -  28 [chromium] › e2e/navigation.spec.ts:57:7 › Navigation › 404 page renders for unknown routes
+  -  29 [chromium] › e2e/navigation.spec.ts:64:7 › Navigation › nav links work
+  -  30 [chromium] › e2e/navigation.spec.ts:96:7 › Navigation › closes a desktop submenu after navigating from a child link
+(node:72302) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  31 [chromium] › e2e/seed.spec.ts:4:7 › Seed › homepage loads and is ready (278ms)
+  ✓  23 [chromium] › e2e/secondary-pages.spec.ts:45:7 › secondary routes stay healthy on mobile (1.9s)
+  ✓  32 [chromium] › e2e/sitemap.spec.ts:24:5 › every sitemap route and internal link is structurally healthy (5.6s)
+
+
+  1) [chromium] › e2e/homepage-visual.spec.ts:34:7 › Homepage visual regression › desktop composition 
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      Expected an image 1440px by 6188px, received 1440px by 6743px. 264311 pixels (ratio 0.03 of all image pixels) are different.
+
+      Snapshot: homepage-minimal-desktop.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage-minimal-desktop.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - Expected an image 1440px by 6188px, received 1440px by 6743px. 264311 pixels (ratio 0.03 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - Expected an image 1440px by 6188px, received 1440px by 6743px. 264311 pixels (ratio 0.03 of all image pixels) are different.
+
+
+      37 |     await prepareHomepage(page);
+      38 |
+    > 39 |     await expect(page).toHaveScreenshot("homepage-minimal-desktop.png", {
+         |                        ^
+      40 |       fullPage: true,
+      41 |       animations: "disabled",
+      42 |       maxDiffPixelRatio: 0.02,
+        at /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/e2e/homepage-visual.spec.ts:39:24
+
+    attachment #1: homepage-minimal-desktop (image/png) ────────────────────────────────────────────
+    Expected: e2e/homepage-visual.spec.ts-snapshots/homepage-minimal-desktop-chromium-darwin.png
+    Received: test-results/homepage-visual-Homepage-v-755e8-ression-desktop-composition-chromium/homepage-minimal-desktop-actual.png
+    Diff:     test-results/homepage-visual-Homepage-v-755e8-ression-desktop-composition-chromium/homepage-minimal-desktop-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-visual-Homepage-v-755e8-ression-desktop-composition-chromium/error-context.md
+
+  2) [chromium] › e2e/navigation.spec.ts:15:7 › Navigation › timeline entries reveal on direct hash navigation 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Développeur full-stack — Alternance' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Développeur full-stack — Alternance' })
+
+
+      20 |         name: "Développeur full-stack — Alternance",
+      21 |       }),
+    > 22 |     ).toBeVisible();
+         |       ^
+      23 |     await expect(page.locator("#parcours .experience-details")).toHaveCount(7);
+      24 |     await expect(
+      25 |       page.locator("#parcours .experience-details button[aria-expanded='false']"),
+        at /private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/e2e/navigation.spec.ts:22:7
+
+    Error Context: test-results/navigation-Navigation-time-5efec-l-on-direct-hash-navigation-chromium/error-context.md
+
+  2 failed
+    [chromium] › e2e/homepage-visual.spec.ts:34:7 › Homepage visual regression › desktop composition 
+    [chromium] › e2e/navigation.spec.ts:15:7 › Navigation › timeline entries reveal on direct hash navigation 
+  10 did not run
+  20 passed (26.4s)

@@ -7,6 +7,7 @@ describe("CookieConsent", () => {
   beforeEach(() => {
     localStorage.clear();
     document.cookie = "cookie-consent-given=;max-age=0";
+    document.cookie = "cookie-consent-analytics=;max-age=0";
     vi.useFakeTimers({ shouldAdvanceTime: true });
   });
 
@@ -105,29 +106,20 @@ describe("CookieConsent", () => {
     expect(screen.getByText("Nécessaires")).toBeInTheDocument();
   });
 
-  it("keeps keyboard focus within the modal dialog", async () => {
+  it("renders an accessible modal with an inert background", async () => {
     renderWithProviders(<CookieConsent />);
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(1600);
     });
 
-    vi.useRealTimers();
-    const user = userEvent.setup();
     const dialog = screen.getByRole("dialog");
-    const closeButton = screen.getByRole("button", {
-      name: "Fermer et refuser",
-    });
-    const manageButton = screen.getByRole("button", { name: /g[eé]rer/i });
-
-    expect(dialog).toHaveFocus();
-
-    manageButton.focus();
-    await user.tab();
-    expect(closeButton).toHaveFocus();
-
-    await user.tab({ shift: true });
-    expect(manageButton).toHaveFocus();
+    expect(dialog).toHaveAttribute("aria-labelledby", "cookie-consent-title");
+    expect(dialog).toHaveAttribute(
+      "aria-describedby",
+      "cookie-consent-description",
+    );
+    expect(document.querySelector("[data-base-ui-inert]")).toBeInTheDocument();
   });
 
   it("banner disappears after accepting", async () => {

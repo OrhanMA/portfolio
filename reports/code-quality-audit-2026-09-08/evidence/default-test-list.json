@@ -1,0 +1,1047 @@
+[
+  {
+    "name": "experience detail pages > renders '1up-fullstack-developer' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'lig-web-developer-internship' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'iscod-software-engineering-master' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'toeic-listening-reading' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'simplon-application-developer' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'a-gaveau-web-developer-internship' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'simplon-web-developer' in 'fr' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders '1up-fullstack-developer' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'lig-web-developer-internship' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'iscod-software-engineering-master' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'toeic-listening-reading' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'simplon-application-developer' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'a-gaveau-web-developer-internship' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > renders 'simplon-web-developer' in 'en' with internal navigation",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "experience detail pages > generates one detail route per timeline entry",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/experience-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > does not render initially",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > renders after 1.5s delay when no prior consent",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > does not render when consent already given",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > Accept button dispatches CustomEvent with analytics: true",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > Reject button dispatches CustomEvent with analytics: false",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > Manage button expands preferences",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > keeps keyboard focus within the modal dialog",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > banner disappears after accepting",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > stores consent in localStorage after accepting",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > X button rejects all and hides banner",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CookieConsent > can be reopened after a prior decision and preserves preferences",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/cookie-consent.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'fr' section of 'migration-odoo-v16-v19'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'en' section of 'migration-odoo-v16-v19'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'fr' section of 'modules-metier-odoo'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'en' section of 'modules-metier-odoo'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'fr' section of 'refonte-site-corporate'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'en' section of 'refonte-site-corporate'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'fr' section of 'app-trajectoires-de-vie'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'en' section of 'app-trajectoires-de-vie'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'fr' section of 'portfolio-professionnel'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > renders every 'en' section of 'portfolio-professionnel'",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationDetailPage > keeps the long-form reading structure navigable",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/realisation-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > presents the about section as three product principles",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > presents principles without decorative transforms or shadows",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > uses a monochrome hero and contact section without decorative assets",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > shows six compact skill domains and links to the full comparison",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > links every skill to its most relevant internal page in fr",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > links every skill to its most relevant internal page in en",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > shows a jury-readable timeline with animated details, logos and proofs",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > shows the A. Gaveau internship and its training link in fr",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > shows the A. Gaveau internship and its training link in en",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial homepage sections > shows documented result metrics without presenting an estimate as a measurement",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-sections.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CompetenceDetailPage > provides readable table-of-contents navigation and three achievement-backed proofs",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/competence-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CompetenceDetailPage > shows the dated news item and official source in French",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/competence-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "CompetenceDetailPage > localizes the news item in English",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/competence-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Navbar > shows the full name as a compact persistent signature",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/navbar.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Navbar > exposes every competence and realisation in keyboard-accessible desktop submenus",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/navbar.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Navbar > opens the mobile menu and its localized submenus",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/navbar.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Navbar > closes a desktop submenu when navigating from one of its child links",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/navbar.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Navbar > keeps the contact call to action contrast-safe in every theme",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/navbar.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "AboutPage > presents the professional and personal project in French",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/about-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "AboutPage > presents the professional and personal project in English",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/about-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "AboutPage > uses Roman numerals for the five editorial sections",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/about-page.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > filters articles by tag",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > keeps article-card tag controls large enough and exposes their selected state",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > keeps tag controls outside article links",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > initializes filters from the URL search params",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > does not rewrite the URL when the initial filters already match it",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > keeps the active filters synchronized in the URL",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > searches in title, content and tags",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticlesFilterableList > shows an empty state when no article matches",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/articles-filterable-list.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticleEnhancements > renders server-derived table-of-contents data without waiting for hydration",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/article-enhancements.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticleEnhancements > shows copied feedback after using the copy link button",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/article-enhancements.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticleEnhancements > shows the French article notice on English article pages",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/article-enhancements.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "YouTubeFacade > does not create a third-party player until the visitor explicitly loads it",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/youtube-facade.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Footer > exposes the secondary pages and legal links",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/footer.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Footer > exposes the public proof documents",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/footer.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LanguageSwitcher > shows \"EN\" when current pathname is French",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/language-switcher.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LanguageSwitcher > shows \"FR\" when current pathname is English",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/language-switcher.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LanguageSwitcher > clicking switches locale and calls router.push",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/language-switcher.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LanguageSwitcher > sets NEXT_LOCALE cookie on switch",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/language-switcher.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LanguageSwitcher > has correct aria-label",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/language-switcher.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationArticleContent > turns numbered paragraphs into a scannable semantic list",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/realisation-article-content.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationArticleContent > keeps unnumbered editorial paragraphs as readable prose",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/realisation-article-content.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RealisationArticleContent > parses every French and English achievement section without losing content",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/realisation-article-content.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "ArticleCodeBlock > copies the full code block and confirms the action",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/article-code-block.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LinkedText > links exact technology and experience mentions in the active language",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/linked-text.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LinkedText > preserves existing links, code, controls and partial words",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/linked-text.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "LinkedText > preserves emphasis and sends current-page mentions to another page",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/linked-text.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "RadarChart navigation > exposes each skill label as an accessible link",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/radar-chart.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "article technology links > uses the reader locale even for a French article",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/article-linked-text.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "HomepageMotion > reveals a section immediately when it is the direct hash target",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/landing/__tests__/homepage-motion.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "EditorialPageHeader > renders a semantic page title without decorative imagery",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/editorial-page-header.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "sortTimelineEntries > sorts overlapping periods by latest end, then latest start",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/experience.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sortTimelineEntries > uses the stable id for identical intervals without mutating the source",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/experience.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sortTimelineEntries > uses the upper boundary of a partial end date",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/experience.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "DictionaryProvider > renders children",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/dictionary-provider.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "useDictionary() > returns dictionary when inside DictionaryProvider",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/dictionary-provider.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "useDictionary() > throws when used outside DictionaryProvider",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/dictionary-provider.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Analytics > does not load analytics without explicit consent",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/analytics.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Analytics > reacts to consent changes and enables field Web Vitals",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/analytics.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "Analytics > stops rendering analytics when consent is withdrawn",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/analytics.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "rateLimit() > tracks an isolated fixed window locally in tests",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/rate-limit.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "rateLimit() > resets the local window after expiry",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/rate-limit.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "rateLimit() > uses an atomic Redis script when durable credentials exist",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/rate-limit.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "rateLimit() > supports the Vercel integration variables created with the configured prefix",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/rate-limit.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "rateLimit() > fails closed in production without a durable store",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/rate-limit.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "escapeHtml() > escapes HTML metacharacters",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "escapeHtml() > keeps plain and empty strings unchanged",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > returns an error for invalid schema data",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > silently succeeds for a filled honeypot without sending",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > rejects submissions completed too quickly",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > returns localized errors for the English form",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > rejects when the durable rate limit is exceeded",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > fails closed when the rate-limit store is unavailable",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > rejects when reCAPTCHA fails",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > rejects a missing reCAPTCHA token when configured",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > sends an escaped email through Resend",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > strips line breaks from email subjects",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > returns a localized error when Resend reports a failure",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sendContactEmail() > returns a localized error when Resend throws",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/actions/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "recaptcha client > is a no-op when no public site key is configured",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha-client.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "recaptcha client > loads the script once on intent",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha-client.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "recaptcha client > executes the expected action through the loaded API",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha-client.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "StructuredData > uses ProfilePage only on the localized homepage",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/structured-data.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "StructuredData > emits TechArticle and breadcrumb schemas",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/components/__tests__/structured-data.test.tsx",
+    "projectName": "unit"
+  },
+  {
+    "name": "internal topic destinations > covers all published tags and existing routes in fr",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/topic-links.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "internal topic destinations > covers all published tags and existing routes in en",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/topic-links.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "internal topic destinations > keeps all destinations internal and avoids self-links",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/topic-links.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "internal topic destinations > reports missing mappings instead of publishing a broken link",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/topic-links.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > continues localized routes with a nonce-based CSP",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > continues when pathname is exactly /fr",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > continues when pathname starts with /en/",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > redirects to /fr by default (no cookie, no Accept-Language)",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > redirects to /fr/contact when NEXT_LOCALE cookie is fr",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > redirects to /en/contact when NEXT_LOCALE cookie is en",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > redirects based on Accept-Language: en",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > preserves pathname after locale prefix",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "proxy > redirects to /fr as fallback for unsupported Accept-Language",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/__tests__/proxy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "competences > links every definition to a distinct, dated official source",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/competences.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "competences > keeps every skill article substantial, bilingual, and grounded in achievements",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/competences.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "portfolio relationships > keeps the required portfolio grid complete",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/portfolio-relationships.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "portfolio relationships > keeps competence and realisation links reciprocal",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/portfolio-relationships.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "portfolio relationships > keeps the current portfolio article count accurate",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/portfolio-relationships.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "getDictionary() > returns French dictionary",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/dictionaries.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "getDictionary() > returns English dictionary",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/dictionaries.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "getDictionary() > both dictionaries have matching top-level keys",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/dictionaries.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "getDictionary() > exposes the TOEIC date in both languages",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/dictionaries.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "getDictionary() > keeps timeline chronology metadata identical across locales",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/dictionaries.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "RECAPTCHA_THRESHOLD > is 0.5",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > is optional when no secret key is configured",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > rejects an empty token when verification is configured",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > posts the token to Google's verification endpoint",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > accepts a fresh token with the expected score, action and hostname",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > rejects a low score",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > rejects another action",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > rejects another hostname",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > rejects an expired challenge",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "verifyRecaptcha() > rejects unsuccessful and non-OK verification responses",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/recaptcha.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cookie-consent utilities > stores a versioned, timestamped consent for six months",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/cookie-consent.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cookie-consent utilities > rejects malformed, legacy, future and expired consent",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/cookie-consent.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cookie-consent utilities > reports whether a valid decision and analytics consent exist",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/cookie-consent.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cookie-consent utilities > removes Google Analytics cookies when consent is withdrawn",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/cookie-consent.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cookie-consent utilities > requires a reload only when already-granted analytics consent is withdrawn",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/cookie-consent.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "article indexing helpers > strips markdown and keeps article text searchable",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/articles.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "article indexing helpers > estimates at least one minute of reading time",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/articles.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "article indexing helpers > indexes real MDX article content for article search",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/articles.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > valid submissions > accepts a complete valid form submission",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > valid submissions > accepts submission with reason != other and no customSubject",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > valid submissions > accepts honeypot as empty string",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > valid submissions > accepts a reCAPTCHA token when provided",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > valid submissions > accepts reason \"other\" with customSubject provided",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects a submission without a timestamp",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects name shorter than 2 chars",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects name longer than 100 chars",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects invalid email format",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects empty reason",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects message shorter than 10 chars",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects message longer than 5000 chars",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > accepts a bounded honeypot value so the action can respond silently",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects unknown contact reasons",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects an oversized custom subject",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects reason \"other\" without customSubject",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactSchema > invalid submissions > rejects reason \"other\" with empty customSubject",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactReasons > has 6 entries",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contactReasons > contains expected values",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/schemas/__tests__/contact.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sitemap > derives every localized article URL and publication date from content",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/__tests__/sitemap.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "sitemap > does not emit duplicate URLs",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/__tests__/sitemap.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cn() > returns empty string for no arguments",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/utils.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cn() > merges multiple class strings",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/utils.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cn() > handles conditional classes (undefined, null, false)",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/utils.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cn() > resolves Tailwind conflicts (last one wins)",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/utils.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "cn() > handles array inputs",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/utils.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial content architecture > keeps each achievement in its own module behind a lightweight index",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/content-architecture.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "editorial content architecture > keeps each skill in its own module behind a lightweight index",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/content-architecture.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "i18n config > locales contains exactly fr and en",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "i18n config > defaultLocale is fr",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "parseLocale() > returns a typed supported locale",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "parseLocale() > returns null instead of coercing an unsupported locale",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "isValidLocale() > returns true for \"fr\"",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "isValidLocale() > returns true for \"en\"",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "isValidLocale() > returns false for \"de\"",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "isValidLocale() > returns false for empty string",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "isValidLocale() > returns false for \"FR\" (case-sensitive)",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/i18n.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "localizedAlternates > builds canonical and language URLs for a localized route",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/metadata.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "localizedAlternates > supports locale homepages",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/metadata.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "localized metadata > builds an absolute localized social URL",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/metadata.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "localized metadata > keeps canonical, Open Graph and Twitter metadata in sync",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/metadata.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "extractArticleHeadings > creates stable anchors from MDX headings",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/article-headings.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contact email template > renders the portfolio identity and a reply CTA",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/contact-email.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contact email template > escapes user-provided values and preserves message line breaks",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/contact-email.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "contact email template > provides a readable English plain-text fallback",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/lib/__tests__/contact-email.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "homepage positioning copy > keeps availability wording neutral in French and English",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/homepage-copy.test.ts",
+    "projectName": "unit"
+  },
+  {
+    "name": "homepage positioning copy > uses short, verifiable hero proofs in both languages",
+    "file": "/private/tmp/portfolio-code-audit-20260908-4e1GSr/repo/src/app/[locale]/__tests__/homepage-copy.test.ts",
+    "projectName": "unit"
+  }
+]

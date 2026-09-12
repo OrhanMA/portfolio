@@ -154,6 +154,28 @@ describe("sendContactEmail()", () => {
     expect(result?.message).toContain("sécurité");
   });
 
+  it.each([
+    ["times out", new Error("The operation was aborted")],
+    ["rejects due to a network error", new Error("Network error")],
+    ["returns malformed JSON", new SyntaxError("Unexpected token")],
+  ])("returns a temporary-unavailable result when reCAPTCHA %s", async (_label, error) => {
+    vi.stubEnv("RECAPTCHA_SECRET_KEY", "test-secret");
+    const { verifyRecaptcha } = await import("@/lib/recaptcha");
+    vi.mocked(verifyRecaptcha).mockRejectedValueOnce(error);
+
+    const result = await sendContactEmail("fr", {
+      ...validData,
+      recaptchaToken: "unavailable-token",
+    });
+
+    expect(result).toMatchObject({
+      status: "temporarily-unavailable",
+      success: false,
+    });
+    expect(result?.message).toContain("sécurité");
+    expect(mockSend).not.toHaveBeenCalled();
+  });
+
   it("rejects a missing reCAPTCHA token when configured", async () => {
     vi.stubEnv("RECAPTCHA_SECRET_KEY", "test-secret");
 

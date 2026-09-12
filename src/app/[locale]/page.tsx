@@ -6,45 +6,32 @@ import { ExperienceSection } from "@/components/landing/experience-section";
 import { HeroSection } from "@/components/landing/hero-section";
 import { HomepageMotion } from "@/components/landing/homepage-motion";
 import { ProjectsSection } from "@/components/landing/projects-section";
+import { RouteStructuredData } from "@/components/route-structured-data";
 import { SkillsSection } from "@/components/landing/skills-section";
+import type { FeaturedProjectSummary } from "@/components/landing/projects-section";
+import { getRealisationBySlug } from "@/lib/realisations";
+import type { Locale } from "@/lib/i18n";
 import { getLocalizedPageContext } from "./route-context";
 
-const featuredProjects = {
-  fr: [
-    {
-      slug: "migration-odoo-v16-v19" as const,
-      title: "Migration d’un ERP d’entreprise d’Odoo 16 vers Odoo 19",
-      tags: ["Odoo", "Python", "PostgreSQL", "Migration"],
-    },
-    {
-      slug: "modules-metier-odoo" as const,
-      title: "Développement de modules métier pour un ERP",
-      tags: ["Odoo", "Python", "PostgreSQL", "API"],
-    },
-    {
-      slug: "refonte-site-corporate" as const,
-      title: "Refonte d'un site corporate Next.js",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
-    },
-  ],
-  en: [
-    {
-      slug: "migration-odoo-v16-v19" as const,
-      title: "Enterprise ERP migration from Odoo 16 to Odoo 19",
-      tags: ["Odoo", "Python", "PostgreSQL", "Migration"],
-    },
-    {
-      slug: "modules-metier-odoo" as const,
-      title: "Business module development for an ERP",
-      tags: ["Odoo", "Python", "PostgreSQL", "API"],
-    },
-    {
-      slug: "refonte-site-corporate" as const,
-      title: "Next.js corporate website redesign",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
-    },
-  ],
-};
+// Editorial selection stays explicit; its title and tags come from the
+// canonical realisation catalog below.
+const featuredProjectSlugs = [
+  "migration-odoo-v16-v19",
+  "modules-metier-odoo",
+  "refonte-site-corporate",
+] as const satisfies readonly FeaturedProjectSummary["slug"][];
+
+function getFeaturedProjects(locale: Locale): FeaturedProjectSummary[] {
+  return featuredProjectSlugs.map((slug) => {
+    const project = getRealisationBySlug(slug);
+
+    if (!project) {
+      throw new Error(`Unknown featured realisation slug: ${slug}`);
+    }
+
+    return { slug, title: project.title[locale], tags: project.tags };
+  });
+}
 
 export default async function Home({
   params,
@@ -56,6 +43,7 @@ export default async function Home({
 
   return (
     <>
+      <RouteStructuredData locale={loc} pathname={`/${loc}`} />
       <HeroSection
         locale={loc}
         dict={dict.hero}
@@ -66,18 +54,17 @@ export default async function Home({
             width={1024}
             height={1024}
             sizes="(max-width: 1023px) min(100vw - 2rem, 384px), 440px"
-            className="pointer-events-none"
             fetchPriority="high"
             preload
           />
         }
       />
-      <AboutSection dict={dict.about} />
+      <AboutSection locale={loc} dict={dict.about} />
       <ExperienceSection locale={loc} dict={dict.experience} />
       <SkillsSection locale={loc} dict={dict.skills} />
       <ProjectsSection
         locale={loc}
-        projects={featuredProjects[loc]}
+        projects={getFeaturedProjects(loc)}
         dict={dict.featuredProjects}
       />
       <CtaSection locale={loc} dict={dict.cta} />

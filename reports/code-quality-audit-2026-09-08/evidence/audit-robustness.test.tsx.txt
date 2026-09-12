@@ -1,0 +1,53 @@
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
+import { getArticleContent, stripMdxForSearch } from '@/lib/articles';
+import { getStoredConsent, setStoredConsent } from '@/lib/cookie-consent';
+import { ArticlesFilterableList } from '@/components/articles-filterable-list';
+import { sendContactEmail } from '@/app/[locale]/actions/contact';
+import { verifyRecaptcha } from '@/lib/recaptcha';
+const { replace, mockSend, mockLimit } = vi.hoisted(() => ({replace:vi.fn(),mockSend:vi.fn(),mockLimit:vi.fn()}));
+let params = new URLSearchParams('q=odoo');
+vi.mock('next/navigation',()=>({usePathname:()=>'/fr/articles',useSearchParams:()=>params,useRouter:()=>({replace})}));
+vi.mock('next/headers',()=>({headers:async()=>new Headers({'x-forwarded-for':'127.0.0.1'})}));
+vi.mock('resend',()=>({Resend:class {emails={send:mockSend};}}));
+vi.mock('@/lib/rate-limit',()=>({rateLimit:mockLimit}));
+vi.mock('@/lib/recaptcha',()=>({verifyRecaptcha:vi.fn()}));
+afterEach(()=>{cleanup();vi.restoreAllMocks();vi.unstubAllEnvs();vi.useRealTimers();vi.resetAllMocks();});
+describe('Audit reproductions - assertions document existing defects, not intended behavior',()=>{
+ it('missing MDX rejects instead of returning the intended empty fallback',async()=>{
+  await expect(getArticleContent('__missing_audit_article__')).rejects.toMatchObject({code:'ENOENT'});
+ });
+ it('search index retains MDX module metadata implementation',()=>{
+  expect(stripMdxForSearch('import { getArticleMetadata } from "../article-metadata";\n\nexport async function generateMetadata({ params }) {\n return getArticleMetadata(params.locale, "example");\n}\n\n# Useful article')).toContain('getArticleMetadata');
+ });
+ it('reCAPTCHA network exception escapes the action without a localized response',async()=>{
+  vi.mocked(verifyRecaptcha).mockRejectedValueOnce(new Error('Network unavailable'));
+  await expect(sendContactEmail('fr',{name:'Audit Person',email:'audit@example.com',reason:'offer',message:'Audit message, never sent.',timestamp:Date.now()-10000,recaptchaToken:'test-token'})).rejects.toThrow('Network unavailable');
+  expect(mockSend).not.toHaveBeenCalled();expect(mockLimit).not.toHaveBeenCalled();
+ });
+ it('blocked local storage escapes the read fallback and prevents saving consent',()=>{
+  vi.spyOn(Storage.prototype,'getItem').mockImplementation(()=>{throw new DOMException('Denied','SecurityError')});
+  vi.spyOn(Storage.prototype,'removeItem').mockImplementation(()=>{throw new DOMException('Denied','SecurityError')});
+  vi.spyOn(Storage.prototype,'setItem').mockImplementation(()=>{throw new DOMException('Denied','SecurityError')});
+  expect(()=>getStoredConsent()).toThrow('Denied');
+  expect(()=>setStoredConsent({necessary:true,analytics:false})).toThrow('Denied');
+ });
+ it('URL navigation after mount is overwritten by stale filter state',()=>{
+  const props={articles:[],locale:'fr',labels:{allTopics:'All',searchPlaceholder:'Search',clearSearch:'Clear',noResults:'None',readingTime:'Reading',minuteShort:'min'}};
+  const {rerender}=render(<ArticlesFilterableList {...props}/>);
+  expect(screen.getByRole('searchbox')).toHaveValue('odoo');
+  replace.mockClear();params=new URLSearchParams('q=docker');rerender(<ArticlesFilterableList {...props}/>);
+  expect(screen.getByRole('searchbox')).toHaveValue('odoo');
+  expect(replace).toHaveBeenLastCalledWith('/fr/articles?q=odoo',{scroll:false});
+ });
+ it('failed reCAPTCHA script is reused on retry without a new request',async()=>{
+  vi.resetModules();vi.useFakeTimers();vi.stubEnv('NEXT_PUBLIC_RECAPTCHA_SITE_KEY','audit-key');
+  delete window.grecaptcha;document.getElementById('google-recaptcha-v3')?.remove();
+  const {preloadRecaptcha}=await import('@/lib/recaptcha-client');
+  const first=preloadRecaptcha();const firstResult=expect(first).rejects.toThrow('Unable to load');
+  const element=document.getElementById('google-recaptcha-v3')!;element.dispatchEvent(new Event('error'));await firstResult;
+  const second=preloadRecaptcha();const secondResult=expect(second).rejects.toThrow('timed out');
+  expect(document.getElementById('google-recaptcha-v3')).toBe(element);
+  await vi.advanceTimersByTimeAsync(8001);await secondResult;element.remove();
+ });
+});

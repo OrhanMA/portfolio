@@ -1,0 +1,53 @@
+e2e/secondary-pages.spec.ts(77,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(name: string, value: string | RegExp, options?: { ignoreCase?: boolean | undefined; timeout?: number | undefined; } | undefined): Promise<void>', gave the following error.
+    Argument of type 'string | undefined' is not assignable to parameter of type 'string | RegExp'.
+      Type 'undefined' is not assignable to type 'string | RegExp'.
+  Overload 2 of 2, '(name: string, options?: { timeout?: number | undefined; } | undefined): Promise<void>', gave the following error.
+    Argument of type 'string | undefined' is not assignable to parameter of type '{ timeout?: number | undefined; } | undefined'.
+      Type 'string' has no properties in common with type '{ timeout?: number | undefined; }'.
+e2e/sitemap.spec.ts(36,36): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string | URL'.
+  Type 'undefined' is not assignable to type 'string | URL'.
+e2e/sitemap.spec.ts(81,28): error TS18048: 'identity' is possibly 'undefined'.
+e2e/sitemap.spec.ts(85,11): error TS18048: 'identity' is possibly 'undefined'.
+e2e/sitemap.spec.ts(88,11): error TS18048: 'identity' is possibly 'undefined'.
+src/app/[locale]/__tests__/homepage-copy.test.ts(48,12): error TS2532: Object is possibly 'undefined'.
+src/app/[locale]/__tests__/homepage-copy.test.ts(49,12): error TS2532: Object is possibly 'undefined'.
+src/app/[locale]/__tests__/realisation-page.test.tsx(42,25): error TS2532: Object is possibly 'undefined'.
+src/app/[locale]/realisations/[slug]/page.tsx(124,45): error TS2532: Object is possibly 'undefined'.
+src/components/__tests__/articles-filterable-list.test.tsx(63,22): error TS2345: Argument of type 'HTMLElement | undefined' is not assignable to parameter of type 'Element'.
+  Type 'undefined' is not assignable to type 'Element'.
+src/components/__tests__/articles-filterable-list.test.tsx(83,22): error TS2345: Argument of type 'HTMLElement | undefined' is not assignable to parameter of type 'Element'.
+  Type 'undefined' is not assignable to type 'Element'.
+src/components/__tests__/articles-filterable-list.test.tsx(147,22): error TS2345: Argument of type 'HTMLElement | undefined' is not assignable to parameter of type 'Element'.
+  Type 'undefined' is not assignable to type 'Element'.
+src/components/__tests__/navbar.test.tsx(113,15): error TS2532: Object is possibly 'undefined'.
+src/components/__tests__/navbar.test.tsx(115,50): error TS2532: Object is possibly 'undefined'.
+src/components/__tests__/navbar.test.tsx(127,13): error TS2532: Object is possibly 'undefined'.
+src/components/__tests__/navbar.test.tsx(133,43): error TS2532: Object is possibly 'undefined'.
+src/components/landing/__tests__/homepage-sections.test.tsx(197,22): error TS2345: Argument of type 'HTMLElement | undefined' is not assignable to parameter of type 'Element'.
+  Type 'undefined' is not assignable to type 'Element'.
+src/components/landing/__tests__/homepage-sections.test.tsx(200,31): error TS2532: Object is possibly 'undefined'.
+src/components/realisation-article-content.tsx(19,3): error TS2322: Type '({ kind: "paragraph"; text: string; number?: undefined; title?: undefined; body?: undefined; } | { kind: "numbered"; number: number; title: string | undefined; body: string | undefined; text?: undefined; })[]' is not assignable to type 'RealisationContentBlock[]'.
+  Type '{ kind: "paragraph"; text: string; number?: undefined; title?: undefined; body?: undefined; } | { kind: "numbered"; number: number; title: string | undefined; body: string | undefined; text?: undefined; }' is not assignable to type 'RealisationContentBlock'.
+    Type '{ kind: "numbered"; number: number; title: string | undefined; body: string | undefined; text?: undefined; }' is not assignable to type 'RealisationContentBlock'.
+      Type '{ kind: "numbered"; number: number; title: string | undefined; body: string | undefined; text?: undefined; }' is not assignable to type '{ kind: "numbered"; number: number; title: string; body: string; }'.
+        Types of property 'title' are incompatible.
+          Type 'string | undefined' is not assignable to type 'string'.
+            Type 'undefined' is not assignable to type 'string'.
+src/lib/__tests__/articles.test.ts(43,12): error TS2532: Object is possibly 'undefined'.
+src/lib/__tests__/articles.test.ts(44,12): error TS2532: Object is possibly 'undefined'.
+src/lib/__tests__/articles.test.ts(45,12): error TS2532: Object is possibly 'undefined'.
+src/lib/__tests__/articles.test.ts(46,12): error TS2532: Object is possibly 'undefined'.
+src/lib/__tests__/topic-links.test.ts(33,31): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/lib/article-headings.ts(37,39): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/lib/article-headings.ts(49,16): error TS2532: Object is possibly 'undefined'.
+src/lib/rate-limit.ts(102,14): error TS18048: 'count' is possibly 'undefined'.
+src/lib/rate-limit.ts(103,36): error TS18048: 'count' is possibly 'undefined'.
+src/lib/rate-limit.ts(104,39): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/lib/utils.ts(17,45): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.

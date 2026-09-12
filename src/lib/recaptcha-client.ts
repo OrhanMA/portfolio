@@ -13,7 +13,7 @@ declare global {
 }
 
 const SCRIPT_ID = "google-recaptcha-v3";
-const LOAD_TIMEOUT_MS = 8_000;
+export const RECAPTCHA_TIMEOUT_MS = 8_000;
 let scriptPromise: Promise<void> | undefined;
 
 export function preloadRecaptcha(): Promise<void> {
@@ -30,29 +30,41 @@ export function preloadRecaptcha(): Promise<void> {
       existingScript instanceof HTMLScriptElement
         ? existingScript
         : document.createElement("script");
+    let settled = false;
+
+    const cleanup = () => {
+      window.clearTimeout(timeout);
+      script.removeEventListener("load", handleLoad);
+      script.removeEventListener("error", handleError);
+    };
+
+    const fail = (error: Error) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      scriptPromise = undefined;
+      // A failed script cannot be retried by attaching new listeners to it.
+      script.remove();
+      reject(error);
+    };
+
+    const handleLoad = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve();
+    };
+
+    const handleError = () => {
+      fail(new Error("Unable to load reCAPTCHA."));
+    };
 
     const timeout = window.setTimeout(() => {
-      scriptPromise = undefined;
-      reject(new Error("reCAPTCHA loading timed out."));
-    }, LOAD_TIMEOUT_MS);
+      fail(new Error("reCAPTCHA loading timed out."));
+    }, RECAPTCHA_TIMEOUT_MS);
 
-    script.addEventListener(
-      "load",
-      () => {
-        window.clearTimeout(timeout);
-        resolve();
-      },
-      { once: true },
-    );
-    script.addEventListener(
-      "error",
-      () => {
-        window.clearTimeout(timeout);
-        scriptPromise = undefined;
-        reject(new Error("Unable to load reCAPTCHA."));
-      },
-      { once: true },
-    );
+    script.addEventListener("load", handleLoad);
+    script.addEventListener("error", handleError);
 
     if (!existingScript) {
       script.id = SCRIPT_ID;
@@ -79,8 +91,42 @@ export async function executeRecaptcha(action: string): Promise<string> {
       return;
     }
 
-    recaptcha.ready(() => {
-      recaptcha.execute(siteKey, { action }).then(resolve).catch(reject);
-    });
+    let settled = false;
+    const timeout = window.setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      reject(new Error("reCAPTCHA execution timed out."));
+    }, RECAPTCHA_TIMEOUT_MS);
+
+    const resolveOnce = (token: string) => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeout);
+      resolve(token);
+    };
+
+    const rejectOnce = (error: unknown) => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeout);
+      reject(error);
+    };
+
+    try {
+      recaptcha.ready(() => {
+        if (settled) return;
+
+        try {
+          recaptcha
+            .execute(siteKey, { action })
+            .then(resolveOnce)
+            .catch(rejectOnce);
+        } catch (error) {
+          rejectOnce(error);
+        }
+      });
+    } catch (error) {
+      rejectOnce(error);
+    }
   });
 }

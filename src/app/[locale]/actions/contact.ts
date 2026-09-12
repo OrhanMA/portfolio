@@ -22,10 +22,11 @@ const FROM_EMAIL =
 // Minimum time (ms) between form mount and submission
 const MIN_SUBMISSION_TIME_MS = 3000;
 
-export type ContactActionState = {
-  success: boolean;
-  message: string;
-} | null;
+export type ContactActionState =
+  | { status: "success"; success: true; message: string }
+  | { status: "validation-error"; success: false; message: string }
+  | { status: "temporarily-unavailable"; success: false; message: string }
+  | null;
 
 export async function sendContactEmail(
   locale: Locale,
@@ -37,12 +38,17 @@ export async function sendContactEmail(
   // Read the honeypot before schema validation so bots receive a silent,
   // indistinguishable success response without reaching external services.
   if (typeof data?.honeypot === "string" && data.honeypot.length > 0) {
-    return { success: true, message: dict.contactErrors.success };
+    return {
+      status: "success",
+      success: true,
+      message: dict.contactErrors.success,
+    };
   }
 
   const parsed = contactSchema.safeParse(data);
   if (!parsed.success) {
     return {
+      status: "validation-error",
       success: false,
       message: dict.contactErrors.invalidData,
     };
@@ -62,6 +68,7 @@ export async function sendContactEmail(
   const elapsed = Date.now() - timestamp;
   if (elapsed < MIN_SUBMISSION_TIME_MS) {
     return {
+      status: "validation-error",
       success: false,
       message: dict.contactErrors.tooFast,
     };
@@ -72,18 +79,31 @@ export async function sendContactEmail(
   const recaptchaEnabled = Boolean(process.env.RECAPTCHA_SECRET_KEY);
   if (recaptchaEnabled && !recaptchaToken) {
     return {
+      status: "validation-error",
       success: false,
       message: dict.contactErrors.recaptchaFailed,
     };
   }
 
   if (recaptchaToken) {
-    const recaptchaResult = await verifyRecaptcha(
-      recaptchaToken,
-      "contact_form",
-    );
+    let recaptchaResult: Awaited<ReturnType<typeof verifyRecaptcha>>;
+    try {
+      recaptchaResult = await verifyRecaptcha(
+        recaptchaToken,
+        "contact_form",
+      );
+    } catch (error) {
+      console.error("Contact reCAPTCHA unavailable:", error);
+      return {
+        status: "temporarily-unavailable",
+        success: false,
+        message: dict.contactErrors.securityUnavailable,
+      };
+    }
+
     if (!recaptchaResult.success) {
       return {
+        status: "validation-error",
         success: false,
         message: dict.contactErrors.recaptchaFailed,
       };
@@ -98,11 +118,16 @@ export async function sendContactEmail(
   try {
     const rateLimitResult = await rateLimit(rateLimitKey);
     if (!rateLimitResult.success) {
-      return { success: false, message: dict.contactErrors.rateLimit };
+      return {
+        status: "validation-error",
+        success: false,
+        message: dict.contactErrors.rateLimit,
+      };
     }
   } catch (error) {
     console.error("Contact rate-limit unavailable:", error);
     return {
+      status: "temporarily-unavailable",
       success: false,
       message: dict.contactErrors.securityUnavailable,
     };
@@ -126,6 +151,7 @@ export async function sendContactEmail(
       subject,
       html: createContactEmailHtml({
         locale: safeLocale,
+        copy: dict.contactEmail,
         name,
         email,
         reasonLabel,
@@ -133,6 +159,7 @@ export async function sendContactEmail(
       }),
       text: createContactEmailText({
         locale: safeLocale,
+        copy: dict.contactEmail,
         name,
         email,
         reasonLabel,
@@ -143,18 +170,21 @@ export async function sendContactEmail(
     if (error) {
       console.error("Resend error:", error);
       return {
+        status: "temporarily-unavailable",
         success: false,
         message: dict.contactErrors.sendError,
       };
     }
 
     return {
+      status: "success",
       success: true,
       message: dict.contactErrors.success,
     };
   } catch (error) {
     console.error("Contact form error:", error);
     return {
+      status: "temporarily-unavailable",
       success: false,
       message: dict.contactErrors.unexpectedError,
     };

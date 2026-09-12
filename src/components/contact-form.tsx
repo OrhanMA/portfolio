@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useMemo, useState, useSyncExternalStore, useTransition } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
@@ -41,8 +41,16 @@ import type { Locale } from "@/lib/i18n";
 
 export type ContactFormDictionary = Pick<
   Dictionary,
-  "contactForm" | "contactReasons" | "contactValidation" | "legal"
+  | "contactForm"
+  | "contactReasons"
+  | "contactValidation"
+  | "contactErrors"
+  | "legal"
 >;
+
+function subscribeToHydration() {
+  return () => {};
+}
 
 export function ContactForm({
   locale,
@@ -53,6 +61,11 @@ export function ContactForm({
 }) {
   const [isPending, startTransition] = useTransition();
   const [actionState, setActionState] = useState<ContactActionState>(null);
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  );
   const [mountTimestamp] = useState(() => Date.now());
   const schema = useMemo(
     () => createContactSchema(dict.contactValidation),
@@ -90,14 +103,23 @@ export function ContactForm({
         // localized retry message when reCAPTCHA is required but unavailable.
       }
 
-      const result = await sendContactEmail(locale, {
-        ...data,
-        timestamp: mountTimestamp,
-        recaptchaToken,
-      });
-      setActionState(result);
-      if (result?.success) {
-        reset();
+      try {
+        const result = await sendContactEmail(locale, {
+          ...data,
+          timestamp: mountTimestamp,
+          recaptchaToken,
+        });
+        setActionState(result);
+        if (result?.success) {
+          reset();
+        }
+      } catch (error) {
+        console.error("Contact form action unavailable:", error);
+        setActionState({
+          status: "temporarily-unavailable",
+          success: false,
+          message: dict.contactErrors.temporarilyUnavailable,
+        });
       }
     });
   }
@@ -108,23 +130,21 @@ export function ContactForm({
       <div
         role="status"
         aria-live="polite"
-        className="flex flex-col items-center gap-4 rounded-xl border border-border bg-card p-8 text-center"
       >
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-          <CheckCircle2 aria-hidden="true" className="h-6 w-6 text-foreground" />
+        <div>
+          <CheckCircle2 aria-hidden="true" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold">
+          <h3>
             {dict.contactForm.successHeading}
           </h3>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p>
             {actionState.message}
           </p>
         </div>
         <Button
           variant="outline"
           onClick={() => setActionState(null)}
-          className="mt-2"
         >
           {dict.contactForm.sendAnother}
         </Button>
@@ -135,6 +155,9 @@ export function ContactForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
+      action={`mailto:${dict.legal.editorEmail}`}
+      method="post"
+      encType="text/plain"
       onFocusCapture={() => {
         void preloadRecaptcha().catch(() => undefined);
       }}
@@ -147,7 +170,6 @@ export function ContactForm({
           <div
             role="alert"
             aria-live="assertive"
-            className="rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive"
           >
             {actionState.message}
           </div>
@@ -160,7 +182,6 @@ export function ContactForm({
           render={({ field }) => (
             <div
               aria-hidden="true"
-              className="absolute -left-[9999px] -top-[9999px] h-0 w-0 overflow-hidden"
             >
               <label htmlFor="website">Website</label>
               <input
@@ -175,7 +196,7 @@ export function ContactForm({
         />
 
         {/* Name & Email row */}
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div>
           <Controller
             name="name"
             control={control}
@@ -187,10 +208,16 @@ export function ContactForm({
                 <Input
                   id="name"
                   placeholder={dict.contactForm.namePlaceholder}
+                  autoComplete="name"
                   aria-invalid={!!fieldState.error}
+                  aria-describedby={
+                    fieldState.error ? "name-error" : undefined
+                  }
                   {...field}
                 />
-                <FieldError>{fieldState.error?.message}</FieldError>
+                <FieldError id="name-error">
+                  {fieldState.error?.message}
+                </FieldError>
               </Field>
             )}
           />
@@ -207,10 +234,16 @@ export function ContactForm({
                   id="email"
                   type="email"
                   placeholder={dict.contactForm.emailPlaceholder}
+                  autoComplete="email"
                   aria-invalid={!!fieldState.error}
+                  aria-describedby={
+                    fieldState.error ? "email-error" : undefined
+                  }
                   {...field}
                 />
-                <FieldError>{fieldState.error?.message}</FieldError>
+                <FieldError id="email-error">
+                  {fieldState.error?.message}
+                </FieldError>
               </Field>
             )}
           />
@@ -230,9 +263,12 @@ export function ContactForm({
                 onValueChange={field.onChange}
               >
                 <SelectTrigger
+                  ref={field.ref}
                   id="reason"
-                  className="w-full"
                   aria-invalid={!!fieldState.error}
+                  aria-describedby={
+                    fieldState.error ? "reason-error" : undefined
+                  }
                 >
                   <SelectValue
                     placeholder={dict.contactForm.reasonPlaceholder}
@@ -248,7 +284,9 @@ export function ContactForm({
                   )}
                 </SelectContent>
               </Select>
-              <FieldError>{fieldState.error?.message}</FieldError>
+              <FieldError id="reason-error">
+                {fieldState.error?.message}
+              </FieldError>
             </Field>
           )}
         />
@@ -267,12 +305,19 @@ export function ContactForm({
                   id="customSubject"
                   placeholder={dict.contactForm.customSubjectPlaceholder}
                   aria-invalid={!!fieldState.error}
+                  aria-describedby={
+                    fieldState.error
+                      ? "customSubject-description customSubject-error"
+                      : "customSubject-description"
+                  }
                   {...field}
                 />
-                <FieldDescription>
+                <FieldDescription id="customSubject-description">
                   {dict.contactForm.customSubjectDescription}
                 </FieldDescription>
-                <FieldError>{fieldState.error?.message}</FieldError>
+                <FieldError id="customSubject-error">
+                  {fieldState.error?.message}
+                </FieldError>
               </Field>
             )}
           />
@@ -290,24 +335,25 @@ export function ContactForm({
               <Textarea
                 id="message"
                 placeholder={dict.contactForm.messagePlaceholder}
-                className="min-h-32"
                 aria-invalid={!!fieldState.error}
+                aria-describedby={
+                  fieldState.error
+                    ? "message-description message-error"
+                    : "message-description"
+                }
                 {...field}
               />
-              <FieldDescription>
+              <FieldDescription id="message-description">
                 {field.value.length > 0 && (
                   <span
-                    className={
-                      field.value.length > 5000
-                        ? "text-destructive"
-                        : "text-muted-foreground"
-                    }
                   >
                     {field.value.length}/5000 {dict.contactForm.characters}
                   </span>
                 )}
               </FieldDescription>
-              <FieldError>{fieldState.error?.message}</FieldError>
+              <FieldError id="message-error">
+                {fieldState.error?.message}
+              </FieldError>
             </Field>
           )}
         />
@@ -316,34 +362,31 @@ export function ContactForm({
         <Button
           type="submit"
           size="lg"
-          disabled={isPending}
-          className="w-full sm:w-auto"
+          disabled={!isHydrated || isPending}
         >
           {isPending ? (
             <>
-              <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 aria-hidden="true" />
               {dict.contactForm.submittingLabel}
             </>
           ) : (
             <>
-              <Send aria-hidden="true" className="mr-2 h-4 w-4" />
+              <Send aria-hidden="true" />
               {dict.contactForm.submitLabel}
             </>
           )}
         </Button>
 
-        <p className="max-w-2xl text-xs leading-5 text-muted-foreground">
+        <p>
           {dict.contactForm.privacyNotice} {" "}
           <a
             href={`mailto:${dict.legal.editorEmail}`}
-            className="underline underline-offset-2 hover:text-foreground"
           >
             {dict.legal.editorEmail}
           </a>
           {" "}
           <a
             href={`/${locale}/politique-confidentialite`}
-            className="underline underline-offset-2 hover:text-foreground"
           >
             {dict.contactForm.privacyNoticeLink}
           </a>

@@ -29,7 +29,6 @@ export function YouTubeFacade({
       <iframe
         src={privacyEnhancedEmbedUrl(src)}
         title={title}
-        className="h-full w-full"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="no-referrer"
         allowFullScreen
@@ -41,16 +40,15 @@ export function YouTubeFacade({
     <button
       type="button"
       onClick={() => setIsLoaded(true)}
-      className="group relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden bg-muted px-6 text-center text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
       aria-label={`${loadLabel}: ${title}`}
     >
-      <span className="flex size-14 items-center justify-center rounded-full bg-foreground text-background transition-transform group-hover:scale-105">
-        <Play aria-hidden="true" className="ml-0.5 size-6 fill-current" />
+      <span>
+        <Play aria-hidden="true" />
       </span>
-      <span className="font-sans text-xs font-bold uppercase tracking-[0.16em]">
+      <span>
         {loadLabel}
       </span>
-      <span className="max-w-sm text-xs leading-5 text-muted-foreground">
+      <span>
         {privacyNotice}
       </span>
     </button>

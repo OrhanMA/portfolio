@@ -5,7 +5,7 @@ export const autonomie: Competence = {
   title: { fr: "Autonomie", en: "Autonomy" },
   type: "human",
   level: "intermediate",
-  radarValue: 60,
+  radarValue: 90,
   icon: "Compass",
   definition: {
     fr: `L'autonomie en ingénierie logicielle ne consiste pas à travailler sans interlocuteur. Elle désigne la capacité à prendre en charge un problème de bout en bout : comprendre le besoin réel, identifier ce qui manque, proposer une stratégie, mesurer les risques, produire une solution vérifiable et rendre compte des décisions prises. Elle suppose aussi de distinguer ce que le développeur peut décider seul de ce qui relève du métier, de la hiérarchie ou d'un fournisseur externe. Une personne autonome avance sans attendre des instructions détaillées, mais elle ne transforme pas l'absence d'encadrement en absence de contrôle.

@@ -1,0 +1,108 @@
+{
+  "initial": {
+    "url": "http://127.0.0.1:3317/fr",
+    "nonce": "MzJkMjFiODAtNDAxNC00MDdkLTk3YjgtNWFjNTJhZTA3Yzhk",
+    "csp": [],
+    "jsonld": [
+      [
+        {
+          "type": "Person",
+          "url": "https://orhanmadiassani.com/fr"
+        },
+        {
+          "type": "WebSite",
+          "url": "https://orhanmadiassani.com/fr"
+        },
+        {
+          "type": "ProfilePage",
+          "url": "https://orhanmadiassani.com/fr"
+        }
+      ]
+    ],
+    "theme": "roboto_flex_8fde2dd5-module__Sz9CDG__variable geist_mono_8569b170-module__KcAgDa__variable dark"
+  },
+  "afterSameLocale": {
+    "url": "http://127.0.0.1:3317/fr/a-propos",
+    "nonce": "MzJkMjFiODAtNDAxNC00MDdkLTk3YjgtNWFjNTJhZTA3Yzhk",
+    "csp": [],
+    "jsonld": [
+      [
+        {
+          "type": "Person",
+          "url": "https://orhanmadiassani.com/fr"
+        },
+        {
+          "type": "WebSite",
+          "url": "https://orhanmadiassani.com/fr"
+        },
+        {
+          "type": "ProfilePage",
+          "url": "https://orhanmadiassani.com/fr"
+        }
+      ]
+    ],
+    "theme": "roboto_flex_8fde2dd5-module__Sz9CDG__variable geist_mono_8569b170-module__KcAgDa__variable dark lenis"
+  },
+  "afterLocale": {
+    "url": "http://127.0.0.1:3317/en/a-propos",
+    "nonce": "MzJkMjFiODAtNDAxNC00MDdkLTk3YjgtNWFjNTJhZTA3Yzhk",
+    "csp": [
+      {
+        "directive": "style-src-elem",
+        "blocked": "inline"
+      }
+    ],
+    "jsonld": [
+      [
+        {
+          "type": "Person",
+          "url": "https://orhanmadiassani.com/en"
+        },
+        {
+          "type": "WebSite",
+          "url": "https://orhanmadiassani.com/en"
+        },
+        {
+          "type": "WebPage",
+          "url": "https://orhanmadiassani.com/en/a-propos"
+        }
+      ]
+    ],
+    "theme": "roboto_flex_8fde2dd5-module__Sz9CDG__variable geist_mono_8569b170-module__KcAgDa__variable dark"
+  },
+  "afterTheme": {
+    "url": "http://127.0.0.1:3317/en/a-propos",
+    "nonce": "MzJkMjFiODAtNDAxNC00MDdkLTk3YjgtNWFjNTJhZTA3Yzhk",
+    "csp": [
+      {
+        "directive": "style-src-elem",
+        "blocked": "inline"
+      },
+      {
+        "directive": "style-src-elem",
+        "blocked": "inline"
+      }
+    ],
+    "jsonld": [
+      [
+        {
+          "type": "Person",
+          "url": "https://orhanmadiassani.com/en"
+        },
+        {
+          "type": "WebSite",
+          "url": "https://orhanmadiassani.com/en"
+        },
+        {
+          "type": "WebPage",
+          "url": "https://orhanmadiassani.com/en/a-propos"
+        }
+      ]
+    ],
+    "theme": "roboto_flex_8fde2dd5-module__Sz9CDG__variable geist_mono_8569b170-module__KcAgDa__variable lenis light"
+  },
+  "errors": [
+    "Applying inline style violates the following Content Security Policy directive 'style-src-elem 'self' 'nonce-MzJkMjFiODAtNDAxNC00MDdkLTk3YjgtNWFjNTJhZTA3Yzhk''. Either the 'unsafe-inline' keyword, a hash ('sha256-skqujXORqzxt1aE0NNXxujEanPTX6raoqSscTV/Ww/Y='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src-elem 'self' 'nonce-MzJkMjFiODAtNDAxNC00MDdkLTk3YjgtNWFjNTJhZTA3Yzhk''. Either the 'unsafe-inline' keyword, a hash ('sha256-skqujXORqzxt1aE0NNXxujEanPTX6raoqSscTV/Ww/Y='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked."
+  ]
+}

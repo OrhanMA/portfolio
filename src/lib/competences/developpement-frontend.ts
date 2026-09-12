@@ -8,7 +8,7 @@ export const developpementFrontend: Competence = {
   },
   type: "technical",
   level: "intermediate",
-  radarValue: 60,
+  radarValue: 80,
   icon: "Monitor",
   definition: {
     fr: `Le développement frontend transforme des contenus, des données et des actions en une interface compréhensible, accessible et fiable. La compétence ne se réduit pas à reproduire une maquette : il faut construire une hiérarchie, gérer les états, adapter la mise en page à la largeur disponible, préserver la navigation au clavier, annoncer correctement les changements et limiter le coût des ressources exécutées dans le navigateur.

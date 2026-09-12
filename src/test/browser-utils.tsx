@@ -3,11 +3,12 @@ import "@/app/globals.css";
 import { DictionaryProvider } from "@/components/dictionary-provider";
 import frDict from "@/app/[locale]/dictionaries/fr.json";
 import enDict from "@/app/[locale]/dictionaries/en.json";
+import type { Locale } from "@/lib/i18n";
 
 type Dictionary = typeof frDict;
 
 interface BrowserRenderOptions extends Omit<RenderOptions, "wrapper"> {
-  locale?: "fr" | "en";
+  locale?: Locale;
   dictionary?: Dictionary;
 }
 
