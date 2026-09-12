@@ -149,6 +149,32 @@ test.describe("Navigation", () => {
     await competencesLink.hover();
     await expect(competencesSubmenu).toBeVisible();
 
+    const triggerBox = await competencesLink.boundingBox();
+    const submenuBox = await competencesSubmenu.boundingBox();
+    expect(triggerBox).not.toBeNull();
+    expect(submenuBox).not.toBeNull();
+
+    await page.mouse.move(
+      triggerBox!.x + triggerBox!.width / 2,
+      triggerBox!.y + triggerBox!.height - 1,
+    );
+    await page.mouse.move(
+      submenuBox!.x + submenuBox!.width / 2,
+      submenuBox!.y + 6,
+    );
+    await expect(competencesSubmenu).toBeVisible();
+    await expect(
+      desktopNavigation.getByRole("link", {
+        name: "Autonomie",
+        exact: true,
+      }),
+    ).toBeVisible();
+
+    await page.mouse.move(
+      triggerBox!.x + triggerBox!.width / 2,
+      triggerBox!.y + triggerBox!.height / 2,
+    );
+
     await competencesLink.press("Escape");
     await expect(competencesLink).toHaveAttribute("aria-expanded", "false");
     await expect(competencesLink).toBeFocused();

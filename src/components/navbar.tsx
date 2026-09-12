@@ -209,6 +209,7 @@ function DesktopSubmenu({
 
   return (
     <div
+      className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={(event) => {
         if (!event.currentTarget.contains(document.activeElement)) {
