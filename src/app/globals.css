@@ -183,14 +183,14 @@
   #a-propos > div > div:last-child { @apply divide-y divide-border border-y border-border; }
   #a-propos article { @apply py-6; }
   #a-propos h3 { @apply text-base font-semibold; }
-  #a-propos article p { @apply mt-2 text-sm leading-6 text-muted-foreground; }
+  #a-propos article p { @apply mt-2 text-base leading-7 text-muted-foreground; }
   #a-propos a { @apply no-underline hover:underline; }
 
   #main-content > div > #parcours:has(ol) { @apply border-y border-border bg-muted/45; }
   #main-content > div > #parcours:has(ol) > div { @apply grid gap-12 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-20; }
   #main-content > div > #parcours:has(ol) > div > div:first-child > p:first-child, #competences > div > div:first-child > div > p, #realisations > div > div:first-child > p, #contact > div > div > p:first-child { @apply font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground; }
   #main-content > div > #parcours:has(ol) h2 { @apply mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl; }
-  #main-content > div > #parcours:has(ol) h2 + p { @apply mt-5 max-w-sm text-sm leading-6 text-muted-foreground; }
+  #main-content > div > #parcours:has(ol) h2 + p { @apply mt-5 max-w-sm text-base leading-7 text-muted-foreground; }
   #main-content > div > #parcours:has(ol) h2 + p + p { @apply mt-5 max-w-sm text-xs leading-5 text-muted-foreground; }
   #main-content > div > #parcours:has(ol) ol { @apply border-t border-border; }
   #main-content > div > #parcours:has(ol) li { @apply relative border-b border-border py-8 pl-6; }
@@ -202,10 +202,10 @@
   #main-content > div > #parcours:has(ol) h3 + div { @apply mt-3 flex flex-wrap gap-2; }
   #main-content > div > #parcours:has(ol) h3 + div a { @apply inline-flex items-center gap-2 rounded-md border border-border bg-background px-2.5 py-1.5 text-sm font-medium no-underline hover:bg-muted; }
   #main-content > div > #parcours:has(ol) h3 + div img { @apply h-6 w-6 object-contain; }
-  #main-content > div > #parcours:has(ol) article > p { @apply mt-3 max-w-3xl text-sm leading-6 text-muted-foreground; }
+  #main-content > div > #parcours:has(ol) article > p { @apply mt-3 max-w-3xl text-base leading-7 text-muted-foreground; }
   #main-content > div > #parcours:has(ol) article > div { @apply mt-4 flex flex-wrap gap-2; }
   #main-content > div > #parcours:has(ol) [aria-expanded] { @apply mt-5 inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm font-medium hover:bg-background; }
-  #main-content > div > #parcours:has(ol) [aria-expanded] + div:not([hidden]) > div { @apply mt-3 border border-border bg-background p-4 text-sm leading-6; }
+  #main-content > div > #parcours:has(ol) [aria-expanded] + div:not([hidden]) > div { @apply mt-3 border border-border bg-background p-4 text-base leading-7; }
 
   #main-content > div > #parcours:not(:has(ol)) > div { @apply grid gap-10 lg:grid-cols-[minmax(16rem,.6fr)_minmax(0,1.4fr)] lg:items-start; }
   #main-content > div > #parcours:not(:has(ol)) > div > div:first-child { @apply grid grid-cols-2 gap-3 lg:grid-cols-1; }
@@ -221,7 +221,7 @@
   #valeurs > div { @apply grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,.45fr)] lg:items-start; }
   #valeurs h2, #projet h2, #qualites h2, #interets h2 { @apply text-4xl font-semibold tracking-[-0.045em] sm:text-5xl; }
   #valeurs > div > div > div:last-child { @apply mt-8 grid gap-4; }
-  #valeurs article { @apply grid grid-cols-[2rem_minmax(0,1fr)] gap-3 rounded-xl border border-white/45 bg-card/70 p-5 text-sm leading-6 text-muted-foreground shadow-[0_1rem_2.5rem_oklch(0.25_0.04_255/7%)] backdrop-blur-xl dark:border-white/10; }
+  #valeurs article { @apply grid grid-cols-[2rem_minmax(0,1fr)] gap-3 rounded-xl border border-white/45 bg-card/70 p-5 text-base leading-7 text-muted-foreground shadow-[0_1rem_2.5rem_oklch(0.25_0.04_255/7%)] backdrop-blur-xl dark:border-white/10; }
   #valeurs article > svg { @apply mt-0.5 text-primary; }
   #valeurs figure { @apply overflow-hidden rounded-xl border border-border bg-card; }
   #valeurs figure img { @apply h-full w-full object-cover; }
@@ -232,13 +232,13 @@
   #projet article { @apply rounded-xl border border-white/45 bg-card/70 p-6 shadow-[0_1rem_2.5rem_oklch(0.25_0.04_255/7%)] backdrop-blur-xl transition-transform duration-300 hover:[transform:perspective(900px)_rotateX(1deg)_translateY(-4px)] dark:border-white/10; }
   #projet article > svg { @apply text-primary; }
   #projet h3 { @apply mt-5 text-xl font-semibold tracking-[-0.02em]; }
-  #projet h3 + div { @apply mt-3 text-sm leading-6 text-muted-foreground; }
+  #projet h3 + div { @apply mt-3 text-base leading-7 text-muted-foreground; }
 
   #qualites { @apply border-y border-border bg-muted/45; }
   #qualites > div > div { @apply mt-8 grid gap-4 md:grid-cols-3; }
   #qualites article { @apply border-t border-border pt-5; }
   #qualites h3 { @apply text-xl font-semibold tracking-[-0.02em]; }
-  #qualites article > div { @apply mt-3 text-sm leading-6 text-muted-foreground; }
+  #qualites article > div { @apply mt-3 text-base leading-7 text-muted-foreground; }
 
   #interets > div { @apply max-w-3xl; }
   #interets h2 + div { @apply mt-6 text-base leading-7 text-muted-foreground; }
@@ -262,7 +262,7 @@
   [data-skill-domain] [data-slot="card"] { @apply flex min-h-52 flex-col justify-between rounded-xl border border-white/45 bg-card/70 shadow-[0_1rem_2.5rem_oklch(0.25_0.04_255/7%)] backdrop-blur-xl transition-transform duration-300 hover:[transform:perspective(900px)_rotateX(1deg)_rotateY(-1deg)_translateY(-4px)] dark:border-white/10; }
   [data-skill-domain] [data-slot="card-header"] > div { @apply flex items-start justify-between gap-4; }
   [data-skill-domain] [data-slot="card-title"] h3 { @apply text-xl font-semibold tracking-[-0.025em]; }
-  [data-skill-domain] [data-slot="card-description"] { @apply mt-3 text-sm leading-6 text-muted-foreground; }
+  [data-skill-domain] [data-slot="card-description"] { @apply mt-3 text-base leading-7 text-muted-foreground; }
   [data-skill-domain] [data-slot="card-content"] { @apply mt-auto border-t border-border pt-4; }
   [data-skill-domain] [data-slot="card-content"] > a { @apply text-sm font-semibold text-primary; }
 
@@ -272,7 +272,7 @@
   #competences article { @apply border-t border-border pt-5; }
   #competences h3 { @apply text-xl font-semibold tracking-[-0.02em]; }
   #competences h3 a { @apply no-underline hover:underline; }
-  #competences article p { @apply mt-3 text-sm leading-6 text-muted-foreground; }
+  #competences article p { @apply mt-3 text-base leading-7 text-muted-foreground; }
   #competences ul { @apply mt-4 flex flex-wrap gap-2; }
   #competences li a, #realisations [data-slot="card-content"] a { @apply inline-flex items-center gap-1 rounded-md bg-muted px-2.5 py-1.5 text-xs font-medium no-underline hover:bg-accent; }
 
@@ -289,14 +289,14 @@
   #realisations [data-case-row][data-case-variant="copy-first"] > div:nth-child(2) { @apply lg:order-1 lg:border-l-0 lg:border-r; }
   #realisations [data-case-row] h3 { @apply text-2xl font-semibold leading-tight tracking-[-0.03em] sm:text-3xl; }
   #realisations [data-case-row] h3 a { @apply no-underline hover:underline; }
-  #realisations [data-case-row] h3 + p { @apply mt-4 text-sm leading-6 text-muted-foreground; }
+  #realisations [data-case-row] h3 + p { @apply mt-4 text-base leading-7 text-muted-foreground; }
   #realisations [data-case-row] h3 + p + div { @apply mt-5 flex flex-wrap gap-2; }
   #realisations [data-case-row] h3 + p + div + a { @apply mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-semibold no-underline hover:underline; }
   #realisations [data-case-row] [data-slot="project-result"] { @apply flex min-h-48 flex-col justify-center border-t border-white/45 bg-background/35 p-6 backdrop-blur-md dark:border-white/10 lg:order-3 lg:min-h-[26rem] lg:border-l lg:border-t-0; }
   #realisations [data-case-row] [data-slot="project-result"] p:first-child { @apply font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground; }
   #realisations [data-case-row] [data-slot="project-result"] p:nth-child(2) { @apply mt-2 text-5xl font-semibold tracking-[-0.05em]; }
   #realisations [data-case-row] [data-slot="project-result"] p:nth-child(3) { @apply mt-1 font-semibold; }
-  #realisations [data-case-row] [data-slot="project-result"] p:last-child { @apply mt-3 text-sm leading-6 text-muted-foreground; }
+  #realisations [data-case-row] [data-slot="project-result"] p:last-child { @apply mt-3 text-base leading-7 text-muted-foreground; }
 
   #contact { @apply border-t border-border bg-muted/45; }
   #contact > div { @apply flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between; }
@@ -338,7 +338,7 @@
   [data-competence-article] [data-slot="card"] { @apply rounded-xl border border-white/45 bg-card/70 shadow-[0_1rem_2.5rem_oklch(0.25_0.04_255/7%)] backdrop-blur-xl dark:border-white/10; }
   [data-competence-article] [data-slot="card-header"] { @apply border-b border-border pb-4; }
   [data-competence-article] [data-slot="card-title"] { @apply text-2xl font-semibold tracking-[-0.03em]; }
-  [data-competence-article] [data-slot="card-content"] { @apply text-sm leading-7 text-muted-foreground; }
+  [data-competence-article] [data-slot="card-content"] { @apply text-base leading-7 text-muted-foreground; }
   [data-competence-article] [data-slot="card-content"] > div { @apply grid gap-5; }
   [data-competence-article] [data-slot="card-content"] > div > article { @apply rounded-lg border border-border bg-muted/45 p-5; }
   [data-competence-article] [data-slot="card-content"] article > div:first-child { @apply grid grid-cols-[1.75rem_minmax(0,1fr)] gap-3; }
