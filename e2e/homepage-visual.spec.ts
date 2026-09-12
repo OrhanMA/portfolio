@@ -34,6 +34,22 @@ test.describe("Homepage visual regression", () => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await prepareHomepage(page);
 
+    const heroGeometry = await page
+      .locator("#main-content > div > section")
+      .first()
+      .evaluate((section) => {
+        const sectionRect = section.getBoundingClientRect();
+        const contentRect = section.firstElementChild?.getBoundingClientRect();
+        if (!contentRect) throw new Error("Hero content container is missing");
+        return {
+          sectionCenter: (sectionRect.top + sectionRect.bottom) / 2,
+          contentCenter: (contentRect.top + contentRect.bottom) / 2,
+        };
+      });
+    expect(Math.abs(heroGeometry.contentCenter - heroGeometry.sectionCenter)).toBeLessThanOrEqual(
+      32,
+    );
+
     await expect(page).toHaveScreenshot("homepage-minimal-desktop.png", {
       fullPage: true,
       animations: "disabled",

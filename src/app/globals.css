@@ -564,8 +564,15 @@
     background: linear-gradient(90deg, color-mix(in oklch, var(--background) 93%, transparent), color-mix(in oklch, var(--background) 68%, transparent) 52%, transparent 78%);
   }
 
-  #main-content > div > section:first-of-type:has(h1 span) > div {
+  #main-content > div > section:first-of-type:has(h1 span) {
+    display: grid;
     min-height: calc(100dvh - 4rem);
+    align-items: center;
+    padding-block: clamp(3rem, 7vh, 5.5rem);
+  }
+
+  #main-content > div > section:first-of-type:has(h1 span) > div {
+    min-height: 0;
   }
 
   #main-content > div > section:first-of-type:has(h1 span) h1 {
