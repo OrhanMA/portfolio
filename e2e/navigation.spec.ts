@@ -12,6 +12,54 @@ test.describe("Navigation", () => {
     await expect(identity).toContainText("Orhan Madi Assani");
   });
 
+  test("uses the same red hover color across navigation links and controls", async ({
+    page,
+  }) => {
+    await page.goto("/fr");
+
+    const contactCta = page
+      .locator("#main-content")
+      .getByRole("link", { name: "Me contacter", exact: true })
+      .first();
+    const desktopNavigation = page.locator("[data-desktop-navigation]");
+    const aboutLink = desktopNavigation.getByRole("link", {
+      name: "À propos",
+      exact: true,
+    });
+    const skillsTrigger = desktopNavigation.getByRole("button", {
+      name: "Compétences",
+      exact: true,
+    });
+
+    const readHoverColor = (locator: typeof contactCta) =>
+      locator.evaluate((element) => {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1;
+        canvas.height = 1;
+        const context = canvas.getContext("2d");
+        if (!context) return { color: "", rgba: [] };
+        const color = getComputedStyle(element).color;
+        context.fillStyle = color;
+        context.fillRect(0, 0, 1, 1);
+        return { color, rgba: [...context.getImageData(0, 0, 1, 1).data] };
+      });
+
+    await contactCta.hover();
+    await page.waitForTimeout(250);
+    const contactHoverColor = await readHoverColor(contactCta);
+
+    await aboutLink.hover();
+    await page.waitForTimeout(250);
+    const aboutHoverColor = await readHoverColor(aboutLink);
+
+    await skillsTrigger.hover();
+    await page.waitForTimeout(250);
+    const skillsHoverColor = await readHoverColor(skillsTrigger);
+
+    expect(aboutHoverColor.rgba).toEqual(contactHoverColor.rgba);
+    expect(skillsHoverColor.rgba).toEqual(contactHoverColor.rgba);
+  });
+
   test("timeline entries reveal on direct hash navigation", async ({ page }) => {
     await page.goto("/fr#parcours", { waitUntil: "load" });
 
