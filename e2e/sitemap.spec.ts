@@ -85,8 +85,11 @@ test("every sitemap route and internal link is structurally healthy", async ({
       if (identity.getAttribute("href") !== `/${locale}`) {
         errors.push(`${path}: site identity has an invalid home link`);
       }
-      if (identity.querySelector("img")) {
-        errors.push(`${path}: site identity must remain text-only`);
+      const identityImage = identity.querySelector<HTMLImageElement>(
+        "img[data-site-identity-photo]",
+      );
+      if (!identityImage || identityImage.getAttribute("alt") !== "") {
+        errors.push(`${path}: site identity portrait is missing or not decorative`);
       }
     }
     if (document.querySelectorAll("footer").length !== 1) {

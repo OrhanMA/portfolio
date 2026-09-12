@@ -86,7 +86,7 @@ export default async function ProjectsPage({
         }
       />
 
-      <section>
+      <section data-editorial-list="projects">
         <div>
           <div>
             {odooProjects.map((project) => (

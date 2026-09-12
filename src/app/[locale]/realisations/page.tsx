@@ -51,7 +51,7 @@ export default async function RealisationsPage({
         titleClassName="uppercase"
       />
 
-      <section>
+      <section data-editorial-list="work">
         <div>
           <div>
             {realisations.map((realisation) => (

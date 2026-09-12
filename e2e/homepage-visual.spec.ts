@@ -65,7 +65,7 @@ test.describe("Homepage visual regression", () => {
     });
   });
 
-  test("uses the neutral portrait without decorative assets", async ({ page }) => {
+  test("uses the neutral portrait with the approved atmospheric background", async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.emulateMedia({
@@ -89,9 +89,10 @@ test.describe("Homepage visual regression", () => {
     await expect(
       page.getByRole("button", { name: "Open issues overlay" }),
     ).toHaveCount(0);
-    await expect(page.locator(".about-stamp").first()).toHaveCSS(
-      "box-shadow",
-      "none",
-    );
+    const atmosphere = page.locator('[data-page-atmosphere][data-family="home"]');
+    await expect(atmosphere).toHaveCount(1);
+    await expect(atmosphere).toHaveCSS("position", "fixed");
+    await expect(atmosphere).toHaveCSS("pointer-events", "none");
+    await expect(atmosphere.locator('img[src*="background-home"]')).toHaveCount(1);
   });
 });

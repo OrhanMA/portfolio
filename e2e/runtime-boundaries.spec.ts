@@ -76,8 +76,9 @@ test.describe("calendar rendering", () => {
   }) => {
     await page.goto("/fr/articles", { waitUntil: "networkidle" });
 
-    await expect(page.locator(".article-index")).toContainText("13 mai 2026");
-    await expect(page.locator(".article-index")).not.toContainText("12 mai 2026");
+    const articleIndex = page.locator("main");
+    await expect(articleIndex).toContainText("13 mai 2026");
+    await expect(articleIndex).not.toContainText("12 mai 2026");
   });
 });
 
@@ -91,7 +92,7 @@ test.describe("no-JavaScript fallback", () => {
       page.getByRole("heading", { name: "Orhan Madi Assani", exact: true }),
     ).toBeVisible();
     await expect(page.locator("#a-propos")).toContainText("À propos");
-    await expect(page.locator("#a-propos .invisible").first()).toBeVisible();
+    await expect(page.locator("#a-propos article").first()).toBeVisible();
     await expect(page.getByRole("status")).toHaveCount(0);
   });
 

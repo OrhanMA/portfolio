@@ -4,7 +4,7 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-09-08
+Last reviewed: 2026-09-12
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
@@ -14,7 +14,7 @@ Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
 
 L'application est un portfolio Next.js 16 bilingue FR/EN : toutes les routes utilisent l'App Router et le segment `[locale]`. Le socle technique couvre les dictionnaires JSON, une navbar et un footer persistants, GSAP centralisé, Lenis chargé à l'interaction, thème dark/light, consentement cookies versionné, GTM conditionné au consentement, formulaire de contact avec validation et anti-spam multicouche, sitemap, robots, tests unitaires/browser/E2E et CI GitHub Actions. Un nonce CSP est généré par requête : le rendu est donc dynamique par choix de sécurité, sans script non sécurisé. Le footer donne accès au CV, au TOEIC et aux titres RNCP sans alourdir la homepage.
 
-La direction éditoriale actuelle est neutre et structurée : typographie expressive, palette monochrome pilotée par les variables shadcn, séparateurs nets, panneaux sobres et accent donné par le contenu plutôt que par une illustration thématique. La homepage conserve son portrait et ses sections de preuve ; les pages secondaires utilisent un en-tête éditorial commun et des panneaux lisibles. La frise verticale est accompagnée de logos réels, les compétences sont synthétisées en six domaines, les réalisations forment une mosaïque compacte avec captures et métriques vérifiées, et le contact expose aussi une adresse email de secours. Les documents publics sont regroupés dans le footer. Les animations disposent d'une variante `prefers-reduced-motion` et le contenu principal reste lisible sans JavaScript ; les régressions couvrent desktop et mobile.
+La direction éditoriale actuelle associe une architecture romaine contemporaine à une palette ivoire, charbon et rouge profond. Cinq fonds fixes optimisés différencient l'accueil, la présentation, le parcours, les compétences et les réalisations sans capturer les interactions. Forum structure les grands titres, EB Garamond porte les contenus longs et Roboto Flex reste réservé aux contrôles. La homepage conserve son portrait et ses sections de preuve ; les pages secondaires utilisent un en-tête éditorial commun et des surfaces de lecture suffisamment opaques. La frise verticale est accompagnée de logos réels, les compétences sont comparées dans un radar, les réalisations sont organisées en lignes éditoriales, et le contact expose aussi une adresse email de secours. Les documents publics sont regroupés dans le footer. Les animations disposent d'une variante `prefers-reduced-motion` et les fonds mobiles sont fortement atténués.
 
 Les contenus principaux de la grille ISCOD sont en place : 10 compétences, 5 réalisations détaillées, navigation circulaire compétences ↔ réalisations, frise chronologique ouverte, expérience/formation avec logos et page contact. La navbar mène directement aux pages À propos, Compétences et Réalisations, tout en conservant l'ancre Parcours de la homepage ; ses sous-menus donnent aussi accès aux 10 compétences et aux 5 réalisations sur desktop comme sur mobile. Les pages réalisations ont des preuves visuelles : captures Odoo, captures corporate, captures CAP2vie et vidéos de démonstration CAP2vie. Les relations compétences ↔ réalisations sont réciproques et protégées par un test automatique. Le TOEIC est daté du 7 août 2025 et son certificat public est lié depuis le footer.
 
@@ -29,7 +29,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Prénom + Nom sur toutes les pages | ✅ | Signature texte discrète visible en haut à gauche dans la navbar persistante, sur desktop comme sur mobile |
-| Photo sur toutes les pages | — | Choix éditorial demandé : le portrait reste réservé au hero de la page d’accueil et n’est pas répété sur les pages secondaires |
+| Photo sur toutes les pages | ✅ | Portrait présent dans l'identité persistante du bandeau sur toutes les pages, avec une version plus grande dans le hero de l'accueil |
 
 ---
 
@@ -37,7 +37,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 
 | Critère | Status | Notes |
 |---------|--------|-------|
-| Attrayante | ✅ | Direction éditoriale neutre et distinctive : hero monumental, portrait, composition typographique, animations natives légères et dark/light mode |
+| Attrayante | ✅ | Direction éditoriale romaine distinctive : hero monumental, portrait, composition typographique, lumière animée légère et dark/light mode |
 | Convaincante | ✅ | CTA contact persistant, mosaïque de cas avec métriques vérifiées et documents publics accessibles dans le footer |
 | Correctement structurée | ✅ | Hero → About → Experience → Skills → Réalisations mises en avant → CTA, avec niveaux de lecture détaillés sur les pages dédiées |
 

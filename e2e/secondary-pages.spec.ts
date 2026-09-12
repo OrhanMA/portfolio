@@ -60,7 +60,10 @@ for (const viewport of [
         identity.locator("[data-site-identity-name]"),
         route.path,
       ).toBeVisible();
-      await expect(identity.locator("img"), route.path).toHaveCount(0);
+      await expect(
+        identity.locator("img[data-site-identity-photo]"),
+        route.path,
+      ).toHaveCount(1);
 
       if ((route.expectedStatus ?? 200) === 200) {
         await expect(identity, route.path).toHaveAttribute(

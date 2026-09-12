@@ -5,7 +5,7 @@ import { SiteIdentity } from "@/components/site-identity";
 export default function GlobalNotFound() {
   return (
     <html lang="fr">
-      <body>
+      <body className={deferredFontClassName}>
         <SiteIdentity
           href="/fr"
         />

@@ -12,6 +12,7 @@ import { Footer } from "@/components/footer";
 import { CookieConsent } from "@/components/cookie-consent";
 import { Analytics } from "@/components/analytics";
 import { StructuredData } from "@/components/structured-data";
+import { PageAtmosphere } from "@/components/page-atmosphere";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { competences } from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
@@ -59,10 +60,10 @@ export default async function LocaleLayout({
       lang={loc}
       suppressHydrationWarning
     >
-      <body>
+      <body className={deferredFontClassName}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
           nonce={nonce}
@@ -76,6 +77,7 @@ export default async function LocaleLayout({
             }}
           >
             <StructuredData locale={loc} nonce={nonce} />
+            <PageAtmosphere />
             <SmoothScroll>
               <a
                 href="#main-content"

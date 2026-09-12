@@ -1,32 +1,32 @@
 {
   "measurement": {
     "source": "scripts/check-performance-budget.mjs",
-    "method": "The current .next build is served with next start; each route is loaded in a fresh Chromium context with reduced motion. Budgets compare encoded JS, document and font bytes plus post-load DOM element count.",
+    "method": "The current .next build is served with next start, or an existing server is selected with PERFORMANCE_BASE_URL; each route is loaded in a fresh Chromium context with reduced motion. Budgets compare encoded JS, document and font bytes plus post-load DOM element count.",
     "decision": "These are regression guardrails for representative routes, not Core Web Vitals or a production SLA. Re-measure on a modest device before changing SSR boundaries or removing editorial content."
   },
   "routes": {
     "/fr": {
       "jsEncoded": 256000,
       "documentEncoded": 204800,
-      "fonts": 65536,
+      "fonts": 122880,
       "domElements": 1200
     },
     "/fr/articles": {
       "jsEncoded": 256000,
       "documentEncoded": 128000,
-      "fonts": 65536,
+      "fonts": 122880,
       "domElements": 600
     },
     "/fr/realisations/portfolio-professionnel": {
       "jsEncoded": 256000,
       "documentEncoded": 220000,
-      "fonts": 65536,
+      "fonts": 122880,
       "domElements": 1800
     },
     "/fr/competences": {
       "jsEncoded": 256000,
       "documentEncoded": 128000,
-      "fonts": 65536,
+      "fonts": 122880,
       "domElements": 600
     }
   }

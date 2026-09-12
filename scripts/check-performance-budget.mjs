@@ -64,23 +64,27 @@ try {
     throw new Error("performance-budget.json must define a routes object");
   }
 
-  const port = await getAvailablePort();
-  const origin = `http://127.0.0.1:${port}`;
-  const command = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
-  const output = [];
-  serverProcess = spawn(
-    command,
-    ["exec", "next", "start", "--hostname", "127.0.0.1", "--port", String(port)],
-    {
-      cwd: root,
-      env: process.env,
-      stdio: ["ignore", "pipe", "pipe"],
-    },
-  );
-  serverProcess.stdout.on("data", (chunk) => output.push(String(chunk)));
-  serverProcess.stderr.on("data", (chunk) => output.push(String(chunk)));
+  const configuredOrigin = process.env.PERFORMANCE_BASE_URL?.replace(/\/$/, "");
+  let origin = configuredOrigin;
 
-  await waitForServer(`${origin}/fr`, serverProcess, output);
+  if (!origin) {
+    const port = await getAvailablePort();
+    origin = `http://127.0.0.1:${port}`;
+    const command = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
+    const output = [];
+    serverProcess = spawn(
+      command,
+      ["exec", "next", "start", "--hostname", "127.0.0.1", "--port", String(port)],
+      {
+        cwd: root,
+        env: process.env,
+        stdio: ["ignore", "pipe", "pipe"],
+      },
+    );
+    serverProcess.stdout.on("data", (chunk) => output.push(String(chunk)));
+    serverProcess.stderr.on("data", (chunk) => output.push(String(chunk)));
+    await waitForServer(`${origin}/fr`, serverProcess, output);
+  }
   browser = await chromium.launch();
 
   for (const route of Object.keys(budget.routes)) {

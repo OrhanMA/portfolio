@@ -92,8 +92,9 @@ test.describe("Internationalization", () => {
     await page.locator('[data-language-switcher]:visible').click();
     await navigation;
 
-    await page.getByRole("button", { name: "Toggle theme" }).click();
     await expect(page.locator("html")).toHaveClass(/(^|\s)light(\s|$)/);
+    await page.getByRole("button", { name: "Toggle theme" }).click();
+    await expect(page.locator("html")).toHaveClass(/(^|\s)dark(\s|$)/);
 
     const violations = await page.evaluate(
       () =>

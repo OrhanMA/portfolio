@@ -55,7 +55,10 @@ test("every article keeps its editorial layout in both locales", async ({ page }
           route,
         ).toHaveCount(4);
       }
-      await expect(page.locator("article[data-article-content]")).toHaveClass(/prose/);
+      await expect(page.locator("[data-article-body]"), route).toHaveCSS(
+        "font-family",
+        /EB Garamond/,
+      );
     }
   }
 });

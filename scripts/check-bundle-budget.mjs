@@ -4,7 +4,7 @@ import path from "node:path";
 const STATIC_DIR = path.resolve(".next/static");
 const budgets = {
   ".js": 250 * 1024,
-  ".css": 150 * 1024,
+  ".css": 175 * 1024,
 };
 
 async function walk(directory) {
@@ -35,5 +35,5 @@ if (violations.length > 0) {
   console.error(`Bundle budget exceeded:\n${violations.join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log("Bundle budgets respected (JS ≤ 250 KiB, CSS ≤ 150 KiB per asset). ");
+  console.log("Bundle budgets respected (JS ≤ 250 KiB, CSS ≤ 175 KiB per asset). ");
 }
