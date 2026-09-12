@@ -192,7 +192,7 @@ export default async function CompetenceDetailPage({
         }
       />
 
-      <section>
+      <section data-competence-article>
         <div>
           <aside id="competence-contents">
             <nav

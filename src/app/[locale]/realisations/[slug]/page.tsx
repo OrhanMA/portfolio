@@ -285,6 +285,7 @@ export default async function RealisationDetailPage({
                   id={section.id}
                   key={section.id}
                   aria-labelledby={`${section.id}-heading`}
+                  className="realisation-content-deferred"
                 >
                   <header>
                     <div>

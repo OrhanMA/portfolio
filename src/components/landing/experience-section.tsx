@@ -93,18 +93,21 @@ export function ExperienceSection({
                   id={`experience-${experience.id}`}
                   data-start-date={experience.startDate}
                   data-end-date={experience.endDate ?? "present"}
+                  className="journey-row scroll-mt-28"
                 >
                   {!isLast && (
                     <span
                       aria-hidden="true"
+                      className="journey-path"
                     />
                   )}
                   <span
                     aria-hidden="true"
+                    className="journey-marker"
                   />
                   <article
                   >
-                    <p>
+                    <p className="journey-period">
                       {experience.period}
                     </p>
                     <h3>

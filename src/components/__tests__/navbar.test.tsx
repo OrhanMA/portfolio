@@ -53,7 +53,10 @@ describe("Navbar", () => {
     expect(
       identity.querySelector("[data-site-identity-name]"),
     ).not.toHaveClass("hidden");
-    expect(identity.querySelector("img")).not.toBeInTheDocument();
+    expect(identity.querySelector("[data-site-identity-photo]")).toHaveAttribute(
+      "src",
+      expect.stringContaining("coporate-headshot.webp"),
+    );
   });
 
   it("exposes every competence and realisation in keyboard-accessible desktop submenus", () => {

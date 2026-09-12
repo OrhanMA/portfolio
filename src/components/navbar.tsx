@@ -100,6 +100,7 @@ export function Navbar({
           <Link
             href={`/${locale}/contact`}
             prefetch={false}
+            className={cn(buttonVariants({ size: "sm" }), "hidden px-5 text-primary-foreground md:inline-flex")}
           >
             {dict.nav.contact}
             <ArrowRight aria-hidden="true" />
@@ -235,6 +236,7 @@ function DesktopSubmenu({
         />
       </button>
       <div
+        className="absolute top-full"
         id={id}
         data-desktop-submenu
         hidden={!open}

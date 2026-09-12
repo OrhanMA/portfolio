@@ -44,6 +44,7 @@ export function AboutSection({ dict, locale = "fr" }: { dict: Dictionary["about"
             return (
               <article
                 key={principle.title}
+                className="border-b border-border"
               >
                 <div>
                   <h3><Link href={`/${locale}${principle.path}`}>{principle.title}</Link></h3>

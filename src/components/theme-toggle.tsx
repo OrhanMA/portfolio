@@ -16,8 +16,8 @@ export function ThemeToggle() {
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label={nav.toggleTheme}
     >
-      <Sun aria-hidden="true" />
-      <Moon aria-hidden="true" />
+      <Sun aria-hidden="true" className="dark:hidden" />
+      <Moon aria-hidden="true" className="hidden dark:block" />
     </Button>
   );
 }

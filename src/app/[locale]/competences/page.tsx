@@ -66,7 +66,7 @@ export default async function CompetencesPage({
       />
 
       {/* Radar Chart */}
-      <section>
+      <section data-skills-overview>
         <div>
           <h2>
             {dict.competencesPage.radarHeading}
@@ -82,15 +82,16 @@ export default async function CompetencesPage({
       </section>
 
       {/* Human Skills */}
-      <section>
+      <section data-skill-domain="human">
         <div>
           <h2>
             {dict.competencesPage.humanSkills}
           </h2>
-          <div>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-6">
             {humanSkills.map((competence, index) => (
               <Card
                 key={competence.slug}
+                className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
               >
                 <CardHeader>
                   <div>
@@ -124,15 +125,16 @@ export default async function CompetencesPage({
       </section>
 
       {/* Technical Skills */}
-      <section>
+      <section data-skill-domain="technical">
         <div>
           <h2>
             {dict.competencesPage.technicalSkills}
           </h2>
-          <div>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-6">
             {technicalSkills.map((competence, index) => (
               <Card
                 key={competence.slug}
+                className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
               >
                 <CardHeader>
                   <div>

@@ -120,6 +120,8 @@ export function ProjectsSection({
               return (
                 <article
                   key={project.slug}
+                  data-case-row
+                  data-case-variant={index % 2 === 0 ? "media-first" : "copy-first"}
                 >
                   <div
                   >

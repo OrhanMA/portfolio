@@ -27,6 +27,7 @@ export function EditorialPageHeader({
   return (
     <section
       data-editorial-page-header
+      className={cn("border-border", className)}
     >
       <div
       >
@@ -36,6 +37,7 @@ export function EditorialPageHeader({
             {eyebrow}
           </p>
           <h1
+            className={titleClassName}
           >
             {title}
           </h1>

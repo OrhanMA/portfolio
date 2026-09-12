@@ -13,7 +13,7 @@ export function ExperienceDetails({
   const contentId = useId();
 
   return (
-    <div>
+    <div className="experience-details">
       <button
         type="button"
         aria-expanded={open}
@@ -32,6 +32,7 @@ export function ExperienceDetails({
         id={contentId}
         aria-hidden={!open}
         inert={!open}
+        className={open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}
       >
         <div>
           <div>{children}</div>

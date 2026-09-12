@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import "../globals.css";
 import { locales } from "@/lib/i18n";
 import { deferredFontClassName } from "@/components/deferred-fonts";
 import { ThemeProvider } from "@/components/theme-provider";

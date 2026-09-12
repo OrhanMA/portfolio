@@ -118,6 +118,7 @@ export function ArticlesFilterableList({
         <div>
           <button
             type="button"
+            className="h-7"
             onClick={() => {
               setTagInput(null);
               replaceFilters(null, queryInput);
@@ -130,6 +131,7 @@ export function ArticlesFilterableList({
             <button
               key={tag}
               type="button"
+              className="h-7"
               aria-pressed={tagInput === tag}
               onClick={() => {
                 const nextTag = tagInput === tag ? null : tag;
