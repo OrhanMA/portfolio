@@ -97,9 +97,12 @@ test.describe("Homepage visual regression", () => {
     });
     await page.goto("/fr", { waitUntil: "networkidle" });
 
-    const portrait = page.locator('main img[src*="coporate-headshot"]');
-    await expect(portrait).toBeVisible();
-    await expect(portrait).toHaveCSS("filter", "none");
+    const lightPortrait = page.locator('main img[src*="orhan-portrait.webp"]');
+    const darkPortrait = page.locator('main img[src*="orhan-portrait-dark.webp"]');
+    await expect(lightPortrait).toBeVisible();
+    await expect(lightPortrait).toHaveCSS("filter", "none");
+    await expect(darkPortrait).toHaveCount(1);
+    await expect(darkPortrait).toBeHidden();
     await expect(page.locator("#realisations img").first()).toHaveCSS("filter", "none");
     await expect(page.locator('img[src*="/images/decorative/"]')).toHaveCount(0);
     await expect(

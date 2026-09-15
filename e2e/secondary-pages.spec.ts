@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 type AuditedRoute = {
   path: string;
   editorial: boolean;
+  specialHeader?: "contact";
   expectedStatus?: number;
 };
 
@@ -17,7 +18,7 @@ const routes: readonly AuditedRoute[] = [
   { path: "/fr/projects/account_invoice_context", editorial: true },
   { path: "/fr/articles", editorial: true },
   { path: "/fr/articles/migration-odoo-v16-v19", editorial: false },
-  { path: "/fr/contact", editorial: true },
+  { path: "/fr/contact", editorial: false, specialHeader: "contact" },
   { path: "/fr/mentions-legales", editorial: true },
   { path: "/fr/politique-confidentialite", editorial: true },
   { path: "/en/about", editorial: false, expectedStatus: 404 },
@@ -26,7 +27,7 @@ const routes: readonly AuditedRoute[] = [
   { path: "/en/skills", editorial: false, expectedStatus: 404 },
   { path: "/en/competences", editorial: true },
   { path: "/en/realisations", editorial: true },
-  { path: "/en/contact", editorial: true },
+  { path: "/en/contact", editorial: false, specialHeader: "contact" },
 ];
 
 async function preparePage(page: Page) {
@@ -65,7 +66,7 @@ for (const viewport of [
       await expect(
         identity.locator("img[data-site-identity-photo]"),
         route.path,
-      ).toHaveCount(1);
+      ).toHaveCount(2);
 
       if ((route.expectedStatus ?? 200) === 200) {
         await expect(identity, route.path).toHaveAttribute(
@@ -97,6 +98,10 @@ for (const viewport of [
           page.locator("[data-editorial-page-header]"),
           route.path,
         ).toHaveCount(1);
+      }
+
+      if (route.specialHeader === "contact") {
+        await expect(page.locator("[data-contact-page]"), route.path).toHaveCount(1);
       }
 
       const overflow = await page.evaluate(
