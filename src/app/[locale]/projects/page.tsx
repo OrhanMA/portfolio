@@ -1,13 +1,9 @@
-import { LinkedText } from "@/components/linked-text";
 import { TopicLink } from "@/components/topic-link";
-import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowUpRight, FolderKanban, Layers3, PackageOpen } from "lucide-react";
+import { ArrowUpRight, FolderKanban, Layers3 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
-  CardAction,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -45,7 +41,6 @@ export default async function ProjectsPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/projects`} />
-      <div>
       <EditorialPageHeader
         eyebrow={dict.projects.eyebrow}
         title={dict.projects.heading}
@@ -86,65 +81,39 @@ export default async function ProjectsPage({
         }
       />
 
-      <section data-editorial-list="projects">
+      <section data-project-solutions aria-labelledby="project-solutions-heading">
         <div>
-          <div>
-            {odooProjects.map((project) => (
-              <Card
-                key={project.slug}
-              >
-                <CardHeader>
-                  <div>
-                    <div>
-                      <Badge
-                        variant="outline"
-                      >
-                        {project.slug}
-                      </Badge>
-                      <CardTitle>
-                        <h2><Link href={`/${loc}/projects/${project.slug}`}>{project.title}</Link></h2>
-                      </CardTitle>
-                      <CardDescription>
-                        <LinkedText locale={loc}>{project.summary[loc]}</LinkedText>
-                      </CardDescription>
-                    </div>
+          <header>
+            <h2 id="project-solutions-heading">{dict.projects.solutionsHeading}</h2>
+            <p>{dict.projects.solutionsLead}</p>
+          </header>
 
-                    <CardAction>
-                      <div>
-                        <PackageOpen />
-                      </div>
-                    </CardAction>
-                  </div>
-                </CardHeader>
-
-                <CardContent>
+          <ol>
+            {dict.projects.solutions.map((solution) => (
+              <li key={solution.title}>
+                <article>
+                  <p>{solution.scope}</p>
                   <div>
-                    <TopicLink label="Odoo" locale={loc} />
-                    <TopicLink label="Python" locale={loc} />
+                    <h3>{solution.title}</h3>
+                    <p>{solution.description}</p>
+                    <p>{solution.outcome}</p>
                   </div>
-
-                  <div>
-                    <Link
-                      href={`/${locale}/projects/${project.slug}`}
-                    >
-                      {dict.projects.viewDetails}
-                    </Link>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {dict.projects.viewProject}
-                      <ArrowUpRight />
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
+                </article>
+              </li>
             ))}
-          </div>
+          </ol>
+
+          <a
+            href="https://github.com/OrhanMA?tab=repositories&q=odoo&type=source"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={actionLinkClassName}
+          >
+            {dict.projects.viewRepositories}
+            <ArrowUpRight />
+          </a>
         </div>
       </section>
-      </div>
     </>
   );
 }

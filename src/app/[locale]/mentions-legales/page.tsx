@@ -88,7 +88,6 @@ export default async function LegalNoticePage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/mentions-legales`} />
-      <div>
       <EditorialPageHeader
         eyebrow={dict.footer.legalNotice}
         title={dict.legal.heading}
@@ -119,7 +118,6 @@ export default async function LegalNoticePage({
           </div>
         </div>
       </section>
-      </div>
     </>
   );
 }

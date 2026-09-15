@@ -13,6 +13,8 @@
     "competences": "Compétences",
     "realisations": "Réalisations",
     "allCompetences": "Voir les 10 compétences",
+    "humanCompetences": "Compétences humaines",
+    "technicalCompetences": "Compétences techniques",
     "allRealisations": "Voir les 5 réalisations",
     "showSubmenu": "Afficher le sous-menu",
     "toggleMenu": "Ouvrir ou fermer le menu",
@@ -25,7 +27,7 @@
     "greeting": "Bonjour, je suis",
     "title1": "Développeur",
     "title2": "Full-stack",
-    "subtitle": "Odoo · Symfony · Next.js",
+    "subtitle": "Ingénierie logicielle",
     "statement": "Je transforme des besoins métier en solutions numériques robustes, performantes et durables",
     "location": "Chambéry, France",
     "status": "En alternance chez 1UP",
@@ -47,6 +49,7 @@
     "lead": "Un profil full-stack orienté produit, capable de passer du besoin métier à l'expérience finale.",
     "statement": "Je construis des produits web qui doivent autant convaincre les utilisateurs que tenir en production.",
     "text": "Développeur full-stack en alternance chez 1UP, j'ai commencé le développement en autodidacte via The Odin Project avant de suivre des formations certifiantes chez Simplon en développement web puis en conception d'applications. Aujourd'hui en mastère Ingénierie du Logiciel à l'ISCOD, je travaille au quotidien sur des projets Odoo et Symfony. Ce qui me passionne dans ce métier, c'est la résolution de problèmes en continu et la richesse du web — il y a toujours quelque chose à apprendre.",
+    "viewFullProfile": "Découvrir mon profil complet",
     "card1Title": "Focus utilisateur & impact produit",
     "card1Desc": "Je pars du besoin réel, clarifie l'usage attendu et relie chaque décision technique à un résultat utile pour les personnes concernées.",
     "card2Title": "Code propre & architecture robuste",
@@ -146,22 +149,45 @@
     "heading": "Parcours",
     "subtext": "Une trajectoire construite par la pratique : autodidaxie, recherche universitaire, entreprise, ERP, e-commerce et sites vitrines.",
     "responsibilitiesLabel": "Responsabilités",
+    "responsibilitiesHeading": "Ce que j'ai pris en charge",
+    "detailOverviewLabel": "Détail de l'étape",
+    "detailHeading": "Une étape construite par la pratique",
+    "experienceLabel": "Expérience professionnelle",
+    "educationLabel": "Formation ou certification",
+    "institutionsLabel": "Contexte pédagogique",
+    "organizationsLabel": "Organisme ou environnement",
+    "technologiesLabel": "Technologies et repères",
+    "proofsLabel": "Liens et preuves",
     "linkedRealisationsLabel": "Réalisations liées",
     "linkedCompetencesLabel": "Compétences liées",
+    "caseStudiesLabel": "Mise en perspective",
+    "caseStudiesHeading": "Les réalisations qui rendent cette étape concrète",
+    "caseStudiesIntro": "Les fiches de réalisation détaillent les situations, les décisions et les résultats mentionnés dans ce parcours. Les repères ci-dessous en donnent une lecture synthétique : ils relient cette étape à des preuves plus complètes sans confondre une mission, un apprentissage et un résultat établi.",
+    "caseStudyContextLabel": "Contexte",
+    "caseStudyRoleLabel": "Ma contribution",
+    "caseStudyResultLabel": "Résultat établi",
     "detailsLabel": "Afficher le détail",
     "orderingLabel": "Ordre : « Présent » d'abord, puis par date de fin décroissante ; à égalité, par date de début décroissante",
     "entries": [
       {
         "id": "1up-fullstack-developer",
+        "type": "experience",
         "startDate": "2024-12",
         "endDate": null,
         "period": "Déc. 2024 — Présent",
-        "title": "Développeur Fullstack — Alternance",
+        "title": "Développeur et consultant Odoo — Alternance",
         "company": "1UP Distribution",
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
         "location": "Chambéry · Savoie",
         "description": "Développement et maintenance de modules Odoo (Python, PostgreSQL). Conception et développement d'un site B2B e-commerce avec Symfony. Refonte du site corporate avec Next.js. Gestion de la migration Odoo v16 → v19 en solo. Administration de bases de données, CI/CD et gestion de serveurs VPS (OVH, DigitalOcean).",
+        "detail": [
+          { "heading": "Un rôle transversal dans l'ERP", "text": "Chez 1UP Distribution, je travaille sur des sujets qui vont de la règle métier à l'interface utilisée au quotidien. Les modules Odoo m'amènent à comprendre les processus de l'entreprise, à formaliser les exceptions avec les équipes concernées, puis à transformer ces règles en modèles Python, vues XML et tests maintenables." },
+          { "heading": "Relier le produit, l'ERP et l'infrastructure", "text": "Cette expérience réunit plusieurs réalisations : la migration d'Odoo 16 vers 19, le développement de modules métier internes, le site B2B Symfony et la refonte corporate Next.js. Je prends aussi en charge les bases de données, la CI/CD et les serveurs VPS. Ce périmètre m'oblige à raisonner en dépendances : une évolution de données, d'API ou d'interface doit rester compatible avec le travail des utilisateurs." },
+          { "heading": "Ce que cette étape m'apprend", "text": "L'autonomie ne signifie pas décider seul dans le silence. Elle consiste à avancer, documenter les choix, rendre les risques visibles et demander un arbitrage avant qu'une hypothèse ne devienne un incident. La migration et les modules métier ont renforcé cette exigence de méthode autant que ma pratique technique." },
+          { "heading": "Faire de la complexité un plan de travail", "text": "La migration rend bien visible ce changement d'échelle : l'ERP concernait 20 utilisateurs internes directs, 16 modules sur mesure, des extensions tierces et de nombreuses personnalisations Studio. Il fallait passer par trois migrations majeures successives, vérifier les données et les pièces jointes, puis stabiliser le comportement après la bascule. Cette expérience m'a appris à découper une responsabilité large en inventaire, priorités, essais contrôlés, contrôles fonctionnels et décisions traçables, plutôt qu'à confondre vitesse d'exécution et maîtrise du risque." },
+          { "heading": "Concevoir pour les personnes qui utilisent le système", "text": "Les réalisations liées ne sont pas des chantiers isolés : les modules métier automatisent des règles parfois connues seulement par les équipes, le portail B2B dépend des données de l'ERP et le site corporate doit rendre l'offre compréhensible sans dégrader l'accès mobile ou les contenus. Cette continuité me demande de tenir ensemble le besoin exprimé, les contraintes de sécurité et de données, les usages quotidiens et la possibilité de faire évoluer la solution. La qualité d'une livraison se mesure donc autant à son comportement dans le travail réel qu'à son implémentation technique." }
+        ],
         "responsibilities": [
           "Référent technique Odoo pour les développements métier internes.",
           "Gestion autonome de la migration ERP Odoo v16 → v19.",
@@ -173,6 +199,7 @@
       },
       {
         "id": "lig-web-developer-internship",
+        "type": "experience",
         "startDate": "2024-05",
         "endDate": "2024-10",
         "period": "Mai — oct. 2024",
@@ -182,6 +209,13 @@
         "url": "https://www.liglab.fr/fr",
         "location": "Grenoble · Isère",
         "description": "Développement d'une application Vue.js et D3.js pour un questionnaire d'étude sociologique sur les trajectoires de vie. Création de visualisations de données sur mesure. Collaboration avec des chercheurs universitaires.",
+        "detail": [
+          { "heading": "Partir d'un besoin de recherche", "text": "Au Laboratoire d'Informatique de Grenoble, l'enjeu n'était pas de produire un graphique décoratif. Il fallait représenter les réponses d'un questionnaire sociologique sur les trajectoires de vie de manière lisible, corrigeable et fidèle à la méthode des chercheurs. J'ai donc commencé par comprendre le vocabulaire, les dimensions et les cas particuliers du modèle étudié." },
+          { "heading": "Construire une visualisation réellement interactive", "text": "La réalisation CAP2vie m'a conduit à transformer des périodes exactes ou estimées en une visualisation D3.js répartie sur cinq dimensions et disponible selon deux modes de lecture. Le formulaire et le graphique devaient rester cohérents lorsque l'enquêteur corrigeait une réponse. Le rendu a évolué par itérations plutôt que par ajout d'effets, jusqu'à obtenir une base utilisable en démonstration." },
+          { "heading": "Travailler avec des experts non techniques", "text": "Les échanges avec les chercheurs ont été une partie du développement : reformuler une demande, montrer une version, recueillir une objection et traduire cette objection en modification de données ou d'interface. Cette expérience a renforcé ma communication et m'a appris à défendre une décision technique sans perdre le sens scientifique du produit." },
+          { "heading": "Faire tenir ensemble données, règles et lecture", "text": "La fiche CAP2vie montre que l'enjeu était aussi un enjeu de cohérence : une période pouvait être exacte ou estimée, la réponse restait modifiable et sa représentation devait changer sans contredire le questionnaire. J'ai ainsi travaillé à l'interface entre le modèle de données PostgreSQL, l'application Vue.js et le rendu D3.js. Cette articulation m'a appris qu'une visualisation est une fonctionnalité métier : son utilité dépend de la fidélité des transformations, de la clarté des libellés et de la possibilité de corriger un cas avant de l'interpréter." },
+          { "heading": "Une base démontrable, avec un périmètre assumé", "text": "Le résultat documenté est une première version fonctionnelle, utilisable en démonstration, et non un produit de recherche généralisé dont l'usage à grande échelle aurait été mesuré. Cette distinction est importante : elle évite de présenter une validation de prototype comme une preuve d'impact scientifique. En revanche, le travail a installé une méthode réutilisable pour faire évoluer un outil à partir des retours de ses experts, en conservant la traçabilité entre une demande, une règle de données et une modification visible." }
+        ],
         "responsibilities": [
           "Conception et développement d'une première version fonctionnelle de l'application.",
           "Implémentation de visualisations D3.js adaptées à des besoins de recherche.",
@@ -193,6 +227,7 @@
       },
       {
         "id": "iscod-software-engineering-master",
+        "type": "education",
         "startDate": "2025",
         "endDate": "2027",
         "period": "2025 — 2027",
@@ -202,6 +237,13 @@
         "url": "https://www.iscod.fr/",
         "location": "Formation à distance · Alternance à Chambéry",
         "description": "Formation de niveau 7 suivie en alternance, consacrée à l'architecture logicielle, au pilotage de projet, à la qualité, au déploiement et à l'intégration d'applications dans un contexte professionnel réel.",
+        "detail": [
+          { "heading": "Une formation ancrée dans l'alternance", "text": "Le mastère ISCOD me permet de mettre en regard les concepts d'architecture, de qualité et de pilotage avec les problèmes rencontrés chez 1UP Distribution. Les sujets étudiés prennent ainsi la forme de décisions concrètes : découper un besoin, identifier ses dépendances, choisir un niveau de test et préparer un déploiement réversible." },
+          { "heading": "Construire des preuves, pas seulement valider des notions", "text": "Le portfolio professionnel sert de terrain de formalisation. J'y documente les réalisations, les acteurs, les risques, les résultats et les limites, afin de distinguer une fonctionnalité livrée d'une hypothèse ou d'un prototype. Cette démarche rejoint les compétences de communication et d'amélioration continue travaillées dans la formation." },
+          { "heading": "Une trajectoire vers l'architecture métier", "text": "Cette formation accompagne mon objectif de devenir développeur confirmé et référent technique Odoo, puis d'élargir ce rôle vers l'intégration d'ERP, les API, la décision produit et l'architecture logicielle. Le projet d'outil de business intelligence auto-hébergé constitue un horizon personnel pour mettre ces apprentissages en pratique." },
+          { "heading": "Mettre les notions à l'épreuve du réel", "text": "L'alternance donne un contrepoint concret aux sujets abordés : une migration ERP oblige à inventorier les dépendances, à prioriser les risques de données et à organiser des vérifications avant production ; un module métier demande de passer d'une règle connue par les équipes à des critères d'acceptation testables. La formation ne transforme pas automatiquement ces missions en maîtrise acquise : elle fournit les cadres pour les analyser, les documenter et identifier ce qui reste à consolider, notamment dans le pilotage des sujets de grande ampleur." },
+          { "heading": "Le portfolio comme exercice de rigueur", "text": "La réalisation du portfolio professionnel prolonge cette exigence. Chaque étude de cas sépare le contexte, mon rôle, les résultats vérifiables et les limites ; les liens entre compétences, réalisations, formation et expérience rendent ce raisonnement navigable. J'y travaille aussi une compétence moins visible mais essentielle : écrire avec précision, sans transformer une intention, une métrique isolée ou un prototype en promesse générale. Cette pratique prépare autant une soutenance qu'une prise de décision future en équipe." }
+        ],
         "institutions": "L'ISCOD propose une pédagogie à distance articulée autour de l'alternance. Cette organisation permet de confronter les apports académiques aux décisions techniques prises en entreprise et de documenter les compétences acquises à partir de réalisations vérifiables.",
         "responsibilities": [
           "Relier les blocs de compétences du titre aux missions réalisées en entreprise.",
@@ -214,14 +256,22 @@
       },
       {
         "id": "toeic-listening-reading",
+        "type": "education",
         "startDate": "2025-08-07",
         "endDate": "2025-08-07",
         "period": "7 août 2025",
         "title": "TOEIC Listening & Reading — 920/990",
         "company": "ETS Global",
+        "logo": "/logo-ets-global.webp",
         "url": "https://www.etsglobal.org/fr/fr/test-type-family/test-toeic-listening-and-reading",
         "location": "Certification d'anglais professionnel",
         "description": "Score de 920/990 au TOEIC Listening & Reading : niveau C1 en compréhension orale et B2 en compréhension écrite.",
+        "detail": [
+          { "heading": "Une certification située", "text": "Le score de 920/990 obtenu le 7 août 2025 apporte une mesure lisible de ma compréhension de l'anglais professionnel : niveau C1 en compréhension orale et B2 en compréhension écrite. Le certificat public permet de vérifier directement la date, le score et les niveaux indiqués." },
+          { "heading": "Une compétence au service du travail technique", "text": "Cette certification complète un parcours où la documentation, les tickets, les échanges avec des profils techniques et la veille peuvent dépasser le français. Elle ne remplace pas la capacité à reformuler une demande, mais elle facilite l'accès aux sources et la communication dans un contexte logiciel international." },
+          { "heading": "Lire pour décider et continuer à apprendre", "text": "Dans le développement logiciel, l'anglais intervient notamment lorsqu'il faut consulter une documentation officielle, comparer une note de version, comprendre un ticket ou suivre une ressource technique qui n'existe pas encore en français. Le score constitue donc un repère utile pour la compréhension, mais son intérêt se vérifie dans une pratique : croiser une source avec le contexte du projet, repérer ce qui relève d'une recommandation ou d'une contrainte, puis restituer l'information de manière exploitable à une personne qui ne l'a pas lue." },
+          { "heading": "Ce que cette certification ne prétend pas mesurer", "text": "Le TOEIC Listening & Reading atteste de niveaux en compréhension orale et écrite ; il ne mesure ni l'expression orale, ni la qualité d'une négociation, ni la capacité à résoudre seul un problème technique. Je le présente donc comme une preuve ciblée, complémentaire des réalisations et de la communication professionnelle, et non comme un substitut à l'expérience internationale. Cette précision évite de surinterpréter un score tout en rendant visible un atout réel pour la veille et le travail documentaire." }
+        ],
         "institutions": "Le TOEIC mesure la compréhension de l'anglais dans des situations professionnelles internationales. Le certificat public permet au jury de vérifier directement la date, le score global et les niveaux obtenus.",
         "certificateUrl": "/proofs/certificate_20251030105639_toeic_filigrane.pdf",
         "certificateLabel": "Consulter le certificat TOEIC",
@@ -230,6 +280,7 @@
       },
       {
         "id": "simplon-application-developer",
+        "type": "education",
         "startDate": "2024-01",
         "endDate": "2024-12",
         "period": "Janv. — déc. 2024",
@@ -243,6 +294,13 @@
         ],
         "location": "Grenoble · Isère",
         "description": "Titre professionnel de niveau 6 centré sur la conception et le développement d'applications, les bases de données, la modélisation, les tests et la conduite d'un projet logiciel.",
+        "detail": [
+          { "heading": "Passer de l'exécution à la conception", "text": "La formation de concepteur développeur d'applications m'a fait travailler le logiciel comme un ensemble cohérent : comprendre le besoin, modéliser les données, choisir une architecture, développer, tester et présenter les résultats. Les projets m'ont obligé à expliquer les compromis plutôt qu'à considérer le code comme la seule preuve du travail réalisé." },
+          { "heading": "Un projet de données comme terrain de validation", "text": "Le projet lié à l'étude des trajectoires de vie a donné un contexte concret à ces apprentissages. Avec Vue.js, D3.js et PostgreSQL, il fallait relier un questionnaire, des transformations de données et une visualisation personnalisée. Les itérations avec les chercheurs ont renforcé ma capacité à adapter une solution technique à une méthode métier ou scientifique." },
+          { "heading": "Consolider une méthode professionnelle", "text": "Le titre RNCP niveau 6 a consolidé les habitudes qui structurent encore mon travail : versionner, tester, documenter, présenter et accepter la relecture. Il constitue le lien entre mes premiers apprentissages web et les responsabilités plus larges que j'exerce aujourd'hui en alternance." },
+          { "heading": "Raisonner sur toute la chaîne de valeur", "text": "Le projet CAP2vie a été déterminant parce qu'il ne séparait pas artificiellement le frontend du reste de l'application. Une réponse saisie dans le questionnaire devait devenir une donnée cohérente, être transformée selon des règles explicables, puis rester lisible dans une visualisation personnalisée. Travailler ce flux complet m'a appris à formuler les invariants de données, à anticiper les effets d'une correction et à vérifier qu'une interface ne masque pas une incohérence venant de l'amont." },
+          { "heading": "Des repères qui restent utiles après le titre", "text": "La réalisation du portfolio professionnel réemploie cette approche sous une autre forme : architecture Next.js, contenu bilingue, liens internes, tests et preuves ne sont pas traités comme des ajouts indépendants. Ils constituent un même produit, évalué autant sur la clarté de son discours que sur sa fiabilité. Le passage du titre à l'alternance a ainsi renforcé une conviction : savoir livrer une fonctionnalité est indispensable, mais savoir expliquer son périmètre, la vérifier et préparer son évolution l'est tout autant." }
+        ],
         "institutions": "Simplon privilégie une pédagogie active : apprentissage par la pratique, projets inspirés de situations professionnelles et travail en petit groupe. Cette formation a consolidé ma capacité à passer d'un besoin à une application structurée, testée et documentée.",
         "certificateUrl": "/proofs/diplome_cda_filigrane.pdf",
         "certificateLabel": "Consulter le titre CDA",
@@ -257,14 +315,22 @@
       },
       {
         "id": "a-gaveau-web-developer-internship",
+        "type": "experience",
         "startDate": "2023",
         "endDate": "2023",
         "period": "2023 — 2 mois",
         "title": "Stagiaire Développeur Web — WordPress / Elementor",
         "company": "A. Gaveau",
+        "logo": "/logo-a-gaveau.webp",
         "url": "https://a-gaveau.fr/",
         "location": "Rumilly · Haute-Savoie",
         "description": "Stage de deux mois réalisé dans le cadre de la formation Développeur Web et Web Mobile chez Simplon. Création de sites web pour de petits commerces avec WordPress et le constructeur de pages Elementor.",
+        "detail": [
+          { "heading": "Une première expérience en contexte client", "text": "Ce stage de deux mois chez A. Gaveau a été ma première mise en situation professionnelle dans le développement web. Le cadre était concret : créer des sites pour de petits commerces avec WordPress et Elementor, en tenant compte d'un contenu réel et d'un objectif de présentation compréhensible." },
+          { "heading": "Apprendre à livrer une interface utilisable", "text": "Le travail m'a familiarisé avec la construction de pages, l'organisation du contenu et les ajustements nécessaires pour qu'un site soit exploitable par son destinataire. Cette première expérience a donné un contexte professionnel à des notions apprises en autodidacte et a préparé la suite de mon parcours vers des applications plus personnalisées." },
+          { "heading": "Passer du support de formation au résultat attendu", "text": "Ce premier cadre professionnel m'a obligé à sortir d'exercices où le contenu, le public et le résultat sont souvent déjà définis. Les sites devaient présenter une activité avec des informations compréhensibles et une hiérarchie qui aide un visiteur à se repérer. J'ai appris à vérifier ce qui était réellement disponible, à organiser les éléments fournis et à ajuster une page en fonction de son usage, plutôt que de considérer la mise en page comme une fin en soi." },
+          { "heading": "Un point de départ, pas une expertise revendiquée", "text": "Le stage a été court et s'appuyait sur WordPress et Elementor : il ne prouve pas à lui seul une maîtrise complète du développement sur mesure, de l'accessibilité ou du pilotage de projet. Sa valeur dans le parcours est différente. Il a donné un premier repère sur la responsabilité d'une livraison visible par un client et a préparé les formations et projets où j'ai ensuite approfondi la conception, les données, les tests et les applications personnalisées." }
+        ],
         "trainingId": "simplon-web-developer",
         "responsibilities": [
           "Créer des sites web pour de petits commerces.",
@@ -278,6 +344,7 @@
       },
       {
         "id": "simplon-web-developer",
+        "type": "education",
         "startDate": "2023",
         "endDate": "2023",
         "period": "2023",
@@ -287,6 +354,13 @@
         "url": "https://www.simplon.co/",
         "location": "Chambéry · Savoie",
         "description": "Titre professionnel de niveau 5 consacré à l'intégration d'interfaces, au développement frontend et backend, aux bases de données et au déploiement d'applications web.",
+        "detail": [
+          { "heading": "Transformer l'autodidaxie en méthode", "text": "Avant Simplon, j'avais commencé à apprendre le développement web par les ressources en ligne et The Odin Project. La formation Développeur Web et Web Mobile a transformé cette curiosité en méthode : analyser un besoin, produire une interface, relier un serveur à une base de données, tester, versionner et présenter une solution." },
+          { "heading": "Construire les fondations du développement web", "text": "Le titre RNCP niveau 5 a posé les bases frontend et backend qui me servent encore pour comprendre une application complète. Il m'a également appris à considérer le responsive, l'accessibilité, la structure des données et le déploiement comme des parties du produit, pas comme des finitions séparées." },
+          { "heading": "Le premier pas vers des projets plus ambitieux", "text": "Le stage chez A. Gaveau a prolongé cette formation dans un environnement professionnel. La suite — le titre CDA, l'expérience au LIG puis l'alternance chez 1UP Distribution — s'est construite sur cette première capacité à apprendre vite et à transformer un objectif en réalisation présentable." },
+          { "heading": "Construire une vision complète d'une application", "text": "Cette formation a posé une manière de relier les couches d'un produit : le besoin oriente l'interface, l'interface déclenche une logique serveur, cette logique repose sur des données et l'ensemble doit pouvoir être testé puis présenté. Les technologies changent ensuite — Vue.js, D3.js, Python, Symfony, Next.js ou Odoo — mais cette lecture d'ensemble reste utile pour éviter de traiter un écran, une base de données ou un déploiement comme un élément sans conséquence pour le reste du système." },
+          { "heading": "Une continuité démontrée par les étapes suivantes", "text": "Le stage associé chez A. Gaveau a permis de confronter les premières bases web à un contenu et à des attentes concrètes. Les formations et réalisations suivantes ont approfondi la conception applicative, la visualisation de données, puis les systèmes métier et l'ERP. Je ne présente donc pas le RNCP niveau 5 comme l'aboutissement du parcours, mais comme la fondation à partir de laquelle j'ai pu apprendre plus vite, demander des retours et faire évoluer progressivement mon niveau de responsabilité." }
+        ],
         "institutions": "La pédagogie par projets de Simplon a transformé une pratique autodidacte, notamment construite avec The Odin Project, en méthode professionnelle : analyser, produire, tester, documenter et présenter une solution utilisable.",
         "certificateUrl": "/proofs/titre-dwwm_filigrane.pdf",
         "certificateLabel": "Consulter le titre DWWM",
@@ -300,6 +374,21 @@
         "tags": ["RNCP 5", "Frontend", "Backend", "BDD", "Déploiement"]
       }
     ]
+  },
+  "parcoursPage": {
+    "pageTitle": "Mon parcours | Orhan Madi Assani",
+    "pageDescription": "Expériences professionnelles, formations et certifications d’Orhan Madi Assani, présentées dans une frise antichronologique.",
+    "heading": "Mon parcours",
+    "subtext": "Une lecture séparée de mes expériences professionnelles et de mes formations, avec un résumé pour chaque étape et une page de détail pour aller plus loin.",
+    "experiencesHeading": "Expériences professionnelles",
+    "experiencesSubtext": "Les missions et environnements dans lesquels j’ai construit ma pratique du développement full-stack.",
+    "educationHeading": "Formations & certifications",
+    "educationSubtext": "Les formations, certifications et titres qui structurent mon parcours d'ingénierie logicielle.",
+    "viewDetail": "Lire le détail",
+    "discoveryHeading": "Poursuivre la découverte",
+    "discoveryText": "Explorez les compétences mobilisées et les réalisations qui donnent du contexte à chaque étape de mon parcours.",
+    "discoverySkills": "Découvrir mes compétences",
+    "discoveryAchievements": "Voir mes réalisations"
   },
   "proofs": {
     "eyebrow": "Documents",
@@ -339,6 +428,30 @@
     "heading": "Me contacter",
     "subtext": "Une question, un projet ou un message professionnel ? Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.",
     "altEmail": "Vous pouvez aussi me contacter directement par email à",
+    "knowledgeHeading": "Domaines de connaissance",
+    "knowledgeText": "Des échanges concrets autour de ces compétences techniques et de leur mise en œuvre.",
+    "knowledgeItems": [
+      {
+        "label": "Développement Odoo et ERP",
+        "href": "/competences/developpement-odoo"
+      },
+      {
+        "label": "Développement backend et API",
+        "href": "/competences/developpement-backend"
+      },
+      {
+        "label": "Développement frontend",
+        "href": "/competences/developpement-frontend"
+      },
+      {
+        "label": "DevOps et déploiement",
+        "href": "/competences/devops"
+      },
+      {
+        "label": "Python et analyse de données",
+        "href": "/competences/python"
+      }
+    ],
     "recaptchaDisclosure": "Ce site est protégé par reCAPTCHA et les {privacy} et {terms} de Google s'appliquent.",
     "privacyPolicy": "règles de confidentialité",
     "termsOfService": "conditions d'utilisation"
@@ -468,13 +581,36 @@
   },
   "projects": {
     "pageTitle": "Projets | Orhan Madi Assani",
-    "pageDescription": "Modules Odoo standalone extraits de fonctionnalités métier et publiés en open source sur GitHub.",
+    "pageDescription": "Vingt modules Odoo open source présentés par les solutions métier qu'ils apportent à la finance, au commerce et aux opérations.",
     "eyebrow": "Modules open source",
     "heading": "Projets Odoo",
-    "subtext": "Une sélection de modules Odoo standalone extraits de besoins métier, nettoyés pour fonctionner sur des installations génériques et publiés sur GitHub.",
+    "subtext": "Vingt modules Odoo standalone, extraits de besoins réels puis rendus installables sur des environnements génériques. Ils sont présentés ici par les solutions métier qu'ils apportent.",
     "summaryLabel": "Dépôts publiés",
     "summaryValue": "{count} modules",
     "stackLabel": "Catégories",
+    "solutionsHeading": "Les solutions métier apportées",
+    "solutionsLead": "Ces vingt dépôts ne sont pas une suite de fonctionnalités isolées. Ils prolongent l'ERP pour rendre les informations plus fiables, les décisions plus lisibles et les opérations plus fluides.",
+    "solutions": [
+      {
+        "scope": "Finance, ADV et direction",
+        "title": "Fiabiliser la finance et le pilotage",
+        "description": "Les modules rapprochent les données de vente, de livraison, de facturation et de stock. Ils rendent visibles le contexte d'une facture, les retards de paiement, la marge, les dates de facturation et les axes d'analyse utiles au suivi financier.",
+        "outcome": "Les équipes retrouvent les informations nécessaires dans Odoo, avec moins d'exports et d'allers-retours entre écrans."
+      },
+      {
+        "scope": "Commerce, CRM et B2B",
+        "title": "Mieux qualifier, vendre et sécuriser les commandes",
+        "description": "Les modules structurent les rôles des contacts, le contexte des partenaires, la qualification des opportunités, les données commerciales et la tarification B2B. Ils font aussi apparaître les canaux de vente, les consignes de préparation et les alertes nécessitant une validation.",
+        "outcome": "Les équipes commerciales et ADV disposent d'un dossier client plus lisible pour prioriser, préparer et suivre chaque vente."
+      },
+      {
+        "scope": "Produits, achats et logistique",
+        "title": "Rendre les flux produits plus contrôlables",
+        "description": "Les modules enrichissent les nomenclatures, les catalogues et les données de conditionnement. Ils facilitent le contrôle des achats par code-barres, la préparation des expéditions, le suivi analytique des mouvements de stock et l'ouverture des données de valorisation vers des outils externes.",
+        "outcome": "Les équipes opérationnelles disposent de documents et de données produits plus cohérents pour agir avec moins de recherches manuelles."
+      }
+    ],
+    "viewRepositories": "Explorer les dépôts open source",
     "viewProject": "Voir sur GitHub",
     "viewDetails": "Voir la fiche",
     "backToProjects": "Retour aux projets",
@@ -502,7 +638,10 @@
     "professionalProjectHeading": "Projet professionnel",
     "personalProjectHeading": "Projet personnel",
     "qualitiesHeading": "Mes qualités humaines",
-    "interestsHeading": "Mes centres d'intérêt"
+    "interestsHeading": "Mes centres d'intérêt",
+    "discoveryHeading": "Découvrez mon parcours",
+    "discoveryText": "Retracez les étapes qui m'ont conduit du droit au développement full-stack.",
+    "discoveryCta": "Voir mon parcours"
   },
   "competencesPage": {
     "pageTitle": "Compétences | Orhan Madi Assani",
@@ -533,6 +672,11 @@
     "selfCritiqueHeading": "Autocritique",
     "evolutionHeading": "Évolution",
     "linkedRealisationsHeading": "Réalisations rattachées",
+    "caseStudiesHeading": "Les réalisations qui mettent la compétence à l'épreuve",
+    "caseStudiesIntro": "Les éléments de preuve décrivent des épisodes précis. Cette synthèse les replace dans les études de cas complètes : le contexte, ma contribution et le résultat permettent d'observer ce que cette compétence a rendu possible, avec le niveau de prudence nécessaire sur chaque résultat.",
+    "caseStudyContextLabel": "Contexte",
+    "caseStudyRoleLabel": "Ma contribution",
+    "caseStudyResultLabel": "Résultat établi",
     "levelLabel": "Niveau de maîtrise",
     "importanceLabel": "Importance dans mon profil",
     "acquisitionLabel": "Vitesse d'acquisition",
@@ -548,6 +692,12 @@
     "subtext": "Les projets majeurs que j'ai menés, de la conception à la mise en production.",
     "viewDetail": "Lire l'article",
     "backToRealisations": "Retour aux réalisations",
+    "summaryHeading": "Synthèse de la réalisation",
+    "summaryContext": "Contexte",
+    "summaryRole": "Mon rôle",
+    "summaryResult": "Résultat",
+    "summaryProof": "Preuve",
+    "summaryProofLink": "Accéder aux éléments détaillés",
     "presentationHeading": "Présentation",
     "objectivesHeading": "Objectifs, contexte et enjeux",
     "risksHeading": "Risques et mesures de maîtrise",

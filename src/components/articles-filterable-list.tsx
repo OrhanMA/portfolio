@@ -3,9 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { ArticleCards, formatArticleDate } from "@/components/article-cards";
 import { filterArticleIndex } from "@/lib/article-search";
 import type { Locale } from "@/lib/i18n";

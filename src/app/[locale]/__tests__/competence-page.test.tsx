@@ -39,7 +39,7 @@ describe("CompetenceDetailPage", () => {
         name: "Protéger la chaîne d'envoi du formulaire du portfolio",
       }),
     ).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: "Retour au sommaire" })).toHaveLength(4);
+    expect(screen.getAllByRole("link", { name: "Retour au sommaire" })).toHaveLength(5);
 
     const sectionIndexes = document.querySelectorAll("[data-section-index]");
     expect(Array.from(sectionIndexes, (index) => index.textContent)).toEqual([
@@ -48,7 +48,16 @@ describe("CompetenceDetailPage", () => {
       "III",
       "IV",
       "V",
+      "VI",
     ]);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: "Les réalisations qui mettent la compétence à l'épreuve",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("Ma contribution")).toHaveLength(3);
 
     const evidence = document.querySelector("#evidence");
     expect(

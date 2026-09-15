@@ -57,7 +57,7 @@ export function RealisationArticleContent({ text, locale = "fr", currentPath }: 
 
   if (!isNumberedList) {
     return (
-      <div>
+      <div data-realisation-article-body>
         {blocks.map((block, index) => (
           <p key={index}>
             <LinkedText locale={locale} currentPath={currentPath}>{renderInlineBold(
@@ -72,7 +72,7 @@ export function RealisationArticleContent({ text, locale = "fr", currentPath }: 
   }
 
   return (
-    <ol type="a">
+    <ol type="a" data-realisation-article-body data-realisation-article-list>
       {blocks.map((block, index) => {
         if (block.kind !== "numbered") return null;
 

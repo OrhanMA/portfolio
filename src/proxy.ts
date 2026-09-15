@@ -11,6 +11,9 @@ function createNonce() {
 
 function createContentSecurityPolicy(nonce: string) {
   const developmentSources = isDevelopment ? " 'unsafe-eval'" : "";
+  const styleSource = isDevelopment
+    ? "style-src-elem 'self' 'unsafe-inline'"
+    : `style-src-elem 'self' 'nonce-${nonce}'`;
 
   return [
     "default-src 'self'",
@@ -19,7 +22,7 @@ function createContentSecurityPolicy(nonce: string) {
     "frame-ancestors 'none'",
     "form-action 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${developmentSources} https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net`,
-    `style-src-elem 'self' 'nonce-${nonce}'`,
+    styleSource,
     "style-src-attr 'unsafe-inline'",
     "img-src 'self' data: blob: https:",
     "media-src 'self' blob:",

@@ -25,8 +25,8 @@ export function HeroSection({
             <LinkedText locale={locale}>{dict.subtitle}</LinkedText>
           </p>
           <h1>
-            <span>Orhan Madi</span>
-            <span>Assani</span>
+            <span>Orhan</span>
+            <span>Madi Assani</span>
           </h1>
 
           <p>
@@ -42,7 +42,7 @@ export function HeroSection({
               <Briefcase aria-hidden="true" />
               <Link href={`/${locale}/parcours/1up-fullstack-developer`}>{dict.status}</Link>
             </span>
-            <span>
+            <span data-hero-stack>
               <Code2 aria-hidden="true" />
               <TopicLink label="Odoo" locale={locale} /> · <TopicLink label="Symfony" locale={locale} /> · <TopicLink label="Next.js" locale={locale} />
             </span>

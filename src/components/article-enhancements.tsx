@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Check, Copy, Link2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 import type { ArticleHeading } from "@/lib/article-headings";
 import type { Locale } from "@/lib/i18n";
 

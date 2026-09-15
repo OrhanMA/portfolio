@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
-import { cn } from "@/lib/utils";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
@@ -115,8 +114,6 @@ export function ProjectsSection({
               const slug = project.slug;
               const media = CASE_MEDIA[slug];
               const copy = caseCopyBySlug[slug];
-              const imageOnRight = index === 1;
-
               return (
                 <article
                   key={project.slug}

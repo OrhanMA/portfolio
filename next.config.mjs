@@ -8,7 +8,7 @@ const nextConfig = {
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    qualities: [60, 75, 90, 95],
+    qualities: [60, 70, 75, 86, 90, 95],
   },
   allowedDevOrigins: [
     "localhost",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Mail } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
-import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../route-context";
@@ -72,31 +72,48 @@ export default async function ContactPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/contact`} />
-      <EditorialPageHeader
-        eyebrow={dict.nav.contact}
-        title={dict.contact.heading}
-        description={dict.contact.subtext}
-        titleClassName="uppercase"
-      />
+      <section data-contact-page aria-labelledby="contact-heading">
+        <div data-contact-layout>
+          <div data-contact-intro>
+            <p data-contact-eyebrow>{dict.nav.contact}</p>
+            <h1 id="contact-heading">{dict.contact.heading}</h1>
+            <p data-contact-summary>{dict.contact.subtext}</p>
 
-      <section>
-        <div>
-          <aside>
-            <div>
-              <Mail aria-hidden="true" />
-            </div>
-            <p>Email</p>
-            <p>
-              {dict.contact.altEmail}
-            </p>
-            <a
-              href="mailto:orhan.madi.assani@gmail.com"
+            <aside data-contact-direct aria-labelledby="contact-email-heading">
+              <div>
+                <Mail aria-hidden="true" />
+              </div>
+              <div>
+                <p id="contact-email-heading">Email</p>
+                <p>{dict.contact.altEmail}</p>
+                <a href="mailto:orhan.madi.assani@gmail.com">
+                  orhan.madi.assani@gmail.com
+                </a>
+              </div>
+            </aside>
+
+            <section
+              data-contact-knowledge
+              aria-labelledby="contact-knowledge-heading"
             >
-              orhan.madi.assani@gmail.com
-            </a>
-          </aside>
+              <h2 id="contact-knowledge-heading">
+                {dict.contact.knowledgeHeading}
+              </h2>
+              <p>{dict.contact.knowledgeText}</p>
+              <ul>
+                {dict.contact.knowledgeItems.map((item) => (
+                  <li key={item.href}>
+                    <Link href={`/${loc}${item.href}`}>
+                      <span>{item.label}</span>
+                      <ArrowUpRight aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
 
-          <div>
+          <div data-contact-form-panel>
             <div>
               <ContactForm
                 locale={loc}
@@ -110,16 +127,8 @@ export default async function ContactPage({
               />
             </div>
 
-            <div>
-              <p>
-                {dict.contact.altEmail}{" "}
-                <a
-                  href="mailto:orhan.madi.assani@gmail.com"
-                >
-                  orhan.madi.assani@gmail.com
-                </a>
-              </p>
-              {recaptchaSiteKey && (
+            {recaptchaSiteKey && (
+              <div data-contact-form-notes>
                 <p>
                   <RecaptchaDisclosure
                     text={dict.contact.recaptchaDisclosure}
@@ -127,8 +136,8 @@ export default async function ContactPage({
                     termsLabel={dict.contact.termsOfService}
                   />
                 </p>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

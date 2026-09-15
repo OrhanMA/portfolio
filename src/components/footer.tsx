@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail } from "lucide-react";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 import { CookieSettingsButton } from "@/components/cookie-settings-button";
@@ -32,6 +33,15 @@ export function Footer({
     <footer
       data-site-footer
     >
+      <Image
+        data-footer-background
+        src="/images/footer-background.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        quality={75}
+      />
+      <span data-footer-overlay aria-hidden="true" />
       <div>
         <nav
           aria-label={dict.footer.navTitle}

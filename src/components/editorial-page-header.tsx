@@ -8,7 +8,6 @@ type EditorialPageHeaderProps = {
   leading?: ReactNode;
   meta?: ReactNode;
   aside?: ReactNode;
-  compact?: boolean;
   className?: string;
   titleClassName?: string;
 };
@@ -20,7 +19,6 @@ export function EditorialPageHeader({
   leading,
   meta,
   aside,
-  compact = false,
   className,
   titleClassName,
 }: EditorialPageHeaderProps) {

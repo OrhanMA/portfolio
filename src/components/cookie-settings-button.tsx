@@ -4,7 +4,7 @@ export function CookieSettingsButton({ label }: { label: string }) {
   return (
     <button
       type="button"
-      className="[font:inherit] uppercase"
+      className="[font:inherit]"
       onClick={() => window.dispatchEvent(new Event("cookie-consent-open"))}
     >
       {label}

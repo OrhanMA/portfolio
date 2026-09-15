@@ -17,6 +17,11 @@ export function TopicLink({
   return (
     <Link
       href={getTopicHref(label, locale, currentPath)}
+      data-topic-link
+      className={cn(
+        "inline-flex min-h-6 min-w-6 shrink-0 items-center justify-center",
+        className,
+      )}
     >
       {label}
     </Link>

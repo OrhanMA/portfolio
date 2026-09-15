@@ -12,6 +12,24 @@ export const modulesMetierOdoo: Realisation =
       en: "Solo design of 16 Odoo modules from scratch, plus fixes, improvements, and migration work on third-party modules.",
     },
     context: { fr: "Entreprise", en: "Company" },
+    summary: {
+      context: {
+        fr: "Chez 1UP Distribution, les besoins de la comptabilité, des ventes, de l'administration des ventes et de la logistique dépassaient les possibilités de personnalisation sans code d'Odoo.",
+        en: "At 1UP Distribution, accounting, sales, sales administration, and logistics needs exceeded Odoo's no-code customization capabilities.",
+      },
+      role: {
+        fr: "J'ai conçu en solo 16 modules Odoo, depuis l'analyse des besoins jusqu'au développement, aux tests, au déploiement et à l'accompagnement des utilisateurs.",
+        en: "I independently designed 16 Odoo modules, from requirements analysis through development, testing, deployment, and user support.",
+      },
+      result: {
+        fr: "Les modules automatisent des tâches métier, structurent des données partagées et rendent des fonctions telles que les relances, les documents ou la synchronisation B2B pilotables dans l'ERP.",
+        en: "The modules automate business tasks, structure shared data, and make functions such as reminders, documents, and B2B synchronization manageable within the ERP.",
+      },
+      proof: {
+        fr: "Des captures et des modules génériques publiables illustrent le travail, tandis que les éléments internes restent soumis à autorisation et anonymisation.",
+        en: "Screenshots and publishable generic modules illustrate the work, while internal material remains subject to authorization and anonymization.",
+      },
+    },
     tags: ["Odoo", "Python", "PostgreSQL", "API", "Open Source"],
     presentation: {
       fr: `1. **Une couche métier cohérente ajoutée à l'ERP.** Cette réalisation regroupe les 16 modules Odoo que j'ai développés en interne chez 1UP Distribution. Les présenter comme 16 réalisations indépendantes multiplierait artificiellement les projets alors qu'ils appartiennent au même ensemble : ils prolongent l'ERP pour lui permettre de représenter les règles, les données et les automatisations propres à l'entreprise. Un module Odoo est une extension logicielle installable qui peut ajouter des modèles de données, modifier des écrans, introduire des traitements Python ou dépendre d'autres applications. Les modules ne sont donc pas isolés. Certains héritent des fonctions d'un autre module, partagent des champs ou se combinent pour former un processus plus large. Leur valeur se comprend à l'échelle de cette couche métier commune plutôt qu'en comptant chaque dossier de code comme un projet séparé.

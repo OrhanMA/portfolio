@@ -62,9 +62,7 @@ export default async function ProjectDetailPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/projects/${slug}`} />
-      <div>
       <EditorialPageHeader
-        compact
         eyebrow={dict.projects.eyebrow}
         title={project.title}
         description={<LinkedText locale={loc} currentPath={`/projects/${slug}`}>{project.summary[loc]}</LinkedText>}
@@ -93,11 +91,12 @@ export default async function ProjectDetailPage({
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
+              className={actionLinkClassName}
             >
               {dict.projects.viewProject}
               <ArrowUpRight />
             </a>
-            <Link href={`/${locale}/projects`}>
+            <Link href={`/${locale}/projects`} className={actionLinkClassName}>
               {dict.projects.backToProjects}
             </Link>
             </div>
@@ -194,7 +193,6 @@ export default async function ProjectDetailPage({
           </Card>
         </div>
       </section>
-      </div>
     </>
   );
 }

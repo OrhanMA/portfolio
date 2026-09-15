@@ -45,7 +45,6 @@ export default async function PrivacyPolicyPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/politique-confidentialite`} />
-      <div>
       <EditorialPageHeader
         eyebrow={dict.footer.privacyPolicy}
         title={dict.privacy.heading}
@@ -93,7 +92,6 @@ export default async function PrivacyPolicyPage({
           </div>
         </div>
       </section>
-      </div>
     </>
   );
 }

@@ -97,6 +97,24 @@ describe("editorial homepage sections", () => {
     ).toBeInTheDocument();
   });
 
+  it.each([
+    ["fr", frDict, "Découvrir mon profil complet"],
+    ["en", enDict, "Discover my full profile"],
+  ] as const)(
+    "links the %s homepage summary to the full profile",
+    (locale, dictionary, label) => {
+      renderWithProviders(<AboutSection locale={locale} dict={dictionary.about} />, {
+        locale,
+        dictionary,
+      });
+
+      expect(screen.getByRole("link", { name: label })).toHaveAttribute(
+        "href",
+        `/${locale}/a-propos`,
+      );
+    },
+  );
+
   it("presents principles without decorative transforms or shadows", () => {
     renderWithProviders(<AboutSection dict={frDict.about} />);
 
@@ -109,7 +127,7 @@ describe("editorial homepage sections", () => {
     expect(stamp?.className).not.toMatch(/shadow|rotate|scale/);
   });
 
-  it("uses a monochrome hero and contact section without decorative assets", () => {
+  it("names the engineering specialty in the hero without decorative assets", () => {
     const hero = renderWithProviders(
       <HeroSection
         locale="fr"
@@ -118,10 +136,12 @@ describe("editorial homepage sections", () => {
       />,
     );
 
-    expect(
-      screen.queryByText("Portfolio créatif · Ingénierie logicielle"),
-    ).not.toBeInTheDocument();
+    expect(screen.getByText("Ingénierie logicielle")).toBeInTheDocument();
     expect(hero.container.querySelector('img[src*="decorative"]')).toBeNull();
+    const heroTitle = hero.container.querySelector("h1");
+    expect(heroTitle?.children).toHaveLength(2);
+    expect(heroTitle?.children[0]).toHaveTextContent("Orhan");
+    expect(heroTitle?.children[1]).toHaveTextContent("Madi Assani");
     expect(screen.getByRole("link", { name: "Voir les réalisations" })).toHaveClass(
       "bg-primary",
       "text-primary-foreground",
@@ -223,6 +243,8 @@ describe("editorial homepage sections", () => {
     expect(container.querySelector('img[src*="logo-iscod"]')).toBeInTheDocument();
     expect(container.querySelector('img[src*="logo-simplon"]')).toBeInTheDocument();
     expect(container.querySelector('img[src*="logo-usmb"]')).toBeInTheDocument();
+    expect(container.querySelector('img[src*="logo-ets-global"]')).toBeInTheDocument();
+    expect(container.querySelectorAll("[data-company-logo]").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Afficher le détail")).toHaveLength(7);
     expect(screen.getByRole("link", { name: "ISCOD" })).toHaveAttribute(
       "href",

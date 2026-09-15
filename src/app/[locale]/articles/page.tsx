@@ -39,7 +39,6 @@ export default async function ArticlesPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/articles`} />
-      <div>
       <EditorialPageHeader
         eyebrow={dict.nav.articles}
         title={dict.articles.heading}
@@ -71,7 +70,6 @@ export default async function ArticlesPage({
             }}
           />
         </Suspense>
-      </div>
       </div>
     </>
   );

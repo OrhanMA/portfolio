@@ -25,7 +25,7 @@ export function StructuredData({
         "@id": personId,
         name: "Orhan Madi Assani",
         url: `${BASE_URL}/${locale}`,
-        image: `${BASE_URL}/images/coporate-headshot.webp`,
+        image: `${BASE_URL}/images/orhan-portrait.webp`,
         jobTitle:
           locale === "fr"
             ? "Développeur full-stack"

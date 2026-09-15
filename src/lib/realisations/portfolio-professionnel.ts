@@ -12,6 +12,24 @@ export const portfolioProfessionnel: Realisation =
       en: "Building a complete portfolio with Next.js, GSAP, bilingual i18n, GDPR compliance, analytics, and a technical blog.",
     },
     context: { fr: "Projet personnel", en: "Personal project" },
+    summary: {
+      context: {
+        fr: "Ce portfolio a été reconstruit pour répondre à la grille d'évaluation de la formation tout en donnant aux recruteurs une lecture claire du parcours et des réalisations.",
+        en: "This portfolio was rebuilt to meet the training assessment rubric while giving recruiters a clear view of the journey and achievements.",
+      },
+      role: {
+        fr: "J'en assure la conception, le développement, le design, la rédaction, les tests, le déploiement et la maintenance, avec une relecture humaine des contenus assistés.",
+        en: "I handle its architecture, development, design, writing, testing, deployment, and maintenance, with human review of assisted content.",
+      },
+      result: {
+        fr: "Le site relie parcours, compétences, réalisations et preuves dans une application bilingue, avec blog technique, gestion du consentement et navigation orientée vers l'évaluation.",
+        en: "The site connects experience, skills, achievements, and evidence in a bilingual application with a technical blog, consent management, and assessment-oriented navigation.",
+      },
+      proof: {
+        fr: "Le site publié, son historique Git, les pages de compétences et les contrôles automatisés constituent des éléments consultables pour vérifier cette réalisation.",
+        en: "The published site, its Git history, the skill pages, and automated checks provide reviewable material for this achievement.",
+      },
+    },
     tags: ["Next.js", "React", "GSAP", "TypeScript", "Tailwind CSS", "MDX"],
     presentation: {
       fr: `1. **Un projet commencé le 12 mars 2026.** L'historique Git situe la création de cette version du portfolio au 12 mars 2026, avec une initialisation à partir de Next.js. Git enregistre les différentes versions du code et permet de retrouver la date ainsi que la nature des premières modifications. Cette version ne correspond pas à ma première présence professionnelle en ligne : elle constitue une reconstruction destinée à remplacer des supports antérieurs qui ne répondaient plus à mes objectifs de formation et de présentation.

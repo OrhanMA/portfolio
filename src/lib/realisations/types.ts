@@ -5,6 +5,7 @@ export type Realisation = {
   title: LocalizedContent;
   shortDescription: LocalizedContent;
   context: LocalizedContent;
+  summary: RealisationSummary;
   tags: string[];
   presentation: LocalizedContent;
   objectives: LocalizedContent;
@@ -16,6 +17,13 @@ export type Realisation = {
   critique: LocalizedContent;
   linkedCompetences: string[];
   media?: RealisationMedia[];
+};
+
+export type RealisationSummary = {
+  context: LocalizedContent;
+  role: LocalizedContent;
+  result: LocalizedContent;
+  proof: LocalizedContent;
 };
 
 export type RealisationMedia = {

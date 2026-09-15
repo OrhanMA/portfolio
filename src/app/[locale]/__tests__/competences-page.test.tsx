@@ -32,5 +32,17 @@ describe("CompetencesPage", () => {
 
     expect(screen.getByRole("heading", { name: "Compétences humaines" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Compétences techniques" })).toBeInTheDocument();
+
+    const technicalSkillTitles = Array.from(
+      container.querySelectorAll('[data-skill-domain="technical"] h3 a'),
+    ).map((link) => link.textContent);
+
+    expect(technicalSkillTitles).toEqual([
+      "Développement Odoo",
+      "Développement Backend & API",
+      "Développement Frontend (React/Next.js)",
+      "Python",
+      "DevOps & Administration Serveur",
+    ]);
   });
 });

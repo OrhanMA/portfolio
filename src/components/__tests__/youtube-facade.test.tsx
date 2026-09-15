@@ -27,6 +27,9 @@ describe("YouTubeFacade", () => {
       "src",
       "https://www.youtube-nocookie.com/embed/example-video",
     );
-    expect(player).toHaveAttribute("referrerpolicy", "no-referrer");
+    expect(player).toHaveAttribute(
+      "referrerpolicy",
+      "strict-origin-when-cross-origin",
+    );
   });
 });

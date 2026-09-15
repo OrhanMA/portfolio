@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { AboutSection } from "@/components/landing/about-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { ExperienceSection } from "@/components/landing/experience-section";
@@ -8,6 +6,7 @@ import { HomepageMotion } from "@/components/landing/homepage-motion";
 import { ProjectsSection } from "@/components/landing/projects-section";
 import { RouteStructuredData } from "@/components/route-structured-data";
 import { SkillsSection } from "@/components/landing/skills-section";
+import { ThemePortrait } from "@/components/theme-portrait";
 import type { FeaturedProjectSummary } from "@/components/landing/projects-section";
 import { getRealisationBySlug } from "@/lib/realisations";
 import type { Locale } from "@/lib/i18n";
@@ -48,8 +47,7 @@ export default async function Home({
         locale={loc}
         dict={dict.hero}
         headshot={
-          <Image
-            src="/images/coporate-headshot.webp"
+          <ThemePortrait
             alt="Orhan Madi Assani"
             width={1024}
             height={1024}

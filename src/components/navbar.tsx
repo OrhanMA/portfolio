@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SiteIdentity } from "@/components/site-identity";
@@ -14,6 +17,12 @@ import type { Locale } from "@/lib/i18n";
 export type NavbarMenuItem = {
   href: string;
   label: string;
+  badge?: string;
+};
+
+export type NavbarMenuGroup = {
+  label?: string;
+  items: NavbarMenuItem[];
 };
 
 type NavbarDictionary = {
@@ -23,7 +32,7 @@ type NavbarDictionary = {
 };
 
 type NavbarMenus = {
-  competences: NavbarMenuItem[];
+  competences: NavbarMenuGroup[];
   realisations: NavbarMenuItem[];
 };
 
@@ -36,6 +45,7 @@ export function Navbar({
   dict: NavbarDictionary;
   menus: NavbarMenus;
 }) {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileCompetencesOpen, setMobileCompetencesOpen] = useState(false);
   const [mobileRealisationsOpen, setMobileRealisationsOpen] = useState(false);
@@ -58,30 +68,51 @@ export function Navbar({
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [mobileOpen]);
 
+  const homeHref = `/${locale}`;
+  const isCurrentPath = (href: string) =>
+    pathname === href ||
+    (href !== homeHref && Boolean(pathname?.startsWith(`${href}/`)));
+
   const leadingLinks = [
     { href: `/${locale}/a-propos`, label: dict.nav.about },
-    { href: `/${locale}#parcours`, label: dict.experienceHeading },
+    { href: `/${locale}/parcours`, label: dict.experienceHeading },
   ];
 
   const closeMobileMenu = () => setMobileOpen(false);
 
   return (
-    <header
-      id="primary-navigation"
-    >
+    <header id="primary-navigation">
+      <Image
+        data-navbar-background
+        src="/images/navbar-ivy.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        quality={70}
+        aria-hidden="true"
+      />
+      <span data-navbar-overlay aria-hidden="true" />
       <nav>
-        <SiteIdentity href={`/${locale}`} />
+        <SiteIdentity
+          href={homeHref}
+          ariaCurrent={isCurrentPath(homeHref) ? "page" : undefined}
+        />
 
         <div data-desktop-navigation>
           {leadingLinks.map((link) => (
-            <NavbarLink key={link.href} {...link} />
+            <NavbarLink
+              key={link.href}
+              {...link}
+              isCurrent={isCurrentPath(link.href)}
+            />
           ))}
           <DesktopSubmenu
             id="desktop-competences-submenu"
             href={`/${locale}/competences`}
             label={dict.skillsHeading}
             allLabel={dict.nav.allCompetences}
-            items={menus.competences}
+            groups={menus.competences}
+            isCurrent={isCurrentPath(`/${locale}/competences`)}
           />
           <DesktopSubmenu
             id="desktop-realisations-submenu"
@@ -89,6 +120,7 @@ export function Navbar({
             label={dict.nav.realisations}
             allLabel={dict.nav.allRealisations}
             items={menus.realisations}
+            isCurrent={isCurrentPath(`/${locale}/realisations`)}
           />
         </div>
 
@@ -100,6 +132,7 @@ export function Navbar({
           <Link
             href={`/${locale}/contact`}
             prefetch={false}
+            aria-current={isCurrentPath(`/${locale}/contact`) ? "page" : undefined}
             className={cn(buttonVariants({ size: "sm" }), "hidden px-5 text-primary-foreground md:inline-flex")}
           >
             {dict.nav.contact}
@@ -129,6 +162,7 @@ export function Navbar({
             <MobileLink
               key={link.href}
               {...link}
+              isCurrent={isCurrentPath(link.href)}
               onNavigate={closeMobileMenu}
             />
           ))}
@@ -139,7 +173,8 @@ export function Navbar({
             toggleLabel={dict.nav.showSubmenu}
             open={mobileCompetencesOpen}
             onToggle={() => setMobileCompetencesOpen((open) => !open)}
-            items={menus.competences}
+            groups={menus.competences}
+            isCurrent={isCurrentPath(`/${locale}/competences`)}
             onNavigate={closeMobileMenu}
           />
           <MobileSubmenu
@@ -150,11 +185,13 @@ export function Navbar({
             open={mobileRealisationsOpen}
             onToggle={() => setMobileRealisationsOpen((open) => !open)}
             items={menus.realisations}
+            isCurrent={isCurrentPath(`/${locale}/realisations`)}
             onNavigate={closeMobileMenu}
           />
           <Link
             href={`/${locale}/contact`}
             prefetch={false}
+            aria-current={isCurrentPath(`/${locale}/contact`) ? "page" : undefined}
             onClick={closeMobileMenu}
           >
             {dict.nav.contact}
@@ -170,11 +207,16 @@ export function Navbar({
   );
 }
 
-function NavbarLink({ href, label }: NavbarMenuItem) {
+function NavbarLink({
+  href,
+  label,
+  isCurrent,
+}: NavbarMenuItem & { isCurrent: boolean }) {
   return (
     <Link
       href={href}
       prefetch={false}
+      aria-current={isCurrent ? "page" : undefined}
     >
       {label}
     </Link>
@@ -187,16 +229,21 @@ function DesktopSubmenu({
   label,
   allLabel,
   items,
+  groups,
+  isCurrent,
 }: {
   id: string;
   href: string;
   label: string;
   allLabel: string;
-  items: NavbarMenuItem[];
+  items?: NavbarMenuItem[];
+  groups?: NavbarMenuGroup[];
+  isCurrent: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeSubmenu = () => setOpen(false);
+  const menuGroups = groups ?? [{ items: items ?? [] }];
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key !== "Escape" || !open) return;
@@ -227,7 +274,8 @@ function DesktopSubmenu({
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => setOpen((currentOpen) => !currentOpen)}
+        onClick={() => setOpen(true)}
+        aria-current={isCurrent ? "page" : undefined}
         aria-expanded={open}
         aria-controls={id}
       >
@@ -247,19 +295,48 @@ function DesktopSubmenu({
             href={href}
             prefetch={false}
             onClick={closeSubmenu}
+            data-submenu-all
           >
             {allLabel}
             <ArrowRight aria-hidden="true" />
           </Link>
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              prefetch={false}
-              onClick={closeSubmenu}
-            >
-              {item.label}
-            </Link>
+          {menuGroups.map((group, groupIndex) => (
+            <div key={group.label ?? "ungrouped"} data-submenu-group>
+              {group.label && (
+                <p data-submenu-group-label>{group.label}</p>
+              )}
+              {group.items.map((item, itemIndex) => {
+                const badgeId = `${id}-group-${groupIndex}-item-${itemIndex}-level`;
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    prefetch={false}
+                    onClick={closeSubmenu}
+                    data-submenu-item
+                    aria-label={item.label}
+                    aria-describedby={item.badge ? badgeId : undefined}
+                  >
+                    <span>{item.label}</span>
+                    {item.badge && (
+                      <>
+                        <span id={badgeId} className="sr-only">
+                          {item.badge}
+                        </span>
+                        <Badge
+                          variant="secondary"
+                          data-submenu-badge
+                          aria-hidden="true"
+                        >
+                          {item.badge}
+                        </Badge>
+                      </>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
           ))}
         </div>
       </div>
@@ -270,12 +347,14 @@ function DesktopSubmenu({
 function MobileLink({
   href,
   label,
+  isCurrent,
   onNavigate,
-}: NavbarMenuItem & { onNavigate: () => void }) {
+}: NavbarMenuItem & { isCurrent: boolean; onNavigate: () => void }) {
   return (
     <Link
       href={href}
       prefetch={false}
+      aria-current={isCurrent ? "page" : undefined}
       onClick={onNavigate}
     >
       {label}
@@ -291,6 +370,8 @@ function MobileSubmenu({
   open,
   onToggle,
   items,
+  groups,
+  isCurrent,
   onNavigate,
 }: {
   id: string;
@@ -299,10 +380,13 @@ function MobileSubmenu({
   toggleLabel: string;
   open: boolean;
   onToggle: () => void;
-  items: NavbarMenuItem[];
+  items?: NavbarMenuItem[];
+  groups?: NavbarMenuGroup[];
+  isCurrent: boolean;
   onNavigate: () => void;
 }) {
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuGroups = groups ?? [{ items: items ?? [] }];
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key !== "Escape" || !open) return;
@@ -314,9 +398,14 @@ function MobileSubmenu({
   }
 
   return (
-    <div onKeyDown={handleKeyDown}>
+    <div data-mobile-submenu onKeyDown={handleKeyDown}>
       <div>
-        <MobileLink href={href} label={label} onNavigate={onNavigate} />
+        <MobileLink
+          href={href}
+          label={label}
+          isCurrent={isCurrent}
+          onNavigate={onNavigate}
+        />
         <Button
           ref={triggerRef}
           variant="ghost"
@@ -335,15 +424,43 @@ function MobileSubmenu({
         id={id}
         hidden={!open}
       >
-        {items.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            prefetch={false}
-            onClick={onNavigate}
-          >
-            {item.label}
-          </Link>
+        {menuGroups.map((group, groupIndex) => (
+          <div key={group.label ?? "ungrouped"} data-submenu-group>
+            {group.label && (
+              <p data-submenu-group-label>{group.label}</p>
+            )}
+            {group.items.map((item, itemIndex) => {
+              const badgeId = `${id}-group-${groupIndex}-item-${itemIndex}-level`;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  prefetch={false}
+                  onClick={onNavigate}
+                  data-submenu-item
+                  aria-label={item.label}
+                  aria-describedby={item.badge ? badgeId : undefined}
+                >
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <>
+                      <span id={badgeId} className="sr-only">
+                        {item.badge}
+                      </span>
+                      <Badge
+                        variant="secondary"
+                        data-submenu-badge
+                        aria-hidden="true"
+                      >
+                        {item.badge}
+                      </Badge>
+                    </>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
         ))}
       </div>
     </div>

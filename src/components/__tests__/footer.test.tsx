@@ -5,7 +5,9 @@ import { renderWithProviders, screen, within } from "@/test/utils";
 
 describe("Footer", () => {
   it("exposes the secondary pages and legal links", () => {
-    renderWithProviders(<Footer dict={frDict} locale="fr" />);
+    const { container } = renderWithProviders(<Footer dict={frDict} locale="fr" />);
+
+    expect(container.querySelector('img[src*="footer-background"]')).toBeInTheDocument();
 
     const navigation = screen.getByRole("navigation", { name: "Navigation" });
     const links = within(navigation);
@@ -41,7 +43,10 @@ describe("Footer", () => {
     );
     expect(
       screen.getByRole("button", { name: "Gérer les cookies" }),
-    ).toHaveClass("[font:inherit]", "uppercase");
+    ).toHaveClass("[font:inherit]");
+    expect(
+      screen.getByRole("button", { name: "Gérer les cookies" }),
+    ).not.toHaveClass("uppercase");
     expect(screen.queryByText(/GSAP & shadcn\/ui/)).not.toBeInTheDocument();
   });
 

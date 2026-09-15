@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 // RouteStructuredData reads request headers in a server component. Keep this
@@ -70,6 +70,15 @@ describe("AboutPage", () => {
     expect(container).toHaveTextContent(/RNCP level 6, 2024/i);
     expect(container).toHaveTextContent(/work-study program in December 2024/i);
     expect(
+      screen.getByRole("heading", { name: "Discover my journey" }),
+    ).toBeInTheDocument();
+    expect(
+      within(container.querySelector("[data-page-end-cta]") as HTMLElement).getByRole(
+        "link",
+        { name: "View my journey" },
+      ),
+    ).toHaveAttribute("href", "/en/parcours");
+    expect(
       screen.getByRole("heading", { name: "Perseverance" }),
     ).toBeInTheDocument();
     expect(
@@ -85,6 +94,9 @@ describe("AboutPage", () => {
     const { container } = render(page);
 
     expect(container.querySelector("[data-editorial-page-header]")).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-editorial-page-header]")?.parentElement,
+    ).toBe(container);
     expect(container.querySelector("#parcours")).toBeInTheDocument();
     expect(container.querySelector("#valeurs")).toBeInTheDocument();
     expect(container.querySelector("#projet")).toBeInTheDocument();
@@ -93,10 +105,49 @@ describe("AboutPage", () => {
     expect(
       screen.getByRole("navigation", { name: "Explorer le portfolio" }),
     ).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("navigation", { name: "Explorer le portfolio" })
+        .querySelectorAll("svg"),
+    ).toHaveLength(3);
     expect(screen.getAllByRole("link", { name: "Voir mon parcours" })[0]).toHaveAttribute(
       "href",
-      "/fr#parcours",
+      "/fr/parcours",
     );
-    expect(screen.getByAltText("Portrait d'Orhan Madi Assani")).toBeInTheDocument();
+    expect(screen.getAllByAltText("Portrait d'Orhan Madi Assani")).toHaveLength(2);
+  });
+
+  it("ends with a link to the journey", async () => {
+    const page = await AboutPage({
+      params: Promise.resolve({ locale: "fr" }),
+    });
+
+    const { container } = render(page);
+    const cta = container.querySelector("[data-page-end-cta]");
+
+    expect(cta).not.toBeNull();
+    expect(
+      screen.getByRole("heading", { name: "Découvrez mon parcours" }),
+    ).toBeInTheDocument();
+    expect(
+      within(cta as HTMLElement).getByRole("link", {
+        name: "Voir mon parcours",
+      }),
+    ).toHaveAttribute("href", "/fr/parcours");
+  });
+
+  it("keeps the three parcours images together in chronological order", async () => {
+    const page = await AboutPage({
+      params: Promise.resolve({ locale: "fr" }),
+    });
+
+    const { container } = render(page);
+    const journeyMedia = container.querySelector("[data-journey-media]");
+
+    expect(journeyMedia?.querySelectorAll("figure")).toHaveLength(3);
+    expect(journeyMedia?.querySelector('img[alt="Bâtiment Dynamo à Chambéry, lieu de formation Simplon."]')).toBeInTheDocument();
+    expect(journeyMedia?.querySelector('img[alt="Bâtiment du Laboratoire d\'Informatique de Grenoble."]')).toBeInTheDocument();
+    expect(journeyMedia?.querySelector('img[alt="Bâtiment de 1UP Distribution."]')).toBeInTheDocument();
+    expect(container.querySelector('#valeurs img[alt="Bâtiment de 1UP Distribution."]')).toBeNull();
   });
 });

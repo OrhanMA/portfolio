@@ -5,7 +5,7 @@ import { appTrajectoiresDeVie } from "./realisations/app-trajectoires-de-vie";
 import { portfolioProfessionnel } from "./realisations/portfolio-professionnel";
 import type { Realisation } from "./realisations/types";
 
-export type { Realisation, RealisationMedia } from "./realisations/types";
+export type { Realisation, RealisationMedia, RealisationSummary } from "./realisations/types";
 
 export const realisations: Realisation[] = [
   migrationOdooV16V19,

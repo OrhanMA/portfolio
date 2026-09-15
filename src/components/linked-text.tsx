@@ -33,6 +33,8 @@ export function linkTextMentions(
               locale,
               currentPath,
             )}
+            data-topic-link
+            className="inline-flex min-h-6 min-w-6 shrink-0 items-center justify-center"
           >
             {part}
           </Link>

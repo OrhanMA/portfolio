@@ -1,0 +1,217 @@
+Prompt pour l'image de la page principale
+
+
+Use case: stylized-concept
+Asset type: preview-only full-viewport fixed background for the homepage of a senior software engineering portfolio
+
+Primary request: Create a premium contemporary editorial image of a monumental Roman atrium, designed as a quiet website background rather than a standalone poster. Reinterpret the supplied historical architectural references in a refined cinematic 3D illustration with a subtle engraved-print texture.
+
+Input images:
+- Reference image 1: use its open-air atrium, colonnade, architectural depth, pale sky, and spacious central courtyard as compositional inspiration only.
+- Reference image 2: use its restrained white, ivory, charcoal and deep red palette, plus the strong directional shaft of light, as color and lighting inspiration only.
+Do not reproduce either image literally.
+
+Scene/backdrop: A vast open Roman courtyard in pale carved limestone and warm ivory plaster. Architectural detail and columns frame the top edge and far right side. The space should feel complete and intentional but not archaeologically busy.
+
+Subject: Architecture is the main subject. Include one very small, discreet classical stone sculpture or relief at the extreme far-right background, integrated into a niche. It must not read as a portrait or a dominant human figure.
+
+Style/medium: High-end editorial art direction, cinematic architectural 3D render blended with fine monochrome engraving grain. Sophisticated, restrained, tactile stone surfaces. Contemporary visual identity inspired by museum publishing and avant-garde cultural websites, not fantasy concept art and not a watercolor reconstruction.
+
+Composition/framing: Wide 16:9 landscape. Preserve broad, low-detail negative space across the entire left half and central third for a large hero headline, supporting copy, buttons, and a separate portrait. Keep the strongest architectural mass on the upper and far-right edges. Avoid a centered vanishing point or central focal object. The image must remain legible when cropped with object-fit cover at desktop widths. No important subject near the left or center.
+
+Lighting/mood: A soft but clear white shaft of light enters diagonally from the upper left, creating elegant long shadows without darkening the text zone. Add one thin, controlled deep-red reflected glow along a single architectural edge on the far right. Atmosphere of openness, ambition, mastery, calm confidence and precision.
+
+Color palette: Off-white limestone, warm ivory, lightly warm charcoal shadows, muted pale sky, one restrained oxblood-red light reflection. Mostly neutral and desaturated. Red occupies less than five percent of the image.
+
+Materials/textures: Fine limestone pores, smooth plaster, subtle engraved halftone grain, restrained film texture, crisp architectural edges, soft atmospheric haze.
+
+Text: none.
+
+Constraints: Website content must remain dominant. Keep the left and center bright, calm and low contrast. No foreground figure. No obvious face. No competing central focal point. No interface elements. No logos. No readable inscriptions. No letters or numbers. No watermark. No scattered red accents. No blue or purple neon. No glass panels. No excessive ornament. No fantasy ruins, destruction, crowds, modern objects or tiny narrative props.
+
+
+prompt image page à propos:
+
+Use case: stylized-concept
+Asset type: preview-only full-viewport fixed background for the About page of a senior software engineering portfolio
+
+Primary request: Create the second image in the same premium Roman editorial background collection as the approved homepage reference. This image represents reflection, professional values, responsibility and personal depth. Reinterpret an intimate Roman domus study as a quiet, content-supporting architectural environment.
+
+Input images:
+- Reference image 1: the approved homepage background is the binding style master. Match its pale limestone and warm ivory materials, natural cinematic lighting, realistic architectural 3D rendering, fine editorial grain, restrained vegetation, tonal warmth and overall polish. Do not duplicate its courtyard composition.
+- Reference image 2: use the reconstructed Roman domestic interior for its intimate scale, red-and-ivory wall rhythm, side lighting and relationship between an interior room and an exterior terrace.
+- Reference image 3: use the open atrium reference for subtle colonnade depth and the feeling of a lived but uncluttered Roman interior.
+Do not reproduce any reference literally.
+
+Scene/backdrop: A serene Roman domus study opening onto a small sunlit atrium. Include one shallow alcove, a restrained architectural niche, a partial column at the far right, and a long expanse of softly textured ivory plaster. The room should feel contemplative, refined and inhabited through architecture alone, without small narrative props.
+
+Subject: Architecture is the main subject. Integrate one discreet low-relief classical stone figure inside a narrow niche at the extreme right edge. It must be small, distant and subordinate to the room, with no obvious face or portrait emphasis.
+
+Style/medium: High-end contemporary editorial art direction, cinematic architectural 3D render with a subtle monochrome engraving and film-grain texture. Museum-publishing sophistication, calm realism and tactile materials. Match the approved homepage image closely enough to read as the same collection.
+
+Composition/framing: Wide 16:9 landscape. Reserve broad low-detail negative space across the left half and central third for a large page title, introductory paragraph, persistent identity elements and long-form content overlays. Place the alcove, niche, partial column and strongest perspective primarily along the far-right third. Keep the lower center calm and avoid furniture or a centered object. The image must tolerate object-fit cover cropping at desktop widths.
+
+Lighting/mood: Soft directional white daylight enters from the upper left through the atrium opening and grazes the plaster wall. Use gentle shadow transitions rather than dramatic darkness. Add one small, controlled oxblood-red reflection along the base of the right wall or inside a single recessed panel. Mood: thoughtful, humane, responsible, intimate and quietly confident.
+
+Color palette: Warm off-white, ivory limestone, softly warm charcoal shadows, muted pale daylight, and one restrained deep oxblood-red architectural accent confined to the right. Mostly neutral and desaturated.
+
+Materials/textures: Fine limestone pores, smooth aged plaster, subtle carved relief, restrained leafy shadow, delicate engraved halftone grain, slight atmospheric haze, crisp but not sterile edges.
+
+Text: none.
+
+Constraints: Website content must remain visually dominant. Keep the left and center bright, quiet and low contrast. Preserve the approved collection's material, grain and light language. No foreground person. No central statue. No obvious face. No desk clutter, scrolls, books, pottery, lamps or tiny props. No readable inscriptions, letters or numbers. No logos, watermark or UI. No scattered red accents. No blue or purple neon. No glass panels. No fantasy ruins, destruction, crowds or modern objects.
+
+
+
+Prompt pour l'image de la page mon parcours:
+
+Use case: stylized-concept
+Asset type: preview-only full-viewport fixed background for the Career Journey and experience-detail pages of a senior software engineering portfolio
+
+Primary request: Create the third image in the approved Roman editorial background collection. Show professional progression through a long architectural sequence rather than through literal UI graphics. The scene should communicate continuity, accumulated experience, learning and forward movement while remaining a quiet background for a detailed career timeline.
+
+Input images:
+- Reference image 1: approved homepage background, binding style master for pale limestone, warm ivory plaster, realistic cinematic 3D architecture, restrained vegetation, directional daylight and fine editorial grain.
+- Reference image 2: approved About background, binding style master for calm negative space, intimate tonal warmth, red architectural accents and discreet sculpture treatment.
+- Reference image 3: use the Roman forum reconstruction and ruins for layered civic architecture, repeated porticoes, spatial progression and a sense of structures built across time. Do not copy its split-image layout, people or archaeological-document appearance.
+Do not reproduce any reference literally.
+
+Scene/backdrop: A long Roman colonnade formed by a measured sequence of porticoes and thresholds, opening gradually toward a bright distant courtyard. Repeated arches and columns establish a clear architectural rhythm from foreground to background. The space is intact, refined and timeless, not a ruin.
+
+Subject: The progression of architectural thresholds is the main subject. Include one very small classical stone statue or relief near the distant destination, partially integrated into the final portico. It must remain subordinate and have no readable facial detail.
+
+Style/medium: High-end contemporary editorial art direction, cinematic architectural 3D render with subtle engraved-print and film-grain texture. Museum-publishing sophistication, realistic stone and light, closely matching the two approved collection images.
+
+Composition/framing: Wide 16:9 landscape. Preserve a broad vertical band across the entire left third as a calm, low-detail ivory wall and softly lit floor for timeline dates, headings and article content. Begin the repeated colonnade around the center and let it recede diagonally toward a vanishing point in the upper-right third. Keep the center-left free of columns, statues and high-contrast shadows. Architectural stages must feel sequential but must not resemble a drawn timeline or infographic. The image must tolerate object-fit cover cropping on desktop.
+
+Lighting/mood: White daylight travels through successive porticoes from left foreground toward the bright distance, producing a measured cadence of soft shadows. Add a single thin oxblood-red stone inlay that crosses only a few thresholds on the right side, suggesting continuity without becoming a line chart. Mood: progression, continuity, learning, discipline and projection.
+
+Color palette: Warm off-white, ivory limestone, softly warm charcoal shadows, muted natural daylight and one restrained deep oxblood-red architectural inlay. Mostly neutral and desaturated. Match the approved collection.
+
+Materials/textures: Fine limestone pores, aged plaster, carved capitals with controlled detail, smooth worn stone floor, subtle engraved halftone grain, gentle atmospheric depth and restrained greenery only in the distant courtyard.
+
+Text: none.
+
+Constraints: Website content must remain dominant. Keep the full left third bright, quiet and low contrast. Preserve the approved material, grain and light language. No literal timeline, connecting dots, arrows, labels or milestones. No foreground person. No central figure. No obvious face. No crowds, carts, modern objects, ruins, broken columns or construction debris. No readable inscriptions, letters or numbers. No logos, watermark or UI. No scattered red accents. No blue or purple neon. No glass panels. No fantasy architecture.
+
+
+Prompt pour l'image de fond de la page Compétences:
+
+Use case: stylized-concept
+Asset type: preview-only full-viewport fixed background shared by the Skills overview and all skill-detail pages of a senior software engineering portfolio
+
+Primary request: Create the fourth image in the approved Roman editorial background collection. Use monumental Roman geometric architecture to express structure, precision, hierarchy and comparative mastery. The scene must support both a skill radar visualization and long-form skill articles without competing with them.
+
+Input images:
+- Reference image 1: approved homepage background, binding style master for pale limestone, warm ivory, realistic cinematic 3D rendering, natural daylight, restrained red and fine editorial grain.
+- Reference image 2: approved About background, binding style master for broad calm plaster surfaces, quiet tonal transitions and discreet niche sculpture.
+- Reference image 3: approved Career Journey background, binding style master for architectural rhythm, depth and red stone inlay.
+- Reference image 4: use the Pantheon interior for the monumental coffered dome, radial hierarchy, oculus light and disciplined geometric repetition. Do not copy its centered symmetrical tourist-view composition, crowd, dark palette or historical painting style.
+Do not reproduce any reference literally.
+
+Scene/backdrop: An oblique interior fragment of a monumental Roman rotunda. A pale coffered dome curves into view from the upper-right corner, with its geometric cells diminishing toward a partially visible oculus near the upper-right third. Below it, a restrained curved colonnade and one shallow wall niche establish scale. The architecture is complete, clean and timeless.
+
+Subject: The dome geometry and ordered architectural system are the main subjects. Include one small, discreet stone bust or low-relief figure inside a niche near the extreme right edge, nearly architectural in scale and treatment. It must not become a portrait or focal face.
+
+Style/medium: High-end contemporary editorial art direction, cinematic architectural 3D render with subtle engraved-print and film-grain texture. Museum-publishing sophistication and tactile realism. Match the approved collection in material, warmth, grain, vegetation restraint and lighting quality.
+
+Composition/framing: Wide 16:9 landscape. Keep the entire lower-left half and central-left region as a broad, softly lit expanse of ivory curved wall and pale stone floor with minimal detail, suitable for headings, a radar chart, labels and article text. Concentrate the coffered radial geometry in the upper-right quadrant and keep the oculus clearly off-center. The lower center must remain calm. Avoid a centered dome, centered vanishing point or circular focal element behind page content. The image must tolerate object-fit cover cropping on desktop.
+
+Lighting/mood: Cool-white daylight descends softly from the off-center oculus and grazes the coffered cells, creating a measured gradient from light ivory to warm charcoal. Add only a faint oxblood-red reflected edge across a few coffers and one narrow stone inlay near the right boundary. Mood: analytical, structured, precise, balanced and quietly authoritative.
+
+Color palette: Warm off-white, ivory limestone, softly warm charcoal shadows, restrained cool daylight and one very limited deep oxblood-red reflected accent. Mostly neutral and desaturated. Match the approved collection.
+
+Materials/textures: Fine limestone pores, smooth aged plaster, crisply carved coffer edges, restrained marble variation, subtle engraved halftone grain, delicate atmospheric haze and no glossy surfaces.
+
+Text: none.
+
+Constraints: Website content must remain dominant. Keep the lower-left and center-left bright, quiet and low contrast. Preserve the approved collection's material, grain and light language. No central oculus. No centered symmetry. No foreground person. No obvious face. No crowds. No literal charts, diagrams, grids, numbers, symbols or UI embedded in the architecture. No readable inscriptions, letters or numbers. No logos or watermark. No scattered red accents. No blue or purple neon. No glass panels. No fantasy architecture, ruins or modern objects.
+
+
+prompt pour l'image de fond pour la page réalisations:
+
+Use case: stylized-concept
+Asset type: preview-only full-viewport fixed background shared by the Achievements overview, all achievement-detail pages and historical project routes of a senior software engineering portfolio
+
+Primary request: Create the fifth and final image in the approved Roman editorial background collection. Represent concrete delivery, construction, transformation, problem-solving and lasting impact through a monumental Roman forum assembled from coherent architectural volumes. The result must feel finished and purposeful, not ruined or under construction, while remaining a quiet background for project summaries, proof media and long-form case studies.
+
+Input images:
+- Reference image 1: approved homepage background, binding style master for pale limestone, warm ivory plaster, realistic cinematic 3D architecture, natural daylight, restrained vegetation and fine editorial grain.
+- Reference image 2: approved Career Journey background, binding style master for layered depth, directional progression and oxblood-red stone inlay.
+- Reference image 3: approved Skills background, binding style master for monumental scale, geometric order, coffered detail and controlled red architectural panels.
+- Reference image 4: use the Pantheon facade for frontal monumentality, columns, pediment and engineering clarity. Remove all inscriptions and do not copy the modern urban surroundings.
+- Reference image 5: use the Roman forum reconstruction and ruins for civic spatial layering, multiple related structures and the feeling of enduring work. Do not copy the split-image layout, people, rubble or archaeological-document appearance.
+Do not reproduce any reference literally.
+
+Scene/backdrop: A refined Roman forum seen from a low, wide editorial viewpoint. A completed temple facade without inscriptions stands in the far-right third, accompanied by a sequence of smaller porticoes and precisely fitted stone fragments that read as intentional modular construction. A few massive carved blocks and column drums are integrated into a finished stepped platform in the lower-right foreground, suggesting assembly and transformation without looking abandoned or broken.
+
+Subject: The completed architectural ensemble and its visibly joined volumes are the main subjects. Include one discreet classical relief or small statue between two far-right columns, deeply integrated into the building and without readable facial detail.
+
+Style/medium: High-end contemporary editorial art direction, cinematic architectural 3D render with subtle engraved-print and film-grain texture. Museum-publishing sophistication, realistic tactile stone and a slightly stronger sense of contrast than the other collection images. Match the approved collection exactly in palette, warmth, grain and lighting language.
+
+Composition/framing: Wide 16:9 landscape. Keep the entire left half and central-left region as a broad, calm expanse of pale stone plaza and softly textured ivory wall or atmospheric sky, suitable for a large page title, project descriptions and controls. Concentrate the temple, porticoes, sculpture and strongest architectural mass in the right third and along the lower-right edge. Allow a few deliberate geometric stone joints to lead toward the completed facade. Avoid centered symmetry, a central temple or any object behind the primary text zone. The image must tolerate object-fit cover cropping on desktop.
+
+Lighting/mood: Strong but refined white directional daylight enters from the upper left and grazes the assembled stone volumes, producing confident dimensional shadows while keeping the content zone bright. Add one thin oxblood-red rim light along selected joins between a few lower-right stone blocks and one restrained recessed panel on the far-right structure. Mood: accomplished, constructive, exacting, resilient and impactful.
+
+Color palette: Warm off-white, ivory limestone, softly warm charcoal shadows, pale natural sky and very limited deep oxblood-red architectural accents. Mostly neutral and desaturated, matching the four approved images.
+
+Materials/textures: Fine limestone pores, smooth aged plaster, precision-cut stone joints, crisp column fluting, restrained carved relief, subtle engraved halftone grain, gentle atmospheric depth and sparse greenery only around distant architecture.
+
+Text: none.
+
+Constraints: Website content must remain dominant. Keep the left half and center-left bright, quiet and low contrast. Preserve the approved collection's material, grain and light language. The forum must feel complete, safe and intentional. No readable inscription on the pediment or anywhere else. No letters or numbers. No foreground person. No obvious face. No crowds, vehicles, modern buildings or street furniture. No broken ruins, rubble piles, cranes, scaffolding, tools or active construction. No literal software screens, diagrams, grids, code, logos, watermark or UI. No scattered red accents. No blue or purple neon. No glass panels. No fantasy architecture.
+
+
+prompt pour l'image de la page contact:
+
+Create a premium contemporary editorial background image for the Contact page of a senior software engineering portfolio, in the same Roman editorial visual family as the other approved page backgrounds. Image A is a style reference only: use it to match the website’s overall art direction, palette, softness, and refined Roman atmosphere, but do not copy any UI, portrait, or exact composition.
+
+Primary request: represent communication, correspondence, and sending a message in ancient Rome in a subtle, elegant way that still works as a quiet full-viewport website background. The image should feel like a refined Roman correspondence setting rather than a literal illustration or busy historical scene.
+
+Scene/backdrop: a serene Roman architectural interior or loggia opening onto a sunlit colonnade, built from pale limestone and warm ivory plaster. The main narrative elements should be concentrated on the far-right third: a refined stone writing ledge or low table with a small curated still life of Roman communication tools. Include these elements clearly but tastefully: a pair of wax tablets (pugillares), a metal stylus, one partially unrolled papyrus or parchment scroll (volumen), a reed pen (calamus), a small black-ink vessel, and a letter tied with string and sealed with wax or clay bearing a ring imprint. These are the main communication symbols. Optionally suggest dispatch and transmission with a distant open threshold or long portico leading outward; at most, one extremely small distant messenger silhouette may appear far in the background with no readable facial detail, but the image should work even without a visible person. Optionally suggest public communication with a blank Acta-Diurna-like wall panel in the deep background, but it must contain no readable writing.
+
+Subject: architecture and the restrained correspondence still life are the main subjects. The image must represent communication through these tools and spatial cues, not through modern metaphors.
+
+Style/medium: high-end contemporary editorial art direction, cinematic architectural 3D render blended with a subtle monochrome engraved-print and film-grain texture. Museum-publishing sophistication, tactile stone and plaster surfaces, calm realism, quiet elegance. Not fantasy art, not cartoon, not watercolor, not cluttered archaeology.
+
+Composition/framing: wide 16:9 landscape. Preserve broad low-detail negative space across the entire left half and center-left for the page title, paragraph text, contact details and form overlays. Keep that zone bright, calm and low contrast. Place the strongest architectural mass and the still life of writing/communication objects on the far-right third and lower-right quadrant. Avoid any central focal object or centered symmetry. The image must remain legible when cropped with object-fit cover at desktop widths.
+
+Lighting/mood: soft directional daylight enters from the upper left, grazing the plaster and stone and illuminating the communication tools gently. Add one small, controlled oxblood-red reflected accent on a recessed panel, drapery edge, or architectural trim near the far right only. Mood: approachable, articulate, thoughtful, welcoming, and quietly professional.
+
+Color palette: warm off-white, ivory limestone, pale beige plaster, softly warm charcoal shadows, and one very restrained deep oxblood-red accent. Mostly neutral and desaturated. Red should occupy less than five percent of the image.
+
+Materials/textures: fine limestone pores, smooth aged plaster, subtle carved architectural detail, delicate engraved halftone grain, slight atmospheric haze, crisp edges, soft sunlight, restrained tactile realism.
+
+Text: none.
+
+Constraints: website content must remain visually dominant. Keep the left and center bright, quiet and low contrast. No readable inscriptions, letters, numbers, logos, watermark, or UI. No obvious face. No large person. No crowd. No modern objects. No blue or purple neon. No glass panels. No excessive ornament. No fantasy ruins, destruction, rubble, or busy desk clutter. The communication props should be elegant and minimal, not piled up. The final result must feel like a coherent addition to the existing Roman editorial background collection.
+
+
+prompt pour l'image du footer:
+
+Create a wide footer background image for a website in a refined classical style. The theme is the sky, but instead of a blue sky, use a deep red sky with rich crimson, oxblood, terracotta, and dusty rose tones. The image must work as a footer background, so the center must remain visually simple and calm to avoid interfering with overlaid text.
+
+Composition: very wide horizontal banner, around 3:1 aspect ratio. Place one winged Eros / putto-like classical figure on the far left side and one on the far right side. They should feel inspired by classical sculpture or painting, seated or emerging from clouds, facing slightly inward toward the center. Keep them elegant and decorative, not too large or too dominant.
+
+Cloud design: behind each figure, build large soft clouds that are tallest and fullest at the outer edges of the image. As the clouds extend toward the center, they should progressively lose height and density, fading out smoothly so that by about one third of the width from each side they become much lower and lighter, leaving the central area mostly open and clear.
+
+Center zone: keep the middle broad, empty, atmospheric, and low-detail, with only subtle sky gradients and very light haze. No strong focal point in the center. The center should be ideal for footer text or links.
+
+Style: painterly, cinematic, refined, classical, with a romantic antique atmosphere. The winged figures should resemble classical putti / Eros figures rather than modern cartoon angels. Soft sculptural forms, graceful poses, warm highlights, and subtle cloud glow.
+
+Color palette: no blue. Use deep red sky tones, with soft pinkish-beige clouds and warm ivory highlights on the figures. The overall result should feel rich, elegant, and harmonious.
+
+Constraints: no text, no logos, no UI elements, no modern objects. The image should read as a decorative footer background, not as a poster. Keep the figures near the edges and preserve strong negative space in the center.
+
+
+prompt pour l'image de la navbar:
+
+Edit Image A. Image A is the direct edit target. Remove the cream plaster wall background entirely and keep only the decorative Hedera helix ivy vines and leaves.
+
+Preserve the refined, natural ivy framing along the far left edge, upper-left corner, far right edge, and upper-right corner, with realistic muted green leaves and delicate brown stems.
+
+Keep the middle broad and completely empty so it can sit behind a permanent navbar without distracting from text.
+
+Output as a clean decorative asset with only the ivy visible and the rest fully transparent.
+
+No wall, no texture, no added objects, no text.

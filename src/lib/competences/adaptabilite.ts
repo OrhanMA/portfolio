@@ -4,7 +4,7 @@ export const adaptabilite: Competence = {
   slug: "adaptabilite",
   title: { fr: "Adaptabilité", en: "Adaptability" },
   type: "human",
-  level: "advanced",
+  level: "intermediate",
   radarValue: 80,
   icon: "RefreshCw",
   definition: {
@@ -78,8 +78,8 @@ This skill requires separating structural decisions from reversible ones. Archit
   ],
   selfCritique: {
     level: {
-      fr: "J'estime avoir un niveau avancé : je peux changer de technologie, de structure ou de périmètre sans perdre l'objectif principal, et je sais conserver des interfaces stables autour d'une partie encore mouvante. Ma limite est organisationnelle : sur le site corporate, certains contenus et choix graphiques auraient dû être demandés ou arbitrés plus tôt afin de réduire le nombre de prototypes nécessaires.",
-      en: "I assess myself as advanced: I can change technology, structure, or scope without losing the main objective, and I can preserve stable interfaces around an evolving area. My limitation is organizational: on the corporate website, some content and visual choices should have been requested or decided earlier to reduce the number of necessary prototypes.",
+      fr: "J'estime avoir un niveau intermédiaire confirmé : je peux changer de technologie, de structure ou de périmètre sans perdre l'objectif principal, et je sais conserver des interfaces stables autour d'une partie encore mouvante. Ma limite est organisationnelle : sur le site corporate, certains contenus et choix graphiques auraient dû être demandés ou arbitrés plus tôt afin de réduire le nombre de prototypes nécessaires.",
+      en: "I assess myself as a strong intermediate: I can change technology, structure, or scope without losing the main objective, and I can preserve stable interfaces around an evolving area. My limitation is organizational: on the corporate website, some content and visual choices should have been requested or decided earlier to reduce the number of necessary prototypes.",
     },
     importance: {
       fr: "Elle est prioritaire dans mon profil parce que mes projets combinent des frameworks en évolution, des besoins métier et des interlocuteurs non techniques. Elle me permet de continuer à livrer pendant que l'information se précise, mais elle doit rester encadrée par un périmètre et des critères de réussite pour ne pas devenir une acceptation permanente du changement.",

@@ -1,13 +1,11 @@
 "use client"
 
 import { useMemo } from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 
-function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
+function FieldSet(props: React.ComponentProps<"fieldset">) {
   return (
     <fieldset
       data-slot="field-set"
@@ -17,7 +15,6 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
 }
 
 function FieldLegend({
-  className,
   variant = "legend",
   ...props
 }: React.ComponentProps<"legend"> & { variant?: "legend" | "label" }) {
@@ -30,7 +27,7 @@ function FieldLegend({
   )
 }
 
-function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
+function FieldGroup(props: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-group"
@@ -39,29 +36,12 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-const fieldVariants = cva(
-  "group/field flex w-full gap-2 data-[invalid=true]:text-destructive",
-  {
-    variants: {
-      orientation: {
-        vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
-        horizontal:
-          "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
-        responsive:
-          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
-      },
-    },
-    defaultVariants: {
-      orientation: "vertical",
-    },
-  }
-)
+type FieldOrientation = "vertical" | "horizontal" | "responsive"
 
 function Field({
-  className,
   orientation = "vertical",
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
+}: React.ComponentProps<"div"> & { orientation?: FieldOrientation }) {
   return (
     <div
       role="group"
@@ -72,7 +52,7 @@ function Field({
   )
 }
 
-function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
+function FieldContent(props: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-content"
@@ -81,10 +61,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function FieldLabel({
-  className,
-  ...props
-}: React.ComponentProps<typeof Label>) {
+function FieldLabel(props: React.ComponentProps<typeof Label>) {
   return (
     <Label
       data-slot="field-label"
@@ -93,7 +70,7 @@ function FieldLabel({
   )
 }
 
-function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
+function FieldTitle(props: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-label"
@@ -102,7 +79,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
+function FieldDescription(props: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="field-description"
@@ -113,7 +90,6 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
 
 function FieldSeparator({
   children,
-  className,
   ...props
 }: React.ComponentProps<"div"> & {
   children?: React.ReactNode
@@ -137,7 +113,6 @@ function FieldSeparator({
 }
 
 function FieldError({
-  className,
   children,
   errors,
   ...props

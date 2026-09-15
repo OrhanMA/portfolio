@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
@@ -17,6 +15,7 @@ export function Reveal({
 }: RevealProps) {
   return (
     <div
+      className={className}
       data-reveal-stagger={stagger}
       data-reveal-delay={delay}
       data-reveal-y={y}

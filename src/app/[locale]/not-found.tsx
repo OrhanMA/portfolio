@@ -4,8 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { useDictionary } from "@/components/dictionary-provider";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export default function NotFound() {
   const pathname = usePathname();

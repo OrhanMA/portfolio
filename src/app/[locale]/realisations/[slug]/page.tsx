@@ -12,8 +12,8 @@ import { getRealisationBySlug, realisations } from "@/lib/realisations";
 import { resolveCompetenceLinks } from "@/lib/portfolio-links";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { RealisationArticleContent } from "@/components/realisation-article-content";
+import { RealisationSummary } from "@/components/realisation-summary";
 import { YouTubeFacade } from "@/components/youtube-facade";
-import { actionLinkClassName } from "@/lib/styles";
 import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../../route-context";
 
@@ -117,9 +117,8 @@ export default async function RealisationDetailPage({
         locale={loc}
         pathname={`/${loc}/realisations/${slug}`}
       />
-      <div>
       <EditorialPageHeader
-        compact
+        className="realisation-page-header"
         eyebrow={dict.nav.realisations}
         title={realisation.title[loc]}
         description={<LinkedText locale={loc} currentPath={`/realisations/${slug}`}>{realisation.shortDescription[loc]}</LinkedText>}
@@ -132,7 +131,7 @@ export default async function RealisationDetailPage({
           </Link>
         }
         meta={
-          <div>
+          <div data-realisation-header-tags>
             <Link href={`/${loc}/parcours/${primaryLinkedExperience.id}`}>
               {realisation.context[loc]}
             </Link>
@@ -162,7 +161,7 @@ export default async function RealisationDetailPage({
                     {linkedExperiences.map((experience) => (
                       <li key={experience.id}>
                         <Link
-                          href={`/${loc}/#experience-${experience.id}`}
+                          href={`/${loc}/parcours#experience-${experience.id}`}
                         >
                           {experience.company} — {experience.title}
                         </Link>
@@ -175,7 +174,7 @@ export default async function RealisationDetailPage({
                 <p>
                   Stack
                 </p>
-                <div>
+                <div data-realisation-stack>
                   {realisation.tags.map((tag) => (
                     <TopicLink key={tag} label={tag} locale={loc} currentPath={`/realisations/${slug}`} />
                   ))}
@@ -188,8 +187,25 @@ export default async function RealisationDetailPage({
 
       <section>
         <div>
+          <RealisationSummary
+            summary={realisation.summary}
+            locale={loc}
+            currentPath={`/realisations/${slug}`}
+            proofHref={realisation.media?.length ? "#visual-proof-heading" : "#results"}
+            labels={{
+              heading: dict.realisationsPage.summaryHeading,
+              context: dict.realisationsPage.summaryContext,
+              role: dict.realisationsPage.summaryRole,
+              result: dict.realisationsPage.summaryResult,
+              proof: dict.realisationsPage.summaryProof,
+              proofLink: dict.realisationsPage.summaryProofLink,
+            }}
+          />
           {realisation.media && realisation.media.length > 0 && (
-            <section aria-labelledby="visual-proof-heading">
+            <section
+              data-realisation-media
+              aria-labelledby="visual-proof-heading"
+            >
               <div>
                 <h2
                   id="visual-proof-heading"
@@ -200,12 +216,12 @@ export default async function RealisationDetailPage({
                   {dict.realisationsPage.mediaSubtext}
                 </p>
               </div>
-              <div>
+              <div data-realisation-media-grid>
                 {realisation.media.map((item) => (
                   <figure
                     key={item.src}
                   >
-                    <div>
+                    <div data-realisation-media-frame>
                       {item.type === "image" ? (
                         <Image
                           src={item.src}
@@ -233,7 +249,7 @@ export default async function RealisationDetailPage({
             </section>
           )}
 
-          <div>
+          <div data-realisation-content>
             <aside id="realisation-contents">
               <nav
                 aria-label={dict.realisationsPage.contentsHeading}
@@ -301,7 +317,7 @@ export default async function RealisationDetailPage({
                   </header>
                   <div>
                     <RealisationArticleContent text={section.text} locale={loc} currentPath={`/realisations/${slug}`} />
-                    <div>
+                    <div data-realisation-back>
                       <a
                         href="#realisation-contents"
                       >
@@ -345,7 +361,6 @@ export default async function RealisationDetailPage({
           </div>
         </div>
       </section>
-      </div>
     </>
   );
 }

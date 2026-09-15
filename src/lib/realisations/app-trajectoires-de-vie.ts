@@ -12,6 +12,24 @@ export const appTrajectoiresDeVie: Realisation =
       en: "Design of a sociological questionnaire application with custom D3.js data visualization at the Grenoble Computer Science Laboratory.",
     },
     context: { fr: "Stage (recherche universitaire)", en: "Internship (university research)" },
+    summary: {
+      context: {
+        fr: "Lors d'un stage de cinq mois au Laboratoire d'Informatique de Grenoble, il fallait transformer un besoin de recherche sociologique en application interactive de trajectoires de vie.",
+        en: "During a five-month internship at the Grenoble Computer Science Laboratory, a sociological research need had to be turned into an interactive life-trajectories application.",
+      },
+      role: {
+        fr: "J'ai conçu et développé le premier système interactif, du questionnaire et des données jusqu'à la visualisation D3.js, avec l'encadrement scientifique de la chercheuse.",
+        en: "I designed and developed the first interactive system, from the questionnaire and data through the D3.js visualization, with the researcher's scientific guidance.",
+      },
+      result: {
+        fr: "CAP2vie rend les parcours compréhensibles par une visualisation sur mesure qui conserve leur évolution chronologique et les relations entre leurs dimensions.",
+        en: "CAP2vie makes life paths understandable through a custom visualization that preserves their chronological evolution and relationships between dimensions.",
+      },
+      proof: {
+        fr: "Les captures de l'application et l'expérience de stage associée donnent à voir le prototype et son contexte de recherche.",
+        en: "Application screenshots and the linked internship experience make the prototype and its research context visible.",
+      },
+    },
     tags: ["Vue.js", "JavaScript", "D3.js", "PostgreSQL", "Recherche"],
     presentation: {
       fr: `1. **Un stage de cinq mois pour valider une formation de concepteur-développeur.** J'ai réalisé ce projet de mai à octobre 2024 dans le cadre de ma formation de Concepteur développeur d'applications. Ce titre professionnel est enregistré au Répertoire national des certifications professionnelles, ou RNCP, au niveau 6, correspondant au niveau licence ou bac + 3. Le stage devait me placer en situation de concevoir une application complète et non uniquement d'exécuter une série de tâches techniques isolées. Il constituait donc à la fois une expérience professionnelle et la mise en pratique des compétences de conception, de développement et de préparation d'une première livraison acquises pendant la formation.

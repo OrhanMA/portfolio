@@ -26,4 +26,14 @@ describe("sitemap", () => {
     const urls = entries.map(({ url }) => url);
     expect(new Set(urls).size).toBe(urls.length);
   });
+
+  it("publishes the dedicated journey index in both locales", async () => {
+    const entries = await sitemap();
+    expect(entries.map(({ url }) => url)).toEqual(
+      expect.arrayContaining([
+        "https://orhanmadiassani.com/fr/parcours",
+        "https://orhanmadiassani.com/en/parcours",
+      ]),
+    );
+  });
 });

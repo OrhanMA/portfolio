@@ -120,7 +120,7 @@ export function ExperienceSection({
                           href={`/${locale}/parcours/${experience.id}`}
                         >
                           {organization.logo && (
-                            <span>
+                            <span data-company-logo>
                               <Image
                                 src={organization.logo}
                                 alt=""

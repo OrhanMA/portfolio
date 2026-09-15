@@ -4,12 +4,13 @@ import type { Metadata } from "next";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
-  GraduationCap,
   HeartHandshake,
   Target,
 } from "lucide-react";
 import { LinkedText } from "@/components/linked-text";
+import { PageEndCta } from "@/components/page-end-cta";
 import { RouteStructuredData } from "@/components/route-structured-data";
+import { ThemePortrait } from "@/components/theme-portrait";
 import { aboutEditorialContent } from "@/lib/about";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getLocalizedPageContext } from "../route-context";
@@ -30,9 +31,6 @@ export async function generateMetadata({
   });
 }
 
-const sectionTitleClassName =
-  "text-balance text-3xl font-semibold tracking-[-0.045em] sm:text-4xl";
-
 export default async function AboutPage({
   params,
 }: {
@@ -43,19 +41,16 @@ export default async function AboutPage({
   const editorial = aboutEditorialContent[loc];
   const portfolioLinks = [
     {
-      href: `/${loc}#parcours`,
+      href: `/${loc}/parcours`,
       label: dict.hero.ctaParcours,
-      icon: GraduationCap,
     },
     {
       href: `/${loc}/competences`,
       label: dict.nav.competences,
-      icon: Target,
     },
     {
       href: `/${loc}/realisations`,
       label: dict.hero.ctaWork,
-      icon: BriefcaseBusiness,
     },
   ];
   const projectCards = [
@@ -74,9 +69,9 @@ export default async function AboutPage({
   return (
     <LinkedText locale={loc} currentPath="/a-propos">
       <RouteStructuredData locale={loc} pathname={`/${loc}/a-propos`} />
-      <div>
         <section
           data-editorial-page-header
+          data-about-hero
           aria-labelledby="about-page-title"
         >
           <div>
@@ -93,12 +88,11 @@ export default async function AboutPage({
               <nav
                 aria-label={dict.aboutPage.exploreLabel}
               >
-                {portfolioLinks.map(({ href, label, icon: Icon }) => (
+                {portfolioLinks.map(({ href, label }) => (
                   <Link
                     key={href}
                     href={href}
                   >
-                    <Icon aria-hidden="true" />
                     {label}
                     <ArrowUpRight
                       aria-hidden="true"
@@ -110,8 +104,7 @@ export default async function AboutPage({
 
             <figure>
               <div>
-                <Image
-                  src="/images/coporate-headshot.webp"
+                <ThemePortrait
                   alt={dict.aboutPage.portraitAlt}
                   width={1024}
                   height={1024}
@@ -131,7 +124,7 @@ export default async function AboutPage({
           aria-labelledby="journey-heading"
         >
           <div>
-            <div>
+            <div data-journey-media>
               <figure>
                 <Image
                   src="/images/dynamo-chambery-simplon.webp"
@@ -150,6 +143,15 @@ export default async function AboutPage({
                   sizes="(max-width: 1023px) 40vw, 22vw"
                 />
               </figure>
+              <figure data-journey-work-image>
+                <Image
+                  src="/images/1up-building-drone-photo.webp"
+                  alt={dict.aboutPage.workImageAlt}
+                  width={640}
+                  height={420}
+                  sizes="(max-width: 1023px) 100vw, 30vw"
+                />
+              </figure>
             </div>
 
             <div>
@@ -160,7 +162,7 @@ export default async function AboutPage({
                 {editorial.journey}
               </div>
               <Link
-                href={`/${loc}#parcours`}
+                href={`/${loc}/parcours`}
               >
                 {dict.hero.ctaParcours}
                 <ArrowUpRight aria-hidden="true" />
@@ -196,15 +198,6 @@ export default async function AboutPage({
               </div>
             </div>
 
-            <figure>
-              <Image
-                src="/images/1up-building-drone-photo.webp"
-                alt={dict.aboutPage.workImageAlt}
-                width={640}
-                height={420}
-                sizes="(max-width: 1023px) 100vw, 32vw"
-              />
-            </figure>
           </div>
         </section>
 
@@ -281,7 +274,18 @@ export default async function AboutPage({
             </Link>
           </div>
         </section>
-      </div>
+
+        <PageEndCta
+          id="about-discovery"
+          title={dict.aboutPage.discoveryHeading}
+          description={dict.aboutPage.discoveryText}
+          links={[
+            {
+              href: `/${loc}/parcours`,
+              label: dict.aboutPage.discoveryCta,
+            },
+          ]}
+        />
     </LinkedText>
   );
 }

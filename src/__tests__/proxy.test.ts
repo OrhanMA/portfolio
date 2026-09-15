@@ -33,11 +33,19 @@ function getRedirectPathname(response: ReturnType<typeof proxy>): string {
 describe("proxy", () => {
   it("continues localized routes with a nonce-based CSP", () => {
     const result = proxy(createRequest("/fr/contact"));
+    const contentSecurityPolicy =
+      result?.headers.get("content-security-policy") ?? "";
+
     expect(result?.status).toBe(200);
-    expect(result?.headers.get("content-security-policy")).toContain(
-      "'strict-dynamic'",
+    expect(contentSecurityPolicy).toContain("'strict-dynamic'");
+    expect(contentSecurityPolicy).toMatch(
+      /style-src-elem 'self' 'nonce-[^']+'/,
     );
-    expect(result?.headers.get("content-security-policy")).not.toContain(
+    expect(contentSecurityPolicy).toContain("style-src-attr 'unsafe-inline'");
+    expect(contentSecurityPolicy).not.toContain(
+      "style-src-elem 'self' 'unsafe-inline'",
+    );
+    expect(contentSecurityPolicy).not.toContain(
       "script-src 'self' 'unsafe-inline'",
     );
     expect(result?.headers.get("x-middleware-request-x-pathname")).toBe(

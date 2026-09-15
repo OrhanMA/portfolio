@@ -57,8 +57,8 @@ export default async function CompetencesPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/competences`} />
-      <div>
       <EditorialPageHeader
+        className="competence-page-header"
         eyebrow={dict.nav.competences}
         title={dict.competencesPage.heading}
         description={dict.competencesPage.subtext}
@@ -114,6 +114,7 @@ export default async function CompetencesPage({
                 <CardContent>
                   <Link
                     href={`/${locale}/competences/${competence.slug}`}
+                    className={actionLinkClassName}
                   >
                     {dict.competencesPage.viewDetail}
                   </Link>
@@ -157,6 +158,7 @@ export default async function CompetencesPage({
                 <CardContent>
                   <Link
                     href={`/${locale}/competences/${competence.slug}`}
+                    className={actionLinkClassName}
                   >
                     {dict.competencesPage.viewDetail}
                   </Link>
@@ -166,7 +168,6 @@ export default async function CompetencesPage({
           </div>
         </div>
       </section>
-      </div>
     </>
   );
 }

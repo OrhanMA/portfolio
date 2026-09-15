@@ -8,6 +8,7 @@ type AuditedRoute = {
 
 const routes: readonly AuditedRoute[] = [
   { path: "/fr/a-propos", editorial: true },
+  { path: "/fr/parcours", editorial: true },
   { path: "/fr/competences", editorial: true },
   { path: "/fr/competences/developpement-backend", editorial: true },
   { path: "/fr/realisations", editorial: true },
@@ -21,6 +22,7 @@ const routes: readonly AuditedRoute[] = [
   { path: "/fr/politique-confidentialite", editorial: true },
   { path: "/en/about", editorial: false, expectedStatus: 404 },
   { path: "/en/a-propos", editorial: true },
+  { path: "/en/parcours", editorial: true },
   { path: "/en/skills", editorial: false, expectedStatus: 404 },
   { path: "/en/competences", editorial: true },
   { path: "/en/realisations", editorial: true },

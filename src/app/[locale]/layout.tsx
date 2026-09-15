@@ -14,7 +14,10 @@ import { Analytics } from "@/components/analytics";
 import { StructuredData } from "@/components/structured-data";
 import { PageAtmosphere } from "@/components/page-atmosphere";
 import { createLocalizedMetadata } from "@/lib/metadata";
-import { competences } from "@/lib/competences";
+import {
+  competenceLevelLabels,
+  getCompetencesByType,
+} from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
 import { getLocalizedPageContext } from "./route-context";
 
@@ -81,6 +84,7 @@ export default async function LocaleLayout({
             <SmoothScroll>
               <a
                 href="#main-content"
+                data-skip-link
               >
                 {locale === "fr" ? "Aller au contenu" : "Skip to content"}
               </a>
@@ -92,10 +96,26 @@ export default async function LocaleLayout({
                   skillsHeading: dict.skills.heading,
                 }}
                 menus={{
-                  competences: competences.map((competence) => ({
-                    href: `/${loc}/competences/${competence.slug}`,
-                    label: competence.title[loc],
-                  })),
+                  competences: [
+                    {
+                      label: dict.nav.humanCompetences,
+                      items: getCompetencesByType("human")
+                        .map((competence) => ({
+                          href: `/${loc}/competences/${competence.slug}`,
+                          label: competence.title[loc],
+                          badge: competenceLevelLabels[competence.level][loc],
+                        })),
+                    },
+                    {
+                      label: dict.nav.technicalCompetences,
+                      items: getCompetencesByType("technical")
+                        .map((competence) => ({
+                          href: `/${loc}/competences/${competence.slug}`,
+                          label: competence.title[loc],
+                          badge: competenceLevelLabels[competence.level][loc],
+                        })),
+                    },
+                  ],
                   realisations: realisations.map((realisation) => ({
                     href: `/${loc}/realisations/${realisation.slug}`,
                     label: realisation.title[loc],

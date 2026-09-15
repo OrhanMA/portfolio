@@ -30,7 +30,7 @@ export function YouTubeFacade({
         src={privacyEnhancedEmbedUrl(src)}
         title={title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="no-referrer"
+        referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       />
     );

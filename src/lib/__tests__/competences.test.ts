@@ -1,7 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { competences } from "@/lib/competences";
+import { competences, getCompetencesByType } from "@/lib/competences";
 
 describe("competences", () => {
+  it("orders each skill category from the highest mastery to the lowest", () => {
+    expect(getCompetencesByType("human").map(({ slug }) => slug)).toEqual([
+      "autonomie",
+      "perseverance",
+      "adaptabilite",
+      "amelioration-continue",
+      "communication",
+    ]);
+    expect(getCompetencesByType("technical").map(({ slug }) => slug)).toEqual([
+      "developpement-odoo",
+      "developpement-backend",
+      "developpement-frontend",
+      "python",
+      "devops",
+    ]);
+  });
+
   it("links every definition to a distinct, dated official source", () => {
     expect(competences).toHaveLength(10);
 

@@ -81,7 +81,31 @@ describe("RealisationDetailPage", () => {
     expect(
       screen.getByRole("navigation", { name: dict.contentsHeading }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: dict.summaryHeading }),
+    ).toBeInTheDocument();
+    const summary = container.querySelector("[data-realisation-summary]");
+    expect(summary).toHaveTextContent(dict.summaryContext);
+    expect(summary).toHaveTextContent(realisation.summary.context[locale]);
+    expect(summary).toHaveTextContent(dict.summaryRole);
+    expect(summary).toHaveTextContent(realisation.summary.role[locale]);
+    expect(summary).toHaveTextContent(dict.summaryResult);
+    expect(summary).toHaveTextContent(realisation.summary.result[locale]);
+    expect(summary).toHaveTextContent(dict.summaryProof);
+    expect(summary).toHaveTextContent(realisation.summary.proof[locale]);
+    expect(
+      within(summary as HTMLElement).getByRole("link", { name: dict.summaryProofLink }),
+    ).toHaveAttribute(
+      "href",
+      realisation.media?.length ? "#visual-proof-heading" : "#results",
+    );
     expect(container.querySelectorAll(".realisation-content-deferred")).toHaveLength(
+      sections.length,
+    );
+    expect(container.querySelector("[data-realisation-content]")).toBeInTheDocument();
+    expect(container.querySelector("[data-realisation-header-tags]")).toBeInTheDocument();
+    expect(container.querySelector("[data-realisation-stack]")).toBeInTheDocument();
+    expect(container.querySelectorAll("[data-realisation-article-body]")).toHaveLength(
       sections.length,
     );
 
@@ -108,6 +132,12 @@ describe("RealisationDetailPage", () => {
       ).toHaveAttribute("href", `/${locale}/competences/${competenceSlug}`);
     }
 
+    if (realisation.media?.length) {
+      expect(
+        container.querySelectorAll("[data-realisation-media-frame]"),
+      ).toHaveLength(realisation.media.length);
+    }
+
     const experiences = dictionaries[locale].experience.entries.filter(
       (entry) => entry.linkedRealisations?.includes(realisation.slug),
     );
@@ -119,7 +149,7 @@ describe("RealisationDetailPage", () => {
     for (const experience of experiences) {
       expect(experienceNavigation.getByRole("link", {
         name: `${experience.company} — ${experience.title}`,
-      })).toHaveAttribute("href", `/${locale}#experience-${experience.id}`);
+      })).toHaveAttribute("href", `/${locale}/parcours#experience-${experience.id}`);
     }
   });
 

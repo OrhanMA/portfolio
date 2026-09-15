@@ -20,6 +20,15 @@ describe("LinkedText", () => {
     );
     expect(screen.getByRole("link", { name: "A. Gaveau" })).toBeInTheDocument();
   });
+
+  it("gives generated short technology links a 24 px minimum target", () => {
+    render(<LinkedText locale="fr">API</LinkedText>);
+
+    expect(screen.getByRole("link", { name: "API" })).toHaveClass(
+      "min-h-6",
+      "min-w-6",
+    );
+  });
   it("preserves existing links, code, controls and partial words", () => {
     const { container } = render(
       <LinkedText locale="fr">

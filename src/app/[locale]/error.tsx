@@ -3,10 +3,9 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { useDictionary } from "@/components/dictionary-provider";
-import { cn } from "@/lib/utils";
 
 export default function Error({
   error,

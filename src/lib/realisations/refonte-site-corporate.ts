@@ -12,6 +12,24 @@ export const refonteSiteCorporate: Realisation =
       en: "Complete redesign of an international trading company's showcase website, from Odoo's website builder to a modern Next.js application.",
     },
     context: { fr: "Entreprise", en: "Company" },
+    summary: {
+      context: {
+        fr: "Le site vitrine de 1UP Distribution devait quitter le builder Odoo pour mieux présenter l'entreprise aux clients professionnels, sur tous les formats d'écran.",
+        en: "1UP Distribution's showcase website needed to move away from the Odoo builder to present the company more effectively to professional clients across screen sizes.",
+      },
+      role: {
+        fr: "J'ai audité l'existant, formalisé le besoin, analysé les maquettes Figma puis construit l'intégration responsive et l'architecture front-end avec Next.js.",
+        en: "I audited the existing site, formalized the requirements, analyzed the Figma mockups, then built the responsive integration and front-end architecture with Next.js.",
+      },
+      result: {
+        fr: "La refonte remplace des blocs limités par une interface responsive continue, des composants réutilisables et des interactions qui restent accessibles sans bloquer l'information.",
+        en: "The redesign replaces constrained blocks with a continuous responsive interface, reusable components, and interactions that remain accessible without blocking information.",
+      },
+      proof: {
+        fr: "Les captures du site, les contrôles de performance et les éléments de l'expérience associée permettent d'examiner la réalisation sans exposer les informations internes.",
+        en: "Website screenshots, performance checks, and material from the linked experience make the achievement reviewable without exposing internal information.",
+      },
+    },
     tags: ["Next.js", "React", "GSAP", "TypeScript", "Tailwind CSS"],
     presentation: {
       fr: `1. **Un site vitrine destiné aux clients professionnels.** Le site corporate de 1UP Distribution a pour rôle de présenter l'entreprise, son activité et sa capacité à accompagner des partenaires commerciaux. Un site corporate n'est pas une boutique en ligne : il expose le positionnement, les services, les marques et les éléments de confiance qui permettent de comprendre l'organisation. Le public principal est constitué de clients professionnels, c'est-à-dire d'entreprises susceptibles de travailler avec 1UP plutôt que de consommateurs achetant directement un produit. Le site doit également contribuer à attirer de nouveaux partenaires en leur donnant une vision claire et crédible de l'entreprise.

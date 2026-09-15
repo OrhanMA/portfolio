@@ -31,7 +31,14 @@ export function getCompetenceBySlug(slug: string) {
 }
 
 export function getCompetencesByType(type: CompetenceType) {
-  return competences.filter((competence) => competence.type === type);
+  return competences
+    .filter((competence) => competence.type === type)
+    .sort((left, right) => {
+      const levelDifference =
+        competenceLevelRank[right.level] - competenceLevelRank[left.level];
+
+      return levelDifference || right.radarValue - left.radarValue;
+    });
 }
 
 export const competenceLevelLabels: Record<
@@ -42,4 +49,11 @@ export const competenceLevelLabels: Record<
   intermediate: { fr: "Intermédiaire", en: "Intermediate" },
   advanced: { fr: "Avancé", en: "Advanced" },
   expert: { fr: "Expert", en: "Expert" },
+};
+
+const competenceLevelRank: Record<CompetenceLevel, number> = {
+  beginner: 1,
+  intermediate: 2,
+  advanced: 3,
+  expert: 4,
 };

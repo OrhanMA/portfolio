@@ -13,6 +13,8 @@
     "competences": "Skills",
     "realisations": "Achievements",
     "allCompetences": "View all 10 skills",
+    "humanCompetences": "Human skills",
+    "technicalCompetences": "Technical skills",
     "allRealisations": "View all 5 achievements",
     "showSubmenu": "Show submenu",
     "toggleMenu": "Open or close the menu",
@@ -25,7 +27,7 @@
     "greeting": "Hi, I'm",
     "title1": "Full-Stack",
     "title2": "Developer",
-    "subtitle": "Odoo · Symfony · Next.js",
+    "subtitle": "Software engineering",
     "statement": "I design premium web interfaces and robust business systems, with equal attention to product thinking, performance, and real-world usage.",
     "location": "Chambéry, France",
     "status": "Work-study at 1UP",
@@ -47,6 +49,7 @@
     "lead": "A product-minded full-stack profile able to move from a business need to the final user experience.",
     "statement": "I build web products that must convince users and hold up in production.",
     "text": "As a full-stack developer in a work-study program at 1UP, I began learning to code independently through The Odin Project before completing certified training at Simplon in web development and then application design. Currently pursuing a Master's in Software Engineering at ISCOD, I work daily on Odoo and Symfony projects. What I love about this field is the continuous problem-solving and the richness of the web — there's always something new to learn.",
+    "viewFullProfile": "Discover my full profile",
     "card1Title": "User focus & product impact",
     "card1Desc": "I start from the real need, clarify the expected use, and connect each technical decision to a useful outcome for the people concerned.",
     "card2Title": "Clean code & robust architecture",
@@ -146,22 +149,45 @@
     "heading": "Experience",
     "subtext": "A practice-built trajectory: self-learning, university research, business software, ERP, e-commerce, and showcase websites.",
     "responsibilitiesLabel": "Responsibilities",
+    "responsibilitiesHeading": "What I took responsibility for",
+    "detailOverviewLabel": "Step in detail",
+    "detailHeading": "A step built through practice",
+    "experienceLabel": "Professional experience",
+    "educationLabel": "Education or certification",
+    "institutionsLabel": "Learning context",
+    "organizationsLabel": "Organization or environment",
+    "technologiesLabel": "Technologies and markers",
+    "proofsLabel": "Links and evidence",
     "linkedRealisationsLabel": "Related case studies",
     "linkedCompetencesLabel": "Related skills",
+    "caseStudiesLabel": "In perspective",
+    "caseStudiesHeading": "The case studies that make this step concrete",
+    "caseStudiesIntro": "The case-study pages detail the situations, decisions, and outcomes mentioned in this journey entry. The markers below provide a concise reading: they connect this step to fuller evidence without confusing an assignment, a learning outcome, and an established result.",
+    "caseStudyContextLabel": "Context",
+    "caseStudyRoleLabel": "My contribution",
+    "caseStudyResultLabel": "Established outcome",
     "detailsLabel": "Show details",
     "orderingLabel": "Order: “Present” first, then latest end date; ties use the latest start date",
     "entries": [
       {
         "id": "1up-fullstack-developer",
+        "type": "experience",
         "startDate": "2024-12",
         "endDate": null,
         "period": "Dec. 2024 — Present",
-        "title": "Full-Stack Developer — Work-Study",
+        "title": "Odoo Developer and Consultant — Work-Study",
         "company": "1UP Distribution",
         "logo": "/logo-1up.svg",
         "url": "https://www.1updistribution.com/",
         "location": "Chambéry · Savoie",
         "description": "Development and maintenance of Odoo modules (Python, PostgreSQL). Design and development of a B2B e-commerce site with Symfony. Corporate website redesign with Next.js. Solo management of Odoo v16 → v19 migration. Database administration, CI/CD, and VPS server management (OVH, DigitalOcean).",
+        "detail": [
+          { "heading": "A cross-functional role in ERP", "text": "At 1UP Distribution, I work on subjects ranging from business rules to interfaces used every day. Odoo modules require me to understand company processes, formalize exceptions with the people concerned, and turn those rules into maintainable Python models, XML views, and tests." },
+          { "heading": "Connecting product, ERP, and infrastructure", "text": "This experience brings together several case studies: the migration from Odoo 16 to 19, internal business modules, the Symfony B2B site, and the Next.js corporate redesign. I also take responsibility for databases, CI/CD, and VPS servers. This scope forces me to reason in dependencies: a data, API, or interface change must remain compatible with users' work." },
+          { "heading": "What this step is teaching me", "text": "Autonomy does not mean making decisions silently. It means moving forward, documenting choices, making risks visible, and seeking an arbitration before an assumption becomes an incident. The migration and business modules strengthened this method as much as they strengthened my technical practice." },
+          { "heading": "Turning complexity into a work plan", "text": "The migration makes this change of scale especially visible: the ERP involved 20 direct internal users, 16 custom modules, third-party extensions, and numerous Studio customizations. It required three successive major-version migrations, checks on data and attachments, and stabilization after cutover. This experience taught me to break a broad responsibility into inventory, priorities, controlled trials, functional checks, and traceable decisions instead of confusing speed of execution with risk control." },
+          { "heading": "Designing for the people who use the system", "text": "The related case studies are not isolated workstreams: business modules automate rules that may be known only by the teams, the B2B portal depends on ERP data, and the corporate site must make the offer understandable without degrading mobile access or published content. This continuity requires me to hold together the stated need, security and data constraints, daily use, and the ability to evolve the solution. The quality of a delivery is therefore measured as much by its behavior in real work as by its technical implementation." }
+        ],
         "responsibilities": [
           "Technical owner for internal Odoo business developments.",
           "Autonomous management of the Odoo v16 → v19 ERP migration.",
@@ -173,6 +199,7 @@
       },
       {
         "id": "lig-web-developer-internship",
+        "type": "experience",
         "startDate": "2024-05",
         "endDate": "2024-10",
         "period": "May — Oct. 2024",
@@ -182,6 +209,13 @@
         "url": "https://www.liglab.fr/fr",
         "location": "Grenoble · Isère",
         "description": "Development of a Vue.js and D3.js application for a sociological study questionnaire on life trajectories. Custom data visualization creation. Collaboration with university researchers.",
+        "detail": [
+          { "heading": "Starting from a research need", "text": "At the Grenoble Computer Science Laboratory, the goal was not to produce a decorative chart. Responses from a sociological questionnaire about life trajectories had to be represented in a way that was readable, editable, and faithful to the researchers' method. I therefore began by understanding the vocabulary, dimensions, and edge cases of the model being studied." },
+          { "heading": "Building a genuinely interactive visualization", "text": "The CAP2vie case study led me to transform exact or estimated periods into a D3.js visualization distributed across five dimensions and available in two reading modes. The form and chart had to remain consistent when an interviewer corrected an answer. The display evolved through iterations rather than added effects until it provided a usable demonstration foundation." },
+          { "heading": "Working with non-technical experts", "text": "Discussions with researchers were part of the development: reformulating a request, showing a version, collecting an objection, and translating it into a data or interface change. This experience strengthened my communication and taught me to defend a technical decision without losing the product's scientific meaning." },
+          { "heading": "Keeping data, rules, and interpretation aligned", "text": "The CAP2vie record shows that the challenge was also one of consistency: a period could be exact or estimated, an answer remained editable, and its representation had to change without contradicting the questionnaire. I therefore worked at the boundary between the PostgreSQL data model, the Vue.js application, and the D3.js output. This taught me that a visualization is a business feature: its usefulness depends on faithful transformations, clear labels, and the ability to correct a case before interpreting it." },
+          { "heading": "A demonstrable foundation with an explicit scope", "text": "The documented outcome is a first functional version usable for demonstration, not a generalized research product whose large-scale use had been measured. This distinction matters: it prevents presenting prototype validation as evidence of scientific impact. The work did, however, establish a reusable way to evolve a tool from expert feedback while preserving traceability between a request, a data rule, and a visible change." }
+        ],
         "responsibilities": [
           "Design and development of a first functional version of the application.",
           "Implementation of D3.js visualizations tailored to research needs.",
@@ -193,6 +227,7 @@
       },
       {
         "id": "iscod-software-engineering-master",
+        "type": "education",
         "startDate": "2025",
         "endDate": "2027",
         "period": "2025 — 2027",
@@ -202,6 +237,13 @@
         "url": "https://www.iscod.fr/",
         "location": "Remote program · Work-study in Chambéry",
         "description": "Level 7 work-study program covering software architecture, project steering, quality, deployment, and application integration through real professional situations.",
+        "detail": [
+          { "heading": "A program grounded in work-study practice", "text": "The ISCOD master's program lets me compare architecture, quality, and project-leadership concepts with problems encountered at 1UP Distribution. The subjects therefore become concrete decisions: break down a requirement, identify dependencies, choose an appropriate level of testing, and prepare a reversible deployment." },
+          { "heading": "Building evidence, not only validating concepts", "text": "The professional portfolio is a place to formalize this work. I document achievements, stakeholders, risks, outcomes, and limitations so that a delivered feature is distinguished from an assumption or prototype. This approach connects directly to the communication and continuous-improvement skills developed through the program." },
+          { "heading": "A path toward business software architecture", "text": "The program supports my goal of becoming an experienced Odoo developer and technical lead, then expanding toward ERP integration, APIs, product decisions, and software architecture. The self-hosted business-intelligence tool I want to build provides a personal horizon for applying these lessons." },
+          { "heading": "Putting concepts to the test of real work", "text": "Work-study provides a concrete counterpoint to the subjects covered: an ERP migration requires inventorying dependencies, prioritizing data risks, and organizing checks before production; a business module requires turning a rule known by teams into testable acceptance criteria. The program does not automatically turn these assignments into proven mastery: it provides frameworks to analyze them, document them, and identify what still needs strengthening, especially in leading large-scale work." },
+          { "heading": "The portfolio as a discipline of precision", "text": "Building the professional portfolio extends this requirement. Each case study separates context, my role, verifiable outcomes, and limitations; links between skills, case studies, education, and experience make that reasoning navigable. I am also developing a less visible but essential skill: writing precisely, without turning an intention, an isolated metric, or a prototype into a general promise. This practice prepares both a presentation assessment and future decision-making in a team." }
+        ],
         "institutions": "ISCOD combines remote learning with work-study experience. This format makes it possible to confront academic concepts with technical decisions made in the workplace and to document skills through verifiable achievements.",
         "responsibilities": [
           "Connect the certification skill blocks to assignments completed in the workplace.",
@@ -214,14 +256,22 @@
       },
       {
         "id": "toeic-listening-reading",
+        "type": "education",
         "startDate": "2025-08-07",
         "endDate": "2025-08-07",
         "period": "August 7, 2025",
         "title": "TOEIC Listening & Reading — 920/990",
         "company": "ETS Global",
+        "logo": "/logo-ets-global.webp",
         "url": "https://www.etsglobal.org/fr/fr/test-type-family/test-toeic-listening-and-reading",
         "location": "Professional English certification",
         "description": "TOEIC Listening & Reading score of 920/990: C1 level in listening comprehension and B2 level in reading comprehension.",
+        "detail": [
+          { "heading": "A situated certification", "text": "The score of 920/990 obtained on August 7, 2025 provides a clear measure of my professional English comprehension: C1 in listening and B2 in reading. The public certificate makes it possible to verify the date, score, and reported levels directly." },
+          { "heading": "A skill that supports technical work", "text": "This certification complements a career in which documentation, tickets, discussions with technical profiles, and research can extend beyond French. It does not replace the ability to reformulate a request, but it improves access to sources and communication in an international software context." },
+          { "heading": "Reading to decide and keep learning", "text": "In software development, English is useful when consulting official documentation, comparing release notes, understanding an issue, or following a technical resource that does not yet exist in French. The score is therefore a useful comprehension marker, but its value is demonstrated in practice: cross-check a source against the project context, distinguish a recommendation from a constraint, then restate the information so that someone who has not read it can use it." },
+          { "heading": "What this certification does not claim to measure", "text": "TOEIC Listening and Reading certifies listening and reading levels; it does not measure speaking, negotiation quality, or the ability to solve a technical problem independently. I therefore present it as focused evidence that complements case studies and professional communication, not as a substitute for international experience. This precision avoids overinterpreting a score while making a real asset for research and documentation work visible." }
+        ],
         "institutions": "The TOEIC measures English comprehension in international professional situations. The public certificate lets reviewers verify the date, overall score, and achieved levels directly.",
         "certificateUrl": "/proofs/certificate_20251030105639_toeic_filigrane.pdf",
         "certificateLabel": "View the TOEIC certificate",
@@ -230,6 +280,7 @@
       },
       {
         "id": "simplon-application-developer",
+        "type": "education",
         "startDate": "2024-01",
         "endDate": "2024-12",
         "period": "January — December 2024",
@@ -243,6 +294,13 @@
         ],
         "location": "Grenoble · Isère",
         "description": "Level 6 professional certification focused on application design and development, databases, modeling, testing, and software project delivery.",
+        "detail": [
+          { "heading": "Moving from execution to design", "text": "The Application Designer and Developer program taught me to approach software as a coherent whole: understand the need, model the data, choose an architecture, develop, test, and present the outcome. Projects required me to explain trade-offs instead of treating code as the only evidence of the work." },
+          { "heading": "A data project as a validation ground", "text": "The project connected to the life-trajectory study gave these lessons a concrete setting. With Vue.js, D3.js, and PostgreSQL, a questionnaire, data transformations, and a custom visualization had to remain connected. Iterations with researchers strengthened my ability to adapt a technical solution to a business or scientific method." },
+          { "heading": "Strengthening a professional method", "text": "The RNCP level 6 qualification reinforced habits that still structure my work: version, test, document, present, and accept review. It connects my first web-learning steps with the broader responsibilities I now hold in work-study employment." },
+          { "heading": "Reasoning across the whole value chain", "text": "The CAP2vie project was decisive because it did not artificially separate the frontend from the rest of the application. An answer entered in the questionnaire had to become coherent data, be transformed through explainable rules, and remain legible in a custom visualization. Working through this complete flow taught me to formulate data invariants, anticipate the effects of a correction, and check that an interface does not hide an inconsistency from upstream." },
+          { "heading": "Reference points that remain useful after the qualification", "text": "The professional portfolio reuses this approach in another form: Next.js architecture, bilingual content, internal links, tests, and evidence are not treated as separate additions. They form one product, assessed both on clarity of its message and reliability. The transition from this qualification to work-study employment reinforced a conviction: knowing how to deliver a feature is essential, but knowing how to explain its scope, verify it, and prepare its evolution matters just as much." }
+        ],
         "institutions": "Simplon uses active learning through practice, projects inspired by professional situations, and small-group work. The program strengthened my ability to turn a need into a structured, tested, and documented application.",
         "certificateUrl": "/proofs/diplome_cda_filigrane.pdf",
         "certificateLabel": "View the CDA certification",
@@ -257,14 +315,22 @@
       },
       {
         "id": "a-gaveau-web-developer-internship",
+        "type": "experience",
         "startDate": "2023",
         "endDate": "2023",
         "period": "2023 — 2 months",
         "title": "Web Developer Intern — WordPress / Elementor",
         "company": "A. Gaveau",
+        "logo": "/logo-a-gaveau.webp",
         "url": "https://a-gaveau.fr/",
         "location": "Rumilly · Haute-Savoie",
         "description": "Two-month internship completed as part of the Web and Mobile Web Developer training program at Simplon. Created websites for small shops using WordPress and the Elementor page builder.",
+        "detail": [
+          { "heading": "A first experience in a client context", "text": "This two-month internship at A. Gaveau was my first professional web-development setting. The context was concrete: create websites for small shops with WordPress and Elementor while working with real content and a clear presentation goal." },
+          { "heading": "Learning to deliver a usable interface", "text": "The work introduced me to page construction, content organization, and the adjustments needed for a website to be usable by its recipient. This first experience gave a professional setting to skills learned independently and prepared the next step toward more customized applications." },
+          { "heading": "Moving from training material to an expected result", "text": "This first professional setting required me to move beyond exercises where content, audience, and outcome are often already defined. Websites had to present an activity with understandable information and a hierarchy that helped a visitor orient themselves. I learned to check what was actually available, organize the supplied elements, and adjust a page for its use instead of treating layout as an end in itself." },
+          { "heading": "A starting point, not expertise I claim", "text": "The internship was short and relied on WordPress and Elementor: on its own, it does not demonstrate full mastery of custom development, accessibility, or project leadership. Its value in the journey is different. It provided a first benchmark for responsibility toward a delivery visible to a client and prepared the education and projects through which I later deepened design, data, testing, and custom applications." }
+        ],
         "trainingId": "simplon-web-developer",
         "responsibilities": [
           "Create websites for small shops.",
@@ -278,6 +344,7 @@
       },
       {
         "id": "simplon-web-developer",
+        "type": "education",
         "startDate": "2023",
         "endDate": "2023",
         "period": "2023",
@@ -287,6 +354,13 @@
         "url": "https://www.simplon.co/",
         "location": "Chambéry · Savoie",
         "description": "Level 5 professional certification covering interface integration, frontend and backend development, databases, and web application deployment.",
+        "detail": [
+          { "heading": "Turning self-learning into a method", "text": "Before Simplon, I had started learning web development through online resources and The Odin Project. The Web and Mobile Web Developer program turned that curiosity into a method: analyze a need, build an interface, connect a server to a database, test, version, and present a solution." },
+          { "heading": "Building the foundations of web development", "text": "The RNCP level 5 qualification established the frontend and backend foundations I still use to understand a complete application. It also taught me to consider responsiveness, accessibility, data structure, and deployment as parts of the product rather than separate finishing steps." },
+          { "heading": "The first step toward larger projects", "text": "The internship at A. Gaveau extended this training in a professional environment. The next stages — the CDA qualification, the LIG experience, and work-study at 1UP Distribution — were built on this first ability to learn quickly and turn an objective into a presentable result." },
+          { "heading": "Building a complete view of an application", "text": "This program established a way to connect a product's layers: a need shapes the interface, the interface triggers server logic, that logic relies on data, and the whole must be tested and then presented. Technologies change afterwards—Vue.js, D3.js, Python, Symfony, Next.js, or Odoo—but this wider view remains useful for avoiding the treatment of a screen, a database, or a deployment as something without consequences for the rest of the system." },
+          { "heading": "A continuity demonstrated by later stages", "text": "The associated A. Gaveau internship made it possible to confront first web foundations with real content and expectations. Subsequent education and case studies deepened application design, data visualization, then business systems and ERP work. I therefore do not present the RNCP level 5 qualification as the end point of the journey, but as the foundation from which I could learn faster, ask for feedback, and progressively take on more responsibility." }
+        ],
         "institutions": "Simplon's project-based pedagogy turned self-directed learning, developed notably through The Odin Project, into a professional method: analyze, build, test, document, and present a usable solution.",
         "certificateUrl": "/proofs/titre-dwwm_filigrane.pdf",
         "certificateLabel": "View the DWWM certification",
@@ -300,6 +374,21 @@
         "tags": ["RNCP 5", "Frontend", "Backend", "Databases", "Deployment"]
       }
     ]
+  },
+  "parcoursPage": {
+    "pageTitle": "My journey | Orhan Madi Assani",
+    "pageDescription": "Orhan Madi Assani’s professional experience, education, and certifications presented in reverse chronological timelines.",
+    "heading": "My journey",
+    "subtext": "A separate view of my professional experience and education, with a summary for every step and a detail page when you want the full account.",
+    "experiencesHeading": "Professional experience",
+    "experiencesSubtext": "The roles and environments where I have built my full-stack development practice.",
+    "educationHeading": "Education & certifications",
+    "educationSubtext": "The training, certifications, and qualifications shaping my software engineering journey.",
+    "viewDetail": "Read the detail",
+    "discoveryHeading": "Continue exploring",
+    "discoveryText": "Explore the skills I use and the achievements that put each step of my journey into context.",
+    "discoverySkills": "Explore my skills",
+    "discoveryAchievements": "View my achievements"
   },
   "proofs": {
     "eyebrow": "Documents",
@@ -339,6 +428,30 @@
     "heading": "Contact me",
     "subtext": "A question, a project, or a professional message? Fill out the form below, and I'll get back to you as soon as possible.",
     "altEmail": "You can also reach me directly by email at",
+    "knowledgeHeading": "Areas of expertise",
+    "knowledgeText": "Practical conversations around these technical skills and how they can be applied.",
+    "knowledgeItems": [
+      {
+        "label": "Odoo and ERP development",
+        "href": "/competences/developpement-odoo"
+      },
+      {
+        "label": "Backend and API development",
+        "href": "/competences/developpement-backend"
+      },
+      {
+        "label": "Frontend development",
+        "href": "/competences/developpement-frontend"
+      },
+      {
+        "label": "DevOps and deployment",
+        "href": "/competences/devops"
+      },
+      {
+        "label": "Python and data analysis",
+        "href": "/competences/python"
+      }
+    ],
     "recaptchaDisclosure": "This site is protected by reCAPTCHA and the Google {privacy} and {terms} apply.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service"
@@ -468,13 +581,36 @@
   },
   "projects": {
     "pageTitle": "Projects | Orhan Madi Assani",
-    "pageDescription": "Standalone Odoo modules extracted from business features and published in open-source repositories on GitHub.",
+    "pageDescription": "Twenty open-source Odoo modules presented through the business solutions they bring to finance, sales, and operations.",
     "eyebrow": "Open-source modules",
     "heading": "Odoo Projects",
-    "subtext": "A curated list of standalone Odoo modules extracted from real business features, cleaned up for generic installations and published on GitHub.",
+    "subtext": "Twenty standalone Odoo modules extracted from real needs and made installable on generic environments. They are presented here through the business solutions they provide.",
     "summaryLabel": "Published repositories",
     "summaryValue": "{count} modules",
     "stackLabel": "Categories",
+    "solutionsHeading": "Business solutions delivered",
+    "solutionsLead": "These twenty repositories are not a sequence of isolated features. Together, they extend the ERP to make information more reliable, decisions easier to read, and operations smoother.",
+    "solutions": [
+      {
+        "scope": "Finance, sales administration, and leadership",
+        "title": "Making finance and management control more reliable",
+        "description": "The modules connect sales, delivery, invoicing, and inventory data. They surface invoice context, overdue payments, margins, invoicing dates, and analytical dimensions useful for financial follow-up.",
+        "outcome": "Teams can find the information they need in Odoo, with fewer exports and fewer jumps between screens."
+      },
+      {
+        "scope": "Sales, CRM, and B2B",
+        "title": "Qualifying, selling, and securing orders more effectively",
+        "description": "The modules structure contact roles, partner context, opportunity qualification, commercial data, and B2B pricing. They also surface sales channels, preparation instructions, and alerts that need validation.",
+        "outcome": "Sales and sales-administration teams have a clearer customer record to prioritize, prepare, and follow each sale."
+      },
+      {
+        "scope": "Products, purchasing, and logistics",
+        "title": "Making product flows easier to control",
+        "description": "The modules enrich bills of materials, catalogs, and packaging data. They support barcode-based purchase checks, shipment preparation, analytical inventory tracking, and stock-valuation access for external tools.",
+        "outcome": "Operational teams have more consistent documents and product data, reducing manual lookups when taking action."
+      }
+    ],
+    "viewRepositories": "Explore the open-source repositories",
     "viewProject": "View on GitHub",
     "viewDetails": "View details",
     "backToProjects": "Back to projects",
@@ -502,7 +638,10 @@
     "professionalProjectHeading": "Professional project",
     "personalProjectHeading": "Personal project",
     "qualitiesHeading": "My human qualities",
-    "interestsHeading": "My interests"
+    "interestsHeading": "My interests",
+    "discoveryHeading": "Discover my journey",
+    "discoveryText": "Explore the steps that took me from law to full-stack development.",
+    "discoveryCta": "View my journey"
   },
   "competencesPage": {
     "pageTitle": "Skills | Orhan Madi Assani",
@@ -533,6 +672,11 @@
     "selfCritiqueHeading": "Self-assessment",
     "evolutionHeading": "Growth",
     "linkedRealisationsHeading": "Related achievements",
+    "caseStudiesHeading": "The case studies that put this skill to the test",
+    "caseStudiesIntro": "The evidence items describe specific episodes. This synthesis places them back in the complete case studies: context, my contribution, and outcome show what this skill made possible, while keeping the appropriate level of caution for each result.",
+    "caseStudyContextLabel": "Context",
+    "caseStudyRoleLabel": "My contribution",
+    "caseStudyResultLabel": "Established outcome",
     "levelLabel": "Proficiency level",
     "importanceLabel": "Importance in my profile",
     "acquisitionLabel": "Acquisition speed",
@@ -548,6 +692,12 @@
     "subtext": "The major projects I've led, from design to production deployment.",
     "viewDetail": "Read article",
     "backToRealisations": "Back to achievements",
+    "summaryHeading": "Achievement summary",
+    "summaryContext": "Context",
+    "summaryRole": "My role",
+    "summaryResult": "Result",
+    "summaryProof": "Evidence",
+    "summaryProofLink": "View the detailed evidence",
     "presentationHeading": "Presentation",
     "objectivesHeading": "Objectives, context and stakes",
     "risksHeading": "Risks and mitigation measures",

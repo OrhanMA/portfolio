@@ -152,7 +152,7 @@ La page de présentation expose désormais explicitement le projet professionnel
 | Critère | Status | Notes |
 |---------|--------|-------|
 | Période (du xx au xx) | ✅ | "Déc. 2024 — Présent", "Mai — oct. 2024" |
-| Poste occupé | ✅ | "Développeur Fullstack — Alternance" |
+| Poste occupé | ✅ | "Développeur et consultant Odoo — Alternance" |
 | Lieu (nom société + **LOGO**) | ✅ | Logo + nom avec lien vers le site |
 
 #### Expérience en entreprise — 2ème niveau de lecture (survol/popup/page dédiée)

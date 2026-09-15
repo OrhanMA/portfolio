@@ -60,12 +60,60 @@ test.describe("Navigation", () => {
     expect(skillsHoverColor.rgba).toEqual(contactHoverColor.rgba);
   });
 
+  test("makes text links discoverable and keeps icon links on one line", async ({
+    page,
+  }) => {
+    await page.goto("/fr");
+
+    const statusLink = page.getByRole("link", {
+      name: "En alternance chez 1UP",
+      exact: true,
+    });
+    await expect(statusLink).toBeVisible();
+    await expect
+      .poll(() =>
+        statusLink.evaluate((element) =>
+          getComputedStyle(element).textDecorationLine,
+        ),
+      )
+      .toContain("underline");
+
+    const iconLinks = page.locator("#main-content a:has(> svg)");
+    const iconLinkLayout = await iconLinks.evaluateAll((elements) =>
+      elements.map((element) => {
+        const style = getComputedStyle(element);
+        return {
+          display: style.display,
+          flexWrap: style.flexWrap,
+          whiteSpace: style.whiteSpace,
+        };
+      }),
+    );
+
+    expect(iconLinkLayout.length).toBeGreaterThan(0);
+    expect(iconLinkLayout).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          display: "inline-flex",
+          flexWrap: "nowrap",
+          whiteSpace: "nowrap",
+        }),
+      ]),
+    );
+    expect(
+      iconLinkLayout.every(
+        ({ flexWrap, whiteSpace }) =>
+          flexWrap === "nowrap" && whiteSpace === "nowrap",
+      ),
+    ).toBe(true);
+  });
+
   test("timeline entries reveal on direct hash navigation", async ({ page }) => {
     await page.goto("/fr#parcours", { waitUntil: "load" });
 
     await expect(
       page.getByRole("heading", {
-        name: "Développeur Fullstack — Alternance",
+        name: "Développeur et consultant Odoo — Alternance",
       }),
     ).toBeVisible();
     await expect(page.locator("#parcours .experience-details")).toHaveCount(7);

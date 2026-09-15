@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card";
 import { LinkedText } from "@/components/linked-text";
 import { TopicLink } from "@/components/topic-link";
-import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n";
 import type { ArticleIndexItem } from "@/lib/types/articles";
 

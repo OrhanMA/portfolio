@@ -13,12 +13,13 @@ import {
   competences,
   competenceLevelLabels,
 } from "@/lib/competences";
+import { getRealisationBySlug } from "@/lib/realisations";
 import { resolveRealisationLinks } from "@/lib/portfolio-links";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { getLocalizedPageContext } from "../../route-context";
 import { RouteStructuredData } from "@/components/route-structured-data";
 
-const romanNumerals = ["I", "II", "III", "IV", "V"] as const;
+const romanNumerals = ["I", "II", "III", "IV", "V", "VI"] as const;
 
 function formatRomanIndex(index: number) {
   return romanNumerals[index - 1] ?? String(index);
@@ -30,12 +31,10 @@ function formatAlphabeticalIndex(index: number) {
 
 function EditorialText({
   text,
-  compact = false,
   locale,
   currentPath,
 }: {
   text: string;
-  compact?: boolean;
   locale: Locale;
   currentPath: string;
 }) {
@@ -119,9 +118,26 @@ export default async function CompetenceDetailPage({
     competence.linkedRealisations,
     loc,
   );
+  const linkedRealisations = competence.linkedRealisations.map(
+    (realisationSlug) => {
+      const realisation = getRealisationBySlug(realisationSlug);
+
+      if (!realisation) {
+        throw new Error(
+          `Unknown realisation ${realisationSlug} linked from competence ${competence.slug}`,
+        );
+      }
+
+      return realisation;
+    },
+  );
   const sections = [
     { id: "definition", title: dict.competencesPage.definitionHeading },
     { id: "evidence", title: dict.competencesPage.proofsHeading },
+    {
+      id: "case-studies",
+      title: dict.competencesPage.caseStudiesHeading,
+    },
     { id: "self-assessment", title: dict.competencesPage.selfCritiqueHeading },
     { id: "growth", title: dict.competencesPage.evolutionHeading },
     {
@@ -136,9 +152,8 @@ export default async function CompetenceDetailPage({
         locale={loc}
         pathname={`/${loc}/competences/${slug}`}
       />
-      <div>
       <EditorialPageHeader
-        compact
+        className="competence-page-header"
         eyebrow={dict.nav.competences}
         title={competence.title[loc]}
         description={<LinkedText locale={loc} currentPath={`/competences/${slug}`}>{`${competence.definition[loc].split(".")[0]}.`}</LinkedText>}
@@ -340,12 +355,83 @@ export default async function CompetenceDetailPage({
               </CardContent>
             </Card>
 
+            <Card id="case-studies" data-competence-case-studies>
+              <CardHeader>
+                <CardTitle>
+                  <SectionHeading index={3}>
+                    {dict.competencesPage.caseStudiesHeading}
+                  </SectionHeading>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p data-competence-case-studies-intro>
+                  {dict.competencesPage.caseStudiesIntro}
+                </p>
+                <div>
+                  {linkedRealisations.map((realisation, index) => (
+                    <article key={realisation.slug}>
+                      <div>
+                        <span aria-hidden="true" data-subsection-index>
+                          {formatAlphabeticalIndex(index + 1)}
+                        </span>
+                        <div>
+                          <h3>
+                            <Link href={`/${loc}/realisations/${realisation.slug}`}>
+                              {realisation.title[loc]}
+                            </Link>
+                          </h3>
+                          <dl data-competence-case-study-summary>
+                            <div>
+                              <dt>{dict.competencesPage.caseStudyContextLabel}</dt>
+                              <dd>
+                                <LinkedText
+                                  locale={loc}
+                                  currentPath={`/competences/${slug}`}
+                                >
+                                  {realisation.summary.context[loc]}
+                                </LinkedText>
+                              </dd>
+                            </div>
+                            <div>
+                              <dt>{dict.competencesPage.caseStudyRoleLabel}</dt>
+                              <dd>
+                                <LinkedText
+                                  locale={loc}
+                                  currentPath={`/competences/${slug}`}
+                                >
+                                  {realisation.summary.role[loc]}
+                                </LinkedText>
+                              </dd>
+                            </div>
+                            <div>
+                              <dt>{dict.competencesPage.caseStudyResultLabel}</dt>
+                              <dd>
+                                <LinkedText
+                                  locale={loc}
+                                  currentPath={`/competences/${slug}`}
+                                >
+                                  {realisation.summary.result[loc]}
+                                </LinkedText>
+                              </dd>
+                            </div>
+                          </dl>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                <div>
+                  <BackToContents label={dict.competencesPage.backToContents} />
+                </div>
+              </CardContent>
+            </Card>
+
             <Card
               id="self-assessment"
             >
               <CardHeader>
                 <CardTitle>
-                  <SectionHeading index={3}>
+                  <SectionHeading index={4}>
                     {dict.competencesPage.selfCritiqueHeading}
                   </SectionHeading>
                 </CardTitle>
@@ -385,7 +471,7 @@ export default async function CompetenceDetailPage({
                       </span>
                       <dt>{item.label}</dt>
                       <dd>
-                        <EditorialText locale={loc} currentPath={`/competences/${slug}`} text={item.value} compact />
+                        <EditorialText locale={loc} currentPath={`/competences/${slug}`} text={item.value} />
                       </dd>
                     </div>
                   ))}
@@ -401,7 +487,7 @@ export default async function CompetenceDetailPage({
             >
               <CardHeader>
                 <CardTitle>
-                  <SectionHeading index={4}>
+                  <SectionHeading index={5}>
                     {dict.competencesPage.evolutionHeading}
                   </SectionHeading>
                 </CardTitle>
@@ -429,7 +515,7 @@ export default async function CompetenceDetailPage({
                       </span>
                       <dt>{item.label}</dt>
                       <dd>
-                        <EditorialText locale={loc} currentPath={`/competences/${slug}`} text={item.value} compact />
+                        <EditorialText locale={loc} currentPath={`/competences/${slug}`} text={item.value} />
                       </dd>
                     </div>
                   ))}
@@ -446,7 +532,7 @@ export default async function CompetenceDetailPage({
               >
                 <CardHeader>
                   <CardTitle>
-                    <SectionHeading index={5}>
+                      <SectionHeading index={6}>
                       {dict.competencesPage.linkedRealisationsHeading}
                     </SectionHeading>
                   </CardTitle>
@@ -479,7 +565,6 @@ export default async function CompetenceDetailPage({
           </div>
         </div>
       </section>
-      </div>
     </>
   );
 }

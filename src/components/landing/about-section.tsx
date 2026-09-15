@@ -1,4 +1,5 @@
 import { LinkedText } from "@/components/linked-text";
+import { actionLinkClassName } from "@/lib/styles";
 import Link from "next/link";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -37,6 +38,9 @@ export function AboutSection({ dict, locale = "fr" }: { dict: Dictionary["about"
           <p>
             <LinkedText locale={locale}>{dict.text}</LinkedText>
           </p>
+          <Link href={`/${locale}/a-propos`} className={actionLinkClassName}>
+            {dict.viewFullProfile}
+          </Link>
         </div>
 
         <div>

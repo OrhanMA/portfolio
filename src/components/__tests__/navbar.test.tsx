@@ -1,7 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent } from "@testing-library/react";
 import { Navbar } from "@/components/navbar";
-import { competences } from "@/lib/competences";
+import {
+  competenceLevelLabels,
+  getCompetencesByType,
+} from "@/lib/competences";
 import { realisations } from "@/lib/realisations";
 import {
   frDict,
@@ -11,23 +14,45 @@ import {
   within,
 } from "@/test/utils";
 
+let currentPathname = "/fr";
+
 vi.mock("next/navigation", () => ({
-  usePathname: () => "/fr",
+  usePathname: () => currentPathname,
   useRouter: () => ({ push: vi.fn() }),
 }));
 
 const menus = {
-  competences: competences.map((item) => ({
-    href: `/fr/competences/${item.slug}`,
-    label: item.title.fr,
-  })),
+  competences: [
+    {
+      label: frDict.nav.humanCompetences,
+      items: getCompetencesByType("human")
+        .map((item) => ({
+          href: `/fr/competences/${item.slug}`,
+          label: item.title.fr,
+          badge: competenceLevelLabels[item.level].fr,
+        })),
+    },
+    {
+      label: frDict.nav.technicalCompetences,
+      items: getCompetencesByType("technical")
+        .map((item) => ({
+          href: `/fr/competences/${item.slug}`,
+          label: item.title.fr,
+          badge: competenceLevelLabels[item.level].fr,
+        })),
+    },
+  ],
   realisations: realisations.map((item) => ({
     href: `/fr/realisations/${item.slug}`,
     label: item.title.fr,
   })),
 };
 
-function renderNavbar() {
+const competenceMenuItems = menus.competences.flatMap((group) => group.items);
+
+function renderNavbar(pathname = "/fr") {
+  currentPathname = pathname;
+
   return renderWithProviders(
     <Navbar
       locale="fr"
@@ -43,7 +68,7 @@ function renderNavbar() {
 
 describe("Navbar", () => {
   it("shows the full name as a compact persistent signature", () => {
-    renderNavbar();
+    const { container } = renderNavbar();
     const identity = screen.getByRole("link", {
       name: "Orhan Madi Assani",
     });
@@ -53,10 +78,54 @@ describe("Navbar", () => {
     expect(
       identity.querySelector("[data-site-identity-name]"),
     ).not.toHaveClass("hidden");
+    expect(identity.querySelectorAll("[data-site-identity-photo]")).toHaveLength(2);
     expect(identity.querySelector("[data-site-identity-photo]")).toHaveAttribute(
       "src",
-      expect.stringContaining("coporate-headshot.webp"),
+      expect.stringContaining("orhan-portrait.webp"),
     );
+    expect(container.querySelector("[data-navbar-background]")).toHaveAttribute(
+      "src",
+      expect.stringContaining("navbar-ivy.webp"),
+    );
+  });
+
+  it("links Parcours to its dedicated bilingual timeline page", () => {
+    renderNavbar();
+
+    expect(screen.getByRole("link", { name: "Parcours" })).toHaveAttribute(
+      "href",
+      "/fr/parcours",
+    );
+  });
+
+  it("marks the current page in the primary navigation", () => {
+    const { container, rerender } = renderNavbar("/fr/realisations");
+
+    expect(
+      within(container.querySelector("[data-desktop-navigation]") as HTMLElement)
+        .getByRole("button", { name: "Réalisations" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "À propos" })).not.toHaveAttribute(
+      "aria-current",
+    );
+
+    currentPathname = "/fr/competences/gestion-de-projet";
+    rerender(
+      <Navbar
+        locale="fr"
+        dict={{
+          nav: frDict.nav,
+          experienceHeading: frDict.experience.heading,
+          skillsHeading: frDict.skills.heading,
+        }}
+        menus={menus}
+      />,
+    );
+
+    expect(
+      within(container.querySelector("[data-desktop-navigation]") as HTMLElement)
+        .getByRole("button", { name: "Compétences" }),
+    ).toHaveAttribute("aria-current", "page");
   });
 
   it("exposes every competence and realisation in keyboard-accessible desktop submenus", () => {
@@ -86,19 +155,47 @@ describe("Navbar", () => {
     expect(
       desktop.getByRole("link", { name: "Voir les 5 réalisations" }),
     ).toHaveAttribute("href", "/fr/realisations");
+    expect(
+      desktop.getByText(frDict.nav.humanCompetences),
+    ).toBeInTheDocument();
+    expect(
+      desktop.getByText(frDict.nav.technicalCompetences),
+    ).toBeInTheDocument();
 
-    for (const item of [...menus.competences, ...menus.realisations]) {
+    for (const item of [...competenceMenuItems, ...menus.realisations]) {
       expect(desktop.getByRole("link", { name: item.label })).toHaveAttribute(
         "href",
         item.href,
       );
     }
 
+    expect(
+      desktop.getByRole("link", { name: "Autonomie" }),
+    ).toHaveAccessibleDescription("Avancé");
+    expect(
+      desktop.getAllByText("Avancé", { selector: "[data-submenu-badge]" }),
+    ).toHaveLength(3);
+
     const panels = navigation?.querySelectorAll("[data-desktop-submenu]");
     expect(panels).toHaveLength(2);
     panels?.forEach((panel) => {
       expect(panel).toHaveClass("absolute", "top-full");
     });
+  });
+
+  it("opens a desktop submenu from a click even when hover has opened it first", async () => {
+    const user = userEvent.setup();
+    const { container } = renderNavbar();
+    const navigation = container.querySelector("[data-desktop-navigation]");
+    const desktop = within(navigation as HTMLElement);
+    const trigger = desktop.getByRole("button", { name: "Compétences" });
+
+    await user.click(trigger);
+
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(
+      desktop.getByRole("link", { name: "Voir les 10 compétences" }),
+    ).toBeInTheDocument();
   });
 
   it("opens the mobile menu and its localized submenus", async () => {
@@ -128,9 +225,9 @@ describe("Navbar", () => {
 
     expect(
       within(mobileNavigation as HTMLElement).getByRole("link", {
-        name: competences[0].title.fr,
+        name: competenceMenuItems[0].label,
       }),
-    ).toHaveAttribute("href", `/fr/competences/${competences[0].slug}`);
+    ).toHaveAttribute("href", competenceMenuItems[0].href);
 
     fireEvent.keyDown(mobileNavigation as HTMLElement, { key: "Escape" });
     expect(mobileToggle).toHaveAttribute("aria-expanded", "false");
@@ -146,13 +243,13 @@ describe("Navbar", () => {
 
     fireEvent.focus(desktop.getByRole("button", { name: "Compétences" }));
     const childLink = desktop.getByRole("link", {
-      name: competences[0].title.fr,
+      name: competenceMenuItems[0].label,
     });
 
     await user.click(childLink);
 
     expect(
-      desktop.queryByRole("link", { name: competences[0].title.fr }),
+      desktop.queryByRole("link", { name: competenceMenuItems[0].label }),
     ).not.toBeInTheDocument();
   });
 
@@ -164,14 +261,14 @@ describe("Navbar", () => {
 
     fireEvent.focus(trigger);
     const childLink = desktop.getByRole("link", {
-      name: competences[0].title.fr,
+      name: competenceMenuItems[0].label,
     });
     fireEvent.keyDown(childLink, { key: "Escape" });
 
     expect(trigger).toHaveAttribute("aria-expanded", "false");
     expect(trigger).toHaveFocus();
     expect(
-      desktop.queryByRole("link", { name: competences[0].title.fr }),
+      desktop.queryByRole("link", { name: competenceMenuItems[0].label }),
     ).not.toBeInTheDocument();
   });
 

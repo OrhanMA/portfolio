@@ -4,7 +4,7 @@ export const autonomie: Competence = {
   slug: "autonomie",
   title: { fr: "Autonomie", en: "Autonomy" },
   type: "human",
-  level: "intermediate",
+  level: "advanced",
   radarValue: 90,
   icon: "Compass",
   definition: {
@@ -78,8 +78,8 @@ This skill becomes especially visible when a system is critical or poorly docume
   ],
   selfCritique: {
     level: {
-      fr: `J'estime avoir un niveau intermédiaire confirmé. Je peux conduire seul un sujet technique important, entrer dans une base de code inconnue et prendre en charge la production. La migration Odoo montre toutefois ma limite actuelle : j'ai commencé le pilotage personnel trop tard et j'ai sous-estimé le volume des personnalisations Studio. Mon autonomie d'exécution est plus forte que mon anticipation méthodique des grands projets.`,
-      en: `I assess myself as a strong intermediate. I can independently lead an important technical subject, enter an unfamiliar codebase, and take responsibility for production. The Odoo migration also shows my current limit: I started personal project tracking too late and underestimated the volume of Studio customizations. My execution autonomy is stronger than my methodical anticipation of large projects.`,
+      fr: `J'estime avoir un niveau avancé. Je peux conduire seul un sujet technique important, entrer dans une base de code inconnue et prendre en charge la production. La migration Odoo montre toutefois ma limite actuelle : j'ai commencé le pilotage personnel trop tard et j'ai sous-estimé le volume des personnalisations Studio. Mon autonomie d'exécution est plus forte que mon anticipation méthodique des grands projets.`,
+      en: `I assess myself as advanced. I can independently lead an important technical subject, enter an unfamiliar codebase, and take responsibility for production. The Odoo migration also shows my current limit: I started personal project tracking too late and underestimated the volume of Studio customizations. My execution autonomy is stronger than my methodical anticipation of large projects.`,
     },
     importance: {
       fr: "Cette compétence structure mon profil parce que je suis souvent le seul développeur interne disponible sur Odoo et que je porte aussi des sujets Next.js et Symfony. Elle me permet de transformer une demande incomplète en plan de travail, mais elle n'a de valeur que si les risques, les dépendances et les décisions restant à valider sont rendus visibles.",
@@ -92,8 +92,8 @@ This skill becomes especially visible when a system is critical or poorly docume
   },
   evolution: {
     goal: {
-      fr: "Atteindre un niveau avancé en ajoutant à mon autonomie technique une pratique plus systématique du pilotage : registre des risques, jalons observables, décisions consignées, critères d'acceptation et revues d'architecture proportionnées à l'impact.",
-      en: "Reach an advanced level by adding more systematic project leadership to my technical autonomy: risk registers, observable milestones, recorded decisions, acceptance criteria, and architecture reviews proportionate to impact.",
+      fr: "Consolider ce niveau avancé en ajoutant à mon autonomie technique une pratique plus systématique du pilotage : registre des risques, jalons observables, décisions consignées, critères d'acceptation et revues d'architecture proportionnées à l'impact.",
+      en: "Consolidate this advanced level by adding more systematic project leadership to my technical autonomy: risk registers, observable milestones, recorded decisions, acceptance criteria, and architecture reviews proportionate to impact.",
     },
     training: {
       fr: "Je poursuis l'étude des architectures logicielles, de la gestion des migrations et des méthodes de décision technique. Mes prochains projets doivent surtout me faire pratiquer ces outils plus tôt, avant que la complexité soit déjà installée.",

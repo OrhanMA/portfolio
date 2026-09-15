@@ -43,8 +43,8 @@ export default async function RealisationsPage({
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/realisations`} />
-      <div>
       <EditorialPageHeader
+        className="realisation-page-header"
         eyebrow={dict.nav.realisations}
         title={dict.realisationsPage.heading}
         description={dict.realisationsPage.subtext}
@@ -86,6 +86,7 @@ export default async function RealisationsPage({
                   <div>
                     <Link
                       href={`/${locale}/realisations/${realisation.slug}`}
+                      className={actionLinkClassName}
                     >
                       {dict.realisationsPage.viewDetail}
                     </Link>
@@ -96,7 +97,6 @@ export default async function RealisationsPage({
           </div>
         </div>
       </section>
-      </div>
     </>
   );
 }
