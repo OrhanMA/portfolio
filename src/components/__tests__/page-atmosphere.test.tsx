@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   AnimatedPageBackground,
   animatedAtmosphereFrames,
+  HomeAtmosphereBackground,
   resolvePageAtmosphere,
 } from "@/components/page-atmosphere";
 
@@ -80,6 +81,33 @@ describe("AnimatedPageBackground", () => {
     expect(secondaryFrame).toHaveAttribute(
       "src",
       expect.stringContaining(encodeURIComponent(frames[0])),
+    );
+  });
+});
+
+describe("HomeAtmosphereBackground", () => {
+  it("uses the supplied H.264 video silently in an inline loop, with the existing image as fallback", () => {
+    const { container } = render(<HomeAtmosphereBackground />);
+    const video = container.querySelector<HTMLVideoElement>(
+      "[data-home-atmosphere-video]",
+    );
+    const fallback = container.querySelector<HTMLElement>(
+      "[data-home-atmosphere-fallback]",
+    );
+
+    expect(video).toHaveAttribute("autoplay");
+    expect(video).toHaveAttribute("loop");
+    expect(video?.muted).toBe(true);
+    expect(video).toHaveAttribute("playsinline");
+    expect(video).toHaveAttribute("preload", "metadata");
+    expect(video).toHaveAttribute("poster", "/images/background-home.webp");
+    expect(video?.querySelector("source")).toHaveAttribute(
+      "src",
+      "/videos/home-atmosphere.mp4",
+    );
+    expect(fallback).toHaveAttribute(
+      "src",
+      expect.stringContaining(encodeURIComponent("/images/background-home.webp")),
     );
   });
 });

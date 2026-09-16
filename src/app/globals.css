@@ -1083,6 +1083,16 @@
     filter: saturate(0.94) contrast(1) brightness(1);
   }
 
+  [data-page-atmosphere] > [data-home-atmosphere-video] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.94) contrast(1) brightness(1);
+  }
+
   [data-page-atmosphere][data-family="about"] > img { object-position: 58% center; }
   [data-page-atmosphere][data-family="journey"] > img { object-position: 61% center; }
   [data-page-atmosphere][data-family="skills"] > img { object-position: 62% center; }
@@ -1450,6 +1460,10 @@
     );
   }
 
+  .dark [data-page-atmosphere] > [data-home-atmosphere-video] {
+    filter: grayscale(0.24) saturate(0.66) contrast(1.05) brightness(0.6);
+  }
+
   .dark #main-content > div > [data-editorial-page-header] {
     background: linear-gradient(
       90deg,
@@ -1568,6 +1582,15 @@
     filter: grayscale(0.24) saturate(0.66) contrast(1.05) brightness(0.6);
   }
 
+  [data-page-atmosphere] > [data-home-atmosphere-video] {
+    object-position: 72% center;
+    filter: saturate(0.82) contrast(0.96) brightness(1.02);
+  }
+
+  .dark [data-page-atmosphere] > [data-home-atmosphere-video] {
+    filter: grayscale(0.24) saturate(0.66) contrast(1.05) brightness(0.6);
+  }
+
   .dark [data-atmosphere-scrim],
   .dark [data-secondary] [data-atmosphere-scrim] {
     background: color-mix(in oklch, var(--background) 74%, transparent);
@@ -1673,6 +1696,10 @@
   [data-page-atmosphere][data-animated-page-background] [data-animated-background-frame][data-frame="1"] {
     display: block;
     opacity: 1;
+  }
+
+  [data-page-atmosphere] > [data-home-atmosphere-video] {
+    display: none;
   }
 }
 

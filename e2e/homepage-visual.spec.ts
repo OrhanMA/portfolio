@@ -119,5 +119,25 @@ test.describe("Homepage visual regression", () => {
     await expect(atmosphere).toHaveCSS("position", "fixed");
     await expect(atmosphere).toHaveCSS("pointer-events", "none");
     await expect(atmosphere.locator('img[src*="background-home"]')).toHaveCount(1);
+
+    const video = atmosphere.locator("[data-home-atmosphere-video]");
+    await expect(video).toHaveCount(1);
+    await expect(video).toHaveCSS("display", "block");
+    await expect(
+      video.evaluate((element) => {
+        const videoElement = element as HTMLVideoElement;
+        return {
+          loop: videoElement.loop,
+          muted: videoElement.muted,
+          playsInline: videoElement.playsInline,
+          source: videoElement.querySelector("source")?.getAttribute("src"),
+        };
+      }),
+    ).resolves.toEqual({
+      loop: true,
+      muted: true,
+      playsInline: true,
+      source: "/videos/home-atmosphere.mp4",
+    });
   });
 });

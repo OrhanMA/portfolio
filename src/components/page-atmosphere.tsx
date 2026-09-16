@@ -21,6 +21,36 @@ const atmosphereSources: Record<PageAtmosphereFamily, string> = {
   contact: "/images/background-contact.webp",
 };
 
+const homeAtmosphereVideo = "/videos/home-atmosphere.mp4";
+
+export function HomeAtmosphereBackground() {
+  return (
+    <>
+      <Image
+        data-home-atmosphere-fallback
+        src={atmosphereSources.home}
+        alt=""
+        fill
+        sizes="100vw"
+        quality={75}
+        preload
+      />
+      <video
+        aria-hidden="true"
+        data-home-atmosphere-video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster={atmosphereSources.home}
+        preload="metadata"
+      >
+        <source src={homeAtmosphereVideo} type="video/mp4" />
+      </video>
+    </>
+  );
+}
+
 /**
  * Page-specific frame sequences stay separate from the shared renderer so
  * another atmospheric page can opt in without duplicating the layer logic.
@@ -109,6 +139,7 @@ export function PageAtmosphere() {
   const pathname = usePathname();
   const { family, secondary } = resolvePageAtmosphere(pathname ?? "/");
   const animatedFrames = animatedAtmosphereFrames[family];
+  const usesHomeVideo = family === "home" && !secondary;
 
   return (
     <div
@@ -118,7 +149,9 @@ export function PageAtmosphere() {
       data-animated-page-background={animatedFrames ? "" : undefined}
       data-secondary={secondary || undefined}
     >
-      {animatedFrames ? (
+      {usesHomeVideo ? (
+        <HomeAtmosphereBackground />
+      ) : animatedFrames ? (
         <AnimatedPageBackground
           frames={animatedFrames}
           fallbackSrc={atmosphereSources[family]}
