@@ -62,6 +62,7 @@
     "heading": "Skills",
     "subtext": "Six broad areas summarize my daily practice. The comparison and all ten detailed skills remain available on the dedicated page.",
     "ctaAll": "Explore all 10 skills",
+    "viewDomain": "View skill",
     "backend": "Backend",
     "backendDesc": "Application architecture, business logic, APIs, and data with reliability as the baseline.",
     "frontend": "Frontend",
@@ -132,7 +133,6 @@
     "featuredLabel": "Project",
     "problemLabel": "Problem",
     "contributionLabel": "My contribution",
-    "resultLabel": "Result",
     "readCase": "View achievement",
     "ctaAll": "View all achievements",
     "cases": [
@@ -167,6 +167,7 @@
     "caseStudyRoleLabel": "My contribution",
     "caseStudyResultLabel": "Established outcome",
     "detailsLabel": "Show details",
+    "viewCompetence": "View skill",
     "orderingLabel": "Order: “Present” first, then latest end date; ties use the latest start date",
     "entries": [
       {

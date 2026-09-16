@@ -98,23 +98,13 @@ export function SkillsSection({
                 <p>
                   <LinkedText locale={locale}>{category.description}</LinkedText>
                 </p>
-                <ul>
-                  {category.skills.map((skill) => {
-                    const label = skill.label;
-
-                    return (
-                      <li key={label}>
-                        <Link
-                          href={`/${locale}${skill.path}`}
-                          prefetch={false}
-                        >
-                          {label}
-                          <ArrowUpRight aria-hidden="true" />
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <Link
+                  href={`/${locale}${category.path}`}
+                  className="skill-domain-link"
+                >
+                  {dict.viewDomain} {category.title}
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
               </article>
             ))}
           </div>

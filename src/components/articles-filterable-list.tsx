@@ -90,6 +90,7 @@ export function ArticlesFilterableList({
           <Search />
           <Input
             type="search"
+            aria-label={labels.searchPlaceholder}
             value={queryInput}
             onChange={(event) => {
               const nextQuery = event.target.value;

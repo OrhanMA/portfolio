@@ -21,6 +21,7 @@ vi.mock("next/navigation", () => ({
 // Mock server action for ContactForm
 vi.mock("@/app/[locale]/actions/contact", () => ({
   sendContactEmail: vi.fn(),
+  submitContactForm: vi.fn(),
 }));
 
 // Mock reCAPTCHA for ContactForm

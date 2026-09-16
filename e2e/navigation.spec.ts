@@ -111,15 +111,16 @@ test.describe("Navigation", () => {
   test("timeline entries reveal on direct hash navigation", async ({ page }) => {
     await page.goto("/fr#parcours", { waitUntil: "load" });
 
+    await expect(page).toHaveURL(/\/fr#parcours$/);
+    const timeline = page.locator("#parcours");
+    await expect(timeline).toBeInViewport();
+    const entries = timeline.locator("ol > li[id^='experience-']");
+    await expect(entries).toHaveCount(7);
     await expect(
-      page.getByRole("heading", {
+      entries.first().getByRole("link", {
         name: "Développeur et consultant Odoo — Alternance",
       }),
-    ).toBeVisible();
-    await expect(page.locator("#parcours .experience-details")).toHaveCount(7);
-    await expect(
-      page.locator("#parcours .experience-details button[aria-expanded='false']"),
-    ).toHaveCount(7);
+    ).toHaveAttribute("href", "/fr/parcours/1up-fullstack-developer");
   });
 
   test("articles page loads", async ({ page }) => {

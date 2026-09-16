@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import { Resend } from "resend";
 import {
   contactSchema,
-  type ContactFormData,
+  type ContactFormInput,
 } from "@/lib/schemas/contact";
 import { verifyRecaptcha } from "@/lib/recaptcha";
 import { rateLimit } from "@/lib/rate-limit";
@@ -28,9 +28,37 @@ export type ContactActionState =
   | { status: "temporarily-unavailable"; success: false; message: string }
   | null;
 
+function getFormField(formData: FormData, field: string) {
+  const value = formData.get(field);
+  return typeof value === "string" ? value : "";
+}
+
+/**
+ * HTTPS progressive-enhancement fallback for the contact form.
+ *
+ * Client-side validation normally intercepts the submit event. Without
+ * JavaScript, this Server Action receives the native FormData instead of
+ * sending a message through a mailto: URL.
+ */
+export async function submitContactForm(
+  locale: Locale,
+  formData: FormData,
+): Promise<void> {
+  await sendContactEmail(locale, {
+    name: getFormField(formData, "name"),
+    email: getFormField(formData, "email"),
+    reason: getFormField(formData, "reason"),
+    customSubject: getFormField(formData, "customSubject"),
+    message: getFormField(formData, "message"),
+    honeypot: getFormField(formData, "honeypot"),
+    timestamp: Number(getFormField(formData, "timestamp")),
+    recaptchaToken: getFormField(formData, "recaptchaToken"),
+  });
+}
+
 export async function sendContactEmail(
   locale: Locale,
-  data: ContactFormData,
+  data: ContactFormInput,
 ): Promise<ContactActionState> {
   const safeLocale = isValidLocale(locale) ? locale : "fr";
   const dict = await getDictionary(safeLocale);

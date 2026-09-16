@@ -50,6 +50,7 @@ export default async function PrivacyPolicyPage({
         title={dict.privacy.heading}
         description={dict.privacy.intro}
         titleClassName="uppercase"
+        className="privacy-policy-header"
         meta={
           <p>
             {dict.privacy.lastUpdated}:{" "}
@@ -58,18 +59,19 @@ export default async function PrivacyPolicyPage({
         }
       />
 
-      <section>
+      <section data-privacy-policy data-legal-page>
         <div>
           <div>
             {sections.map((section, index) => (
               <section
                 key={section.title}
+                aria-labelledby={`privacy-section-${index + 1}`}
               >
-                <p>
+                <p aria-hidden="true">
                   0{index + 1}
                 </p>
                 <div>
-                  <h2>
+                  <h2 id={`privacy-section-${index + 1}`}>
                     {section.title}
                   </h2>
                   <p>

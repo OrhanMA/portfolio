@@ -62,6 +62,7 @@
     "heading": "Compétences",
     "subtext": "Six domaines résument la pratique quotidienne. Le comparatif et les dix compétences détaillées restent disponibles sur la page dédiée.",
     "ctaAll": "Explorer les 10 compétences",
+    "viewDomain": "Voir la compétence",
     "backend": "Backend",
     "backendDesc": "Architecture applicative, logique métier, API et données avec une priorité donnée à la fiabilité.",
     "frontend": "Frontend",
@@ -132,7 +133,6 @@
     "featuredLabel": "Projet",
     "problemLabel": "Problème",
     "contributionLabel": "Ma contribution",
-    "resultLabel": "Résultat",
     "readCase": "Voir la réalisation",
     "ctaAll": "Voir toutes les réalisations",
     "cases": [
@@ -167,6 +167,7 @@
     "caseStudyRoleLabel": "Ma contribution",
     "caseStudyResultLabel": "Résultat établi",
     "detailsLabel": "Afficher le détail",
+    "viewCompetence": "Voir la compétence",
     "orderingLabel": "Ordre : « Présent » d'abord, puis par date de fin décroissante ; à égalité, par date de début décroissante",
     "entries": [
       {

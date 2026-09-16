@@ -33,6 +33,14 @@ describe("CompetencesPage", () => {
     expect(screen.getByRole("heading", { name: "Compétences humaines" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Compétences techniques" })).toBeInTheDocument();
 
+    const mobileOverview = container.querySelector("[data-skills-mobile-overview]");
+    expect(mobileOverview).not.toBeNull();
+    expect(mobileOverview?.querySelectorAll("li")).toHaveLength(10);
+    expect(screen.getByRole("link", { name: /Autonomie\s*90/i })).toHaveAttribute(
+      "href",
+      "/fr/competences/autonomie",
+    );
+
     const technicalSkillTitles = Array.from(
       container.querySelectorAll('[data-skill-domain="technical"] h3 a'),
     ).map((link) => link.textContent);

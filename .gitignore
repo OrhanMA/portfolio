@@ -39,6 +39,7 @@
 /public/images/decorative/hero-portrait-mobile.webp
 
 # debug
+/tmp/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

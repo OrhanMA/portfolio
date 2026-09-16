@@ -220,6 +220,7 @@
   #a-propos h2, #competences h2, #realisations h2, #contact h2 { @apply text-4xl font-semibold tracking-[-0.045em] sm:text-5xl; }
   #a-propos h2 + p { @apply mt-6 max-w-2xl text-xl font-medium leading-8; }
   #a-propos h2 + p + p { @apply mt-5 max-w-2xl text-base leading-7 text-muted-foreground; }
+  #a-propos h2 + p + p + a { @apply mt-6; }
   #a-propos > div > div:last-child { @apply divide-y divide-border border-y border-border; }
   #a-propos article { @apply py-6; }
   #a-propos h3 { @apply text-base font-semibold; }
@@ -244,8 +245,7 @@
   #main-content > div > #parcours:has(ol) h3 + div img { @apply h-6 w-6 object-contain; }
   #main-content > div > #parcours:has(ol) article > p { @apply mt-3 max-w-3xl text-base leading-7 text-muted-foreground; }
   #main-content > div > #parcours:has(ol) article > div { @apply mt-4 flex flex-wrap gap-2; }
-  #main-content > div > #parcours:has(ol) [aria-expanded] { @apply mt-5 inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm font-medium hover:bg-background hover:text-primary; }
-  #main-content > div > #parcours:has(ol) [aria-expanded] + div:not([hidden]) > div { @apply mt-3 border border-border bg-background p-4 text-base leading-7; }
+  #main-content > div > #parcours:has(ol) .experience-competence-link { @apply mt-5 inline-flex min-w-0 items-center gap-2 rounded-md border border-border bg-background/70 px-3 py-2 text-sm font-medium no-underline transition-colors hover:border-primary/50 hover:bg-background hover:text-primary; }
 
   #main-content > div > #parcours:not(:has(ol)) > div { @apply grid gap-10 lg:grid-cols-[minmax(16rem,.6fr)_minmax(0,1.4fr)] lg:items-start; }
   #main-content > div > #parcours:not(:has(ol)) > div > div:first-child { @apply grid grid-cols-2 gap-3 lg:grid-cols-1; }
@@ -335,6 +335,7 @@
   [data-radar-chart] text { @apply fill-foreground text-[13px] font-medium; }
   [data-radar-chart] a { @apply cursor-pointer; }
   [data-radar-chart] a:hover text { @apply fill-primary; }
+  [data-skills-mobile-overview] { display: none; }
 
   [data-skill-domain] { @apply border-b border-border; }
   [data-skill-domain]:last-child { @apply border-b-0; }
@@ -354,12 +355,11 @@
   #competences h3 { @apply text-xl font-semibold tracking-[-0.02em]; }
   #competences h3 a { @apply underline hover:decoration-2; }
   #competences article p { @apply mt-3 text-base leading-7 text-muted-foreground; }
-  #competences ul { @apply mt-4 flex flex-wrap gap-2; }
-  #competences li a, #realisations [data-slot="card-content"] a { @apply inline-flex items-center gap-1 rounded-md bg-muted px-2.5 py-1.5 text-xs font-medium no-underline hover:bg-accent hover:text-primary; }
+  #competences .skill-domain-link, #realisations [data-slot="card-content"] a { @apply mt-4 inline-flex items-center gap-2 rounded-md border border-border bg-muted px-3 py-2 text-sm font-medium no-underline hover:bg-accent hover:text-primary; }
 
   #realisations > div > div:first-child { @apply max-w-2xl; }
   #realisations > div > div:last-child { @apply mt-12 grid gap-8; }
-  #realisations [data-case-row] { @apply grid overflow-hidden rounded-2xl border border-white/45 bg-card/68 shadow-[0_1.5rem_4rem_oklch(0.25_0.04_255/10%)] backdrop-blur-xl transition-transform duration-500 hover:[transform:perspective(1200px)_rotateX(1deg)_rotateY(-1deg)_translateY(-6px)] dark:border-white/10 lg:grid-cols-[minmax(16rem,1fr)_minmax(16rem,.9fr)_15rem]; }
+  #realisations [data-case-row] { @apply grid overflow-hidden rounded-2xl border border-white/45 bg-card/68 shadow-[0_1.5rem_4rem_oklch(0.25_0.04_255/10%)] backdrop-blur-xl transition-transform duration-500 hover:[transform:perspective(1200px)_rotateX(1deg)_rotateY(-1deg)_translateY(-6px)] dark:border-white/10 lg:grid-cols-[minmax(16rem,1fr)_minmax(16rem,.9fr)]; }
   #realisations [data-case-row] > div:first-child { @apply relative min-h-72 bg-muted lg:min-h-[26rem]; }
   #realisations [data-case-row] > div:first-child img { @apply h-full w-full object-cover transition-transform duration-500; }
   #realisations [data-case-row]:hover > div:first-child img { @apply scale-[1.03]; }
@@ -373,12 +373,6 @@
   #realisations [data-case-row] h3 + p { @apply mt-4 text-base leading-7 text-muted-foreground; }
   #realisations [data-case-row] h3 + p + div { @apply mt-5 flex flex-wrap gap-2; }
   #realisations [data-case-row] h3 + p + div + a { @apply mt-5 inline-flex w-fit items-center gap-1.5 whitespace-nowrap text-sm font-semibold hover:decoration-2; }
-  #realisations [data-case-row] [data-slot="project-result"] { @apply flex min-h-48 flex-col justify-center border-t border-white/45 bg-background/35 p-6 backdrop-blur-md dark:border-white/10 lg:order-3 lg:min-h-[26rem] lg:border-l lg:border-t-0; }
-  #realisations [data-case-row] [data-slot="project-result"] p:first-child { @apply font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground; }
-  #realisations [data-case-row] [data-slot="project-result"] p:nth-child(2) { @apply mt-2 text-5xl font-semibold tracking-[-0.05em]; }
-  #realisations [data-case-row] [data-slot="project-result"] p:nth-child(3) { @apply mt-1 font-semibold; }
-  #realisations [data-case-row] [data-slot="project-result"] p:last-child { @apply mt-3 text-base leading-7 text-muted-foreground; }
-
   #contact { @apply border-t border-border bg-muted/45; }
   #contact > div { @apply flex flex-col items-start gap-8; }
   #contact h2 { @apply mt-4 max-w-2xl; }
@@ -905,7 +899,7 @@
 
   form { @apply mx-auto grid max-w-3xl gap-6; }
   [data-slot="field-group"] { @apply grid gap-5; }
-  [data-slot="field-group"] > div { @apply grid gap-5 md:grid-cols-2; }
+  [data-slot="field-group"] > div:not([data-slot="field"]) { @apply grid gap-5 md:grid-cols-2; }
   [data-slot="field"] { @apply grid gap-2; }
   [data-slot="field-description"] { @apply text-sm leading-6 text-muted-foreground; }
   [data-slot="field-error"] { @apply text-sm font-medium text-destructive; }
@@ -943,9 +937,9 @@
   [data-slot="dialog-popup"] > div > div:first-child { @apply flex items-center justify-between gap-4; }
   [data-slot="dialog-title"] { @apply text-lg font-semibold; }
   [data-slot="dialog-description"] { @apply mt-3 text-sm leading-6 text-muted-foreground; }
-  [data-slot="dialog-popup"] [role="switch"] { @apply flex h-6 w-11 items-center rounded-full bg-muted p-0.5; }
-  [data-slot="dialog-popup"] [role="switch"] > div { @apply h-5 w-5 rounded-full bg-card shadow-sm transition-transform; }
-  [data-slot="dialog-popup"] [role="switch"][aria-checked="true"] > div { @apply translate-x-5 bg-primary; }
+  [data-slot="dialog-popup"] [role="switch"]:not([data-cookie-consent-switch]) { @apply flex h-6 w-11 items-center rounded-full bg-muted p-0.5; }
+  [data-slot="dialog-popup"] [role="switch"]:not([data-cookie-consent-switch]) > div { @apply h-5 w-5 rounded-full bg-card shadow-sm transition-transform; }
+  [data-slot="dialog-popup"] [role="switch"]:not([data-cookie-consent-switch])[aria-checked="true"] > div { @apply translate-x-5 bg-primary; }
   [data-slot="dialog-popup"] > div > div:last-child { @apply mt-5 flex flex-wrap gap-2; }
 }
 
@@ -953,7 +947,7 @@
   #main-content > div > section:first-of-type:has(h1 span) > div { min-height: auto; }
   #main-content > div > section:first-of-type:has(h1 span) > div > div:last-child { order: -1; }
   #main-content > div > section:first-of-type:has(h1 span) > div > div:last-child > div { max-width: 22rem; }
-  #main-content > div > #parcours:has(ol) > div { grid-template-columns: 1fr; }
+  #main-content > div > #parcours:has(ol) > div { grid-template-columns: minmax(0, 1fr); }
 
   #main-content > div > #parcours:not(:has(ol)) > div > div:first-child {
     grid-template-columns: 1fr;
@@ -983,6 +977,7 @@
   [data-realisation-summary] > dl > div,
   [data-realisation-summary] > dl > div:nth-child(odd),
   [data-realisation-summary] > dl > div:nth-child(even) { border-left: 0; padding-inline: 0; }
+  #main-content > div > #parcours:has(ol) .experience-competence-link { white-space: normal; }
 }
 
 @media (min-width: 1024px) {
@@ -1245,19 +1240,6 @@
     border-radius: 0;
     background: var(--primary);
   }
-
-  #main-content .experience-details > div {
-    display: grid;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  #main-content .experience-details > div > div {
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  #main-content .experience-details > div[aria-hidden="true"] { display: none; }
 
   [data-slot="card"],
   [data-radar-chart],
@@ -1799,12 +1781,36 @@
 }
 
 @layer components {
-  /* Keep skills and work headers editorial without making the first section viewport-tall. */
+  /* Editorial heroes fill the viewport below the fixed navigation. Content
+     can still make taller heroes grow naturally when it needs more room. */
+  #main-content > div > [data-editorial-page-header] {
+    min-height: calc(100dvh - 4rem);
+    padding-block: 0;
+  }
+
+  #main-content > div > [data-editorial-page-header] > div {
+    box-sizing: border-box;
+    min-height: calc(100dvh - 4rem);
+    align-items: center;
+  }
+
   [data-editorial-page-header].competence-page-header > div,
   [data-editorial-page-header].realisation-page-header > div {
     min-height: auto;
     padding-block: clamp(3.5rem, 6vw, 5rem);
     gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  #main-content > div > [data-editorial-page-header].competence-page-header > div,
+  #main-content > div > [data-editorial-page-header].realisation-page-header > div {
+    min-height: calc(100dvh - 4rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 4vw, 4rem);
+  }
+
+  #main-content > div > [data-editorial-page-header].realisation-page-header h1 {
+    font-size: clamp(3.25rem, 7vw, 6rem);
+    line-height: 0.9;
   }
 
   /* Detail heroes need a deliberate vertical rhythm: the shared header renders
@@ -2272,5 +2278,325 @@
   [data-journey-detail-context] > p:last-child,
   [data-journey-detail-responsibilities] li {
     font-size: 1rem;
+  }
+}
+
+@layer components {
+  /* Privacy information is deliberately editorial rather than a dense legal
+     document: a short contextual header and six scannable reading blocks. */
+  #main-content > div > [data-editorial-page-header].privacy-policy-header {
+    min-height: auto;
+    border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+    background: color-mix(in oklch, var(--card) 72%, transparent);
+  }
+
+  #main-content > div > [data-editorial-page-header].privacy-policy-header > div {
+    min-height: auto;
+    max-width: 72rem;
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: clamp(4.5rem, 9vw, 7.5rem);
+  }
+
+  [data-editorial-page-header].privacy-policy-header > div > div:first-child {
+    display: flex;
+    max-width: 48rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  [data-editorial-page-header].privacy-policy-header > div > div:first-child > p,
+  [data-editorial-page-header].privacy-policy-header > div > div:first-child > h1,
+  [data-editorial-page-header].privacy-policy-header > div > div:first-child > div {
+    margin: 0;
+  }
+
+  [data-editorial-page-header].privacy-policy-header h1 {
+    max-width: 16ch;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.88;
+    text-wrap: balance;
+  }
+
+  [data-editorial-page-header].privacy-policy-header h1 + div {
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: clamp(1.125rem, 2vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  [data-editorial-page-header].privacy-policy-header > div > div:first-child > div:last-child {
+    margin-top: 0.65rem;
+    border-left: 2px solid var(--primary);
+    padding-left: 0.85rem;
+    color: var(--muted-foreground);
+    font-family: var(--font-geist-mono, ui-monospace), monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  [data-legal-page] {
+    border-bottom: 1px solid color-mix(in oklch, var(--primary) 20%, var(--border));
+    background: color-mix(in oklch, var(--background) 74%, transparent);
+  }
+
+  [data-legal-page] > div {
+    width: min(100%, 72rem);
+    margin-inline: auto;
+    padding: clamp(3.5rem, 8vw, 7.5rem) 1rem;
+  }
+
+  [data-legal-page] > div > div {
+    overflow: hidden;
+    border: 1px solid color-mix(in oklch, var(--border) 78%, transparent);
+    background: color-mix(in oklch, var(--card) 86%, transparent);
+    box-shadow: 0 1.25rem 3.5rem oklch(0.2 0.02 260 / 10%);
+  }
+
+  [data-legal-page] section {
+    display: grid;
+    grid-template-columns: minmax(3rem, 0.18fr) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 3.5rem);
+    padding: clamp(1.75rem, 4vw, 3.25rem);
+  }
+
+  [data-legal-page] section + section {
+    border-top: 1px solid color-mix(in oklch, var(--border) 78%, transparent);
+  }
+
+  [data-legal-page] section > p {
+    padding-top: 0.4rem;
+    color: var(--primary);
+    font-family: var(--font-geist-mono, ui-monospace), monospace;
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.11em;
+    line-height: 1;
+  }
+
+  [data-legal-page] section > div {
+    min-width: 0;
+  }
+
+  [data-legal-page] h2 {
+    max-width: 32rem;
+    color: var(--foreground);
+    font-size: clamp(1.85rem, 3.5vw, 2.9rem);
+    line-height: 0.98;
+  }
+
+  [data-legal-page] h2 + p {
+    max-width: 68ch;
+    margin-top: 1rem;
+    color: var(--muted-foreground);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.72;
+  }
+
+  [data-legal-page] ul {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  [data-legal-page] li {
+    position: relative;
+    max-width: 68ch;
+    border-left: 1px solid color-mix(in oklch, var(--primary) 55%, var(--border));
+    padding-left: 1rem;
+    color: var(--foreground);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .dark [data-legal-page] > div > div {
+    border-color: color-mix(in oklch, var(--primary) 30%, var(--border));
+    background: color-mix(in oklch, var(--card) 72%, transparent);
+    box-shadow: 0 1.5rem 4rem oklch(0.08 0.01 30 / 32%);
+  }
+}
+
+@media (max-width: 639px) {
+  #main-content > div > [data-editorial-page-header].privacy-policy-header > div {
+    padding-block: 4rem;
+  }
+
+  [data-editorial-page-header].privacy-policy-header h1 {
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+
+  [data-legal-page] > div {
+    padding-block: 3rem;
+  }
+
+  [data-legal-page] section {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 1.5rem;
+  }
+
+  [data-legal-page] section > p {
+    padding-top: 0;
+  }
+}
+
+@layer components {
+  /* Legal notices share the scannable reading card of the privacy policy, but
+     retain a compact factual header and link-friendly reference blocks. */
+  #main-content > div > [data-editorial-page-header].legal-notice-header {
+    min-height: auto;
+    border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+    background: color-mix(in oklch, var(--card) 72%, transparent);
+  }
+
+  #main-content > div > [data-editorial-page-header].legal-notice-header > div {
+    min-height: auto;
+    max-width: 72rem;
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: clamp(4.5rem, 9vw, 7.5rem);
+  }
+
+  [data-editorial-page-header].legal-notice-header > div > div:first-child {
+    display: flex;
+    max-width: 48rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  [data-editorial-page-header].legal-notice-header > div > div:first-child > p,
+  [data-editorial-page-header].legal-notice-header > div > div:first-child > h1,
+  [data-editorial-page-header].legal-notice-header > div > div:first-child > div {
+    margin: 0;
+  }
+
+  [data-editorial-page-header].legal-notice-header h1 {
+    max-width: 16ch;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.88;
+    text-wrap: balance;
+  }
+
+  [data-editorial-page-header].legal-notice-header h1 + div {
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: clamp(1.125rem, 2vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  [data-legal-notice] h2 + div {
+    display: grid;
+    gap: 0.45rem;
+    max-width: 68ch;
+    margin-top: 1rem;
+  }
+
+  [data-legal-notice] h2 + div > p {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.72;
+  }
+
+  [data-legal-notice] h2 + div > p:has(a:only-child) {
+    margin-top: 0.35rem;
+  }
+
+  [data-legal-notice] a {
+    color: var(--foreground);
+    font-family: var(--font-roboto-flex, ui-sans-serif), system-ui, sans-serif;
+    font-size: 0.95em;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    text-decoration-color: color-mix(in oklch, var(--primary) 70%, transparent);
+    text-underline-offset: 0.22em;
+  }
+
+  [data-legal-notice] a:hover {
+    color: var(--primary);
+    text-decoration-thickness: 2px;
+  }
+}
+
+@media (max-width: 639px) {
+  #main-content > div > [data-editorial-page-header].legal-notice-header > div {
+    padding-block: 4rem;
+  }
+
+  [data-editorial-page-header].legal-notice-header h1 {
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+}
+
+@media (max-width: 767px) {
+  /* The editorial introduction should lead into its content on phones instead
+     of reserving an entire viewport before the next section. */
+  #main-content > div > [data-editorial-page-header],
+  #main-content > div > [data-editorial-page-header] > div {
+    min-height: auto;
+  }
+
+  /* Radar labels need a desktop-sized canvas. On phones, their values are
+     surfaced as a compact link grid that fits without horizontal scrolling. */
+  [data-radar-chart] {
+    display: none;
+  }
+
+  [data-skills-mobile-overview] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  [data-skills-mobile-overview] li {
+    min-width: 0;
+  }
+
+  [data-skills-mobile-overview] a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 0.45rem;
+    min-height: 4.75rem;
+    border: 1px solid color-mix(in oklch, var(--primary) 26%, var(--border));
+    border-left-width: 0.18rem;
+    background: color-mix(in oklch, var(--card) 76%, transparent);
+    padding: 0.7rem 0.75rem;
+    color: var(--foreground);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.15;
+    text-decoration: none;
+  }
+
+  [data-skills-mobile-overview] a > span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  [data-skills-mobile-overview] a > span:last-child {
+    color: var(--primary);
+    font-family: var(--font-geist-mono, ui-monospace), monospace;
+    font-size: 0.7rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  [data-skills-mobile-overview] strong {
+    font-size: 1rem;
+  }
+
+  [data-skills-mobile-overview] a:focus-visible,
+  [data-skills-mobile-overview] a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
   }
 }

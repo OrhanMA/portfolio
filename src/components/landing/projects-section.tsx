@@ -139,7 +139,7 @@ export function ProjectsSection({
                       <a
                         href={media.source.href}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         Photo · {media.source.author} / Pexels
                       </a>
@@ -167,22 +167,6 @@ export function ProjectsSection({
                     </Link>
                   </div>
 
-                  <div
-                    data-slot="project-result"
-                  >
-                    <p>
-                      {dict.resultLabel}
-                    </p>
-                    <p>
-                      {copy.metricValue}
-                    </p>
-                    <p>
-                      {copy.metricLabel}
-                    </p>
-                    <p>
-                      {copy.metricNote}
-                    </p>
-                  </div>
                 </article>
               );
             })}

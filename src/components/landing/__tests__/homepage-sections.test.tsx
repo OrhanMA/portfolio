@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import userEvent from "@testing-library/user-event";
 import { AboutSection } from "@/components/landing/about-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { ExperienceSection } from "@/components/landing/experience-section";
@@ -26,61 +25,14 @@ const featuredProjects = [
   },
 ];
 
-const skillDestinations = [
-  ["PHP", "/competences/developpement-backend"],
-  ["Symfony", "/competences/developpement-backend"],
-  ["Python", "/competences/python"],
-  ["PostgreSQL", "/competences/developpement-backend"],
-  ["REST API", "/projects/stock_value_api"],
-  ["Architecture modulaire", "/realisations/modules-metier-odoo"],
-  ["Next.js", "/realisations/refonte-site-corporate"],
-  ["React", "/realisations/refonte-site-corporate"],
-  ["TypeScript", "/realisations/refonte-site-corporate"],
-  ["Tailwind CSS", "/realisations/refonte-site-corporate"],
-  ["HTML / CSS", "/competences/developpement-frontend"],
-  ["UI / UX", "/competences/developpement-frontend"],
-  ["Odoo 16 → 19", "/realisations/migration-odoo-v16-v19"],
-  ["Modules métier", "/realisations/modules-metier-odoo"],
-  ["Personnalisation", "/competences/developpement-odoo"],
-  ["Migrations", "/realisations/migration-odoo-v16-v19"],
-  ["Automatisations", "/projects/invoice_overdue_alert"],
-  ["Rapports", "/projects/packing_list"],
-  ["Docker", "/competences/devops"],
-  ["Git / GitHub", "/competences/devops"],
-  ["Linux", "/competences/devops"],
-  ["CI / CD", "/competences/devops"],
-  ["Nginx", "/competences/devops"],
-  ["VPS", "/competences/devops"],
-  ["Agile / Scrum", "/realisations/app-trajectoires-de-vie"],
-  ["Conception", "/realisations/app-trajectoires-de-vie"],
-  ["Tests", "/realisations/portfolio-professionnel"],
-  ["Documentation", "/realisations/app-trajectoires-de-vie"],
-  ["Optimisation", "/competences/amelioration-continue"],
-  ["Qualité", "/competences/amelioration-continue"],
-  ["Algorithmique", "/realisations/app-trajectoires-de-vie"],
-  ["Structures de données", "/realisations/app-trajectoires-de-vie"],
-  ["Réseaux", "/realisations/app-trajectoires-de-vie"],
-  ["Systèmes", "/competences/devops"],
-  ["Bases de données", "/realisations/app-trajectoires-de-vie"],
-  ["Mathématiques", "/a-propos"],
+const skillCategoryDestinations = [
+  "/competences/developpement-backend",
+  "/competences/developpement-frontend",
+  "/competences/developpement-odoo",
+  "/competences/devops",
+  "/competences/amelioration-continue",
+  "/a-propos",
 ] as const;
-
-const skillLabelsEn: Record<string, string> = {
-  "Architecture modulaire": "Modular architecture",
-  "Modules métier": "Business modules",
-  Personnalisation: "Customization",
-  Automatisations: "Automation",
-  Rapports: "Reports",
-  Conception: "Design",
-  Optimisation: "Optimization",
-  Qualité: "Quality",
-  Algorithmique: "Algorithms",
-  "Structures de données": "Data structures",
-  Réseaux: "Networks",
-  Systèmes: "Systems",
-  "Bases de données": "Databases",
-  Mathématiques: "Mathematics",
-};
 
 describe("editorial homepage sections", () => {
   it("presents the about section as three product principles", () => {
@@ -179,7 +131,7 @@ describe("editorial homepage sections", () => {
     ["fr", frDict],
     ["en", enDict],
   ] as const)(
-    "links every skill to its most relevant internal page in %s",
+    "links every skill domain to its dedicated page in %s",
     (locale, dictionary) => {
       const { container } = renderWithProviders(
         <SkillsSection locale={locale} dict={dictionary.skills} />,
@@ -188,37 +140,29 @@ describe("editorial homepage sections", () => {
       const section = container.querySelector("#competences");
 
       expect(section).not.toBeNull();
-      expect(section?.querySelectorAll("ul a")).toHaveLength(
-        skillDestinations.length,
-      );
-
       const skillSection = within(section as HTMLElement);
-      for (const [label, path] of skillDestinations) {
-        const localizedLabel = locale === "en" ? (skillLabelsEn[label] ?? label) : label;
-        const link = skillSection.getAllByRole("link", { name: localizedLabel }).find((element) => element.closest("li"))!;
-        expect(link).toHaveAttribute("href", `/${locale}${path}`);
-        expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+      const links = skillSection.getAllByRole("link", { name: /^(Voir la compétence|View skill)/ });
+      expect(links).toHaveLength(skillCategoryDestinations.length);
+      for (const [index, path] of skillCategoryDestinations.entries()) {
+        expect(links[index]).toHaveAttribute("href", `/${locale}${path}`);
+        expect(links[index].querySelector("svg")).toHaveAttribute("aria-hidden", "true");
       }
     },
   );
 
-  it("shows a jury-readable timeline with animated details, logos and proofs", async () => {
-    const user = userEvent.setup();
+  it("shows a jury-readable timeline with detail links, logos and proofs", () => {
     const { container } = renderWithProviders(
       <ExperienceSection dict={frDict.experience} />,
     );
 
-    expect(container.querySelectorAll(".experience-details")).toHaveLength(7);
-    const detailButtons = screen.getAllByRole("button", {
-      name: "Afficher le détail",
+    const competenceLinks = screen.getAllByRole("link", {
+      name: /Voir la compétence/,
     });
-    expect(detailButtons).toHaveLength(7);
-    expect(detailButtons[0]).toHaveAttribute("aria-expanded", "false");
-    await user.click(detailButtons[0]);
-    expect(detailButtons[0]).toHaveAttribute("aria-expanded", "true");
-    expect(
-      document.getElementById(detailButtons[0].getAttribute("aria-controls") ?? ""),
-    ).toHaveClass("grid-rows-[1fr]", "opacity-100");
+    expect(competenceLinks).toHaveLength(6);
+    expect(competenceLinks[0]).toHaveAttribute(
+      "href",
+      "/fr/competences/developpement-odoo",
+    );
     expect(screen.getByRole("list", { name: "Parcours" })).toBeInTheDocument();
     expect(container.querySelectorAll(".journey-path")).toHaveLength(6);
     expect(container.querySelectorAll(".journey-marker")).toHaveLength(7);
@@ -234,10 +178,10 @@ describe("editorial homepage sections", () => {
       expect(decoration).toHaveAttribute("aria-hidden", "true");
     }
     expect(
-      screen.getByText(
+      screen.queryByText(
         "Ordre : « Présent » d'abord, puis par date de fin décroissante ; à égalité, par date de début décroissante",
       ),
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
     expect(container.querySelector('img[src*="logo-1up"]')).toBeInTheDocument();
     expect(container.querySelector('img[src*="logo-lig"]')).toBeInTheDocument();
     expect(container.querySelector('img[src*="logo-iscod"]')).toBeInTheDocument();
@@ -245,7 +189,7 @@ describe("editorial homepage sections", () => {
     expect(container.querySelector('img[src*="logo-usmb"]')).toBeInTheDocument();
     expect(container.querySelector('img[src*="logo-ets-global"]')).toBeInTheDocument();
     expect(container.querySelectorAll("[data-company-logo]").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Afficher le détail")).toHaveLength(7);
+    expect(screen.queryByRole("link", { name: "Afficher le détail" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "ISCOD" })).toHaveAttribute(
       "href",
       "/fr/parcours/iscod-software-engineering-master",
@@ -294,7 +238,7 @@ describe("editorial homepage sections", () => {
     expect(container.querySelector(`#experience-${training.id}`)).toBeInTheDocument();
   });
 
-  it("shows documented result metrics without presenting an estimate as a measurement", () => {
+  it("keeps result metrics out of the featured project cards", () => {
     const { container } = renderWithProviders(
       <ProjectsSection
         locale="fr"
@@ -305,16 +249,8 @@ describe("editorial homepage sections", () => {
 
     expect(screen.queryByText(/^0[1-3]$/)).not.toBeInTheDocument();
     expect(screen.queryByText(/Projet 0[1-3]/)).not.toBeInTheDocument();
-    expect(screen.getByText("20")).toBeInTheDocument();
-    expect(screen.getByText("16")).toBeInTheDocument();
-    expect(screen.getByText("99")).toBeInTheDocument();
-    expect(screen.getByText(/Périmètre interne documenté/)).toBeInTheDocument();
-    expect(screen.getByText(/temps économisé n'est pas encore mesuré/i)).toBeInTheDocument();
-    expect(screen.getByText(/100 en accessibilité et 100 en SEO/)).toBeInTheDocument();
+    expect(container.querySelectorAll('[data-slot="project-result"]')).toHaveLength(0);
     expect(screen.getAllByRole("link", { name: "Voir la réalisation" })).toHaveLength(3);
-    expect(
-      container.querySelectorAll('[data-slot="project-result"] svg'),
-    ).toHaveLength(0);
   });
 
   it("uses the selected photography and credits its Pexels sources", () => {

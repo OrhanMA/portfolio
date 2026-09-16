@@ -93,20 +93,22 @@ export default async function LegalNoticePage({
         title={dict.legal.heading}
         description="Orhan Madi Assani · Chambéry, France"
         titleClassName="uppercase"
+        className="legal-notice-header"
       />
 
-      <section>
+      <section data-legal-notice data-legal-page>
         <div>
           <div>
             {sections.map((section, index) => (
               <section
                 key={section.title}
+                aria-labelledby={`legal-section-${index + 1}`}
               >
-                <p>
+                <p aria-hidden="true">
                   0{index + 1}
                 </p>
                 <div>
-                  <h2>
+                  <h2 id={`legal-section-${index + 1}`}>
                     {section.title}
                   </h2>
                   <div>

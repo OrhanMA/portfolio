@@ -7,7 +7,7 @@ const budgets = {
   // The editorial interface is intentionally shared through the global CSS
   // layer. Keep a narrow allowance above the current optimized stylesheet
   // rather than treating this budget as a historical 175 KiB baseline.
-  ".css": 225 * 1024,
+  ".css": 240 * 1024,
 };
 
 async function walk(directory) {

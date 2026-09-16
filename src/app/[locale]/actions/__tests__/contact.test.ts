@@ -1,5 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { sendContactEmail } from "@/app/[locale]/actions/contact";
+import {
+  sendContactEmail,
+  submitContactForm,
+} from "@/app/[locale]/actions/contact";
 import { escapeHtml } from "@/lib/utils";
 
 const { mockSend } = vi.hoisted(() => ({ mockSend: vi.fn() }));
@@ -92,6 +95,21 @@ describe("sendContactEmail()", () => {
 
     expect(result?.success).toBe(true);
     expect(result?.message).toContain("succès");
+    expect(mockSend).not.toHaveBeenCalled();
+  });
+
+  it("uses the same validation and anti-spam path for native form data", async () => {
+    const formData = new FormData();
+    formData.set("name", validData.name);
+    formData.set("email", validData.email);
+    formData.set("reason", validData.reason);
+    formData.set("message", validData.message);
+    formData.set("honeypot", "bot-filled");
+    formData.set("timestamp", String(validData.timestamp));
+    formData.set("recaptchaToken", "");
+
+    await submitContactForm("fr", formData);
+
     expect(mockSend).not.toHaveBeenCalled();
   });
 

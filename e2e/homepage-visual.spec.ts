@@ -62,6 +62,12 @@ test.describe("Homepage visual regression", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await prepareHomepage(page);
 
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - window.innerWidth,
+      ),
+    ).toBeLessThanOrEqual(1);
+
     await expect(page).toHaveScreenshot("homepage-minimal-mobile.png", {
       fullPage: true,
       animations: "disabled",

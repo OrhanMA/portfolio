@@ -34,6 +34,7 @@ import {
 } from "@/lib/recaptcha-client";
 import {
   sendContactEmail,
+  submitContactForm,
   type ContactActionState,
 } from "@/app/[locale]/actions/contact";
 import type { Dictionary } from "@/app/[locale]/dictionaries";
@@ -155,9 +156,7 @@ export function ContactForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      action={`mailto:${dict.legal.editorEmail}`}
-      method="post"
-      encType="text/plain"
+      action={submitContactForm.bind(null, locale)}
       onFocusCapture={() => {
         void preloadRecaptcha().catch(() => undefined);
       }}
@@ -182,6 +181,7 @@ export function ContactForm({
           render={({ field }) => (
             <div
               aria-hidden="true"
+              className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden whitespace-nowrap"
             >
               <label htmlFor="website">Website</label>
               <input
@@ -194,6 +194,9 @@ export function ContactForm({
             </div>
           )}
         />
+
+        <input type="hidden" name="timestamp" value={mountTimestamp} />
+        <input type="hidden" name="recaptchaToken" value="" />
 
         {/* Name & Email row */}
         <div>
@@ -259,6 +262,7 @@ export function ContactForm({
                 {dict.contactForm.reasonLabel}
               </FieldLabel>
               <Select
+                name={field.name}
                 value={field.value}
                 onValueChange={field.onChange}
               >
@@ -378,18 +382,21 @@ export function ContactForm({
         </Button>
 
         <p>
-          {dict.contactForm.privacyNotice} {" "}
-          <a
-            href={`mailto:${dict.legal.editorEmail}`}
-          >
-            {dict.legal.editorEmail}
-          </a>
-          {" "}
-          <a
-            href={`/${locale}/politique-confidentialite`}
-          >
-            {dict.contactForm.privacyNoticeLink}
-          </a>
+          <span>
+            {dict.contactForm.privacyNotice} {" "}
+            <a
+              href={`mailto:${dict.legal.editorEmail}`}
+            >
+              {dict.legal.editorEmail}
+            </a>
+          </span>
+          <span className="mt-2 block">
+            <a
+              href={`/${locale}/politique-confidentialite`}
+            >
+              {dict.contactForm.privacyNoticeLink}
+            </a>
+          </span>
         </p>
       </FieldGroup>
     </form>

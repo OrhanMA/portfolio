@@ -4,9 +4,33 @@ Based on:
 - **ISCOD/Visiplus Grille d'évaluation du Portfolio** (Expert Ingénierie du Logiciel) — 100 points
 - [The Ultimate Developer Portfolio Checklist for Job Seekers](https://www.devportfoliotemplates.com/blog/the-ultimate-developer-portfolio-checklist-for-job-seekers)
 
-Last reviewed: 2026-09-12
+Last reviewed: 2026-09-15
 
 Legend: ✅ Done | ⚠️ Partial | ❌ Missing | ⏳ Planned | ➖ N/A
+
+---
+
+## Prévalidation de rendu — 2026-09-15
+
+Cette prévalidation porte sur le candidat local composé du commit `08d91cf`
+et de trois modifications non commitées : deux corrections rédactionnelles MDX
+et le durcissement du contrat d'accessibilité de `ThemePortrait`. Elle ne vaut
+pas encore identification d'une version déployée : aucun commit, push ou
+déploiement n'a été réalisé pendant cette revue.
+
+| Domaine | État | Preuve datée |
+| --- | --- | --- |
+| Périmètre de rendu | ⚠️ À figer | `git diff --check` est vert. Les trois modifications sont intentionnelles et validées localement ; `tmp/` est désormais ignoré pour éviter son ajout accidentel. Un commit final reste à créer et à relier au déploiement. |
+| Contrôles locaux | ✅ | Node 22.23.2, pnpm 10.20.0, Next 16.3.4 : installation gelée, lint, typecheck, audit de sécurité, 306 tests Vitest, couverture unitaires, build de 125 routes, budgets bundle/performance et 47 scénarios E2E réussis. |
+| Grille et contenu | ✅ structurellement | Les tests de contenu, de relations, de routes, du sitemap et les E2E ont été rejoués. Les deux corrections MDX ont été relues dans leur rendu local ; aucun fait, chiffre ou lien n'a été modifié. |
+| Production publique | ✅ accessible / ⚠️ non rattachée | Le 15 septembre, les 116 URL du sitemap public répondaient HTTP 200. Les pages FR/EN représentatives avaient un H1, une canonical localisée, les alternates FR/EN/x-default et du JSON-LD. Les en-têtes HTTPS, CSP à nonce, HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy et Permissions-Policy étaient présents. L'espace Vercel connecté ne contient pas ce projet, donc l'URL publique ne peut pas être reliée techniquement au candidat local depuis cet environnement. |
+| Liens externes visibles | ✅ avec réserves robots | 45 des 49 URL visibles contrôlées ont répondu en 2xx/3xx. OpenAI, LinkedIn et les deux pages d'attribution Pexels bloquent les requêtes automatisées ; ce sont des refus de robots, pas des liens déclarés cassés. |
+| Formulaire et services réels | ⚠️ à confirmer | Le formulaire public, ses champs, ses liens de confidentialité et son état désactivé initial sont visibles. La réception réelle d'e-mail, le honeypot et le rejet temporel n'ont pas été soumis pour ne pas envoyer de message ou générer de trafic sans accord explicite. |
+| Essais humains | ❌ à réaliser | Téléphone physique, VoiceOver/NVDA, aperçus LinkedIn/WhatsApp et 2–3 parcours non guidés exigent des appareils, comptes ou personnes réels. |
+| Performance de production | ⚠️ à mesurer | Le budget local du build courant est vert. Les trois passages Lighthouse mobiles sur CAP2vie et le calcul de leur LCP médian restent à exécuter sur le déploiement final. |
+
+Le rapport reproductible associé est
+[`reports/portfolio-rendu-preflight-2026-09-15.md`](./reports/portfolio-rendu-preflight-2026-09-15.md).
 
 ---
 

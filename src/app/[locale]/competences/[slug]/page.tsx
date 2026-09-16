@@ -278,7 +278,7 @@ export default async function CompetenceDetailPage({
                     <a
                       href={competence.relatedNews.href}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                     >
                       {dict.competencesPage.newsSourceLabel}{" "}
                       {competence.relatedNews.source}

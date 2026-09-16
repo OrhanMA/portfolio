@@ -104,7 +104,8 @@ test.describe("no-JavaScript fallback", () => {
 
     await page.goto("/fr/contact", { waitUntil: "load" });
     const form = page.locator("form");
-    await expect(form).toHaveAttribute("method", "post");
+    await expect(form).toHaveAttribute("method", "POST");
+    await expect(form).not.toHaveAttribute("action", /^mailto:/);
     await expect(page.locator('button[type="submit"]')).toBeDisabled();
     await expect(
       page.getByRole("link", { name: "orhan.madi.assani@gmail.com" }).first(),

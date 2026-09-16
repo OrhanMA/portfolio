@@ -14,6 +14,7 @@ const contactDict = {
 // Mock the server action
 vi.mock("@/app/[locale]/actions/contact", () => ({
   sendContactEmail: vi.fn(),
+  submitContactForm: vi.fn(),
 }));
 
 // Mock reCAPTCHA
@@ -44,9 +45,12 @@ describe("ContactForm (browser)", () => {
       .toBeVisible();
 
     // Reason select
+    const reason = page.getByLabelText("Raison du contact");
     await expect
-      .element(page.getByLabelText("Raison du contact"))
+      .element(reason)
       .toBeVisible();
+    expect(reason.element().className).toContain("h-11");
+    expect(reason.element().className).toContain("w-full");
 
     // Message textarea
     await expect
@@ -97,6 +101,12 @@ describe("ContactForm (browser)", () => {
     await expect
       .element(page.getByRole("link", { name: /politique de confidentialité/i }))
       .toHaveAttribute("href", "/fr/politique-confidentialite");
+    expect(
+      page
+        .getByRole("link", { name: /politique de confidentialité/i })
+        .element()
+        .parentElement?.className,
+    ).toContain("block");
     await expect
       .element(page.getByRole("link", { name: frDict.legal.editorEmail }))
       .toHaveAttribute("href", `mailto:${frDict.legal.editorEmail}`);
@@ -105,12 +115,21 @@ describe("ContactForm (browser)", () => {
   test("honeypot field is hidden from users via aria-hidden", async () => {
     await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
 
-    // Honeypot container has aria-hidden="true" — invisible to screen readers
-    // and positioned off-screen via CSS (-9999px positioning)
+    // Honeypot is inaccessible to screen readers and positioned outside the
+    // visible viewport, while remaining available to bot submissions.
     const honeypotInput = page.getByLabelText("Website").element();
     const container = honeypotInput.closest("[aria-hidden]");
     expect(container).toBeTruthy();
     expect(container?.getAttribute("aria-hidden")).toBe("true");
+    expect(container?.className).toContain("-left-[10000px]");
+  });
+
+  test("uses the server action fallback instead of a mailto form action", async () => {
+    await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
+
+    const form = page.getByLabelText("Nom complet").element().closest("form");
+    expect(form).toBeTruthy();
+    expect(form?.getAttribute("action")).not.toContain("mailto:");
   });
 
   test("form fields accept input", async () => {

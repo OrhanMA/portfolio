@@ -77,6 +77,22 @@ export default async function CompetencesPage({
               title={dict.competencesPage.radarHeading}
               scaleLabel={dict.competencesPage.radarScaleLabel}
             />
+            <ul
+              data-skills-mobile-overview
+              aria-label={dict.competencesPage.radarHeading}
+            >
+              {radarData.map((skill) => (
+                <li key={skill.href}>
+                  <Link href={skill.href}>
+                    <span>{skill.label}</span>
+                    <span>
+                      <strong>{skill.value}</strong>
+                      <span aria-hidden="true">/100</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
