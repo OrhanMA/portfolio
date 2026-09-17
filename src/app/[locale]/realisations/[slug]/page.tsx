@@ -1,7 +1,6 @@
 import { LinkedText } from "@/components/linked-text";
 import { TopicLink } from "@/components/topic-link";
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -13,7 +12,7 @@ import { resolveCompetenceLinks } from "@/lib/portfolio-links";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { RealisationArticleContent } from "@/components/realisation-article-content";
 import { RealisationSummary } from "@/components/realisation-summary";
-import { YouTubeFacade } from "@/components/youtube-facade";
+import { EvidenceMediaGallery } from "@/components/evidence-media-gallery";
 import { RouteStructuredData } from "@/components/route-structured-data";
 import { getLocalizedPageContext } from "../../route-context";
 
@@ -194,8 +193,11 @@ export default async function RealisationDetailPage({
             proofHref={realisation.media?.length ? "#visual-proof-heading" : "#results"}
             labels={{
               heading: dict.realisationsPage.summaryHeading,
+              introduction: dict.realisationsPage.summaryIntroduction,
               context: dict.realisationsPage.summaryContext,
+              challenge: dict.realisationsPage.summaryChallenge,
               role: dict.realisationsPage.summaryRole,
+              decision: dict.realisationsPage.summaryDecision,
               result: dict.realisationsPage.summaryResult,
               proof: dict.realisationsPage.summaryProof,
               proofLink: dict.realisationsPage.summaryProofLink,
@@ -216,36 +218,19 @@ export default async function RealisationDetailPage({
                   {dict.realisationsPage.mediaSubtext}
                 </p>
               </div>
-              <div data-realisation-media-grid>
-                {realisation.media.map((item) => (
-                  <figure
-                    key={item.src}
-                  >
-                    <div data-realisation-media-frame>
-                      {item.type === "image" ? (
-                        <Image
-                          src={item.src}
-                          alt={item.title[loc]}
-                          fill
-                          sizes="(min-width: 768px) 50vw, 100vw"
-                        />
-                      ) : (
-                        <YouTubeFacade
-                          src={item.src}
-                          title={item.title[loc]}
-                          locale={loc}
-                        />
-                      )}
-                    </div>
-                    <figcaption>
-                      <p>{item.title[loc]}</p>
-                      <p>
-                        {item.description[loc]}
-                      </p>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
+              <EvidenceMediaGallery
+                media={realisation.media}
+                locale={loc}
+                labels={{
+                  carousel: dict.realisationsPage.mediaCarouselLabel,
+                  previous: dict.realisationsPage.mediaCarouselPrevious,
+                  next: dict.realisationsPage.mediaCarouselNext,
+                  pause: dict.realisationsPage.mediaCarouselPause,
+                  resume: dict.realisationsPage.mediaCarouselResume,
+                  position: dict.realisationsPage.mediaCarouselPosition,
+                  openFullSize: dict.realisationsPage.mediaOpenFullSize,
+                }}
+              />
             </section>
           )}
 

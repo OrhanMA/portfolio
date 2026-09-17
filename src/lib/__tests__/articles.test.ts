@@ -74,7 +74,7 @@ const secret = "ignored";
       const dictionary = await getDictionary(locale);
 
       await expect(
-        buildArticleIndex(dictionary.articles.articlesData),
+        buildArticleIndex(dictionary.articles.articlesData, locale),
       ).resolves.toHaveLength(dictionary.articles.articlesData.length);
     }
   });

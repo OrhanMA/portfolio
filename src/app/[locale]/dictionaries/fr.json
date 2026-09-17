@@ -63,9 +63,9 @@
     "subtext": "Six domaines résument la pratique quotidienne. Le comparatif et les dix compétences détaillées restent disponibles sur la page dédiée.",
     "ctaAll": "Explorer les 10 compétences",
     "viewDomain": "Voir la compétence",
-    "backend": "Backend",
+    "backend": "Back-end",
     "backendDesc": "Architecture applicative, logique métier, API et données avec une priorité donnée à la fiabilité.",
-    "frontend": "Frontend",
+    "frontend": "Front-end",
     "frontendDesc": "Interfaces Next.js/React : typographie soignée, design adaptatif et animations.",
     "odoo": "Odoo",
     "odooDesc": "Modules personnalisés, migrations, vues, modèles, intégrations et compréhension des processus ERP.",
@@ -299,7 +299,7 @@
           { "heading": "Passer de l'exécution à la conception", "text": "La formation de concepteur développeur d'applications m'a fait travailler le logiciel comme un ensemble cohérent : comprendre le besoin, modéliser les données, choisir une architecture, développer, tester et présenter les résultats. Les projets m'ont obligé à expliquer les compromis plutôt qu'à considérer le code comme la seule preuve du travail réalisé." },
           { "heading": "Un projet de données comme terrain de validation", "text": "Le projet lié à l'étude des trajectoires de vie a donné un contexte concret à ces apprentissages. Avec Vue.js, D3.js et PostgreSQL, il fallait relier un questionnaire, des transformations de données et une visualisation personnalisée. Les itérations avec les chercheurs ont renforcé ma capacité à adapter une solution technique à une méthode métier ou scientifique." },
           { "heading": "Consolider une méthode professionnelle", "text": "Le titre RNCP niveau 6 a consolidé les habitudes qui structurent encore mon travail : versionner, tester, documenter, présenter et accepter la relecture. Il constitue le lien entre mes premiers apprentissages web et les responsabilités plus larges que j'exerce aujourd'hui en alternance." },
-          { "heading": "Raisonner sur toute la chaîne de valeur", "text": "Le projet CAP2vie a été déterminant parce qu'il ne séparait pas artificiellement le frontend du reste de l'application. Une réponse saisie dans le questionnaire devait devenir une donnée cohérente, être transformée selon des règles explicables, puis rester lisible dans une visualisation personnalisée. Travailler ce flux complet m'a appris à formuler les invariants de données, à anticiper les effets d'une correction et à vérifier qu'une interface ne masque pas une incohérence venant de l'amont." },
+          { "heading": "Raisonner sur toute la chaîne de valeur", "text": "Le projet CAP2vie a été déterminant parce qu'il ne séparait pas artificiellement le front-end du reste de l'application. Une réponse saisie dans le questionnaire devait devenir une donnée cohérente, être transformée selon des règles explicables, puis rester lisible dans une visualisation personnalisée. Travailler ce flux complet m'a appris à formuler les invariants de données, à anticiper les effets d'une correction et à vérifier qu'une interface ne masque pas une incohérence venant de l'amont." },
           { "heading": "Des repères qui restent utiles après le titre", "text": "La réalisation du portfolio professionnel réemploie cette approche sous une autre forme : architecture Next.js, contenu bilingue, liens internes, tests et preuves ne sont pas traités comme des ajouts indépendants. Ils constituent un même produit, évalué autant sur la clarté de son discours que sur sa fiabilité. Le passage du titre à l'alternance a ainsi renforcé une conviction : savoir livrer une fonctionnalité est indispensable, mais savoir expliquer son périmètre, la vérifier et préparer son évolution l'est tout autant." }
         ],
         "institutions": "Simplon privilégie une pédagogie active : apprentissage par la pratique, projets inspirés de situations professionnelles et travail en petit groupe. Cette formation a consolidé ma capacité à passer d'un besoin à une application structurée, testée et documentée.",
@@ -330,13 +330,15 @@
           { "heading": "Une première expérience en contexte client", "text": "Ce stage de deux mois chez A. Gaveau a été ma première mise en situation professionnelle dans le développement web. Le cadre était concret : créer des sites pour de petits commerces avec WordPress et Elementor, en tenant compte d'un contenu réel et d'un objectif de présentation compréhensible." },
           { "heading": "Apprendre à livrer une interface utilisable", "text": "Le travail m'a familiarisé avec la construction de pages, l'organisation du contenu et les ajustements nécessaires pour qu'un site soit exploitable par son destinataire. Cette première expérience a donné un contexte professionnel à des notions apprises en autodidacte et a préparé la suite de mon parcours vers des applications plus personnalisées." },
           { "heading": "Passer du support de formation au résultat attendu", "text": "Ce premier cadre professionnel m'a obligé à sortir d'exercices où le contenu, le public et le résultat sont souvent déjà définis. Les sites devaient présenter une activité avec des informations compréhensibles et une hiérarchie qui aide un visiteur à se repérer. J'ai appris à vérifier ce qui était réellement disponible, à organiser les éléments fournis et à ajuster une page en fonction de son usage, plutôt que de considérer la mise en page comme une fin en soi." },
-          { "heading": "Un point de départ, pas une expertise revendiquée", "text": "Le stage a été court et s'appuyait sur WordPress et Elementor : il ne prouve pas à lui seul une maîtrise complète du développement sur mesure, de l'accessibilité ou du pilotage de projet. Sa valeur dans le parcours est différente. Il a donné un premier repère sur la responsabilité d'une livraison visible par un client et a préparé les formations et projets où j'ai ensuite approfondi la conception, les données, les tests et les applications personnalisées." }
+          { "heading": "Un point de départ, pas une expertise revendiquée", "text": "Le stage a été court et s'appuyait sur WordPress et Elementor : il ne prouve pas à lui seul une maîtrise complète du développement sur mesure, de l'accessibilité ou du pilotage de projet. Sa valeur dans le parcours est différente. Il a donné un premier repère sur la responsabilité d'une livraison visible par un client et a préparé les formations et projets où j'ai ensuite approfondi la conception, les données, les tests et les applications personnalisées." },
+          { "heading": "Une limite de preuve assumée", "text": "Ce stage de deux mois a eu lieu il y a plusieurs années. Je n'ai plus accès aux projets réalisés à cette période ni aux éléments qui permettraient de les présenter de façon exacte, complète et autorisée. Je préfère donc ne pas créer a posteriori de lien artificiel vers une réalisation actuelle : cette fiche documente le contexte, mes responsabilités et ce que cette première expérience a apporté à mon parcours, sans revendiquer de preuve de projet que je ne peux plus vérifier." }
         ],
         "trainingId": "simplon-web-developer",
         "responsibilities": [
           "Créer des sites web pour de petits commerces.",
           "Construire et mettre en page les sites avec WordPress et Elementor."
         ],
+        "linkedCompetences": ["developpement-frontend"],
         "tags": [
           "WordPress",
           "Elementor",
@@ -354,10 +356,10 @@
         "logo": "/logo-simplon.webp",
         "url": "https://www.simplon.co/",
         "location": "Chambéry · Savoie",
-        "description": "Titre professionnel de niveau 5 consacré à l'intégration d'interfaces, au développement frontend et backend, aux bases de données et au déploiement d'applications web.",
+        "description": "Titre professionnel de niveau 5 consacré à l'intégration d'interfaces, au développement front-end et back-end, aux bases de données et au déploiement d'applications web.",
         "detail": [
           { "heading": "Transformer l'autodidaxie en méthode", "text": "Avant Simplon, j'avais commencé à apprendre le développement web par les ressources en ligne et The Odin Project. La formation Développeur Web et Web Mobile a transformé cette curiosité en méthode : analyser un besoin, produire une interface, relier un serveur à une base de données, tester, versionner et présenter une solution." },
-          { "heading": "Construire les fondations du développement web", "text": "Le titre RNCP niveau 5 a posé les bases frontend et backend qui me servent encore pour comprendre une application complète. Il m'a également appris à considérer le responsive, l'accessibilité, la structure des données et le déploiement comme des parties du produit, pas comme des finitions séparées." },
+          { "heading": "Construire les fondations du développement web", "text": "Le titre RNCP niveau 5 a posé les bases front-end et back-end qui me servent encore pour comprendre une application complète. Il m'a également appris à considérer le responsive, l'accessibilité, la structure des données et le déploiement comme des parties du produit, pas comme des finitions séparées." },
           { "heading": "Le premier pas vers des projets plus ambitieux", "text": "Le stage chez A. Gaveau a prolongé cette formation dans un environnement professionnel. La suite — le titre CDA, l'expérience au LIG puis l'alternance chez 1UP Distribution — s'est construite sur cette première capacité à apprendre vite et à transformer un objectif en réalisation présentable." },
           { "heading": "Construire une vision complète d'une application", "text": "Cette formation a posé une manière de relier les couches d'un produit : le besoin oriente l'interface, l'interface déclenche une logique serveur, cette logique repose sur des données et l'ensemble doit pouvoir être testé puis présenté. Les technologies changent ensuite — Vue.js, D3.js, Python, Symfony, Next.js ou Odoo — mais cette lecture d'ensemble reste utile pour éviter de traiter un écran, une base de données ou un déploiement comme un élément sans conséquence pour le reste du système." },
           { "heading": "Une continuité démontrée par les étapes suivantes", "text": "Le stage associé chez A. Gaveau a permis de confronter les premières bases web à un contenu et à des attentes concrètes. Les formations et réalisations suivantes ont approfondi la conception applicative, la visualisation de données, puis les systèmes métier et l'ERP. Je ne présente donc pas le RNCP niveau 5 comme l'aboutissement du parcours, mais comme la fondation à partir de laquelle j'ai pu apprendre plus vite, demander des retours et faire évoluer progressivement mon niveau de responsabilité." }
@@ -372,7 +374,7 @@
         ],
         "linkedRealisations": ["portfolio-professionnel"],
         "linkedCompetences": ["developpement-frontend", "python", "autonomie", "perseverance"],
-        "tags": ["RNCP 5", "Frontend", "Backend", "BDD", "Déploiement"]
+        "tags": ["RNCP 5", "Front-end", "Back-end", "BDD", "Déploiement"]
       }
     ]
   },
@@ -428,7 +430,7 @@
     "pageDescription": "Contactez-moi pour une question, un projet ou une prise de contact professionnelle.",
     "heading": "Me contacter",
     "subtext": "Une question, un projet ou un message professionnel ? Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.",
-    "altEmail": "Vous pouvez aussi me contacter directement par email à",
+    "altEmail": "Vous pouvez aussi me contacter directement par courriel à",
     "knowledgeHeading": "Domaines de connaissance",
     "knowledgeText": "Des échanges concrets autour de ces compétences techniques et de leur mise en œuvre.",
     "knowledgeItems": [
@@ -437,11 +439,11 @@
         "href": "/competences/developpement-odoo"
       },
       {
-        "label": "Développement backend et API",
+        "label": "Développement back-end et API",
         "href": "/competences/developpement-backend"
       },
       {
-        "label": "Développement frontend",
+        "label": "Développement front-end",
         "href": "/competences/developpement-frontend"
       },
       {
@@ -460,7 +462,7 @@
   "contactForm": {
     "nameLabel": "Nom complet",
     "namePlaceholder": "Jean Dupont",
-    "emailLabel": "Adresse email",
+    "emailLabel": "Adresse de courriel",
     "emailPlaceholder": "jean@exemple.fr",
     "reasonLabel": "Raison du contact",
     "reasonPlaceholder": "Sélectionnez une raison...",
@@ -480,7 +482,7 @@
   "contactValidation": {
     "nameMin": "Le nom doit contenir au moins 2 caractères.",
     "nameMax": "Le nom ne doit pas dépasser 100 caractères.",
-    "emailInvalid": "Adresse email invalide.",
+    "emailInvalid": "Adresse de courriel invalide.",
     "reasonRequired": "Veuillez sélectionner une raison.",
     "subjectRequired": "Veuillez préciser le sujet de votre message.",
     "subjectMax": "Le sujet ne doit pas dépasser 120 caractères.",
@@ -500,7 +502,7 @@
     "tooFast": "Veuillez patienter quelques secondes avant d'envoyer.",
     "rateLimit": "Trop de messages envoyés. Veuillez réessayer dans une heure.",
     "recaptchaFailed": "La vérification de sécurité a échoué. Veuillez réessayer.",
-    "securityUnavailable": "Le service de sécurité est momentanément indisponible. Veuillez réessayer plus tard ou utiliser l’adresse email indiquée.",
+    "securityUnavailable": "Le service de sécurité est momentanément indisponible. Veuillez réessayer plus tard ou utiliser l’adresse de courriel indiquée.",
     "temporarilyUnavailable": "Le service de contact est momentanément indisponible. Vos données ont été conservées ; veuillez réessayer.",
     "sendError": "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
     "unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
@@ -511,7 +513,7 @@
     "title": "Nouveau message",
     "intro": "Une personne vient de te contacter depuis ton portfolio.",
     "name": "Nom",
-    "email": "Adresse e-mail",
+    "email": "Adresse de courriel",
     "reason": "Sujet",
     "message": "Message",
     "reply": "Répondre à",
@@ -656,8 +658,8 @@
     "radarHeading": "Vue d'ensemble",
     "radarScaleLabel": "sur 100",
     "radarLabels": {
-      "developpement-backend": "Backend",
-      "developpement-frontend": "Frontend",
+      "developpement-backend": "Back-end",
+      "developpement-frontend": "Front-end",
       "devops": "DevOps",
       "amelioration-continue": "Amélioration",
       "developpement-odoo": "Odoo"
@@ -684,7 +686,14 @@
     "adviceLabel": "Recul et conseils",
     "goalLabel": "Objectif à moyen terme",
     "trainingLabel": "Formations en cours ou à venir",
-    "resultLabel": "Résultat"
+    "resultLabel": "Résultat",
+    "mediaOpenFullSize": "Voir la capture en taille réelle",
+    "mediaCarouselLabel": "Carrousel de preuves visuelles",
+    "mediaCarouselPrevious": "Précédent",
+    "mediaCarouselNext": "Suivant",
+    "mediaCarouselPause": "Mettre en pause",
+    "mediaCarouselResume": "Reprendre",
+    "mediaCarouselPosition": "Média {current} sur {total}"
   },
   "realisationsPage": {
     "pageTitle": "Réalisations | Orhan Madi Assani",
@@ -694,8 +703,11 @@
     "viewDetail": "Lire l'article",
     "backToRealisations": "Retour aux réalisations",
     "summaryHeading": "Synthèse de la réalisation",
+    "summaryIntroduction": "Cette synthèse donne les repères de lecture essentiels. Elle ne remplace pas l'étude de cas complète : faites défiler la page pour consulter le contexte détaillé, les étapes, les limites et le retour critique.",
     "summaryContext": "Contexte",
+    "summaryChallenge": "Enjeu",
     "summaryRole": "Mon rôle",
+    "summaryDecision": "Décision clé",
     "summaryResult": "Résultat",
     "summaryProof": "Preuve",
     "summaryProofLink": "Accéder aux éléments détaillés",
@@ -709,6 +721,13 @@
     "critiqueHeading": "Mon regard critique",
     "mediaHeading": "Preuves visuelles",
     "mediaSubtext": "Captures et démonstrations issues des projets réels.",
+    "mediaOpenFullSize": "Voir la capture en taille réelle",
+    "mediaCarouselLabel": "Carrousel de preuves visuelles",
+    "mediaCarouselPrevious": "Précédent",
+    "mediaCarouselNext": "Suivant",
+    "mediaCarouselPause": "Mettre en pause",
+    "mediaCarouselResume": "Reprendre",
+    "mediaCarouselPosition": "Média {current} sur {total}",
     "contentsHeading": "Sommaire",
     "contentsSubtext": "Accédez directement à une partie de cette étude de cas.",
     "backToContents": "Retour au sommaire",
@@ -769,7 +788,7 @@
     "intellectualProperty": "Propriété intellectuelle",
     "intellectualPropertyText": "L'ensemble du contenu de ce site (textes, images, code source) est protégé par le droit d'auteur. Toute reproduction ou représentation, en tout ou partie, est interdite sans autorisation préalable.",
     "contact": "Contact",
-    "contactText": "Pour toute question relative aux mentions légales, vous pouvez me contacter par email."
+    "contactText": "Pour toute question relative aux mentions légales, vous pouvez me contacter par courriel."
   },
   "privacy": {
     "pageTitle": "Politique de confidentialité | Orhan Madi Assani",
@@ -778,13 +797,13 @@
     "dataCollected": "Données collectées",
     "dataCollectedText": "Ce site peut collecter les données suivantes :",
     "dataItems": [
-      "Formulaire de contact : nom, adresse email, motif et message",
+      "Formulaire de contact : nom, adresse de courriel, motif et message",
       "Sécurité du formulaire : adresse IP, horodatage et jeton reCAPTCHA lorsque le service est configuré",
       "Cookies de préférence : langue, thème",
       "Mesure d'audience : données de navigation transmises à Google uniquement après consentement"
     ],
     "purpose": "Utilisation des données",
-    "purposeText": "Le traitement du formulaire repose sur l'intérêt légitime à répondre aux demandes reçues et à protéger le site contre le spam. Les données sont accessibles à l'éditeur du site et aux prestataires strictement nécessaires à son fonctionnement, notamment Vercel pour l'hébergement et Resend pour l'acheminement des emails. Elles ne sont jamais vendues. Les messages sont conservés le temps nécessaire au suivi de la demande, puis supprimés au plus tard douze mois après le dernier échange, sauf obligation légale contraire.",
+    "purposeText": "Le traitement du formulaire repose sur l'intérêt légitime à répondre aux demandes reçues et à protéger le site contre le spam. Les données sont accessibles à l'éditeur du site et aux prestataires strictement nécessaires à son fonctionnement, notamment Vercel pour l'hébergement et Resend pour l'acheminement des courriels. Elles ne sont jamais vendues. Les messages sont conservés le temps nécessaire au suivi de la demande, puis supprimés au plus tard douze mois après le dernier échange, sauf obligation légale contraire.",
     "cookiesSection": "Cookies",
     "cookiesText": "La langue et le thème sont des préférences nécessaires au fonctionnement demandé. Google Tag Manager et Google Analytics ne sont chargés qu'après un consentement explicite, révocable à tout moment via le lien « Gérer les cookies » du pied de page. reCAPTCHA ne peut être chargé qu'après une interaction avec le formulaire de contact lorsque ce service est configuré.",
     "internationalTransfers": "Transferts hors de l’Union européenne",

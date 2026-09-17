@@ -136,6 +136,41 @@ describe("AboutPage", () => {
     ).toHaveAttribute("href", "/fr/parcours");
   });
 
+  it.each([
+    [
+      "fr",
+      [
+        ["Voir la compétence Amélioration continue", "/fr/competences/amelioration-continue"],
+        ["Voir la compétence Autonomie", "/fr/competences/autonomie"],
+        ["Voir la compétence Persévérance", "/fr/competences/perseverance"],
+        ["Voir la compétence Adaptabilité", "/fr/competences/adaptabilite"],
+        ["Voir la compétence Communication", "/fr/competences/communication"],
+      ],
+    ],
+    [
+      "en",
+      [
+        ["View skill Continuous improvement", "/en/competences/amelioration-continue"],
+        ["View skill Autonomy", "/en/competences/autonomie"],
+        ["View skill Perseverance", "/en/competences/perseverance"],
+        ["View skill Adaptability", "/en/competences/adaptabilite"],
+        ["View skill Communication", "/en/competences/communication"],
+      ],
+    ],
+  ] as const)("adds a detail link at the end of every %s competence card", async (locale, links) => {
+    const page = await AboutPage({
+      params: Promise.resolve({ locale }),
+    });
+
+    const { container } = render(page);
+    const competenceLinks = container.querySelectorAll("[data-about-competence-link]");
+
+    expect(competenceLinks).toHaveLength(6);
+    for (const [name, href] of links) {
+      expect(screen.getAllByRole("link", { name })[0]).toHaveAttribute("href", href);
+    }
+  });
+
   it("keeps the three parcours images together in chronological order", async () => {
     const page = await AboutPage({
       params: Promise.resolve({ locale: "fr" }),

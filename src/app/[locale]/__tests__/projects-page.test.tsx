@@ -16,6 +16,8 @@ describe("ProjectsPage", () => {
     const solutions = container.querySelector("[data-project-solutions]");
 
     expect(solutions).toBeInTheDocument();
+    expect(container.querySelector(".projects-page-header")).toBeInTheDocument();
+    expect(container.querySelector("[data-projects-summary]")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Les solutions métier apportées" }),
     ).toBeInTheDocument();

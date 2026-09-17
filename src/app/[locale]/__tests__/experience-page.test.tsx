@@ -40,10 +40,7 @@ describe("experience detail pages", () => {
       expect(detail).toHaveTextContent(dict.experience.detailHeading);
       expect(detail).toHaveTextContent(entry.detail[0].text);
       expect(entry.detail).toHaveLength(
-        entry.id === "toeic-listening-reading" ||
-          entry.id === "a-gaveau-web-developer-internship"
-          ? 4
-          : 5,
+        entry.id === "toeic-listening-reading" ? 4 : 5,
       );
       if (entry.linkedRealisations?.length) {
         expect(detail).toHaveTextContent(dict.experience.caseStudiesHeading);

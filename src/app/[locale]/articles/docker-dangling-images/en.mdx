@@ -1,0 +1,120 @@
+# Freeing disk space by cleaning up Docker images
+
+## Context
+
+On a production VPS hosting several Docker services, the main disk reached **99%** usage, causing errors and slowdowns across the services.
+
+This article retraces the full diagnosis and resolution.
+
+## What is a dangling Docker image?
+
+Before the diagnosis, it is important to distinguish the terms:
+
+- A **dangling image** is no longer tagged, so its tag appears as `<none>`. It typically appears when an image is rebuilt with the same tag: the old version loses its tag and becomes dangling.
+- An **unused image** is not referenced by any container, whether running or stopped. A dangling image is always unused, but an unused image is not necessarily dangling.
+
+## Step-by-step diagnosis
+
+### 1. Check overall disk usage
+
+```bash
+df -h
+```
+
+Result: the main 155 GB disk was **99%** full.
+
+### 2. Identify the largest directory
+
+```bash
+sudo du -h --max-depth=1 / | sort -hr | head -n 20
+```
+
+Result: `/var` used **137 GB**, far more than the other directories.
+
+### 3. Investigate `/var`
+
+```bash
+sudo du -h --max-depth=1 /var | sort -hr
+```
+
+Result: `/var/lib` used **136 GB**.
+
+### 4. Inspect `/var/lib`
+
+```bash
+sudo du -h --max-depth=1 /var/lib | sort -hr
+```
+
+Result: `/var/lib/docker` used **135 GB**. The cause was identified.
+
+### 5. Check active containers
+
+```bash
+docker ps -a
+```
+
+Several production containers were active, so deleting everything was not an option.
+
+### 6. List Docker images
+
+```bash
+# List all images
+docker images
+
+# List images by name/tag
+docker images <image_name>
+
+# List dangling images only
+docker images --filter "dangling=true"
+
+# List dangling images for a specific service
+docker images nginx --filter "dangling=true"
+```
+
+This revealed many old, obsolete, dangling images with the `<none>` tag.
+
+## Resolution
+
+### Clean dangling images service by service
+
+```bash
+# Example for a cache service
+docker rmi $(docker images redis -f "dangling=true" -q)
+
+# Example for a web service (nginx)
+docker rmi $(docker images nginx -f "dangling=true" -q)
+
+# Example for an application service (PHP)
+docker rmi $(docker images php -f "dangling=true" -q)
+```
+
+This removes only **dangling** images for the selected service. Images used by existing containers, including stopped ones, are not removed. Repeat it for each service, distinguishing variants where necessary, for example `php` and `php_prod`.
+
+### Alternative: global cleanup
+
+Docker also provides a global dangling-image cleanup command:
+
+```bash
+docker image prune
+```
+
+To remove images unused by any container as well:
+
+```bash
+docker image prune -a
+```
+
+**Caution:** `prune -a` removes every unused image, not only dangling ones. Use it carefully on a production server.
+
+## Outcome
+
+- **Dozens of GB freed** on the root partition
+- Disk space returned to a stable, usable state
+- Better visibility into the Docker images present on the server
+
+## Practices to prevent recurrence
+
+- Configure periodic cleanup with a **cron job**: `docker image prune -f`
+- Use **explicit tags** instead of `latest` to identify versions more clearly
+- Include cleanup in **CI/CD pipelines** after deployment
+- Monitor disk space with alerts, for example through the VPS provider's monitoring

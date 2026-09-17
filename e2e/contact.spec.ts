@@ -22,7 +22,7 @@ test.describe("Contact Page", () => {
     await expect(
       page.getByText("Le nom doit contenir au moins 2 caractères."),
     ).toBeVisible();
-    await expect(page.getByText("Adresse email invalide.")).toBeVisible();
+    await expect(page.getByText("Adresse de courriel invalide.")).toBeVisible();
     await expect(
       page.getByText("Veuillez sélectionner une raison."),
     ).toBeVisible();

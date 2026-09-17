@@ -1,24 +1,56 @@
 # Architecture et décisions
 
-Cette fiche décrit les frontières qui doivent rester explicites quand le portfolio évolue. Elle complète `AGENTS.md`, qui contient les règles d'exécution détaillées.
+Cette fiche décrit les frontières durables du portfolio. Les procédures sont dans [`contributing.md`](./contributing.md), les règles de localisation dans [`i18n.md`](./i18n.md) et les paramètres externes dans [`configuration.md`](./configuration.md).
 
-## Rendu et sécurité
+## Rendu et document localisé
 
-- `src/app/[locale]/layout.tsx` est un Server Component : il valide la locale, rend `<html lang>`, charge le dictionnaire et fournit les providers.
-- `src/proxy.ts` choisit la locale et ajoute le nonce CSP à la réponse. Le layout lit ce nonce pour les providers qui injectent un script.
-- Le nonce rend le document dynamique par requête. `generateStaticParams` couvre les locales connues, mais ne transforme pas cette frontière de sécurité en garantie de site statique.
-- Les pages et les données éditoriales restent côté serveur tant qu'elles ne nécessitent pas d'état ou d'événement navigateur. Les composants interactifs portent leur propre frontière `"use client"`.
+- `src/app/[locale]/layout.tsx` valide la locale, rend le document `<html lang={locale}>`, charge le dictionnaire et installe les providers partagés.
+- Les pages restent des Server Components tant qu'elles n'ont pas besoin d'un état, d'un événement navigateur ou d'une animation.
+- Chaque composant interactif ou animé porte sa propre frontière `"use client"`.
+- `src/app/global-not-found.tsx` couvre les URL situées hors de l'arbre localisé ; `src/app/[locale]/not-found.tsx` fournit le retour localisé.
+- `src/proxy.ts` détecte la locale à partir du cookie, de `Accept-Language`, puis de la locale par défaut.
+
+## CSP et sécurité du rendu
+
+`src/proxy.ts` crée un nonce CSP par requête et le transmet au document. Le layout le fournit aux composants qui injectent des scripts. Cette frontière rend le document dynamique par choix de sécurité : `generateStaticParams` peut déclarer les locales connues sans transformer le site en export statique.
+
+Les scripts Analytics restent conditionnés au consentement. Le formulaire applique sa validation côté client et serveur, un honeypot, un délai minimal, une limitation locale gratuite par instance et, lorsqu'il est configuré, reCAPTCHA v3 avec contrôle du score, de l'action, du hostname et de l'âge du jeton. Le limiteur en mémoire complète ces contrôles sans service payant ; son état n'est pas partagé entre les instances serverless et ne doit donc pas être présenté comme une limite distribuée.
+
+Les en-têtes applicatifs complémentaires sont définis dans `next.config.mjs`. Une modification de la CSP ou du proxy doit être vérifiée dans un build courant et dans un navigateur ; l'absence de message dans un ancien serveur de développement ne constitue pas une preuve.
 
 ## Animation et dégradation
 
-Les animations améliorent le rendu existant. Les sections de la homepage reçoivent leur contenu depuis le serveur ; la classe `invisible` ne masque une cible qu'après l'ajout de `html.js` par le runtime client. La règle `html:not(.js) .invisible` garde donc le contenu lisible quand JavaScript est désactivé. Toute nouvelle animation doit conserver ce comportement et respecter `prefers-reduced-motion`.
+Les animations améliorent un contenu déjà rendu côté serveur :
 
-Les animations GSAP importent `@/lib/gsap`, utilisent `useGSAP` avec un `scope`, et emploient `autoAlpha` dans les transitions d'entrée. Les animations Web API de la homepage suivent la même règle de dégradation et ne doivent pas déplacer le contenu éditorial hors du HTML serveur.
+- GSAP est importé depuis `@/lib/gsap` ;
+- les composants animés utilisent `useGSAP` avec un `scope` ;
+- les apparitions utilisent `autoAlpha` ;
+- la classe `invisible` ne doit être active qu'après l'ajout de `html.js` par le runtime client ;
+- la règle `html:not(.js) .invisible` maintient le contenu lisible sans JavaScript ;
+- `prefers-reduced-motion` désactive les mouvements non essentiels et le fond vidéo de l'accueil.
+
+Lenis est synchronisé avec le ticker GSAP. Le document ne doit pas ajouter `scroll-behavior: smooth`, car les deux mécanismes entreraient en concurrence.
 
 ## Données éditoriales et relations
 
-Les catalogues canoniques vivent dans `src/lib/competences`, `src/lib/realisations`, `src/lib/experience` et `src/lib/odoo-projects`. Les dictionnaires contiennent l'interface et les métadonnées localisées. Les liens entre une réalisation, une compétence et une expérience passent par les helpers de `src/lib/portfolio-links.ts` et sont vérifiés par les tests d'intégrité ; une page ne doit pas reconstruire ces relations à partir d'un libellé traduit.
+Les catalogues canoniques vivent sous `src/lib/` :
+
+- `competences/` pour les dix compétences ;
+- `realisations/` pour les cinq études de cas ;
+- les modules d'expérience et de parcours pour les emplois et formations ;
+- `odoo-projects.ts` pour les modules Odoo présentés.
+
+Les dictionnaires JSON contiennent les textes d'interface et les métadonnées de navigation. Les relations entre compétences, réalisations et expériences sont résolues par les helpers de `src/lib/portfolio-links.ts`. Un slug inconnu doit rester une erreur explicite : une page ne doit pas reconstruire une relation à partir d'un libellé traduit.
+
+Les articles techniques possèdent un point d'entrée `page.tsx` et deux corps `fr.mdx` et `en.mdx`. `LocalizedArticle` choisit le corps correspondant à la locale ; `ArticlePageLayout` fournit la structure éditoriale partagée. L'index de recherche lit le contenu localisé, ses métadonnées, ses tags et sa description.
 
 ## Performance
 
-`pnpm check:bundle` contrôle le poids de chaque asset JS/CSS produit. Après `pnpm build`, `pnpm check:performance` vérifie la présence de `.next/BUILD_ID`, démarre ce build avec `next start`, charge les quatre routes représentatives dans un contexte Chromium neuf et compare leurs tailles encodées de JS, document et fontes ainsi que leur nombre d'éléments DOM à `performance-budget.json`. Le contrôle échoue si le build ou une mesure manque ; il ne relit aucune photographie historique. Ces seuils détectent une régression locale du build contrôlé, mais ne remplacent ni Lighthouse ni une mesure sur appareil réel. Toute optimisation doit commencer par une mesure réseau/CPU et préserver les preuves éditoriales nécessaires.
+`pnpm check:bundle` contrôle le poids des assets JavaScript et CSS produits. Après `pnpm build`, `pnpm check:performance` :
+
+1. vérifie la présence du `.next/BUILD_ID` courant ;
+2. démarre ce build avec `next start` ;
+3. charge les routes représentatives dans un contexte Chromium neuf ;
+4. compare les tailles encodées du document, du JavaScript et des fontes, ainsi que le nombre d'éléments DOM, aux seuils de `performance-budget.json`.
+
+Ces contrôles détectent des régressions locales. Ils ne remplacent ni Lighthouse, ni les Core Web Vitals de terrain, ni une mesure sur appareil réel. Toute affirmation de production doit rester associée à une date, une URL et une version identifiables dans `reports/`.

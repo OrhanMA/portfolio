@@ -25,7 +25,7 @@ export interface ContactValidationMessages {
 const defaultMessages: ContactValidationMessages = {
   nameMin: "Le nom doit contenir au moins 2 caractères.",
   nameMax: "Le nom ne doit pas dépasser 100 caractères.",
-  emailInvalid: "Adresse email invalide.",
+  emailInvalid: "Adresse de courriel invalide.",
   reasonRequired: "Veuillez sélectionner une raison.",
   subjectRequired: "Veuillez préciser le sujet de votre message.",
   subjectMax: "Le sujet ne doit pas dépasser 120 caractères.",

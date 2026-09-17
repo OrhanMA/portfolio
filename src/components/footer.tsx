@@ -40,6 +40,7 @@ export function Footer({
         fill
         sizes="100vw"
         quality={75}
+        loading="eager"
       />
       <span data-footer-overlay aria-hidden="true" />
       <div>
@@ -91,7 +92,7 @@ export function Footer({
               {dict.footer.privacyPolicy}
             </Link>
             <CookieSettingsButton label={dict.cookies.manage} />
-            <a href="mailto:orhan.madi.assani@gmail.com" aria-label="Email">
+            <a href="mailto:orhan.madi.assani@gmail.com" aria-label="Courriel">
               <Mail aria-hidden="true" />
             </a>
             <a

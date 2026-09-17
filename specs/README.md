@@ -1,18 +1,27 @@
-# Specs
+# Plans de test fonctionnels
 
-This directory stores human-readable test plans for Playwright agents and manual QA.
+Ce dossier décrit les parcours attendus dans un langage lisible. Les fichiers `e2e/*.spec.ts` restent la source exécutable et peuvent couvrir plusieurs variantes d'un même parcours.
 
-Current quality gates for the portfolio:
+## Documents
 
-- `pnpm lint`
-- `pnpm test:unit run`
-- `pnpm test:browser`
-- `pnpm exec next build --webpack`
+- [`user-flows.md`](./user-flows.md) : matrice comportementale des parcours publics et des états critiques.
 
-Recent coverage additions:
+## Commandes de vérification
 
-- article filters synchronized with `tag` and `q` URL params
-- article search indexing real MDX content
-- article reading time, table of contents, related articles and copy-link feedback
-- homepage proof document links
-- neutral homepage/contact availability wording
+| Commande | Périmètre |
+| --- | --- |
+| `pnpm test:unit` | Logique et composants sous jsdom. |
+| `pnpm test:browser` | Composants et captures dans Chromium. |
+| `pnpm test` | Projets Vitest unitaires et navigateur. |
+| `pnpm build` | Build Next.js de production. |
+| `pnpm test:e2e` | Parcours Playwright contre un build de production. |
+
+`playwright.config.ts` construit puis démarre le site en local lorsque nécessaire. Avant de conclure sur le rendu, s'assurer que le serveur sert bien le build courant et non un ancien dossier `.next`.
+
+## Maintenance
+
+- Décrire ici les comportements et risques couverts, pas les sélecteurs internes de chaque test.
+- Mettre à jour le plan lorsqu'un parcours public, un contrôle interactif ou une exigence d'accessibilité change.
+- Conserver les scénarios FR/EN, desktop/mobile, clavier, mouvement réduit et sans JavaScript lorsqu'ils s'appliquent.
+- Inspecter une différence visuelle avant de mettre à jour une capture de référence.
+- Maintenir des baselines séparées pour macOS et Linux.

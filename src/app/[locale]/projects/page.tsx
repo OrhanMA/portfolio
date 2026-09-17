@@ -42,19 +42,20 @@ export default async function ProjectsPage({
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/projects`} />
       <EditorialPageHeader
+        className="projects-page-header"
         eyebrow={dict.projects.eyebrow}
         title={dict.projects.heading}
         description={dict.projects.subtext}
         titleClassName="uppercase"
         meta={
-          <div>
-              <Badge variant="outline">{dict.projects.eyebrow}</Badge>
-              <TopicLink label="Odoo" locale={loc} />
-              <TopicLink label="Python" locale={loc} />
+          <div data-projects-meta>
+            <Badge variant="outline">{dict.projects.eyebrow}</Badge>
+            <TopicLink label="Odoo" locale={loc} />
+            <TopicLink label="Python" locale={loc} />
           </div>
         }
         aside={
-          <div>
+          <div data-projects-summary>
             <Card size="sm">
               <CardHeader>
                 <CardDescription>{dict.projects.summaryLabel}</CardDescription>

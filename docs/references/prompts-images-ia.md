@@ -1,4 +1,10 @@
-Prompt pour l'image de la page principale
+# Prompts sources des illustrations générées par IA
+
+Ces prompts documentent les demandes utilisées pour explorer les illustrations du portfolio. Ils sont conservés pour la traçabilité de la direction artistique ; ils ne constituent ni des preuves de projet ni des descriptions garanties des assets finaux.
+
+Le texte anglais de chaque prompt est conservé tel qu'il a été rédigé. Seuls les titres et les séparations ont été normalisés.
+
+## Accueil
 
 
 Use case: stylized-concept
@@ -30,7 +36,7 @@ Text: none.
 Constraints: Website content must remain dominant. Keep the left and center bright, calm and low contrast. No foreground figure. No obvious face. No competing central focal point. No interface elements. No logos. No readable inscriptions. No letters or numbers. No watermark. No scattered red accents. No blue or purple neon. No glass panels. No excessive ornament. No fantasy ruins, destruction, crowds, modern objects or tiny narrative props.
 
 
-prompt image page à propos:
+## À propos
 
 Use case: stylized-concept
 Asset type: preview-only full-viewport fixed background for the About page of a senior software engineering portfolio
@@ -63,7 +69,7 @@ Constraints: Website content must remain visually dominant. Keep the left and ce
 
 
 
-Prompt pour l'image de la page mon parcours:
+## Parcours
 
 Use case: stylized-concept
 Asset type: preview-only full-viewport fixed background for the Career Journey and experience-detail pages of a senior software engineering portfolio
@@ -95,7 +101,7 @@ Text: none.
 Constraints: Website content must remain dominant. Keep the full left third bright, quiet and low contrast. Preserve the approved material, grain and light language. No literal timeline, connecting dots, arrows, labels or milestones. No foreground person. No central figure. No obvious face. No crowds, carts, modern objects, ruins, broken columns or construction debris. No readable inscriptions, letters or numbers. No logos, watermark or UI. No scattered red accents. No blue or purple neon. No glass panels. No fantasy architecture.
 
 
-Prompt pour l'image de fond de la page Compétences:
+## Compétences
 
 Use case: stylized-concept
 Asset type: preview-only full-viewport fixed background shared by the Skills overview and all skill-detail pages of a senior software engineering portfolio
@@ -128,7 +134,7 @@ Text: none.
 Constraints: Website content must remain dominant. Keep the lower-left and center-left bright, quiet and low contrast. Preserve the approved collection's material, grain and light language. No central oculus. No centered symmetry. No foreground person. No obvious face. No crowds. No literal charts, diagrams, grids, numbers, symbols or UI embedded in the architecture. No readable inscriptions, letters or numbers. No logos or watermark. No scattered red accents. No blue or purple neon. No glass panels. No fantasy architecture, ruins or modern objects.
 
 
-prompt pour l'image de fond pour la page réalisations:
+## Réalisations
 
 Use case: stylized-concept
 Asset type: preview-only full-viewport fixed background shared by the Achievements overview, all achievement-detail pages and historical project routes of a senior software engineering portfolio
@@ -162,7 +168,7 @@ Text: none.
 Constraints: Website content must remain dominant. Keep the left half and center-left bright, quiet and low contrast. Preserve the approved collection's material, grain and light language. The forum must feel complete, safe and intentional. No readable inscription on the pediment or anywhere else. No letters or numbers. No foreground person. No obvious face. No crowds, vehicles, modern buildings or street furniture. No broken ruins, rubble piles, cranes, scaffolding, tools or active construction. No literal software screens, diagrams, grids, code, logos, watermark or UI. No scattered red accents. No blue or purple neon. No glass panels. No fantasy architecture.
 
 
-prompt pour l'image de la page contact:
+## Contact
 
 Create a premium contemporary editorial background image for the Contact page of a senior software engineering portfolio, in the same Roman editorial visual family as the other approved page backgrounds. Image A is a style reference only: use it to match the website’s overall art direction, palette, softness, and refined Roman atmosphere, but do not copy any UI, portrait, or exact composition.
 
@@ -187,7 +193,7 @@ Text: none.
 Constraints: website content must remain visually dominant. Keep the left and center bright, quiet and low contrast. No readable inscriptions, letters, numbers, logos, watermark, or UI. No obvious face. No large person. No crowd. No modern objects. No blue or purple neon. No glass panels. No excessive ornament. No fantasy ruins, destruction, rubble, or busy desk clutter. The communication props should be elegant and minimal, not piled up. The final result must feel like a coherent addition to the existing Roman editorial background collection.
 
 
-prompt pour l'image du footer:
+## Footer
 
 Create a wide footer background image for a website in a refined classical style. The theme is the sky, but instead of a blue sky, use a deep red sky with rich crimson, oxblood, terracotta, and dusty rose tones. The image must work as a footer background, so the center must remain visually simple and calm to avoid interfering with overlaid text.
 
@@ -204,7 +210,7 @@ Color palette: no blue. Use deep red sky tones, with soft pinkish-beige clouds a
 Constraints: no text, no logos, no UI elements, no modern objects. The image should read as a decorative footer background, not as a poster. Keep the figures near the edges and preserve strong negative space in the center.
 
 
-prompt pour l'image de la navbar:
+## Navigation
 
 Edit Image A. Image A is the direct edit target. Remove the cream plaster wall background entirely and keep only the decorative Hedera helix ivy vines and leaves.
 

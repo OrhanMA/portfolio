@@ -1,102 +1,80 @@
-# Portfolio — Orhan Madi Assani
+# Portfolio professionnel — Orhan Madi Assani
 
-Portfolio bilingue FR/EN construit avec Next.js 16.2, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui (Base UI), GSAP, Lenis et MDX.
+Portfolio bilingue français/anglais construit avec Next.js 16.3.4, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui avec Base UI, GSAP, Lenis et MDX.
 
-## Démarrage
+Le site présente le parcours, dix compétences, cinq réalisations détaillées, des modules Odoo documentés, des articles techniques et les preuves publiques nécessaires au dossier professionnel.
 
-Le dépôt cible **Node.js 22** et **pnpm 10.20.0**, comme la CI. Le fichier [.nvmrc](./.nvmrc) permet de sélectionner Node 22 avec nvm ; `package.json` vérifie également les versions attendues. Si Corepack n'est pas encore activé sur la machine :
+## Démarrage local
+
+### Prérequis
+
+- Node.js 22, indiqué dans `.nvmrc` et `package.json` ;
+- Corepack ;
+- pnpm 10.20.0, déclaré dans `package.json`.
 
 ```bash
+nvm use
 corepack enable
+pnpm install --frozen-lockfile
+cp .env.example .env.local
+pnpm dev
 ```
 
-Utiliser ensuite Corepack pour que la version pnpm déclarée par le dépôt soit sélectionnée automatiquement :
+Le site est ensuite disponible sur [http://localhost:3000](http://localhost:3000). La racine redirige vers `/fr` ou `/en` selon la préférence enregistrée puis l'en-tête `Accept-Language`.
 
-```bash
-corepack pnpm install
-corepack pnpm dev
-```
+Le formulaire peut être affiché sans configurer les services externes. Pour tester l'envoi, l'anti-spam, la mesure d'audience ou un déploiement, suivre le [guide de configuration](./docs/configuration.md). Ne jamais committer `.env.local`.
 
-Le site est ensuite disponible sur [http://localhost:3000](http://localhost:3000), qui redirige vers `/fr` ou `/en` selon la préférence enregistrée et `Accept-Language`.
-
-La configuration de Resend, reCAPTCHA, Redis et Analytics est détaillée dans [MANUAL_CONFIGURATION.md](./MANUAL_CONFIGURATION.md). Copier [.env.example](./.env.example) vers `.env.local` pour démarrer.
-
-## Architecture
+## Repères d'architecture
 
 ```text
 src/
-  app/
-    [locale]/
-      layout.tsx                    # Document HTML localisé + providers
-      page.tsx                      # Accueil App Router
-      dictionaries/{fr,en}.json    # Contenu bilingue
-      articles/                    # Listing + articles MDX
-      competences/                 # Synthèse + 10 fiches
-      realisations/                # Synthèse + 5 études de cas
-      projects/                    # Modules Odoo open source
-      contact/                     # Formulaire
-      actions/contact.ts           # Server Action sécurisée
-    global-error.tsx
-    global-not-found.tsx
-    sitemap.ts
-    robots.ts
-  components/                      # UI, sections et composants interactifs
-  lib/                             # Contenu, schémas et services
-  proxy.ts                         # Locale + CSP à nonce
-scripts/check-bundle-budget.mjs    # Budgets JS/CSS
-performance-budget.json             # Budgets agrégés de routes représentatives
+  app/[locale]/                # Routes, layouts et dictionnaires FR/EN
+  components/                  # Interface et composants interactifs
+  lib/                         # Contenus canoniques, schémas et services
+  proxy.ts                     # Détection de locale et CSP à nonce
+e2e/                           # Scénarios Playwright exécutables
+specs/                         # Plans de test lisibles
+docs/                          # Documentation active
+reports/                       # Audits et relevés datés
+public/proofs/                 # Documents publics présentés dans le footer
 ```
 
-Les routes applicatives utilisent exclusivement l’App Router. Le layout `[locale]` rend directement `<html lang="fr|en">`; `global-not-found.tsx` couvre les URL hors arbre localisé. Le proxy applique un CSP à nonce sans `unsafe-inline` pour les scripts.
+Les routes utilisent l'App Router et le segment dynamique `[locale]`. Les données structurées du portfolio vivent dans des catalogues canoniques sous `src/lib/`; les dictionnaires JSON portent les libellés et métadonnées d'interface. Les décisions détaillées sont décrites dans [l'architecture](./docs/architecture.md).
 
-Les frontières de rendu, la dégradation sans JavaScript, les catalogues canoniques et les budgets de performance sont décrits dans [`docs/architecture.md`](./docs/architecture.md). Les recettes pour ajouter une page, une donnée éditoriale, un article ou une langue sont dans [`docs/contributing.md`](./docs/contributing.md).
+## Commandes utiles
 
-## Fonctionnalités clés
+| Commande | Rôle |
+| --- | --- |
+| `pnpm dev` | Démarre le serveur de développement. |
+| `pnpm build` | Construit la version de production. |
+| `pnpm start` | Sert le build `.next` existant. |
+| `pnpm lint` | Exécute ESLint. |
+| `pnpm typecheck` | Vérifie TypeScript en mode strict. |
+| `pnpm audit:security` | Échoue à partir d'une vulnérabilité modérée. |
+| `pnpm test:unit` | Exécute les tests Vitest sous jsdom. |
+| `pnpm test:browser` | Exécute les tests de composants dans Chromium. |
+| `pnpm test:coverage` | Mesure la couverture unitaire et ses seuils. |
+| `pnpm test` | Exécute les projets Vitest unitaires et navigateur. |
+| `pnpm check:bundle` | Contrôle les budgets des assets produits. |
+| `pnpm check:performance` | Mesure le build courant sur des routes représentatives. |
+| `pnpm test:e2e` | Exécute les parcours Playwright. |
 
-- Métadonnées localisées, canonical/hreflang `x-default`, OpenGraph, Twitter, sitemap et données structurées `Person`, `WebSite`, `WebPage`, `ProfilePage`, `TechArticle` et `BreadcrumbList`.
-- Contenu de portfolio conforme à la grille ISCOD : présentation, parcours, 10 compétences, 5 réalisations, preuves et navigation réciproque.
-- Formulaire bilingue validé côté client et serveur, honeypot silencieux, contrôle temporel, reCAPTCHA v3 chargé à l’intention et rate limit Redis atomique.
-- Consentement Analytics versionné, valable six mois, réouvrable et révocable ; GTM/GA et Speed Insights restent désactivés avant accord.
-- Images optimisées par `next/image`, fontes via `next/font`, GSAP centralisé et Lenis chargé à la première interaction.
-- Dark mode, navigation clavier, focus visibles, lien d’évitement et gestion de `prefers-reduced-motion`.
+La CI exécute les contrôles statiques et de sécurité, la couverture, les tests navigateur, le build, les budgets puis les E2E. Les mesures locales et les audits datés ne constituent pas à eux seuls une validation de la production.
 
-## Audit Lighthouse de production
+## Documentation
 
-Le 16 juillet 2026, Lighthouse 13.4.0 avec le profil mobile de Chrome a audité les 100 URL du sitemap public, une fois par URL. Les moyennes relevées sont de **94,3** en performance, **99,8** en accessibilité, **99,9** en bonnes pratiques et **100** en SEO ; les 100 pages ont un CLS de 0 et 98 atteignent au moins 90 en performance.
+- [Sommaire de la documentation](./docs/README.md)
+- [Configuration locale et production](./docs/configuration.md)
+- [Architecture et décisions](./docs/architecture.md)
+- [Recettes de contribution](./docs/contributing.md)
+- [Internationalisation](./docs/i18n.md)
+- [Système visuel](./docs/design-system.md)
+- [Checklist active du portfolio](./PORTFOLIO_CHECKLIST.md)
+- [Plans de test](./specs/README.md)
+- [Index des audits et rapports](./reports/README.md)
 
-Les deux variantes de `/realisations/app-trajectoires-de-vie` sont l’exception prioritaire : les quatre lecteurs YouTube chargés directement font chuter leur score de performance à 57. Le rapport complet par page, avec FCP, LCP, TBT et CLS, est disponible dans [reports/lighthouse-production-2026-07-16.md](./reports/lighthouse-production-2026-07-16.md). Ces mesures sont des résultats de laboratoire : elles doivent être rejouées après une modification significative du frontend.
+La grille officielle ISCOD/Visiplus est conservée dans [`grille-evaluation-portfolio.pdf`](./grille-evaluation-portfolio.pdf). Les résultats Lighthouse de juillet 2026 sont une photographie historique consultable dans [`reports/lighthouse-production-2026-07-16.md`](./reports/lighthouse-production-2026-07-16.md) ; ils ne décrivent pas automatiquement la version courante.
 
-## Commandes qualité
+## Contribution
 
-```bash
-pnpm lint              # ESLint
-pnpm typecheck         # TypeScript strict
-pnpm audit:security    # Échec dès une vulnérabilité modérée
-pnpm test:unit         # Vitest jsdom
-pnpm test:coverage     # Couverture + seuils bloquants
-pnpm test:browser      # Composants et snapshots Chromium
-pnpm build             # Build de production Next.js
-pnpm check:bundle      # Budgets des assets produits
-pnpm check:performance # Mesure le build .next courant puis contrôle document/JS/fontes/DOM
-pnpm test:e2e          # Parcours Playwright
-pnpm test              # Projets Vitest unitaires + navigateur
-```
-
-La CI exécute lint, typecheck, audit, couverture, tests navigateur, build, budgets puis E2E. Le build `.next` est partagé entre les jobs Build et E2E pour éviter une compilation redondante.
-
-## Variables CI/Vercel
-
-| Variable | Usage |
-|---|---|
-| `RESEND_API_KEY` | Envoi d’email |
-| `CONTACT_EMAIL` | Destinataire du formulaire |
-| `FROM_EMAIL` | Expéditeur Resend vérifié |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Clé publique reCAPTCHA v3 |
-| `RECAPTCHA_SECRET_KEY` | Vérification serveur reCAPTCHA |
-| `RECAPTCHA_ALLOWED_HOSTNAMES` | Domaines autorisés, séparés par des virgules |
-| `UPSTASH_REDIS_REST_URL` | Stockage distribué du rate limit |
-| `UPSTASH_REDIS_REST_TOKEN` | Jeton secret Redis |
-| `NEXT_PUBLIC_GTM_ID` | Conteneur GTM optionnel |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 direct, utilisé seulement sans GTM |
-
-En production, Redis est obligatoire : le formulaire échoue volontairement de façon fermée si aucun stockage durable n’est configuré.
+Avant une revue, vérifier les commandes pertinentes pour le changement effectué et inspecter le diff. Les procédures d'ajout d'une route, d'un article, d'une compétence, d'une réalisation ou d'une langue sont centralisées dans [les recettes de contribution](./docs/contributing.md).

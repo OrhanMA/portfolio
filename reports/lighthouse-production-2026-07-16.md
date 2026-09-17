@@ -1,7 +1,16 @@
 # Audit Lighthouse — production
 
-Date : 16 juillet 2026  
-Périmètre : les **100 URL** exposées par le sitemap de [orhanmadiassani.com](https://orhanmadiassani.com/sitemap.xml).  
+> **Fiche d'archive**
+> - **Date :** 16 juillet 2026.
+> - **Nature :** mesures Lighthouse de laboratoire sur la production et les URL disponibles ce jour-là.
+> - **État :** relevé historique.
+> - **Suite :** aucun relevé Lighthouse plus récent n'est indexé.
+> - **Avertissement :** ces mesures ne décrivent pas nécessairement la version courante et doivent être rejouées sur le déploiement final avant toute nouvelle affirmation.
+
+Date : 16 juillet 2026.
+
+Périmètre : les **100 URL** exposées par le sitemap de [orhanmadiassani.com](https://orhanmadiassani.com/sitemap.xml).
+
 Fenêtre de collecte : 2026-07-16T21:13:42.716Z → 2026-07-16T21:22:02.427Z.
 
 ## Méthode

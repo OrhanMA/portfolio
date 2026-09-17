@@ -27,7 +27,6 @@ type ArticleEnhancementsProps = {
     relatedArticles: string;
     copyLink: string;
     copied: string;
-    frenchOnlyNotice: string;
   };
 };
 
@@ -89,9 +88,6 @@ export function ArticleEnhancements({
           <Badge variant="secondary">
             {labels.readingTime} : {readingMinutes} {labels.minuteShort}
           </Badge>
-          {locale === "en" && (
-            <Badge variant="outline">{labels.frenchOnlyNotice}</Badge>
-          )}
         </div>
         <Button
           type="button"

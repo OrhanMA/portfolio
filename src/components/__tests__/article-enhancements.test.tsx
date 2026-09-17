@@ -16,7 +16,6 @@ const labels = {
   relatedArticles: "Articles liés",
   copyLink: "Copier le lien",
   copied: "Lien copié",
-  frenchOnlyNotice: "Article rédigé en français, traduction par le navigateur recommandée.",
 };
 
 const articles = [
@@ -114,7 +113,7 @@ describe("ArticleEnhancements", () => {
     ).toBeInTheDocument();
   });
 
-  it("shows the French article notice on English article pages", () => {
+  it("does not label English article pages as French-only", () => {
     pathname = "/en/articles/migration-odoo-v16-v19";
 
     renderWithProviders(
@@ -134,6 +133,6 @@ describe("ArticleEnhancements", () => {
       { locale: "en" },
     );
 
-    expect(screen.getByText(labels.frenchOnlyNotice)).toBeInTheDocument();
+    expect(screen.queryByText(/French-only|rédigé en français/i)).not.toBeInTheDocument();
   });
 });

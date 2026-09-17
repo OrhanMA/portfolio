@@ -1,0 +1,65 @@
+# CAP2vie at LIG: building a sociological survey tool around life trajectories
+
+## Context
+
+During my internship at the Grenoble Computer Science Laboratory, I worked on CAP2vie, a web application designed to support sociological surveys about life trajectories.
+
+The aim was to let interviewers collect life events and episodes, then display them as trajectories. The subject required linking a data-entry interface, a data model, a temporal visualization, and the practical constraints of an interview.
+
+## Architecture
+
+The application had two main parts:
+
+- a **Nuxt 3 / Vue 3** front end with PrimeVue, Tailwind, Pinia, and D3.js;
+- an **Express.js** back end with Prisma, PostgreSQL, and Socket.io.
+
+Docusaurus documentation described the architecture, folders, startup procedure, routes, and responsibilities of the different building blocks.
+
+## Domain model
+
+The project's central concept was the trajectory.
+
+A person can have residential, professional, or personal trajectories. Each one is made up of episodes, events, dates, levels of precision, and sometimes uncertainty.
+
+The PostgreSQL model included people, survey questions, residential and professional episodes, events, and trajectories linking events, episodes, and a person. The back end used a `DataAdapter` class to transform database data before sending it to the front end.
+
+## D3.js visualization
+
+The most technical part was the trajectory visualization.
+
+D3.js was used to build a custom chart: time axes, thematic lines, episode rectangles, events, tooltips, zoom, brush selection, line colors, indeterminate couples, and interactions with the interface.
+
+Unlike an off-the-shelf charting library, D3 required direct management of scales, positions, SVG dimensions, updates, and user interactions.
+
+## Conflict management
+
+A major difficulty came from temporal conflicts.
+
+When a new episode overlapped an existing one, the application had to help the interviewer understand the issue and choose an action: edit, shorten, replace, merge, or delete. Components such as `Conflict`, `ConflictEditor`, `ManualConflict`, `MultipleConflict`, `AutoResolveOption`, and `MergeEditor` addressed this case.
+
+This logic was essential because the scientific quality of the data depends on coherent trajectories.
+
+## Sequential mode and complementary phase
+
+The application distinguishes two moments:
+
+- a sequential questionnaire phase, guided by questions;
+- a more open complementary phase in which the interviewer can correct, complete, and directly manipulate event/episode pairs.
+
+This separation keeps initial data entry structured while allowing flexibility for complex cases.
+
+## Multiple screens
+
+Socket.io connects several screens in the same room. It synchronizes data between the interviewer's screen and the respondent's screen, making the tool better suited to a real interview where the interviewer controls data entry while sharing a visualization.
+
+## Stabilization
+
+The development history shows substantial finishing work: progress saving, survey resumption, French-date parsing, conflict fixes, create/update/delete routes, confirmation and error toasts, log cleanup, front-end documentation, and presentation videos.
+
+## Outcome
+
+The project reached a working version with a questionnaire, D3 visualization, complementary editing, conflict management, multi-screen synchronization, and technical documentation.
+
+The videos embedded in the portfolio show the main flows: creating a survey, the sequential questionnaire, connecting multiple screens, and resolving temporal conflicts.
+
+This internship taught me how to turn a research need into a usable interface while keeping the technical foundation understandable for people taking over the project.

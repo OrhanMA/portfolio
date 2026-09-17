@@ -1,6 +1,6 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { page } from "vitest/browser";
-import { frDict, renderWithProviders } from "@/test/browser-utils";
+import { enDict, frDict, renderWithProviders } from "@/test/browser-utils";
 import { ContactForm } from "@/components/contact-form";
 
 const contactDict = {
@@ -9,6 +9,14 @@ const contactDict = {
   contactValidation: frDict.contactValidation,
   contactErrors: frDict.contactErrors,
   legal: frDict.legal,
+};
+
+const englishContactDict = {
+  contactForm: enDict.contactForm,
+  contactReasons: enDict.contactReasons,
+  contactValidation: enDict.contactValidation,
+  contactErrors: enDict.contactErrors,
+  legal: enDict.legal,
 };
 
 // Mock the server action
@@ -41,7 +49,7 @@ describe("ContactForm (browser)", () => {
 
     // Email field
     await expect
-      .element(page.getByLabelText("Adresse email"))
+      .element(page.getByLabelText("Adresse de courriel"))
       .toBeVisible();
 
     // Reason select
@@ -63,6 +71,30 @@ describe("ContactForm (browser)", () => {
       .toBeVisible();
   });
 
+  test.each([
+    ["fr", contactDict],
+    ["en", englishContactDict],
+  ] as const)(
+    "displays every selected reason with its localized label in %s",
+    async (locale, dict) => {
+      await renderWithProviders(<ContactForm locale={locale} dict={dict} />);
+
+      const reasonSelect = page.getByLabelText(dict.contactForm.reasonLabel);
+
+      for (const reason of dict.contactReasons) {
+        await reasonSelect.click();
+        const reasonOption = page.getByText(reason.label, { exact: true });
+        expect(reasonOption.element().className).toContain("col-start-2");
+        expect(reasonOption.element().className).toContain("whitespace-nowrap");
+        const reasonOptionStyles = getComputedStyle(reasonOption.element());
+        expect(reasonOptionStyles.gridColumnStart).toBe("2");
+        expect(reasonOptionStyles.whiteSpace).toBe("nowrap");
+        await reasonOption.click();
+        await expect.element(reasonSelect).toHaveTextContent(reason.label);
+      }
+    },
+  );
+
   test("focuses the first invalid field and exposes its error description", async () => {
     await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
 
@@ -81,7 +113,7 @@ describe("ContactForm (browser)", () => {
     await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
 
     await page.getByLabelText("Nom complet").fill("Jean Dupont");
-    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByLabelText("Adresse de courriel").fill("jean@example.com");
     await page.getByRole("button", { name: /envoyer/i }).click();
 
     const reason = page.getByLabelText("Raison du contact");
@@ -142,9 +174,9 @@ describe("ContactForm (browser)", () => {
       .toHaveValue("Jean Dupont");
 
     // Fill email
-    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByLabelText("Adresse de courriel").fill("jean@example.com");
     await expect
-      .element(page.getByLabelText("Adresse email"))
+      .element(page.getByLabelText("Adresse de courriel"))
       .toHaveValue("jean@example.com");
 
     // Fill message
@@ -178,7 +210,7 @@ describe("ContactForm (browser)", () => {
 
     // Fill required fields
     await page.getByLabelText("Nom complet").fill("Jean Dupont");
-    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByLabelText("Adresse de courriel").fill("jean@example.com");
 
     // Select a reason via the trigger button
     await page.getByLabelText("Raison du contact").click();
@@ -211,7 +243,7 @@ describe("ContactForm (browser)", () => {
 
     // Fill required fields
     await page.getByLabelText("Nom complet").fill("Jean Dupont");
-    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByLabelText("Adresse de courriel").fill("jean@example.com");
 
     await page.getByLabelText("Raison du contact").click();
     await page.getByText("Offre").click();
@@ -238,7 +270,7 @@ describe("ContactForm (browser)", () => {
     await renderWithProviders(<ContactForm locale="fr" dict={contactDict} />);
 
     await page.getByLabelText("Nom complet").fill("Jean Dupont");
-    await page.getByLabelText("Adresse email").fill("jean@example.com");
+    await page.getByLabelText("Adresse de courriel").fill("jean@example.com");
     await page.getByLabelText("Raison du contact").click();
     await page.getByText("Offre").click();
     await page

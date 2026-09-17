@@ -20,13 +20,20 @@ export function LanguageSwitcher() {
 
   function switchLocale() {
     const newLocale: Locale = nextLocale;
+    const anchorMap = document
+      .querySelector<HTMLElement>("[data-article-anchor-map]")
+      ?.getAttribute("data-article-anchor-map");
+    const localizedHash = localizeArticleHash(
+      window.location.hash,
+      anchorMap,
+    );
 
     // Replace only the locale segment and keep the current URL context.
     const newPath = replaceLocaleInUrl(
       pathname,
       newLocale,
       window.location.search,
-      window.location.hash,
+      localizedHash,
     );
 
     // Set cookie for persistence
@@ -49,6 +56,27 @@ export function LanguageSwitcher() {
       {nextLocale.toUpperCase()}
     </Button>
   );
+}
+
+export function localizeArticleHash(
+  hash: string,
+  serializedMap: string | null | undefined,
+) {
+  if (!hash || !serializedMap) {
+    return hash;
+  }
+
+  try {
+    const map = JSON.parse(serializedMap) as Record<string, unknown>;
+    const currentId = decodeURIComponent(hash.replace(/^#/, ""));
+    const localizedId = map[currentId];
+
+    return typeof localizedId === "string"
+      ? `#${encodeURIComponent(localizedId)}`
+      : hash;
+  } catch {
+    return hash;
+  }
 }
 
 export function replaceLocaleInUrl(

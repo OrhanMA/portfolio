@@ -17,9 +17,17 @@ export const refonteSiteCorporate: Realisation =
         fr: "Le site vitrine de 1UP Distribution devait quitter le builder Odoo pour mieux présenter l'entreprise aux clients professionnels, sur tous les formats d'écran.",
         en: "1UP Distribution's showcase website needed to move away from the Odoo builder to present the company more effectively to professional clients across screen sizes.",
       },
+      challenge: {
+        fr: "Remplacer un site limité par un support B2B crédible sur tous les écrans, sans sacrifier la lisibilité ni l'accessibilité aux effets visuels.",
+        en: "Replace a constrained site with a credible B2B presence on every screen without sacrificing readability or accessibility to visual effects.",
+      },
       role: {
         fr: "J'ai audité l'existant, formalisé le besoin, analysé les maquettes Figma puis construit l'intégration responsive et l'architecture front-end avec Next.js.",
         en: "I audited the existing site, formalized the requirements, analyzed the Figma mockups, then built the responsive integration and front-end architecture with Next.js.",
+      },
+      decision: {
+        fr: "Passer à une architecture Next.js à composants réutilisables et réserver les animations aux moments où elles soutiennent réellement le message.",
+        en: "Move to a reusable-component Next.js architecture and reserve animation for moments where it genuinely supports the message.",
       },
       result: {
         fr: "La refonte remplace des blocs limités par une interface responsive continue, des composants réutilisables et des interactions qui restent accessibles sans bloquer l'information.",
@@ -458,7 +466,7 @@ export const refonteSiteCorporate: Realisation =
 
 17. **Conserver Vercel tant que son rapport coût-service reste acceptable.** Vercel est le choix prévu pour la première mise en ligne en raison de son intégration naturelle avec Next.js et le pipeline de déploiement. Un transfert vers un serveur dédié de l'entreprise serait envisagé si la tarification devenait disproportionnée par rapport au trafic ou aux fonctions réellement utilisées. Une migration d'hébergement ne devra pas être décidée sur le seul prix affiché : il faudra aussi comparer le temps d'administration, les sauvegardes, la sécurité, la surveillance et la facilité de déploiement que l'entreprise devrait alors prendre en charge elle-même.
 
-18. **Maintenir le site par des contrôles réguliers.** Après le lancement, je resterai responsable des mises à jour de dépendances, des correctifs de sécurité, de l'exécution des tests et du suivi des performances. Une dépendance est une bibliothèque externe utilisée par l'application ; sa mise à jour peut corriger un défaut, mais aussi introduire une incompatibilité, d'où la nécessité de rejouer les tests avant chaque livraison. Comme le site devrait évoluer moins fréquemment qu'une application métier, je prévois un audit Lighthouse hebdomadaire, complété par un contrôle après chaque modification significative du frontend.
+18. **Maintenir le site par des contrôles réguliers.** Après le lancement, je resterai responsable des mises à jour de dépendances, des correctifs de sécurité, de l'exécution des tests et du suivi des performances. Une dépendance est une bibliothèque externe utilisée par l'application ; sa mise à jour peut corriger un défaut, mais aussi introduire une incompatibilité, d'où la nécessité de rejouer les tests avant chaque livraison. Comme le site devrait évoluer moins fréquemment qu'une application métier, je prévois un audit Lighthouse hebdomadaire, complété par un contrôle après chaque modification significative du front-end.
 
 19. **Surveiller le référencement lors du remplacement de l'ancien site.** Des outils de suivi SEO permettront d'observer l'indexation des nouvelles pages, les erreurs d'exploration, les positions sur les recherches importantes et l'évolution des visites provenant des moteurs. Le suivi devra porter en priorité sur les semaines entourant la bascule, période pendant laquelle une mauvaise redirection ou une page bloquée peut provoquer une baisse. L'objectif ne sera pas de réagir à chaque variation quotidienne, mais d'identifier une tendance durable ou un défaut technique nécessitant une correction.
 
@@ -540,7 +548,7 @@ export const refonteSiteCorporate: Realisation =
 
 16. **Moins de fonctionnalités et davantage de temps consacré au socle visuel.** Si je recommençais le projet, je limiterais plus tôt le périmètre fonctionnel et consacrerais davantage de temps à la base du design. Je chercherais d'abord à obtenir une page d'accueil représentative, un système visuel validé et les contenus essentiels, avant d'investir dans des fonctions pouvant attendre une V2. Ce choix ne signifie pas abandonner la qualité technique. Il consiste à appliquer l'effort en priorité sur ce qui détermine la valeur de la première version : l'image, la compréhension de l'activité et la prise de contact.
 
-17. **Un niveau que j'évalue actuellement à 7 sur 10.** J'estime ma maîtrise du développement frontend et de la responsabilité technique sur ce projet à 7 sur 10. Je sais construire l'architecture, intégrer une interface responsive, mettre en place des animations, tester les parcours et préparer le déploiement en autonomie. Je ne me donne pas une note plus élevée, car la réussite d'un responsable technique ne se limite pas à produire le code attendu. Elle inclut également l'anticipation des dépendances, la communication avec les autres métiers et la capacité à concentrer l'équipe sur les décisions les plus importantes.
+17. **Un niveau que j'évalue actuellement à 7 sur 10.** J'estime ma maîtrise du développement front-end et de la responsabilité technique sur ce projet à 7 sur 10. Je sais construire l'architecture, intégrer une interface responsive, mettre en place des animations, tester les parcours et préparer le déploiement en autonomie. Je ne me donne pas une note plus élevée, car la réussite d'un responsable technique ne se limite pas à produire le code attendu. Elle inclut également l'anticipation des dépendances, la communication avec les autres métiers et la capacité à concentrer l'équipe sur les décisions les plus importantes.
 
 18. **La communication et la priorisation comme axes de progression.** Pour atteindre un niveau supérieur, je dois encore améliorer la précision de mes demandes, anticiper les validations et rendre plus visible l'ordre réel des priorités. Une bonne priorisation distingue ce qui bloque le lancement, ce qui améliore réellement la valeur pour l'utilisateur et ce qui peut attendre sans conséquence. Cette compétence est particulièrement importante lorsque les autres acteurs ne peuvent consacrer qu'une partie de leur temps au projet. Elle permet de transformer une avance technique personnelle en progression collective du produit.
 

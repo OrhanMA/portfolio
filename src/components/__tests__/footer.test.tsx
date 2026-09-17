@@ -7,7 +7,9 @@ describe("Footer", () => {
   it("exposes the secondary pages and legal links", () => {
     const { container } = renderWithProviders(<Footer dict={frDict} locale="fr" />);
 
-    expect(container.querySelector('img[src*="footer-background"]')).toBeInTheDocument();
+    const background = container.querySelector('img[src*="footer-background"]');
+    expect(background).toBeInTheDocument();
+    expect(background).toHaveAttribute("loading", "eager");
 
     const navigation = screen.getByRole("navigation", { name: "Navigation" });
     const links = within(navigation);

@@ -1,0 +1,43 @@
+# Solving automatic Odoo session disconnections
+
+Many users encountered the same problem: after a period of inactivity, Odoo disconnected them because of its default session behavior. This could interrupt someone in the middle of their work.
+
+## Solution: `sessions.max_inactivity_seconds`
+
+The following key can be added to Odoo's **system parameters**:
+
+```
+sessions.max_inactivity_seconds
+```
+
+Its value is expressed **in seconds**. For example, a **12-hour** session is:
+
+```
+60 × 60 × 12 = 43,200 seconds
+```
+
+## Caution
+
+Do not set the value too low, for example while testing, or you may be disconnected before you can change it again.
+
+### If it still happens
+
+Connect to a **psql shell** on Odoo.sh and run:
+
+```sql
+UPDATE ir_config_parameter
+SET value = '60'
+WHERE key = 'sessions.max_inactivity_seconds';
+```
+
+### List system parameters
+
+```sql
+SELECT key, value
+FROM ir_config_parameter
+ORDER BY create_date DESC;
+```
+
+## Reference in the Odoo source code
+
+The behavior is implemented in `odoo/http.py`, around lines **307** and **449**.

@@ -1,5 +1,12 @@
 # Revue de livraison du portfolio — 14 août 2026
 
+> **Fiche d'archive**
+> - **Date :** 14 août 2026.
+> - **Nature :** revue de livraison et de ses réserves techniques ou humaines.
+> - **État :** document historique conservé avec son périmètre d'origine.
+> - **Suite :** [prévalidation du 15 septembre 2026](./portfolio-rendu-preflight-2026-09-15.md).
+> - **Avertissement :** ce rapport ne décrit pas nécessairement le checkout courant.
+
 ## Conclusion
 
 Le socle livré dans le dépôt est valide : tests, build et E2E sont verts. La production répond correctement sur Vercel et le sitemap public est sain. La revue ne conclut pas à une livraison finale sans réserve, car les preuves humaines, certaines données métier, un essai sur téléphone physique et la réception réelle d'e-mails ne peuvent pas être déduits du code. Le LCP de la page CAP2vie n'atteint pas encore la cible de 3 s sur la mesure effectuée aujourd'hui.

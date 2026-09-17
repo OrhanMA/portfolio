@@ -1,5 +1,12 @@
 # Réanalyse complète du portfolio — 8 septembre 2026
 
+> **Fiche d'archive**
+> - **Date :** 8 septembre 2026.
+> - **Nature :** réanalyse technique avec preuves de reproduction.
+> - **État :** document historique conservé dans son contexte d'origine.
+> - **Suite :** [prévalidation du 15 septembre 2026](./portfolio-rendu-preflight-2026-09-15.md).
+> - **Avertissement :** ce rapport ne décrit pas nécessairement le checkout courant.
+
 ## Résultat
 
 **Le projet a nettement progressé, mais le bilan « tout est corrigé » était trop large.** Le build, le typage, le lint et les suites existantes passent. L'audit des dépendances ne remonte plus d'avis. Les défauts restants concernent surtout les transitions d'état, le fonctionnement dégradé et la validité des contrôles de livraison.
@@ -46,7 +53,7 @@ Les niveaux indiquent l'ordre de correction proposé : **P1** = traiter avant de
 
 ### R01 — P1 : un retrait de consentement peut réactiver les analytics
 
-Source : [cookie-consent.ts:94](/Users/orhan/Developer/projects/portfolio/src/lib/cookie-consent.ts:94), fonctions `getStoredConsent` et `setStoredConsent`.
+Source : [cookie-consent.ts:94](../src/lib/cookie-consent.ts#L94), fonctions `getStoredConsent` et `setStoredConsent`.
 
 `setStoredConsent` conserve une nouvelle décision en mémoire si `localStorage.setItem` échoue. Mais `getStoredConsent` relit une ancienne décision valide et remplace ce choix en mémoire, même si `persistenceWriteFailed` vaut `true`. Le rechargement prévu lors du retrait retrouve aussi l'ancienne acceptation persistée.
 
@@ -58,7 +65,7 @@ Preuves : [sonde consentement](code-quality-reaudit-2026-09-08/evidence/browser-
 
 ### R02 — P1 : le formulaire sans JavaScript met le message et l'email dans l'URL
 
-Source : [contact-form.tsx:149](/Users/orhan/Developer/projects/portfolio/src/components/contact-form.tsx:149).
+Source : [contact-form.tsx:149](../src/components/contact-form.tsx#L149).
 
 Le `<form>` déclare seulement `onSubmit`, sans `action` ni `method`. Sans hydratation, le navigateur effectue donc une soumission GET native vers la page courante. Le bouton reste utilisable et `noValidate` est présent.
 
@@ -70,7 +77,7 @@ Preuve : [requête capturée](code-quality-reaudit-2026-09-08/evidence/browser-p
 
 ### R03 — P2 : effacer rapidement une recherche laisse une ancienne URL
 
-Source : [articles-filterable-list.tsx:67](/Users/orhan/Developer/projects/portfolio/src/components/articles-filterable-list.tsx:67), notamment le retour anticipé `nextSearch === currentSearch` et le suivi des navigations en attente.
+Source : [articles-filterable-list.tsx:67](../src/components/articles-filterable-list.tsx#L67), notamment le retour anticipé `nextSearch === currentSearch` et le suivi des navigations en attente.
 
 Reproduction : ouvrir `/fr/articles`, ralentir de 600 ms les requêtes de navigation de cette page, saisir `odoo` puis effacer immédiatement. Après stabilisation, le champ est vide et les six articles s'affichent, mais l'URL contient `?q=odoo`. Le résultat a été reproduit **3 fois sur 3**. Un rechargement ou le partage de cette URL ne représente donc pas l'état visible.
 
@@ -82,7 +89,7 @@ Preuves : [trois reproductions](code-quality-reaudit-2026-09-08/evidence/filter-
 
 ### R04 — P2 : les seuils et le périmètre de couverture sont ignorés
 
-Source : [vitest.config.mts:33](/Users/orhan/Developer/projects/portfolio/vitest.config.mts:33).
+Source : [vitest.config.mts:33](../vitest.config.mts#L33).
 
 La configuration `coverage` est placée dans `test.projects[0].test`. Vitest 4 traite la couverture comme une option globale. L'inspection de sa configuration effectivement résolue montre l'absence des `include` et `thresholds` attendus à la racine, ainsi que les exclusions par défaut. Des mocks et des composants UI pourtant explicitement exclus apparaissent dans le rapport.
 
@@ -94,7 +101,7 @@ Preuves : [configuration résolue](code-quality-reaudit-2026-09-08/evidence/reso
 
 ### R05 — P2 : le budget de performance agrégé relit toujours une ancienne mesure
 
-Source : [check-performance-budget.mjs:4](/Users/orhan/Developer/projects/portfolio/scripts/check-performance-budget.mjs:4), et son appel après le build dans la CI.
+Source : [check-performance-budget.mjs:4](../scripts/check-performance-budget.mjs#L4), et son appel après le build dans la CI.
 
 Le script lit un chemin fixe vers `reports/code-quality-audit-2026-09-08/evidence/performance-probes.json`. Il ne mesure pas le build courant et ne vérifie aucun identifiant de build ou empreinte de source. Ajouter du JavaScript aux routes ne change donc pas les chiffres contrôlés.
 
@@ -106,7 +113,7 @@ Preuve : [réussite sans build](code-quality-reaudit-2026-09-08/evidence/budget-
 
 ### R06 — P2 : la liste des articles disparaît sans JavaScript
 
-Source : [articles/page.tsx:51](/Users/orhan/Developer/projects/portfolio/src/app/[locale]/articles/page.tsx:51).
+Source : [articles/page.tsx:51](../src/app/[locale]/articles/page.tsx#L51).
 
 Sur le build de production avec JavaScript désactivé, `/fr/articles` affiche le titre et le sous-titre, mais **zéro lien vers un article** dans `<main>`. Le composant de filtrage se trouve dans une frontière Suspense sans contenu de repli utile. Le résultat visible est établi ; il ne faut pas généraliser à toutes les utilisations de Suspense ou `useSearchParams`.
 
@@ -118,7 +125,7 @@ Preuves : [sept routes sans JavaScript](code-quality-reaudit-2026-09-08/evidence
 
 ### R07 — P2 : certains petits textes n'atteignent pas le contraste attendu en thème clair
 
-Sources : liens technologiques du parcours sur l'accueil ; [article-enhancements.tsx:125](/Users/orhan/Developer/projects/portfolio/src/components/article-enhancements.tsx:125), opacité des sous-titres du sommaire.
+Sources : liens technologiques du parcours sur l'accueil ; [article-enhancements.tsx:125](../src/components/article-enhancements.tsx#L125), opacité des sous-titres du sommaire.
 
 Axe relève **4,36:1** pour les liens d'expérience tels que « Odoo 16+ » sur l'accueil, et **4,35:1** pour des sous-entrées du sommaire de l'article Docker, alors que ces textes de 12 px requièrent 4,5:1 dans la règle contrôlée. Ces résultats ont été revérifiés après défilement des éléments dans la fenêtre. Les mêmes cibles ne présentent pas ces violations dans le contrôle sombre complémentaire.
 
@@ -128,7 +135,7 @@ Preuves : [audit de 23 états](code-quality-reaudit-2026-09-08/evidence/accessib
 
 ### R08 — P2 : les blocs de code défilants n'exposent pas de focus explicite
 
-Source : [article-code-block.tsx:78](/Users/orhan/Developer/projects/portfolio/src/components/article-code-block.tsx:78).
+Source : [article-code-block.tsx:78](../src/components/article-code-block.tsx#L78).
 
 Dans l'article Docker à 390 px, plusieurs `<pre>` dépassent horizontalement leur zone : un exemple mesure 460 px de contenu pour 356 px disponibles. Ils ont `tabIndex: -1` et aucun descendant focusable. Le bouton de copie est un frère du `<pre>` ; il n'apporte pas de cible clavier à la zone défilante. Axe relève `scrollable-region-focusable` en clair et en sombre, y compris après défilement.
 
@@ -138,7 +145,7 @@ Preuves : [mesures des blocs](code-quality-reaudit-2026-09-08/evidence/followup.
 
 ### R09 — P3 : le parseur MDX reste fragile pour de nouveaux contenus
 
-Source : [article-headings.ts:14](/Users/orhan/Developer/projects/portfolio/src/lib/article-headings.ts:14), `stripMdxEsm` et `createHeadingIdResolver`.
+Source : [article-headings.ts:14](../src/lib/article-headings.ts#L14), `stripMdxEsm` et `createHeadingIdResolver`.
 
 Deux cas caractérisés : une instruction `import` sans point-virgule peut absorber le texte suivant lors du nettoyage ; les titres successifs `Titre`, `Titre`, `Titre 2` produisent les identifiants `titre`, `titre-2`, `titre-2`. Le compteur est tenu par base de titre sans réservation globale des identifiants déjà produits.
 
@@ -150,7 +157,7 @@ Preuves : [caractérisations exécutées](code-quality-reaudit-2026-09-08/eviden
 
 ### R10 — P3 : la documentation contient encore des promesses et procédures périmées
 
-Sources : [PORTFOLIO_CHECKLIST.md](/Users/orhan/Developer/projects/portfolio/PORTFOLIO_CHECKLIST.md), [docs/contributing.md:16](/Users/orhan/Developer/projects/portfolio/docs/contributing.md:16), [docs/architecture.md:24](/Users/orhan/Developer/projects/portfolio/docs/architecture.md:24), README et MANUAL_CONFIGURATION.
+Sources : [PORTFOLIO_CHECKLIST.md](../PORTFOLIO_CHECKLIST.md), [docs/contributing.md:16](../docs/contributing.md#L16), [docs/architecture.md:24](../docs/architecture.md#L24), README et MANUAL_CONFIGURATION.
 
 La checklist décrit encore une identité « Japan Pop » avec vermillon, Fuji et sakura alors que l'interface actuelle et les tests visuels imposent une composition neutre. Le guide d'ajout d'article n'explique pas le petit layout par article qui appelle `ArticlePageLayout`. Le document d'architecture attribue à la mesure historique de performance une détection des nouvelles régressions. Le nom du fichier d'exemple d'environnement et la discussion des iframes vidéo dans le README méritent également d'être réalignés.
 

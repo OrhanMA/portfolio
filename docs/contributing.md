@@ -1,38 +1,61 @@
 # Recettes de contribution
 
+Ce guide décrit les étapes à suivre pour les évolutions courantes. Les décisions d'architecture sont documentées dans [`architecture.md`](./architecture.md) et les règles de localisation dans [`i18n.md`](./i18n.md).
+
 ## Ajouter une page localisée
 
-1. Créer la route sous `src/app/[locale]/` et utiliser `getLocalizedPageContext` pour obtenir une `Locale` validée et le dictionnaire.
-2. Ajouter les métadonnées, le lien de navigation et les entrées de sitemap si la page est publique.
-3. Préfixer tous les liens internes par `/${locale}/` et ajouter les deux langues dans `src/app/[locale]/dictionaries/fr.json` et `en.json` quand le texte relève de l'interface.
-4. Ajouter ou mettre à jour les tests de route, de métadonnées et de navigation concernés.
+1. Créer la route sous `src/app/[locale]/`.
+2. Utiliser `getLocalizedPageContext` pour obtenir une `Locale` validée et le dictionnaire.
+3. Ajouter les métadonnées, le lien de navigation et l'entrée de sitemap si la page est publique.
+4. Préfixer les liens internes par `/${locale}`.
+5. Ajouter les textes d'interface dans les deux dictionnaires.
+6. Mettre à jour les tests de route, de métadonnées et de navigation concernés.
 
 ## Ajouter une compétence ou une réalisation
 
-Déclarer l'élément dans son catalogue canonique, avec un slug stable et un contenu `Record<Locale, string>`. Ajouter les liens réciproques vers les expériences et sujets concernés via les helpers de `src/lib/portfolio-links.ts`. Mettre à jour les résumés de dictionnaire, les menus ou la sélection éditoriale de la homepage si nécessaire, puis lancer les tests d'intégrité.
+1. Déclarer l'élément dans son catalogue canonique avec un slug stable.
+2. Localiser les contenus avec `Record<Locale, ...>` ou `LocalizedContent`.
+3. Déclarer les relations vers les expériences, compétences et réalisations avec leurs slugs canoniques.
+4. Résoudre ces relations avec les helpers de `src/lib/portfolio-links.ts` ; ne pas reconstruire un lien depuis un libellé traduit.
+5. Mettre à jour les résumés de dictionnaire, les menus ou la sélection de l'accueil uniquement si l'élément doit y apparaître.
+6. Ajouter ou adapter les tests d'intégrité et de navigation.
+
+Un slug relationnel inconnu doit continuer à provoquer une erreur explicite.
 
 ## Ajouter un article MDX
 
-1. Créer le dossier `src/app/[locale]/articles/[slug]/` et le fichier `page.mdx` dans la langue éditoriale publiée. Les six articles actuels sont rédigés en français ; un article français affiché sur la route anglaise reste signalé comme contenu français.
-2. Ajouter un `layout.tsx` dans le même dossier pour appeler `ArticlePageLayout` avec la locale validée et le slug stable. Ce layout fournit le masthead, le sommaire, les articles liés, les données structurées et le bouton de copie des blocs de code.
-3. Ajouter une entrée portant le même slug dans `articles.articlesData` des deux dictionnaires. Les titres, descriptions, dates et tags d'interface doivent rester localisés ; le contenu MDX n'est pas dupliqué artificiellement lorsqu'une traduction intégrale n'est pas publiée.
-4. Vérifier que les titres `h2`/`h3` et les liens internes restent compatibles avec l'indexation : `buildArticleIndex` lit automatiquement le fichier MDX, nettoie le contenu et calcule le temps de lecture. Les imports/exports MDX doivent rester au début du fichier.
-5. Ajouter ou mettre à jour les tests de l'index, des ancres et de la navigation, puis vérifier que la liste `/articles` conserve ses liens dans le rendu sans JavaScript. Les filtres interactifs sont une amélioration client, pas la seule porte d'accès aux articles.
+1. Créer le dossier `src/app/[locale]/articles/[slug]/`.
+2. Ajouter `fr.mdx` et `en.mdx`. Les deux corps gardent la même structure de titres `h2` et `h3` afin de relier les ancres équivalentes.
+3. Ajouter un `page.tsx` qui :
+   - valide la locale ;
+   - importe les deux fichiers MDX ;
+   - transmet les deux composants à `LocalizedArticle`.
+4. Utiliser `ArticlePageLayout` pour le masthead, le sommaire, les articles liés, les données structurées et la copie des blocs de code.
+5. Ajouter le même slug dans `articles.articlesData` des deux dictionnaires avec des métadonnées réellement localisées.
+6. Vérifier que `buildArticleIndex` lit le corps de la locale, nettoie correctement le MDX et calcule le temps de lecture.
+7. Mettre à jour les tests de l'index, des ancres, du changement de langue et de la navigation.
+8. Vérifier que la liste des articles conserve des liens utilisables sans JavaScript ; les filtres restent une amélioration client.
+
+Les imports et exports MDX restent au début de chaque fichier.
 
 ## Ajouter une langue
 
-Modifier `src/lib/i18n.ts`, créer le dictionnaire et compléter chaque donnée `Record<Locale, ...>` des catalogues. Vérifier `src/proxy.ts`, le layout, les métadonnées, le sélecteur de langue, le sitemap, les tests de parité et les parcours E2E. Le sélecteur parcourt `locales` et ne doit pas contenir de branche spéciale `fr`/`en`.
+1. Ajouter la locale à `src/lib/i18n.ts`.
+2. Créer le dictionnaire et compléter chaque donnée `Record<Locale, ...>`.
+3. Vérifier le proxy, le document `<html lang>`, les métadonnées, le sitemap et le sélecteur de langue.
+4. Compléter les corps d'articles ou documenter explicitement leur stratégie de publication.
+5. Étendre les tests de parité, de navigation, de liens et les parcours E2E.
 
-## Vérifier avant une revue
+Le sélecteur de langue parcourt `locales` et ne doit pas contenir de branche spéciale limitée à deux langues.
 
-```bash
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm check:bundle
-pnpm check:performance
-pnpm test:e2e
-```
+## Choisir les contrôles
 
-Les mesures Lighthouse et les captures visuelles sont datées : une référence doit être régénérée seulement après inspection de la différence. `pnpm check:performance` démarre le build `.next` courant, mesure les quatre routes avec Chromium et contrôle les budgets ; il ne transforme pas cette mesure locale en score Lighthouse ou en SLA de production.
+Exécuter les contrôles proportionnés aux fichiers et comportements modifiés. Les commandes disponibles sont `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`, `pnpm check:bundle`, `pnpm check:performance` et `pnpm test:e2e`.
+
+- Une modification de documentation exige au minimum une vérification des liens et `git diff --check`.
+- Une modification de logique ou de composant exige les tests ciblés associés.
+- Une modification transversale, de route, de build ou de configuration justifie les contrôles plus larges.
+- Une capture de référence n'est mise à jour qu'après inspection de la différence.
+- `pnpm check:performance` mesure le build `.next` courant ; il ne constitue ni un score Lighthouse ni un SLA de production.
+
+Avant toute livraison Git, inspecter les chemins réellement modifiés et préserver les changements sans rapport déjà présents dans le worktree.

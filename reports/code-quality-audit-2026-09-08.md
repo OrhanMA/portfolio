@@ -1,6 +1,13 @@
 # Audit approfondi de qualité, architecture et maintenabilité du portfolio
 
-Date : 8 septembre 2026. Projet : `/Users/orhan/Developer/projects/portfolio`.
+> **Fiche d'archive**
+> - **Date :** 8 septembre 2026.
+> - **Nature :** audit technique initial de qualité, d'architecture et de maintenabilité.
+> - **État :** document historique conservé avec ses constats et mesures d'origine.
+> - **Suite :** [réanalyse du même jour](./code-quality-reaudit-2026-09-08.md).
+> - **Avertissement :** ce rapport ne décrit pas nécessairement le checkout courant.
+
+Date : 8 septembre 2026. Projet : racine de ce dépôt.
 
 État analysé : copie du répertoire de travail, incluant les modifications et nouveaux fichiers présents au début de l'audit, sur une base Git `ceebfb5`. Ce rapport évalue cet état local, pas uniquement le dernier commit ni le site déployé. Les constats décrivent cette photographie initiale ; les paragraphes « Suivi réalisé » ajoutés à F22–F27 consignent les corrections effectuées ensuite dans la même copie et leurs validations.
 
@@ -18,7 +25,7 @@ Inspection de l'organisation du dépôt, des configurations, des dépendances en
 
 Les vérifications lourdes ont été exécutées dans une copie isolée, avec Node **22.23.2**, pnpm **10.20.0**, Next.js **16.2.11** et un serveur de production local. Aucun fichier `.env` réel n'a été copié. Une seconde compilation avec identifiants publics factices a servi à vérifier les scripts consentis sous CSP ; la requête GTM a été interceptée. Aucun email réel n'a été envoyé.
 
-Les résultats de couverture, du navigateur, des tests et les reproductions sont conservés dans [le dossier de preuves](/Users/orhan/Developer/projects/portfolio/reports/code-quality-audit-2026-09-08/evidence).
+Les résultats de couverture, du navigateur, des tests et les reproductions sont conservés dans [le dossier de preuves](../reports/code-quality-audit-2026-09-08/evidence).
 
 | Vérification | Résultat observé | Interprétation |
 |---|---|---|
@@ -91,7 +98,7 @@ Chaque constat indique sa nature, son impact et une correction proportionnée. L
 
 **Impact : Important. Défaut reproduit. Refactoring pertinent : oui, correction fonctionnelle.**
 
-Dans [articles-filterable-list.tsx:58](/Users/orhan/Developer/projects/portfolio/src/components/articles-filterable-list.tsx:58), `query` et `activeTag` sont initialisés depuis les paramètres, puis un effet réécrit l'URL depuis cet état. Une modification ultérieure de l'URL n'est pas correctement répercutée dans l'état. Reproduction : départ avec `q=odoo`, changement de l'historique vers `q=docker`, puis retour automatique à `q=odoo`. Le problème affecte le contrat de navigation et les liens partageables.
+Dans [articles-filterable-list.tsx:58](../src/components/articles-filterable-list.tsx#L58), `query` et `activeTag` sont initialisés depuis les paramètres, puis un effet réécrit l'URL depuis cet état. Une modification ultérieure de l'URL n'est pas correctement répercutée dans l'état. Reproduction : départ avec `q=odoo`, changement de l'historique vers `q=docker`, puis retour automatique à `q=odoo`. Le problème affecte le contrat de navigation et les liens partageables.
 
 Solution : choisir l'URL comme état canonique des filtres, ou définir explicitement une synchronisation bidirectionnelle qui distingue navigation externe et saisie locale. Une saisie temporaire peut rester locale ; la navigation ne doit pas être écrasée par un effet obsolète. Préserver les paramètres non concernés. Éviter une requête de navigation à chaque caractère si un filtrage local suffit ; un court debounce peut être justifié, sans ajouter un gestionnaire d'état global.
 
@@ -101,7 +108,7 @@ Validation : charger un lien filtré, modifier la recherche, naviguer arrière/a
 
 **Impact : Important. Défaut reproduit. Refactoring pertinent : oui.**
 
-[articles-filterable-list.tsx:187](/Users/orhan/Developer/projects/portfolio/src/components/articles-filterable-list.tsx:187) convertit une date éditoriale `YYYY-MM-DD` avec `new Date(...).toLocaleDateString(...)`, sans fuseau explicite. Un navigateur configuré à Los Angeles affiche le 12 mai pour une date du 13 mai et déclenche l'erreur React 418 d'hydratation.
+[articles-filterable-list.tsx:187](../src/components/articles-filterable-list.tsx#L187) convertit une date éditoriale `YYYY-MM-DD` avec `new Date(...).toLocaleDateString(...)`, sans fuseau explicite. Un navigateur configuré à Los Angeles affiche le 12 mai pour une date du 13 mai et déclenche l'erreur React 418 d'hydratation.
 
 Solution : traiter ces valeurs comme des dates calendaires, avec un formatage déterministe, par exemple `timeZone: "UTC"`, ou fournir le texte déjà formaté côté serveur. Ajouter un test entre fuseaux distincts. `suppressHydrationWarning` cacherait le symptôme sans corriger le jour affiché. Référence : [causes de l'erreur d'hydratation React 418](https://react.dev/errors/418).
 
@@ -109,7 +116,7 @@ Solution : traiter ces valeurs comme des dates calendaires, avec un formatage d�
 
 **Impact : Important. Défaut reproduit avec dépendance simulée en panne. Refactoring pertinent : oui.**
 
-L'appel à `verifyRecaptcha` dans [contact.ts:81](/Users/orhan/Developer/projects/portfolio/src/app/[locale]/actions/contact.ts:81) précède la zone qui transforme les erreurs en résultat utilisateur. Un timeout, un rejet de `fetch` ou un JSON invalide peut donc remonter comme exception. Côté [contact-form.tsx:93](/Users/orhan/Developer/projects/portfolio/src/components/contact-form.tsx:93), l'appel à l'action serveur n'est pas lui-même protégé contre un rejet de transport.
+L'appel à `verifyRecaptcha` dans [contact.ts:81](../src/app/[locale]/actions/contact.ts#L81) précède la zone qui transforme les erreurs en résultat utilisateur. Un timeout, un rejet de `fetch` ou un JSON invalide peut donc remonter comme exception. Côté [contact-form.tsx:93](../src/components/contact-form.tsx#L93), l'appel à l'action serveur n'est pas lui-même protégé contre un rejet de transport.
 
 La validation nominale est bonne, mais une panne d'un service externe peut aboutir à une erreur de page au lieu d'un message localisé permettant de réessayer, avec un risque de perte de saisie.
 
@@ -119,7 +126,7 @@ Solution : transformer les erreurs opérationnelles attendues en résultat d'act
 
 **Impact : Moyen. Défaut reproduit. Refactoring pertinent : oui.**
 
-Dans [recaptcha-client.ts:28](/Users/orhan/Developer/projects/portfolio/src/lib/recaptcha-client.ts:28), la promesse est réinitialisée après échec, mais l'élément script ayant échoué reste dans le DOM. Le prochain essai le réutilise et attend des événements qui ne se reproduiront pas. Le visiteur peut rester bloqué jusqu'au rechargement complet. L'attente de `ready`/`execute` n'est pas couverte par la même limite de temps que le chargement.
+Dans [recaptcha-client.ts:28](../src/lib/recaptcha-client.ts#L28), la promesse est réinitialisée après échec, mais l'élément script ayant échoué reste dans le DOM. Le prochain essai le réutilise et attend des événements qui ne se reproduiront pas. Le visiteur peut rester bloqué jusqu'au rechargement complet. L'attente de `ready`/`execute` n'est pas couverte par la même limite de temps que le chargement.
 
 Solution : nettoyer le script et les écouteurs après échec, puis recréer une tentative ; borner aussi l'exécution. Ajouter un test échec puis succès et un test d'API qui ne répond jamais. Une petite fonction avec nettoyage explicite suffit.
 
@@ -127,7 +134,7 @@ Solution : nettoyer le script et les écouteurs après échec, puis recréer une
 
 **Impact : Important. Défaut reproduit avec stockage refusé. Refactoring pertinent : oui.**
 
-[getStoredConsent et setStoredConsent](/Users/orhan/Developer/projects/portfolio/src/lib/cookie-consent.ts:85) ne protègent pas toutes les opérations : `removeItem` se trouve hors de la capture et `setItem` peut lever une exception. Comme la lecture intervient dans le chemin d'abonnement aux analytics, une restriction de stockage peut toucher un composant global.
+[getStoredConsent et setStoredConsent](../src/lib/cookie-consent.ts#L85) ne protègent pas toutes les opérations : `removeItem` se trouve hors de la capture et `setItem` peut lever une exception. Comme la lecture intervient dans le chemin d'abonnement aux analytics, une restriction de stockage peut toucher un composant global.
 
 Solution : encapsuler lecture, suppression et écriture dans une gestion cohérente des erreurs. En cas d'échec, garder une décision en mémoire pour la session et laisser les analytics désactivées tant qu'un consentement valide n'est pas disponible. Le stockage facultatif ne doit pas rendre le site inutilisable. Tester lecture interdite, suppression interdite, quota et JSON corrompu. Cela ne constitue pas une certification juridique RGPD.
 
@@ -135,7 +142,7 @@ Solution : encapsuler lecture, suppression et écriture dans une gestion cohére
 
 **Impact : Moyen. Défauts navigateur et axe reproduits. Refactoring pertinent : oui.**
 
-[cookie-consent.tsx:145](/Users/orhan/Developer/projects/portfolio/src/components/cookie-consent.tsx:145) annonce `aria-modal="true"` et piège Tab, mais l'arrière-plan reste cliquable : un clic sur la navigation change de page derrière la fenêtre. Le switch des cookies nécessaires n'a pas de nom accessible ; axe le signale comme sérieux.
+[cookie-consent.tsx:145](../src/components/cookie-consent.tsx#L145) annonce `aria-modal="true"` et piège Tab, mais l'arrière-plan reste cliquable : un clic sur la navigation change de page derrière la fenêtre. Le switch des cookies nécessaires n'a pas de nom accessible ; axe le signale comme sérieux.
 
 Solution : utiliser le composant Dialog de la bibliothèque déjà présente, avec focus initial, restitution du focus, fond inerte et noms accessibles ; ou choisir une présentation réellement non modale si telle est l'intention. Ne pas conserver un hybride dont la sémantique contredit le comportement. Référence : [contrat d'une boîte de dialogue modale WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
@@ -143,7 +150,7 @@ Solution : utiliser le composant Dialog de la bibliothèque déjà présente, av
 
 **Impact : Moyen. Défaut reproduit sur desktop et mobile. Refactoring pertinent : oui.**
 
-La navigation personnalisée dans [navbar.tsx](/Users/orhan/Developer/projects/portfolio/src/components/navbar.tsx:203) ne se ferme pas avec Échap dans les états testés. Le déclencheur mobile ne relie pas explicitement son panneau avec `aria-controls`. Le `aria-haspopup="true"` du menu desktop annonce une sémantique de menu alors que le contenu est une navigation ordinaire.
+La navigation personnalisée dans [navbar.tsx](../src/components/navbar.tsx#L203) ne se ferme pas avec Échap dans les états testés. Le déclencheur mobile ne relie pas explicitement son panneau avec `aria-controls`. Le `aria-haspopup="true"` du menu desktop annonce une sémantique de menu alors que le contenu est une navigation ordinaire.
 
 Solution : retenir un modèle de disclosure pour les liens du site, gérer Échap et le retour au déclencheur, relier bouton et panneau. Il n'est pas nécessaire d'implémenter tout le clavier d'un menu applicatif. Référence : [exemple officiel de navigation par disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/).
 
@@ -159,7 +166,7 @@ Solution : donner un identifiant stable à chaque erreur et le référencer depu
 
 **Impact : Moyen. Défauts confirmés. Refactoring pertinent : oui.**
 
-[radar-chart.tsx:82](/Users/orhan/Developer/projects/portfolio/src/components/radar-chart.tsx:82) anime toujours ses éléments avec GSAP. Avec `prefers-reduced-motion: reduce`, la sonde a encore mesuré une opacité intermédiaire. Les autres animations disposent de garde-fous : il faut harmoniser le radar. Son texte accessible contient également `sur 100` en anglais.
+[radar-chart.tsx:82](../src/components/radar-chart.tsx#L82) anime toujours ses éléments avec GSAP. Avec `prefers-reduced-motion: reduce`, la sonde a encore mesuré une opacité intermédiaire. Les autres animations disposent de garde-fous : il faut harmoniser le radar. Son texte accessible contient également `sur 100` en anglais.
 
 Les articles MDX restent volontairement en français sur les routes anglaises, mais le corps de l'article n'annonce pas `lang="fr"` alors que le document annonce `en`. L'avertissement de traduction ne corrige pas la prononciation d'un lecteur d'écran.
 
@@ -169,7 +176,7 @@ Solution : rendre immédiatement le radar visible sans animation en mode réduit
 
 **Impact : Moyen. Perte de query reproduite ; perte de hash visible dans le code. Refactoring pertinent : oui.**
 
-[language-switcher.tsx:29](/Users/orhan/Developer/projects/portfolio/src/components/language-switcher.tsx:29) reconstruit le chemin depuis `pathname`. Passer de `/fr/articles?q=odoo` à l'anglais donne `/en/articles` et vide le filtre. Les ancres ne sont pas conservées non plus.
+[language-switcher.tsx:29](../src/components/language-switcher.tsx#L29) reconstruit le chemin depuis `pathname`. Passer de `/fr/articles?q=odoo` à l'anglais donne `/en/articles` et vide le filtre. Les ancres ne sont pas conservées non plus.
 
 Solution : remplacer uniquement le segment de locale dans l'URL et conserver query/hash quand ils gardent un sens. Tester un article ancré et une liste filtrée. Coordonner cette correction avec F11 pour ne pas résoudre l'URL tout en conservant le défaut de nonce.
 
@@ -177,7 +184,7 @@ Solution : remplacer uniquement le segment de locale dans l'URL et conserver que
 
 **Impact : Moyen. Violation CSP reproduite ; blocage du thème entier non observé. Refactoring pertinent : oui.**
 
-Le [layout de locale:55](/Users/orhan/Developer/projects/portfolio/src/app/[locale]/layout.tsx:55) reçoit un nonce de requête. Une navigation cliente vers l'autre langue fournit un nouveau contexte au fournisseur de thème, alors que la politique CSP du document courant conserve son nonce initial. Le style temporaire injecté par `next-themes` pour désactiver les transitions est alors bloqué. Une nouvelle bascule de thème reproduit la violation ; le thème change néanmoins.
+Le [layout de locale:55](../src/app/[locale]/layout.tsx#L55) reçoit un nonce de requête. Une navigation cliente vers l'autre langue fournit un nouveau contexte au fournisseur de thème, alors que la politique CSP du document courant conserve son nonce initial. Le style temporaire injecté par `next-themes` pour désactiver les transitions est alors bloqué. Une nouvelle bascule de thème reproduit la violation ; le thème change néanmoins.
 
 Solution : maintenir un nonce cohérent pendant la vie du document. Pour ce portfolio, une navigation complète lors du changement de langue peut être une solution simple et défendable, en conservant query/hash ; sinon, concevoir explicitement la propagation du nonce du document aux intégrations clientes. Valider la séquence chargement → navigation → langue → thème en écoutant `securitypolicyviolation`. Ne pas utiliser un nonce global fixe ni ajouter `unsafe-inline` pour faire disparaître le symptôme.
 
@@ -205,7 +212,7 @@ Pour deux langues, ni ICU généralisé ni plateforme de traduction ne sont indi
 
 **Impact : Moyen. Dette confirmée. Refactoring pertinent : oui, sans supprimer les liens contextuels.**
 
-Les titres et tags de projets mis en avant sur la page d'accueil doublonnent les données de réalisation. [experience-section.tsx:33](/Users/orhan/Developer/projects/portfolio/src/components/landing/experience-section.tsx:33) maintient deux tables manuelles de titres de réalisations et compétences. Une référence non répertoriée peut afficher son slug brut ; le catalogue évolue alors à plusieurs endroits.
+Les titres et tags de projets mis en avant sur la page d'accueil doublonnent les données de réalisation. [experience-section.tsx:33](../src/components/landing/experience-section.tsx#L33) maintient deux tables manuelles de titres de réalisations et compétences. Une référence non répertoriée peut afficher son slug brut ; le catalogue évolue alors à plusieurs endroits.
 
 Solution : résoudre les titres depuis les catalogues canoniques côté serveur et transmettre un petit tableau de liens prêts à afficher. Conserver les exceptions éditoriales explicites. Les liens de compétences de l'accueil et les liens thématiques peuvent viser des destinations différentes pour des raisons utiles : il ne faut pas les fusionner aveuglément dans une seule destination par mot.
 
@@ -215,7 +222,7 @@ Il existe aussi un type client de recherche proche du type d'index côté serveu
 
 **Impact : Moyen. Risque d'évolution, pas panne actuelle. Refactoring pertinent : oui.**
 
-[realisations/page.tsx:62](/Users/orhan/Developer/projects/portfolio/src/app/[locale]/realisations/page.tsx:62) utilise une recherche suivie de `!.id` ; [la page de détail:124](/Users/orhan/Developer/projects/portfolio/src/app/[locale]/realisations/[slug]/page.tsx:124) accède à `linkedExperiences[0].id`. Ajouter une réalisation sans expérience liée provoquerait une erreur au lieu d'un diagnostic éditorial compréhensible. Les données présentes passent les tests : le défaut est le contrat implicite.
+[realisations/page.tsx:62](../src/app/[locale]/realisations/page.tsx#L62) utilise une recherche suivie de `!.id` ; [la page de détail:124](../src/app/[locale]/realisations/[slug]/page.tsx#L124) accède à `linkedExperiences[0].id`. Ajouter une réalisation sans expérience liée provoquerait une erreur au lieu d'un diagnostic éditorial compréhensible. Les données présentes passent les tests : le défaut est le contrat implicite.
 
 Solution : décider si la relation est obligatoire. Si oui, valider tous les catalogues avant livraison avec une erreur nommant le slug fautif ; si non, rendre le lien conditionnel. Appliquer le même principe aux `Object.fromEntries` convertis en `Record` complet sans vérification. Des identifiants typés et quelques tests d'intégrité suffisent ; pas besoin de construire un moteur de graphes.
 
@@ -225,7 +232,7 @@ L'option exploratoire `noUncheckedIndexedAccess` révèle notamment l'accès `[0
 
 **Impact : Moyen. Rejet de fichier absent reproduit. Refactoring pertinent : oui.**
 
-Dans [articles.ts:39](/Users/orhan/Developer/projects/portfolio/src/lib/articles.ts:39), `return readFile(...)` sans `await` à l'intérieur du `try` laisse le rejet asynchrone échapper au `catch`. La lecture d'un fichier absent rejette l'index construit avec `Promise.all`.
+Dans [articles.ts:39](../src/lib/articles.ts#L39), `return readFile(...)` sans `await` à l'intérieur du `try` laisse le rejet asynchrone échapper au `catch`. La lecture d'un fichier absent rejette l'index construit avec `Promise.all`.
 
 Solution : capturer réellement le rejet si le contrat prévoit un repli. Pour un article publié dont le fichier manque, un échec explicite de validation avant livraison est souvent préférable à une indexation silencieusement vide. Clarifier le contrat et tester fichier absent, slug invalide et contenu vide. La présence de `cache` React ne transforme pas cette erreur en succès et ne constitue pas un cache interrequêtes durable.
 
@@ -233,7 +240,7 @@ Solution : capturer réellement le rejet si le contrat prévoit un repli. Pour u
 
 **Impact : Moyen. Pollution de recherche reproduite ; risque d'ancres identifié. Refactoring pertinent : oui.**
 
-[stripMdxForSearch](/Users/orhan/Developer/projects/portfolio/src/lib/articles.ts:21) enlève certains blocs mais laisse des imports et exports MDX. Une recherche sur `getArticleMetadata` peut faire remonter les six articles : la recherche indexe une partie de l'implémentation. Le sommaire est de son côté extrait puis rapproché des titres DOM par position, avec attribution d'identifiants après hydratation.
+[stripMdxForSearch](../src/lib/articles.ts#L21) enlève certains blocs mais laisse des imports et exports MDX. Une recherche sur `getArticleMetadata` peut faire remonter les six articles : la recherche indexe une partie de l'implémentation. Le sommaire est de son côté extrait puis rapproché des titres DOM par position, avec attribution d'identifiants après hydratation.
 
 Solution : utiliser la chaîne MDX existante pour extraire texte et titres en ignorant les nœuds de code/import, ou améliorer un nettoyage volontairement limité avec des fixtures représentatives. Générer les identifiants de titres à la compilation rendrait les liens directs fiables dès le HTML initial. Éviter deux parseurs indépendants qui réinventent la même structure. Tester titres répétés, liens, code, accents et ouverture directe d'une ancre.
 
@@ -241,7 +248,7 @@ Solution : utiliser la chaîne MDX existante pour extraire texte et titres en ig
 
 **Impact : Faible à Moyen. Convention et couplage. Refactoring pertinent : oui, petit déplacement.**
 
-Le fichier [articles/[slug]/layout.tsx](/Users/orhan/Developer/projects/portfolio/src/app/[locale]/articles/[slug]/layout.tsx) sert de composant partagé importé par les six routes MDX explicites, alors que le segment dynamique n'a pas sa propre page. C'est fonctionnel, mais le nom réservé suggère un rôle de routage différent de l'usage réel.
+Le fichier [articles/[slug]/layout.tsx](../src/app/[locale]/articles/[slug]/layout.tsx) sert de composant partagé importé par les six routes MDX explicites, alors que le segment dynamique n'a pas sa propre page. C'est fonctionnel, mais le nom réservé suggère un rôle de routage différent de l'usage réel.
 
 Solution : déplacer le composant partagé et ses types dans un module ordinaire, laisser les routes explicites et les exports de métadonnées lisibles. Les quelques lignes répétées dans six articles ne justifient pas à elles seules un chargeur dynamique sophistiqué. Le layout d'articles qui ne fait que retourner `children` peut également être supprimé s'il ne porte aucune intention documentée.
 
@@ -257,7 +264,7 @@ Solution : utiliser une configuration racine `test.projects` adaptée à la vers
 
 **Impact : Important pour une livraison ou une soutenance. Échecs reproduits. Refactoring pertinent : correction et entretien des tests.**
 
-ESLint signale cinq fois le même lien HTML brut dans [linked-text.test.tsx:26](/Users/orhan/Developer/projects/portfolio/src/components/__tests__/linked-text.test.tsx:26). Il faut corriger le mock ou justifier une exception strictement locale à la fixture, sans désactiver la règle pour l'application.
+ESLint signale cinq fois le même lien HTML brut dans [linked-text.test.tsx:26](../src/components/__tests__/linked-text.test.tsx#L26). Il faut corriger le mock ou justifier une exception strictement locale à la fixture, sans désactiver la règle pour l'application.
 
 Le test de navigation attend « Développeur full-stack — Alternance » alors que le contenu affiche « Développeur Fullstack — Alternance ». Trois captures d'accueil ne correspondent plus aux références. Les comparaisons desktop/mobile montrent notamment des changements de hauteur de page ; cela ne prouve pas, à lui seul, une régression visuelle du produit.
 

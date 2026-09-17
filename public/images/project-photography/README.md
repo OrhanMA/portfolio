@@ -1,13 +1,10 @@
-# Licensed project photography
+# Photographies de projet sous licence
 
-The images in this folder are locally optimized derivatives of the selected
-Pexels downloads. They are used as editorial illustrations, not as evidence
-of the actual customer systems or workplace.
+Les images de ce dossier sont des dérivés optimisés localement de photographies sélectionnées sur Pexels. Elles servent d'illustrations éditoriales et ne constituent pas des preuves des systèmes clients, des locaux ou des conditions de travail réelles.
 
-| File | Project card | Original | Photographer | License |
+| Fichier | Carte illustrée | Source originale | Photographe | Licence |
 | --- | --- | --- | --- | --- |
-| `pexels-server-racks-4508751.webp` | Odoo 16 to 19 migration | https://www.pexels.com/photo/server-racks-on-data-center-4508751/ | Brett Sayles | https://www.pexels.com/license/ |
-| `pexels-office-collaboration-12899161.webp` | Odoo business modules | https://www.pexels.com/photo/vertical-shot-of-a-man-and-woman-working-in-an-office-12899161/ | Mizuno K | https://www.pexels.com/license/ |
+| `pexels-server-racks-4508751.webp` | Migration Odoo 16 vers 19 | [Photographie Pexels](https://www.pexels.com/photo/server-racks-on-data-center-4508751/) | Brett Sayles | [Licence Pexels](https://www.pexels.com/license/) |
+| `pexels-office-collaboration-12899161.webp` | Modules métier Odoo | [Photographie Pexels](https://www.pexels.com/photo/vertical-shot-of-a-man-and-woman-working-in-an-office-12899161/) | Mizuno K | [Licence Pexels](https://www.pexels.com/license/) |
 
-Pexels permits free use and modification for website and commercial use; credit
-is not required, but is retained here for traceability.
+La licence Pexels autorise l'utilisation et la modification de ces photographies pour un site. L'attribution est conservée dans le dépôt et dans l'interface pour assurer leur traçabilité.

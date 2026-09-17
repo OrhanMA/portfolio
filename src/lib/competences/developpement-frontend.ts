@@ -3,7 +3,7 @@ import type { Competence } from "./types";
 export const developpementFrontend: Competence = {
   slug: "developpement-frontend",
   title: {
-    fr: "Développement Frontend (React/Next.js)",
+    fr: "Développement Front-end (React/Next.js)",
     en: "Frontend Development (React/Next.js)",
   },
   type: "technical",
@@ -11,7 +11,7 @@ export const developpementFrontend: Competence = {
   radarValue: 80,
   icon: "Monitor",
   definition: {
-    fr: `Le développement frontend transforme des contenus, des données et des actions en une interface compréhensible, accessible et fiable. La compétence ne se réduit pas à reproduire une maquette : il faut construire une hiérarchie, gérer les états, adapter la mise en page à la largeur disponible, préserver la navigation au clavier, annoncer correctement les changements et limiter le coût des ressources exécutées dans le navigateur.
+    fr: `Le développement front-end transforme des contenus, des données et des actions en une interface compréhensible, accessible et fiable. La compétence ne se réduit pas à reproduire une maquette : il faut construire une hiérarchie, gérer les états, adapter la mise en page à la largeur disponible, préserver la navigation au clavier, annoncer correctement les changements et limiter le coût des ressources exécutées dans le navigateur.
 
 Avec React et Next.js, je distingue les composants qui peuvent rester rendus sur le serveur de ceux qui nécessitent réellement de l'interactivité. Cette séparation réduit le JavaScript envoyé, clarifie les responsabilités et protège le chargement initial. Les animations restent isolées dans des composants clients, respectent la préférence de mouvement réduit et utilisent une portée explicite. L'internationalisation, les métadonnées et les routes localisées font partie de l'architecture plutôt que d'être ajoutées après les pages.
 
@@ -30,7 +30,7 @@ I evaluate an interface through several kinds of evidence: actual responsive beh
       en: "React 19.2 introduces Activity and Performance Tracks",
     },
     summary: {
-      fr: "React 19.2 a ajouté le composant Activity, le prérendu partiel et des pistes dédiées dans Chrome DevTools. Ces outils déplacent le travail frontend au-delà de l'affichage : il faut aussi savoir prioriser le rendu, préserver l'état et mesurer les performances réelles.",
+      fr: "React 19.2 a ajouté le composant Activity, le prérendu partiel et des pistes dédiées dans Chrome DevTools. Ces outils déplacent le travail front-end au-delà de l'affichage : il faut aussi savoir prioriser le rendu, préserver l'état et mesurer les performances réelles.",
       en: "React 19.2 added the Activity component, partial pre-rendering, and dedicated tracks in Chrome DevTools. These tools move frontend work beyond display alone: developers must also prioritize rendering, preserve state, and measure real performance.",
     },
     source: "React",
@@ -89,7 +89,7 @@ I evaluate an interface through several kinds of evidence: actual responsive beh
       en: "I assess myself as a strong intermediate. I can build a responsive, bilingual application, organize its components, integrate animation, and cover its main journeys. I still need to improve original visual design, validation by novice users, and optimization based on performance profiles more detailed than a global audit.",
     },
     importance: {
-      fr: "Le frontend rend visibles mes autres compétences. Une règle métier, une API ou une preuve professionnelle ne produit de valeur que si son interface permet de la comprendre et de l'utiliser. Il élargit aussi mon profil au-delà d'Odoo vers des produits web publics et des expériences de données.",
+      fr: "Le front-end rend visibles mes autres compétences. Une règle métier, une API ou une preuve professionnelle ne produit de valeur que si son interface permet de la comprendre et de l'utiliser. Il élargit aussi mon profil au-delà d'Odoo vers des produits web publics et des expériences de données.",
       en: "Frontend work makes my other skills visible. A business rule, API, or professional proof creates value only when its interface makes it understandable and usable. It also broadens my profile beyond Odoo toward public web products and data experiences.",
     },
     advice: {

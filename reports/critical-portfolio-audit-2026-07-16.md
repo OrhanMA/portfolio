@@ -1,5 +1,12 @@
 # Audit critique du portfolio — 16 juillet 2026
 
+> **Fiche d'archive**
+> - **Date :** 16 juillet 2026.
+> - **Nature :** audit critique technique et éditorial.
+> - **État :** photographie historique du site à cette date.
+> - **Suite :** [revue de livraison du 14 août 2026](./portfolio-delivery-audit-2026-08-14.md).
+> - **Avertissement :** ce rapport ne décrit pas nécessairement le checkout courant ; les rapports ultérieurs ne valent que pour leur propre candidat.
+
 ## Périmètre et méthode
 
 - Inspection du code Next.js 16 / React 19 / TypeScript strict et des routes App Router.

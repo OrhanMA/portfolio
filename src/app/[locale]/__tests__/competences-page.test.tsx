@@ -47,8 +47,8 @@ describe("CompetencesPage", () => {
 
     expect(technicalSkillTitles).toEqual([
       "Développement Odoo",
-      "Développement Backend & API",
-      "Développement Frontend (React/Next.js)",
+      "Développement Back-end & API",
+      "Développement Front-end (React/Next.js)",
       "Python",
       "DevOps & Administration Serveur",
     ]);

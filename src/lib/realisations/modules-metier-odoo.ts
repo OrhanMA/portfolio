@@ -17,9 +17,17 @@ export const modulesMetierOdoo: Realisation =
         fr: "Chez 1UP Distribution, les besoins de la comptabilité, des ventes, de l'administration des ventes et de la logistique dépassaient les possibilités de personnalisation sans code d'Odoo.",
         en: "At 1UP Distribution, accounting, sales, sales administration, and logistics needs exceeded Odoo's no-code customization capabilities.",
       },
+      challenge: {
+        fr: "Transformer des besoins transverses, non couverts par le paramétrage sans code, en extensions fiables et maintenables de l'ERP.",
+        en: "Turn cross-functional needs not covered by no-code configuration into reliable, maintainable ERP extensions.",
+      },
       role: {
         fr: "J'ai conçu en solo 16 modules Odoo, depuis l'analyse des besoins jusqu'au développement, aux tests, au déploiement et à l'accompagnement des utilisateurs.",
         en: "I independently designed 16 Odoo modules, from requirements analysis through development, testing, deployment, and user support.",
+      },
+      decision: {
+        fr: "Regrouper les évolutions dans une couche de modules versionnée, testable et reliée aux processus plutôt que multiplier les personnalisations isolées.",
+        en: "Group changes into a versioned, testable module layer tied to processes instead of multiplying isolated customizations.",
       },
       result: {
         fr: "Les modules automatisent des tâches métier, structurent des données partagées et rendent des fonctions telles que les relances, les documents ou la synchronisation B2B pilotables dans l'ERP.",

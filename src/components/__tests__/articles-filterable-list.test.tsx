@@ -57,13 +57,17 @@ describe("ArticlesFilterableList", () => {
 
   it("filters articles by tag", async () => {
     const user = userEvent.setup();
-    renderWithProviders(
+    const { container } = renderWithProviders(
       <ArticlesFilterableList
         articles={articles}
         locale="fr"
         labels={labels}
       />,
     );
+
+    expect(container.querySelector("[data-articles-index]")).toBeInTheDocument();
+    expect(container.querySelector("[data-articles-filter-panel]")).toBeInTheDocument();
+    expect(container.querySelector("[data-article-cards]")).toBeInTheDocument();
 
     await user.click(screen.getAllByRole("button", { name: "D3.js" })[0]);
 

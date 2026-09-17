@@ -755,7 +755,7 @@ const odooProjectCaseStudies: Record<
     },
     technicalHighlights: [
       {
-        fr: "Règles métier sur commandes, configuration, templates email et vues d'alerte.",
+        fr: "Règles métier sur commandes, configuration, modèles de courriel et vues d'alerte.",
         en: "Business rules on orders, configuration, email templates, and alert views.",
       },
     ],

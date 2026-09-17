@@ -1,10 +1,3 @@
-import { getArticleMetadata } from "../article-metadata";
-
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  return getArticleMetadata(locale, "refonte-site-corporate-1up");
-}
-
 # Refonte du site corporate 1UP : passer d'un site vitrine à une plateforme marketing moderne
 
 ## Contexte
@@ -23,7 +16,7 @@ Le site a été construit avec une stack moderne :
 - **Sanity** pour le CMS blog/carrières ;
 - **GSAP** pour les animations ;
 - **Lenis** pour le scroll fluide ;
-- **Resend** pour les emails de contact et de candidature ;
+- **Resend** pour les courriels de contact et de candidature ;
 - **Vercel** pour le déploiement.
 
 Le site inclut aussi les pages statiques clés : accueil, services, blog, contact, carrières, candidature spontanée, mentions légales et politique de confidentialité. Côté SEO, il embarque des métadonnées localisées, des alternates hreflang, du JSON-LD, un sitemap et un robots.txt.
@@ -38,7 +31,7 @@ La refonte a commencé par clarifier ce que le site devait raconter :
 - la crédibilité via les marques et les partenaires retail ;
 - l'histoire de l'entreprise et les éléments de preuve validés par le marketing et la direction.
 
-## Travail frontend
+## Travail front-end
 
 Plusieurs sections ont demandé une attention particulière :
 
@@ -65,7 +58,7 @@ Deux parcours de formulaire ont été intégrés :
 - contact commercial ;
 - candidature.
 
-Les routes API envoient les emails via Resend. Le site contient aussi une bannière de consentement cookies et des pages de conformité, notamment les mentions légales et la politique de confidentialité.
+Les routes API envoient les courriels via Resend. Le site contient aussi une bannière de consentement cookies et des pages de conformité, notamment les mentions légales et la politique de confidentialité.
 
 ## Résultat
 

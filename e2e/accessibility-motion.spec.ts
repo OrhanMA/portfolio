@@ -64,7 +64,7 @@ test.describe("motion and language accessibility", () => {
     ).toBe(true);
   });
 
-  test("marks the French MDX body without relabeling the English article UI", async ({
+  test("marks the translated MDX body with the English article language", async ({
     page,
   }) => {
     await page.emulateMedia({ colorScheme: "light", reducedMotion: "reduce" });
@@ -74,11 +74,16 @@ test.describe("motion and language accessibility", () => {
 
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
     const article = page.locator("article[data-article-content]");
-    await expect(article.locator(':scope > [lang="fr"][data-article-body]')).toHaveCount(
+    await expect(article.locator(':scope > [lang="en"][data-article-body]')).toHaveCount(
       1,
     );
-    await expect(article.locator(':scope > [lang="fr"][data-article-body] h1')).toBeVisible();
-    await expect(page.getByText("Articles are written in French; browser translation works well.")).toBeVisible();
-    await expect(page.getByText("Articles are written in French; browser translation works well.")).not.toHaveAttribute("lang", "fr");
+    await expect(
+      article.locator(':scope > [lang="en"][data-article-body] h1'),
+    ).toContainText("Odoo v16 to v19 migration");
+    await expect(
+      page.getByText(
+        "Articles are written in French; browser translation works well.",
+      ),
+    ).toHaveCount(0);
   });
 });

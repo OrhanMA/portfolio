@@ -89,7 +89,7 @@ Software supply-chain security is part of the skill: image versions, dependencie
       en: "I still rate myself as a beginner, albeit one who has already prepared deployments and a critical migration on managed platforms. I can use pipelines, logs, backups, and environment variables. I still lack experience building and operating the infrastructure itself, especially networking, distributed observability, and infrastructure as code.",
     },
     importance: {
-      fr: "La compétence est importante parce que je porte souvent la chaîne complète jusqu'à la production. Elle conditionne directement la fiabilité de mes compétences Odoo, backend et frontend : un bon correctif perd sa valeur s'il ne peut pas être déployé, surveillé ou restauré proprement.",
+      fr: "La compétence est importante parce que je porte souvent la chaîne complète jusqu'à la production. Elle conditionne directement la fiabilité de mes compétences Odoo, back-end et front-end : un bon correctif perd sa valeur s'il ne peut pas être déployé, surveillé ou restauré proprement.",
       en: "This skill matters because I often own the complete chain through production. It directly conditions the reliability of my Odoo, backend, and frontend skills: a good fix loses value if it cannot be deployed, monitored, or restored cleanly.",
     },
     advice: {

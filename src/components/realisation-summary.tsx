@@ -9,8 +9,11 @@ type RealisationSummaryProps = {
   currentPath: string;
   labels: {
     heading: string;
+    introduction: string;
     context: string;
+    challenge: string;
     role: string;
+    decision: string;
     result: string;
     proof: string;
     proofLink: string;
@@ -27,7 +30,9 @@ export function RealisationSummary({
 }: RealisationSummaryProps) {
   const items = [
     { term: labels.context, description: summary.context[locale] },
+    { term: labels.challenge, description: summary.challenge[locale] },
     { term: labels.role, description: summary.role[locale] },
+    { term: labels.decision, description: summary.decision[locale] },
     { term: labels.result, description: summary.result[locale] },
     { term: labels.proof, description: summary.proof[locale], href: proofHref },
   ];
@@ -35,6 +40,7 @@ export function RealisationSummary({
   return (
     <section data-realisation-summary aria-labelledby="realisation-summary-heading">
       <h2 id="realisation-summary-heading">{labels.heading}</h2>
+      <p data-realisation-summary-introduction>{labels.introduction}</p>
       <dl>
         {items.map((item) => (
           <div key={item.term}>

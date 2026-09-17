@@ -3,11 +3,15 @@ import type { Locale } from "@/lib/i18n";
 
 export type AboutEditorialContent = {
   journey: readonly ReactNode[];
-  values: readonly ReactNode[];
+  values: readonly {
+    content: ReactNode;
+    competenceSlug: string;
+  }[];
   project: readonly ReactNode[];
   qualities: readonly {
     title: string;
     content: ReactNode;
+    competenceSlug: string;
   }[];
   interests: readonly ReactNode[];
 };
@@ -47,26 +51,35 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
       </p>,
     ],
     values: [
-      <p key="values-1">
-        <strong>Responsabilité</strong> : ce que je développe et modifie est
-        déployé en production. Je suis responsable de livrer des fonctionnalités
-        de qualité. Sur Odoo, j&apos;ai une autonomie totale et j&apos;ai déjà
-        réalisé des dizaines de fonctionnalités et de corrections. Sur le site
-        B2B en Symfony, j&apos;ai une autonomie complète sur le développement de
-        fonctionnalités jusqu&apos;à la mise en production sur le serveur.
-      </p>,
-      <p key="values-2">
-        <strong>Autonomie</strong> : dès le premier jour de mon alternance,
-        j&apos;ai dû apprendre le framework Odoo en autonomie : comprendre la base
-        de code du framework, l&apos;existant en matière de configuration et de code
-        personnalisé, et répondre au fur et à mesure aux demandes sur l&apos;ERP.
-      </p>,
-      <p key="values-3">
-        <strong>Amélioration continue</strong> : je n&apos;ai pas la prétention
-        d&apos;implémenter à chaque fois la fonctionnalité parfaite. C&apos;est
-        pourquoi je cherche continuellement à améliorer l&apos;existant, pas
-        seulement à développer de nouvelles fonctionnalités.
-      </p>,
+      {
+        competenceSlug: "amelioration-continue",
+        content: <p key="values-1">
+          <strong>Responsabilité</strong> : ce que je développe et modifie est
+          déployé en production. Je suis responsable de livrer des fonctionnalités
+          de qualité. Sur Odoo, j&apos;ai une autonomie totale et j&apos;ai déjà
+          réalisé des dizaines de fonctionnalités et de corrections. Sur le site
+          B2B en Symfony, j&apos;ai une autonomie complète sur le développement de
+          fonctionnalités jusqu&apos;à la mise en production sur le serveur.
+        </p>,
+      },
+      {
+        competenceSlug: "autonomie",
+        content: <p key="values-2">
+          <strong>Autonomie</strong> : dès le premier jour de mon alternance,
+          j&apos;ai dû apprendre le framework Odoo en autonomie : comprendre la base
+          de code du framework, l&apos;existant en matière de configuration et de code
+          personnalisé, et répondre au fur et à mesure aux demandes sur l&apos;ERP.
+        </p>,
+      },
+      {
+        competenceSlug: "amelioration-continue",
+        content: <p key="values-3">
+          <strong>Amélioration continue</strong> : je n&apos;ai pas la prétention
+          d&apos;implémenter à chaque fois la fonctionnalité parfaite. C&apos;est
+          pourquoi je cherche continuellement à améliorer l&apos;existant, pas
+          seulement à développer de nouvelles fonctionnalités.
+        </p>,
+      },
     ],
     project: [
       <p key="project-1">
@@ -103,6 +116,7 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
     qualities: [
       {
         title: "Persévérance",
+        competenceSlug: "perseverance",
         content: <p>
         Je ne lâche pas sur une tâche complexe,
         quitte à prendre plus de temps que prévu pour trouver la solution. Mon
@@ -111,6 +125,7 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
       },
       {
         title: "Adaptabilité",
+        competenceSlug: "adaptabilite",
         content: <p>
         La diversité des projets, des technologies
         et des contextes sur lesquels j&apos;ai travaillé a renforcé ma capacité
@@ -120,6 +135,7 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
       },
       {
         title: "Communication",
+        competenceSlug: "communication",
         content: <p>
         Encore en progression, mais la
         documentation et la communication avec les profils non techniques sont
@@ -169,24 +185,33 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
       </p>,
     ],
     values: [
-      <p key="values-1">
-        <strong>Responsibility</strong>: what I develop and modify is shipped to
-        production. I&apos;m responsible for delivering high-quality features. On
-        Odoo, I have full autonomy and have already completed dozens of features
-        and bug fixes. On the Symfony B2B site, I have complete autonomy over
-        feature development through to production deployment on the server.
-      </p>,
-      <p key="values-2">
-        <strong>Autonomy</strong>: from the first day of my work-study program,
-        I had to learn the Odoo framework independently: understanding the
-        framework&apos;s codebase, existing configurations and custom code, and
-        addressing ERP requests as they arose.
-      </p>,
-      <p key="values-3">
-        <strong>Continuous improvement</strong>: I don&apos;t claim to implement
-        the perfect feature every time. That&apos;s why I continuously seek to
-        improve existing solutions, not just develop new features.
-      </p>,
+      {
+        competenceSlug: "amelioration-continue",
+        content: <p key="values-1">
+          <strong>Responsibility</strong>: what I develop and modify is shipped to
+          production. I&apos;m responsible for delivering high-quality features. On
+          Odoo, I have full autonomy and have already completed dozens of features
+          and bug fixes. On the Symfony B2B site, I have complete autonomy over
+          feature development through to production deployment on the server.
+        </p>,
+      },
+      {
+        competenceSlug: "autonomie",
+        content: <p key="values-2">
+          <strong>Autonomy</strong>: from the first day of my work-study program,
+          I had to learn the Odoo framework independently: understanding the
+          framework&apos;s codebase, existing configurations and custom code, and
+          addressing ERP requests as they arose.
+        </p>,
+      },
+      {
+        competenceSlug: "amelioration-continue",
+        content: <p key="values-3">
+          <strong>Continuous improvement</strong>: I don&apos;t claim to implement
+          the perfect feature every time. That&apos;s why I continuously seek to
+          improve existing solutions, not just develop new features.
+        </p>,
+      },
     ],
     project: [
       <p key="project-1">
@@ -221,6 +246,7 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
     qualities: [
       {
         title: "Perseverance",
+        competenceSlug: "perseverance",
         content: <p>
         I don&apos;t give up on complex tasks, even
         if it means taking more time than planned to find the solution. My career
@@ -229,6 +255,7 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
       },
       {
         title: "Adaptability",
+        competenceSlug: "adaptabilite",
         content: <p>
         Working on projects with varied
         technologies and requirements has strengthened my adaptability. On a
@@ -238,6 +265,7 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
       },
       {
         title: "Communication",
+        competenceSlug: "communication",
         content: <p>
         Still a work in progress, but
         documentation and communication with non-technical colleagues are two

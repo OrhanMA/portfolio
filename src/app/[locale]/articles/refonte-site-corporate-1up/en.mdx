@@ -1,0 +1,67 @@
+# 1UP corporate website redesign: moving from a showcase site to a modern marketing platform
+
+## Context
+
+1UP Distribution needed a corporate website that better matched its positioning: omnichannel distribution, gaming and pop-culture product creation, international presence, partner brands, and retail credibility.
+
+The previous website could no longer convey that image appropriately. The redesign was therefore conceived as a business asset, not merely a visual update.
+
+## Technical stack
+
+The site was built with a modern stack:
+
+- **Next.js 16** and React 19;
+- **next-intl** for internationalization;
+- an initial release in **French and English**;
+- **Sanity** for the blog and careers CMS;
+- **GSAP** for animation;
+- **Lenis** for smooth scrolling;
+- **Resend** for contact and application emails;
+- **Vercel** for deployment.
+
+It also includes the key static pages: home, services, blog, contact, careers, unsolicited application, legal notice, and privacy policy. On the SEO side, it includes localized metadata, hreflang alternates, JSON-LD, a sitemap, and robots.txt.
+
+## Product work
+
+The redesign began by clarifying the story the site needed to tell:
+
+- 1UP as an omnichannel distribution partner;
+- its ability to cover retail, e-commerce, marketplaces, and international business;
+- product creation through ONIVERSE and licensing;
+- credibility through brands and retail partners;
+- the company's story and evidence validated by marketing and management.
+
+## Front-end work
+
+Several sections needed particular attention:
+
+- the video hero, to immediately convey a more premium image;
+- brand and partner carousels, made interactive with GSAP Draggable;
+- page transitions;
+- scroll-triggered animations;
+- reusable UI components: buttons, illuminated surfaces, containers, and breadcrumbs;
+- responsive navigation;
+- the visual theme and mobile readability.
+
+The challenge was to keep the result rich without turning the site into a gratuitous technical demonstration. Animation had to support the message, not replace it.
+
+## CMS and dynamic content
+
+Sanity was integrated to manage editorial content and career opportunities. The code includes schemas for posts, authors, categories, tags, job offers, and SEO objects. Blog and careers pages can therefore evolve without redeploying the site for every content change.
+
+## Forms and compliance
+
+Two form journeys were integrated:
+
+- commercial contact;
+- job application.
+
+API routes send emails through Resend. The site also includes a cookie-consent banner and compliance pages, including legal notice and privacy policy.
+
+## Outcome
+
+The redesign turns the website into a more complete brand asset: internationalized, animated, responsive, editable, better structured for SEO, and more commercially credible.
+
+A Lighthouse audit run during development reported **99/100 performance**, **100/100 accessibility**, and **96/100 best practices**. These scores are a development reference and must be checked again with the final hosting and final content at production release.
+
+This project allowed me to work on a complete corporate website with performance, brand image, accessibility, content, forms, and long-term maintenance concerns.

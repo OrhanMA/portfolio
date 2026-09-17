@@ -80,6 +80,21 @@ Finally, developing for Odoo requires choosing between standard behavior, config
       linkedRealisation: "modules-metier-odoo",
     },
   ],
+  media: [
+    {
+      type: "image",
+      src: "/images/project-screenshots/odoo/jira-odoo-workflow-board.png",
+      layout: "wide",
+      title: {
+        fr: "Pilotage actuel des tâches Odoo dans Jira",
+        en: "Current Odoo task workflow in Jira",
+      },
+      description: {
+        fr: "Capture du 17 septembre 2026. Le tableau regroupe les demandes Odoo par état, de l'analyse à la revue puis à l'attente de mise en production. Il illustre mon workflow quotidien actuel et non l'historique du projet de migration.",
+        en: "Captured on September 17, 2026. The board organizes Odoo requests by status, from analysis through review and deployment readiness. It illustrates my current daily workflow, not the migration project's historical backlog.",
+      },
+    },
+  ],
   selfCritique: {
     level: {
       fr: "J'estime avoir un niveau avancé. Je peux concevoir, migrer, sécuriser, déployer et maintenir des modules couvrant plusieurs services, et je sais rechercher un comportement dans le code source. Je ne me considère pas expert : le moteur comptable, les optimisations profondes de l'ORM et certaines interactions internes restent des domaines où je dois encore mesurer davantage avant de modifier.",

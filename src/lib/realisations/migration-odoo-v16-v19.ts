@@ -17,9 +17,17 @@ export const migrationOdooV16V19: Realisation =
         fr: "À l'été 2025, l'ERP Odoo 16 de 1UP Distribution, utilisé par 20 utilisateurs internes, devait évoluer hors de sa période de support avec 16 modules sur mesure et des extensions tierces.",
         en: "In summer 2025, 1UP Distribution's Odoo 16 ERP, used by 20 internal users, needed to move beyond its support period with 16 custom modules and third-party extensions.",
       },
+      challenge: {
+        fr: "Faire évoluer un ERP central sans perdre les données, les règles métier et les intégrations dont dépendait l'activité quotidienne.",
+        en: "Upgrade a central ERP without losing the data, business rules, and integrations that daily operations depended on.",
+      },
       role: {
         fr: "J'ai pris seul en charge la préparation, les trois migrations successives, les tests, la mise en production et les corrections après la bascule.",
         en: "I independently handled preparation, the three successive migrations, testing, production release, and post-cutover fixes.",
+      },
+      decision: {
+        fr: "Procéder par trois migrations successives, inventorier les personnalisations et stabiliser chaque usage métier après la bascule.",
+        en: "Proceed through three successive migrations, inventory customizations, and stabilize each business workflow after cutover.",
       },
       result: {
         fr: "L'ERP et les modules nécessaires ont été portés vers Odoo 19 en préservant les données, les fonctions métier utiles et la continuité de service recherchée.",
@@ -339,6 +347,175 @@ Finally, the migration had to deliver functional value rather than merely satisf
         description: {
           fr: "Validation de la branche cible Odoo 19 avant merge staging → production.",
           en: "Validation of the target Odoo 19 branch before the staging to production merge.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-filter-removal-inventory.png",
+        layout: "wide",
+        title: {
+          fr: "Inventaire préparatoire des filtres à supprimer",
+          en: "Pre-migration inventory of filters to remove",
+        },
+        description: {
+          fr: "Avant la migration, ce tableau recense les filtres utilisateurs à retirer, avec leur modèle, leur action, leur domaine et leur contexte. Cet inventaire délimite le périmètre du script de nettoyage et permet d'en contrôler les effets.",
+          en: "Before the migration, this sheet lists the user filters to remove together with their model, action, domain, and context. The inventory defines the cleanup script's scope and makes its effects verifiable.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-git-commits-jan21-26.png",
+        layout: "wide",
+        title: {
+          fr: "Préparation des scripts et modules de migration",
+          en: "Preparing migration scripts and modules",
+        },
+        description: {
+          fr: "L'historique du 21 au 26 janvier 2026 retrace l'ajout des modules Odoo 19, la correction des scripts de pré et post-migration, l'ajout de tests unitaires et l'intégration de la branche migration_v19 sur master. Cette capture constitue une sélection représentative de l'historique versionné.",
+          en: "The January 21-26, 2026 history records the addition of Odoo 19 modules, fixes to pre- and post-migration scripts, new unit tests, and the integration of migration_v19 into master. This screenshot is a representative selection from the versioned history.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-git-commits-jan27-28.png",
+        layout: "wide",
+        title: {
+          fr: "Corrections de données et de vues avant validation",
+          en: "Data and view corrections before validation",
+        },
+        description: {
+          fr: "Les commits des 27 et 28 janvier 2026 documentent les corrections QWeb et SIRET, la reprise de delivery_date, le nettoyage des filtres hérités et les itérations effectuées sur la branche de test. Cette capture constitue une sélection représentative de l'historique versionné.",
+          en: "The January 27-28, 2026 commits document QWeb and SIRET corrections, the transfer to delivery_date, inherited-filter cleanup, and iterations on the test branch. This screenshot is a representative selection from the versioned history.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-git-commits-feb06-08.png",
+        layout: "wide",
+        title: {
+          fr: "Stabilisation technique et intégration sur master",
+          en: "Technical stabilization and integration into master",
+        },
+        description: {
+          fr: "Les commits du 6 au 8 février 2026 montrent l'indexation des modèles utilisés par les applications B2B et SBO, plusieurs correctifs techniques puis la fusion validée de migration_v19_test dans master. Cette capture constitue une sélection représentative de l'historique versionné.",
+          en: "The February 6-8, 2026 commits show indexing work for the models used by the B2B and SBO applications, several technical fixes, and the verified merge of migration_v19_test into master. This screenshot is a representative selection from the versioned history.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-hooks-fields-access-rights.png",
+        layout: "wide",
+        title: {
+          fr: "Transfert des champs et reprise des droits",
+          en: "Field transfer and access-right migration",
+        },
+        description: {
+          fr: "Les hooks d'initialisation du module 1up_res_partner_extension transfèrent les champs existants vers le code versionné puis rattachent les utilisateurs aux nouveaux groupes.",
+          en: "The initialization hooks in 1up_res_partner_extension move existing fields into version-controlled code, then assign users to the new groups.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-studio-views-pre-migrate.png",
+        layout: "wide",
+        title: {
+          fr: "Neutralisation des vues Studio incompatibles",
+          en: "Disabling incompatible Studio views",
+        },
+        description: {
+          fr: "Le hook de pré-migration repère et désactive les vues Studio devenues incompatibles afin qu'elles ne bloquent pas la reconstruction en Odoo 19.",
+          en: "The pre-migration hook identifies and disables incompatible Studio views so they cannot block the Odoo 19 rebuild.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-qweb-reports-post-migrate.png",
+        layout: "wide",
+        title: {
+          fr: "Correction des rapports QWeb",
+          en: "QWeb report corrections",
+        },
+        description: {
+          fr: "Le hook de post-migration met à jour les rapports de facture, corrige l'utilisation du champ SIRET et adapte les sous-totaux avant la validation des vues.",
+          en: "The post-migration hook updates invoice reports, corrects SIRET field usage, and adapts subtotals before validating the views.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-obsolete-automations-cleanup.png",
+        layout: "wide",
+        title: {
+          fr: "Suppression des automatisations obsolètes",
+          en: "Removing obsolete automated actions",
+        },
+        description: {
+          fr: "Les actions automatisées devenues invalides ou remplacées sont supprimées avec leurs métadonnées afin d'éviter des erreurs après la migration.",
+          en: "Automated actions that became invalid or were replaced are removed with their metadata to prevent post-migration errors.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-filters-data-templates.png",
+        layout: "wide",
+        title: {
+          fr: "Exécution du nettoyage des filtres et de la migration des données",
+          en: "Running filter cleanup and data migration",
+        },
+        description: {
+          fr: "Après l'inventaire préparatoire présenté plus haut, ce journal confirme l'exécution observée de la suppression des filtres recensés, le transfert de la date de livraison Studio vers delivery_date et la correction des langues des modèles de courriel.",
+          en: "After the pre-migration inventory shown above, this log confirms the observed execution of the inventoried filter removal, the transfer of the Studio delivery date to delivery_date, and the correction of email-template languages.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-business-views-reactivation.png",
+        layout: "wide",
+        title: {
+          fr: "Réactivation des vues métier compatibles",
+          en: "Reactivating compatible business views",
+        },
+        description: {
+          fr: "Après correction, les vues amazon_ept nécessaires sont réactivées et les modèles de courriel retrouvent une expression de langue compatible.",
+          en: "After correction, the required amazon_ept views are reactivated and email templates receive a compatible language expression.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-contact-references-post-init.png",
+        layout: "wide",
+        title: {
+          fr: "Préconfiguration des centrales",
+          en: "Preconfiguring central organizations",
+        },
+        description: {
+          fr: "Le hook de post-initialisation du module Contacts crée les 16 centrales attendues afin que le référentiel métier soit disponible dès la fin de la migration.",
+          en: "The Contacts module post-initialization hook creates the 16 required central organizations so the business reference data is ready when migration finishes.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/migration-odoo19-modules-loaded.png",
+        layout: "wide",
+        title: {
+          fr: "Chargement complet de l'ERP en Odoo 19",
+          en: "Complete ERP load on Odoo 19",
+        },
+        description: {
+          fr: "La trace finale confirme le chargement des 339 modules, dont 1up_account_extension, puis l'exécution des derniers nettoyages de schéma.",
+          en: "The final trace confirms that all 339 modules, including 1up_account_extension, loaded before the remaining schema cleanup ran.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/project-screenshots/odoo/jira-odoo-workflow-board.png",
+        layout: "wide",
+        title: {
+          fr: "Exemple actuel du workflow Odoo après la migration",
+          en: "Current Odoo workflow example after the migration",
+        },
+        description: {
+          fr: "Capture du 17 septembre 2026, postérieure à la migration v16-v19. Elle montre comment les demandes Odoo sont aujourd'hui suivies entre travail à faire, développement, revue, attente de mise en production et clôture.",
+          en: "Captured on September 17, 2026, after the v16-v19 migration. It shows how Odoo requests are now tracked across planned work, development, review, deployment readiness, and completion.",
         },
       },
     ],

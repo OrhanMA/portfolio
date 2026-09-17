@@ -1,230 +1,200 @@
-# Portfolio — User Flow Test Plan
+# Plan des parcours utilisateurs
 
-## Application Overview
+## Objet
 
-A bilingual (FR/EN) portfolio website built with Next.js 16. Features include:
-- Homepage with hero section and project showcase
-- Article listing and detail pages (MDX content)
-- Contact form with multi-layer anti-spam (honeypot, time check, rate limiting, reCAPTCHA)
-- Language switcher (FR ↔ EN) with cookie persistence
-- Dark/light theme toggle
-- Cookie consent banner (GDPR-compliant)
-- Smooth scroll animations (GSAP + Lenis)
+Ce plan couvre les comportements publics du portfolio bilingue. Il sert de carte de recette ; les assertions exécutables se trouvent dans `e2e/*.spec.ts`.
 
-Base URL: `http://localhost:3000`
-Default locale: French (`/fr`)
+Base locale par défaut : `http://localhost:3000`.
 
----
+## 1. Navigation principale
 
-## Test Scenarios
+### Objectif
 
-### 1. Navigation
-**Seed:** `e2e/seed.spec.ts`
+Une personne peut atteindre les sections principales, les pages de synthèse et les fiches détaillées depuis la navigation adaptée à son écran.
 
-#### 1.1 Navigate to all pages from navbar
-**Steps:**
-1. Go to `/fr`
-2. Click each navbar link (Articles, Contact)
-3. Verify correct page loads with expected heading
+### Scénarios
 
-**Expected Results:**
-- Each page renders without errors
-- URL matches expected path (`/fr/articles`, `/fr/contact`)
-- Page heading is visible
+- Charger l'accueil français et vérifier le titre principal, l'identité et les destinations majeures.
+- Ouvrir les sous-menus de compétences et réalisations sur desktop.
+- Ouvrir et fermer la navigation mobile, y compris avec Échap et restitution du focus.
+- Parcourir À propos, Parcours, Compétences, Réalisations, Projets Odoo, Articles et Contact.
+- Suivre les liens vers une compétence, une réalisation, une expérience, une formation et un module Odoo.
+- Utiliser les ancres du parcours depuis une navigation directe.
+- Vérifier qu'une URL inconnue rend la page 404 appropriée.
 
-#### 1.2 Navigate to article detail
-**Steps:**
-1. Go to `/fr/articles`
-2. Click on the first article card
-3. Verify article page loads
+### Résultat attendu
 
-**Expected Results:**
-- Article page renders with title and content
-- Back navigation works
+Les liens sont visibles, nommés, activables au clavier et conservent la locale. Aucun panneau ne reste ouvert après une navigation.
 
-#### 1.3 Footer links work
-**Steps:**
-1. Go to `/fr`
-2. Scroll to footer
-3. Click legal notice link
-4. Verify legal page loads
+## 2. Internationalisation
 
-**Expected Results:**
-- Footer links navigate to correct pages (`/fr/mentions-legales`, `/fr/politique-confidentialite`)
+### Objectif
 
-#### 1.4 Sitemap and document structure remain healthy
-**Seed:** `e2e/sitemap.spec.ts`
+Le français et l'anglais rendent le même parcours fonctionnel sans perdre le contexte utile.
 
-**Steps:**
-1. Fetch every URL emitted by `/sitemap.xml`
-2. Verify semantic landmarks, one H1, heading order, canonical URL and image alternatives
-3. Validate JSON-LD, internal links and the nonce-based CSP on each route
+### Scénarios
 
-**Expected Results:**
-- Every sitemap URL and internal link returns HTTP 200
-- No duplicate IDs, heading-level skips or CSP nonce mismatch is present
+- Charger `/` et vérifier la redirection selon la préférence puis `Accept-Language`.
+- Vérifier les contenus et l'attribut `lang` sur `/fr` et `/en`.
+- Changer de langue depuis une page de synthèse, une fiche et un article.
+- Préserver les paramètres `q` et `tag` de la liste d'articles.
+- Préserver une ancre d'article lorsqu'un titre équivalent existe.
+- Vérifier la persistance de la préférence au fil de la navigation.
+- Vérifier qu'un changement complet de locale renouvelle correctement le nonce CSP.
 
----
+### Résultat attendu
 
-### 2. Internationalization (i18n)
-**Seed:** `e2e/seed.spec.ts`
+La destination logique, les paramètres utiles et les ancres compatibles sont conservés. Le contenu rendu et ses métadonnées utilisent la bonne langue.
 
-#### 2.1 Switch language FR → EN
-**Steps:**
-1. Go to `/fr`
-2. Click the language switcher button (shows "EN")
-3. Verify page reloads in English
+## 3. Articles bilingues
 
-**Expected Results:**
-- URL changes to `/en`
-- Page content is in English
-- Language switcher now shows "FR"
+### Objectif
 
-#### 2.2 Switch language EN → FR
-**Steps:**
-1. Go to `/en`
-2. Click the language switcher button (shows "FR")
-3. Verify page reloads in French
+Chaque article rend son corps localisé, sa structure éditoriale et ses outils de lecture.
 
-**Expected Results:**
-- URL changes to `/fr`
-- Page content is in French
+### Scénarios
 
-#### 2.3 Language preference persists
-**Steps:**
-1. Go to `/fr`
-2. Switch to English
-3. Navigate to another page
-4. Verify page is still in English
+- Parcourir tous les articles dans les deux locales.
+- Vérifier le masthead, le temps de lecture, le sommaire et les articles liés.
+- Vérifier les ancres `h2` et `h3` après un changement de langue.
+- Copier un lien de titre et observer le retour utilisateur.
+- Filtrer par tag, saisir une recherche, effacer rapidement la recherche et naviguer dans l'historique.
+- Désactiver JavaScript et vérifier que la liste conserve des liens vers les articles.
 
-**Expected Results:**
-- Language preference is maintained across navigation
-- `NEXT_LOCALE` cookie is set
+### Résultat attendu
 
----
+Le corps, le temps de lecture, la recherche et les ancres correspondent à la locale. Les filtres ne constituent jamais l'unique accès aux articles.
 
-### 3. Contact Form
-**Seed:** `e2e/seed.spec.ts`
+## 4. Contact et anti-spam
 
-#### 3.1 Submit valid contact form
-**Steps:**
-1. Go to `/fr/contact`
-2. Fill in name: "Jean Dupont"
-3. Fill in email: "jean@example.com"
-4. Select reason: "Offre"
-5. Fill in message (at least 20 characters)
-6. Click "Envoyer"
+### Objectif
 
-**Expected Results:**
-- Form submits (loading state appears)
-- Success message is displayed
-- Form resets or shows confirmation
+Le formulaire reste compréhensible et validé sans exposer de donnée dans l'URL.
 
-#### 3.2 Validation errors on empty submit
-**Steps:**
-1. Go to `/fr/contact`
-2. Click "Envoyer" without filling any fields
+### Scénarios
 
-**Expected Results:**
-- Validation errors appear for required fields
-- Form is not submitted
+- Charger les pages Contact française et anglaise.
+- Vérifier labels, champs, sujet, compteur, liens de confidentialité et bouton d'envoi.
+- Soumettre un formulaire vide et relier chaque erreur à son champ.
+- Choisir le motif « Autre » et vérifier le sujet personnalisé.
+- Refuser le stockage navigateur et conserver une page utilisable.
+- Désactiver JavaScript et vérifier le fallback de contact sûr.
+- Sur un environnement autorisé, contrôler séparément envoi valide, honeypot, délai minimal, rate limit et reCAPTCHA.
 
-#### 3.3 Custom subject appears for "Autre" reason
-**Steps:**
-1. Go to `/fr/contact`
-2. Select reason "Autre" from dropdown
+### Résultat attendu
 
-**Expected Results:**
-- A custom subject input field appears
+Les erreurs sont annoncées de manière accessible, aucune donnée de message ne passe dans l'URL et les protections échouent sans révéler de secret.
 
-#### 3.4 Character counter shows message length
-**Steps:**
-1. Go to `/fr/contact`
-2. Type text in the message textarea
+## 5. Consentement et mesure d'audience
 
-**Expected Results:**
-- Character counter updates (e.g., "15/5000")
+### Objectif
 
----
+Aucun script Analytics ne se charge avant un consentement explicite, et le choix reste modifiable.
 
-### 4. Cookie Consent
-**Seed:** `e2e/seed.spec.ts`
+### Scénarios
 
-#### 4.1 Banner appears on first visit
-**Steps:**
-1. Clear all cookies and localStorage
-2. Go to `/fr`
-3. Wait 2 seconds
+- Vérifier l'apparition initiale de la bannière.
+- Accepter, refuser puis recharger la page.
+- Ouvrir les préférences depuis le footer.
+- Retirer un consentement déjà accordé.
+- Simuler un échec de stockage.
+- Vérifier l'absence d'Analytics lorsque la catégorie est refusée ou non configurée.
 
-**Expected Results:**
-- Cookie consent banner appears with "Cookies" heading
-- Accept, Reject, and Manage buttons are visible
+### Résultat attendu
 
-#### 4.2 Accept all cookies
-**Steps:**
-1. Trigger the cookie consent banner
-2. Click "Accepter"
+Le choix persiste lorsque le stockage fonctionne, l'interface reste utilisable lorsqu'il échoue et aucun fallback `<noscript>` ne contourne le consentement.
 
-**Expected Results:**
-- Banner disappears
-- Consent is stored in localStorage
-- Banner does not reappear on next page load
+## 6. Thème, mouvement et rendu visuel
 
-#### 4.3 Reject all cookies
-**Steps:**
-1. Trigger the cookie consent banner
-2. Click "Refuser"
+### Objectif
 
-**Expected Results:**
-- Banner disappears
-- Analytics cookies are not set
+Les thèmes clair et sombre, les visuels atmosphériques et les variantes de mouvement restent lisibles.
 
-#### 4.4 Manage cookie preferences
-**Steps:**
-1. Trigger the cookie consent banner
-2. Click "Gérer" (Manage) button
-3. Verify preference panel expands
-4. Toggle analytics off
-5. Save preferences
+### Scénarios
 
-**Expected Results:**
-- Preference panel shows "Nécessaires" (always on) and "Analytiques" (toggleable)
-- Saving preferences closes the banner
+- Basculer le thème depuis plusieurs routes et vérifier sa persistance.
+- Vérifier l'accueil en desktop, mobile et sombre.
+- Contrôler le portrait clair/sombre et le fond vidéo avec son poster.
+- Activer `prefers-reduced-motion` et vérifier la présence immédiate du contenu ainsi que le fallback statique.
+- Vérifier les pages secondaires aux principaux breakpoints sans débordement horizontal.
 
----
+### Résultat attendu
 
-### 5. Theme Toggle
-**Seed:** `e2e/seed.spec.ts`
+Le contenu reste prioritaire, le changement de thème ne produit pas d'erreur CSP et la réduction des mouvements supprime les animations non essentielles.
 
-#### 5.1 Toggle dark/light mode
-**Steps:**
-1. Go to `/fr`
-2. Click the theme toggle button
-3. Verify theme changes
+## 7. Accessibilité et contrôles interactifs
 
-**Expected Results:**
-- `<html>` element class toggles between "dark" and "light"
-- Visual appearance changes accordingly
+### Objectif
 
-#### 5.2 Theme persists across pages
-**Steps:**
-1. Switch to light mode
-2. Navigate to another page
-3. Verify theme is still light mode
+Chaque route publique et chaque contrôle respectent leurs contrats sémantiques et clavier.
 
-**Expected Results:**
-- Theme preference is maintained across navigation
+### Scénarios
 
----
+- Parcourir les liens, boutons, disclosures, sélecteurs, champs et contrôles média au clavier.
+- Vérifier noms accessibles, états `aria-expanded`, associations label/champ, descriptions d'erreur et focus visibles.
+- Exécuter Axe sur toutes les routes publiques des deux locales.
+- Vérifier les variantes desktop et mobile des contrôles de navigation.
+- Vérifier les contrôles de copie, recherche, thème, langue et vidéo.
 
-### 6. 404 Page
-**Seed:** `e2e/seed.spec.ts`
+### Résultat attendu
 
-#### 6.1 Non-existent page shows 404
-**Steps:**
-1. Navigate to `/fr/this-page-does-not-exist`
+Aucune violation Axe couverte par la suite n'est présente, le focus ne se perd pas et chaque contrôle annonce correctement son rôle et son état.
 
-**Expected Results:**
-- 404 page is displayed
-- Page shows appropriate "not found" message
-- Navigation back to homepage is available
+## 8. Sitemap, liens et données structurées
+
+### Objectif
+
+Les routes déclarées, liens internes et métadonnées forment un graphe cohérent.
+
+### Scénarios
+
+- Charger toutes les URL du sitemap.
+- Vérifier les liens internes rendus côté serveur et côté client.
+- Vérifier H1, canonical, alternates FR/EN/x-default et données structurées.
+- Naviguer côté client et confirmer la mise à jour du JSON-LD.
+- Contrôler les liens réciproques compétences, réalisations et expériences.
+
+### Résultat attendu
+
+Chaque destination interne existe, conserve sa locale et expose les métadonnées attendues sans relation orpheline.
+
+## 9. Médias et preuves
+
+### Objectif
+
+Les médias documentaires restent consultables, attribués et distingués des illustrations.
+
+### Scénarios
+
+- Vérifier les galeries de preuves Odoo pour les locales, thèmes et viewports couverts.
+- Vérifier les documents publics du footer.
+- Vérifier les attributions externes des photographies de projet.
+- Activer les lecteurs vidéo uniquement après une action explicite.
+
+### Résultat attendu
+
+Les médias ne provoquent pas de débordement, les contrôles ont un nom accessible et une illustration n'est pas présentée comme preuve d'un système client.
+
+## 10. Frontières d'exécution et robustesse
+
+### Objectif
+
+Le site reste stable dans les configurations dégradées couvertes.
+
+### Scénarios
+
+- Surveiller les erreurs navigateur non capturées sur des routes représentatives.
+- Refuser le stockage navigateur.
+- Désactiver JavaScript.
+- Utiliser un fuseau horaire occidental et vérifier les dates calendaires.
+- Exécuter une recherche rapide produisant plusieurs intentions successives.
+
+### Résultat attendu
+
+La page reste utilisable, les dates ne changent pas de jour, la dernière intention de recherche gagne et aucune donnée sensible n'est exposée.
+
+## Correspondance avec les suites E2E
+
+Les familles précédentes correspondent notamment aux specs `navigation`, `i18n`, `article-layout`, `contact`, `cookie-consent`, `homepage-visual`, `accessibility-motion`, `site-accessibility`, `interactive-controls`, `runtime-boundaries`, `secondary-pages`, `sitemap` et `odoo-evidence-media`.
+
+Lorsqu'un fichier de test est ajouté, renommé ou découpé, mettre à jour cette correspondance sans recopier toutes ses assertions.

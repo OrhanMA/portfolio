@@ -3,6 +3,7 @@ import { CtaSection } from "@/components/landing/cta-section";
 import { ExperienceSection } from "@/components/landing/experience-section";
 import { HeroSection } from "@/components/landing/hero-section";
 import { HomepageMotion } from "@/components/landing/homepage-motion";
+import { PageEndCta } from "@/components/page-end-cta";
 import { ProjectsSection } from "@/components/landing/projects-section";
 import { RouteStructuredData } from "@/components/route-structured-data";
 import { SkillsSection } from "@/components/landing/skills-section";
@@ -66,6 +67,17 @@ export default async function Home({
         dict={dict.featuredProjects}
       />
       <CtaSection locale={loc} dict={dict.cta} />
+      <PageEndCta
+        id="about-discovery"
+        title={dict.about.heading}
+        description={dict.about.lead}
+        links={[
+          {
+            href: `/${loc}/a-propos`,
+            label: dict.about.viewFullProfile,
+          },
+        ]}
+      />
       <HomepageMotion />
     </>
   );

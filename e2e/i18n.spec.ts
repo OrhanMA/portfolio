@@ -69,15 +69,25 @@ test.describe("Internationalization", () => {
     await navigation;
 
     await expect(page).toHaveURL(
-      /\/en\/articles\/migration-odoo-v16-v19#contexte$/,
+      /\/en\/articles\/migration-odoo-v16-v19#context$/,
     );
-    await expect(page.locator("#contexte")).toBeVisible();
+    await expect(page.locator("#context")).toBeVisible();
   });
 
   test("can switch theme after a full locale navigation without CSP violations", async ({
     page,
   }) => {
     await page.addInitScript(() => {
+      localStorage.setItem(
+        "cookie-consent",
+        JSON.stringify({
+          necessary: true,
+          analytics: false,
+          version: 2,
+          decidedAt: Date.now(),
+        }),
+      );
+
       const violations: string[] = [];
       (
         window as typeof window & { __cspViolations?: string[] }

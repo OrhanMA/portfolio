@@ -3,7 +3,7 @@ import type { Competence } from "./types";
 export const developpementBackend: Competence = {
   slug: "developpement-backend",
   title: {
-    fr: "Développement Backend & API",
+    fr: "Développement Back-end & API",
     en: "Backend & API Development",
   },
   type: "technical",
@@ -11,7 +11,7 @@ export const developpementBackend: Competence = {
   radarValue: 80,
   icon: "Server",
   definition: {
-    fr: `Le développement backend couvre les traitements exécutés côté serveur : règles métier, accès aux données, authentification et autorisation, API, tâches planifiées, intégrations externes et observabilité. Une route qui renvoie une réponse correcte n'est qu'une partie du travail. Il faut définir les données acceptées, valider les entrées, préserver les invariants, gérer les erreurs, protéger les secrets, contrôler les effets de bord et rendre le comportement testable.
+    fr: `Le développement back-end couvre les traitements exécutés côté serveur : règles métier, accès aux données, authentification et autorisation, API, tâches planifiées, intégrations externes et observabilité. Une route qui renvoie une réponse correcte n'est qu'une partie du travail. Il faut définir les données acceptées, valider les entrées, préserver les invariants, gérer les erreurs, protéger les secrets, contrôler les effets de bord et rendre le comportement testable.
 
 Ma pratique ne se limite pas à un seul langage. J'utilise Python avec l'ORM Odoo pour les processus ERP, PHP et Symfony sur le site B2B, Node.js avec Express, Prisma et PostgreSQL pour CAP2vie, ainsi que les Server Actions de Next.js pour le portfolio. Cette diversité m'a appris à reconnaître les mêmes responsabilités derrière des outils différents : contrat d'échange, transaction, contrôle d'accès, résilience et traçabilité.
 
@@ -30,7 +30,7 @@ I pay particular attention to integrations. When two systems exchange customers,
       en: "Symfony 8.0 removes deprecated APIs",
     },
     summary: {
-      fr: "Symfony 8.0.0 est devenu stable le 27 novembre 2025, accompagné de ses nouveautés et d'un guide de mise à niveau. Cette sortie majeure rappelle qu'un backend maintenable demande des tests, le traitement progressif des incompatibilités et une stratégie de migration.",
+      fr: "Symfony 8.0.0 est devenu stable le 27 novembre 2025, accompagné de ses nouveautés et d'un guide de mise à niveau. Cette sortie majeure rappelle qu'un back-end maintenable demande des tests, le traitement progressif des incompatibilités et une stratégie de migration.",
       en: "Symfony 8.0.0 became stable on November 27, 2025, together with its feature overview and upgrade guide. This major release is a reminder that maintainable backend work requires tests, gradual compatibility work, and a migration strategy.",
     },
     source: "Symfony",
@@ -58,7 +58,7 @@ I pay particular attention to integrations. When two systems exchange customers,
         en: "Modeling and synchronizing a research prototype",
       },
       content: {
-        fr: `Pour CAP2vie, l'équipe a construit un backend JavaScript avec Express, PostgreSQL et Prisma. Nous avons défini les principales entités du questionnaire, stocké les réponses et associé les événements aux dimensions de trajectoire. En cours de projet, j'ai pris le lead sur l'interconnexion multiécrans avec Socket.io : création d'une room identifiée et protégée par mot de passe, synchronisation de l'état nécessaire au second écran et maintien de la saisie lorsque l'affichage secondaire se déconnectait. Le prototype restait local et la reconnexion était encore manuelle, limites que nous avons documentées.`,
+        fr: `Pour CAP2vie, l'équipe a construit un back-end JavaScript avec Express, PostgreSQL et Prisma. Nous avons défini les principales entités du questionnaire, stocké les réponses et associé les événements aux dimensions de trajectoire. En cours de projet, j'ai pris le lead sur l'interconnexion multiécrans avec Socket.io : création d'une room identifiée et protégée par mot de passe, synchronisation de l'état nécessaire au second écran et maintien de la saisie lorsque l'affichage secondaire se déconnectait. Le prototype restait local et la reconnexion était encore manuelle, limites que nous avons documentées.`,
         en: `For CAP2vie, the team built a JavaScript backend with Express, PostgreSQL, and Prisma. We defined the questionnaire's main entities, stored answers, and associated events with trajectory dimensions. During the project, I led the multi-screen connection using Socket.io: creating a password-protected room, synchronizing the state required by the second screen, and keeping input available when the secondary display disconnected. The prototype remained local and reconnection was still manual, limitations that we documented.`,
       },
       result: {
@@ -89,7 +89,7 @@ I pay particular attention to integrations. When two systems exchange customers,
       en: "I assess myself as intermediate. I can design models, business rules, APIs, and integrations across several ecosystems, then test and deploy them. My deepest experience remains Odoo; with Symfony, distributed architecture, and large-scale real-time systems, I still lack recent projects carried through to heavy production load.",
     },
     importance: {
-      fr: "Le backend relie ma spécialisation ERP à mon profil full-stack. Il me permet de ne pas traiter Odoo comme une application isolée : commandes B2B, logistique, courriels, données analytiques et interfaces publiques dépendent de contrats serveur fiables.",
+      fr: "Le back-end relie ma spécialisation ERP à mon profil full-stack. Il me permet de ne pas traiter Odoo comme une application isolée : commandes B2B, logistique, courriels, données analytiques et interfaces publiques dépendent de contrats serveur fiables.",
       en: "Backend development connects my ERP specialization to my full-stack profile. It prevents me from treating Odoo as an isolated application: B2B orders, logistics, email, analytical data, and public interfaces depend on reliable server contracts.",
     },
     advice: {

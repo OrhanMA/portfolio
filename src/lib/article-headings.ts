@@ -119,3 +119,34 @@ export function extractArticleHeadings(content: string): ArticleHeading[] {
       }];
     });
 }
+
+/**
+ * Pairs equivalent translated headings by their document order.
+ *
+ * A map is only emitted when both localized articles keep the same heading
+ * structure. Falling back to the original fragment is safer than sending a
+ * reader to the wrong section when the two documents diverge.
+ */
+export function createLocalizedHeadingMap(
+  sourceContent: string,
+  targetContent: string,
+) {
+  const sourceHeadings = extractArticleHeadings(sourceContent);
+  const targetHeadings = extractArticleHeadings(targetContent);
+
+  if (
+    sourceHeadings.length !== targetHeadings.length ||
+    sourceHeadings.some(
+      (heading, index) => heading.level !== targetHeadings[index]?.level,
+    )
+  ) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    sourceHeadings.map((heading, index) => [
+      heading.id,
+      targetHeadings[index].id,
+    ]),
+  );
+}

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderWithProviders, screen } from "@/test/utils";
 import {
   LanguageSwitcher,
+  localizeArticleHash,
   replaceLocaleInUrl,
 } from "@/components/language-switcher";
 
@@ -39,6 +40,14 @@ describe("LanguageSwitcher", () => {
         "#contexte",
       ),
     ).toBe("/en/articles/migration-odoo-v16-v19?q=odoo#contexte");
+  });
+
+  it("localizes a translated article anchor and preserves unknown fragments", () => {
+    const anchorMap = JSON.stringify({ contexte: "context" });
+
+    expect(localizeArticleHash("#contexte", anchorMap)).toBe("#context");
+    expect(localizeArticleHash("#resultat", anchorMap)).toBe("#resultat");
+    expect(localizeArticleHash("#contexte", "not-json")).toBe("#contexte");
   });
 
   it("has correct aria-label", async () => {

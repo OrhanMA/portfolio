@@ -330,13 +330,15 @@
           { "heading": "A first experience in a client context", "text": "This two-month internship at A. Gaveau was my first professional web-development setting. The context was concrete: create websites for small shops with WordPress and Elementor while working with real content and a clear presentation goal." },
           { "heading": "Learning to deliver a usable interface", "text": "The work introduced me to page construction, content organization, and the adjustments needed for a website to be usable by its recipient. This first experience gave a professional setting to skills learned independently and prepared the next step toward more customized applications." },
           { "heading": "Moving from training material to an expected result", "text": "This first professional setting required me to move beyond exercises where content, audience, and outcome are often already defined. Websites had to present an activity with understandable information and a hierarchy that helped a visitor orient themselves. I learned to check what was actually available, organize the supplied elements, and adjust a page for its use instead of treating layout as an end in itself." },
-          { "heading": "A starting point, not expertise I claim", "text": "The internship was short and relied on WordPress and Elementor: on its own, it does not demonstrate full mastery of custom development, accessibility, or project leadership. Its value in the journey is different. It provided a first benchmark for responsibility toward a delivery visible to a client and prepared the education and projects through which I later deepened design, data, testing, and custom applications." }
+          { "heading": "A starting point, not expertise I claim", "text": "The internship was short and relied on WordPress and Elementor: on its own, it does not demonstrate full mastery of custom development, accessibility, or project leadership. Its value in the journey is different. It provided a first benchmark for responsibility toward a delivery visible to a client and prepared the education and projects through which I later deepened design, data, testing, and custom applications." },
+          { "heading": "A stated evidence limitation", "text": "This two-month internship took place several years ago. I no longer have access to the projects completed then or to the material needed to present them accurately, completely, and with authorization. I therefore choose not to create an artificial retrospective link to a current achievement: this page documents the context, my responsibilities, and what this first experience contributed to my journey, without claiming project evidence that I can no longer verify." }
         ],
         "trainingId": "simplon-web-developer",
         "responsibilities": [
           "Create websites for small shops.",
           "Build and lay out websites with WordPress and Elementor."
         ],
+        "linkedCompetences": ["developpement-frontend"],
         "tags": [
           "WordPress",
           "Elementor",
@@ -684,7 +686,14 @@
     "adviceLabel": "Hindsight and advice",
     "goalLabel": "Medium-term goal",
     "trainingLabel": "Current or upcoming training",
-    "resultLabel": "Result"
+    "resultLabel": "Result",
+    "mediaOpenFullSize": "View the full-size screenshot",
+    "mediaCarouselLabel": "Visual evidence carousel",
+    "mediaCarouselPrevious": "Previous",
+    "mediaCarouselNext": "Next",
+    "mediaCarouselPause": "Pause",
+    "mediaCarouselResume": "Resume",
+    "mediaCarouselPosition": "Media {current} of {total}"
   },
   "realisationsPage": {
     "pageTitle": "Achievements | Orhan Madi Assani",
@@ -694,8 +703,11 @@
     "viewDetail": "Read article",
     "backToRealisations": "Back to achievements",
     "summaryHeading": "Achievement summary",
+    "summaryIntroduction": "This summary provides the essential reading points. It does not replace the complete case study: scroll down to review the detailed context, steps, limitations, and critical review.",
     "summaryContext": "Context",
+    "summaryChallenge": "Challenge",
     "summaryRole": "My role",
+    "summaryDecision": "Key decision",
     "summaryResult": "Result",
     "summaryProof": "Evidence",
     "summaryProofLink": "View the detailed evidence",
@@ -709,6 +721,13 @@
     "critiqueHeading": "My critical review",
     "mediaHeading": "Visual proof",
     "mediaSubtext": "Screenshots and demos from real projects.",
+    "mediaOpenFullSize": "View the full-size screenshot",
+    "mediaCarouselLabel": "Visual evidence carousel",
+    "mediaCarouselPrevious": "Previous",
+    "mediaCarouselNext": "Next",
+    "mediaCarouselPause": "Pause",
+    "mediaCarouselResume": "Resume",
+    "mediaCarouselPosition": "Media {current} of {total}",
     "contentsHeading": "Contents",
     "contentsSubtext": "Jump directly to any part of this case study.",
     "backToContents": "Back to contents",

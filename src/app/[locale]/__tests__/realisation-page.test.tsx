@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 vi.mock("@/components/route-structured-data", () => ({
   RouteStructuredData: () => null,
@@ -85,10 +85,15 @@ describe("RealisationDetailPage", () => {
       screen.getByRole("heading", { level: 2, name: dict.summaryHeading }),
     ).toBeInTheDocument();
     const summary = container.querySelector("[data-realisation-summary]");
+    expect(summary).toHaveTextContent(dict.summaryIntroduction);
     expect(summary).toHaveTextContent(dict.summaryContext);
     expect(summary).toHaveTextContent(realisation.summary.context[locale]);
+    expect(summary).toHaveTextContent(dict.summaryChallenge);
+    expect(summary).toHaveTextContent(realisation.summary.challenge[locale]);
     expect(summary).toHaveTextContent(dict.summaryRole);
     expect(summary).toHaveTextContent(realisation.summary.role[locale]);
+    expect(summary).toHaveTextContent(dict.summaryDecision);
+    expect(summary).toHaveTextContent(realisation.summary.decision[locale]);
     expect(summary).toHaveTextContent(dict.summaryResult);
     expect(summary).toHaveTextContent(realisation.summary.result[locale]);
     expect(summary).toHaveTextContent(dict.summaryProof);
@@ -134,8 +139,8 @@ describe("RealisationDetailPage", () => {
 
     if (realisation.media?.length) {
       expect(
-        container.querySelectorAll("[data-realisation-media-frame]"),
-      ).toHaveLength(realisation.media.length);
+        container.querySelectorAll("[data-evidence-media-frame]"),
+      ).toHaveLength(1);
     }
 
     const experiences = dictionaries[locale].experience.entries.filter(
@@ -168,4 +173,64 @@ describe("RealisationDetailPage", () => {
     ).toHaveLength(8);
     expect(container.querySelectorAll(".realisation-content-deferred")).not.toHaveLength(0);
   });
+
+  it.each(locales)(
+    "renders the complete localized Odoo evidence sequence in %s",
+    async (locale) => {
+      const { container } = await renderRealisation(
+        locale,
+        "migration-odoo-v16-v19",
+      );
+      const realisation = realisations.find(
+        (item) => item.slug === "migration-odoo-v16-v19",
+      );
+      const gallery = container.querySelector(
+        "[data-realisation-media] [data-evidence-media-grid]",
+      );
+
+      expect(realisation?.media).toHaveLength(16);
+      expect(gallery).toBeInTheDocument();
+      expect(
+        realisation?.media?.filter((item) => (item.layout ?? "standard") === "standard"),
+      ).toHaveLength(3);
+      expect(
+        realisation?.media?.filter((item) => item.layout === "wide"),
+      ).toHaveLength(13);
+      expect(gallery).toHaveAttribute("data-evidence-carousel-count", "16");
+      expect(gallery?.querySelectorAll("[data-evidence-media-item]")).toHaveLength(1);
+
+      for (const [index, media] of (realisation?.media ?? []).entries()) {
+        const figure = gallery?.querySelector(
+          "[data-evidence-media-item]",
+        ) as HTMLElement;
+        const image = within(figure).getByRole("img", {
+          name: media.title[locale],
+        });
+        const links = within(figure).getAllByRole("link");
+
+        expect(image).toHaveAttribute("alt", media.title[locale]);
+        expect(figure).toHaveAttribute("data-evidence-media-index", String(index));
+        expect(figure).toHaveAttribute(
+          "data-evidence-media-layout",
+          media.layout ?? "standard",
+        );
+        expect(figure).toHaveTextContent(media.title[locale]);
+        expect(figure).toHaveTextContent(media.description[locale]);
+        expect(links).toHaveLength(2);
+        expect(links[0]).toHaveAttribute("href", media.src);
+        expect(links[1]).toHaveAttribute("href", media.src);
+        expect(links[1]).toHaveTextContent(
+          dictionaries[locale].realisationsPage.mediaOpenFullSize,
+        );
+
+        if (index < (realisation?.media?.length ?? 0) - 1) {
+          fireEvent.click(
+            within(gallery as HTMLElement).getByRole("button", {
+              name: dictionaries[locale].realisationsPage.mediaCarouselNext,
+            }),
+          );
+        }
+      }
+    },
+  );
 });

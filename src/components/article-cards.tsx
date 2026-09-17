@@ -36,17 +36,18 @@ export function ArticleCards({
 }) {
   if (articles.length === 0) {
     return (
-      <div>
+      <div data-article-empty-state>
         {noResults}
       </div>
     );
   }
 
   return (
-    <div>
+    <div data-article-cards>
       {articles.map((article, index) => (
         <Card
           key={article.slug}
+          data-article-card
         >
           <CardHeader>
             <div>

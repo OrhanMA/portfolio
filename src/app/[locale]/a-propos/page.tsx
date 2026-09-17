@@ -12,6 +12,7 @@ import { PageEndCta } from "@/components/page-end-cta";
 import { RouteStructuredData } from "@/components/route-structured-data";
 import { ThemePortrait } from "@/components/theme-portrait";
 import { aboutEditorialContent } from "@/lib/about";
+import { getCompetenceBySlug } from "@/lib/competences";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getLocalizedPageContext } from "../route-context";
 
@@ -65,6 +66,12 @@ export default async function AboutPage({
       content: editorial.project.slice(3, 4),
     },
   ];
+  const getAboutCompetence = (slug: string) => {
+    const competence = getCompetenceBySlug(slug);
+
+    if (!competence) throw new Error(`Missing About competence: ${slug}`);
+    return competence;
+  };
 
   return (
     <LinkedText locale={loc} currentPath="/a-propos">
@@ -183,18 +190,25 @@ export default async function AboutPage({
                 </h2>
               </div>
               <div>
-                {editorial.values.map((value, index) => (
-                  <article
-                    key={index}
-                  >
-                    <HeartHandshake
-                      aria-hidden="true"
-                    />
-                    <div>
-                      {value}
-                    </div>
-                  </article>
-                ))}
+                {editorial.values.map(({ content, competenceSlug }, index) => {
+                  const competence = getAboutCompetence(competenceSlug);
+
+                  return (
+                    <article key={`${competenceSlug}-${index}`}>
+                      <HeartHandshake aria-hidden="true" />
+                      <div>
+                        {content}
+                        <Link
+                          href={`/${loc}/competences/${competence.slug}`}
+                          data-about-competence-link
+                        >
+                          {dict.experience.viewCompetence} {competence.title[loc]}
+                          <ArrowUpRight aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
 
@@ -241,16 +255,23 @@ export default async function AboutPage({
               {dict.aboutPage.qualitiesHeading}
             </h2>
             <div>
-              {editorial.qualities.map(({ title, content }) => (
-                <article key={title}>
-                  <h3>
-                    {title}
-                  </h3>
-                  <div>
-                    {content}
-                  </div>
-                </article>
-              ))}
+              {editorial.qualities.map(({ title, content, competenceSlug }) => {
+                const competence = getAboutCompetence(competenceSlug);
+
+                return (
+                  <article key={title}>
+                    <h3>{title}</h3>
+                    <div>{content}</div>
+                    <Link
+                      href={`/${loc}/competences/${competence.slug}`}
+                      data-about-competence-link
+                    >
+                      {dict.experience.viewCompetence} {competence.title[loc]}
+                      <ArrowUpRight aria-hidden="true" />
+                    </Link>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

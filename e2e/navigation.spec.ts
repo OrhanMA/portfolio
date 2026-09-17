@@ -60,7 +60,7 @@ test.describe("Navigation", () => {
     expect(skillsHoverColor.rgba).toEqual(contactHoverColor.rgba);
   });
 
-  test("makes text links discoverable and keeps icon links on one line", async ({
+  test("makes text links discoverable and keeps compact icon links on one line", async ({
     page,
   }) => {
     await page.goto("/fr");
@@ -78,7 +78,9 @@ test.describe("Navigation", () => {
       )
       .toContain("underline");
 
-    const iconLinks = page.locator("#main-content a:has(> svg)");
+    const iconLinks = page.locator(
+      "#main-content a:has(> svg):not(#parcours h3 + div a)",
+    );
     const iconLinkLayout = await iconLinks.evaluateAll((elements) =>
       elements.map((element) => {
         const style = getComputedStyle(element);
@@ -104,6 +106,18 @@ test.describe("Navigation", () => {
       iconLinkLayout.every(
         ({ flexWrap, whiteSpace }) =>
           flexWrap === "nowrap" && whiteSpace === "nowrap",
+      ),
+    ).toBe(true);
+
+    const longOrganizationLinks = page.locator(
+      "#parcours h3 + div a:has(> svg)",
+    );
+    expect(await longOrganizationLinks.count()).toBeGreaterThan(0);
+    expect(
+      await longOrganizationLinks.evaluateAll((elements) =>
+        elements.every(
+          (element) => getComputedStyle(element).whiteSpace === "normal",
+        ),
       ),
     ).toBe(true);
   });
@@ -191,6 +205,18 @@ test.describe("Navigation", () => {
   });
 
   test("updates page JSON-LD after client navigation", async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        "cookie-consent",
+        JSON.stringify({
+          necessary: true,
+          analytics: false,
+          version: 2,
+          decidedAt: Date.now(),
+        }),
+      );
+    });
+
     const readPageEntity = () =>
       page.evaluate(() => {
         const items = [...document.querySelectorAll<HTMLScriptElement>(

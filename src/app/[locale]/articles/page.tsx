@@ -34,19 +34,21 @@ export default async function ArticlesPage({
   const { locale: loc, dictionary: dict } = await getLocalizedPageContext(locale);
   const articles: ArticleIndexItem[] = await buildArticleIndex(
     dict.articles.articlesData,
+    loc,
   );
 
   return (
     <>
       <RouteStructuredData locale={loc} pathname={`/${loc}/articles`} />
       <EditorialPageHeader
+        className="articles-page-header"
         eyebrow={dict.nav.articles}
         title={dict.articles.heading}
         description={dict.articles.subtext}
         titleClassName="uppercase"
       />
 
-      <div>
+      <div data-articles-page>
         <Suspense
           fallback={
             <ArticleCards

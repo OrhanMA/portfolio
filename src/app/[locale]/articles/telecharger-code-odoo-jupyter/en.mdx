@@ -1,0 +1,47 @@
+# Downloading Odoo source code through Jupyter Lab
+
+## Context
+
+When working with **Odoo.sh**, Odoo's official PaaS platform, source code is hosted on the platform's servers. Odoo is split into two distinct codebases:
+
+- **Community**: the open-source Odoo framework code
+- **Enterprise**: proprietary modules under a commercial licence
+
+Having the source code **locally** is essential for Odoo development. It makes it possible to understand internal framework mechanisms, debug effectively, and learn from patterns used in official modules.
+
+Odoo.sh does not provide a direct source download. Fortunately, the platform includes **Jupyter Lab**, which provides terminal access to the server.
+
+## Steps
+
+### 1. Open a terminal session
+
+From the Odoo.sh interface, open your instance's Jupyter Lab editor, then open a **terminal** from the Jupyter Lab interface.
+
+### 2. Locate the source-code folders
+
+Odoo source code is generally located in the instance directory. Identify the **community** and **enterprise** folders you want to retrieve.
+
+### 3. Create ZIP archives
+
+Create a ZIP archive for each folder:
+
+```bash
+zip -r community.zip community/
+```
+
+```bash
+zip -r enterprise.zip enterprise/
+```
+
+The archives are created in the current Jupyter notebook directory.
+
+### 4. Download the archives
+
+In Jupyter Lab's file explorer, right-click the created `.zip` file and select **Download** to save it to your local machine.
+
+## Why keep the source code locally?
+
+- **Framework understanding**: browsing the source shows how Odoo handles views, models, access rights, the ORM, and more.
+- **Debugging**: when unexpected behavior occurs, reading Odoo's source is often the only way to understand it.
+- **Patterns and good practices**: official modules are a reference for code conventions and module architecture.
+- **Fast search**: local code can be searched instantly across the entire source tree with an editor such as VS Code.

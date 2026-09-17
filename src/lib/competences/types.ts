@@ -1,4 +1,5 @@
 import type { LocalizedContent } from "@/lib/types/content";
+import type { EvidenceMedia } from "@/lib/types/evidence-media";
 
 export type CompetenceType = "human" | "technical";
 
@@ -35,6 +36,7 @@ export type Competence = {
   definition: LocalizedContent;
   relatedNews: CompetenceNews;
   anecdotes: Anecdote[];
+  media?: EvidenceMedia[];
   selfCritique: {
     level: LocalizedContent;
     importance: LocalizedContent;

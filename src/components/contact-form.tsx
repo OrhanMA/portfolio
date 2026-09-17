@@ -262,6 +262,7 @@ export function ContactForm({
                 {dict.contactForm.reasonLabel}
               </FieldLabel>
               <Select
+                items={dict.contactReasons}
                 name={field.name}
                 value={field.value}
                 onValueChange={field.onChange}

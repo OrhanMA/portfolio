@@ -115,8 +115,8 @@ describe("editorial homepage sections", () => {
     renderWithProviders(<SkillsSection locale="fr" dict={frDict.skills} />);
 
     expect(screen.getByRole("heading", { name: "Odoo" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Frontend" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Backend" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Front-end" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Back-end" })).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "DevOps & Outils" }),
     ).toBeInTheDocument();
@@ -158,7 +158,11 @@ describe("editorial homepage sections", () => {
     const competenceLinks = screen.getAllByRole("link", {
       name: /Voir la compétence/,
     });
-    expect(competenceLinks).toHaveLength(6);
+    expect(competenceLinks).toHaveLength(
+      frDict.experience.entries.filter(
+        (entry) => entry.linkedCompetences?.length,
+      ).length,
+    );
     expect(competenceLinks[0]).toHaveAttribute(
       "href",
       "/fr/competences/developpement-odoo",

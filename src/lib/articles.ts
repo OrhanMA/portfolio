@@ -6,6 +6,7 @@ import type {
   ArticleIndexItem,
 } from "@/lib/types/articles";
 import { stripMdxEsm } from "@/lib/article-headings";
+import type { Locale } from "@/lib/i18n";
 
 export type { ArticleDictionaryItem, ArticleIndexItem } from "@/lib/types/articles";
 
@@ -34,7 +35,7 @@ export function estimateReadingMinutes(content: string) {
  * Reads one published article during the current React render/request cache.
  * Missing or unreadable content is a validation failure, not an empty article.
  */
-export const getArticleContent = cache(async (slug: string) => {
+export const getArticleContent = cache(async (slug: string, locale: Locale = "fr") => {
   if (!ARTICLE_SLUG_PATTERN.test(slug)) {
     throw new Error(`Invalid article slug: ${slug}`);
   }
@@ -46,7 +47,7 @@ export const getArticleContent = cache(async (slug: string) => {
     "[locale]",
     "articles",
     slug,
-    "page.mdx",
+    `${locale}.mdx`,
   );
 
   try {
@@ -60,11 +61,14 @@ export const getArticleContent = cache(async (slug: string) => {
   }
 });
 
-export async function buildArticleIndex(articles: ArticleDictionaryItem[]) {
+export async function buildArticleIndex(
+  articles: ArticleDictionaryItem[],
+  locale: Locale = "fr",
+) {
   return Promise.all(
     articles.map(async (article): Promise<ArticleIndexItem> => {
       const tags = article.tags ?? [];
-      const content = await getArticleContent(article.slug);
+      const content = await getArticleContent(article.slug, locale);
       // An empty file is distinct from a missing file: metadata remains
       // searchable, and estimateReadingMinutes deliberately returns 1.
       const cleanContent = stripMdxForSearch(content);

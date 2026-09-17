@@ -5,7 +5,10 @@ import { ArrowLeft } from "lucide-react";
 import { ArticleCodeLabelsProvider } from "@/components/article-code-block";
 import { ArticleEnhancements } from "@/components/article-enhancements";
 import { ArticleStructuredData } from "@/components/structured-data";
-import { extractArticleHeadings } from "@/lib/article-headings";
+import {
+  createLocalizedHeadingMap,
+  extractArticleHeadings,
+} from "@/lib/article-headings";
 import { estimateReadingMinutes, getArticleContent } from "@/lib/articles";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
@@ -31,10 +34,17 @@ export async function ArticlePageLayout({
     notFound();
   }
 
-  const [articleContent, requestHeaders] = await Promise.all([
-    getArticleContent(article.slug),
+  const alternateLocale: Locale = loc === "fr" ? "en" : "fr";
+  const [articleContent, alternateArticleContent, requestHeaders] = await Promise.all([
+    getArticleContent(article.slug, loc),
+    getArticleContent(article.slug, alternateLocale),
     headers(),
   ]);
+  const headings = extractArticleHeadings(articleContent);
+  const localizedHeadingMap = createLocalizedHeadingMap(
+    articleContent,
+    alternateArticleContent,
+  );
   const readingMinutes = estimateReadingMinutes(articleContent);
   const publishedAt = new Intl.DateTimeFormat(
     loc === "fr" ? "fr-FR" : "en-US",
@@ -57,7 +67,7 @@ export async function ArticlePageLayout({
       <header
         data-article-masthead
       >
-        <div>
+        <div data-article-masthead-content>
           <Link
             href={`/${locale}/articles`}
           >
@@ -65,8 +75,8 @@ export async function ArticlePageLayout({
             {dict.nav.articles}
           </Link>
 
-          <div>
-            <div>
+          <div data-article-masthead-summary>
+            <div data-article-masthead-description>
               <p>
                 {dict.nav.articles} · {String(articleIndex + 1).padStart(2, "0")}
               </p>
@@ -75,7 +85,7 @@ export async function ArticlePageLayout({
               </p>
             </div>
 
-            <div>
+            <div data-article-masthead-meta>
               <time
                 dateTime={article.date}
               >
@@ -88,7 +98,7 @@ export async function ArticlePageLayout({
           </div>
 
           {article.tags.length > 0 && (
-            <div>
+            <div data-article-tags>
               {article.tags.map((tag) => (
                 <TopicLink key={tag} label={tag} locale={loc} />
               ))}
@@ -101,12 +111,13 @@ export async function ArticlePageLayout({
       <section>
         <article
           data-article-content
+          data-article-anchor-map={JSON.stringify(localizedHeadingMap)}
         >
           <ArticleEnhancements
             locale={loc}
             slug={article.slug}
             articles={dict.articles.articlesData}
-            headings={extractArticleHeadings(articleContent)}
+            headings={headings}
             readingMinutes={readingMinutes}
             labels={{
               readingTime: dict.articles.readingTime,
@@ -115,7 +126,6 @@ export async function ArticlePageLayout({
               relatedArticles: dict.articles.relatedArticles,
               copyLink: dict.articles.copyLink,
               copied: dict.articles.copied,
-              frenchOnlyNotice: dict.articles.frenchOnlyNotice,
             }}
           />
           <ArticleCodeLabelsProvider
@@ -125,7 +135,7 @@ export async function ArticlePageLayout({
               codeBlock: dict.articles.codeBlock,
             }}
           >
-            <div lang="fr" data-article-body>
+            <div lang={loc} data-article-body>
               {children}
             </div>
           </ArticleCodeLabelsProvider>

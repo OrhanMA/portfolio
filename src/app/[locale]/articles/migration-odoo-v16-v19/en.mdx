@@ -1,0 +1,58 @@
+# Odoo v16 to v19 migration: lessons from an ERP major-version upgrade
+
+## Context
+
+At 1UP Distribution, Odoo is the central ERP: sales, invoicing, accounting, logistics, product catalogue, B2B integrations, and business reporting. Migrating from version 16 to version 19 was therefore not an isolated application update. It meant securing a tool used by 20 direct internal users. External access is not quantified here because no publishable source is available.
+
+The scope was broad: 16 modules developed from scratch, third-party modules to fix, improve, or migrate, Odoo Studio customizations stored in the database, QWeb PDF reports, migration scripts, and API routes used by other tools.
+
+## Cutover milestone
+
+The main milestone was the merge of the migration branch into the main branch on **6 February 2026**.
+
+That cutover integrated the Odoo 19 migration base: new modules, manifest adjustments, migration scripts, XML view fixes, QWeb reports, accounting, sales and logistics modules, and specific integrations.
+
+## Preparatory work
+
+Before the cutover, the work focused on making code compatible with intermediate versions and resolving incompatibilities progressively.
+
+The work included module-version updates, XML view fixes, QWeb PDF report adaptations, custom-field migration, scripts to recover Studio data, translation fixes, Amazon module adaptation, and restoration of behaviors removed or changed by Odoo, such as certain contact fields.
+
+This phase reduced risk before the final move to v19.
+
+## After the cutover
+
+The period after cutover stabilized the ERP under near-real conditions. No duration is published because no verifiable measurement is available.
+
+The development history shows several families of fixes:
+
+- **accounting**: margin reliability, credit-note calculations, frozen unit costs, recalculation cron jobs, and access rights;
+- **sales**: order alerts, credit limits, invoice visibility, and confirmation blocks;
+- **B2B**: stock API routes, forecast stock, stock by location, `_last_update` fields, and synchronization indexes;
+- **logistics**: packing lists, preparation slips, long product labels, and delivery reports;
+- **contacts/CRM**: lead qualification, shipping addresses, title/address fields, and restored mobile-phone data;
+- **technical quality**: Ruff fixes, staging documentation, obsolete-module cleanup, and removal of integrations that had become too costly to maintain.
+
+Two data incidents were especially important: lost mobile numbers after an Odoo field removal, solved with migration scripts and cron jobs; and missing or unstable invoice-margin data, solved through data recovery and improvements to the dedicated business module. The aim was not only to restore the prior state: margin calculation became more reliable and fully automated.
+
+## Main difficulty
+
+The hardest part was not simply getting code to run. The real subject was preserving business usage.
+
+A view that loads is not necessarily a validated feature. Each business rule had to keep producing the expected result: margin, payment due date, available stock, PDF document, user right, notification, or API route.
+
+## What I learned
+
+A successful ERP migration needs three qualities:
+
+- **map** what exists before changing code;
+- **isolate** regressions by module and business workflow;
+- **stabilize** after the merge, because some defects only appear when real workflows are exercised.
+
+This migration also taught me that an ERP is both a technical system and an operational memory. Code carries rules, but also habits, exceptions, and decisions made over time.
+
+## Outcome
+
+Odoo 19 was integrated on 6 February 2026. Stabilization duration and external access are not publicly quantified; an attestation would be needed before publishing a metric. The project maintained the workflows of the 20 direct internal users and limited impacts on logistics, B2B, corporate, and clients connected to the company's tools.
+
+It created a healthier base for future upgrades: better documented modules, clearer migration scripts, and better understanding of sensitive points and business dependencies.

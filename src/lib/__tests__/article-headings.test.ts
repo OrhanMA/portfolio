@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  createLocalizedHeadingMap,
   createHeadingIdResolver,
   extractArticleHeadings,
   stripMdxEsm,
@@ -81,5 +82,26 @@ describe("extractArticleHeadings", () => {
       "titre-2",
       "titre-2-2",
     ]);
+  });
+
+  it("maps equivalent translated headings by document structure", () => {
+    expect(
+      createLocalizedHeadingMap(
+        "## Contexte\n### Difficulté principale",
+        "## Context\n### Main difficulty",
+      ),
+    ).toEqual({
+      contexte: "context",
+      "difficulte-principale": "main-difficulty",
+    });
+  });
+
+  it("does not map headings when translated document structures diverge", () => {
+    expect(
+      createLocalizedHeadingMap(
+        "## Contexte\n### Difficulté principale",
+        "## Context\n## Main difficulty",
+      ),
+    ).toEqual({});
   });
 });

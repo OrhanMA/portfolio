@@ -1,4 +1,5 @@
 import type { LocalizedContent } from "@/lib/types/content";
+import type { EvidenceMedia } from "@/lib/types/evidence-media";
 
 export type Realisation = {
   slug: string;
@@ -21,14 +22,11 @@ export type Realisation = {
 
 export type RealisationSummary = {
   context: LocalizedContent;
+  challenge: LocalizedContent;
   role: LocalizedContent;
+  decision: LocalizedContent;
   result: LocalizedContent;
   proof: LocalizedContent;
 };
 
-export type RealisationMedia = {
-  type: "image" | "youtube";
-  src: string;
-  title: LocalizedContent;
-  description: LocalizedContent;
-};
+export type RealisationMedia = EvidenceMedia;

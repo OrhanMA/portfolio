@@ -84,7 +84,7 @@ export default async function ContactPage({
                 <Mail aria-hidden="true" />
               </div>
               <div>
-                <p id="contact-email-heading">Email</p>
+                <p id="contact-email-heading">Courriel</p>
                 <p>{dict.contact.altEmail}</p>
                 <a href="mailto:orhan.madi.assani@gmail.com">
                   orhan.madi.assani@gmail.com

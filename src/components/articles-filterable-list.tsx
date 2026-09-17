@@ -84,9 +84,9 @@ export function ArticlesFilterableList({
   });
 
   return (
-    <section>
-      <div>
-        <div>
+    <section data-articles-index>
+      <div data-articles-filter-panel>
+        <div data-articles-search>
           <Search />
           <Input
             type="search"
@@ -115,7 +115,7 @@ export function ArticlesFilterableList({
           )}
         </div>
 
-        <div>
+        <div data-articles-filter-tags>
           <button
             type="button"
             className="h-7"

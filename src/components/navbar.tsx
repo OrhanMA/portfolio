@@ -89,6 +89,7 @@ export function Navbar({
         fill
         sizes="100vw"
         quality={70}
+        loading="eager"
         aria-hidden="true"
       />
       <span data-navbar-overlay aria-hidden="true" />

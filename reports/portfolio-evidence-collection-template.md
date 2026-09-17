@@ -1,6 +1,8 @@
 # Relevé de preuves de livraison du portfolio
 
-À compléter uniquement avec des informations dont la publication a été autorisée. Ce document ne remplace pas une attestation, une recommandation ou une mesure : il permet de les tracer avant de les citer sur le site.
+> **Modèle actif.** Créer une copie datée pour chaque candidat de livraison. La [prévalidation du 15 septembre 2026](./portfolio-rendu-preflight-2026-09-15.md) contient les résultats historiques qui figuraient auparavant dans ce modèle.
+
+À compléter uniquement avec des informations dont la publication a été autorisée. Ce document ne remplace pas une attestation, une recommandation ou une mesure : il permet de les tracer avant de les citer sur le site. Ne pas y inscrire de secret, de contenu de message, de coordonnées de testeur ou de donnée interne non autorisée.
 
 ## 1. Preuves humaines publiables
 

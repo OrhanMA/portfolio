@@ -18,6 +18,7 @@ import { resolveRealisationLinks } from "@/lib/portfolio-links";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { getLocalizedPageContext } from "../../route-context";
 import { RouteStructuredData } from "@/components/route-structured-data";
+import { EvidenceMediaGallery } from "@/components/evidence-media-gallery";
 
 const romanNumerals = ["I", "II", "III", "IV", "V", "VI"] as const;
 
@@ -349,6 +350,23 @@ export default async function CompetenceDetailPage({
                     );
                   })}
                 </div>
+                {competence.media && competence.media.length > 0 && (
+                  <div data-competence-media>
+                    <EvidenceMediaGallery
+                      media={competence.media}
+                      locale={loc}
+                      labels={{
+                        carousel: dict.competencesPage.mediaCarouselLabel,
+                        previous: dict.competencesPage.mediaCarouselPrevious,
+                        next: dict.competencesPage.mediaCarouselNext,
+                        pause: dict.competencesPage.mediaCarouselPause,
+                        resume: dict.competencesPage.mediaCarouselResume,
+                        position: dict.competencesPage.mediaCarouselPosition,
+                        openFullSize: dict.competencesPage.mediaOpenFullSize,
+                      }}
+                    />
+                  </div>
+                )}
                 <div>
                   <BackToContents label={dict.competencesPage.backToContents} />
                 </div>

@@ -1,165 +1,58 @@
-**When working on this Next.js project, use the currently available
-`next-devtools-mcp` tools when they are exposed. The former `init` tool is not
-part of the current server: use `nextjs_index` to discover a running Next.js
-dev server, `nextjs_docs` for official framework documentation, and
-`nextjs_call`/`browser_eval` for runtime inspection as applicable.**
+# Instructions du dépôt
 
-## Project Requirements
+## Environnement et sources de vérité
 
-- **Package manager** : pnpm
-- **Stack** : Next.js 16, React 19, shadcn/ui (base-ui), GSAP 3, Tailwind CSS v4, MDX
-- **Language** : TypeScript (strict mode)
-- **Fonts** : Roboto Flex (sans) + Geist Mono (mono) — via `next/font/google`
+- Utiliser Node.js 22, pnpm 10.20.0 et les scripts de `package.json`.
+- Le projet utilise Next.js 16.3.4, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui avec Base UI, GSAP, Lenis et MDX.
+- Avant de modifier une API ou une convention Next.js, lire le guide correspondant dans `node_modules/next/dist/docs/`.
+- Lorsque les outils `next-devtools-mcp` sont exposés, utiliser `nextjs_index` pour découvrir le serveur, `nextjs_docs` pour la documentation et `nextjs_call` ou `browser_eval` pour l'inspection.
+- Préserver les changements sans rapport déjà présents dans le worktree. Ne pas committer, pousser, déployer ni réécrire l'historique sans demande explicite.
 
-## Architecture Rules
+## Architecture applicative
 
-- GSAP imports MUST come from `@/lib/gsap` (centralized plugin registration — includes GSAP, useGSAP, ScrollTrigger, Lenis)
-- Animated components MUST use `"use client"` directive
-- Use `useGSAP` hook with `scope` parameter for all GSAP animations
-- Use `autoAlpha` instead of `opacity` in GSAP `.from()` to prevent FOUC — pair with `invisible` CSS class on animated elements
-- Use `buttonVariants()` with `cn()` for Link/anchor elements styled as buttons (NOT `asChild` — Base UI Button does not support it)
-- `buttonVariants()` can only be called in client components (`"use client"`) — never call it in server components
-- Prefer Server Components where no interactivity/animation is needed
-- Zod schemas use `import { z } from "zod/v3"` for compatibility with `@hookform/resolvers`
+- Préférer les Server Components lorsqu'aucune interaction ni animation n'est nécessaire.
+- Un composant interactif ou animé doit porter `"use client"`.
+- Importer GSAP, `useGSAP`, ScrollTrigger et Lenis depuis `@/lib/gsap`.
+- Utiliser `useGSAP` avec un `scope`. Pour les apparitions, utiliser `autoAlpha` avec la dégradation sans JavaScript existante.
+- Utiliser `buttonVariants()` avec `cn()` pour les liens rendus comme des boutons. Base UI Button ne prend pas en charge le contrat shadcn `asChild`.
+- `buttonVariants()` est réservé aux Client Components.
+- Les schémas Zod compatibles avec `@hookform/resolvers` importent `z` depuis `zod/v3`.
+- Les décisions de rendu, CSP, données et performance sont décrites dans `docs/architecture.md`.
 
-## Internationalization (i18n)
+## Contenu et internationalisation
 
-- **Languages** : French (default) + English
-- **Pattern** : `[locale]` dynamic segment in App Router (`src/app/[locale]/`)
-- **Proxy** : `src/proxy.ts` detects locale from cookie → Accept-Language → default (renamed from `middleware.ts` per Next.js 16)
-- **Dictionaries** : JSON files in `src/app/[locale]/dictionaries/` (fr.json, en.json)
-- **Server-side** : `getDictionary(locale)` from `src/app/[locale]/dictionaries.ts` (uses `server-only`)
-- **Client-side** : `useDictionary()` hook from `src/components/dictionary-provider.tsx` (React Context)
-- **Language switcher** : `<LanguageSwitcher>` next to theme toggle in navbar — stores preference in `NEXT_LOCALE` cookie
-- **HTML lang** : `src/app/[locale]/layout.tsx` renders `<html lang={locale}>` server-side
-- **MDX articles** : Content stays in original language (French). Translated metadata (title, description) in dictionaries. Users can use browser translation for article content.
-- All internal links MUST be prefixed with `/${locale}/` (e.g., `/${locale}/contact`)
-- Update BOTH dictionary files when adding new translation keys
+- Les locales supportées sont `fr` et `en`, déclarées dans `src/lib/i18n.ts`.
+- Les routes publiques se trouvent sous `src/app/[locale]/` et les liens internes conservent le préfixe de locale.
+- Toute nouvelle clé d'interface est ajoutée aux deux dictionnaires avec la même structure.
+- Les données éditoriales localisées utilisent `Locale`, `LocalizedContent` ou `Record<Locale, ...>`.
+- Les relations entre compétences, réalisations et expériences utilisent les slugs canoniques et les helpers de `src/lib/portfolio-links.ts`. Ne pas fabriquer une destination depuis un libellé traduit.
+- Chaque article technique utilise un `page.tsx` et deux corps `fr.mdx` et `en.mdx`. Les titres `h2` et `h3` restent alignés entre langues afin de préserver les ancres.
+- Les procédures d'ajout sont dans `docs/contributing.md` et les règles de localisation dans `docs/i18n.md`.
 
-## Smooth Scroll (Lenis)
+## Services externes et confidentialité
 
-- `<SmoothScroll>` provider wraps content in locale `layout.tsx`
-- Lenis is driven by `gsap.ticker` for frame-perfect ScrollTrigger sync
-- CSS rules for Lenis are in `globals.css` (`html.lenis` height overrides)
-- Do NOT use `scroll-behavior: smooth` on `<html>` — Lenis handles it
+- Le formulaire valide les données côté client et serveur, puis applique honeypot, contrôle temporel, rate limit Redis et reCAPTCHA lorsqu'il est configuré.
+- En production, le rate limit doit disposer d'un stockage durable ; l'absence de Redis provoque un échec fermé.
+- Les scripts Analytics restent désactivés avant consentement et aucun fallback `<noscript>` ne doit contourner ce choix.
+- Ne jamais afficher, committer ou recopier les valeurs de `.env.local`.
+- Les variables et procédures de déploiement sont documentées dans `docs/configuration.md`.
 
-## Page Transitions
+## Vérification
 
-- `<PageTransition>` component wraps `{children}` in `<main>` of locale `layout.tsx`
-- Detects route changes via `usePathname()` and animates incoming content
-- Subtle fade + y-translate animation (0.4s)
+- Adapter les tests lorsqu'un comportement, une route, une action serveur ou un contrat de composant change.
+- Ajouter des tests unitaires pour les nouvelles fonctions de `src/lib/`.
+- Pour les articles, conserver les tests de localisation, d'indexation, de filtres, d'ancres et de rendu sans JavaScript.
+- Pour la navigation et l'accessibilité, vérifier les deux locales ainsi que les états desktop, mobile et mouvement réduit concernés.
+- Choisir des contrôles proportionnés au changement. Après une modification documentaire pure, vérifier au minimum les liens et `git diff --check`.
+- Ne mettre à jour une capture visuelle qu'après inspection de la différence et conserver les baselines macOS et Linux séparées.
+- Avant un commit demandé, exécuter les contrôles nécessaires et inspecter exactement les chemins indexés.
 
-## Styling
+## Portfolio et documentation
 
-- shadcn CSS variables (OKLCH) for all colors
-- Dark mode via next-themes (attribute="class", defaultTheme="dark")
-- `@tailwindcss/typography` plugin for MDX article prose styling
-- Subtle background gradient via `body::before` pseudo-element (fixed, z-index -1)
-  - Light mode: blue/violet radial gradients at 3-4% opacity
-  - Dark mode: same hues at 5-8% opacity
-  - Uses OKLCH colors matching the shadcn palette
-
-## Contact Form & Anti-Spam
-
-- React Hook Form + Zod validation (client + server)
-- Server Action sends email via Resend SDK
-- Multi-layered anti-spam:
-  1. **Honeypot** field (hidden, silent success if filled)
-  2. **Time check** (reject if < 3s after mount)
-  3. **Rate limiting** (5/hour per hashed IP, atomic Upstash Redis/Vercel KV in production)
-  4. **reCAPTCHA v3** (score >= 0.5 plus action/hostname/age checks)
-- Anti-spam fields (`honeypot`, `timestamp`, `recaptchaToken`) are in the Zod schema but not shown to users
-- reCAPTCHA loads only after focus/submit intent on the contact form
-
-## Cookie Consent & Analytics
-
-- **Cookie consent banner** : Custom built, GDPR-compliant (`src/components/cookie-consent.tsx`)
-  - Shows on first visit (1.5s delay)
-  - Accept All / Reject All / Manage preferences
-  - Stores consent in localStorage, sets `cookie-consent-given` cookie
-  - Consent is versioned, expires after 6 months, and can be reopened from the footer
-  - Dispatches `cookie-consent-update` CustomEvent for reactive script loading
-- **Google Tag Manager** : Via `next/script` in `src/components/analytics.tsx`
-  - `<Analytics>` component loads GTM script (consent-gated, in locale layout)
-  - No `<noscript>` GTM iframe: analytics must never bypass the consent gate
-  - Only loaded AFTER user accepts analytics cookies
-  - Listens for consent changes via CustomEvent
-  - Uses `NEXT_PUBLIC_GTM_ID` env variable (format: GTM-XXXXXXX)
-- **Categories** :
-  - *Necessary* : Language preference (`NEXT_LOCALE`), theme — always active
-  - *Analytics* : Google Tag Manager — requires consent
-
-## Content
-
-- MDX articles live in `src/app/[locale]/articles/[slug]/page.mdx`
-- Article listing data is in dictionaries (fr.json, en.json) — update when adding articles
-- Articles layout uses `prose dark:prose-invert` classes
-- Article search is powered by `src/lib/articles.ts`: metadata from dictionaries plus stripped MDX content, tags and descriptions are indexed into `searchText`
-- Article listing filters are URL-synced via `tag` and `q` query params
-- Article pages use `<ArticleEnhancements>` for reading time, table of contents, related articles, copy link and the English notice for French article content
-- Public proof documents live in `public/proofs`; their links are rendered by `src/components/footer.tsx`
-
-## Layout Structure
-
-- `src/app/[locale]/layout.tsx` — Locale-aware root document (`<html lang>`, fonts, ThemeProvider, DictionaryProvider, Navbar, Footer, SmoothScroll, PageTransition, CookieConsent, Analytics)
-- `src/app/global-not-found.tsx` — Root 404 page (bilingual fallback, `experimental.globalNotFound`)
-- `src/app/global-error.tsx` — Root error boundary
-- `src/app/[locale]/not-found.tsx` — Localized 404 page
-
-## MCP Servers
-
-- **next-devtools** : Next.js dev server internals (indexing, routes, errors, logs, and official docs)
-- **resend** : Email sending and contact management via Resend API
-- **playwright-test** : Playwright browser automation for test agents (planner, generator, healer)
-
-## Testing
-
-- **Unit tests** : Vitest + jsdom + React Testing Library (`pnpm test:unit`)
-- **Browser component tests** : Vitest Browser Mode + Playwright (`pnpm test:browser`)
-- **Visual regression** : `toMatchScreenshot()` in browser tests — baselines in `__screenshots__/`
-- **E2E tests** : Playwright (`pnpm test:e2e`)
-- **All tests** : `pnpm test` runs both unit + browser projects via Vitest workspace
-- Test files live in `__tests__/` folders colocated with source (e.g., `src/lib/__tests__/utils.test.ts`)
-- Unit test files: `*.test.{ts,tsx}` — Browser test files: `*.browser.test.{ts,tsx}`
-- E2E tests live in `e2e/` at the project root
-- Custom render utilities:
-  - `src/test/utils.tsx` — unit tests (jsdom), uses `@testing-library/react`
-  - `src/test/browser-utils.tsx` — browser tests, uses `vitest-browser-react`
-- GSAP is globally mocked via Vitest alias (`src/test/__mocks__/gsap.ts`)
-- `server-only` is globally mocked via Vitest alias (`src/test/__mocks__/server-only.ts`)
-- **When making changes to source files, always check whether tests need to be modified, created, or deleted**
-- When adding new `lib/` functions, add corresponding unit tests
-- When modifying component behavior, update or add component tests
-- When changing server actions or API logic, update integration tests
-- For article search/filter changes, keep tests covering URL synchronization, tag filtering and MDX content indexing
-- For homepage proof document changes, keep tests covering the public proof links
-- Run `pnpm test` before committing to verify nothing is broken
-
-### Playwright Agents
-
-- **Planner** : Explores the app and generates test plans in `specs/` (`.Codex/agents/playwright-test-planner.md`)
-- **Generator** : Converts test plans into executable Playwright tests (`.Codex/agents/playwright-test-generator.md`)
-- **Healer** : Debugs and fixes failing Playwright tests (`.Codex/agents/playwright-test-healer.md`)
-- Seed test: `e2e/seed.spec.ts` — establishes base environment
-- Test plans: `specs/user-flows.md` — human-readable test scenarios
-
-## Portfolio Checklist
-
-- When the user asks for improvements or ideas, consult `PORTFOLIO_CHECKLIST.md` at the project root
-- This checklist is based on industry-standard portfolio best practices and tracks compliance status
-- Use it to suggest actionable improvements prioritized by impact (quick wins first)
-- After implementing improvements, update the checklist status accordingly
-
-## Environment Variables
-
-See `.env.local` for all required variables:
-- `RESEND_API_KEY` — Resend API key
-- `CONTACT_EMAIL` — Recipient email for contact form
-- `FROM_EMAIL` — Sender address (must be verified domain or sandbox)
-- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` — reCAPTCHA v3 site key (optional)
-- `RECAPTCHA_SECRET_KEY` — reCAPTCHA v3 secret key (optional)
-- `NEXT_PUBLIC_GTM_ID` — Google Tag Manager container ID (optional, format: GTM-XXXXXXX)
-- `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` — Durable rate limit store (required in production)
+- Pour une demande d'amélioration ou une revue de rendu, consulter `PORTFOLIO_CHECKLIST.md`.
+- Distinguer preuve locale, preuve publiée, contrôle humain et jugement du jury.
+- Les guides actifs vivent dans `docs/`, les plans de test dans `specs/` et les mesures datées dans `reports/`.
+- Ne pas transformer un ancien rapport, un ancien nombre de tests ou une ancienne mesure Lighthouse en affirmation sur l'état courant.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

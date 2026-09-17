@@ -87,6 +87,10 @@ describe("Navbar", () => {
       "src",
       expect.stringContaining("navbar-ivy.webp"),
     );
+    expect(container.querySelector("[data-navbar-background]")).toHaveAttribute(
+      "loading",
+      "eager",
+    );
   });
 
   it("links Parcours to its dedicated bilingual timeline page", () => {

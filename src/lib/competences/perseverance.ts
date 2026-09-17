@@ -82,7 +82,7 @@ I therefore distinguish perseverance from stubbornness. Continuing is worthwhile
       en: "I assess myself as advanced because I stay engaged with long, uncertain, and technically unrewarding problems until I obtain a usable outcome. I can revisit an assumption, read framework source code, and accept rewriting work. My improvement area is to support that perseverance earlier with test scenarios, measurements, and a decision log so fewer iterations happen late.",
     },
     importance: {
-      fr: "Elle est essentielle à ma spécialisation Odoo, où une erreur peut provenir du code interne, d'un module tiers, d'une personnalisation en base ou d'une donnée métier. Elle compte aussi dans le frontend et la visualisation, car un rendu plausible ne prouve pas que l'information représentée est juste.",
+      fr: "Elle est essentielle à ma spécialisation Odoo, où une erreur peut provenir du code interne, d'un module tiers, d'une personnalisation en base ou d'une donnée métier. Elle compte aussi dans le front-end et la visualisation, car un rendu plausible ne prouve pas que l'information représentée est juste.",
       en: "It is essential to my Odoo specialization, where an error may originate in internal code, a third-party module, a database customization, or business data. It also matters in frontend and visualization work because a plausible display does not prove that the represented information is correct.",
     },
     advice: {
