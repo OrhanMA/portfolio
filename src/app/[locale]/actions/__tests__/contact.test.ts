@@ -146,14 +146,19 @@ describe("sendContactEmail()", () => {
     expect(result?.message).toContain("Trop de messages");
   });
 
-  it("fails closed when the rate-limit store is unavailable", async () => {
+  it("continues delivery when the best-effort limiter is unavailable", async () => {
     const { rateLimit } = await import("@/lib/rate-limit");
-    vi.mocked(rateLimit).mockRejectedValueOnce(new Error("Redis unavailable"));
+    vi.mocked(rateLimit).mockRejectedValueOnce(new Error("Limiter unavailable"));
+    const warning = vi.spyOn(console, "warn").mockImplementation(() => {});
 
     const result = await sendContactEmail("fr", validData);
-    expect(result?.success).toBe(false);
-    expect(result?.message).toContain("sécurité");
-    expect(mockSend).not.toHaveBeenCalled();
+    expect(result?.success).toBe(true);
+    expect(mockSend).toHaveBeenCalledOnce();
+    expect(warning).toHaveBeenCalledWith(
+      expect.stringContaining("continuing with remaining anti-spam protections"),
+      expect.any(Error),
+    );
+    warning.mockRestore();
   });
 
   it("rejects when reCAPTCHA fails", async () => {

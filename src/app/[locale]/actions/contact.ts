@@ -153,12 +153,13 @@ export async function sendContactEmail(
       };
     }
   } catch (error) {
-    console.error("Contact rate-limit unavailable:", error);
-    return {
-      status: "temporarily-unavailable",
-      success: false,
-      message: dict.contactErrors.securityUnavailable,
-    };
+    // Keep the contact channel available if the best-effort limiter fails.
+    // reCAPTCHA, the honeypot and the minimum submission time have already run;
+    // log the degraded protection so the incident remains observable.
+    console.warn(
+      "Contact rate-limit unavailable; continuing with remaining anti-spam protections:",
+      error,
+    );
   }
 
   const reasonLabel =

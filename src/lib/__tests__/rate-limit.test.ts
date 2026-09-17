@@ -4,13 +4,6 @@ import { rateLimit } from "@/lib/rate-limit";
 describe("rateLimit()", () => {
   beforeEach(() => {
     vi.useFakeTimers();
-    vi.stubEnv("NODE_ENV", "test");
-    vi.stubEnv("UPSTASH_REDIS_REST_URL", "");
-    vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "");
-    vi.stubEnv("KV_REST_API_URL", "");
-    vi.stubEnv("KV_REST_API_TOKEN", "");
-    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_URL", "");
-    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_TOKEN", "");
   });
 
   afterEach(() => {
@@ -19,7 +12,7 @@ describe("rateLimit()", () => {
     vi.restoreAllMocks();
   });
 
-  it("tracks an isolated fixed window locally in tests", async () => {
+  it("tracks an isolated fixed window in the current server instance", async () => {
     const key = `local-${crypto.randomUUID()}`;
     expect(await rateLimit(key, 2, 60_000)).toMatchObject({
       success: true,
@@ -43,49 +36,15 @@ describe("rateLimit()", () => {
     expect((await rateLimit(key, 1, 60_000)).success).toBe(true);
   });
 
-  it("uses an atomic Redis script when durable credentials exist", async () => {
-    vi.stubEnv("UPSTASH_REDIS_REST_URL", "https://redis.example");
-    vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "secret");
-    const fetchSpy = vi.spyOn(global, "fetch").mockResolvedValue(
-      new Response(JSON.stringify({ result: [2, 30_000] })),
-    );
-
-    const result = await rateLimit("hashed-ip", 5, 60_000);
-
-    expect(result).toMatchObject({ success: true, remaining: 3 });
-    expect(fetchSpy).toHaveBeenCalledWith(
-      "https://redis.example",
-      expect.objectContaining({
-        method: "POST",
-        headers: expect.objectContaining({ Authorization: "Bearer secret" }),
-      }),
-    );
-    const request = fetchSpy.mock.calls[0]?.[1];
-    expect(String(request?.body)).toContain("EVAL");
-  });
-
-  it("supports the Vercel integration variables created with the configured prefix", async () => {
-    vi.stubEnv(
-      "UPSTASH_REDIS_REST_KV_REST_API_URL",
-      "https://redis.vercel.example",
-    );
-    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_TOKEN", "secret");
-    const fetchSpy = vi.spyOn(global, "fetch").mockResolvedValue(
-      new Response(JSON.stringify({ result: [1, 60_000] })),
-    );
-
-    await rateLimit("hashed-ip");
-
-    expect(fetchSpy).toHaveBeenCalledWith(
-      "https://redis.vercel.example",
-      expect.objectContaining({
-        headers: expect.objectContaining({ Authorization: "Bearer secret" }),
-      }),
-    );
-  });
-
-  it("fails closed in production without a durable store", async () => {
+  it("does not call an external service in production", async () => {
     vi.stubEnv("NODE_ENV", "production");
-    await expect(rateLimit("hashed-ip")).rejects.toThrow("durable Redis");
+    const fetchSpy = vi.spyOn(global, "fetch");
+    const key = `production-${crypto.randomUUID()}`;
+
+    await expect(rateLimit(key)).resolves.toMatchObject({
+      success: true,
+      remaining: 4,
+    });
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 });
