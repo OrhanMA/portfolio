@@ -146,19 +146,23 @@ describe("sendContactEmail()", () => {
     expect(result?.message).toContain("Trop de messages");
   });
 
-  it("continues delivery when the best-effort limiter is unavailable", async () => {
+  it("fails closed when the durable limiter is unavailable", async () => {
     const { rateLimit } = await import("@/lib/rate-limit");
     vi.mocked(rateLimit).mockRejectedValueOnce(new Error("Limiter unavailable"));
-    const warning = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const result = await sendContactEmail("fr", validData);
-    expect(result?.success).toBe(true);
-    expect(mockSend).toHaveBeenCalledOnce();
-    expect(warning).toHaveBeenCalledWith(
-      expect.stringContaining("continuing with remaining anti-spam protections"),
+    expect(result).toMatchObject({
+      status: "temporarily-unavailable",
+      success: false,
+    });
+    expect(result?.message).toContain("sécurité");
+    expect(mockSend).not.toHaveBeenCalled();
+    expect(error).toHaveBeenCalledWith(
+      "Contact rate-limit unavailable:",
       expect.any(Error),
     );
-    warning.mockRestore();
+    error.mockRestore();
   });
 
   it("rejects when reCAPTCHA fails", async () => {

@@ -1,4 +1,6 @@
 import "server-only";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 export interface RateLimitResult {
   success: boolean;
@@ -6,42 +8,60 @@ export interface RateLimitResult {
   resetAt: number;
 }
 
-interface RateLimitEntry {
-  count: number;
-  resetAt: number;
+export class RateLimitUnavailableError extends Error {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
+    this.name = "RateLimitUnavailableError";
+  }
 }
 
-const localStore = new Map<string, RateLimitEntry>();
+function getRateLimitConfiguration() {
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL ||
+    process.env.UPSTASH_REDIS_REST_KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN ||
+    process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN;
+
+  if (!url || !token) {
+    throw new RateLimitUnavailableError(
+      "The durable contact rate limiter is not configured.",
+    );
+  }
+
+  return { url, token };
+}
 
 /**
- * Consumes one contact-form attempt in the current server instance.
+ * Consumes one contact-form attempt in a shared Upstash Redis window.
  *
- * This best-effort limiter is intentionally local: it adds no paid external
- * dependency and complements reCAPTCHA, the honeypot and the minimum
- * submission time. Serverless instances do not share this in-memory state.
+ * There is deliberately no in-memory fallback: a missing or unavailable
+ * durable store must prevent an email from being sent instead of silently
+ * weakening anti-spam protection across serverless instances.
  */
 export async function rateLimit(
   key: string,
   limit = 5,
   windowMs = 60 * 60 * 1_000,
 ): Promise<RateLimitResult> {
-  const now = Date.now();
-  const entry = localStore.get(key);
+  const { url, token } = getRateLimitConfiguration();
+  const limiter = new Ratelimit({
+    redis: new Redis({ url, token }),
+    limiter: Ratelimit.slidingWindow(limit, `${windowMs} ms`),
+    prefix: "portfolio:contact",
+  });
 
-  if (!entry || now >= entry.resetAt) {
-    const resetAt = now + windowMs;
-    localStore.set(key, { count: 1, resetAt });
-    return { success: true, remaining: Math.max(0, limit - 1), resetAt };
+  try {
+    const result = await limiter.limit(key);
+    return {
+      success: result.success,
+      remaining: result.remaining,
+      resetAt: result.reset,
+    };
+  } catch (error) {
+    throw new RateLimitUnavailableError(
+      "The durable contact rate limiter is unavailable.",
+      { cause: error },
+    );
   }
-
-  if (entry.count >= limit) {
-    return { success: false, remaining: 0, resetAt: entry.resetAt };
-  }
-
-  entry.count += 1;
-  return {
-    success: true,
-    remaining: Math.max(0, limit - entry.count),
-    resetAt: entry.resetAt,
-  };
 }

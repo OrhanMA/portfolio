@@ -6,7 +6,7 @@ import { realisations } from "@/lib/realisations";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 
 const BASE_URL = "https://orhanmadiassani.com";
-const CONTENT_LAST_UPDATED = new Date("2026-08-14T00:00:00.000Z");
+const CONTENT_LAST_UPDATED = new Date("2026-09-17T00:00:00.000Z");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [

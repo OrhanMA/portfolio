@@ -22,13 +22,15 @@ Le modèle `.env.example` est la référence des variables prises en charge. Ne 
 | `RESEND_API_KEY` | serveur, secrète | requise pour envoyer | Authentifie l'appel à Resend. |
 | `CONTACT_EMAIL` | serveur | requise pour envoyer | Reçoit les messages du formulaire. |
 | `FROM_EMAIL` | serveur | requise pour envoyer | Adresse d'expédition autorisée par Resend. |
+| `UPSTASH_REDIS_REST_URL` | serveur, secrète | requise en production | URL REST de la base Upstash utilisée par le rate limit. |
+| `UPSTASH_REDIS_REST_TOKEN` | serveur, secrète | requise en production | Jeton REST de la base Upstash utilisée par le rate limit. |
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | navigateur, publique | optionnelle | Charge reCAPTCHA v3 à l'intention. |
 | `RECAPTCHA_SECRET_KEY` | serveur, secrète | optionnelle avec la clé publique | Vérifie le jeton reCAPTCHA. |
 | `RECAPTCHA_ALLOWED_HOSTNAMES` | serveur | recommandée avec reCAPTCHA | Liste les hôtes autorisés, séparés par des virgules. |
 | `NEXT_PUBLIC_GTM_ID` | navigateur, publique | optionnelle | Configure le conteneur Google Tag Manager. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | navigateur, publique | optionnelle | Configure GA4 directement lorsqu'aucun GTM n'est utilisé. |
 
-Le formulaire n'utilise aucun stockage externe payant pour sa limitation. Il conserve une fenêtre par empreinte d'adresse IP dans la mémoire de l'instance serveur courante. Cette protection gratuite complète reCAPTCHA, le honeypot et le contrôle temporel, mais elle n'est pas partagée entre les instances serverless.
+Le formulaire applique une limite partagée par empreinte d'adresse IP dans Upstash Redis. Elle complète reCAPTCHA, le honeypot et le contrôle temporel, et reste cohérente entre les instances serverless. Si Redis est absent ou indisponible, le formulaire échoue fermé : aucun e-mail n'est envoyé.
 
 ## Resend
 
@@ -49,14 +51,20 @@ Les limitations et quotas des offres évoluent : consulter la documentation et l
 
 Le formulaire charge le script uniquement après un focus ou une tentative d'envoi. Le serveur exige l'action `contact_form`, un hostname autorisé, un jeton récent et un score d'au moins `0.5`. Si les deux clés ne sont pas configurées, reCAPTCHA et sa mention ne sont pas rendus ; le honeypot, le contrôle temporel et le rate limit restent actifs.
 
-## Limitation locale du formulaire
+## Limitation durable du formulaire
 
-La limite par adresse IP est appliquée dans la mémoire de chaque instance serveur : cinq tentatives par heure par défaut. Elle ne nécessite ni base de données ni facturation à la commande. Sur une plateforme serverless, une nouvelle instance repart avec une mémoire vide ; reCAPTCHA v3 reste donc la protection distribuée principale, devant le honeypot et le délai minimal.
+1. Créer une base Redis dans [Upstash](https://console.upstash.com/redis), idéalement dans une région proche du déploiement Vercel.
+2. Ajouter `UPSTASH_REDIS_REST_URL` et `UPSTASH_REDIS_REST_TOKEN` dans les environnements Vercel Preview et Production. Ne jamais les préfixer par `NEXT_PUBLIC_`.
+3. La limite est de cinq tentatives par heure et par empreinte IP hachée, selon une fenêtre glissante stockée dans Redis.
+4. En cas de variable manquante, d'erreur réseau ou d'erreur Upstash, le formulaire répond temporairement indisponible et n'appelle pas Resend.
+
+L'intégration Upstash installée depuis Vercel peut fournir les mêmes secrets sous les noms `UPSTASH_REDIS_REST_KV_REST_API_URL` et `UPSTASH_REDIS_REST_KV_REST_API_TOKEN`. Le code accepte aussi ces noms générés ; il ne faut ni les afficher ni les recopier dans le dépôt.
 
 Après configuration, vérifier au minimum :
 
 - qu'une requête normale peut atteindre l'action serveur ;
-- que cinq tentatives successives sur la même instance épuisent la fenêtre locale ;
+- que cinq tentatives successives depuis la même IP épuisent la fenêtre Redis partagée ;
+- qu'une indisponibilité Redis empêche réellement l'appel à Resend ;
 - que les secrets n'apparaissent ni dans le bundle client ni dans les journaux publiés.
 
 ## Mesure d'audience et consentement
@@ -95,6 +103,7 @@ Ces outils complètent les commandes du dépôt ; ils ne remplacent ni les tests
 - [ ] `.env.local` a été créé depuis `.env.example` sans être ajouté à Git.
 - [ ] L'installation utilise Node.js 22 et pnpm 10.20.0.
 - [ ] Resend envoie depuis une adresse autorisée vers le destinataire prévu.
+- [ ] Upstash Redis est configuré dans Preview et Production ; une panne du service bloque l'envoi du formulaire.
 - [ ] Le domaine de production est validé par Resend.
 - [ ] reCAPTCHA accepte uniquement les hostnames attendus, s'il est activé.
 - [ ] GTM ou GA4 reste absent avant consentement, s'il est activé.
