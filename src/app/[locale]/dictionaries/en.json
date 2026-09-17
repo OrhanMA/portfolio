@@ -500,7 +500,6 @@
   "contactErrors": {
     "invalidData": "Invalid data. Please check the form.",
     "tooFast": "Please wait a few seconds before submitting.",
-    "rateLimit": "Too many messages sent. Please try again in an hour.",
     "recaptchaFailed": "Security verification failed. Please try again.",
     "securityUnavailable": "The security service is temporarily unavailable. Please try again later or use the email address provided.",
     "temporarilyUnavailable": "The contact service is temporarily unavailable. Your data has been kept; please try again.",

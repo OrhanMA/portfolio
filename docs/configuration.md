@@ -22,15 +22,13 @@ Le modèle `.env.example` est la référence des variables prises en charge. Ne 
 | `RESEND_API_KEY` | serveur, secrète | requise pour envoyer | Authentifie l'appel à Resend. |
 | `CONTACT_EMAIL` | serveur | requise pour envoyer | Reçoit les messages du formulaire. |
 | `FROM_EMAIL` | serveur | requise pour envoyer | Adresse d'expédition autorisée par Resend. |
-| `UPSTASH_REDIS_REST_URL` | serveur, secrète | requise en production | URL REST de la base Upstash utilisée par le rate limit. |
-| `UPSTASH_REDIS_REST_TOKEN` | serveur, secrète | requise en production | Jeton REST de la base Upstash utilisée par le rate limit. |
 | `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | navigateur, publique | optionnelle | Charge reCAPTCHA v3 à l'intention. |
 | `RECAPTCHA_SECRET_KEY` | serveur, secrète | optionnelle avec la clé publique | Vérifie le jeton reCAPTCHA. |
 | `RECAPTCHA_ALLOWED_HOSTNAMES` | serveur | recommandée avec reCAPTCHA | Liste les hôtes autorisés, séparés par des virgules. |
 | `NEXT_PUBLIC_GTM_ID` | navigateur, publique | optionnelle | Configure le conteneur Google Tag Manager. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | navigateur, publique | optionnelle | Configure GA4 directement lorsqu'aucun GTM n'est utilisé. |
 
-Le formulaire applique une limite partagée par empreinte d'adresse IP dans Upstash Redis. Elle complète reCAPTCHA, le honeypot et le contrôle temporel, et reste cohérente entre les instances serverless. Si Redis est absent ou indisponible, le formulaire échoue fermé : aucun e-mail n'est envoyé.
+Le formulaire applique la validation côté serveur, un honeypot, un contrôle temporel et, lorsqu'il est configuré, reCAPTCHA v3. Il n'utilise pas de rate limit Redis applicatif.
 
 ## Resend
 
@@ -42,6 +40,14 @@ Le formulaire applique une limite partagée par empreinte d'adresse IP dans Upst
 
 Les limitations et quotas des offres évoluent : consulter la documentation et le tableau de bord Resend au moment de la configuration au lieu de se fier à une valeur figée dans ce dépôt.
 
+## Absence volontaire de rate limiting applicatif
+
+Le formulaire de ce portfolio n'applique pas de rate limiting applicatif. Une première implémentation fondée sur Upstash Redis a été retirée : une base gratuite peut être archivée ou désinstallée après une période d'inactivité, ce qui rendrait le formulaire indisponible au moment où une personne souhaite contacter le portfolio.
+
+Ce compromis est volontaire et adapté au périmètre actuel : un éventuel spam peut seulement consommer le quota gratuit Resend du compte, sans plan payant ni dépassement facturé configuré pour le projet. Le formulaire conserve la validation côté serveur, le honeypot, le contrôle temporel et reCAPTCHA v3 lorsqu'il est configuré.
+
+Réévaluer cette décision avant d'activer une facturation Resend, si le volume de spam devient significatif, ou si le formulaire devient un canal métier critique. Dans ce cas, préférer une protection durable au niveau de l'hébergeur plutôt qu'une base gratuite susceptible d'être supprimée par inactivité.
+
 ## Google reCAPTCHA v3
 
 1. Créer un site reCAPTCHA v3 depuis la [console d'administration](https://www.google.com/recaptcha/admin).
@@ -49,23 +55,7 @@ Les limitations et quotas des offres évoluent : consulter la documentation et l
 3. Copier la clé publique dans `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` et le secret dans `RECAPTCHA_SECRET_KEY`.
 4. Définir `RECAPTCHA_ALLOWED_HOSTNAMES` avec les hostnames attendus, sans protocole ni chemin.
 
-Le formulaire charge le script uniquement après un focus ou une tentative d'envoi. Le serveur exige l'action `contact_form`, un hostname autorisé, un jeton récent et un score d'au moins `0.5`. Si les deux clés ne sont pas configurées, reCAPTCHA et sa mention ne sont pas rendus ; le honeypot, le contrôle temporel et le rate limit restent actifs.
-
-## Limitation durable du formulaire
-
-1. Créer une base Redis dans [Upstash](https://console.upstash.com/redis), idéalement dans une région proche du déploiement Vercel.
-2. Ajouter `UPSTASH_REDIS_REST_URL` et `UPSTASH_REDIS_REST_TOKEN` dans les environnements Vercel Preview et Production. Ne jamais les préfixer par `NEXT_PUBLIC_`.
-3. La limite est de cinq tentatives par heure et par empreinte IP hachée, selon une fenêtre glissante stockée dans Redis.
-4. En cas de variable manquante, d'erreur réseau ou d'erreur Upstash, le formulaire répond temporairement indisponible et n'appelle pas Resend.
-
-L'intégration Upstash installée depuis Vercel peut fournir les mêmes secrets sous les noms `KV_REST_API_URL` et `KV_REST_API_TOKEN`, ou sous les anciens noms `UPSTASH_REDIS_REST_KV_REST_API_URL` et `UPSTASH_REDIS_REST_KV_REST_API_TOKEN`. Le code accepte ces noms générés ; il ne faut ni les afficher ni les recopier dans le dépôt.
-
-Après configuration, vérifier au minimum :
-
-- qu'une requête normale peut atteindre l'action serveur ;
-- que cinq tentatives successives depuis la même IP épuisent la fenêtre Redis partagée ;
-- qu'une indisponibilité Redis empêche réellement l'appel à Resend ;
-- que les secrets n'apparaissent ni dans le bundle client ni dans les journaux publiés.
+Le formulaire charge le script uniquement après un focus ou une tentative d'envoi. Le serveur exige l'action `contact_form`, un hostname autorisé, un jeton récent et un score d'au moins `0.5`. Si les deux clés ne sont pas configurées, reCAPTCHA et sa mention ne sont pas rendus ; le honeypot et le contrôle temporel restent actifs.
 
 ## Mesure d'audience et consentement
 
@@ -103,7 +93,7 @@ Ces outils complètent les commandes du dépôt ; ils ne remplacent ni les tests
 - [ ] `.env.local` a été créé depuis `.env.example` sans être ajouté à Git.
 - [ ] L'installation utilise Node.js 22 et pnpm 10.20.0.
 - [ ] Resend envoie depuis une adresse autorisée vers le destinataire prévu.
-- [ ] Upstash Redis est configuré dans Preview et Production ; une panne du service bloque l'envoi du formulaire.
+- [ ] L'absence de rate limiting applicatif est toujours acceptable au regard du quota et du plan Resend en vigueur.
 - [ ] Le domaine de production est validé par Resend.
 - [ ] reCAPTCHA accepte uniquement les hostnames attendus, s'il est activé.
 - [ ] GTM ou GA4 reste absent avant consentement, s'il est activé.

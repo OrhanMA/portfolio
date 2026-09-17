@@ -7,26 +7,10 @@ import { escapeHtml } from "@/lib/utils";
 
 const { mockSend } = vi.hoisted(() => ({ mockSend: vi.fn() }));
 
-vi.mock("next/headers", () => ({
-  headers: vi.fn(() =>
-    Promise.resolve(new Map([["x-forwarded-for", "127.0.0.1"]])),
-  ),
-}));
-
 vi.mock("resend", () => ({
   Resend: vi.fn(function () {
     return { emails: { send: mockSend } };
   }),
-}));
-
-vi.mock("@/lib/rate-limit", () => ({
-  rateLimit: vi.fn(() =>
-    Promise.resolve({
-      success: true,
-      remaining: 4,
-      resetAt: Date.now() + 3_600_000,
-    }),
-  ),
 }));
 
 vi.mock("@/lib/recaptcha", () => ({
@@ -63,12 +47,6 @@ describe("sendContactEmail()", () => {
   beforeEach(async () => {
     mockSend.mockReset();
     mockSend.mockResolvedValue({ error: null });
-    const { rateLimit } = await import("@/lib/rate-limit");
-    vi.mocked(rateLimit).mockResolvedValue({
-      success: true,
-      remaining: 4,
-      resetAt: Date.now() + 3_600_000,
-    });
   });
 
   afterEach(() => {
@@ -131,38 +109,6 @@ describe("sendContactEmail()", () => {
 
     expect(result?.success).toBe(false);
     expect(result?.message).toContain("wait");
-  });
-
-  it("rejects when the durable rate limit is exceeded", async () => {
-    const { rateLimit } = await import("@/lib/rate-limit");
-    vi.mocked(rateLimit).mockResolvedValueOnce({
-      success: false,
-      remaining: 0,
-      resetAt: Date.now() + 3_600_000,
-    });
-
-    const result = await sendContactEmail("fr", validData);
-    expect(result?.success).toBe(false);
-    expect(result?.message).toContain("Trop de messages");
-  });
-
-  it("fails closed when the durable limiter is unavailable", async () => {
-    const { rateLimit } = await import("@/lib/rate-limit");
-    vi.mocked(rateLimit).mockRejectedValueOnce(new Error("Limiter unavailable"));
-    const error = vi.spyOn(console, "error").mockImplementation(() => {});
-
-    const result = await sendContactEmail("fr", validData);
-    expect(result).toMatchObject({
-      status: "temporarily-unavailable",
-      success: false,
-    });
-    expect(result?.message).toContain("sécurité");
-    expect(mockSend).not.toHaveBeenCalled();
-    expect(error).toHaveBeenCalledWith(
-      "Contact rate-limit unavailable:",
-      expect.any(Error),
-    );
-    error.mockRestore();
   });
 
   it("rejects when reCAPTCHA fails", async () => {

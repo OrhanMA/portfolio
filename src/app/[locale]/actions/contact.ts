@@ -1,14 +1,11 @@
 "use server";
 
-import { headers } from "next/headers";
-import { createHash } from "node:crypto";
 import { Resend } from "resend";
 import {
   contactSchema,
   type ContactFormInput,
 } from "@/lib/schemas/contact";
 import { verifyRecaptcha } from "@/lib/recaptcha";
-import { rateLimit } from "@/lib/rate-limit";
 import { createContactEmailHtml, createContactEmailText } from "@/lib/contact-email";
 import { getDictionary } from "@/app/[locale]/dictionaries";
 import { isValidLocale, type Locale } from "@/lib/i18n";
@@ -136,29 +133,6 @@ export async function sendContactEmail(
         message: dict.contactErrors.recaptchaFailed,
       };
     }
-  }
-
-  const headersList = await headers();
-  const forwardedFor = headersList.get("x-forwarded-for");
-  const ip = forwardedFor?.split(",")[0]?.trim() ?? "unknown";
-  const rateLimitKey = createHash("sha256").update(ip).digest("hex");
-
-  try {
-    const rateLimitResult = await rateLimit(rateLimitKey);
-    if (!rateLimitResult.success) {
-      return {
-        status: "validation-error",
-        success: false,
-        message: dict.contactErrors.rateLimit,
-      };
-    }
-  } catch (error) {
-    console.error("Contact rate-limit unavailable:", error);
-    return {
-      status: "temporarily-unavailable",
-      success: false,
-      message: dict.contactErrors.securityUnavailable,
-    };
   }
 
   const reasonLabel =
