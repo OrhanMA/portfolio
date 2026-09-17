@@ -58,7 +58,7 @@ Le formulaire charge le script uniquement après un focus ou une tentative d'env
 3. La limite est de cinq tentatives par heure et par empreinte IP hachée, selon une fenêtre glissante stockée dans Redis.
 4. En cas de variable manquante, d'erreur réseau ou d'erreur Upstash, le formulaire répond temporairement indisponible et n'appelle pas Resend.
 
-L'intégration Upstash installée depuis Vercel peut fournir les mêmes secrets sous les noms `UPSTASH_REDIS_REST_KV_REST_API_URL` et `UPSTASH_REDIS_REST_KV_REST_API_TOKEN`. Le code accepte aussi ces noms générés ; il ne faut ni les afficher ni les recopier dans le dépôt.
+L'intégration Upstash installée depuis Vercel peut fournir les mêmes secrets sous les noms `KV_REST_API_URL` et `KV_REST_API_TOKEN`, ou sous les anciens noms `UPSTASH_REDIS_REST_KV_REST_API_URL` et `UPSTASH_REDIS_REST_KV_REST_API_TOKEN`. Le code accepte ces noms générés ; il ne faut ni les afficher ni les recopier dans le dépôt.
 
 Après configuration, vérifier au minimum :
 

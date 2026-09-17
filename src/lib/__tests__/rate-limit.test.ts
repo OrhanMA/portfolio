@@ -69,14 +69,16 @@ describe("rateLimit()", () => {
     });
   });
 
-  it("accepts the variable names created by the Vercel Upstash integration", async () => {
+  it("accepts the current variable names created by the Vercel Upstash integration", async () => {
     vi.stubEnv("UPSTASH_REDIS_REST_URL", "");
     vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "");
     vi.stubEnv(
       "UPSTASH_REDIS_REST_KV_REST_API_URL",
-      "https://integration.upstash.io",
+      "",
     );
-    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_TOKEN", "integration-token");
+    vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_TOKEN", "");
+    vi.stubEnv("KV_REST_API_URL", "https://integration.upstash.io");
+    vi.stubEnv("KV_REST_API_TOKEN", "integration-token");
     mockLimit.mockResolvedValue({
       success: true,
       remaining: 4,
@@ -96,6 +98,7 @@ describe("rateLimit()", () => {
   it("fails closed when the durable store is not configured", async () => {
     vi.stubEnv("UPSTASH_REDIS_REST_URL", "");
     vi.stubEnv("UPSTASH_REDIS_REST_KV_REST_API_URL", "");
+    vi.stubEnv("KV_REST_API_URL", "");
 
     await expect(rateLimit("hashed-ip")).rejects.toBeInstanceOf(
       RateLimitUnavailableError,
