@@ -1,6 +1,6 @@
 # Portfolio professionnel — Orhan Madi Assani
 
-Portfolio bilingue français/anglais construit avec Next.js 16.3.4, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui avec Base UI, GSAP, Lenis et MDX.
+Portfolio bilingue français/anglais construit avec Next.js 16.4.5, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui avec Base UI, GSAP, Lenis et MDX.
 
 Le site présente le parcours, dix compétences, cinq réalisations détaillées, des modules Odoo documentés, des articles techniques et les preuves publiques nécessaires au dossier professionnel.
 

@@ -3,7 +3,7 @@
 ## Environnement et sources de vérité
 
 - Utiliser Node.js 22, pnpm 10.20.0 et les scripts de `package.json`.
-- Le projet utilise Next.js 16.3.4, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui avec Base UI, GSAP, Lenis et MDX.
+- Le projet utilise Next.js 16.4.5, React 19, TypeScript strict, Tailwind CSS v4, shadcn/ui avec Base UI, GSAP, Lenis et MDX.
 - Avant de modifier une API ou une convention Next.js, lire le guide correspondant dans `node_modules/next/dist/docs/`.
 - Lorsque les outils `next-devtools-mcp` sont exposés, utiliser `nextjs_index` pour découvrir le serveur, `nextjs_docs` pour la documentation et `nextjs_call` ou `browser_eval` pour l'inspection.
 - Préserver les changements sans rapport déjà présents dans le worktree. Ne pas committer, pousser, déployer ni réécrire l'historique sans demande explicite.
