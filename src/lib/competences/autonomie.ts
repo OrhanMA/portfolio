@@ -85,6 +85,10 @@ This skill becomes especially visible when a system is critical or poorly docume
       fr: "Cette compétence structure mon profil parce que je suis souvent le seul développeur interne disponible sur Odoo et que je porte aussi des sujets Next.js et Symfony. Elle me permet de transformer une demande incomplète en plan de travail, mais elle n'a de valeur que si les risques, les dépendances et les décisions restant à valider sont rendus visibles.",
       en: "This skill is central to my profile because I am often the only available in-house Odoo developer and also take responsibility for Next.js and Symfony projects. It lets me turn an incomplete request into a work plan, but it is valuable only when risks, dependencies, and decisions still requiring validation remain visible.",
     },
+    acquisitionSpeed: {
+      fr: "J’ai d’abord avancé sur des demandes Odoo isolées. Trois à quatre mois après le début de mon alternance, j’ai commencé à porter des modules, de l’analyse à la préparation du déploiement. La migration m’a ensuite obligé à poser des points de validation avec les équipes plutôt que d’avancer sur des décisions qui ne m’appartenaient pas.",
+      en: "I started with individual Odoo requests. Three to four months into my work-study program, I began taking modules from analysis through deployment preparation. The migration then taught me to agree on review checkpoints with users before moving ahead on decisions outside my remit.",
+    },
     advice: {
       fr: "Je conseille de définir dès le départ les critères de réussite, les personnes qui valident chaque partie et les conditions d'arrêt ou de retour arrière. Avancer seul devient dangereux lorsque les décisions restent implicites. L'autonomie la plus utile combine initiative, traçabilité, communication et capacité à demander un arbitrage avant que le risque ne se transforme en incident.",
       en: "My advice is to define success criteria, validators for each area, and stop or rollback conditions from the outset. Working independently becomes dangerous when decisions remain implicit. The most useful autonomy combines initiative, traceability, communication, and the ability to seek a decision before a risk becomes an incident.",
@@ -96,14 +100,13 @@ This skill becomes especially visible when a system is critical or poorly docume
       en: "Consolidate this advanced level by adding more systematic project leadership to my technical autonomy: risk registers, observable milestones, recorded decisions, acceptance criteria, and architecture reviews proportionate to impact.",
     },
     training: {
-      fr: "Je poursuis l'étude des architectures logicielles, de la gestion des migrations et des méthodes de décision technique. Mes prochains projets doivent surtout me faire pratiquer ces outils plus tôt, avant que la complexité soit déjà installée.",
-      en: "I continue studying software architecture, migration management, and technical decision-making methods. My next projects must above all give me opportunities to apply these tools earlier, before complexity is already established.",
+      fr: "D’ici avril 2027, je prévois un exercice de pilotage sur un prochain changement ERP. Je préparerai une fiche d’une page avec trois risques, des points de validation et les décisions à faire arbitrer. La relecture par un interlocuteur métier devra confirmer qui décide, quand et à partir de quelle preuve.",
+      en: "By April 2027, I plan to practice leading an upcoming ERP change. I will prepare a one-page brief with three risks, review checkpoints and decisions that need escalation. A business reviewer should be able to tell who decides, when and what evidence they need.",
     },
   },
   linkedRealisations: [
     "migration-odoo-v16-v19",
     "modules-metier-odoo",
     "refonte-site-corporate",
-    "app-trajectoires-de-vie",
   ],
 };

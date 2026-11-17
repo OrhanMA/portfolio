@@ -1,6 +1,16 @@
 import type { LocalizedContent } from "@/lib/types/content";
 import type { EvidenceMedia } from "@/lib/types/evidence-media";
 
+export type RealisationSectionId =
+  | "presentation"
+  | "objectives"
+  | "risks"
+  | "steps"
+  | "actors"
+  | "results"
+  | "aftermath"
+  | "critique";
+
 export type Realisation = {
   slug: string;
   title: LocalizedContent;
@@ -17,6 +27,7 @@ export type Realisation = {
   aftermath: LocalizedContent;
   critique: LocalizedContent;
   linkedCompetences: string[];
+  contextualCompetences?: Partial<Record<RealisationSectionId, string[]>>;
   media?: RealisationMedia[];
 };
 

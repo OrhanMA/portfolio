@@ -52,32 +52,38 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
     ],
     values: [
       {
-        competenceSlug: "amelioration-continue",
+        competenceSlug: "communication",
         content: <p key="values-1">
-          <strong>Responsabilité</strong> : ce que je développe et modifie est
-          déployé en production. Je suis responsable de livrer des fonctionnalités
-          de qualité. Sur Odoo, j&apos;ai une autonomie totale et j&apos;ai déjà
-          réalisé des dizaines de fonctionnalités et de corrections. Sur le site
-          B2B en Symfony, j&apos;ai une autonomie complète sur le développement de
-          fonctionnalités jusqu&apos;à la mise en production sur le serveur.
+          <strong>Humain — partir du travail des utilisateurs.</strong> Avant
+          d&apos;automatiser les relances d&apos;impayés, j&apos;ai demandé à la
+          comptabilité d&apos;expliquer ses exceptions à partir d&apos;exemples.
+          L&apos;équipe a essayé les règles en préproduction, puis je lui ai montré
+          comment ajuster les délais et les exclusions. Les personnes qui
+          connaissaient le processus ont ainsi pu valider l&apos;outil et garder
+          la main sur les réglages.
         </p>,
       },
       {
-        competenceSlug: "autonomie",
+        competenceSlug: "developpement-frontend",
         content: <p key="values-2">
-          <strong>Autonomie</strong> : dès le premier jour de mon alternance,
-          j&apos;ai dû apprendre le framework Odoo en autonomie : comprendre la base
-          de code du framework, l&apos;existant en matière de configuration et de code
-          personnalisé, et répondre au fur et à mesure aux demandes sur l&apos;ERP.
+          <strong>Conscient — mesurer ce que l&apos;interface laisse entendre.</strong>{" "}
+          Dans CAP2vie, traiter une date estimée comme une date certaine pouvait
+          changer la lecture du récit. Pour les dates manquantes, nous avons
+          appliqué une règle convenue avec les chercheurs. L&apos;enquêteur
+          pouvait corriger une période dans le formulaire ou le graphique.
+          Dans une version suivante, je rendrais l&apos;incertitude visible
+          sur la trajectoire elle-même.
         </p>,
       },
       {
-        competenceSlug: "amelioration-continue",
+        competenceSlug: "devops",
         content: <p key="values-3">
-          <strong>Amélioration continue</strong> : je n&apos;ai pas la prétention
-          d&apos;implémenter à chaque fois la fonctionnalité parfaite. C&apos;est
-          pourquoi je cherche continuellement à améliorer l&apos;existant, pas
-          seulement à développer de nouvelles fonctionnalités.
+          <strong>Responsable — préparer la bascule et en suivre les effets.</strong>{" "}
+          Pour la migration vers Odoo 19, j&apos;ai répété les opérations en
+          préproduction et fait vérifier les parcours critiques par les équipes.
+          Nous avons préparé des sauvegardes avant la bascule. Après le
+          redémarrage, j&apos;ai suivi les incidents remontés par les
+          utilisateurs et accompagné la remise en service des intégrations.
         </p>,
       },
     ],
@@ -186,30 +192,34 @@ export const aboutEditorialContent: Record<Locale, AboutEditorialContent> = {
     ],
     values: [
       {
-        competenceSlug: "amelioration-continue",
+        competenceSlug: "communication",
         content: <p key="values-1">
-          <strong>Responsibility</strong>: what I develop and modify is shipped to
-          production. I&apos;m responsible for delivering high-quality features. On
-          Odoo, I have full autonomy and have already completed dozens of features
-          and bug fixes. On the Symfony B2B site, I have complete autonomy over
-          feature development through to production deployment on the server.
+          <strong>Human — start with how people work.</strong> Before automating
+          overdue invoice reminders, I asked accounting to explain its exceptions
+          using concrete examples. The team tried the rules in staging, and I
+          showed them how to adjust timing and exclusions. The people who knew
+          the process could validate the tool and stay in control of its settings.
         </p>,
       },
       {
-        competenceSlug: "autonomie",
+        competenceSlug: "developpement-frontend",
         content: <p key="values-2">
-          <strong>Autonomy</strong>: from the first day of my work-study program,
-          I had to learn the Odoo framework independently: understanding the
-          framework&apos;s codebase, existing configurations and custom code, and
-          addressing ERP requests as they arose.
+          <strong>Aware — consider what the interface implies.</strong> In
+          CAP2vie, treating an estimated date as exact could change how someone
+          read a life story. For missing dates, we used a rule agreed with the
+          researchers. The interviewer could correct a period in either the
+          form or the chart. In a follow-up version, I would show the uncertainty
+          on the trajectory itself.
         </p>,
       },
       {
-        competenceSlug: "amelioration-continue",
+        competenceSlug: "devops",
         content: <p key="values-3">
-          <strong>Continuous improvement</strong>: I don&apos;t claim to implement
-          the perfect feature every time. That&apos;s why I continuously seek to
-          improve existing solutions, not just develop new features.
+          <strong>Responsible — prepare a cutover and follow through.</strong>{" "}
+          For the Odoo 19 upgrade, I rehearsed the steps in staging and asked
+          teams to verify critical workflows. We prepared backups before
+          cutover. After restart, I followed up on issues raised by users and
+          helped restore the external integrations.
         </p>,
       },
     ],

@@ -7,7 +7,6 @@ describe("RealisationSummary", () => {
     render(
       <RealisationSummary
         locale="fr"
-        currentPath="/realisations/exemple"
         proofHref="#visual-proof-heading"
         labels={{
           heading: "Synthèse de la réalisation",

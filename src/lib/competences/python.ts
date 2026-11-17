@@ -89,6 +89,10 @@ I also follow language evolution, while distinguishing Python innovations from w
       fr: "Python est le langage central de ma spécialisation Odoo. Progresser dans le langage améliore directement la qualité de mes modèles, de mes intégrations et de mes diagnostics, mais m'aide aussi à distinguer les bonnes pratiques générales des conventions propres au framework.",
       en: "Python is the central language of my Odoo specialization. Improving in the language directly improves the quality of my models, integrations, and diagnostics, while also helping me distinguish general good practices from framework-specific conventions.",
     },
+    acquisitionSpeed: {
+      fr: "Les premiers modules m’ont donné un cadre pour écrire des règles métier en Python. Les passages successifs à Odoo 17, 18 et 19 m’ont fait progresser dans la lecture de signatures, des héritages et du code source. Chaque version m’a donné un jalon concret : les modules corrigés devaient de nouveau passer les vérifications de préproduction.",
+      en: "The first modules gave me practical experience writing business rules in Python. Moving through Odoo 17, 18 and 19 improved my ability to read method signatures, inheritance and source code. Each upgrade gave me a concrete milestone: the updated modules had to pass staging checks again.",
+    },
     advice: {
       fr: "Je conseille de ne pas apprendre Python dans Odoo uniquement par imitation de modules existants. Il faut comprendre les recordsets, les décorateurs et les transactions, puis vérifier les patterns dans le code standard de la version ciblée. Une boucle Python lisible peut rester coûteuse ou incorrecte si elle ignore la manière dont l'ORM charge, calcule et sécurise les enregistrements.",
       en: "My advice is not to learn Python in Odoo solely by imitating existing modules. Recordsets, decorators, and transactions must be understood, then patterns verified in the standard code of the target release. Readable Python can still be expensive or incorrect if it ignores how the ORM loads, computes, and secures records.",
@@ -100,8 +104,8 @@ I also follow language evolution, while distinguishing Python innovations from w
       en: "Reach an advanced level by consolidating typing, testing, profiling, and internal language mechanisms, then applying that knowledge to Python projects beyond Odoo alone.",
     },
     training: {
-      fr: "Je poursuis la lecture du code source d'Odoo et de projets Python open source, ainsi que l'étude des évolutions du langage. Le futur service de Business Intelligence doit me donner un contexte complémentaire pour travailler le traitement de données, les API et l'observabilité en Python.",
-      en: "I continue reading Odoo source code and open-source Python projects, as well as studying language evolution. The future Business Intelligence service should provide a complementary setting for working with data processing, APIs, and observability in Python.",
+      fr: "D’ici août 2027, je compte suivre un exercice de profilage avec cProfile sur un traitement Python hors Odoo, à partir de factures fictives. J’écrirai des tests sur les sorties, puis je mesurerai le traitement sur le même jeu de données avant et après une optimisation. Je conserverai les traces de profilage et les cas reproductibles.",
+      en: "By August 2027, I plan to practice profiling with cProfile on a Python job outside Odoo, using fictitious invoices. I will test its outputs and measure the same dataset before and after one optimization. I will keep the profiling output and repeatable cases.",
     },
   },
   linkedRealisations: ["migration-odoo-v16-v19", "modules-metier-odoo"],

@@ -85,6 +85,10 @@ I try to avoid two extremes: rewriting without measured benefit and retaining de
       fr: "Cette compétence est importante parce que je maintiens des produits vivants : un ERP critique, des modules utilisés quotidiennement et des sites qui continueront d'évoluer après leur première livraison. Elle m'évite de considérer la mise en production comme la fin du travail et relie directement maintenance, qualité et apprentissage.",
       en: "This skill matters because I maintain living products: a critical ERP, modules used every day, and websites that will continue evolving after their first release. It prevents me from treating production deployment as the end of the work and directly connects maintenance, quality, and learning.",
     },
+    acquisitionSpeed: {
+      fr: "J’ai d’abord amélioré les modules au fil des demandes. Les changements répétés de délais ou d’exclusions m’ont amené à déplacer ces règles dans les réglages Odoo. J’ai ensuite appliqué le même principe de retour observable au portfolio, en reliant des modifications de structure à des contrôles et aux commentaires des lecteurs.",
+      en: "At first, I improved modules as requests came in. Repeated changes to timing and exclusions led me to move those rules into Odoo settings. I then applied the same focus on observable feedback to the portfolio by tying structural changes to checks and reader comments.",
+    },
     advice: {
       fr: "Je conseille de choisir peu d'indicateurs, mais de les relier à une décision. Un score, un retour utilisateur ou un incident n'a de valeur que s'il modifie une priorité, un test ou une règle de conception. Il faut également documenter les améliorations refusées : ne pas refactoriser immédiatement peut être une décision saine lorsque la dette reste comprise, localisée et rentable.",
       en: "My advice is to choose few indicators but connect each one to a decision. A score, user comment, or incident has value only if it changes a priority, test, or design rule. Rejected improvements should also be documented: not refactoring immediately can be a sound decision when the debt remains understood, localized, and economically acceptable.",
@@ -96,8 +100,8 @@ I try to avoid two extremes: rewriting without measured benefit and retaining de
       en: "Reach an advanced level by establishing feedback loops during framing: acceptance criteria, before-and-after measurements, tests for critical journeys, and regular technical-debt reviews.",
     },
     training: {
-      fr: "Je poursuis l'étude du refactoring, des tests d'intégration et des pratiques DORA. Les migrations Odoo, le calcul de marge et la maintenance du portfolio serviront à mesurer plus systématiquement l'effet réel des changements livrés.",
-      en: "I continue studying refactoring, integration testing, and DORA practices. Odoo migrations, margin calculation, and portfolio maintenance will be used to measure the real effect of delivered changes more systematically.",
+      fr: "D’ici juillet 2027, je veux mener un cycle d’amélioration sur une page du portfolio. Je définirai un trajet précis, par exemple retrouver le rôle, le résultat et la preuve dans une étude de cas. Je ferai essayer la page avant et après sa révision à des lecteurs et noterai le temps de recherche, les hésitations et les changements à garder.",
+      en: "By July 2027, I want to run an improvement cycle on one portfolio page. I will define a specific task, such as finding the role, outcome and evidence in a case study. I will ask readers to try the page before and after revision and record search time, points of hesitation and changes worth keeping.",
     },
   },
   linkedRealisations: [

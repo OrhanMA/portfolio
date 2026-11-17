@@ -1,6 +1,4 @@
-import { LinkedText } from "@/components/linked-text";
 import type { ReactNode } from "react";
-import type { Locale } from "@/lib/i18n";
 
 export type RealisationContentBlock =
   | {
@@ -51,7 +49,7 @@ function renderInlineBold(text: string): ReactNode[] {
   });
 }
 
-export function RealisationArticleContent({ text, locale = "fr", currentPath }: { text: string; locale?: Locale; currentPath?: string }) {
+export function RealisationArticleContent({ text }: { text: string }) {
   const blocks = parseRealisationContent(text);
   const isNumberedList = blocks.every((block) => block.kind === "numbered");
 
@@ -60,11 +58,11 @@ export function RealisationArticleContent({ text, locale = "fr", currentPath }: 
       <div data-realisation-article-body>
         {blocks.map((block, index) => (
           <p key={index}>
-            <LinkedText locale={locale} currentPath={currentPath}>{renderInlineBold(
+            {renderInlineBold(
               block.kind === "paragraph"
                 ? block.text
                 : `${block.number}. **${block.title}** ${block.body}`,
-            )}</LinkedText>
+            )}
           </p>
         ))}
       </div>
@@ -88,11 +86,11 @@ export function RealisationArticleContent({ text, locale = "fr", currentPath }: 
             </span>
             <div>
               <h3>
-                <LinkedText locale={locale} currentPath={currentPath}>{renderInlineBold(block.title)}</LinkedText>
+                {renderInlineBold(block.title)}
               </h3>
               {block.body && (
                 <p>
-                  <LinkedText locale={locale} currentPath={currentPath}>{renderInlineBold(block.body)}</LinkedText>
+                  {renderInlineBold(block.body)}
                 </p>
               )}
             </div>

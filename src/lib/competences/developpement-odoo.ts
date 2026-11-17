@@ -105,8 +105,8 @@ Finally, developing for Odoo requires choosing between standard behavior, config
       en: "This is the most important technical skill in my current profile. It combines Python, PostgreSQL, XML, APIs, security, deployment, and understanding of business processes. It also matches my objective of becoming a senior developer and Odoo technical specialist.",
     },
     acquisitionSpeed: {
-      fr: "J'ai appris Odoo à partir de zéro en alternance, en étant rapidement le seul développeur interne chargé des demandes. Les modules, incidents et migrations m'ont fait progresser plus vite qu'un parcours uniquement théorique, mais cette vitesse explique aussi certaines premières implémentations trop dépendantes de valeurs figées.",
-      en: "I learned Odoo from scratch during work-study while quickly becoming the only in-house developer responsible for requests. Modules, incidents, and migrations accelerated my progress beyond a purely theoretical path, but that speed also explains some early implementations that relied too heavily on fixed values.",
+      fr: "Je découvrais Odoo en arrivant en alternance. Trois à quatre mois plus tard, j’ai commencé à développer des modules internes. Les premières livraisons m’ont confronté aux limites des valeurs figées. Les migrations successives m’ont ensuite obligé à comprendre les héritages du framework et à conserver les fonctions utiles entre versions.",
+      en: "I was new to Odoo when I started my work-study program. Three to four months later, I began developing in-house modules. Early releases exposed the limits of hard-coded values. Successive upgrades then forced me to understand the framework’s inheritance and preserve essential behavior across versions.",
     },
     advice: {
       fr: "Je conseille de commencer par le processus métier et les fonctions standard avant d'écrire un module. Ensuite, il faut séparer configuration et algorithme, tester avec des comptes et des données représentatifs, puis lire le code source dès que le comportement réel contredit l'hypothèse. Studio est utile pour une modification légère, mais le code versionné devient préférable lorsque la logique est critique ou durable.",
@@ -119,8 +119,8 @@ Finally, developing for Odoo requires choosing between standard behavior, config
       en: "Build on my advanced proficiency so I can define the architecture of a module suite, prepare migrations in advance, and guide other developers on security, performance, and maintainability decisions.",
     },
     training: {
-      fr: "Je poursuis la lecture du code source et de la documentation officielle, l'étude des scripts de migration et l'automatisation des tests Odoo. Les prochains axes pratiques sont la performance du calcul de marge, les intégrations JSON-2 et la future architecture de Business Intelligence connectée à l'ERP.",
-      en: "I continue reading source code and official documentation, studying migration scripts, and automating Odoo tests. My next practical areas are margin-calculation performance, JSON-2 integrations, and the future Business Intelligence architecture connected to the ERP.",
+      fr: "D’ici mai 2027, je prévois de suivre la section « Testing Odoo » de la documentation développeur d’Odoo 19 sur un module d’exercice. J’écrirai des tests couvrant une facture éligible, un client exclu et les droits d’accès aux réglages. Un rapport de tests reproductible et relu avant fusion me servira de preuve.",
+      en: "By May 2027, I plan to work through the Odoo 19 developer documentation section “Testing Odoo” on a practice module. I will write tests for an eligible invoice, an excluded customer and access to settings. A repeatable test report reviewed before merging will serve as evidence.",
     },
   },
   linkedRealisations: ["migration-odoo-v16-v19", "modules-metier-odoo"],

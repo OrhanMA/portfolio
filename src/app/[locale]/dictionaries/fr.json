@@ -730,7 +730,8 @@
     "contentsHeading": "Sommaire",
     "contentsSubtext": "Accédez directement à une partie de cette étude de cas.",
     "backToContents": "Retour au sommaire",
-    "linkedCompetencesHeading": "Compétences rattachées",
+    "linkedCompetencesHeading": "Compétences principales",
+    "skillEvidenceLink": "Voir les preuves pour",
     "linkedExperiencesHeading": "Expériences et formations associées",
     "context": "Contexte"
   },

@@ -85,6 +85,10 @@ This skill requires separating structural decisions from reversible ones. Archit
       fr: "Elle est prioritaire dans mon profil parce que mes projets combinent des frameworks en évolution, des besoins métier et des interlocuteurs non techniques. Elle me permet de continuer à livrer pendant que l'information se précise, mais elle doit rester encadrée par un périmètre et des critères de réussite pour ne pas devenir une acceptation permanente du changement.",
       en: "It is a priority in my profile because my projects combine evolving frameworks, business requirements, and nontechnical stakeholders. It lets me continue delivering while information becomes clearer, but it must remain bounded by scope and success criteria so it does not become permanent acceptance of change.",
     },
+    acquisitionSpeed: {
+      fr: "Cette compétence s’est affirmée entre la première version des impayés, limitée aux notifications internes, et la relance client configurable. Les retours sur les délais et les exclusions ont changé la solution tout en gardant le même besoin. Les itérations du site corporate m’ont ensuite appris à appliquer cette méthode à un périmètre éditorial et visuel.",
+      en: "This skill grew between the first overdue invoice version, limited to internal notifications, and configurable customer reminders. Feedback on timing and exclusions changed the solution while the need stayed the same. Iterations on the corporate website then helped me apply the same approach to content and design scope.",
+    },
     advice: {
       fr: "Je conseille de rendre explicites trois catégories : ce qui est validé, ce qui peut encore évoluer et ce qui est volontairement hors périmètre. Cette distinction permet de concevoir des points d'extension sans surarchitecturer le projet. S'adapter efficacement consiste autant à refuser une variation non prioritaire qu'à intégrer rapidement un changement réellement nécessaire.",
       en: "My advice is to make three categories explicit: what is approved, what may still change, and what is deliberately out of scope. This distinction enables extension points without overengineering the project. Effective adaptation involves refusing a low-priority variation just as much as rapidly integrating a genuinely necessary change.",
@@ -96,8 +100,8 @@ This skill requires separating structural decisions from reversible ones. Archit
       en: "Strengthen my product adaptability by estimating change costs more accurately, presenting options with their consequences, and deciding earlier which areas should remain flexible or instead be stabilized.",
     },
     training: {
-      fr: "Je poursuis ma veille sur Next.js, Odoo et les architectures évolutives, mais je veux surtout pratiquer davantage les documents de décision, le prototypage limité dans le temps et la priorisation par valeur plutôt que par nouveauté technique.",
-      en: "I continue monitoring Next.js, Odoo, and evolvable architectures, but above all I want more practice with decision records, time-boxed prototyping, and prioritization by value rather than technical novelty.",
+      fr: "D’ici mai 2027, je prévois un exercice de comparaison sur une demande dont le périmètre change. Je limiterai à une demi-journée un prototype pour comparer l’option standard et une adaptation ciblée. Je résumerai les coûts, les risques et les compromis dans une fiche de décision, puis vérifierai avec le demandeur que l’objectif initial est toujours couvert.",
+      en: "By May 2027, I plan to compare approaches on a request whose scope changes. I will spend at most half a day prototyping to compare a standard option with a targeted customization. I will document costs, risks and trade-offs and check with the requester that the original goal is still met.",
     },
   },
   linkedRealisations: [

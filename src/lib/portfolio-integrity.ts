@@ -60,7 +60,11 @@ export function assertPortfolioIntegrity({
       );
     }
 
-    for (const competenceSlug of realisation.linkedCompetences) {
+    const competenceLinks = [
+      ...realisation.linkedCompetences,
+      ...Object.values(realisation.contextualCompetences ?? {}).flat(),
+    ];
+    for (const competenceSlug of competenceLinks) {
       if (!competenceSlugs.has(competenceSlug)) {
         errors.push(
           `Realisation ${realisation.slug} references unknown competence ${competenceSlug}`,

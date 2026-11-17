@@ -1,4 +1,3 @@
-import { LinkedText } from "@/components/linked-text";
 import { TopicLink } from "@/components/topic-link";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -8,6 +7,7 @@ import { parseLocale } from "@/lib/i18n";
 import { findLinkedExperiences, requireLinkedExperience } from "@/lib/experience";
 import { createLocalizedMetadata } from "@/lib/metadata";
 import { getRealisationBySlug, realisations } from "@/lib/realisations";
+import type { RealisationSectionId } from "@/lib/realisations/types";
 import { resolveCompetenceLinks } from "@/lib/portfolio-links";
 import { EditorialPageHeader } from "@/components/editorial-page-header";
 import { RealisationArticleContent } from "@/components/realisation-article-content";
@@ -63,7 +63,7 @@ export default async function RealisationDetailPage({
     realisation.linkedCompetences,
     loc,
   );
-  const contentSections = [
+  const contentSections: { id: RealisationSectionId; title: string; text: string }[] = [
     {
       id: "presentation",
       title: dict.realisationsPage.presentationHeading,
@@ -77,7 +77,7 @@ export default async function RealisationDetailPage({
     ...(realisation.risks
       ? [
           {
-            id: "risks",
+            id: "risks" as const,
             title: dict.realisationsPage.risksHeading,
             text: realisation.risks[loc],
           },
@@ -120,7 +120,7 @@ export default async function RealisationDetailPage({
         className="realisation-page-header"
         eyebrow={dict.nav.realisations}
         title={realisation.title[loc]}
-        description={<LinkedText locale={loc} currentPath={`/realisations/${slug}`}>{realisation.shortDescription[loc]}</LinkedText>}
+        description={realisation.shortDescription[loc]}
         leading={
           <Link
             href={`/${locale}/realisations`}
@@ -189,7 +189,6 @@ export default async function RealisationDetailPage({
           <RealisationSummary
             summary={realisation.summary}
             locale={loc}
-            currentPath={`/realisations/${slug}`}
             proofHref={realisation.media?.length ? "#visual-proof-heading" : "#results"}
             labels={{
               heading: dict.realisationsPage.summaryHeading,
@@ -281,37 +280,57 @@ export default async function RealisationDetailPage({
             </aside>
 
             <div>
-              {contentSections.map((section, index) => (
-                <section
-                  id={section.id}
-                  key={section.id}
-                  aria-labelledby={`${section.id}-heading`}
-                  className="realisation-content-deferred"
-                >
-                  <header>
+              {contentSections.map((section, index) => {
+                const contextualLinks = resolveCompetenceLinks(
+                  realisation.contextualCompetences?.[section.id],
+                  loc,
+                );
+                return (
+                  <section
+                    id={section.id}
+                    key={section.id}
+                    aria-labelledby={`${section.id}-heading`}
+                    className="realisation-content-deferred"
+                  >
+                    <header>
+                      <div>
+                        <p>
+                          {String(index + 1).padStart(2, "0")}
+                        </p>
+                        <h2
+                          id={`${section.id}-heading`}
+                        >
+                          {section.title}
+                        </h2>
+                      </div>
+                    </header>
                     <div>
-                      <p>
-                        {String(index + 1).padStart(2, "0")}
-                      </p>
-                      <h2
-                        id={`${section.id}-heading`}
-                      >
-                        {section.title}
-                      </h2>
+                      <RealisationArticleContent text={section.text} />
+                      {contextualLinks.length > 0 && (
+                        <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-6">
+                          {contextualLinks.map(({ slug: competenceSlug, title }) => (
+                            <li key={competenceSlug}>
+                              <Link
+                                href={`/${loc}/competences/${competenceSlug}#evidence`}
+                                className="font-medium text-primary underline underline-offset-4"
+                              >
+                                  {`${dict.realisationsPage.skillEvidenceLink} ${title}`}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <div data-realisation-back>
+                        <a
+                          href="#realisation-contents"
+                        >
+                          {dict.realisationsPage.backToContents}
+                        </a>
+                      </div>
                     </div>
-                  </header>
-                  <div>
-                    <RealisationArticleContent text={section.text} locale={loc} currentPath={`/realisations/${slug}`} />
-                    <div data-realisation-back>
-                      <a
-                        href="#realisation-contents"
-                      >
-                        {dict.realisationsPage.backToContents}
-                      </a>
-                    </div>
-                  </div>
-                </section>
-              ))}
+                  </section>
+                );
+              })}
 
               <section
                 id="linked-competences"

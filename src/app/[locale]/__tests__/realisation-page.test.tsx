@@ -113,6 +113,7 @@ describe("RealisationDetailPage", () => {
     expect(container.querySelectorAll("[data-realisation-article-body]")).toHaveLength(
       sections.length,
     );
+    expect(container.querySelector("[data-realisation-article-body] a")).toBeNull();
 
     for (const section of sections) {
       const content = realisation[section.key];
@@ -128,13 +129,25 @@ describe("RealisationDetailPage", () => {
       expect(element).toHaveTextContent(getContentMarker(content![locale]));
     }
 
+    const primarySkills = within(container.querySelector("#linked-competences") as HTMLElement);
+    expect(primarySkills.getAllByRole("link")).toHaveLength(realisation.linkedCompetences.length);
     for (const competenceSlug of realisation.linkedCompetences) {
       const competence = getCompetenceBySlug(competenceSlug);
 
       expect(competence).toBeDefined();
       expect(
-        within(container.querySelector("#linked-competences") as HTMLElement).getByRole("link", { name: competence?.title[locale] }),
+        primarySkills.getByRole("link", { name: competence?.title[locale] }),
       ).toHaveAttribute("href", `/${locale}/competences/${competenceSlug}`);
+    }
+
+    for (const [section, slugs] of Object.entries(realisation.contextualCompetences ?? {})) {
+      const evidenceSection = within(container.querySelector(`#${section}`) as HTMLElement);
+      for (const slug of slugs) {
+        const title = getCompetenceBySlug(slug)?.title[locale];
+        expect(evidenceSection.getByRole("link", {
+          name: `${dict.skillEvidenceLink} ${title}`,
+        })).toHaveAttribute("href", `/${locale}/competences/${slug}#evidence`);
+      }
     }
 
     if (realisation.media?.length) {

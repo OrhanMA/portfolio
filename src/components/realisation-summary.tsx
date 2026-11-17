@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { LinkedText } from "@/components/linked-text";
 import type { Locale } from "@/lib/i18n";
 import type { RealisationSummary as RealisationSummaryContent } from "@/lib/realisations";
 
 type RealisationSummaryProps = {
   summary: RealisationSummaryContent;
   locale: Locale;
-  currentPath: string;
   labels: {
     heading: string;
     introduction: string;
@@ -24,7 +22,6 @@ type RealisationSummaryProps = {
 export function RealisationSummary({
   summary,
   locale,
-  currentPath,
   labels,
   proofHref,
 }: RealisationSummaryProps) {
@@ -46,9 +43,7 @@ export function RealisationSummary({
           <div key={item.term}>
             <dt>{item.term}</dt>
             <dd>
-              <LinkedText locale={locale} currentPath={currentPath}>
-                {item.description}
-              </LinkedText>
+              {item.description}
               {item.href && (
                 <Link href={item.href}>{labels.proofLink}</Link>
               )}

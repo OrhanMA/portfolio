@@ -140,21 +140,21 @@ describe("AboutPage", () => {
     [
       "fr",
       [
-        ["Voir la compétence Amélioration continue", "/fr/competences/amelioration-continue"],
-        ["Voir la compétence Autonomie", "/fr/competences/autonomie"],
         ["Voir la compétence Persévérance", "/fr/competences/perseverance"],
         ["Voir la compétence Adaptabilité", "/fr/competences/adaptabilite"],
         ["Voir la compétence Communication", "/fr/competences/communication"],
+        ["Voir la compétence Développement Front-end (React/Next.js)", "/fr/competences/developpement-frontend"],
+        ["Voir la compétence DevOps & Administration Serveur", "/fr/competences/devops"],
       ],
     ],
     [
       "en",
       [
-        ["View skill Continuous improvement", "/en/competences/amelioration-continue"],
-        ["View skill Autonomy", "/en/competences/autonomie"],
         ["View skill Perseverance", "/en/competences/perseverance"],
         ["View skill Adaptability", "/en/competences/adaptabilite"],
         ["View skill Communication", "/en/competences/communication"],
+        ["View skill Frontend Development (React/Next.js)", "/en/competences/developpement-frontend"],
+        ["View skill DevOps & Server Administration", "/en/competences/devops"],
       ],
     ],
   ] as const)("adds a detail link at the end of every %s competence card", async (locale, links) => {

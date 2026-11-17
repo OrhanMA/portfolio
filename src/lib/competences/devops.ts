@@ -92,6 +92,10 @@ Software supply-chain security is part of the skill: image versions, dependencie
       fr: "La compétence est importante parce que je porte souvent la chaîne complète jusqu'à la production. Elle conditionne directement la fiabilité de mes compétences Odoo, back-end et front-end : un bon correctif perd sa valeur s'il ne peut pas être déployé, surveillé ou restauré proprement.",
       en: "This skill matters because I often own the complete chain through production. It directly conditions the reliability of my Odoo, backend, and frontend skills: a good fix loses value if it cannot be deployed, monitored, or restored cleanly.",
     },
+    acquisitionSpeed: {
+      fr: "La migration m’a fait progresser des premiers builds de préproduction jusqu’à la préparation d’une bascule avec sauvegardes sur Odoo.sh. Le site corporate et le portfolio m’ont ensuite permis de transposer cette pratique à GitHub Actions et aux prévisualisations Vercel. La restauration hors plateforme gérée reste une étape de progression.",
+      en: "The migration took me from initial staging builds to preparing a cutover with backups on Odoo.sh. The corporate site and portfolio then helped me transfer that practice to GitHub Actions and Vercel previews. Restoring services outside a managed platform is my next step.",
+    },
     advice: {
       fr: "Je conseille de préparer le retour arrière avant la mise en production, de vérifier les sauvegardes par leur cohérence et pas seulement leur présence, puis de lire les logs comme une donnée du produit. Les plateformes gérées réduisent le travail d'exploitation, mais elles ne suppriment ni la responsabilité des secrets, ni les tests, ni la compréhension de ce qu'elles automatisent.",
       en: "My advice is to prepare rollback before production, verify backups through consistency rather than mere presence, and treat logs as product data. Managed platforms reduce operational work, but they do not remove responsibility for secrets, tests, or understanding what they automate.",
@@ -103,13 +107,12 @@ Software supply-chain security is part of the skill: image versions, dependencie
       en: "Reach a solid intermediate level by being able to describe and automate a simple infrastructure, establish usable observability, and lead a deployment with tested restoration beyond a single managed platform.",
     },
     training: {
-      fr: "Je poursuis mon apprentissage de Docker, des images minimales, des SBOM, des pipelines CI/CD et du monitoring. Mon futur outil de Business Intelligence auto-hébergé doit servir de terrain pour pratiquer les conteneurs, la persistance, les sauvegardes, les métriques et l'exploitation régulière d'un service.",
-      en: "I continue studying Docker, minimal images, SBOMs, CI/CD pipelines, and monitoring. My future self-hosted Business Intelligence tool should provide a setting for practicing containers, persistence, backups, metrics, and regular service operation.",
+      fr: "D’ici septembre 2027, je prévois un atelier autonome de sauvegarde et restauration PostgreSQL à partir du chapitre « SQL Dump » de la documentation. Sur une base de test conteneurisée, je restaurerai une sauvegarde dans une instance vierge, comparerai les données attendues et chronométrerai la reprise. Je documenterai la procédure et la ferai rejouer.",
+      en: "By September 2027, I plan to run a PostgreSQL backup and recovery exercise based on the SQL Dump documentation. Using a containerized test database, I will restore a backup into a clean instance, compare the data with expected values and time the recovery. I will document the process and ask someone to repeat it.",
     },
   },
   linkedRealisations: [
     "migration-odoo-v16-v19",
-    "modules-metier-odoo",
     "refonte-site-corporate",
     "portfolio-professionnel",
   ],

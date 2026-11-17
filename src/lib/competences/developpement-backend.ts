@@ -92,6 +92,10 @@ I pay particular attention to integrations. When two systems exchange customers,
       fr: "Le back-end relie ma spécialisation ERP à mon profil full-stack. Il me permet de ne pas traiter Odoo comme une application isolée : commandes B2B, logistique, courriels, données analytiques et interfaces publiques dépendent de contrats serveur fiables.",
       en: "Backend development connects my ERP specialization to my full-stack profile. It prevents me from treating Odoo as an isolated application: B2B orders, logistics, email, analytical data, and public interfaces depend on reliable server contracts.",
     },
+    acquisitionSpeed: {
+      fr: "En cinq mois sur CAP2vie, j’ai participé à un premier back-end d’enquête puis mis en place les échanges entre deux écrans. L’alternance a constitué un deuxième palier : mes contrôleurs pour le B2B devaient respecter les droits et la cohérence des données déjà utilisées en production.",
+      en: "Over five months on CAP2vie, I helped build an initial survey backend and then implemented communication between two screens. My work-study program brought the next stage: my B2B controllers had to respect permissions and preserve the consistency of data already used in production.",
+    },
     advice: {
       fr: "Je conseille de commencer une API par son contrat, ses acteurs et ses erreurs avant d'écrire le scénario nominal. Il faut savoir qui possède la donnée, quelles validations font autorité, comment l'appel peut être rejoué et quelle trace permettra de diagnostiquer un échec. Les contrôles d'interface complètent cette protection, mais ne remplacent jamais ceux du serveur.",
       en: "My advice is to start an API with its contract, actors, and errors before writing the happy path. It is necessary to know who owns the data, which validations are authoritative, how the call may be replayed, and what trace will diagnose a failure. Interface checks complement this protection but never replace server-side controls.",
@@ -103,8 +107,8 @@ I pay particular attention to integrations. When two systems exchange customers,
       en: "Reach an advanced level by consolidating API design, transactions, observability, and integration testing, with a stronger ability to compare architectures rather than reason from a single framework.",
     },
     training: {
-      fr: "Je poursuis la pratique de Symfony sur le B2B, l'approfondissement de PostgreSQL et la conception des intégrations JSON-2. Le projet de Business Intelligence connecté à Odoo doit aussi me faire travailler les pipelines de données, la reprise sur erreur et la séparation entre lecture analytique et transactions ERP.",
-      en: "I continue practicing Symfony on the B2B platform, deepening PostgreSQL knowledge, and designing JSON-2 integrations. The Business Intelligence project connected to Odoo should also develop my skills in data pipelines, error recovery, and separating analytical reads from ERP transactions.",
+      fr: "D’ici juin 2027, je prévois de prototyper une synchronisation de données fictives vers PostgreSQL. Je définirai un contrat d’API, puis je vérifierai par des tests d’intégration qu’un même lot peut être rejoué sans doublon et qu’une interruption laisse un état récupérable. Je documenterai le contrat et la procédure de reprise avec les résultats des essais.",
+      en: "By June 2027, I plan to prototype a sync of synthetic data into PostgreSQL. I will define an API contract and use integration tests to check that replaying a batch produces no duplicates and interruption leaves recoverable state. I will document the contract and recovery procedure alongside the test results.",
     },
   },
   linkedRealisations: [

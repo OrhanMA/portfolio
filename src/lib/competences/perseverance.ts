@@ -85,6 +85,10 @@ I therefore distinguish perseverance from stubbornness. Continuing is worthwhile
       fr: "Elle est essentielle à ma spécialisation Odoo, où une erreur peut provenir du code interne, d'un module tiers, d'une personnalisation en base ou d'une donnée métier. Elle compte aussi dans le front-end et la visualisation, car un rendu plausible ne prouve pas que l'information représentée est juste.",
       en: "It is essential to my Odoo specialization, where an error may originate in internal code, a third-party module, a database customization, or business data. It also matters in frontend and visualization work because a plausible display does not prove that the represented information is correct.",
     },
+    acquisitionSpeed: {
+      fr: "Mon rythme a accéléré par paliers pendant la migration. Le passage à Odoo 17 m’a obligé à apprendre à isoler les erreurs. Les passages à 18 puis à 19 ont consolidé cette méthode sur d’autres modules. L’inventaire des corrections m’a donné un point d’appui pour éviter de reprendre un diagnostic depuis zéro.",
+      en: "My progress came in stages during the migration. The move to Odoo 17 forced me to learn how to isolate errors. Moving to 18 and then 19 strengthened that method across other modules. The record of fixes gave me a starting point so I did not have to begin each investigation from scratch.",
+    },
     advice: {
       fr: "Je conseille de définir ce que la prochaine tentative doit apprendre avant de la lancer. Si elle ne produit aucune information nouvelle, il faut changer de méthode : réduire le cas, ajouter des traces, demander une expertise métier ou revoir l'architecture. La persévérance devient professionnelle lorsqu'elle diminue l'incertitude au lieu de seulement consommer du temps.",
       en: "My advice is to define what the next attempt should teach before starting it. If it produces no new information, the method must change: reduce the case, add traces, request business expertise, or revisit the architecture. Perseverance becomes professional when it reduces uncertainty rather than merely consuming time.",
@@ -96,8 +100,8 @@ I therefore distinguish perseverance from stubbornness. Continuing is worthwhile
       en: "Retain this endurance while reducing the time needed to recognize a poor direction. I want to improve hypothesis formulation, automated reproductions, and the use of metrics that make it possible to stop an unproductive approach sooner.",
     },
     training: {
-      fr: "Je poursuis la lecture du code source d'Odoo, l'écriture de tests de migration et l'étude des méthodes de diagnostic. Les prochains travaux sur le calcul de marge et les intégrations ERP serviront de terrain pour appliquer cette démarche plus systématique.",
-      en: "I continue reading Odoo source code, writing migration tests, and studying diagnostic methods. Upcoming work on margin calculation and ERP integrations will provide a setting for applying this more systematic approach.",
+      fr: "D’ici juin 2027, je veux travailler le diagnostic sur trois régressions d’Odoo reproduites en préproduction ou sur données fictives. Pour chacune, je noterai une hypothèse, un test qui peut l’invalider et un seuil d’arrêt. Je conserverai un cas minimal reproductible et une fiche expliquant la cause et le contrôle de non-régression.",
+      en: "By June 2027, I want to practice diagnosis on three Odoo regressions reproduced in staging or with synthetic data. For each one I will record a hypothesis, a test that could disprove it and a stopping point. I will keep a minimal reproduction and a note explaining the root cause and regression check.",
     },
   },
   linkedRealisations: [

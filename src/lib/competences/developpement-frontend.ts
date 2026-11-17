@@ -92,6 +92,10 @@ I evaluate an interface through several kinds of evidence: actual responsive beh
       fr: "Le front-end rend visibles mes autres compétences. Une règle métier, une API ou une preuve professionnelle ne produit de valeur que si son interface permet de la comprendre et de l'utiliser. Il élargit aussi mon profil au-delà d'Odoo vers des produits web publics et des expériences de données.",
       en: "Frontend work makes my other skills visible. A business rule, API, or professional proof creates value only when its interface makes it understandable and usable. It also broadens my profile beyond Odoo toward public web products and data experiences.",
     },
+    acquisitionSpeed: {
+      fr: "Sur les cinq mois de CAP2vie, je suis passé d’un premier graphique D3.js à une visualisation modifiable reliée au questionnaire. Le site corporate m’a ensuite fait travailler une autre dimension du front-end : adapter trois maquettes à un ensemble continu de tailles d’écran tout en construisant des composants réutilisables.",
+      en: "During the five months on CAP2vie, I progressed from an initial D3.js chart to an editable visualization connected to the questionnaire. The corporate site then challenged me in a different area of frontend work: adapting three mockups to a continuous range of screen widths and building reusable components.",
+    },
     advice: {
       fr: "Je conseille de concevoir avec le contenu réel et la quantité réelle de texte avant de finaliser les cartes ou les animations. Il faut ensuite vérifier les extrêmes : écran étroit, clavier, mouvement réduit, traduction plus longue, erreur réseau et contenu absent. Une interface réussie ne dépend pas de l'effet le plus visible, mais de sa capacité à rester claire lorsque les conditions idéales disparaissent.",
       en: "My advice is to design with actual content and actual text volume before finalizing cards or animations. Extremes should then be checked: narrow screens, keyboard use, reduced motion, longer translations, network errors, and missing content. A successful interface does not depend on its most visible effect but on remaining clear when ideal conditions disappear.",
@@ -103,8 +107,8 @@ I evaluate an interface through several kinds of evidence: actual responsive beh
       en: "Reach an advanced level by strengthening component architecture, manual accessibility testing, React performance measurement, and the ability to turn an art direction into a coherent system without relying on conventional solutions.",
     },
     training: {
-      fr: "Je poursuis l'étude de React et Next.js, les tests avec Playwright et l'analyse des Performance Tracks. La finalisation du site corporate et les prochaines itérations du portfolio serviront à travailler plus profondément la composition, l'accessibilité et la réutilisation des composants.",
-      en: "I continue studying React and Next.js, Playwright testing, and Performance Tracks analysis. Finalizing the corporate website and future portfolio iterations will provide deeper practice in composition, accessibility, and component reuse.",
+      fr: "D’ici juillet 2027, je compte étudier le guide « React Performance tracks » et profiler un parcours du portfolio sur une version de développement. Je comparerai deux traces avec le même scénario et la même configuration, puis je vérifierai au clavier, sur mobile et en mouvement réduit que l’optimisation préserve le parcours.",
+      en: "By July 2027, I plan to study the React Performance Tracks guide and profile one portfolio journey using a development build. I will compare two traces with the same scenario and configuration, then check that the optimized flow still works with a keyboard, on mobile and with reduced motion.",
     },
   },
   linkedRealisations: [

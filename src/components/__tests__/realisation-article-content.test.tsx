@@ -83,7 +83,7 @@ describe("RealisationArticleContent", () => {
           if (!blocks.every((block) => block.kind === "numbered")) continue;
 
           const { container, unmount } = render(
-            <RealisationArticleContent text={localizedContent[locale]} locale={locale} />,
+            <RealisationArticleContent text={localizedContent[locale]} />,
           );
 
           const markers = Array.from(

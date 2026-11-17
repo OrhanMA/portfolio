@@ -13,14 +13,17 @@ describe("portfolio relationships", () => {
       expect(
         competence.linkedRealisations.length,
         `${competence.slug} must be evidenced by at least one achievement`,
-      ).toBeGreaterThan(0);
+      ).toBeGreaterThanOrEqual(2);
+      expect(competence.linkedRealisations.length, competence.slug).toBeLessThanOrEqual(3);
+      expect(new Set(competence.linkedRealisations).size, competence.slug).toBe(competence.linkedRealisations.length);
     }
 
     for (const realisation of realisations) {
       expect(
         realisation.linkedCompetences.length,
-        `${realisation.slug} must demonstrate at least one skill`,
-      ).toBeGreaterThan(0);
+        `${realisation.slug} must highlight at least two primary skills`,
+      ).toBeGreaterThanOrEqual(2);
+      expect(realisation.linkedCompetences.length, realisation.slug).toBeLessThanOrEqual(3);
       expect(realisation.risks, `${realisation.slug} must describe its difficulties`).toBeDefined();
 
       for (const locale of ["fr", "en"] as const) {
@@ -72,31 +75,23 @@ describe("portfolio relationships", () => {
   });
 
   it("keeps competence and realisation links reciprocal", () => {
-    for (const competence of competences) {
-      for (const realisationSlug of competence.linkedRealisations) {
-        const realisation = realisations.find(
-          (item) => item.slug === realisationSlug,
-        );
-
-        expect(
-          realisation,
-          `Unknown realisation ${realisationSlug} linked from ${competence.slug}`,
-        ).toBeDefined();
-        expect(realisation?.linkedCompetences).toContain(competence.slug);
-      }
-    }
-
     for (const realisation of realisations) {
-      for (const competenceSlug of realisation.linkedCompetences) {
-        const competence = competences.find(
-          (item) => item.slug === competenceSlug,
-        );
+      const linkedSlugs = [
+        ...realisation.linkedCompetences,
+        ...Object.values(realisation.contextualCompetences ?? {}).flat(),
+      ];
+      const reciprocalSlugs = competences
+        .filter((competence) => competence.linkedRealisations.includes(realisation.slug))
+        .map((competence) => competence.slug);
 
+      expect(linkedSlugs.sort(), realisation.slug).toEqual(reciprocalSlugs.sort());
+
+      for (const slug of linkedSlugs) {
+        const skill = competences.find((competence) => competence.slug === slug);
         expect(
-          competence,
-          `Unknown competence ${competenceSlug} linked from ${realisation.slug}`,
-        ).toBeDefined();
-        expect(competence?.linkedRealisations).toContain(realisation.slug);
+          skill?.anecdotes.some((anecdote) => anecdote.linkedRealisation === realisation.slug),
+          `${realisation.slug} must support ${slug} with a documented example`,
+        ).toBe(true);
       }
     }
   });

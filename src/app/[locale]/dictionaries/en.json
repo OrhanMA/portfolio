@@ -730,7 +730,8 @@
     "contentsHeading": "Contents",
     "contentsSubtext": "Jump directly to any part of this case study.",
     "backToContents": "Back to contents",
-    "linkedCompetencesHeading": "Related skills",
+    "linkedCompetencesHeading": "Primary skills",
+    "skillEvidenceLink": "View evidence for",
     "linkedExperiencesHeading": "Related experience and education",
     "context": "Context"
   },

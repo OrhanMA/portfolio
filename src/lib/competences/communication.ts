@@ -86,8 +86,8 @@ This skill directly protects software quality. An ambiguous need produces behavi
       en: "It is central because my work sits at the interface between business processes and software. Much of my value comes from translation: making an Odoo constraint understandable, an accounting rule implementable, or giving management enough information to decide how to address a technical limitation.",
     },
     acquisitionSpeed: {
-      fr: "Cette compétence a progressé rapidement pendant le stage CAP2vie, où les rendez-vous hebdomadaires, les revues de code et la passation rendaient immédiatement visibles les incompréhensions. L'alternance l'a ensuite approfondie par des échanges quotidiens avec plusieurs services et niveaux hiérarchiques.",
-      en: "This skill progressed quickly during the CAP2vie internship, where weekly meetings, code reviews, and handover made misunderstandings immediately visible. The work-study period then deepened it through daily discussions with several departments and management levels.",
+      fr: "Durant les cinq mois de stage sur CAP2vie, je suis passé des premières explications du besoin à la démonstration du parcours complet et à la passation. Les rendez-vous hebdomadaires et les revues de code m’ont permis de détecter et de corriger rapidement les incompréhensions. L’alternance a prolongé cet apprentissage auprès de plusieurs services.",
+      en: "During the five-month CAP2vie internship, I went from hearing the initial requirements to demonstrating the complete workflow and handing it over. Weekly meetings and code reviews helped me spot and address misunderstandings quickly. My work-study program extended that learning across several departments.",
     },
     advice: {
       fr: "Je conseille de terminer chaque échange important par une reformulation observable : scénario, maquette, exemple de donnée, critère d'acceptation ou décision écrite. Cela évite qu'un accord apparent cache deux compréhensions différentes. Il faut également annoncer ce qui n'est pas encore prouvé ; la transparence sur une limite renforce davantage la confiance qu'une assurance artificielle.",
@@ -100,14 +100,13 @@ This skill directly protects software quality. An ambiguous need produces behavi
       en: "Reach an advanced level by preparing the communications that structure a project earlier: stakeholder maps, briefs, decision records, focused demonstrations, and validation by less technical audiences.",
     },
     training: {
-      fr: "Je veux pratiquer davantage la facilitation de réunions, la rédaction de documentation d'architecture et la présentation orale de compromis techniques. Le jury du portfolio et les prochaines formations utilisateurs constitueront des situations concrètes pour mesurer mes progrès.",
-      en: "I want more practice facilitating meetings, writing architecture documentation, and presenting technical trade-offs orally. The portfolio jury and upcoming user training will provide concrete situations for measuring progress.",
+      fr: "D’ici avril 2027, je prévois de répéter une démonstration métier de quinze minutes à partir du module de relance, avec des données fictives. Je préparerai un scénario, une décision à prendre et un compte rendu court. Une personne qui découvre le module devra pouvoir reformuler la règle et retrouver le réglage concerné.",
+      en: "By April 2027, I plan to rehearse a fifteen-minute business demonstration of the reminder module using synthetic data. I will prepare a scenario, one decision and a short written summary. A first-time user should be able to explain the rule back to me and find the corresponding setting.",
     },
   },
   linkedRealisations: [
     "modules-metier-odoo",
     "refonte-site-corporate",
     "app-trajectoires-de-vie",
-    "portfolio-professionnel",
   ],
 };
